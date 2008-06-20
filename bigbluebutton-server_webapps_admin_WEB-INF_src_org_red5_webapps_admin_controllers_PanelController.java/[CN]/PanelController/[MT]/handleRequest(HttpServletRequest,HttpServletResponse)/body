@@ -1,0 +1,21 @@
+{
+  log.debug("handle request");
+  InMemoryDaoImpl detailsService=(InMemoryDaoImpl)daoAuthenticationProvider.getUserDetailsService();
+  if (detailsService.getUserMap().getUserCount() > 0) {
+    log.debug("Creating adminPanel");
+    return new ModelAndView("panel");
+  }
+ else {
+    log.debug("{}",ToStringBuilder.reflectionToString(request));
+    if (request.getMethod().equalsIgnoreCase("POST")) {
+      log.debug("Redirecting to register with user details");
+      return new ModelAndView("register");
+    }
+ else {
+      log.debug("Redirecting to register");
+      UserDetails userDetails=new UserDetails();
+      userDetails.setUsername("admin");
+      return new ModelAndView("register","userDetails",userDetails);
+    }
+  }
+}

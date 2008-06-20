@@ -1,0 +1,3 @@
+{
+  log.info("Presentation::appDisconnect - " + conn.getClient().getId());
+}

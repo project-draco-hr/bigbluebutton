@@ -1,0 +1,29 @@
+{
+  IScope scope=Red5.getConnectionLocal().getScope();
+  logger.debug("MuteUnmute request for user [" + userId + "] in room["+ scope.getName()+ "]");
+  if (hasSharedObject(scope,"meetMeUsersSO")) {
+    MeetMeUser theUser=roomListener.getUser(userId,scope.getName());
+    if (theUser == null) {
+      logger.warn("Cannot find user[" + userId + "] in room["+ scope.getName()+ "]");
+      return;
+    }
+    if (muteUser) {
+      try {
+        logger.debug("Muted user[" + userId + "] in room["+ scope.getName()+ "]");
+        theUser.mute();
+      }
+ catch (      ManagerCommunicationException e) {
+        e.printStackTrace();
+      }
+    }
+ else {
+      try {
+        theUser.unmute();
+        logger.debug("Unmuted user[" + userId + "] in room["+ scope.getName()+ "]");
+      }
+ catch (      ManagerCommunicationException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+}

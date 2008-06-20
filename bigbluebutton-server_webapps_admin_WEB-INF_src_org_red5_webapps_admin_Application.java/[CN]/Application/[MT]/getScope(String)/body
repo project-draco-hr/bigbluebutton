@@ -1,0 +1,4 @@
+{
+  IScope root=ScopeUtils.findRoot(scope);
+  return getScopes(root,scopeName);
+}

@@ -1,0 +1,49 @@
+{
+  IServiceCapableConnection conn=(IServiceCapableConnection)Red5.getConnectionLocal();
+  log.info("Connecting IN midi device: {}",inDeviceName);
+  try {
+    MidiDevice dev=null;
+    if (conn.hasAttribute("midiIn")) {
+      dev=(MidiDevice)conn.getAttribute("midiIn");
+      if (dev.isOpen()) {
+        dev.close();
+      }
+    }
+    dev=getMidiDevice(inDeviceName,false);
+    if (dev == null) {
+      log.error("Midi IN device not found: {}",inDeviceName);
+      return false;
+    }
+    if (!dev.isOpen()) {
+      dev.open();
+    }
+    dev.getTransmitter().setReceiver(new MidiReceiver(conn));
+    conn.setAttribute("midiIn",dev);
+    log.info("Connecting OUT midi device: {}",outDeviceName);
+    if (conn.hasAttribute("midiOut")) {
+      dev=(MidiDevice)conn.getAttribute("midiOut");
+      if (dev.isOpen()) {
+        dev.close();
+      }
+    }
+    dev=getMidiDevice(outDeviceName,false);
+    if (dev == null) {
+      log.error("Midi OUT device not found: {}",outDeviceName);
+      return false;
+    }
+    if (!dev.isOpen()) {
+      dev.open();
+    }
+    conn.setAttribute("midiOut",dev);
+    log.info("It worked!");
+    return true;
+  }
+ catch (  MidiUnavailableException e) {
+    log.error("Error connecting to midi devices {}",e);
+  }
+catch (  RuntimeException e) {
+    log.error("Error connecting to midi devices {}",e);
+  }
+  log.error("Doh!");
+  return false;
+}

@@ -1,0 +1,24 @@
+{
+  output.writeBoolean(a[0]);
+  output.writeBoolean(a[1]);
+  output.writeByte(b[0]);
+  output.writeByte(b[1]);
+  output.writeByte(b[2]);
+  output.writeByte(b[3]);
+  output.writeByte(b[4]);
+  output.writeDouble(c);
+  output.writeFloat(d);
+  output.writeInt(e[0]);
+  output.writeInt(e[1]);
+  output.writeInt(e[2]);
+  output.writeMultiByte(f[0],"iso-8859-1");
+  output.writeMultiByte(f[1],"utf-8");
+  output.writeObject(ob);
+  output.writeShort(g[0]);
+  output.writeShort(g[1]);
+  output.writeShort(g[2]);
+  output.writeUnsignedInt(h[0]);
+  output.writeUnsignedInt(h[1]);
+  output.writeUTF(i);
+  output.writeUTFBytes(j);
+}

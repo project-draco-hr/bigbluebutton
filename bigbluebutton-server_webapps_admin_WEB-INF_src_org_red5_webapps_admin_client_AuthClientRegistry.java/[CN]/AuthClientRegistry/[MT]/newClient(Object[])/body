@@ -1,0 +1,36 @@
+{
+  if (params == null || params.length == 0) {
+    log.warn("Client didn't pass a username.");
+    throw new ClientRejectedException();
+  }
+  String username, passwd;
+  if (params[0] instanceof HashMap) {
+    HashMap userWin=(HashMap)params[0];
+    username=(String)userWin.get(0);
+    passwd=(String)userWin.get(1);
+  }
+ else   if (params[0] instanceof ArrayList) {
+    ArrayList userMac=(ArrayList)params[0];
+    username=(String)userMac.get(0);
+    passwd=(String)userMac.get(1);
+  }
+ else {
+    throw new ClientRejectedException();
+  }
+  UsernamePasswordAuthenticationToken t=new UsernamePasswordAuthenticationToken(username,passwd);
+  masterScope=Red5.getConnectionLocal().getScope();
+  ProviderManager mgr=(ProviderManager)masterScope.getContext().getBean("authenticationManager");
+  try {
+    t=(UsernamePasswordAuthenticationToken)mgr.authenticate(t);
+  }
+ catch (  BadCredentialsException ex) {
+    throw new ClientRejectedException();
+  }
+  if (t.isAuthenticated()) {
+    client=new AuthClient(nextId(),this);
+    addClient(client);
+    client.setAttribute("authInformation",t);
+    log.debug("Authenticated client - username: {}, id: {}",new Object[]{username,client.getId()});
+  }
+  return client;
+}

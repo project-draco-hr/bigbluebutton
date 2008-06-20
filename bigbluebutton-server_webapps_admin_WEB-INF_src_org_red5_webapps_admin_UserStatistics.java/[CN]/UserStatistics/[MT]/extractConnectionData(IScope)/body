@@ -1,0 +1,15 @@
+{
+  Iterator<IConnection> conn=root.getConnections();
+  while (conn.hasNext()) {
+    IConnection connection=conn.next();
+    addData("Scope statistics","--");
+    addData("Send bytes",Utils.formatBytes(connection.getWrittenBytes()));
+    addData("Received bytes",Utils.formatBytes(connection.getReadBytes()));
+    addData("Send messages",connection.getWrittenMessages());
+    addData("Received messages",connection.getReadMessages());
+    addData("Dropped messages",connection.getDroppedMessages());
+    addData("Pending messages",connection.getPendingMessages());
+    addData("Remote address",connection.getRemoteAddress() + ":" + connection.getRemotePort()+ " ("+ connection.getHost()+ ")");
+    addData("Path",connection.getPath());
+  }
+}

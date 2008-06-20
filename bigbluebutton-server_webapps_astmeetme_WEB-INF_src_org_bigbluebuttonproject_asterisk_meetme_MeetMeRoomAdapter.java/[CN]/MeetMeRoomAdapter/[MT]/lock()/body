@@ -1,0 +1,9 @@
+{
+  try {
+    room.lock();
+    locked=true;
+  }
+ catch (  ManagerCommunicationException e) {
+    e.printStackTrace();
+  }
+}

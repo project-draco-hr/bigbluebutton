@@ -1,0 +1,21 @@
+{
+  if (!presentationSOs.containsKey(room)) {
+    log.info("Getting updates message from unknown room [" + room + "]");
+    return;
+  }
+  ISharedObject so=presentationSOs.get(room);
+  Map<String,Object> update=new HashMap<String,Object>();
+  so.beginUpdate();
+  if (code == ReturnCode.EXTRACT.value()) {
+    update.put("returnCode","EXTRACT");
+    update.put("totalSlides",totalSlides);
+    update.put("completedSlides",completedSlides);
+  }
+ else   if (code == ReturnCode.CONVERT.value()) {
+    update.put("returnCode","CONVERT");
+    update.put("totalSlides",totalSlides);
+    update.put("completedSlides",completedSlides);
+  }
+  so.setAttribute("updateMessage",update);
+  so.endUpdate();
+}

@@ -1,0 +1,16 @@
+{
+  MidiDevice.Info[] info=MidiSystem.getMidiDeviceInfo();
+  for (  Info element : info) {
+    if (element.getName().equals(name)) {
+      try {
+        MidiDevice device=MidiSystem.getMidiDevice(element);
+        if (receiver && device.getMaxReceivers() == 0)         continue;
+        return device;
+      }
+ catch (      MidiUnavailableException e) {
+        log.error("{}",e);
+      }
+    }
+  }
+  return null;
+}

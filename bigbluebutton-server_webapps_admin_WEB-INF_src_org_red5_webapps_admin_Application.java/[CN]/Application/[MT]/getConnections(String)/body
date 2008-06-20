@@ -1,0 +1,16 @@
+{
+  HashMap<Integer,String> connections=new HashMap<Integer,String>();
+  IScope root=getScope(scopeName);
+  if (root != null) {
+    Set<IClient> clients=root.getClients();
+    Iterator<IClient> client=clients.iterator();
+    int id=0;
+    while (client.hasNext()) {
+      IClient c=client.next();
+      String user=c.getId();
+      connections.put(id,user);
+      id++;
+    }
+  }
+  return connections;
+}

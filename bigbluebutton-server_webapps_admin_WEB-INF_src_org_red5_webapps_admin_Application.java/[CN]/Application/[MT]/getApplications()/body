@@ -1,0 +1,17 @@
+{
+  IScope root=ScopeUtils.findRoot(scope);
+  Iterator<String> iter=root.getScopeNames();
+  HashMap<Integer,Object> apps=new HashMap<Integer,Object>();
+  int id=0;
+  while (iter.hasNext()) {
+    String name=iter.next();
+    String name2=name.substring(1,name.length());
+    int size=getConnections(name2).size();
+    HashMap<String,String> app=new HashMap<String,String>();
+    app.put("name",name2);
+    app.put("clients",size + "");
+    apps.put(id,app);
+    id++;
+  }
+  return apps;
+}

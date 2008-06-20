@@ -1,0 +1,5 @@
+'\nmain.py - a translation into Python of the ofla demo Application class, a Red5 example.\n\n@author The Red5 Project (red5@osflash.org)\n@author Joachim Bauch (jojo@struktur.de)\n'
+from org.red5.server.adapter import ApplicationAdapter
+from org.red5.server.api import IBandwidthConfigure
+from org.red5.server.api.stream import IStreamCapableConnection
+from org.red5.server.api.stream.support import SimpleConnectionBWConfig

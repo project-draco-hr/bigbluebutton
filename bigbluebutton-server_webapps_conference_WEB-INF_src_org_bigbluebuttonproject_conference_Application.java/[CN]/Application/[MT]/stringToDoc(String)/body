@@ -1,0 +1,10 @@
+{
+  try {
+    DocumentBuilder db=DocumentBuilderFactory.newInstance().newDocumentBuilder();
+    return db.parse(new InputSource(new StringReader(str)));
+  }
+ catch (  Exception ex) {
+    log.debug("Error in stringToDoc() converting from xml sting to xml doc " + ex.toString());
+    return null;
+  }
+}

@@ -1,0 +1,22 @@
+{
+  if (files != null) {
+    for (    Resource flv : files) {
+      File file=flv.getFile();
+      Date lastModifiedDate=new Date(file.lastModified());
+      String lastModified=formatDate(lastModifiedDate);
+      String flvName=flv.getFile().getName();
+      String flvBytes=Long.toString(file.length());
+      if (log.isDebugEnabled()) {
+        log.debug("flvName: {}",flvName);
+        log.debug("lastModified date: {}",lastModified);
+        log.debug("flvBytes: {}",flvBytes);
+        log.debug("-------");
+      }
+      Map<String,Object> fileInfo=new HashMap<String,Object>();
+      fileInfo.put("name",flvName);
+      fileInfo.put("lastModified",lastModified);
+      fileInfo.put("size",flvBytes);
+      filesMap.put(flvName,fileInfo);
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  if (!presentationSOs.containsKey(room)) {
+    log.info("Getting updates message from unknown room [" + room + "]");
+    return;
+  }
+  ISharedObject so=presentationSOs.get(room);
+  Map<String,Object> update=new HashMap<String,Object>();
+  so.beginUpdate();
+  if (code == ReturnCode.SUCCESS.value()) {
+    update.put("returnCode","SUCCESS");
+    update.put("message",message);
+  }
+ else   if (code == ReturnCode.UPDATE.value()) {
+    update.put("returnCode","UPDATE");
+    update.put("message",message);
+  }
+ else {
+    update.put("returnCode","FAILED");
+    update.put("message",message);
+  }
+  so.setAttribute("updateMessage",update);
+  so.endUpdate();
+}

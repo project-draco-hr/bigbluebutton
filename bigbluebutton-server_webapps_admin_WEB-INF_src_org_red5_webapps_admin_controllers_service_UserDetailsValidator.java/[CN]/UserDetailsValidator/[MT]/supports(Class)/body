@@ -1,0 +1,3 @@
+{
+  return UserDetails.class.equals(clazz);
+}

@@ -1,0 +1,4 @@
+{
+  traces=new TreeMap<Thread,StackTraceElement[]>(THREAD_COMP);
+  traces.putAll(Thread.getAllStackTraces());
+}

@@ -1,0 +1,3 @@
+{
+  log.info("Received result {} for {}",new Object[]{call.getResult(),call.getServiceMethodName()});
+}

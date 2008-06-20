@@ -1,0 +1,8 @@
+{
+  if (method.equals("newMessage")) {
+    if (buffer.size() == chatlogSize) {
+      buffer.removeFirst();
+    }
+    buffer.addLast("[" + new Time(System.currentTimeMillis()) + "] "+ (String)params.get(0)+ "\n");
+  }
+}

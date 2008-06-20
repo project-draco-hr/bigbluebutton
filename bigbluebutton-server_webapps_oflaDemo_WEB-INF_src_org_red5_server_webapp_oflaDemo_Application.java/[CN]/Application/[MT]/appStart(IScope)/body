@@ -1,0 +1,4 @@
+{
+  appScope=app;
+  return true;
+}

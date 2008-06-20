@@ -1,0 +1,8 @@
+{
+  try {
+    managerConnection.logoff();
+  }
+ catch (  IllegalStateException e) {
+    logger.error("Logging off when Asterisk Server is not connected.");
+  }
+}

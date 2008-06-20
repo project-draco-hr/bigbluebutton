@@ -1,0 +1,5 @@
+{
+  BandwidthDetection detect=new BandwidthDetection();
+  detect.checkBandwidth(conn);
+  return super.appConnect(conn,params);
+}

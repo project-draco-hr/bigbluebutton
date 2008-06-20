@@ -1,0 +1,20 @@
+{
+  log.debug("validate");
+  UserDetails ud=(UserDetails)obj;
+  if (ud == null) {
+    log.debug("User details were null");
+    errors.rejectValue("username","error.not-specified",null,"Value required.");
+  }
+ else {
+    log.debug("User details were null");
+    if (StringUtils.isEmpty(ud.getUsername())) {
+      errors.rejectValue("username","error.missing-username",new Object[]{},"Username Required.");
+    }
+    if (StringUtils.isEmpty(ud.getPassword())) {
+      errors.rejectValue("password","error.missing-password",new Object[]{},"Password Required.");
+    }
+ else     if (ud.getPassword().length() < minLength) {
+      errors.rejectValue("password","error.too-low",new Object[]{new Integer(minLength)},"Password Length Is Too Small.");
+    }
+  }
+}

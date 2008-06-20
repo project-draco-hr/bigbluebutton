@@ -1,0 +1,4 @@
+{
+  PasswordGenerator generate=new PasswordGenerator(args[0],args[1]);
+  generate.run();
+}
