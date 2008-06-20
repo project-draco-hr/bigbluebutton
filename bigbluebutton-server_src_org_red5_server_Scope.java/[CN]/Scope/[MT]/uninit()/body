@@ -1,0 +1,13 @@
+{
+  for (  IBasicScope child : children.values()) {
+    if (child instanceof Scope) {
+      ((Scope)child).uninit();
+    }
+  }
+  stop();
+  if (hasParent()) {
+    if (parent.hasChildScope(name)) {
+      parent.removeChildScope(this);
+    }
+  }
+}

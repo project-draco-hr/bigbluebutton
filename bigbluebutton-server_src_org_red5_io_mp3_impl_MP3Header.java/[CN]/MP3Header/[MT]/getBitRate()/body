@@ -1,0 +1,36 @@
+{
+  int result;
+switch (audioVersionId) {
+case 1:
+    return -1;
+case 0:
+case 2:
+  if (layerDescription == 3) {
+    result=BITRATES[3][bitRateIndex];
+  }
+ else   if (layerDescription == 2 || layerDescription == 1) {
+    result=BITRATES[4][bitRateIndex];
+  }
+ else {
+    return -1;
+  }
+break;
+case 3:
+if (layerDescription == 3) {
+result=BITRATES[0][bitRateIndex];
+}
+ else if (layerDescription == 2) {
+result=BITRATES[1][bitRateIndex];
+}
+ else if (layerDescription == 1) {
+result=BITRATES[2][bitRateIndex];
+}
+ else {
+return -1;
+}
+break;
+default :
+return -1;
+}
+return result * 1000;
+}

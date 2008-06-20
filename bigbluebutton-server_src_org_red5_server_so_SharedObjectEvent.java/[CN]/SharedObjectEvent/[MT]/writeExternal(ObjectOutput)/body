@@ -1,0 +1,5 @@
+{
+  out.writeObject(type);
+  out.writeObject(key);
+  out.writeObject(value);
+}

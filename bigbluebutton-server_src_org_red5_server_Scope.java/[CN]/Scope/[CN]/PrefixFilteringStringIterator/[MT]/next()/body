@@ -1,0 +1,13 @@
+{
+  if (next != null) {
+    final String result=next;
+    next=null;
+    return result.substring(prefix.length());
+  }
+  if (hasNext()) {
+    return next();
+  }
+ else {
+    return null;
+  }
+}

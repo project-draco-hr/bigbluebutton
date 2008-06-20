@@ -1,0 +1,3 @@
+{
+  this.diskStore=System.getProperty("diskStore");
+}

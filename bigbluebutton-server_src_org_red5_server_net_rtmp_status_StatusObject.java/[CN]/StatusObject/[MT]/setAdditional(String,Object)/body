@@ -1,0 +1,9 @@
+{
+  if ("code".equals(name) || "level".equals(name) || "description".equals(name)|| "application".equals(name)) {
+    throw new RuntimeException("the name \"" + name + "\" is reserved");
+  }
+  if (additional == null) {
+    additional=new HashMap<String,Object>();
+  }
+  additional.put(name,value);
+}

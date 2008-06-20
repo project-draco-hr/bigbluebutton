@@ -1,0 +1,5 @@
+{
+  this();
+  this.bandwidth=bandwidth;
+  this.value2=value2;
+}

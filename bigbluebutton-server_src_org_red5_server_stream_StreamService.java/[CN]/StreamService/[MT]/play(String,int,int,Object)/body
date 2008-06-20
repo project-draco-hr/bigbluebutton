@@ -1,0 +1,8 @@
+{
+  if (flushPlaylist instanceof Boolean) {
+    play(name,start,length,((Boolean)flushPlaylist).booleanValue());
+  }
+ else {
+    play(name,start,length);
+  }
+}

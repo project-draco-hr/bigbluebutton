@@ -1,0 +1,18 @@
+{
+  if (isPullMode) {
+    Ping ping1=new Ping();
+    ping1.setValue1((short)Ping.STREAM_RESET);
+    ping1.setValue2(getStreamId());
+    RTMPMessage ping1Msg=new RTMPMessage();
+    ping1Msg.setBody(ping1);
+    doPushMessage(ping1Msg);
+  }
+  Ping ping2=new Ping();
+  ping2.setValue1((short)Ping.STREAM_CLEAR);
+  ping2.setValue2(getStreamId());
+  RTMPMessage ping2Msg=new RTMPMessage();
+  ping2Msg.setBody(ping2);
+  doPushMessage(ping2Msg);
+  ResetMessage reset=new ResetMessage();
+  doPushMessage(reset);
+}

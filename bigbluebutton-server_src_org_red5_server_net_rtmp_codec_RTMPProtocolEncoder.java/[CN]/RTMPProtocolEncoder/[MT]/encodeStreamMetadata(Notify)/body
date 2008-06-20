@@ -1,0 +1,5 @@
+{
+  final ByteBuffer result=metaData.getData();
+  result.acquire();
+  return result;
+}

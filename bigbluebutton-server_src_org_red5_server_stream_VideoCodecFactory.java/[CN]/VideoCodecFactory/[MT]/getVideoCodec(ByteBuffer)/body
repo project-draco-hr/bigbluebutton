@@ -1,0 +1,19 @@
+{
+  IVideoStreamCodec result=null;
+  for (  IVideoStreamCodec storedCodec : codecs) {
+    IVideoStreamCodec codec;
+    try {
+      codec=storedCodec.getClass().newInstance();
+    }
+ catch (    Exception e) {
+      log.error("Could not create video codec instance.",e);
+      continue;
+    }
+    log.info("Trying codec " + codec);
+    if (codec.canHandleData(data)) {
+      result=codec;
+      break;
+    }
+  }
+  return result;
+}

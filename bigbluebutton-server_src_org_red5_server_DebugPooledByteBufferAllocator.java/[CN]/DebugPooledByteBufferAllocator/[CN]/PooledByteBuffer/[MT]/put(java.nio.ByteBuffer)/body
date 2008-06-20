@@ -1,0 +1,5 @@
+{
+  autoExpand(src.remaining());
+  buf.buf().put(src);
+  return this;
+}

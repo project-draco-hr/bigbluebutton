@@ -1,0 +1,4 @@
+{
+  waitForHandshakeService=service;
+  waitForHandshakeJob=service.addScheduledOnceJob(maxHandshakeTimeout,new WaitForHandshakeJob());
+}

@@ -1,0 +1,13 @@
+{
+  for (  IConsumer consumer : consumers) {
+    try {
+      ((IPushableConsumer)consumer).pushMessage(this,message);
+    }
+ catch (    Throwable t) {
+      if (t instanceof IOException) {
+        throw (IOException)t;
+      }
+      log.error("exception when pushing message to consumer",t);
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  beginUpdate();
+  try {
+    so.removeAttributes();
+  }
+  finally {
+    endUpdate();
+  }
+  for (  ISharedObjectListener listener : serverListeners) {
+    listener.onSharedObjectClear(this);
+  }
+}

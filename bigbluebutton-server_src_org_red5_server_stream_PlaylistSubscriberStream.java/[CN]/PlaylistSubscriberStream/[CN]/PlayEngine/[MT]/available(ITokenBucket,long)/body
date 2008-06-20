@@ -1,0 +1,11 @@
+{
+  isWaitingForToken=false;
+  needCheckBandwidth=false;
+  try {
+    pullAndPush();
+  }
+ catch (  Throwable err) {
+    log.error("Error while pulling message.",err);
+  }
+  needCheckBandwidth=true;
+}

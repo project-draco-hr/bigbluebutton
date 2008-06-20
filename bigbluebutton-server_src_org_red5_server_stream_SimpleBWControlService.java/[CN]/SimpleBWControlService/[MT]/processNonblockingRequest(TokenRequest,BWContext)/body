@@ -1,0 +1,17 @@
+{
+  if (context.bwConfig[3] >= 0) {
+    if (context.tokenRc[3] >= request.requestToken) {
+      context.tokenRc[3]-=request.requestToken;
+      return true;
+    }
+  }
+ else {
+    if (context.tokenRc[request.channel] < 0)     return true;
+    if (context.tokenRc[request.channel] >= request.requestToken) {
+      context.tokenRc[request.channel]-=request.requestToken;
+      return true;
+    }
+  }
+  context.pendingRequestArray[request.channel].add(request);
+  return false;
+}

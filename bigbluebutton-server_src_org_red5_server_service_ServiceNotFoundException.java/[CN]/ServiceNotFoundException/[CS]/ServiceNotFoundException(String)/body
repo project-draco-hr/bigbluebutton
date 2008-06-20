@@ -1,0 +1,4 @@
+{
+  super("Service not found: " + serviceName);
+  this.serviceName=serviceName;
+}

@@ -1,0 +1,7 @@
+{
+  super.addParameters(result);
+  result.append(",sequenceId=" + sequenceId);
+  result.append(",sequenceProxies=" + sequenceProxies);
+  result.append(",sequenceSize=" + sequenceSize);
+  result.append(",dataMessage=" + dataMessage);
+}

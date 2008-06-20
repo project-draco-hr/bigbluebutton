@@ -1,0 +1,23 @@
+{
+  int n=0;
+  int b=buf.get();
+  int result=0;
+  while ((b & 0x80) != 0 && n < 3) {
+    result<<=7;
+    result|=(b & 0x7f);
+    b=buf.get();
+    n++;
+  }
+  if (n < 3) {
+    result<<=7;
+    result|=b;
+  }
+ else {
+    result<<=8;
+    result|=b;
+    if ((result & 0x10000000) != 0) {
+      result|=0xe0000000;
+    }
+  }
+  return result;
+}

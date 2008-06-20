@@ -1,0 +1,7 @@
+{
+  String result=getStreamDirectory(scope) + name;
+  if (extension != null && !extension.equals("")) {
+    result+=extension;
+  }
+  return result;
+}

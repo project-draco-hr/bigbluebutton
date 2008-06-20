@@ -1,0 +1,8 @@
+{
+  if (currentDataType == AMF3.TYPE_NUMBER) {
+    return buf.getDouble();
+  }
+ else {
+    return readAMF3Integer();
+  }
+}

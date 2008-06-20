@@ -1,0 +1,9 @@
+{
+  result.append("ts=" + timestamp + ",");
+  result.append("headers=" + headers + ",");
+  result.append("body=" + body + ",");
+  result.append("messageId=" + messageId + ",");
+  result.append("timeToLive=" + timeToLive + ",");
+  result.append("clientId=" + clientId + ",");
+  result.append("destination=" + destination);
+}

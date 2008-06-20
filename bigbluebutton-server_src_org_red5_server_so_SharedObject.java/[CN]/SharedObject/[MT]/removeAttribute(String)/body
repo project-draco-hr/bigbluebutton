@@ -1,0 +1,14 @@
+{
+  ownerMessage.addEvent(Type.CLIENT_DELETE_DATA,name,null);
+  if (super.removeAttribute(name)) {
+    modified=true;
+    syncEvents.add(new SharedObjectEvent(Type.CLIENT_DELETE_DATA,name,null));
+    deleteStats.incrementAndGet();
+    notifyModified();
+    return true;
+  }
+ else {
+    notifyModified();
+    return false;
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return XMLUtils.docToString1(dom);
+}

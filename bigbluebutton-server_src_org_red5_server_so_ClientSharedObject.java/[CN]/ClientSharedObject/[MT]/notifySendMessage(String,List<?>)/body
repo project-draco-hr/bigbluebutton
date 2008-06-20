@@ -1,0 +1,5 @@
+{
+  for (  ISharedObjectListener listener : listeners) {
+    listener.onSharedObjectSend(this,method,params);
+  }
+}

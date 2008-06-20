@@ -1,0 +1,7 @@
+{
+  if (!(context instanceof BWContext))   return;
+  BWContext c=(BWContext)context;
+  for (int i=0; i < 3; i++) {
+    c.buckets[i].reset();
+  }
+}

@@ -1,0 +1,3 @@
+{
+  deferredResults.remove(result);
+}

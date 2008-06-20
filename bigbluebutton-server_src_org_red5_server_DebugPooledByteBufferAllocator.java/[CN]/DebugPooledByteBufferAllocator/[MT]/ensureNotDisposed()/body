@@ -1,0 +1,5 @@
+{
+  if (disposed) {
+    throw new IllegalStateException("This allocator is disposed already.");
+  }
+}

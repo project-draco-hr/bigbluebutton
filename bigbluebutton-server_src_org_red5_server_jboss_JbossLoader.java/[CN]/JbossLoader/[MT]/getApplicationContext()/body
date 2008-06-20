@@ -1,0 +1,4 @@
+{
+  logger.debug("Attempt to get app context");
+  return applicationContext.get();
+}

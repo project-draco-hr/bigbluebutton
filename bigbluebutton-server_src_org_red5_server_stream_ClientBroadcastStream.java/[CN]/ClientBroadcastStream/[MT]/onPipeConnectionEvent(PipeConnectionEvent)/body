@@ -1,0 +1,28 @@
+{
+switch (event.getType()) {
+case PipeConnectionEvent.PROVIDER_CONNECT_PUSH:
+    if (event.getProvider() == this && event.getSource() != connMsgOut && (event.getParamMap() == null || !event.getParamMap().containsKey("record"))) {
+      this.livePipe=(IPipe)event.getSource();
+      for (      IConsumer consumer : this.livePipe.getConsumers()) {
+        subscriberStats.increment();
+      }
+    }
+  break;
+case PipeConnectionEvent.PROVIDER_DISCONNECT:
+if (this.livePipe == event.getSource()) {
+  this.livePipe=null;
+}
+break;
+case PipeConnectionEvent.CONSUMER_CONNECT_PUSH:
+if (this.livePipe == event.getSource()) {
+notifyChunkSize();
+}
+subscriberStats.increment();
+break;
+case PipeConnectionEvent.CONSUMER_DISCONNECT:
+subscriberStats.decrement();
+break;
+default :
+break;
+}
+}

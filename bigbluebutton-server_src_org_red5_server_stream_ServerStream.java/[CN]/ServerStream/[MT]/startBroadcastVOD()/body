@@ -1,0 +1,16 @@
+{
+  nextRTMPMessage=null;
+  vodStartTS=0;
+  serverStartTS=System.currentTimeMillis();
+  IStreamAwareScopeHandler handler=getStreamAwareHandler();
+  if (handler != null) {
+    if (recordingFilename != null) {
+      handler.streamRecordStart(this);
+    }
+ else {
+      handler.streamPublishStart(this);
+    }
+  }
+  notifyBroadcastStart();
+  scheduleNextMessage();
+}

@@ -1,0 +1,29 @@
+{
+synchronized (this) {
+    if (closed || scope == null) {
+      log.debug("Close, not connected nothing to do.");
+      return;
+    }
+    closed=true;
+  }
+  log.debug("Close, disconnect from scope, and children");
+  try {
+    for (    IBasicScope basicScope : basicScopes) {
+      unregisterBasicScope(basicScope);
+    }
+  }
+ catch (  Exception err) {
+    log.error("Error while unregistering basic scopes.",err);
+  }
+  try {
+    scope.disconnect(this);
+  }
+ catch (  Exception err) {
+    log.error("Error while disconnecting from scope " + scope,err);
+  }
+  if (client != null && client instanceof Client) {
+    ((Client)client).unregister(this);
+    client=null;
+  }
+  scope=null;
+}

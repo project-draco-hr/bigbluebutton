@@ -1,0 +1,22 @@
+{
+  List<String> addresses=new ArrayList<String>();
+  addresses.add(request.getRemoteHost());
+  if (!request.getRemoteAddr().equals(request.getRemoteHost())) {
+    addresses.add(request.getRemoteAddr());
+  }
+  final String forwardedFor=request.getHeader("X-Forwarded-For");
+  if (forwardedFor != null) {
+    final String[] parts=forwardedFor.split(",");
+    for (    String part : parts) {
+      addresses.add(part);
+    }
+  }
+  final String httpVia=request.getHeader("Via");
+  if (httpVia != null) {
+    final String[] parts=httpVia.split(",");
+    for (    String part : parts) {
+      addresses.add(part);
+    }
+  }
+  return Collections.unmodifiableList(addresses);
+}

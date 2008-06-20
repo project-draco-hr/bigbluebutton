@@ -1,0 +1,11 @@
+{
+  MRTMPOriginConnection conn=new MRTMPOriginConnection();
+  conn.setIoSession(session);
+  mrtmpManager.registerConnection(conn);
+  session.setAttachment(conn);
+  session.getFilterChain().addFirst("protocolFilter",new ProtocolCodecFilter(this.codecFactory));
+  if (log.isDebugEnabled()) {
+    session.getFilterChain().addLast("logger",new LoggingFilter());
+  }
+  log.debug("Created MRTMP Origin Connection " + conn);
+}

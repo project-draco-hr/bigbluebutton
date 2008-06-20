@@ -1,0 +1,12 @@
+{
+switch (bufferType) {
+case AUTO:
+    return "auto";
+case DIRECT:
+  return "direct";
+case HEAP:
+return "heap";
+default :
+return null;
+}
+}

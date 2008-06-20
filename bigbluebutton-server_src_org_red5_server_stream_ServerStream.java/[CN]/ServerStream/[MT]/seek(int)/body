@@ -1,0 +1,4 @@
+{
+  if (state != State.PLAYING && state != State.PAUSED)   return;
+  sendVODSeekCM(msgIn,position);
+}

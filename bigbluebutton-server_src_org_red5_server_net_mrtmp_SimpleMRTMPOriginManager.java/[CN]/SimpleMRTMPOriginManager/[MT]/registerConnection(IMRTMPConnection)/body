@@ -1,0 +1,9 @@
+{
+  lock.writeLock().lock();
+  try {
+    return connSet.add(conn);
+  }
+  finally {
+    lock.writeLock().unlock();
+  }
+}

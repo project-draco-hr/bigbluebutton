@@ -1,0 +1,24 @@
+{
+  if (sendStartNotification) {
+    sendStartNotification=false;
+    if (source instanceof IConnection) {
+      IScope scope=((IConnection)source).getScope();
+      if (scope.hasHandler()) {
+        Object handler=scope.getHandler();
+        if (handler instanceof IStreamAwareScopeHandler) {
+          if (recording) {
+            ((IStreamAwareScopeHandler)handler).streamRecordStart(this);
+          }
+ else {
+            ((IStreamAwareScopeHandler)handler).streamPublishStart(this);
+          }
+        }
+      }
+    }
+    sendPublishStartNotify();
+    if (recording) {
+      sendRecordStartNotify();
+    }
+    notifyBroadcastStart();
+  }
+}

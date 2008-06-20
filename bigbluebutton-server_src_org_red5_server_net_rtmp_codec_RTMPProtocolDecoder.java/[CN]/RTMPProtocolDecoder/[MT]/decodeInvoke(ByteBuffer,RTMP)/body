@@ -1,0 +1,3 @@
+{
+  return (Invoke)decodeNotifyOrInvoke(new Invoke(),in,null,rtmp);
+}

@@ -1,0 +1,7 @@
+{
+  final Client result=(Client)clients.get(id);
+  if (result == null) {
+    throw new ClientNotFoundException(id);
+  }
+  return result;
+}

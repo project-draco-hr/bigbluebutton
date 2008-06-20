@@ -1,0 +1,12 @@
+{
+  beginUpdate();
+  try {
+    so.setAttributes(values);
+  }
+  finally {
+    endUpdate();
+  }
+  for (  ISharedObjectListener listener : serverListeners) {
+    listener.onSharedObjectUpdate(this,values);
+  }
+}

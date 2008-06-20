@@ -1,0 +1,3 @@
+{
+  return "MetaData{" + "cuePoints=" + (cuePoints == null ? null : this.get("cuePoints")) + '}';
+}

@@ -1,0 +1,11 @@
+{
+  Resource rootFile=resources.getResource(path);
+  try {
+    rootDir=rootFile.getFile().getAbsolutePath();
+    this.path=path;
+  }
+ catch (  IOException err) {
+    log.error("I/O exception thrown when setting file path to " + path);
+    throw (new RuntimeException(err));
+  }
+}

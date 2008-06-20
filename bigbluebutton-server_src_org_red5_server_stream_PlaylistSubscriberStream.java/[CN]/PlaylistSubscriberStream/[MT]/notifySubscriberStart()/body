@@ -1,0 +1,11 @@
+{
+  IStreamAwareScopeHandler handler=getStreamAwareHandler();
+  if (handler != null) {
+    try {
+      handler.streamSubscriberStart(this);
+    }
+ catch (    Throwable t) {
+      log.error("error notify streamSubscriberStart",t);
+    }
+  }
+}

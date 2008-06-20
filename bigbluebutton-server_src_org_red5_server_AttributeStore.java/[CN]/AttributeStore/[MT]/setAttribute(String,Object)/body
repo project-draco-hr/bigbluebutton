@@ -1,0 +1,12 @@
+{
+  if (name == null) {
+    return false;
+  }
+  if (value == null) {
+    return (attributes.remove(name) != null);
+  }
+ else {
+    Object previous=attributes.put(name,value);
+    return (previous == null || value == previous || !value.equals(previous));
+  }
+}

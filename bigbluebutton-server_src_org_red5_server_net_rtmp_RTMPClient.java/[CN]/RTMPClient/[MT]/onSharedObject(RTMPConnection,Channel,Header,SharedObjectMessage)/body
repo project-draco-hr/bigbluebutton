@@ -1,0 +1,15 @@
+{
+  ClientSharedObject so=sharedObjects.get(object.getName());
+  if (so == null) {
+    log.error("Ignoring request for non-existend SO: " + object);
+    return;
+  }
+  if (so.isPersistentObject() != object.isPersistent()) {
+    log.error("Ignoring request for wrong-persistent SO: " + object);
+    return;
+  }
+  if (log.isDebugEnabled()) {
+    log.debug("Received SO request: " + object);
+  }
+  so.dispatchEvent(object);
+}

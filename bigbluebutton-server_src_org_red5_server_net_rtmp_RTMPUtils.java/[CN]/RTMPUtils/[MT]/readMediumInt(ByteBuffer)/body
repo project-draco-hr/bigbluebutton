@@ -1,0 +1,25 @@
+{
+  final byte a=in.get();
+  final byte b=in.get();
+  final byte c=in.get();
+  int val=0;
+  if (a < 0) {
+    val+=((a + 256) << 16);
+  }
+ else {
+    val+=(a << 16);
+  }
+  if (b < 0) {
+    val+=((b + 256) << 8);
+  }
+ else {
+    val+=(b << 8);
+  }
+  if (c < 0) {
+    val+=c + 256;
+  }
+ else {
+    val+=c;
+  }
+  return val;
+}

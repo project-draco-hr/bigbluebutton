@@ -1,0 +1,12 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("leave: {} << {}",client,scope);
+  }
+  if (isApp(scope)) {
+    appLeave(client,scope);
+  }
+ else   if (isRoom(scope)) {
+    roomLeave(client,scope);
+  }
+  super.leave(client,scope);
+}

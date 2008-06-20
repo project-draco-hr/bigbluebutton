@@ -1,0 +1,4 @@
+{
+  ISharedObject so=getSharedObject(scope);
+  so.setAttribute(uid,username);
+}

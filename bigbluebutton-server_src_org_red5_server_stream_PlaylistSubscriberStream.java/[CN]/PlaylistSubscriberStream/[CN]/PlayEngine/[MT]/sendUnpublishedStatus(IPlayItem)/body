@@ -1,0 +1,8 @@
+{
+  Status unpublished=new Status(StatusCodes.NS_PLAY_UNPUBLISHNOTIFY);
+  unpublished.setClientid(getStreamId());
+  unpublished.setDetails(item.getName());
+  StatusMessage unpublishedMsg=new StatusMessage();
+  unpublishedMsg.setBody(unpublished);
+  doPushMessage(unpublishedMsg);
+}

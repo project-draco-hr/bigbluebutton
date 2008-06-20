@@ -1,0 +1,5 @@
+{
+  Serializer ser=new Serializer();
+  ser.serialize(output,getName());
+  ser.serialize(output,getAttributes());
+}

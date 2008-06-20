@@ -1,0 +1,17 @@
+{
+  msgOut.pushMessage(message);
+  recordPipe.pushMessage(message);
+  if (message instanceof RTMPMessage) {
+    final IRTMPEvent rtmpEvent=((RTMPMessage)message).getBody();
+    if (rtmpEvent instanceof IStreamPacket) {
+      for (      IStreamListener listener : getStreamListeners()) {
+        try {
+          listener.packetReceived(this,(IStreamPacket)rtmpEvent);
+        }
+ catch (        Exception e) {
+          log.error("Error while notifying listener " + listener,e);
+        }
+      }
+    }
+  }
+}

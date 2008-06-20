@@ -1,0 +1,4 @@
+String host
+String path
+String sessionId
+Map<String,Object> params

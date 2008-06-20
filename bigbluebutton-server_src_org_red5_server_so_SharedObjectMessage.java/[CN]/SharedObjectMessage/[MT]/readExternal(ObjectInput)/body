@@ -1,0 +1,7 @@
+{
+  super.readExternal(in);
+  name=(String)in.readObject();
+  version=in.readInt();
+  persistent=in.readBoolean();
+  events=(LinkedList<ISharedObjectEvent>)in.readObject();
+}

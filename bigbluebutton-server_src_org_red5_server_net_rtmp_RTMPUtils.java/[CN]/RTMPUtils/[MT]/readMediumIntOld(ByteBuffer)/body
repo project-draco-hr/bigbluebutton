@@ -1,0 +1,12 @@
+{
+  ByteBuffer buf=ByteBuffer.allocate(4);
+  buf.put((byte)0x00);
+  buf.put(in.get());
+  buf.put(in.get());
+  buf.put(in.get());
+  buf.flip();
+  int value=buf.getInt();
+  buf.release();
+  buf=null;
+  return value;
+}

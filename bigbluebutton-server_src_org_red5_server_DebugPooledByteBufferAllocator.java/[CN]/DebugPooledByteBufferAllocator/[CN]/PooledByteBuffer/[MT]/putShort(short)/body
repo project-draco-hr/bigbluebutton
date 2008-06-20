@@ -1,0 +1,5 @@
+{
+  autoExpand(2);
+  buf.buf().putShort(value);
+  return this;
+}

@@ -1,0 +1,7 @@
+{
+  super();
+  this.type=type;
+  this.name=name;
+  this.path=path;
+  this.persistent=persistent;
+}

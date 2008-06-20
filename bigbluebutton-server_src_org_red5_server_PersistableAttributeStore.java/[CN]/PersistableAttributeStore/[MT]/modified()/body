@@ -1,0 +1,6 @@
+{
+  lastModified=System.currentTimeMillis();
+  if (store != null) {
+    store.save(this);
+  }
+}

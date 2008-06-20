@@ -1,0 +1,7 @@
+{
+  Object[] result=new Object[3];
+  result[0]=team;
+  result[1]=words;
+  result[2]=str;
+  return result;
+}

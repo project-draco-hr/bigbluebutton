@@ -1,0 +1,6 @@
+{
+  if (ioSession != null) {
+    writingMessage(out);
+    ioSession.write(out);
+  }
+}

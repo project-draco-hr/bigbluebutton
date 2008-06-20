@@ -1,0 +1,7 @@
+{
+  IPersistable result=super.load(name);
+  if (result != null) {
+    return result;
+  }
+  return doLoad(path + '/' + name+ extension);
+}

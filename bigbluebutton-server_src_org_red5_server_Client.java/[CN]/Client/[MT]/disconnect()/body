@@ -1,0 +1,6 @@
+{
+  log.debug("Disconnect - id: {}, closing {} connections",id,getConnections().size());
+  for (  IConnection con : getConnections()) {
+    con.close();
+  }
+}

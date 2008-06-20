@@ -1,0 +1,11 @@
+{
+synchronized (items) {
+    int nextItem=currentItemIndex + 1;
+    if (nextItem >= items.size() && !isRepeat) {
+      return false;
+    }
+ else {
+      return true;
+    }
+  }
+}

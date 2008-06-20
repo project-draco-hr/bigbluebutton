@@ -1,0 +1,12 @@
+{
+  super.writeExternal(out);
+  out.writeObject(call);
+  out.writeObject(connectionParams);
+  out.writeInt(invokeId);
+  if (data != null) {
+    out.writeObject(SerializeUtils.ByteBufferToByteArray(data));
+  }
+ else {
+    out.writeObject(null);
+  }
+}

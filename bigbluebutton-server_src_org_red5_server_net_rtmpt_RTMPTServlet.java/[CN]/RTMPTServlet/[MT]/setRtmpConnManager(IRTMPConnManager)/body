@@ -1,0 +1,3 @@
+{
+  RTMPTServlet.rtmpConnManager=rtmpConnManager;
+}

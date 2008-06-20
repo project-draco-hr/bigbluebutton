@@ -1,0 +1,12 @@
+{
+  List<String> result=new ArrayList<String>();
+  try {
+    for (    String name : scheduler.getJobNames(null)) {
+      result.add(name);
+    }
+  }
+ catch (  SchedulerException ex) {
+    throw new RuntimeException(ex);
+  }
+  return result;
+}

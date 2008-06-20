@@ -1,0 +1,14 @@
+{
+  if (objects.isEmpty()) {
+    return;
+  }
+  for (  UpdateEntry entry : objects.keySet()) {
+    try {
+      objects.remove(entry);
+      entry.store.saveObject(entry.object);
+    }
+ catch (    Throwable e) {
+      log.error("Error while saving {} in {}. {}",new Object[]{entry.object,entry.store,e});
+    }
+  }
+}

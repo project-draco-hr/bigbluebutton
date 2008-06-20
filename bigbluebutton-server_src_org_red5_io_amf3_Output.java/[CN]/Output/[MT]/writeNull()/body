@@ -1,0 +1,4 @@
+{
+  writeAMF3();
+  buf.put(AMF3.TYPE_NULL);
+}

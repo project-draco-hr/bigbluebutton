@@ -1,0 +1,34 @@
+{
+  if (meta.positions.length == 0)   return;
+  Document dom;
+  DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
+  try {
+    DocumentBuilder db=dbf.newDocumentBuilder();
+    dom=db.newDocument();
+  }
+ catch (  ParserConfigurationException pce) {
+    log.error("Error while creating document.",pce);
+    return;
+  }
+  Element root=dom.createElement("FrameMetadata");
+  root.setAttribute("modified",String.valueOf(file.lastModified()));
+  root.setAttribute("duration",String.valueOf(meta.duration));
+  root.setAttribute("audioOnly",meta.audioOnly ? "true" : "false");
+  dom.appendChild(root);
+  for (int i=0; i < meta.positions.length; i++) {
+    Element node=dom.createElement("KeyFrame");
+    node.setAttribute("position",String.valueOf(meta.positions[i]));
+    node.setAttribute("timestamp",String.valueOf(meta.timestamps[i]));
+    root.appendChild(node);
+  }
+  String filename=file.getAbsolutePath() + ".meta";
+  OutputFormat format=new OutputFormat(dom);
+  format.setIndenting(true);
+  try {
+    XMLSerializer serializer=new XMLSerializer(new FileOutputStream(new File(filename)),format);
+    serializer.serialize(dom);
+  }
+ catch (  IOException err) {
+    log.error("could not save keyframe data",err);
+  }
+}

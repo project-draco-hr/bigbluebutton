@@ -1,0 +1,5 @@
+{
+  this.blockData=null;
+  this.blockSize=0;
+  this.dataCount=0;
+}

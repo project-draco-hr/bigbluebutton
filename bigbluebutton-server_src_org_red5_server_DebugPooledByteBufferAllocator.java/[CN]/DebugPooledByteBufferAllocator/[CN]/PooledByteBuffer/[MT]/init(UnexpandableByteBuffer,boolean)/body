@@ -1,0 +1,9 @@
+{
+  this.buf=buf;
+  if (clear) {
+    buf.buf().clear();
+  }
+  buf.buf().order(ByteOrder.BIG_ENDIAN);
+  autoExpand=false;
+  refCount=1;
+}

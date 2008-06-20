@@ -1,0 +1,8 @@
+{
+  dataType=in.readByte();
+  channelId=in.readInt();
+  size=in.readInt();
+  streamId=in.readInt();
+  timer=in.readInt();
+  timerRelative=in.readBoolean();
+}

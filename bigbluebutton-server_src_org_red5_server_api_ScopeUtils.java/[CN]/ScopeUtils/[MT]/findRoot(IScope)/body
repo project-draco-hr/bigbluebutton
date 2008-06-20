@@ -1,0 +1,7 @@
+{
+  IScope current=from;
+  while (current.hasParent()) {
+    current=current.getParent();
+  }
+  return current;
+}

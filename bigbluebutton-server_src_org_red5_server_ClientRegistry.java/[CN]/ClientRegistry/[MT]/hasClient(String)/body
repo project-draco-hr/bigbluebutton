@@ -1,0 +1,6 @@
+{
+  if (id == null) {
+    return false;
+  }
+  return clients.containsKey(id);
+}

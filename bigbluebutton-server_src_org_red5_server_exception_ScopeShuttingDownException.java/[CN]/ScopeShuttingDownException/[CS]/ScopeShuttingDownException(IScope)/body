@@ -1,0 +1,3 @@
+{
+  super("Scope shutting down: " + scope);
+}

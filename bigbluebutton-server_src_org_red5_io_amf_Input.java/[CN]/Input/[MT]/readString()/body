@@ -1,0 +1,19 @@
+{
+  int len=0;
+switch (currentDataType) {
+case AMF.TYPE_LONG_STRING:
+    len=buf.getInt();
+  break;
+case AMF.TYPE_STRING:
+len=buf.getUnsignedShort();
+break;
+default :
+log.debug("Unknown AMF type: {}",currentDataType);
+}
+int limit=buf.limit();
+final java.nio.ByteBuffer strBuf=buf.buf();
+strBuf.limit(strBuf.position() + len);
+final String string=AMF.CHARSET.decode(strBuf).toString();
+buf.limit(limit);
+return string;
+}

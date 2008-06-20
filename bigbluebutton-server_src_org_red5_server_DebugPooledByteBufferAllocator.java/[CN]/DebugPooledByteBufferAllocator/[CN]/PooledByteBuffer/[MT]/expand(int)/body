@@ -1,0 +1,12 @@
+{
+  if (autoExpand) {
+    int pos=buf.buf().position();
+    int limit=buf.buf().limit();
+    int end=pos + expectedRemaining;
+    if (end > limit) {
+      ensureCapacity(end);
+      buf.buf().limit(end);
+    }
+  }
+  return this;
+}

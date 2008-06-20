@@ -1,0 +1,8 @@
+{
+  if (value == null) {
+    return removeAttribute(name);
+  }
+  ownerMessage.addEvent(Type.SERVER_SET_ATTRIBUTE,name,value);
+  notifyModified();
+  return true;
+}

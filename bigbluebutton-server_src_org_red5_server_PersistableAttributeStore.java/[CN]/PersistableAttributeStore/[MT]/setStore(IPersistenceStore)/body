@@ -1,0 +1,9 @@
+{
+  if (this.store != null) {
+    this.store.notifyClose();
+  }
+  this.store=store;
+  if (store != null) {
+    store.load(this);
+  }
+}

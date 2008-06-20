@@ -1,0 +1,12 @@
+{
+synchronized (consumers) {
+    if (consumers.contains(consumer)) {
+      return false;
+    }
+    consumers.add(consumer);
+  }
+  if (consumer instanceof IPipeConnectionListener) {
+    listeners.add((IPipeConnectionListener)consumer);
+  }
+  return true;
+}

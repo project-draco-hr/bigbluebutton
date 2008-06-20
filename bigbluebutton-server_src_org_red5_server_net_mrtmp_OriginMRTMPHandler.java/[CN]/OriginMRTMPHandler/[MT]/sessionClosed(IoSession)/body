@@ -1,0 +1,6 @@
+{
+  MRTMPOriginConnection conn=(MRTMPOriginConnection)session.getAttachment();
+  mrtmpManager.unregisterConnection(conn);
+  conn.close();
+  log.debug("Closed MRTMP Origin Connection " + conn);
+}

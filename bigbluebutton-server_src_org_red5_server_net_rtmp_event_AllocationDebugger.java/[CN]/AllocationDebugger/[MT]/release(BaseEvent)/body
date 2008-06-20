@@ -1,0 +1,12 @@
+{
+  Info info=events.get(event);
+  if (info != null) {
+    info.refcount--;
+    if (info.refcount == 0) {
+      events.remove(event);
+    }
+  }
+ else {
+    log.warn("Release called on already released event.");
+  }
+}

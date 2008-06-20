@@ -1,0 +1,5 @@
+IScope scope
+String name
+int start
+int length
+boolean flushPlaylist

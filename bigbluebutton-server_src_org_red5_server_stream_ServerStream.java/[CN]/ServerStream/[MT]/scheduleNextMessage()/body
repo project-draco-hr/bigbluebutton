@@ -1,0 +1,57 @@
+{
+  boolean first=nextRTMPMessage == null;
+  long delta;
+  while (true) {
+    nextRTMPMessage=getNextRTMPMessage();
+    if (nextRTMPMessage == null) {
+      onItemEnd();
+      return;
+    }
+    IRTMPEvent rtmpEvent=nextRTMPMessage.getBody();
+    if (!(rtmpEvent instanceof VideoData) && !(rtmpEvent instanceof AudioData)) {
+      continue;
+    }
+    rtmpEvent=nextRTMPMessage.getBody();
+    nextTS=rtmpEvent.getTimestamp();
+    if (first) {
+      vodStartTS=nextTS;
+      first=false;
+    }
+    delta=nextTS - vodStartTS - (System.currentTimeMillis() - serverStartTS);
+    if (delta < WAIT_THRESHOLD) {
+      if (!doPushMessage()) {
+        return;
+      }
+      if (state != State.PLAYING) {
+        nextRTMPMessage=null;
+        return;
+      }
+    }
+ else {
+      break;
+    }
+  }
+  vodJobName=scheduler.addScheduledOnceJob(delta,new IScheduledJob(){
+    /** 
+ * {@inheritDoc} 
+ */
+    public void execute(    ISchedulingService service){
+synchronized (ServerStream.this) {
+        if (vodJobName == null) {
+          return;
+        }
+        vodJobName=null;
+        if (!doPushMessage()) {
+          return;
+        }
+        if (state == State.PLAYING) {
+          scheduleNextMessage();
+        }
+ else {
+          nextRTMPMessage=null;
+        }
+      }
+    }
+  }
+);
+}

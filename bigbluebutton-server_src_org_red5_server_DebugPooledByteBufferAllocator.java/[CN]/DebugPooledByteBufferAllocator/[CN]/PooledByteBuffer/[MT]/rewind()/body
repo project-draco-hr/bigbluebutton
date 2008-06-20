@@ -1,0 +1,4 @@
+{
+  buf.buf().rewind();
+  return this;
+}

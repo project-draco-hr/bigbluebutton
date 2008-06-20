@@ -1,0 +1,4 @@
+{
+  buf.buf().flip();
+  return this;
+}

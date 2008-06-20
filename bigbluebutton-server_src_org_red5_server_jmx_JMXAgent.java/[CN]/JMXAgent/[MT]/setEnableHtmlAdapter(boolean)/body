@@ -1,0 +1,3 @@
+{
+  JMXAgent.enableHtmlAdapter=enableHtmlAdapter;
+}

@@ -1,0 +1,8 @@
+{
+  if ("".equals(string)) {
+    putInteger(1);
+    return;
+  }
+  final byte[] encoded=encodeString(string);
+  putString(string,encoded);
+}

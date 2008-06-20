@@ -1,0 +1,9 @@
+{
+  Invoke invoke=new Invoke();
+  invoke.setCall(call);
+  invoke.setInvokeId(getInvokeId());
+  if (call instanceof IPendingServiceCall) {
+    registerPendingCall(invoke.getInvokeId(),(IPendingServiceCall)call);
+  }
+  getChannel(channel).write(invoke);
+}

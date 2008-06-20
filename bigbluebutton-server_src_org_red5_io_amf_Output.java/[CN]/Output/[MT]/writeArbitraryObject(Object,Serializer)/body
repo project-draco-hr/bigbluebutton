@@ -1,0 +1,46 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("writeObject");
+  }
+  Class<?> objectClass=object.getClass();
+  if (!objectClass.isAnnotationPresent(Anonymous.class)) {
+    buf.put(AMF.TYPE_CLASS_OBJECT);
+    putString(buf,objectClass.getName());
+  }
+ else {
+    buf.put(AMF.TYPE_OBJECT);
+  }
+  Map<String,Object> values=new HashMap<String,Object>();
+  for (  Field field : objectClass.getFields()) {
+    if (field.isAnnotationPresent(DontSerialize.class)) {
+      if (log.isDebugEnabled()) {
+        log.debug("Skipping " + field.getName() + " because its marked with @DontSerialize");
+      }
+      continue;
+    }
+ else {
+      int modifiers=field.getModifiers();
+      if (Modifier.isTransient(modifiers)) {
+        log.warn("Using \"transient\" to declare fields not to be serialized is " + "deprecated and will be removed in Red5 0.8, use \"@DontSerialize\" instead.");
+        continue;
+      }
+    }
+    Object value;
+    try {
+      value=field.get(object);
+    }
+ catch (    IllegalAccessException err) {
+      continue;
+    }
+    values.put(field.getName(),value);
+  }
+  Iterator<Map.Entry<String,Object>> it=values.entrySet().iterator();
+  while (it.hasNext()) {
+    Map.Entry<String,Object> entry=it.next();
+    putString(buf,entry.getKey());
+    serializer.serialize(this,entry.getValue());
+  }
+  buf.put((byte)0x00);
+  buf.put((byte)0x00);
+  buf.put(AMF.TYPE_END_OF_OBJECT);
+}

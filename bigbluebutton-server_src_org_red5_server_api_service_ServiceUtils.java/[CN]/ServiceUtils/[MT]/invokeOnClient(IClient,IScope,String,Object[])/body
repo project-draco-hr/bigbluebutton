@@ -1,0 +1,3 @@
+{
+  invokeOnClient(client,scope,method,params,null);
+}

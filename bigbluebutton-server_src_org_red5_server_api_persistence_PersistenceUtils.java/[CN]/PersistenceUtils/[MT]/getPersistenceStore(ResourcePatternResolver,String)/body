@@ -1,0 +1,18 @@
+{
+  Class<?> persistenceClass=Class.forName(className);
+  Constructor<?> constructor=getPersistenceStoreConstructor(persistenceClass,resolver.getClass().getInterfaces());
+  if (constructor == null) {
+    Class<?> superClass=resolver.getClass().getSuperclass();
+    while (superClass != null) {
+      constructor=getPersistenceStoreConstructor(persistenceClass,superClass.getInterfaces());
+      if (constructor != null) {
+        break;
+      }
+      superClass=superClass.getSuperclass();
+    }
+  }
+  if (constructor == null) {
+    throw new NoSuchMethodException();
+  }
+  return (IPersistenceStore)constructor.newInstance(new Object[]{resolver});
+}

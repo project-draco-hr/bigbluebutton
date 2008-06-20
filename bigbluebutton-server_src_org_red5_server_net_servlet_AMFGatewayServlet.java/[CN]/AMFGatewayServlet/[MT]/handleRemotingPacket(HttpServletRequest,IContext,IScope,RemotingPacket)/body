@@ -1,0 +1,8 @@
+{
+  log.debug("Handling remoting packet");
+  final IServiceInvoker invoker=context.getServiceInvoker();
+  for (  RemotingCall call : message.getCalls()) {
+    invoker.invoke(call,scope);
+  }
+  return true;
+}

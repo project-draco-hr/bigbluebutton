@@ -1,0 +1,10 @@
+{
+  if (!providers.remove(provider)) {
+    return false;
+  }
+  fireProviderConnectionEvent(provider,PipeConnectionEvent.PROVIDER_DISCONNECT,null);
+  if (provider instanceof IPipeConnectionListener) {
+    listeners.remove(provider);
+  }
+  return true;
+}

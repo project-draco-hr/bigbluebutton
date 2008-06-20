@@ -1,0 +1,61 @@
+{
+  if (args.length == 1) {
+    red5Config=args[0];
+  }
+  long time=System.currentTimeMillis();
+  log.info("{} (http://www.osflash.org/red5)",Red5.getVersion());
+  log.info("Loading Red5 global context from: {}",red5Config);
+  String classpath=System.getProperty("java.class.path");
+  String root=System.getProperty("red5.root");
+  String conf;
+  if (root != null) {
+    conf=root + "/conf";
+  }
+ else {
+    File fp=new File(red5Config);
+    fp=fp.getCanonicalFile();
+    if (!fp.isFile()) {
+      String[] paths=classpath.split(System.getProperty("path.separator"));
+      for (      String element : paths) {
+        fp=new File(element + '/' + red5Config);
+        fp=fp.getCanonicalFile();
+        if (fp.isFile()) {
+          break;
+        }
+      }
+    }
+    if (!fp.isFile()) {
+      throw new Exception("could not find configuration file " + red5Config + " on your classpath "+ classpath);
+    }
+    System.setProperty("red5.conf_file",red5Config);
+    root=fp.getAbsolutePath();
+    root=root.replace('\\','/');
+    int idx=root.lastIndexOf('/');
+    conf=root.substring(0,idx);
+    idx=conf.lastIndexOf('/');
+    root=conf.substring(0,idx);
+    if (System.getProperty("file.separator").equals("/")) {
+      root='/' + root;
+    }
+    System.setProperty("red5.root",root);
+    log.info("Setting Red5 root to {}",root);
+  }
+  System.setProperty("red5.config_root",conf);
+  log.info("Setting configuation root to {}",conf);
+  Properties props=new Properties();
+  props.load(new FileInputStream(conf + "/red5.properties"));
+  for (  Object o : props.keySet()) {
+    String key=(String)o;
+    if (key != null && !key.equals("")) {
+      System.setProperty(key,props.getProperty(key));
+    }
+  }
+  try {
+    ContextSingletonBeanFactoryLocator.getInstance(red5Config).useBeanFactory("red5.common");
+  }
+ catch (  Exception e) {
+    raiseOriginalException(e);
+  }
+  long startupIn=System.currentTimeMillis() - time;
+  log.info("Startup done in: {} ms",startupIn);
+}

@@ -1,0 +1,13 @@
+{
+  Status publishStatus=new Status(StatusCodes.NS_PUBLISH_START);
+  publishStatus.setClientid(getStreamId());
+  publishStatus.setDetails(getPublishedName());
+  StatusMessage startMsg=new StatusMessage();
+  startMsg.setBody(publishStatus);
+  try {
+    connMsgOut.pushMessage(startMsg);
+  }
+ catch (  IOException err) {
+    log.error("Error while pushing message.",err);
+  }
+}

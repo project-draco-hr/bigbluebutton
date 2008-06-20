@@ -1,0 +1,14 @@
+{
+  final Scope oldScope=scope;
+  scope=(Scope)newScope;
+  if (scope.connect(this,params)) {
+    if (oldScope != null) {
+      oldScope.disconnect(this);
+    }
+    return true;
+  }
+ else {
+    scope=oldScope;
+    return false;
+  }
+}

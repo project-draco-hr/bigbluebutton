@@ -1,0 +1,22 @@
+{
+  IConnection conn=Red5.getConnectionLocal();
+  if (!(conn instanceof IStreamCapableConnection)) {
+    return;
+  }
+  IStreamCapableConnection streamConn=(IStreamCapableConnection)conn;
+  int streamId=getCurrentStreamId();
+  IClientStream stream=streamConn.getStreamById(streamId);
+  if (stream == null || !(stream instanceof ISubscriberStream)) {
+    return;
+  }
+  ISubscriberStream subscriberStream=(ISubscriberStream)stream;
+  if (pausePlayback == null) {
+    pausePlayback=!subscriberStream.isPaused();
+  }
+  if (pausePlayback) {
+    subscriberStream.pause(position);
+  }
+ else {
+    subscriberStream.resume(position);
+  }
+}

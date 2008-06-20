@@ -1,0 +1,12 @@
+{
+  final Header header=new Header();
+  final Packet packet=new Packet(header,event);
+  header.setChannelId(id);
+  header.setTimer(event.getTimestamp());
+  header.setStreamId(streamId);
+  header.setDataType(event.getDataType());
+  if (event.getHeader() != null) {
+    header.setTimerRelative(event.getHeader().isTimerRelative());
+  }
+  connection.write(packet);
+}

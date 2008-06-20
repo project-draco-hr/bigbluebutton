@@ -1,0 +1,10 @@
+{
+  log.debug("url: {}",url);
+  String[] parts=url.split("/");
+  if (parts.length == 2) {
+    return "";
+  }
+ else {
+    return parts[2];
+  }
+}

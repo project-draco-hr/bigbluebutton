@@ -1,0 +1,11 @@
+{
+  if (allocationDebugging) {
+    AllocationDebugger.getInstance().release(this);
+  }
+  if (refcount > 0) {
+    refcount--;
+    if (refcount == 0) {
+      releaseInternal();
+    }
+  }
+}

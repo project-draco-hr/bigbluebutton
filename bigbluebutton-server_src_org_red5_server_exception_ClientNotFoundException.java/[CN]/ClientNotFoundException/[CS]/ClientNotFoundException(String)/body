@@ -1,0 +1,3 @@
+{
+  super("Client \"" + id + "\" not found.");
+}

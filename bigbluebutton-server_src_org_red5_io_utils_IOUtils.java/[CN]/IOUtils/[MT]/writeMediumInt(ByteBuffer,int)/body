@@ -1,0 +1,7 @@
+{
+  byte[] bytes=new byte[3];
+  bytes[0]=(byte)((value >>> 16) & 0x000000FF);
+  bytes[1]=(byte)((value >>> 8) & 0x000000FF);
+  bytes[2]=(byte)(value & 0x00FF);
+  out.put(bytes);
+}

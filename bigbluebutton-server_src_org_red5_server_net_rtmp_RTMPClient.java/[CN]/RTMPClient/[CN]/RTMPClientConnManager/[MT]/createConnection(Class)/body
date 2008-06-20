@@ -1,0 +1,7 @@
+{
+  if (connCls != RTMPMinaConnection.class) {
+    throw new IllegalArgumentException("Only support RTMPMinaConnection!");
+  }
+  RTMPMinaConnection conn=new RTMPMinaConnection();
+  return conn;
+}

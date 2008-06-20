@@ -1,0 +1,14 @@
+{
+  if (conn instanceof IServiceCapableConnection) {
+    if (callback == null) {
+      ((IServiceCapableConnection)conn).invoke(method,params);
+    }
+ else {
+      ((IServiceCapableConnection)conn).invoke(method,params,callback);
+    }
+    return true;
+  }
+ else {
+    return false;
+  }
+}

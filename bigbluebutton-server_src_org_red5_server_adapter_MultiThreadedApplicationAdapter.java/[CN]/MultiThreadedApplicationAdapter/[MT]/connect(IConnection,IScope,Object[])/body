@@ -1,0 +1,13 @@
+{
+  if (!super.connect(conn,scope,params)) {
+    return false;
+  }
+  boolean success=false;
+  if (isApp(scope)) {
+    success=appConnect(conn,params);
+  }
+ else   if (isRoom(scope)) {
+    success=roomConnect(conn,params);
+  }
+  return success;
+}

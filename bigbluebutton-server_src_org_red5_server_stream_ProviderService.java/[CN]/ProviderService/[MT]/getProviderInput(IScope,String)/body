@@ -1,0 +1,7 @@
+{
+  IMessageInput msgIn=getLiveProviderInput(scope,name,false);
+  if (msgIn == null) {
+    return getVODProviderInput(scope,name);
+  }
+  return msgIn;
+}

@@ -1,0 +1,19 @@
+{
+  String path=req.getPathInfo();
+  if (path.equals("")) {
+    return null;
+  }
+  while (path.length() > 1 && path.charAt(0) == '/') {
+    path=path.substring(1);
+  }
+  int endPos=path.indexOf('/');
+  if (endPos != -1) {
+    path=path.substring(0,endPos);
+  }
+  try {
+    return Integer.parseInt(path);
+  }
+ catch (  NumberFormatException e) {
+    return null;
+  }
+}

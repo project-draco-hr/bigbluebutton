@@ -1,0 +1,7 @@
+{
+  int result=4;
+  while (isChannelUsed(result)) {
+    result++;
+  }
+  return result;
+}

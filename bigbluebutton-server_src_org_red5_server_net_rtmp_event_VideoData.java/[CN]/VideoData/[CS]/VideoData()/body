@@ -1,0 +1,3 @@
+{
+  this(ByteBuffer.allocate(0).flip());
+}

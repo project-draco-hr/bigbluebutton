@@ -1,0 +1,6 @@
+{
+  if (data != null) {
+    data.release();
+    data=null;
+  }
+}

@@ -1,0 +1,20 @@
+{
+  IoSession forward=(IoSession)session.getAttribute(FORWARD_KEY);
+  if (forward != null && forward.isConnected()) {
+    if (message instanceof ByteBuffer) {
+      final ByteBuffer buf=(ByteBuffer)message;
+      if (log.isDebugEnabled()) {
+        log.debug("[ " + name + " ] RAW >> "+ buf.getHexDump());
+      }
+      ByteBuffer copy=ByteBuffer.allocate(buf.limit());
+      int limit=buf.limit();
+      copy.put(buf);
+      copy.flip();
+      forward.write(copy);
+      buf.flip();
+      buf.position(0);
+      buf.limit(limit);
+    }
+  }
+  next.messageReceived(session,message);
+}

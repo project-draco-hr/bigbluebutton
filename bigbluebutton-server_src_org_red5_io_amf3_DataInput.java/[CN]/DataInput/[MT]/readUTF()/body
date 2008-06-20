@@ -1,0 +1,4 @@
+{
+  int length=buffer.getUnsignedShort();
+  return readUTFBytes(length);
+}

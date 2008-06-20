@@ -1,0 +1,5 @@
+{
+  final ByteBuffer result=audioData.getData();
+  result.acquire();
+  return result;
+}

@@ -1,0 +1,17 @@
+{
+  for (  ISharedObjectSecurity handler : securityHandlers) {
+    if (!handler.isDeleteAllowed(this,key)) {
+      return false;
+    }
+  }
+  final Set<ISharedObjectSecurity> handlers=getSecurityHandlers();
+  if (handlers == null) {
+    return true;
+  }
+  for (  ISharedObjectSecurity handler : handlers) {
+    if (!handler.isDeleteAllowed(this,key)) {
+      return false;
+    }
+  }
+  return true;
+}

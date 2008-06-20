@@ -1,0 +1,15 @@
+{
+  if (obj instanceof ObjectMap || obj instanceof BeanMap) {
+    out.writeObject((Map)obj,this);
+  }
+ else   if (obj instanceof Map) {
+    out.writeMap((Map)obj,this);
+  }
+ else   if (obj instanceof RecordSet) {
+    out.writeRecordSet((RecordSet)obj,this);
+  }
+ else {
+    out.writeObject(obj,this);
+  }
+  return true;
+}

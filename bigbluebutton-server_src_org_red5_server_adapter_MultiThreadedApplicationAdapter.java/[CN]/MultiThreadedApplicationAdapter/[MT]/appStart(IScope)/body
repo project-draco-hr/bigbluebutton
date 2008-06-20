@@ -1,0 +1,9 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("appStart: {}",app);
+  }
+  for (  IApplication listener : listeners) {
+    listener.appStart(app);
+  }
+  return true;
+}

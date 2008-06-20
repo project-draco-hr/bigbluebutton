@@ -1,0 +1,3 @@
+{
+  setDeliveryMode(mode,pageSize,0);
+}

@@ -1,0 +1,5 @@
+{
+  for (  ISharedObjectListener listener : listeners) {
+    listener.onSharedObjectClear(this);
+  }
+}

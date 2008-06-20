@@ -1,0 +1,21 @@
+{
+  if (state != State.PLAYING && state != State.PAUSED) {
+    return;
+  }
+  if (liveJobName != null) {
+    scheduler.removeScheduledJob(liveJobName);
+    liveJobName=null;
+  }
+  if (vodJobName != null) {
+    scheduler.removeScheduledJob(vodJobName);
+    vodJobName=null;
+  }
+  if (msgIn != null) {
+    msgIn.unsubscribe(this);
+    msgIn=null;
+  }
+  if (nextRTMPMessage != null) {
+    nextRTMPMessage.getBody().release();
+  }
+  state=State.STOPPED;
+}

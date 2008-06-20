@@ -1,0 +1,3 @@
+{
+  return toHexString(ba,0,ba.length);
+}

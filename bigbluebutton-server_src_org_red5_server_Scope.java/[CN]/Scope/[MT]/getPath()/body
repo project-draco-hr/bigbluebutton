@@ -1,0 +1,8 @@
+{
+  if (hasParent()) {
+    return parent.getPath() + '/' + parent.getName();
+  }
+ else {
+    return "";
+  }
+}

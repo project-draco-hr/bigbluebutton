@@ -1,0 +1,18 @@
+{
+  SocketConnector connector=new SocketConnector();
+  SocketConnectorConfig config=new SocketConnectorConfig();
+  SocketSessionConfig sessionConf=(SocketSessionConfig)config.getSessionConfig();
+  sessionConf.setTcpNoDelay(true);
+  while (true) {
+    ConnectFuture future=connector.connect(new InetSocketAddress(server,port),ioHandlerWrapper,config);
+    future.join();
+    if (future.isConnected()) {
+      break;
+    }
+    try {
+      Thread.sleep(500);
+    }
+ catch (    Exception e) {
+    }
+  }
+}

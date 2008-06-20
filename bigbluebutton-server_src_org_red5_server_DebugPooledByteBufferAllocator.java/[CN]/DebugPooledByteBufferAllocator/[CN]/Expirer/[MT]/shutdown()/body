@@ -1,0 +1,12 @@
+{
+  timeToStop=true;
+  interrupt();
+  while (isAlive()) {
+    try {
+      join();
+    }
+ catch (    InterruptedException e) {
+      break;
+    }
+  }
+}

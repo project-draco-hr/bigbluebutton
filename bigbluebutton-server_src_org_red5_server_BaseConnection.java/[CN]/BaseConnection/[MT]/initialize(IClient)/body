@@ -1,0 +1,9 @@
+{
+  if (this.client != null && this.client instanceof Client) {
+    ((Client)this.client).unregister(this);
+  }
+  this.client=client;
+  if (this.client instanceof Client) {
+    ((Client)this.client).register(this);
+  }
+}

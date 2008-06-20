@@ -1,0 +1,8 @@
+{
+  if (!file.exists()) {
+    log.info("File does not exist, calling writer. This will create a new file.");
+    return getWriter();
+  }
+  ITagWriter writer=new FLVWriter(new FileOutputStream(file,true),true);
+  return writer;
+}

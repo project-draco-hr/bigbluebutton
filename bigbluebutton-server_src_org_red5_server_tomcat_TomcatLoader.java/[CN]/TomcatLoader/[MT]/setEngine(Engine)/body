@@ -1,0 +1,4 @@
+{
+  log.info("Setting engine: " + engine.getClass().getName());
+  this.engine=engine;
+}

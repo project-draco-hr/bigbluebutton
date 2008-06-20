@@ -1,0 +1,13 @@
+{
+  Object bean=newInstance(target.getClass().getName());
+  if (bean == null) {
+    throw new ConversionException("Unable to create bean using empty constructor");
+  }
+  try {
+    BeanUtils.populate(bean,source);
+  }
+ catch (  Exception e) {
+    throw new ConversionException("Error populating bean",e);
+  }
+  return bean;
+}

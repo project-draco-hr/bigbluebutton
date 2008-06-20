@@ -1,0 +1,11 @@
+{
+  if (currentItemIndex >= items.size()) {
+    currentItemIndex=items.size() - 1;
+  }
+  if (controller != null) {
+    currentItemIndex=controller.previousItem(this,currentItemIndex);
+  }
+ else {
+    currentItemIndex=defaultController.previousItem(this,currentItemIndex);
+  }
+}

@@ -1,0 +1,10 @@
+{
+  if (message.getMessage() instanceof VideoData) {
+    int streamId=message.getHeader().getStreamId();
+    AtomicInteger pending=pendingVideos.get(streamId);
+    if (pending != null) {
+      pending.decrementAndGet();
+    }
+  }
+  writtenMessages++;
+}

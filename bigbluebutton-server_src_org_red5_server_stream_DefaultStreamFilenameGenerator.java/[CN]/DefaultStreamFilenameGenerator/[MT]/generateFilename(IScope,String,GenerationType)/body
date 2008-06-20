@@ -1,0 +1,3 @@
+{
+  return generateFilename(scope,name,null,type);
+}

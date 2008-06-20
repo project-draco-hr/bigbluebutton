@@ -1,0 +1,18 @@
+{
+  if (closing || state.getState() == RTMP.STATE_DISCONNECTED) {
+    return;
+  }
+  ByteBuffer data;
+  try {
+    data=this.encoder.encode(this.state,packet);
+  }
+ catch (  Exception e) {
+    log.error("Could not encode message " + packet,e);
+    return;
+  }
+  writingMessage(packet);
+  rawWrite(data);
+synchronized (this.notifyMessages) {
+    this.notifyMessages.add(packet);
+  }
+}

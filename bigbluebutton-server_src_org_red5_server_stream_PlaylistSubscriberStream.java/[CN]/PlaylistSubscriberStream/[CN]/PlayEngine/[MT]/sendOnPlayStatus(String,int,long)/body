@@ -1,0 +1,24 @@
+{
+  ByteBuffer buf=ByteBuffer.allocate(1024);
+  buf.setAutoExpand(true);
+  Output out=new Output(buf);
+  out.writeString("onPlayStatus");
+  Map<Object,Object> props=new HashMap<Object,Object>();
+  props.put("code",code);
+  props.put("level","status");
+  props.put("duration",duration);
+  props.put("bytes",bytes);
+  out.writeMap(props,new Serializer());
+  buf.flip();
+  IRTMPEvent event=new Notify(buf);
+  if (lastMessage != null) {
+    int timestamp=lastMessage.getTimestamp();
+    event.setTimestamp(timestamp);
+  }
+ else {
+    event.setTimestamp(0);
+  }
+  RTMPMessage msg=new RTMPMessage();
+  msg.setBody(event);
+  doPushMessage(msg);
+}

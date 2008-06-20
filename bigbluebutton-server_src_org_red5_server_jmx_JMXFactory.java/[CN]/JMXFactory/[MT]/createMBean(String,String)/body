@@ -1,0 +1,23 @@
+{
+  log.info("Create the {} MBean within the MBeanServer",className);
+  ObjectName objectName=null;
+  try {
+    StringBuilder objectNameStr=new StringBuilder(domain);
+    objectNameStr.append(":type=");
+    objectNameStr.append(className.substring(className.lastIndexOf(".") + 1));
+    objectNameStr.append(",");
+    objectNameStr.append(attributes);
+    log.info("ObjectName = {}",objectNameStr);
+    objectName=new ObjectName(objectNameStr.toString());
+    if (!mbs.isRegistered(objectName)) {
+      mbs.createMBean(className,objectName);
+    }
+ else {
+      log.debug("MBean has already been created: {}",objectName);
+    }
+  }
+ catch (  Exception e) {
+    log.error("Could not create the {} MBean. {}",className,e);
+  }
+  return objectName;
+}

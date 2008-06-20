@@ -1,0 +1,8 @@
+{
+  try {
+    engine.seek(position);
+  }
+ catch (  IllegalStateException e) {
+    log.debug("seek caught an IllegalStateException");
+  }
+}

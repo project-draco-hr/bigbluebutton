@@ -1,0 +1,6 @@
+{
+  if (refCount <= 0) {
+    throw new IllegalStateException("Already released buffer.");
+  }
+  refCount++;
+}

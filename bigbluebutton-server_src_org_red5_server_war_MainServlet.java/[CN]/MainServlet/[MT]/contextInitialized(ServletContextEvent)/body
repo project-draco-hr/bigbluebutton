@@ -1,0 +1,69 @@
+{
+  System.setProperty("red5.deployment.type","war");
+  if (null != servletContext) {
+    return;
+  }
+  servletContext=sce.getServletContext();
+  String prefix=servletContext.getRealPath("/");
+  long time=System.currentTimeMillis();
+  logger.info("RED5 Server (http://www.osflash.org/red5)");
+  logger.info("Loading red5 global context from: " + red5Config);
+  logger.info("Path: " + prefix);
+  try {
+    String root;
+    String classpath=System.getProperty("java.class.path");
+    File fp=new File(prefix + red5Config);
+    fp=fp.getCanonicalFile();
+    if (!fp.isFile()) {
+      String[] paths=classpath.split(System.getProperty("path.separator"));
+      for (      String element : paths) {
+        fp=new File(element + "/" + red5Config);
+        fp=fp.getCanonicalFile();
+        if (fp.isFile()) {
+          break;
+        }
+      }
+    }
+    if (!fp.isFile()) {
+      throw new Exception("could not find configuration file " + red5Config + " on your classpath "+ classpath);
+    }
+    root=fp.getAbsolutePath();
+    root=root.replace('\\','/');
+    int idx=root.lastIndexOf('/');
+    root=root.substring(0,idx);
+    System.setProperty("java.class.path",classpath + File.pathSeparatorChar + root+ File.pathSeparatorChar+ root+ "/classes");
+    logger.debug("New classpath: " + System.getProperty("java.class.path"));
+    System.setProperty("red5.config_root",root);
+    logger.info("Setting configuation root to " + root);
+    Properties props=new Properties();
+    props.load(new FileInputStream(root + "/red5.properties"));
+    for (    Object o : props.keySet()) {
+      String key=(String)o;
+      if (StringUtils.isNotBlank(key)) {
+        System.setProperty(key,props.getProperty(key));
+      }
+    }
+    idx=root.lastIndexOf('/');
+    root=root.substring(0,idx);
+    if (System.getProperty("file.separator").equals("/")) {
+      root="/" + root;
+    }
+    System.setProperty("red5.root",root);
+    logger.info("Setting Red5 root to " + root);
+    Class contextClass=org.springframework.web.context.support.XmlWebApplicationContext.class;
+    ConfigurableWebApplicationContext applicationContext=(ConfigurableWebApplicationContext)BeanUtils.instantiateClass(contextClass);
+    String[] strArray=servletContext.getInitParameter(ContextLoader.CONFIG_LOCATION_PARAM).split("[,\\s]");
+    logger.info("Config location files: " + strArray.length);
+    applicationContext.setConfigLocations(strArray);
+    applicationContext.setServletContext(servletContext);
+    applicationContext.refresh();
+    servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE,applicationContext);
+    ConfigurableBeanFactory factory=applicationContext.getBeanFactory();
+    factory.registerSingleton("default.context",applicationContext);
+  }
+ catch (  Throwable e) {
+    logger.error("",e);
+  }
+  long startupIn=System.currentTimeMillis() - time;
+  logger.info("Startup done in: " + startupIn + " ms");
+}

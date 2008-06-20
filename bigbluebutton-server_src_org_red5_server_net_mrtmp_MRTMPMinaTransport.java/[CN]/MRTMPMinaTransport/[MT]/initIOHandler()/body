@@ -1,0 +1,6 @@
+{
+  if (ioHandler == null) {
+    log.info("No rtmp IO Handler associated - using defaults");
+    ioHandler=new OriginMRTMPHandler();
+  }
+}

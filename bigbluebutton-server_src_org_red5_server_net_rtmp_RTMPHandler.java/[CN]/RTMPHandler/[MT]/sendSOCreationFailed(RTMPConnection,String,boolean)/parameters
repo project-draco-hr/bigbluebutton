@@ -1,0 +1,3 @@
+RTMPConnection conn
+String name
+boolean persistent

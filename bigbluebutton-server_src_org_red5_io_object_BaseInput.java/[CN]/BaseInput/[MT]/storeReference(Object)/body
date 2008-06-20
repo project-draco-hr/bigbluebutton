@@ -1,0 +1,5 @@
+{
+  int newRefId=refId++;
+  refMap.put(Integer.valueOf(newRefId),obj);
+  return newRefId;
+}

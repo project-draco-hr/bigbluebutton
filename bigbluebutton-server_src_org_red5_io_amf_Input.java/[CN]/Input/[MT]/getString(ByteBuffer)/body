@@ -1,0 +1,9 @@
+{
+  int len=buf.getUnsignedShort();
+  int limit=buf.limit();
+  final java.nio.ByteBuffer strBuf=buf.buf();
+  strBuf.limit(strBuf.position() + len);
+  final String string=AMF.CHARSET.decode(strBuf).toString();
+  buf.limit(limit);
+  return string;
+}

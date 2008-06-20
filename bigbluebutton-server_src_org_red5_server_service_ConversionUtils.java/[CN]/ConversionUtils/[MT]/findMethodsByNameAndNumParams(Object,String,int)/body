@@ -1,0 +1,19 @@
+{
+  LinkedList<Method> list=new LinkedList<Method>();
+  Method[] methods=object.getClass().getMethods();
+  for (  Method m : methods) {
+    if (log.isDebugEnabled()) {
+      log.debug("Method name: " + m.getName());
+    }
+    if (!m.getName().equals(method)) {
+      log.debug("Method name not the same");
+      continue;
+    }
+    if (m.getParameterTypes().length != numParam) {
+      log.debug("Param length not the same");
+      continue;
+    }
+    list.add(m);
+  }
+  return list;
+}

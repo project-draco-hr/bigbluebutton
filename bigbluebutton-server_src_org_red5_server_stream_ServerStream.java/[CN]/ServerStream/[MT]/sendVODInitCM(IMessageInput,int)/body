@@ -1,0 +1,9 @@
+{
+  OOBControlMessage oobCtrlMsg=new OOBControlMessage();
+  oobCtrlMsg.setTarget(IPassive.KEY);
+  oobCtrlMsg.setServiceName("init");
+  Map<Object,Object> paramMap=new HashMap<Object,Object>();
+  paramMap.put("startTS",start);
+  oobCtrlMsg.setServiceParamMap(paramMap);
+  msgIn.sendOOBControlMessage(this,oobCtrlMsg);
+}

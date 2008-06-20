@@ -1,0 +1,20 @@
+{
+  byte encoding=in.get();
+  Input input;
+  if (encoding == 0) {
+    input=new org.red5.io.amf.Input(in);
+  }
+ else   if (encoding == 3) {
+    input=new org.red5.io.amf3.Input(in);
+  }
+ else {
+    throw new RuntimeException("Unknown SO encoding: " + encoding);
+  }
+  String name=input.getString();
+  int version=in.getInt();
+  boolean persistent=in.getInt() == 2;
+  in.skip(4);
+  final SharedObjectMessage so=new FlexSharedObjectMessage(null,name,version,persistent);
+  doDecodeSharedObject(so,in,input);
+  return so;
+}

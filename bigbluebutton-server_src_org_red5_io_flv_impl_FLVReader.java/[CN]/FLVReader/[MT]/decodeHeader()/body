@@ -1,0 +1,11 @@
+{
+  fillBuffer(9);
+  header=new FLVHeader();
+  in.skip(3);
+  header.setVersion(in.get());
+  header.setTypeFlags(in.get());
+  header.setDataOffset(in.getInt());
+  if (log.isDebugEnabled()) {
+    log.debug("Header: " + header.toString());
+  }
+}

@@ -1,0 +1,5 @@
+{
+  log.warn("This won't work until the refactoring of the streaming code is complete.");
+  ISubscriberStreamService service=(ISubscriberStreamService)getScopeService(scope,ISubscriberStreamService.class,StreamService.class,false);
+  return service.getSubscriberStream(scope,name);
+}

@@ -1,0 +1,31 @@
+{
+  boolean dynamic=!conn.getType().equals(IConnection.PERSISTENT);
+  lock.writeLock().lock();
+  try {
+    if (dynamic) {
+      if (dynConnMap.containsKey(conn.getId())) {
+        dynConnMap.remove(conn.getId());
+        conn.realClose();
+      }
+ else {
+        log.warn("Close a non-existent origin connection!");
+      }
+    }
+ else {
+      StaticConnId connId=new StaticConnId();
+      connId.clientId=conn.getId();
+      connId.sessionId=conn.getIoSessionId();
+      if (statConnMap.containsKey(connId)) {
+        statConnMap.remove(connId);
+        conn.realClose();
+      }
+ else {
+        log.warn("Close a non-existent origin connection!");
+      }
+    }
+  }
+  finally {
+    lock.writeLock().unlock();
+  }
+  mrtmpManager.dissociate(conn);
+}

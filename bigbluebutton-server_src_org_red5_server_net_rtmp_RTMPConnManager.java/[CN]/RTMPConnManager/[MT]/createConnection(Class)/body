@@ -1,0 +1,33 @@
+{
+  if (!RTMPConnection.class.isAssignableFrom(connCls)) {
+    return null;
+  }
+  try {
+    RTMPConnection conn=(RTMPConnection)createConnectionInstance(connCls);
+    lock.writeLock().lock();
+    try {
+      int offset=0;
+      int base=conn.hashCode();
+      while (offset >= 0) {
+        if (!connMap.containsKey(base + offset)) {
+          conn.setId(base + offset);
+          connMap.put(base + offset,conn);
+          break;
+        }
+ else         if (!connMap.containsKey(base - offset)) {
+          conn.setId(base - offset);
+          connMap.put(base - offset,conn);
+          break;
+        }
+        offset++;
+      }
+    }
+  finally {
+      lock.writeLock().unlock();
+    }
+    return conn;
+  }
+ catch (  Exception e) {
+    return null;
+  }
+}

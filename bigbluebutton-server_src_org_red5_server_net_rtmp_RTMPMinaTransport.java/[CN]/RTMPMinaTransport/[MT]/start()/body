@@ -1,0 +1,41 @@
+{
+  initIOHandler();
+  ByteBuffer.setUseDirectBuffers(!useHeapBuffers);
+  if (useHeapBuffers) {
+    ByteBuffer.setAllocator(new SimpleByteBufferAllocator());
+  }
+  log.info("RTMP Mina Transport Settings");
+  log.info("IO Threads: {}",ioThreads);
+  log.info("Event Threads - core: {}, max: {}, queue: {}, keepalive: {}",new Object[]{eventThreadsCore,eventThreadsMax,eventThreadsQueue,eventThreadsKeepalive});
+  eventExecutor=new ThreadPoolExecutor(eventThreadsCore,eventThreadsMax,eventThreadsKeepalive,TimeUnit.SECONDS,threadQueue(eventThreadsQueue));
+  ((ThreadPoolExecutor)eventExecutor).setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+  acceptor=new SocketAcceptor(ioThreads,Executors.newCachedThreadPool());
+  acceptor.getFilterChain().addLast("threadPool",new ExecutorFilter(eventExecutor));
+  SocketAcceptorConfig config=acceptor.getDefaultConfig();
+  config.setThreadModel(ThreadModel.MANUAL);
+  config.setReuseAddress(true);
+  config.setBacklog(100);
+  log.info("TCP No Delay: {}",tcpNoDelay);
+  log.info("Receive Buffer Size: {}",receiveBufferSize);
+  log.info("Send Buffer Size: {}",sendBufferSize);
+  SocketSessionConfig sessionConf=(SocketSessionConfig)config.getSessionConfig();
+  sessionConf.setReuseAddress(true);
+  sessionConf.setTcpNoDelay(tcpNoDelay);
+  sessionConf.setReceiveBufferSize(receiveBufferSize);
+  sessionConf.setSendBufferSize(sendBufferSize);
+  if (isLoggingTraffic) {
+    log.info("Configuring traffic logging filter");
+    acceptor.getFilterChain().addFirst("LoggingFilter",new LoggingFilter());
+  }
+  SocketAddress socketAddress=(address == null) ? new InetSocketAddress(port) : new InetSocketAddress(address,port);
+  acceptor.bind(socketAddress,ioHandler);
+  log.info("RTMP Mina Transport bound to {}",socketAddress.toString());
+  oName=JMXFactory.createObjectName("type","RTMPMinaTransport","address",(address == null ? "0.0.0.0" : address),"port",port + "");
+  JMXAgent.registerMBean(this,this.getClass().getName(),RTMPMinaTransportMBean.class,oName);
+  if (JMXAgent.isEnableMinaMonitor()) {
+    serviceManager=new IoServiceManager(acceptor);
+    serviceManager.startCollectingStats(jmxPollInterval);
+    serviceManagerObjectName=JMXFactory.createObjectName("type","IoServiceManager","address",(address == null ? "0.0.0.0" : address),"port",port + "");
+    JMXAgent.registerMBean(serviceManager,serviceManager.getClass().getName(),IoServiceManagerMBean.class,serviceManagerObjectName);
+  }
+}

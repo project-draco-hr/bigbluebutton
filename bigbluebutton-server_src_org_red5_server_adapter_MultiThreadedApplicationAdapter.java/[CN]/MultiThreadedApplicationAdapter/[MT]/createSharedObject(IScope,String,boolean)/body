@@ -1,0 +1,4 @@
+{
+  ISharedObjectService service=(ISharedObjectService)getScopeService(scope,ISharedObjectService.class,SharedObjectService.class,false);
+  return service.createSharedObject(scope,name,persistent);
+}

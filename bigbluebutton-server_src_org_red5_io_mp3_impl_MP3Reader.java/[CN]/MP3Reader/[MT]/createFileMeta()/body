@@ -1,0 +1,18 @@
+{
+  ByteBuffer buf=ByteBuffer.allocate(1024);
+  buf.setAutoExpand(true);
+  Output out=new Output(buf);
+  out.writeString("onMetaData");
+  Map<Object,Object> props=new HashMap<Object,Object>();
+  props.put("duration",frameMeta.timestamps[frameMeta.timestamps.length - 1] / 1000.0);
+  props.put("audiocodecid",IoConstants.FLAG_FORMAT_MP3);
+  if (dataRate > 0) {
+    props.put("audiodatarate",dataRate);
+  }
+  props.put("canSeekToEnd",true);
+  out.writeMap(props,new Serializer());
+  buf.flip();
+  ITag result=new Tag(IoConstants.TYPE_METADATA,0,buf.limit(),null,prevSize);
+  result.setBody(buf);
+  return result;
+}

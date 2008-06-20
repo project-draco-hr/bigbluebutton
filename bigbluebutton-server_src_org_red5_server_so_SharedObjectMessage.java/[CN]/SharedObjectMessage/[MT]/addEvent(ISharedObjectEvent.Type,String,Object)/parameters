@@ -1,0 +1,3 @@
+ISharedObjectEvent.Type type
+String key
+Object value

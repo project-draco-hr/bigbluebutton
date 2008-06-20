@@ -1,0 +1,3 @@
+{
+  return (ISharedObject)scope.getBasicScope(TYPE,name);
+}

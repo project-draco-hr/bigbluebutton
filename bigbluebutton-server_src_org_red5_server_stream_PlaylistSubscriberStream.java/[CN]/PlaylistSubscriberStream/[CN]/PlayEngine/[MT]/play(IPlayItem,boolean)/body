@@ -1,0 +1,160 @@
+{
+  if (state != State.STOPPED) {
+    throw new IllegalStateException();
+  }
+  if (msgIn != null) {
+    msgIn.unsubscribe(this);
+    msgIn=null;
+  }
+  int type=(int)(item.getStart() / 1000);
+  IScope thisScope=getScope();
+  IContext context=thisScope.getContext();
+  IProviderService providerService=(IProviderService)context.getBean(IProviderService.BEAN_NAME);
+  IMessageInput liveInput=providerService.getLiveProviderInput(thisScope,item.getName(),false);
+  IMessageInput vodInput=providerService.getVODProviderInput(thisScope,item.getName());
+  boolean isPublishedStream=liveInput != null;
+  boolean isFileStream=vodInput != null;
+  boolean sendNotifications=true;
+  int decision=3;
+switch (type) {
+case -2:
+    if (isPublishedStream) {
+      decision=0;
+    }
+ else     if (isFileStream) {
+      decision=1;
+    }
+ else {
+      decision=2;
+    }
+  break;
+case -1:
+if (isPublishedStream) {
+  decision=0;
+}
+ else {
+  decision=2;
+}
+break;
+default :
+if (isFileStream) {
+decision=1;
+}
+break;
+}
+if (decision == 2) {
+liveInput=providerService.getLiveProviderInput(thisScope,item.getName(),true);
+}
+currentItem=item;
+switch (decision) {
+case 0:
+msgIn=liveInput;
+videoFrameDropper.reset(IFrameDropper.SEND_KEYFRAMES_CHECK);
+if (msgIn instanceof IBroadcastScope) {
+IClientBroadcastStream stream=(IClientBroadcastStream)((IBroadcastScope)msgIn).getAttribute(IBroadcastScope.STREAM_ATTRIBUTE);
+if (stream != null && stream.getCodecInfo() != null) {
+IVideoStreamCodec videoCodec=stream.getCodecInfo().getVideoCodec();
+if (videoCodec != null) {
+ByteBuffer keyFrame=videoCodec.getKeyframe();
+if (keyFrame != null) {
+VideoData video=new VideoData(keyFrame);
+try {
+if (withReset) {
+sendReset();
+sendResetStatus(item);
+sendStartStatus(item);
+}
+video.setTimestamp(0);
+RTMPMessage videoMsg=new RTMPMessage();
+videoMsg.setBody(video);
+msgOut.pushMessage(videoMsg);
+sendNotifications=false;
+videoFrameDropper.reset();
+}
+  finally {
+video.release();
+}
+}
+}
+}
+}
+msgIn.subscribe(this,null);
+break;
+case 2:
+msgIn=liveInput;
+msgIn.subscribe(this,null);
+isWaiting=true;
+if (type == -1 && item.getLength() >= 0) {
+waitLiveJob=schedulingService.addScheduledOnceJob(item.getLength(),new IScheduledJob(){
+/** 
+ * {@inheritDoc} 
+ */
+public void execute(ISchedulingService service){
+waitLiveJob=null;
+isWaiting=false;
+onItemEnd();
+}
+}
+);
+}
+break;
+case 1:
+msgIn=vodInput;
+msgIn.subscribe(this,null);
+break;
+default :
+sendStreamNotFoundStatus(currentItem);
+throw new StreamNotFoundException(item.getName());
+}
+state=State.PLAYING;
+IMessage msg=null;
+streamOffset=0;
+if (decision == 1) {
+if (withReset) {
+releasePendingMessage();
+}
+sendVODInitCM(msgIn,item);
+vodStartTS=-1;
+if (item.getStart() > 0) {
+streamOffset=sendVODSeekCM(msgIn,(int)item.getStart());
+if (streamOffset == -1) {
+streamOffset=(int)item.getStart();
+}
+}
+msg=msgIn.pullMessage();
+if (msg instanceof RTMPMessage) {
+IRTMPEvent body=((RTMPMessage)msg).getBody();
+if (item.getLength() == 0) {
+body=((RTMPMessage)msg).getBody();
+while (body != null && !(body instanceof VideoData)) {
+msg=msgIn.pullMessage();
+if (msg == null) break;
+if (!(msg instanceof RTMPMessage)) continue;
+body=((RTMPMessage)msg).getBody();
+}
+}
+if (body != null) {
+body.setTimestamp(body.getTimestamp() + timestampOffset);
+}
+}
+}
+if (sendNotifications) {
+if (withReset) {
+sendReset();
+sendResetStatus(item);
+}
+sendStartStatus(item);
+if (!withReset) {
+sendSwitchStatus();
+}
+}
+if (msg != null) sendMessage((RTMPMessage)msg);
+notifyItemPlay(currentItem,!isPullMode);
+if (withReset) {
+playbackStart=System.currentTimeMillis() - streamOffset;
+nextCheckBufferUnderrun=System.currentTimeMillis() + bufferCheckInterval;
+if (currentItem.getLength() != 0) {
+ensurePullAndPushRunning();
+}
+}
+}

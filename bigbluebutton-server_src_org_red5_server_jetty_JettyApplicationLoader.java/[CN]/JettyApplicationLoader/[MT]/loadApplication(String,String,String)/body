@@ -1,0 +1,24 @@
+{
+  String[] handlersArr=new String[]{"org.mortbay.jetty.webapp.WebInfConfiguration","org.mortbay.jetty.webapp.WebXmlConfiguration","org.mortbay.jetty.webapp.JettyWebXmlConfiguration","org.mortbay.jetty.webapp.TagLibConfiguration","org.red5.server.jetty.Red5WebPropertiesConfiguration"};
+  WebAppContext context=new WebAppContext();
+  String[] hostnames=null;
+  if (virtualHosts != null) {
+    hostnames=virtualHosts.split(",");
+    for (int i=0; i < hostnames.length; i++) {
+      hostnames[i]=hostnames[i].trim();
+      if (hostnames[i].equals("*")) {
+        hostnames=null;
+        break;
+      }
+    }
+  }
+  context.setContextPath(contextPath);
+  context.setVirtualHosts(hostnames);
+  context.setConfigurationClasses(handlersArr);
+  context.setDefaultsDescriptor("web-default.xml");
+  context.setExtractWAR(true);
+  context.setWar(directory);
+  context.setParentLoaderPriority(true);
+  context.setServer(server);
+  context.start();
+}

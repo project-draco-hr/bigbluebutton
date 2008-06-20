@@ -1,0 +1,4 @@
+{
+  storeThread.notifyClose(this);
+  super.notifyClose();
+}

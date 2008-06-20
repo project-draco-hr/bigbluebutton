@@ -1,0 +1,14 @@
+{
+  log.debug("Registering connection for this client {}",id);
+  if (conn != null) {
+    if (conn.getScope() != null) {
+      connToScope.put(conn,conn.getScope());
+    }
+ else {
+      log.warn("Clients scope is null. Id: {}",id);
+    }
+  }
+ else {
+    log.warn("Clients connection is null. Id: {}",id);
+  }
+}

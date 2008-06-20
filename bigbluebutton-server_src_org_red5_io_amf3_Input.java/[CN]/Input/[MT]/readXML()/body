@@ -1,0 +1,22 @@
+{
+  int len=readAMF3Integer();
+  if (len == 1)   return null;
+  if ((len & 1) == 0) {
+    return (Document)getReference(len >> 1);
+  }
+  len>>=1;
+  int limit=buf.limit();
+  final java.nio.ByteBuffer strBuf=buf.buf();
+  strBuf.limit(strBuf.position() + len);
+  final String xmlString=AMF3.CHARSET.decode(strBuf).toString();
+  buf.limit(limit);
+  Document doc=null;
+  try {
+    doc=XMLUtils.stringToDoc(xmlString);
+  }
+ catch (  IOException ioex) {
+    log.error("IOException converting xml to dom",ioex);
+  }
+  storeReference(doc);
+  return doc;
+}

@@ -1,0 +1,6 @@
+{
+  listeners.remove(listener);
+  if (!keepOnDisconnect && ScopeUtils.isRoom(this) && listeners.isEmpty()) {
+    parent.removeChildScope(this);
+  }
+}

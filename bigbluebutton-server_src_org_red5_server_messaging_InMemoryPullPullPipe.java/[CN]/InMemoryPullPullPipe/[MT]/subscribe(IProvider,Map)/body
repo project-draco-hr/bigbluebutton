@@ -1,0 +1,10 @@
+{
+  if (!(provider instanceof IPullableProvider)) {
+    throw new IllegalArgumentException("Non-pullable provider not supported by PullPullPipe");
+  }
+  boolean success=super.subscribe(provider,paramMap);
+  if (success) {
+    fireProviderConnectionEvent(provider,PipeConnectionEvent.PROVIDER_CONNECT_PULL,paramMap);
+  }
+  return success;
+}

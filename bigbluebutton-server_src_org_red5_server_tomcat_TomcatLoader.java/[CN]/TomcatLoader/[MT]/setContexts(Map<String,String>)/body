@@ -1,0 +1,8 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("setContexts: " + contexts.size());
+  }
+  for (  String key : contexts.keySet()) {
+    baseHost.addChild(embedded.createContext(key,webappFolder + contexts.get(key)));
+  }
+}

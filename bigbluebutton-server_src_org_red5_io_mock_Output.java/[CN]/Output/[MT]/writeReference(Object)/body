@@ -1,0 +1,4 @@
+{
+  list.add(Byte.valueOf(DataTypes.OPT_REFERENCE));
+  list.add(Short.valueOf(getReferenceId(obj)));
+}

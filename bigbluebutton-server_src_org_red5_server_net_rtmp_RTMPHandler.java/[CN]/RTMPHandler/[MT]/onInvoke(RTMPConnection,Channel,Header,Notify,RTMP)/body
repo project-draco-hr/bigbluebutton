@@ -1,0 +1,212 @@
+{
+  log.debug("Invoke: {}",invoke);
+  final IServiceCall call=invoke.getCall();
+  if (call.getServiceMethodName().equals("_result") || call.getServiceMethodName().equals("_error")) {
+    handlePendingCallResult(conn,invoke);
+    return;
+  }
+  boolean disconnectOnReturn=false;
+  if (call.getServiceName() == null) {
+    log.debug("call: {}",call);
+    final String action=call.getServiceMethodName();
+    if (!conn.isConnected()) {
+      if (action.equals(ACTION_CONNECT)) {
+        log.debug("connect");
+        final Map params=invoke.getConnectionParams();
+        String host=getHostname((String)params.get("tcUrl"));
+        if (host.endsWith(":1935")) {
+          host=host.substring(0,host.length() - 5);
+        }
+        String path=(String)params.get("app");
+        if (path.indexOf("?") != -1) {
+          int idx=path.indexOf("?");
+          params.put("queryString",path.substring(idx));
+          path=path.substring(0,idx);
+        }
+        params.put("path",path);
+        final String sessionId=null;
+        conn.setup(host,path,sessionId,params);
+        try {
+          IGlobalScope global=server.lookupGlobal(host,path);
+          if (global == null) {
+            call.setStatus(Call.STATUS_SERVICE_NOT_FOUND);
+            if (call instanceof IPendingServiceCall) {
+              StatusObject status=getStatus(NC_CONNECT_INVALID_APPLICATION);
+              status.setDescription("No scope \"" + path + "\" on this server.");
+              ((IPendingServiceCall)call).setResult(status);
+            }
+            log.info("No application scope found for {} on host {}. Misspelled or missing application folder?",path,host);
+            disconnectOnReturn=true;
+          }
+ else {
+            final IContext context=global.getContext();
+            IScope scope=null;
+            try {
+              scope=context.resolveScope(global,path);
+            }
+ catch (            ScopeNotFoundException err) {
+              call.setStatus(Call.STATUS_SERVICE_NOT_FOUND);
+              if (call instanceof IPendingServiceCall) {
+                StatusObject status=getStatus(NC_CONNECT_REJECTED);
+                status.setDescription("No scope \"" + path + "\" on this server.");
+                ((IPendingServiceCall)call).setResult(status);
+              }
+              log.info("Scope {} not found on {}",path,host);
+              disconnectOnReturn=true;
+            }
+catch (            ScopeShuttingDownException err) {
+              call.setStatus(Call.STATUS_APP_SHUTTING_DOWN);
+              if (call instanceof IPendingServiceCall) {
+                StatusObject status=getStatus(NC_CONNECT_APPSHUTDOWN);
+                status.setDescription("Application at \"" + path + "\" is currently shutting down.");
+                ((IPendingServiceCall)call).setResult(status);
+              }
+              log.info("Application at {} currently shutting down on {}",path,host);
+              disconnectOnReturn=true;
+            }
+            if (scope != null) {
+              log.info("Connecting to: {}",scope);
+              ClassLoader loader=scope.getClassLoader();
+              if (loader == null) {
+                loader=getClass().getClassLoader();
+              }
+              Thread.currentThread().setContextClassLoader(loader);
+              boolean okayToConnect;
+              try {
+                log.info("DEBUG - conn {}, scope {}, call {}",new Object[]{conn,scope,call});
+                log.info("DEBUG - args {}",call.getArguments());
+                if (call.getArguments() != null) {
+                  okayToConnect=conn.connect(scope,call.getArguments());
+                }
+ else {
+                  okayToConnect=conn.connect(scope);
+                }
+                if (okayToConnect) {
+                  log.debug("Connected - Client: {}",conn.getClient());
+                  call.setStatus(Call.STATUS_SUCCESS_RESULT);
+                  if (call instanceof IPendingServiceCall) {
+                    IPendingServiceCall pc=(IPendingServiceCall)call;
+                    pc.setResult(getStatus(NC_CONNECT_SUCCESS));
+                  }
+                  conn.getChannel(2).write(new Ping(Ping.STREAM_CLEAR,0,-1));
+                  conn.startRoundTripMeasurement();
+                }
+ else {
+                  log.debug("Connect failed");
+                  call.setStatus(Call.STATUS_ACCESS_DENIED);
+                  if (call instanceof IPendingServiceCall) {
+                    IPendingServiceCall pc=(IPendingServiceCall)call;
+                    pc.setResult(getStatus(NC_CONNECT_REJECTED));
+                  }
+                  disconnectOnReturn=true;
+                }
+              }
+ catch (              ClientRejectedException rejected) {
+                log.debug("Connect rejected");
+                call.setStatus(Call.STATUS_ACCESS_DENIED);
+                if (call instanceof IPendingServiceCall) {
+                  IPendingServiceCall pc=(IPendingServiceCall)call;
+                  StatusObject status=getStatus(NC_CONNECT_REJECTED);
+                  if (rejected.getReason() != null)                   status.setApplication(rejected.getReason());
+                  pc.setResult(status);
+                }
+                disconnectOnReturn=true;
+              }
+            }
+          }
+        }
+ catch (        RuntimeException e) {
+          call.setStatus(Call.STATUS_GENERAL_EXCEPTION);
+          if (call instanceof IPendingServiceCall) {
+            IPendingServiceCall pc=(IPendingServiceCall)call;
+            pc.setResult(getStatus(NC_CONNECT_FAILED));
+          }
+          log.error("Error connecting {}",e);
+          disconnectOnReturn=true;
+        }
+        if (Integer.valueOf(3).equals(params.get("objectEncoding")) && call instanceof IPendingServiceCall) {
+          Object pcResult=((IPendingServiceCall)call).getResult();
+          Map<String,Object> result;
+          if (pcResult instanceof Map) {
+            result=(Map)pcResult;
+            result.put("objectEncoding",3);
+          }
+ else           if (pcResult instanceof StatusObject) {
+            result=new HashMap<String,Object>();
+            StatusObject status=(StatusObject)pcResult;
+            result.put("code",status.getCode());
+            result.put("description",status.getDescription());
+            result.put("application",status.getApplication());
+            result.put("level",status.getLevel());
+            result.put("objectEncoding",3);
+            ((IPendingServiceCall)call).setResult(result);
+          }
+          rtmp.setEncoding(Encoding.AMF3);
+        }
+      }
+    }
+ else     if (action.equals(ACTION_DISCONNECT)) {
+      conn.close();
+    }
+ else     if (action.equals(ACTION_CREATE_STREAM) || action.equals(ACTION_DELETE_STREAM) || action.equals(ACTION_RELEASE_STREAM)|| action.equals(ACTION_PUBLISH)|| action.equals(ACTION_PLAY)|| action.equals(ACTION_SEEK)|| action.equals(ACTION_PAUSE)|| action.equals(ACTION_CLOSE_STREAM)|| action.equals(ACTION_RECEIVE_VIDEO)|| action.equals(ACTION_RECEIVE_AUDIO)) {
+      IStreamService streamService=(IStreamService)getScopeService(conn.getScope(),IStreamService.class,StreamService.class);
+      Status status=null;
+      try {
+        if (!invokeCall(conn,call,streamService)) {
+          status=getStatus(NS_INVALID_ARGUMENT).asStatus();
+          status.setDescription("Failed to " + action + " (stream ID: "+ source.getStreamId()+ ")");
+        }
+      }
+ catch (      Throwable err) {
+        log.error("Error while invoking " + action + " on stream service.",err);
+        status=getStatus(NS_FAILED).asStatus();
+        status.setDescription("Error while invoking " + action + " (stream ID: "+ source.getStreamId()+ ")");
+        status.setDetails(err.getMessage());
+      }
+      if (status != null) {
+        channel.sendStatus(status);
+      }
+    }
+ else {
+      invokeCall(conn,call);
+    }
+  }
+ else   if (conn.isConnected()) {
+    invokeCall(conn,call);
+  }
+ else {
+    log.warn("Not connected, closing connection");
+    conn.close();
+  }
+  if (invoke instanceof Invoke) {
+    if ((source.getStreamId() != 0) && (call.getStatus() == Call.STATUS_SUCCESS_VOID || call.getStatus() == Call.STATUS_SUCCESS_NULL)) {
+      if (log.isDebugEnabled()) {
+        log.debug("Method does not have return value, do not reply");
+      }
+      return;
+    }
+    boolean sendResult=true;
+    if (call instanceof IPendingServiceCall) {
+      IPendingServiceCall psc=(IPendingServiceCall)call;
+      Object result=psc.getResult();
+      if (result instanceof DeferredResult) {
+        DeferredResult dr=(DeferredResult)result;
+        dr.setServiceCall(psc);
+        dr.setChannel(channel);
+        dr.setInvokeId(invoke.getInvokeId());
+        conn.registerDeferredResult(dr);
+        sendResult=false;
+      }
+    }
+    ;
+    if (sendResult) {
+      Invoke reply=new Invoke();
+      reply.setCall(call);
+      reply.setInvokeId(invoke.getInvokeId());
+      channel.write(reply);
+      if (disconnectOnReturn) {
+        conn.close();
+      }
+    }
+  }
+}

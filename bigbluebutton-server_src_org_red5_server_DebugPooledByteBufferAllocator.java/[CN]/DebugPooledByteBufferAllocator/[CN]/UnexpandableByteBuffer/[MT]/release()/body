@@ -1,0 +1,27 @@
+{
+  if (isDerived()) {
+    parentBuf.release();
+    return;
+  }
+synchronized (this) {
+    if (refCount <= 0) {
+      refCount=0;
+      throw new IllegalStateException("Already released buffer.  You released the buffer too many times.");
+    }
+    refCount--;
+    if (refCount > 0) {
+      return;
+    }
+  }
+  if (disposed) {
+    return;
+  }
+  if (pooled) {
+    if (parentBuf != null) {
+      release0(parentBuf);
+    }
+ else {
+      release0(this);
+    }
+  }
+}

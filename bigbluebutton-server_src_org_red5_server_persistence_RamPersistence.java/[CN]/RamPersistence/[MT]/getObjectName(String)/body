@@ -1,0 +1,7 @@
+{
+  String result=id.substring(id.lastIndexOf('/') + 1);
+  if (result.equals(PERSISTENCE_NO_NAME)) {
+    result=null;
+  }
+  return result;
+}

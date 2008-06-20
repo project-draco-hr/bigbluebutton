@@ -1,0 +1,3 @@
+{
+  invokeOnAllConnections(method,params,null);
+}

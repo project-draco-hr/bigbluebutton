@@ -1,0 +1,23 @@
+{
+  if (state != State.PAUSED) {
+    throw new IllegalStateException();
+  }
+  state=State.PLAYING;
+  sendReset();
+  sendResumeStatus(currentItem);
+  if (isPullMode) {
+    sendVODSeekCM(msgIn,position);
+    notifyItemResume(currentItem,position);
+    playbackStart=System.currentTimeMillis() - position;
+    if (currentItem.getLength() >= 0 && (position - streamOffset) >= currentItem.getLength()) {
+      stop();
+    }
+ else {
+      ensurePullAndPushRunning();
+    }
+  }
+ else {
+    notifyItemResume(currentItem,position);
+    videoFrameDropper.reset(VideoFrameDropper.SEND_KEYFRAMES_CHECK);
+  }
+}

@@ -1,0 +1,7 @@
+{
+  if ("*".equals(address) || "0.0.0.0".equals(address)) {
+    address=null;
+  }
+  this.address=address;
+  JMXAgent.updateMBeanAttribute(oName,"address",(address == null ? "0.0.0.0" : address));
+}

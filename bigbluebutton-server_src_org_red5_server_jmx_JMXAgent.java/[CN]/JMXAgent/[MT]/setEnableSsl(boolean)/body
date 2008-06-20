@@ -1,0 +1,3 @@
+{
+  JMXAgent.enableSsl=enableSsl;
+}

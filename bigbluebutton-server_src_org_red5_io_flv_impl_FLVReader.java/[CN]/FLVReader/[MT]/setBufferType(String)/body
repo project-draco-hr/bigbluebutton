@@ -1,0 +1,14 @@
+{
+  int bufferTypeHash=bufferType.hashCode();
+switch (bufferTypeHash) {
+case 3198444:
+    FLVReader.bufferType=BufferType.HEAP;
+  break;
+case -1331586071:
+FLVReader.bufferType=BufferType.DIRECT;
+break;
+case 3005871:
+default :
+FLVReader.bufferType=BufferType.AUTO;
+}
+}

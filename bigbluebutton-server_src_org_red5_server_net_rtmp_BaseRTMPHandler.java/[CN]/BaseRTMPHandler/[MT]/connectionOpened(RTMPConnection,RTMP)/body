@@ -1,0 +1,6 @@
+{
+  if (state.getMode() == RTMP.MODE_SERVER && appCtx != null) {
+    ISchedulingService service=(ISchedulingService)appCtx.getBean(ISchedulingService.BEAN_NAME);
+    conn.startWaitForHandshake(service);
+  }
+}

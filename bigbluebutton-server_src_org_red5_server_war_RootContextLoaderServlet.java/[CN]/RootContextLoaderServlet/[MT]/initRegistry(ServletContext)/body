@@ -1,0 +1,26 @@
+{
+  Registry r=null;
+  try {
+    Object o=ctx.getInitParameter("rmiPort");
+    if (o != null) {
+      rmiPort=Integer.valueOf((String)o);
+    }
+    if (System.getSecurityManager() != null) {
+      System.setSecurityManager(new RMISecurityManager());
+    }
+    r=LocateRegistry.getRegistry(rmiPort);
+    for (    String regName : r.list()) {
+      logger.debug("Registry entry: " + regName);
+    }
+  }
+ catch (  RemoteException re) {
+    logger.info("RMI Registry server was not found on port " + rmiPort);
+    try {
+      logger.info("Starting an internal RMI registry");
+      r=LocateRegistry.createRegistry(rmiPort);
+    }
+ catch (    RemoteException e) {
+      logger.info("RMI Registry server was not started on port " + rmiPort);
+    }
+  }
+}

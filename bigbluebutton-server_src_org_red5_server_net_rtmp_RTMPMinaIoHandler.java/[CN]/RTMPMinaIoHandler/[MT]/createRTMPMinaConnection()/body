@@ -1,0 +1,3 @@
+{
+  return (RTMPMinaConnection)rtmpConnManager.createConnection(RTMPMinaConnection.class);
+}

@@ -1,0 +1,4 @@
+{
+  log.info("Client received {} bytes, written {} bytes, {} messages pending",new Object[]{bytes,getWrittenBytes(),getPendingMessages()});
+  clientBytesRead=bytes;
+}

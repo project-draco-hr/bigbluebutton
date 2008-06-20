@@ -1,0 +1,5 @@
+{
+  client=new HttpClient(connectionMgr);
+  client.getHttpConnectionManager().getParams().setConnectionTimeout(timeout);
+  this.url=url;
+}

@@ -1,0 +1,4 @@
+{
+  log.info("Set server",server);
+  this.server=server;
+}

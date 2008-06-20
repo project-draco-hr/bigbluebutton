@@ -1,0 +1,10 @@
+{
+  byte[] bytes=new byte[4];
+  in.get(bytes);
+  int val=0;
+  val+=bytes[3] * 256 * 256* 256;
+  val+=bytes[2] * 256 * 256;
+  val+=bytes[1] * 256;
+  val+=bytes[0];
+  return val;
+}

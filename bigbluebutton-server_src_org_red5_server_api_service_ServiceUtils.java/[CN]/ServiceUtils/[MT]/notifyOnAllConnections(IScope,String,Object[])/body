@@ -1,0 +1,3 @@
+{
+  notifyOnClient(null,scope,method,params);
+}

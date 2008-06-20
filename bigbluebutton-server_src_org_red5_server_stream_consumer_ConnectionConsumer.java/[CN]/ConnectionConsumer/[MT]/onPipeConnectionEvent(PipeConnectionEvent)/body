@@ -1,0 +1,11 @@
+{
+switch (event.getType()) {
+case PipeConnectionEvent.PROVIDER_DISCONNECT:
+    conn.closeChannel(this.video.getId());
+  conn.closeChannel(this.audio.getId());
+conn.closeChannel(this.data.getId());
+break;
+default :
+break;
+}
+}

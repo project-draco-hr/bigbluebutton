@@ -1,0 +1,11 @@
+{
+  logger.debug("Looking up server stream: " + name + " Scope: "+ scope);
+  String key=scope.getName() + name;
+  if (serverStreamMap.containsKey(key)) {
+    return serverStreamMap.get(key);
+  }
+ else {
+    logger.warn("Server stream not found with key: " + key);
+    return null;
+  }
+}

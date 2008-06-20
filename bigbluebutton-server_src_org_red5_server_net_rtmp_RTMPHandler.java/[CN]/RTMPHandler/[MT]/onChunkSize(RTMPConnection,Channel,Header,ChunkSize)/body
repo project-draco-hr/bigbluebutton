@@ -1,0 +1,22 @@
+{
+  for (  IClientStream stream : conn.getStreams()) {
+    if (stream instanceof IClientBroadcastStream) {
+      IClientBroadcastStream bs=(IClientBroadcastStream)stream;
+      IBroadcastScope scope=(IBroadcastScope)bs.getScope().getBasicScope(IBroadcastScope.TYPE,bs.getPublishedName());
+      if (scope == null) {
+        continue;
+      }
+      OOBControlMessage setChunkSize=new OOBControlMessage();
+      setChunkSize.setTarget("ClientBroadcastStream");
+      setChunkSize.setServiceName("chunkSize");
+      if (setChunkSize.getServiceParamMap() == null) {
+        setChunkSize.setServiceParamMap(new HashMap());
+      }
+      setChunkSize.getServiceParamMap().put("chunkSize",chunkSize.getSize());
+      scope.sendOOBControlMessage((IConsumer)null,setChunkSize);
+      if (log.isDebugEnabled()) {
+        log.debug("Sending chunksize " + chunkSize + " to "+ bs.getProvider());
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  IScope scope;
+  if (path != null && !path.equals("")) {
+    scope=ScopeUtils.resolveScope(globalScope,path);
+  }
+ else {
+    scope=globalScope;
+  }
+  if (scope == null) {
+    throw new ScopeNotFoundException(globalScope,path);
+  }
+  return scope;
+}

@@ -1,0 +1,6 @@
+{
+  final String key=getObjectId(object);
+  objects.put(key,object);
+  object.setPersistent(true);
+  return true;
+}

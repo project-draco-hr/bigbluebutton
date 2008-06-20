@@ -1,0 +1,14 @@
+{
+  if (checkWriteReference(map))   return;
+  storeReference(map);
+  buf.put(AMF.TYPE_OBJECT);
+  boolean isBeanMap=(map instanceof BeanMap);
+  for (  Map.Entry<Object,Object> entry : map.entrySet()) {
+    if (isBeanMap && "class".equals(entry.getKey()))     continue;
+    putString(entry.getKey().toString());
+    serializer.serialize(this,entry.getValue());
+  }
+  buf.put((byte)0x00);
+  buf.put((byte)0x00);
+  buf.put(AMF.TYPE_END_OF_OBJECT);
+}

@@ -1,0 +1,10 @@
+{
+  if (receiveAudio && !receive) {
+    engine.sendBlankAudio=true;
+  }
+  final boolean seek=(!receiveAudio && receive);
+  receiveAudio=receive;
+  if (seek) {
+    seekToCurrentPlayback();
+  }
+}

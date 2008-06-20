@@ -1,0 +1,4 @@
+{
+  list.add(Byte.valueOf(DataTypes.CORE_STRING));
+  list.add(string);
+}

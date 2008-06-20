@@ -1,0 +1,3 @@
+{
+  buf.put(AMF.TYPE_NULL);
+}

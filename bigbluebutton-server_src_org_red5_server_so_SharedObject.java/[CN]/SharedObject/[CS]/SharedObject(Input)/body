@@ -1,0 +1,4 @@
+{
+  this();
+  deserialize(input);
+}

@@ -1,0 +1,17 @@
+{
+  Enumeration en=req.getHeaderNames();
+  while (en.hasMoreElements()) {
+    String name=(String)en.nextElement();
+    log.info(name + " => " + req.getHeader(name));
+  }
+  ByteBuffer reqBuffer=null;
+  try {
+    reqBuffer=ByteBuffer.allocate(req.getContentLength());
+    ServletUtils.copy(req.getInputStream(),reqBuffer.asOutputStream());
+    log.info(HexDump.formatHexDump(reqBuffer.getHexDump()));
+  }
+ catch (  IOException e) {
+    log.error("{}",e);
+  }
+  log.info("End");
+}

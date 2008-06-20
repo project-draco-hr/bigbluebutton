@@ -1,0 +1,7 @@
+{
+  this.type=type;
+  this.source=source;
+  if (allocationDebugging) {
+    AllocationDebugger.getInstance().create(this);
+  }
+}

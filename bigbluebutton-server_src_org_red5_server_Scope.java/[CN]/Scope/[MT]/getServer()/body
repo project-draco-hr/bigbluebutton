@@ -1,0 +1,15 @@
+{
+  if (!hasParent()) {
+    return null;
+  }
+  final IScope parent=getParent();
+  if (parent instanceof Scope) {
+    return ((Scope)parent).getServer();
+  }
+ else   if (parent instanceof IGlobalScope) {
+    return ((IGlobalScope)parent).getServer();
+  }
+ else {
+    return null;
+  }
+}

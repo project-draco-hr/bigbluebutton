@@ -1,0 +1,12 @@
+{
+  listeners.add(listener);
+  listenerStats.increment();
+  ownerMessage.addEvent(Type.CLIENT_INITIAL_DATA,null,null);
+  if (!isPersistentObject()) {
+    ownerMessage.addEvent(Type.CLIENT_CLEAR_DATA,null,null);
+  }
+  if (!attributes.isEmpty()) {
+    ownerMessage.addEvent(new SharedObjectEvent(Type.CLIENT_UPDATE_DATA,null,getAttributes()));
+  }
+  notifyModified();
+}

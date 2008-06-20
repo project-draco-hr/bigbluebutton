@@ -1,0 +1,3 @@
+{
+  return size + (size >> 12) + (size >> 14)+ 11;
+}

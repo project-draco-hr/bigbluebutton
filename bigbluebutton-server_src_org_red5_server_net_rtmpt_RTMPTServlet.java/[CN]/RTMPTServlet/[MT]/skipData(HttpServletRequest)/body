@@ -1,0 +1,7 @@
+{
+  ByteBuffer data=ByteBuffer.allocate(req.getContentLength());
+  ServletUtils.copy(req.getInputStream(),data.asOutputStream());
+  data.flip();
+  data.release();
+  data=null;
+}

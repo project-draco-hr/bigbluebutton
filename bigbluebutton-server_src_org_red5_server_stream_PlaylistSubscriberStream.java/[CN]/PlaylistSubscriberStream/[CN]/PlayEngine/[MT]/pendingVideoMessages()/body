@@ -1,0 +1,12 @@
+{
+  OOBControlMessage pendingRequest=new OOBControlMessage();
+  pendingRequest.setTarget("ConnectionConsumer");
+  pendingRequest.setServiceName("pendingVideoCount");
+  msgOut.sendOOBControlMessage(this,pendingRequest);
+  if (pendingRequest.getResult() != null) {
+    return (Long)pendingRequest.getResult();
+  }
+ else {
+    return 0;
+  }
+}

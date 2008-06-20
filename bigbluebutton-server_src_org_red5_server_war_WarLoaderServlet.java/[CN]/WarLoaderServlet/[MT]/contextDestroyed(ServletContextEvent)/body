@@ -1,0 +1,40 @@
+{
+synchronized (servletContext) {
+    logger.info("Webapp shutdown");
+    try {
+      ServletContext ctx=sce.getServletContext();
+      Introspector.flushCaches();
+      for (Enumeration e=DriverManager.getDrivers(); e.hasMoreElements(); ) {
+        Driver driver=(Driver)e.nextElement();
+        if (driver.getClass().getClassLoader() == getClass().getClassLoader()) {
+          DriverManager.deregisterDriver(driver);
+        }
+      }
+      JMXAgent.shutdown();
+      FilePersistenceThread persistenceThread=FilePersistenceThread.getInstance();
+      if (persistenceThread != null) {
+        persistenceThread.shutdown();
+      }
+      Object attr=ctx.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+      if (attr != null) {
+        ConfigurableWebApplicationContext applicationContext=(ConfigurableWebApplicationContext)attr;
+        ConfigurableBeanFactory factory=applicationContext.getBeanFactory();
+        try {
+          for (          String singleton : factory.getSingletonNames()) {
+            logger.debug("Registered singleton: " + singleton);
+            factory.destroyScopedBean(singleton);
+          }
+        }
+ catch (        RuntimeException e) {
+        }
+        factory.destroySingletons();
+        ctx.removeAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+        applicationContext.close();
+      }
+      getContextLoader().closeWebApplicationContext(ctx);
+    }
+ catch (    Throwable e) {
+      e.printStackTrace();
+    }
+  }
+}

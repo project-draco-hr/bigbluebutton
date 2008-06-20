@@ -1,0 +1,4 @@
+{
+  if (showInfo)   log.info("Exception: " + session.getRemoteAddress().toString(),ex);
+  sessions.remove(session);
+}

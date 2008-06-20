@@ -1,0 +1,10 @@
+{
+  int old=data.position();
+  try {
+    data.position(0);
+    return data.asCharBuffer().toString();
+  }
+  finally {
+    data.position(old);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  IConnection conn=Red5.getConnectionLocal();
+  if (conn instanceof IServiceCapableConnection)   ((IServiceCapableConnection)conn).invoke(method,params,callback);
+}

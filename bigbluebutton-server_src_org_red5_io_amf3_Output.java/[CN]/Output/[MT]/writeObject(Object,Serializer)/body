@@ -1,0 +1,55 @@
+{
+  writeAMF3();
+  buf.put(AMF3.TYPE_OBJECT);
+  if (hasReference(object)) {
+    putInteger(getReferenceId(object) << 1);
+    return;
+  }
+  storeReference(object);
+  String className=object.getClass().getName();
+  if (className.startsWith("org.red5.compatibility.")) {
+    className=className.substring(23);
+  }
+  if (object instanceof IExternalizable) {
+    int type=1 << 1 | 1;
+    if (object instanceof ObjectProxy) {
+      type|=AMF3.TYPE_OBJECT_PROXY << 2;
+    }
+ else {
+      type|=AMF3.TYPE_OBJECT_EXTERNALIZABLE << 2;
+    }
+    putInteger(type);
+    putString(className);
+    amf3_mode+=1;
+    ((IExternalizable)object).writeExternal(new DataOutput(this,serializer));
+    amf3_mode-=1;
+    return;
+  }
+  int type=AMF3.TYPE_OBJECT_VALUE << 2 | 1 << 1 | 1;
+  putInteger(type);
+  BeanMap beanMap=new BeanMap(object);
+  Set<BeanMap.Entry<?,?>> set=beanMap.entrySet();
+  if ((set.size() == 0) || (set.size() == 1 && beanMap.containsKey("class"))) {
+    writeArbitraryObject(object,serializer);
+    return;
+  }
+  Class<?> objectClass=object.getClass();
+  if (!objectClass.isAnnotationPresent(Anonymous.class)) {
+    putString(className);
+  }
+ else {
+    putString("");
+  }
+  amf3_mode+=1;
+  for (  BeanMap.Entry<?,?> entry : set) {
+    String keyName=entry.getKey().toString();
+    if ("class".equals(keyName)) {
+      continue;
+    }
+    if (dontSerializeField(objectClass,keyName))     continue;
+    putString(keyName);
+    serializer.serialize(this,entry.getValue());
+  }
+  amf3_mode-=1;
+  putString("");
+}

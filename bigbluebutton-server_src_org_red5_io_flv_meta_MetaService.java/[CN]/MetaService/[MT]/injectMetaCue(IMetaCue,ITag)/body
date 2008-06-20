@@ -1,0 +1,12 @@
+{
+  Output out=new Output(ByteBuffer.allocate(1000));
+  Serializer ser=new Serializer();
+  ser.serialize(out,"onCuePoint");
+  ser.serialize(out,meta);
+  ByteBuffer tmpBody=out.buf().flip();
+  int tmpBodySize=out.buf().limit();
+  int tmpPreviousTagSize=tag.getPreviousTagSize();
+  byte tmpDataType=IoConstants.TYPE_METADATA;
+  int tmpTimestamp=getTimeInMilliseconds(meta);
+  return new Tag(tmpDataType,tmpTimestamp,tmpBodySize,tmpBody,tmpPreviousTagSize);
+}

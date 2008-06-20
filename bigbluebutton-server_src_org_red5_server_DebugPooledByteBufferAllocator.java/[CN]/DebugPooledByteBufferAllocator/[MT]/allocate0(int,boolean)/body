@@ -1,0 +1,22 @@
+{
+  count++;
+  ExpiringStack[] bufferStacks=direct ? directBufferStacks : heapBufferStacks;
+  int idx=getBufferStackIndex(bufferStacks,capacity);
+  ExpiringStack stack=bufferStacks[idx];
+  UnexpandableByteBuffer buf;
+synchronized (stack) {
+    buf=(UnexpandableByteBuffer)stack.pop();
+  }
+  if (buf == null) {
+    java.nio.ByteBuffer nioBuf=direct ? java.nio.ByteBuffer.allocateDirect(MINIMUM_CAPACITY << idx) : java.nio.ByteBuffer.allocate(MINIMUM_CAPACITY << idx);
+    buf=new UnexpandableByteBuffer(nioBuf);
+  }
+  buf.init();
+  log.info("+++ " + count + " ("+ buf.buf().capacity()+ ") "+ getCodeSection()+ " req: "+ capacity);
+  if (saveStacks) {
+synchronized (stacks) {
+      stacks.put(buf,Thread.currentThread().getStackTrace());
+    }
+  }
+  return buf;
+}

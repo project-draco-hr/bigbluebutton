@@ -1,0 +1,6 @@
+{
+  for (  String key : getAttributeNames()) {
+    ownerMessage.addEvent(Type.SERVER_DELETE_ATTRIBUTE,key,null);
+  }
+  notifyModified();
+}

@@ -1,0 +1,4 @@
+{
+  IServiceCall call=new Call(method,params);
+  notify(call);
+}

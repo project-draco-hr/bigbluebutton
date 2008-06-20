@@ -1,0 +1,13 @@
+{
+  if (args.length == 0) {
+    helpAndExit();
+  }
+  String file=args[0];
+  if (!file.endsWith(".mid")) {
+    helpAndExit();
+  }
+  File midiFile=new File(file);
+  if (!midiFile.exists() || midiFile.isDirectory() || !midiFile.canRead()) {
+    helpAndExit();
+  }
+}

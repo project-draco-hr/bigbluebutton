@@ -1,0 +1,6 @@
+{
+  channelBandwidth=new long[4];
+  Arrays.fill(channelBandwidth,-1);
+  channelInitialBurst=new long[4];
+  Arrays.fill(channelInitialBurst,-1);
+}

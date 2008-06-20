@@ -1,0 +1,7 @@
+{
+  log.info("Loading RTMPT context from: " + rtmptConfig);
+  ApplicationContext appCtx=new ClassPathXmlApplicationContext(rtmptConfig);
+  Server rtmptServer=(Server)appCtx.getBean("Server");
+  log.info("Starting RTMPT server");
+  rtmptServer.start();
+}

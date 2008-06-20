@@ -1,0 +1,11 @@
+{
+  Assert.hasText(scriptSourceLocator);
+  this.scriptSourceLocator=scriptSourceLocator;
+  this.extendedClass=null;
+  if (null == scriptInterface) {
+    this.scriptInterfaces=new Class[]{};
+  }
+ else {
+    this.scriptInterfaces=new Class[]{scriptInterface};
+  }
+}

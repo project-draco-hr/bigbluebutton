@@ -1,0 +1,5 @@
+{
+  if (acquireCount == 0)   throw new RuntimeException("The shared object was not acquired before.");
+  acquireCount--;
+  if (acquireCount == 0)   checkRelease();
+}

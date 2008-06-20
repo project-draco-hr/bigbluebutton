@@ -1,0 +1,58 @@
+{
+  logger.info("-test and demo of the converter ");
+  String str="Niko";
+  byte[] ba=str.getBytes();
+  logger.info("to convert: " + str);
+  logger.info("converted1: " + byteArrayToHexString(ba));
+  logger.info("converted1: " + byteArrayToHexString(ba,0,ba.length));
+  logger.info("converted3: " + stringToHexString(str));
+  logger.info("----Convert integer to hexString...");
+  int i=-2;
+  logger.info("to convert: " + i + " -> "+ intToHexString(i));
+  logger.info("----Convert byte[] to binary String...");
+  byte[] baToConvert={(byte)0xff,(byte)0x00,(byte)0x33,(byte)0x11,(byte)0xff,(byte)0x5f,(byte)0x5f,(byte)0x4f,(byte)0x1f,(byte)0xff};
+  logger.info("to convert: " + toHexString(baToConvert) + " -> "+ byteArrayToBinaryString(baToConvert));
+  setByteSeparator('-');
+  logger.info("to convert: " + toHexString(baToConvert) + " -> "+ byteArrayToBinaryString(baToConvert));
+  setByteSeparator('*');
+  setWithByteSeparator(true);
+  logger.info("to convert: " + toHexString(baToConvert) + " -> "+ byteArrayToBinaryString(baToConvert));
+  char[] bd={'a','b'};
+  try {
+    setBitDigits(bd);
+  }
+ catch (  Exception ex) {
+    logger.debug("",ex);
+  }
+  logger.info("to convert: " + toHexString(baToConvert) + " -> "+ byteArrayToBinaryString(baToConvert));
+  setBitDigits('0','1');
+  logger.info("---- Convert.toByteArray(int) ");
+  for (int iToConvert=-10; iToConvert < 10; iToConvert++) {
+    logger.info("to convert = " + iToConvert + " = "+ HexDump.toBinaryString(iToConvert));
+    byte[] baConvInt=new byte[4];
+    baConvInt=HexDump.toByteArray(iToConvert);
+    logger.info("convertet byteArray = " + HexDump.toBinaryString(baConvInt));
+  }
+  logger.info("---- toHexString(int) ");
+  i=-1;
+  logger.info(i + " = 0x" + toHexString(i)+ " = "+ toBinaryString(i));
+  i++;
+  logger.info(i + " = 0x" + toHexString(i)+ " = "+ toBinaryString(i));
+  logger.info("---- toHexString(long) ");
+  long l=100;
+  logger.info(l + " = 0x" + toHexString(l)+ " = "+ toBinaryString(l));
+  java.util.Random rnd=new java.util.Random();
+  l=rnd.nextLong();
+  logger.info(l + " = 0x" + toHexString(l)+ " = "+ toBinaryString(l));
+  logger.info("---- toHexString(short) ");
+  short s=100;
+  logger.info(s + " = 0x" + toHexString(s)+ " = "+ toBinaryString(s));
+  rnd=new java.util.Random();
+  s=(short)rnd.nextInt();
+  logger.info(s + " = 0x" + toHexString(s)+ " = "+ toBinaryString(s));
+  logger.info("---- read file in Hex-Format ");
+  String strToConvert="12345654321";
+  logger.info(strToConvert + " = " + stringToHexString(strToConvert));
+  logger.info("Das ist die Hex-Darstellung des obigen Strings");
+  logger.info("ba = " + toHexString(ba));
+}

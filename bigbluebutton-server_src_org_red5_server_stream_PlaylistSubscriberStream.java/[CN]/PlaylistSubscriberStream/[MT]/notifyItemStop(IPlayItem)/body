@@ -1,0 +1,11 @@
+{
+  IStreamAwareScopeHandler handler=getStreamAwareHandler();
+  if (handler != null) {
+    try {
+      handler.streamPlaylistItemStop(this,item);
+    }
+ catch (    Throwable t) {
+      log.error("error notify streamPlaylistItemStop",t);
+    }
+  }
+}

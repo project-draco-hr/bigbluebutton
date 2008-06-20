@@ -1,0 +1,7 @@
+{
+  this.connectionParams=connectionParams;
+  if (!connectionParams.containsKey("objectEncoding"))   connectionParams.put("objectEncoding",(double)0);
+  this.connectCallback=connectCallback;
+  SocketConnector connector=new SocketConnector();
+  connector.connect(new InetSocketAddress(server,port),ioHandler);
+}

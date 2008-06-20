@@ -1,0 +1,14 @@
+{
+  count--;
+  log.info("--- " + count + " ("+ buf.buf().capacity()+ ") "+ getCodeSection());
+  if (saveStacks) {
+synchronized (stacks) {
+      stacks.remove(buf);
+    }
+  }
+  ExpiringStack[] bufferStacks=buf.buf().isDirect() ? directBufferStacks : heapBufferStacks;
+  ExpiringStack stack=bufferStacks[getBufferStackIndex(bufferStacks,buf.buf().capacity())];
+synchronized (stack) {
+    stack.push(buf);
+  }
+}

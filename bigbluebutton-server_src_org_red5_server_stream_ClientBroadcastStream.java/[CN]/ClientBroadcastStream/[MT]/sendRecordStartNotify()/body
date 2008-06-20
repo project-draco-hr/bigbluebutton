@@ -1,0 +1,13 @@
+{
+  Status recordStatus=new Status(StatusCodes.NS_RECORD_START);
+  recordStatus.setClientid(getStreamId());
+  recordStatus.setDetails(getPublishedName());
+  StatusMessage startMsg=new StatusMessage();
+  startMsg.setBody(recordStatus);
+  try {
+    connMsgOut.pushMessage(startMsg);
+  }
+ catch (  IOException err) {
+    log.error("Error while pushing message.",err);
+  }
+}

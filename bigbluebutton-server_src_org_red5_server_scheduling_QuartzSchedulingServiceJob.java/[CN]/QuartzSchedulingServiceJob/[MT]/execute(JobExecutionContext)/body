@@ -1,0 +1,10 @@
+{
+  ISchedulingService service=(ISchedulingService)arg0.getJobDetail().getJobDataMap().get(SCHEDULING_SERVICE);
+  IScheduledJob job=(IScheduledJob)arg0.getJobDetail().getJobDataMap().get(SCHEDULED_JOB);
+  try {
+    job.execute(service);
+  }
+ catch (  Throwable e) {
+    log.error("Job " + job.toString() + " execution failed: "+ e.getMessage());
+  }
+}

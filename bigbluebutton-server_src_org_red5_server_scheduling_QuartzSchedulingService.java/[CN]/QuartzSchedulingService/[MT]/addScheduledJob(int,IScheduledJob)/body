@@ -1,0 +1,6 @@
+{
+  String result=getJobName();
+  SimpleTrigger trigger=new SimpleTrigger("Trigger_" + result,null,new Date(),null,SimpleTrigger.REPEAT_INDEFINITELY,interval);
+  scheduleJob(result,trigger,job);
+  return result;
+}

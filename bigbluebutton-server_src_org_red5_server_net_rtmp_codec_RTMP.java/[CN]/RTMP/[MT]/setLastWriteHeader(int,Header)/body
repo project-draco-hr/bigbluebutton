@@ -1,0 +1,4 @@
+{
+  lastWriteChannel=channelId;
+  writeHeaders.put(channelId,header);
+}

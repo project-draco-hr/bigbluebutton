@@ -1,0 +1,7 @@
+{
+  super.writeExternal(out);
+  out.writeShort(value1);
+  out.writeInt(value2);
+  out.writeInt(value3);
+  out.writeInt(value4);
+}

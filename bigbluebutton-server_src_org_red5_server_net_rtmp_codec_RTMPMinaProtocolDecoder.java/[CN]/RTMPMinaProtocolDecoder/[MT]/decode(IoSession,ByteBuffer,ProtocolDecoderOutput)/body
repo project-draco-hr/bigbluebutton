@@ -1,0 +1,20 @@
+{
+  final ProtocolState state=(ProtocolState)session.getAttribute(ProtocolState.SESSION_KEY);
+  IConnection conn=(IConnection)session.getAttachment();
+  Red5.setConnectionLocal(conn);
+  ByteBuffer buf=(ByteBuffer)session.getAttribute("buffer");
+  if (buf == null) {
+    buf=ByteBuffer.allocate(2048);
+    buf.setAutoExpand(true);
+    session.setAttribute("buffer",buf);
+  }
+  buf.put(in);
+  buf.flip();
+  List objects=decodeBuffer(state,buf);
+  if (objects == null || objects.isEmpty()) {
+    return;
+  }
+  for (  Object object : objects) {
+    out.write(object);
+  }
+}

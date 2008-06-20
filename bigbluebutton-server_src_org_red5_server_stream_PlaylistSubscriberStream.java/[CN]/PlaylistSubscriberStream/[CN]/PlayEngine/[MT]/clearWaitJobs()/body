@@ -1,0 +1,10 @@
+{
+  if (pullAndPushFuture != null) {
+    pullAndPushFuture.cancel(false);
+    pullAndPushFuture=null;
+  }
+  if (waitLiveJob != null) {
+    schedulingService.removeScheduledJob(waitLiveJob);
+    waitLiveJob=null;
+  }
+}

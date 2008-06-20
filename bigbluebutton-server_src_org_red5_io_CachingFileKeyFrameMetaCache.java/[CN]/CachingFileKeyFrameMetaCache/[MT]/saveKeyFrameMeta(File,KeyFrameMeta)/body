@@ -1,0 +1,15 @@
+{
+  rwLock.writeLock().lock();
+  try {
+    String canonicalPath=file.getCanonicalPath();
+    if (inMemoryMetaCache.containsKey(canonicalPath)) {
+      inMemoryMetaCache.remove(canonicalPath);
+    }
+  }
+ catch (  IOException e) {
+  }
+ finally {
+    rwLock.writeLock().unlock();
+  }
+  super.saveKeyFrameMeta(file,meta);
+}

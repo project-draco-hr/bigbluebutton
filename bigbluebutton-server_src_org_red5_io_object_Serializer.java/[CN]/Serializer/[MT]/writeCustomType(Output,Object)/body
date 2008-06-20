@@ -1,0 +1,9 @@
+{
+  if (out.isCustom(obj)) {
+    out.writeCustom(obj);
+    return true;
+  }
+ else {
+    return false;
+  }
+}

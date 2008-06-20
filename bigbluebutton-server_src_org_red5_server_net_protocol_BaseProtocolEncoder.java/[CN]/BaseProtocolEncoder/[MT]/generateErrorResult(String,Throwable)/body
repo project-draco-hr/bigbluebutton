@@ -1,0 +1,24 @@
+{
+  String message="";
+  while (error != null && error.getCause() != null) {
+    error=error.getCause();
+  }
+  if (error != null && error.getMessage() != null) {
+    message=error.getMessage();
+  }
+  StatusObject status=new StatusObject(code,"error",message);
+  if (error instanceof ClientDetailsException) {
+    status.setApplication(((ClientDetailsException)error).getParameters());
+    if (((ClientDetailsException)error).includeStacktrace()) {
+      List<String> stack=new ArrayList<String>();
+      for (      StackTraceElement element : error.getStackTrace()) {
+        stack.add(element.toString());
+      }
+      status.setAdditional("stacktrace",stack);
+    }
+  }
+ else   if (error != null) {
+    status.setApplication(error.getClass().getCanonicalName());
+  }
+  return status;
+}

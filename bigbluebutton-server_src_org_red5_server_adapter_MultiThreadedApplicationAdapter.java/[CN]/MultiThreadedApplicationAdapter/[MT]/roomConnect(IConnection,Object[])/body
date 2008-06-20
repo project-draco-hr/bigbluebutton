@@ -1,0 +1,9 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("roomConnect: {}",conn);
+  }
+  for (  IApplication listener : listeners) {
+    listener.roomConnect(conn,params);
+  }
+  return true;
+}

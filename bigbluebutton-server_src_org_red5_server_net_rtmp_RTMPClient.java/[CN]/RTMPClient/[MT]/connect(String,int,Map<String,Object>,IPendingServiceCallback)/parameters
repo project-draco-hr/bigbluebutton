@@ -1,0 +1,4 @@
+String server
+int port
+Map<String,Object> connectionParams
+IPendingServiceCallback connectCallback

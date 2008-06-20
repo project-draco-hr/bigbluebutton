@@ -1,0 +1,11 @@
+{
+  ByteBuffer buf=(ByteBuffer)session.getAttribute("buffer");
+  if (buf != null) {
+    buf.release();
+  }
+  final RTMP rtmp=(RTMP)session.getAttribute(ProtocolState.SESSION_KEY);
+  final RTMPMinaConnection conn=(RTMPMinaConnection)session.getAttachment();
+  this.handler.connectionClosed(conn,rtmp);
+  session.removeAttribute(ProtocolState.SESSION_KEY);
+  session.setAttachment(null);
+}

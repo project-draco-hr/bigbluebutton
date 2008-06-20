@@ -1,0 +1,6 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("Looking up " + obj.getName() + " in the cache. Current size: "+ CACHE.size());
+  }
+  return remove(obj.getName());
+}

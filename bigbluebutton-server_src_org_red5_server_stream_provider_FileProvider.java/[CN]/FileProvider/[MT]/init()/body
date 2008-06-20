@@ -1,0 +1,13 @@
+{
+  IStreamableFileFactory factory=(IStreamableFileFactory)ScopeUtils.getScopeService(scope,IStreamableFileFactory.class,StreamableFileFactory.class);
+  IStreamableFileService service=factory.getService(file);
+  if (service == null) {
+    log.error("No service found for " + file.getAbsolutePath());
+    return;
+  }
+  IStreamableFile streamFile=service.getStreamableFile(file);
+  reader=streamFile.getReader();
+  if (start > 0) {
+    seek(start);
+  }
+}

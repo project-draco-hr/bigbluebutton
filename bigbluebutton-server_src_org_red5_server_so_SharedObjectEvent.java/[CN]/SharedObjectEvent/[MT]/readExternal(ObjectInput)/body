@@ -1,0 +1,5 @@
+{
+  type=(Type)in.readObject();
+  key=(String)in.readObject();
+  value=in.readObject();
+}

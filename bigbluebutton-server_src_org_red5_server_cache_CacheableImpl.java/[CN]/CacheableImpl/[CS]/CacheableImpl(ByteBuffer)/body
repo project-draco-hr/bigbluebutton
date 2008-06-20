@@ -1,0 +1,20 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("Buffer is direct: " + buffer.isDirect() + " capacity: "+ buffer.capacity());
+    log.debug("Buffer limit: " + buffer.limit() + " remaining: "+ buffer.remaining()+ " position: "+ buffer.position());
+  }
+  bytes=new byte[buffer.capacity()];
+  buffer.rewind();
+  int i=0;
+  while (i < buffer.limit()) {
+    buffer.position(i);
+    while (buffer.remaining() > 0) {
+      bytes[i++]=buffer.get();
+    }
+  }
+  cached=true;
+  if (log.isDebugEnabled()) {
+    log.debug("Buffer size: " + buffer.capacity());
+  }
+  buffer=null;
+}

@@ -1,0 +1,5 @@
+{
+  Map<String,Object> result=new HashMap<String,Object>();
+  readKeyValues(result,deserializer);
+  return result;
+}

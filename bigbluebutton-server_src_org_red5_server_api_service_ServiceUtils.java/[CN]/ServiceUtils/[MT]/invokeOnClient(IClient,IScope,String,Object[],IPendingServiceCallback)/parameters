@@ -1,0 +1,5 @@
+IClient client
+IScope scope
+String method
+Object[] params
+IPendingServiceCallback callback

@@ -1,0 +1,10 @@
+{
+  int type=readAMF3Integer();
+  if ((type & 1) == 0) {
+    return (ByteArray)getReference(type >> 1);
+  }
+  type>>=1;
+  ByteArray result=new ByteArray(buf,type);
+  storeReference(result);
+  return result;
+}

@@ -1,0 +1,3 @@
+{
+  scopeListeners.add(listener);
+}

@@ -1,0 +1,23 @@
+{
+  log.info("Loading RTMPT context");
+  try {
+    getApplicationContext();
+  }
+ catch (  Exception e) {
+    log.error("Error loading tomcat configuration",e);
+  }
+  host.addChild(context);
+  if (log.isDebugEnabled()) {
+    log.debug("Null check - engine: " + (null == engine) + " host: "+ (null == host));
+  }
+  engine.addChild(host);
+  embedded.addEngine(engine);
+  embedded.addConnector(connector);
+  try {
+    log.info("Starting RTMPT engine");
+    embedded.start();
+  }
+ catch (  org.apache.catalina.LifecycleException e) {
+    log.error("Error loading tomcat",e);
+  }
+}

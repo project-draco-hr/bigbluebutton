@@ -1,0 +1,47 @@
+{
+  if (state != State.STOPPED) {
+    return;
+  }
+  boolean isLive=false;
+  IProviderService providerService=(IProviderService)getScope().getContext().getBean(IProviderService.BEAN_NAME);
+  msgIn=providerService.getVODProviderInput(getScope(),item.getName());
+  if (msgIn == null) {
+    msgIn=providerService.getLiveProviderInput(getScope(),item.getName(),true);
+    isLive=true;
+  }
+  if (msgIn == null) {
+    log.warn("ABNORMAL Can't get both VOD and Live input from providerService");
+    return;
+  }
+  state=State.PLAYING;
+  currentItem=item;
+  sendResetMessage();
+  msgIn.subscribe(this,null);
+  if (isLive) {
+    if (item.getLength() >= 0) {
+      liveJobName=scheduler.addScheduledOnceJob(item.getLength(),new IScheduledJob(){
+        /** 
+ * {@inheritDoc} 
+ */
+        public void execute(        ISchedulingService service){
+synchronized (ServerStream.this) {
+            if (liveJobName == null) {
+              return;
+            }
+            liveJobName=null;
+            onItemEnd();
+          }
+        }
+      }
+);
+    }
+  }
+ else {
+    long start=item.getStart();
+    if (start < 0) {
+      start=0;
+    }
+    sendVODInitCM(msgIn,(int)start);
+    startBroadcastVOD();
+  }
+}

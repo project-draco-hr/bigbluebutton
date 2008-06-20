@@ -1,0 +1,15 @@
+{
+  if (updateCounter > 0) {
+    return;
+  }
+  if (modified) {
+    updateVersion();
+    lastModified=System.currentTimeMillis();
+  }
+  if (modified && storage != null) {
+    if (!storage.save(this)) {
+      log.error("Could not store shared object.");
+    }
+  }
+  sendUpdates();
+}

@@ -1,0 +1,26 @@
+{
+  log.debug("Decoding request");
+  ByteBuffer reqBuffer=ByteBuffer.allocate(req.getContentLength());
+  ServletUtils.copy(req.getInputStream(),reqBuffer.asOutputStream());
+  reqBuffer.flip();
+  RemotingPacket packet=(RemotingPacket)codecFactory.getSimpleDecoder().decode(null,reqBuffer);
+  String path=req.getContextPath();
+  if (path == null) {
+    path="";
+  }
+  if (req.getPathInfo() != null) {
+    path+=req.getPathInfo();
+  }
+  String headerPath=req.getHeader("Tunnel-request");
+  if (headerPath != null && path.length() < 1) {
+    path=headerPath;
+  }
+  if (path.length() > 0 && path.charAt(0) == '/') {
+    path=path.substring(1);
+  }
+  log.debug("Path: {} Scope path: {}",path,packet.getScopePath());
+  packet.setScopePath(path);
+  reqBuffer.release();
+  reqBuffer=null;
+  return packet;
+}

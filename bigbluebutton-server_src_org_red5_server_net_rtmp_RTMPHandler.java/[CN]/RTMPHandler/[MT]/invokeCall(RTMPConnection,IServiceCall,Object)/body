@@ -1,0 +1,8 @@
+{
+  final IScope scope=conn.getScope();
+  final IContext context=scope.getContext();
+  log.debug("Scope: {}",scope);
+  log.debug("Service: {}",service);
+  log.debug("Context: {}",context);
+  return context.getServiceInvoker().invoke(call,service);
+}

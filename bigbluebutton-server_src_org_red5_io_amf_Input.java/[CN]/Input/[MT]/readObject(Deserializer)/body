@@ -1,0 +1,33 @@
+{
+  String className;
+  if (currentDataType == AMF.TYPE_CLASS_OBJECT) {
+    className=getString(buf);
+  }
+ else {
+    className=null;
+  }
+  log.debug("readObject: {}",className);
+  Object result=null;
+  if (className != null) {
+    log.debug("read class object");
+    Object instance;
+    if (className.equals("RecordSet")) {
+      result=new RecordSet(this);
+      storeReference(result);
+    }
+ else     if (className.equals("RecordSetPage")) {
+      result=new RecordSetPage(this);
+      storeReference(result);
+    }
+ else {
+      instance=newInstance(className);
+      if (instance != null) {
+        result=readBean(deserializer,instance);
+      }
+    }
+  }
+ else {
+    result=readSimpleObject(deserializer);
+  }
+  return result;
+}

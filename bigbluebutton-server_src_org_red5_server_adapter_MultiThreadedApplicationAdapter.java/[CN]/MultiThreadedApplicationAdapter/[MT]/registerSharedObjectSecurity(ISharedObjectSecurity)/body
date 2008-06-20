@@ -1,0 +1,3 @@
+{
+  sharedObjectSecurity.add(handler);
+}

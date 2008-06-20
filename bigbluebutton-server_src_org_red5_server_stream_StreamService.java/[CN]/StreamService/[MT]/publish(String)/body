@@ -1,0 +1,3 @@
+{
+  publish(name,IClientStream.MODE_LIVE);
+}

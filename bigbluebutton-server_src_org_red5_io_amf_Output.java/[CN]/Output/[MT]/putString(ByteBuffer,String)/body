@@ -1,0 +1,5 @@
+{
+  final byte[] encoded=encodeString(string);
+  buf.putShort((short)encoded.length);
+  buf.put(encoded);
+}

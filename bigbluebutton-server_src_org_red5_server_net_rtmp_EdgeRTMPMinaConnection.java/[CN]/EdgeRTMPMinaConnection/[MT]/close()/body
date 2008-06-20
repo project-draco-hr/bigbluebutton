@@ -1,0 +1,25 @@
+{
+  boolean needNotifyOrigin=false;
+  RTMP state=getState();
+synchronized (state) {
+    if (state.getState() == RTMP.STATE_CONNECTED) {
+      needNotifyOrigin=true;
+      state.setState(RTMP.STATE_EDGE_DISCONNECTING);
+    }
+  }
+  if (needNotifyOrigin) {
+    IMRTMPConnection conn=mrtmpManager.lookupMRTMPConnection(this);
+    if (conn != null) {
+      conn.disconnect(getId());
+    }
+  }
+synchronized (state) {
+    if (state.getState() == RTMP.STATE_DISCONNECTED) {
+      return;
+    }
+ else {
+      state.setState(RTMP.STATE_DISCONNECTED);
+    }
+  }
+  super.close();
+}

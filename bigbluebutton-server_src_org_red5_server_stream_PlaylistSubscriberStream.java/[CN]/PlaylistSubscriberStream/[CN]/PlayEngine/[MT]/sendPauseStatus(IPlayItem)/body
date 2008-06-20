@@ -1,0 +1,8 @@
+{
+  Status pause=new Status(StatusCodes.NS_PAUSE_NOTIFY);
+  pause.setClientid(getStreamId());
+  pause.setDetails(item.getName());
+  StatusMessage pauseMsg=new StatusMessage();
+  pauseMsg.setBody(pause);
+  doPushMessage(pauseMsg);
+}

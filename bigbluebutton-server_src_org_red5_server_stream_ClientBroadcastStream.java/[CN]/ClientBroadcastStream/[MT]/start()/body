@@ -1,0 +1,23 @@
+{
+  IConsumerService consumerManager=(IConsumerService)getScope().getContext().getBean(IConsumerService.KEY);
+  try {
+    videoCodecFactory=(VideoCodecFactory)getScope().getContext().getBean(VideoCodecFactory.KEY);
+    checkVideoCodec=true;
+  }
+ catch (  Exception err) {
+    log.warn("No video codec factory available.",err);
+  }
+  firstPacketTime=audioTime=videoTime=dataTime=-1;
+  connMsgOut=consumerManager.getConsumerOutput(this);
+  connMsgOut.subscribe(this,null);
+  recordPipe=new InMemoryPushPushPipe();
+  Map<Object,Object> recordParamMap=new HashMap<Object,Object>();
+  recordParamMap.put("record",null);
+  recordPipe.subscribe((IProvider)this,recordParamMap);
+  recording=false;
+  recordingFilename=null;
+  setCodecInfo(new StreamCodecInfo());
+  closed=false;
+  bytesReceived=0;
+  creationTime=System.currentTimeMillis();
+}

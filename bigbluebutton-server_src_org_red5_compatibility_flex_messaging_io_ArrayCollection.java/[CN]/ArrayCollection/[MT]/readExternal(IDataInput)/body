@@ -1,0 +1,4 @@
+{
+  clear();
+  addAll((List)input.readObject());
+}

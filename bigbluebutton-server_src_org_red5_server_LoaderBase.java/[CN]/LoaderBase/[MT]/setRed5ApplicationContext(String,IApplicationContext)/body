@@ -1,0 +1,8 @@
+{
+  if (context != null) {
+    red5AppCtx.put(path,context);
+  }
+ else {
+    red5AppCtx.remove(path);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  if (videoCodec == null) {
+    return null;
+  }
+  return videoCodec.getName();
+}

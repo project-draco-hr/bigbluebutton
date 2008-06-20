@@ -1,0 +1,15 @@
+{
+  boolean success=super.connect(newScope,params);
+  if (success) {
+    if (getScope() != null && getScope().getContext() != null) {
+      IBWControlService bwController=(IBWControlService)getScope().getContext().getBean(IBWControlService.KEY);
+      bwContext=bwController.registerBWControllable(this);
+    }
+    if (waitForHandshakeJob != null) {
+      waitForHandshakeService.removeScheduledJob(waitForHandshakeJob);
+      waitForHandshakeJob=null;
+      waitForHandshakeService=null;
+    }
+  }
+  return success;
+}

@@ -1,0 +1,4 @@
+AbstractMessage request
+String faultCode
+String faultString
+String faultDetail

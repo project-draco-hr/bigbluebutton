@@ -1,0 +1,3 @@
+{
+  if (amf3_mode == 0)   buf.put(AMF.TYPE_AMF3_OBJECT);
+}

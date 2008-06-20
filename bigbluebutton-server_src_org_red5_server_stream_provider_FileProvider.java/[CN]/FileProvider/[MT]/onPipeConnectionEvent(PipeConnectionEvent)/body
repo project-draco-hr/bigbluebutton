@@ -1,0 +1,21 @@
+{
+switch (event.getType()) {
+case PipeConnectionEvent.PROVIDER_CONNECT_PULL:
+    if (pipe == null) {
+      pipe=(IPipe)event.getSource();
+    }
+  break;
+case PipeConnectionEvent.PROVIDER_DISCONNECT:
+if (pipe == event.getSource()) {
+  this.pipe=null;
+  uninit();
+}
+break;
+case PipeConnectionEvent.CONSUMER_DISCONNECT:
+if (pipe == event.getSource()) {
+uninit();
+}
+default :
+break;
+}
+}

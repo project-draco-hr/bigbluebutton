@@ -1,0 +1,3 @@
+IConsumer consumer
+int type
+Map paramMap

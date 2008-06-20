@@ -1,0 +1,4 @@
+IConnection conn
+String method
+Object[] params
+IPendingServiceCallback callback

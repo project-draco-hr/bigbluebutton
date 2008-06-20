@@ -1,0 +1,9 @@
+{
+  if (buf != null) {
+    currentDataType=buf.get();
+  }
+ else {
+    log.error("Why is buf null?");
+  }
+  return readDataType(currentDataType);
+}

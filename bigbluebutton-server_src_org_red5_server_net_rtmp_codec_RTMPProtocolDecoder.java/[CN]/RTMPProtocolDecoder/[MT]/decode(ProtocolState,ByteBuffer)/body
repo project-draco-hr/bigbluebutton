@@ -1,0 +1,23 @@
+{
+  int start=in.position();
+  try {
+    final RTMP rtmp=(RTMP)state;
+switch (rtmp.getState()) {
+case RTMP.STATE_CONNECTED:
+      return decodePacket(rtmp,in);
+case RTMP.STATE_ERROR:
+    return null;
+case RTMP.STATE_CONNECT:
+case RTMP.STATE_HANDSHAKE:
+  return decodeHandshake(rtmp,in);
+default :
+return null;
+}
+}
+ catch (ProtocolException pe) {
+throw pe;
+}
+catch (RuntimeException e) {
+throw new ProtocolException("Error during decoding",e);
+}
+}

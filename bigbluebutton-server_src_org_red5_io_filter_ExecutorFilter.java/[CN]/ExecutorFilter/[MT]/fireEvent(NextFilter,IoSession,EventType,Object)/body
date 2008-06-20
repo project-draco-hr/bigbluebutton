@@ -1,0 +1,14 @@
+{
+  Event event=new Event(type,nextFilter,data);
+  SessionBuffer buf=SessionBuffer.getSessionBuffer(session);
+synchronized (buf.eventQueue) {
+    buf.eventQueue.add(event);
+    if (buf.processingCompleted) {
+      buf.processingCompleted=false;
+      if (logger.isDebugEnabled()) {
+        logger.debug("Launching thread for " + session.getRemoteAddress());
+      }
+      executor.execute(new ProcessEventsRunnable(buf));
+    }
+  }
+}

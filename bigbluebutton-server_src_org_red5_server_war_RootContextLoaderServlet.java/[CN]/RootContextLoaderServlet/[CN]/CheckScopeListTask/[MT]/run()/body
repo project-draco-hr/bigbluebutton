@@ -1,0 +1,19 @@
+{
+  logger.debug("Checking scope list");
+  try {
+    IRemotableList remote=(IRemotableList)Naming.lookup("rmi://localhost:" + rmiPort + "/subContextList");
+    logger.debug("Children: " + remote.numChildren());
+    if (remote.hasChildren()) {
+      logger.debug("Children were detected");
+      for (int i=0; i < remote.numChildren(); i++) {
+        logger.debug("Enumerating children");
+        WebSettings settings=remote.getAt(i);
+        registerSubContext(settings.getWebAppKey());
+      }
+      logger.debug("End of children...");
+    }
+  }
+ catch (  Throwable t) {
+    logger.error("",t);
+  }
+}

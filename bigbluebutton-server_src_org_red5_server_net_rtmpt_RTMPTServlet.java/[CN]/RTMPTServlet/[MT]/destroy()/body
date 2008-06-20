@@ -1,0 +1,7 @@
+{
+  Collection<RTMPConnection> conns=rtmpConnManager.removeConnections();
+  for (  RTMPConnection conn : conns) {
+    conn.close();
+  }
+  super.destroy();
+}

@@ -1,0 +1,10 @@
+{
+  if (streamId > 0) {
+    if (streams.get(streamId - 1) != null) {
+      pendingVideos.remove(streamId);
+      usedStreams--;
+      streams.remove(streamId - 1);
+      streamBuffers.remove(streamId - 1);
+    }
+  }
+}

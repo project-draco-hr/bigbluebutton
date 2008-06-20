@@ -1,0 +1,5 @@
+{
+  DummyBWContext context=new DummyBWContext(bc);
+  contextMap.put(bc,context);
+  return context;
+}

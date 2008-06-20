@@ -1,0 +1,3 @@
+{
+  return getClass().getSimpleName() + " from " + getRemoteAddress()+ ':'+ getRemotePort()+ " to "+ getHost()+ " (session: "+ session.getId()+ ')';
+}

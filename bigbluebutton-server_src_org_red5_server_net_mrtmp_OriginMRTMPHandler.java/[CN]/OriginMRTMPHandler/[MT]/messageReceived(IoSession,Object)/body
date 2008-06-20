@@ -1,0 +1,84 @@
+{
+  MRTMPPacket packet=(MRTMPPacket)message;
+  MRTMPPacket.Header header=packet.getHeader();
+  MRTMPPacket.Body body=packet.getBody();
+  if (log.isDebugEnabled()) {
+    log.debug(packet.toString());
+  }
+  int clientId=header.getClientId();
+  int sessionId=getSessionId(session);
+  MRTMPOriginConnection mrtmpConn=(MRTMPOriginConnection)session.getAttachment();
+  RTMPOriginConnection conn=null;
+switch (packet.getHeader().getType()) {
+case MRTMPPacket.CONNECT:
+    lock.writeLock().lock();
+  try {
+    if (header.isDynamic()) {
+      if (!dynConnMap.containsKey(clientId)) {
+        conn=new RTMPOriginConnection(IConnection.POLLING,header.getClientId());
+        conn.setMrtmpManager(mrtmpManager);
+        conn.setHandler(this);
+        dynConnMap.put(clientId,conn);
+      }
+ else {
+        log.warn("Open an already existing RTMPT origin connection!");
+      }
+    }
+ else {
+      StaticConnId connId=new StaticConnId();
+      connId.clientId=header.getClientId();
+      connId.sessionId=sessionId;
+      if (!statConnMap.containsKey(connId)) {
+        conn=new RTMPOriginConnection(IConnection.PERSISTENT,header.getClientId(),sessionId);
+        conn.setMrtmpManager(mrtmpManager);
+        conn.setHandler(this);
+        statConnMap.put(connId,conn);
+      }
+ else {
+        log.warn("Open an already existing RTMP origin connection!");
+      }
+    }
+  }
+  finally {
+    lock.writeLock().unlock();
+  }
+break;
+case MRTMPPacket.CLOSE:
+case MRTMPPacket.RTMP:
+lock.readLock().lock();
+try {
+if (header.isDynamic()) {
+conn=dynConnMap.get(clientId);
+}
+ else {
+StaticConnId connId=new StaticConnId();
+connId.clientId=header.getClientId();
+connId.sessionId=sessionId;
+conn=statConnMap.get(connId);
+}
+}
+  finally {
+lock.readLock().unlock();
+}
+if (conn != null) {
+if (packet.getHeader().getType() == MRTMPPacket.CLOSE) {
+closeConnection(conn);
+conn=null;
+}
+ else {
+MRTMPPacket.RTMPBody rtmpBody=(MRTMPPacket.RTMPBody)body;
+handler.messageReceived(conn,conn.getState(),rtmpBody.getRtmpPacket());
+}
+}
+ else {
+log.warn("Handle on a non-existent origin connection!");
+}
+break;
+default :
+log.warn("Unknown mrtmp packet received!");
+break;
+}
+if (conn != null) {
+mrtmpManager.associate(conn,mrtmpConn);
+}
+}

@@ -1,0 +1,23 @@
+{
+  IStreamableFileFactory factory=(IStreamableFileFactory)ScopeUtils.getScopeService(scope,IStreamableFileFactory.class);
+  if (name.indexOf(':') == -1 && name.indexOf('.') == -1) {
+    name="flv:" + name;
+  }
+  log.info("getStreamFile null check - factory: " + factory + " name: "+ name);
+  for (  IStreamableFileService service : factory.getServices()) {
+    if (name.startsWith(service.getPrefix() + ':')) {
+      name=service.prepareFilename(name);
+      break;
+    }
+  }
+  IStreamFilenameGenerator filenameGenerator=(IStreamFilenameGenerator)ScopeUtils.getScopeService(scope,IStreamFilenameGenerator.class,DefaultStreamFilenameGenerator.class);
+  String filename=filenameGenerator.generateFilename(scope,name,GenerationType.PLAYBACK);
+  File file;
+  if (filenameGenerator.resolvesToAbsolutePath()) {
+    file=new File(filename);
+  }
+ else {
+    file=scope.getContext().getResource(filename).getFile();
+  }
+  return file;
+}

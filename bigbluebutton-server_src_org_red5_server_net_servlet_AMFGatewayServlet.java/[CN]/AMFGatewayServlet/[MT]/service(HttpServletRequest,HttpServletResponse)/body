@@ -1,0 +1,26 @@
+{
+  log.debug("Servicing Request");
+  if (codecFactory == null) {
+    ServletContext ctx=getServletContext();
+    log.debug("Context path: {}",ctx.getContextPath());
+    webAppCtx=WebApplicationContextUtils.getRequiredWebApplicationContext(ctx);
+    if (webAppCtx == null) {
+      log.debug("Webapp context was null, trying lookup as attr.");
+      webAppCtx=(WebApplicationContext)ctx.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+    }
+    if (webAppCtx != null) {
+      server=(IServer)webAppCtx.getBean("red5.server");
+      codecFactory=(RemotingCodecFactory)webAppCtx.getBean("remotingCodecFactory");
+    }
+ else {
+      log.debug("No web context");
+    }
+  }
+  log.debug("Remoting request {} {}",req.getContextPath(),req.getServletPath());
+  if (req.getContentType() != null && req.getContentType().equals(APPLICATION_AMF)) {
+    serviceAMF(req,resp);
+  }
+ else {
+    resp.getWriter().write("Red5 : Remoting Gateway");
+  }
+}

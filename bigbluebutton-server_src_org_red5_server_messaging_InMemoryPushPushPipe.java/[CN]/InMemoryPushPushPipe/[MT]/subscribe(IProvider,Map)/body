@@ -1,0 +1,7 @@
+{
+  boolean success=super.subscribe(provider,paramMap);
+  if (success) {
+    fireProviderConnectionEvent(provider,PipeConnectionEvent.PROVIDER_CONNECT_PUSH,paramMap);
+  }
+  return success;
+}

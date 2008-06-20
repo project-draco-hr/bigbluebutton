@@ -1,0 +1,3 @@
+{
+  return super.join(client,scope);
+}

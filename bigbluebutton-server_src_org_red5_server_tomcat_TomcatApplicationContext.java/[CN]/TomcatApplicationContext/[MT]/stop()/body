@@ -1,0 +1,19 @@
+{
+  if (context instanceof StandardContext) {
+    try {
+      ((StandardContext)context).stop();
+    }
+ catch (    Exception e) {
+      log.error("Could not stop context.",e);
+    }
+  }
+  context.getParent().removeChild(context);
+  if (context instanceof StandardContext) {
+    try {
+      ((StandardContext)context).destroy();
+    }
+ catch (    Exception e) {
+      log.error("Could not destroy context.",e);
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  resp.setStatus(HttpServletResponse.SC_OK);
+  resp.setHeader("Connection","Keep-Alive");
+  resp.setHeader("Cache-Control","no-cache");
+  resp.setContentType(CONTENT_TYPE);
+  if (log.isDebugEnabled()) {
+    log.debug("Sending " + buffer.limit() + " bytes.");
+  }
+  resp.setContentLength(buffer.limit() + 1);
+  ServletOutputStream output=resp.getOutputStream();
+  output.write(client.getPollingDelay());
+  ServletUtils.copy(buffer.asInputStream(),output);
+  buffer.release();
+  buffer=null;
+}

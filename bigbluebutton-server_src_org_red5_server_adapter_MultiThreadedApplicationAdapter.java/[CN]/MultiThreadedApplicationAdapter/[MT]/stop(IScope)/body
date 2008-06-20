@@ -1,0 +1,9 @@
+{
+  if (isApp(scope)) {
+    appStop(scope);
+  }
+ else   if (isRoom(scope)) {
+    roomStop(scope);
+  }
+  super.stop(scope);
+}

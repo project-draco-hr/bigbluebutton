@@ -1,0 +1,5 @@
+{
+  this.output=output;
+  this.serializer=serializer;
+  buffer=output.getBuffer();
+}

@@ -1,0 +1,15 @@
+{
+  boolean updated=false;
+  if (null != oName) {
+    try {
+      if (mbs.isRegistered(oName)) {
+        mbs.setAttribute(oName,new javax.management.Attribute("key",value));
+        updated=true;
+      }
+    }
+ catch (    Exception e) {
+      log.error("Exception updating mbean attribute",e);
+    }
+  }
+  return updated;
+}

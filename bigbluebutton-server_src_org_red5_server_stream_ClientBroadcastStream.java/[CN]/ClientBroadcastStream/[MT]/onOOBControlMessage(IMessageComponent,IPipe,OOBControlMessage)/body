@@ -1,0 +1,9 @@
+{
+  if (!"ClientBroadcastStream".equals(oobCtrlMsg.getTarget())) {
+    return;
+  }
+  if ("chunkSize".equals(oobCtrlMsg.getServiceName())) {
+    chunkSize=(Integer)oobCtrlMsg.getServiceParamMap().get("chunkSize");
+    notifyChunkSize();
+  }
+}

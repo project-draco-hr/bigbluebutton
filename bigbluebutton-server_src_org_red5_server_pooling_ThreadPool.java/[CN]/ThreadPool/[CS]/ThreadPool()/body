@@ -1,0 +1,3 @@
+{
+  JMXAgent.registerMBean(this,this.getClass().getName(),ThreadPoolMBean.class,"threadpool");
+}

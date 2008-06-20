@@ -1,0 +1,22 @@
+{
+  boolean sent=false;
+  long start=currentItem.getStart();
+  if (start < 0) {
+    start=0;
+  }
+  if (currentItem.getLength() >= 0 && nextTS - start > currentItem.getLength()) {
+    onItemEnd();
+    return sent;
+  }
+  if (nextRTMPMessage != null) {
+    sent=true;
+    try {
+      pushMessage(nextRTMPMessage);
+    }
+ catch (    IOException err) {
+      log.error("Error while sending message.",err);
+    }
+    nextRTMPMessage.getBody().release();
+  }
+  return sent;
+}

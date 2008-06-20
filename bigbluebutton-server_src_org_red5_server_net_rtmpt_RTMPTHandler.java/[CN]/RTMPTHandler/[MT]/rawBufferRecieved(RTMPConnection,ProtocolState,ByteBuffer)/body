@@ -1,0 +1,17 @@
+{
+  final RTMP rtmp=(RTMP)state;
+  if (rtmp.getState() != RTMP.STATE_HANDSHAKE) {
+    log.warn("Raw buffer after handshake, something odd going on");
+  }
+  ByteBuffer out=ByteBuffer.allocate((Constants.HANDSHAKE_SIZE * 2) + 1);
+  if (log.isDebugEnabled()) {
+    log.debug("Writing handshake reply");
+    log.debug("handskake size:" + in.remaining());
+  }
+  out.put((byte)0x03);
+  out.putInt(0x01);
+  out.fill((byte)0x00,Constants.HANDSHAKE_SIZE - 4);
+  out.put(in).flip();
+  rtmp.setHandshake(out,9,Constants.HANDSHAKE_SIZE - 8);
+  conn.rawWrite(out);
+}

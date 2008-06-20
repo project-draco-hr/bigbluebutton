@@ -1,0 +1,3 @@
+{
+  ownerMessage.addEvent(Type.CLIENT_UPDATE_DATA,name,getAttribute(name));
+}

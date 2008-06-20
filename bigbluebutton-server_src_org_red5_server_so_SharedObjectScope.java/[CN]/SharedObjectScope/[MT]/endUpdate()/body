@@ -1,0 +1,4 @@
+{
+  so.endUpdate();
+  lock.unlock();
+}

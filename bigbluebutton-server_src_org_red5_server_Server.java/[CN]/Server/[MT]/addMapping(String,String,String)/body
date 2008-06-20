@@ -1,0 +1,8 @@
+{
+  log.info("Add mapping global: " + globalName + " host: "+ hostName+ " context: "+ contextPath);
+  final String key=getKey(hostName,contextPath);
+  if (log.isDebugEnabled()) {
+    log.debug("Add mapping: " + key + " => "+ globalName);
+  }
+  return (mapping.putIfAbsent(key,globalName) == null);
+}

@@ -1,0 +1,6 @@
+{
+  if (hasContext()) {
+    return context.getResource(path);
+  }
+  return getContext().getResource(getContextPath() + '/' + path);
+}

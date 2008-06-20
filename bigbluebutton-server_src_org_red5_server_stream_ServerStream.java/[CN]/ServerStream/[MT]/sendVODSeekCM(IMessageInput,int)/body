@@ -1,0 +1,31 @@
+{
+  OOBControlMessage oobCtrlMsg=new OOBControlMessage();
+  oobCtrlMsg.setTarget(ISeekableProvider.KEY);
+  oobCtrlMsg.setServiceName("seek");
+  Map<Object,Object> paramMap=new HashMap<Object,Object>();
+  paramMap.put("position",new Integer(position));
+  oobCtrlMsg.setServiceParamMap(paramMap);
+  msgIn.sendOOBControlMessage(this,oobCtrlMsg);
+synchronized (this) {
+    vodStartTS=0;
+    serverStartTS=System.currentTimeMillis();
+    if (nextRTMPMessage != null) {
+      try {
+        pushMessage(nextRTMPMessage);
+      }
+ catch (      IOException err) {
+        log.error("Error while sending message.",err);
+      }
+      nextRTMPMessage.getBody().release();
+      nextRTMPMessage=null;
+    }
+    ResetMessage reset=new ResetMessage();
+    try {
+      pushMessage(reset);
+    }
+ catch (    IOException err) {
+      log.error("Error while sending message.",err);
+    }
+    scheduleNextMessage();
+  }
+}

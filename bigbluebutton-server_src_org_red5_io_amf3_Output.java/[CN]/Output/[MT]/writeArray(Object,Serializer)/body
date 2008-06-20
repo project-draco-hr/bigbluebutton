@@ -1,0 +1,17 @@
+{
+  writeAMF3();
+  buf.put(AMF3.TYPE_ARRAY);
+  if (hasReference(array)) {
+    putInteger(getReferenceId(array) << 1);
+    return;
+  }
+  storeReference(array);
+  amf3_mode+=1;
+  int count=Array.getLength(array);
+  putInteger(count << 1 | 1);
+  putString("");
+  for (int i=0; i < count; i++) {
+    serializer.serialize(this,Array.get(array,i));
+  }
+  amf3_mode-=1;
+}

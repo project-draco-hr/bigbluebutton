@@ -1,0 +1,3 @@
+{
+  sendStartNotifications(Red5.getConnectionLocal());
+}

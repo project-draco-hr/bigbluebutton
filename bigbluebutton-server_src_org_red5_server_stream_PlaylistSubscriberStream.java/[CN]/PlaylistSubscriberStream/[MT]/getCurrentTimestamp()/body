@@ -1,0 +1,7 @@
+{
+  final IRTMPEvent msg=engine.lastMessage;
+  if (msg == null) {
+    return 0;
+  }
+  return msg.getTimestamp();
+}

@@ -1,0 +1,9 @@
+{
+  if (name.startsWith(getPrefix() + ':')) {
+    name=name.substring(getPrefix().length() + 1);
+    if (!name.endsWith(getExtension())) {
+      name=name + getExtension();
+    }
+  }
+  return name;
+}

@@ -1,0 +1,3 @@
+{
+  connThreadLocal.set(new WeakReference<IConnection>(connection));
+}

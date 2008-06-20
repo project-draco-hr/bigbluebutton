@@ -1,0 +1,10 @@
+{
+  IConnection conn=Red5.getConnectionLocal();
+  if (conn == null) {
+    return;
+  }
+  IScope scope=conn.getScope();
+  if (scope != null) {
+    Thread.currentThread().setContextClassLoader(scope.getClassLoader());
+  }
+}

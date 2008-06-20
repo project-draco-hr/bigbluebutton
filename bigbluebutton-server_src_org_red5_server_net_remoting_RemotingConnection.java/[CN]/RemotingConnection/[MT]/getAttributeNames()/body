@@ -1,0 +1,10 @@
+{
+  final Set<String> result=new HashSet<String>();
+synchronized (session) {
+    final Enumeration<String> names=session.getAttributeNames();
+    while (names.hasMoreElements()) {
+      result.add(names.nextElement());
+    }
+  }
+  return Collections.unmodifiableSet(result);
+}

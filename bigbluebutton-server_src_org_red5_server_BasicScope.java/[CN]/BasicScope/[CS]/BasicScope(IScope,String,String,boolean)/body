@@ -1,0 +1,5 @@
+{
+  super(type,name,null,persistent);
+  this.parent=parent;
+  this.listeners=new HashSet<IEventListener>();
+}

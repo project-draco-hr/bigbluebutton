@@ -1,0 +1,4 @@
+{
+  log.debug("Has child scope? {} in {}",name,this);
+  return children.containsKey(TYPE + SEPARATOR + name);
+}

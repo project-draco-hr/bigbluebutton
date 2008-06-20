@@ -1,0 +1,16 @@
+{
+switch (layerDescription) {
+case 3:
+    return 384 / (getSampleRate() * 0.001);
+case 2:
+case 1:
+  if (audioVersionId == 3) {
+    return 1152 / (getSampleRate() * 0.001);
+  }
+ else {
+    return 576 / (getSampleRate() * 0.001);
+  }
+default :
+return -1;
+}
+}

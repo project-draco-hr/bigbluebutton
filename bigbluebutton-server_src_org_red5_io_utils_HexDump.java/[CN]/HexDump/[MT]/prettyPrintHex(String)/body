@@ -1,0 +1,4 @@
+{
+  HexCharset hde=(HexCharset)HexCharset.forName("HEX");
+  return new String(hde.encode(sToConvert).array());
+}

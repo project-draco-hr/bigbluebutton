@@ -1,0 +1,4 @@
+{
+  final ToStringCreator tsc=new ToStringCreator(this);
+  return tsc.append("Depth",getDepth()).append("Path",getPath()).append("Name",getName()).toString();
+}

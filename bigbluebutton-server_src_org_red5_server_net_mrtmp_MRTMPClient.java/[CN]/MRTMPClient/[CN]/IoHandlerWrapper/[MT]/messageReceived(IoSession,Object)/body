@@ -1,0 +1,3 @@
+{
+  wrapped.messageReceived(session,message);
+}

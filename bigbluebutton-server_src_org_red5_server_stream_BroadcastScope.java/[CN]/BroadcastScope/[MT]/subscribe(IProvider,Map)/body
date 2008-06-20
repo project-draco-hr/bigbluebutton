@@ -1,0 +1,5 @@
+{
+synchronized (pipe) {
+    return !hasRemoved && pipe.subscribe(provider,paramMap);
+  }
+}

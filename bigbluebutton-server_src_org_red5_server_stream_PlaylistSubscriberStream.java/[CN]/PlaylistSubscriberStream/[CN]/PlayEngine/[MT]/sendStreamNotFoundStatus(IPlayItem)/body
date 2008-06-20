@@ -1,0 +1,9 @@
+{
+  Status notFound=new Status(StatusCodes.NS_PLAY_STREAMNOTFOUND);
+  notFound.setClientid(getStreamId());
+  notFound.setLevel(Status.ERROR);
+  notFound.setDetails(item.getName());
+  StatusMessage notFoundMsg=new StatusMessage();
+  notFoundMsg.setBody(notFound);
+  doPushMessage(notFoundMsg);
+}

@@ -1,0 +1,9 @@
+{
+  Map<String,Object> cues=new HashMap<String,Object>();
+  this.cuePoints=cuePoints;
+  int j=0;
+  for (j=0; j < this.cuePoints.length; j++) {
+    cues.put(String.valueOf(j),this.cuePoints[j]);
+  }
+  this.put("cuePoints",cues);
+}

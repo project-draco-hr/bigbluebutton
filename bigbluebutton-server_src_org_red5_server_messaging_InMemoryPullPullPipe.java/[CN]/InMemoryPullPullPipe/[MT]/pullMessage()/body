@@ -1,0 +1,17 @@
+{
+  IMessage message=null;
+  for (  IProvider provider : providers) {
+    if (!(provider instanceof IPullableProvider))     continue;
+    try {
+      message=((IPullableProvider)provider).pullMessage(this);
+      if (message != null) {
+        break;
+      }
+    }
+ catch (    Throwable t) {
+      if (t instanceof IOException)       throw (IOException)t;
+      log.error("exception when pulling message from provider",t);
+    }
+  }
+  return message;
+}

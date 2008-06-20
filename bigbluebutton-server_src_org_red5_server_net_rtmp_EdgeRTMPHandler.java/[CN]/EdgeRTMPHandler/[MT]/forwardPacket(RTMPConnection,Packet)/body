@@ -1,0 +1,6 @@
+{
+  IMRTMPConnection mrtmpConn=mrtmpManager.lookupMRTMPConnection(conn);
+  if (mrtmpConn != null) {
+    mrtmpManager.lookupMRTMPConnection(conn).write(conn.getId(),packet);
+  }
+}

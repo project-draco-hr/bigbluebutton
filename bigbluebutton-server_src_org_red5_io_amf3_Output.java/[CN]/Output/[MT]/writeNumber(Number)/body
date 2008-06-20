@@ -1,0 +1,15 @@
+{
+  writeAMF3();
+  if (num.longValue() < AMF3.MIN_INTEGER_VALUE || num.longValue() > AMF3.MAX_INTEGER_VALUE) {
+    buf.put(AMF3.TYPE_NUMBER);
+    buf.putDouble(num.doubleValue());
+  }
+ else   if (num instanceof Long || num instanceof Integer || num instanceof Short|| num instanceof Byte) {
+    buf.put(AMF3.TYPE_INTEGER);
+    putInteger(num.longValue());
+  }
+ else {
+    buf.put(AMF3.TYPE_NUMBER);
+    buf.putDouble(num.doubleValue());
+  }
+}

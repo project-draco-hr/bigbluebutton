@@ -1,0 +1,3 @@
+{
+  nextFilter.filterWrite(session,writeRequest);
+}
