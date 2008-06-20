@@ -1,0 +1,58 @@
+{
+  Map<String,Object> loadProperties=new HashMap<String,Object>();
+  loadProperties.putAll(getDefaultLoadProperties());
+  loadProperties.putAll(inputFormat.getImportOptions());
+  Map<String,Object> storeProperties=outputFormat.getExportOptions(inputFormat.getFamily());
+synchronized (openOfficeConnection) {
+    XFileIdentifierConverter fileContentProvider=openOfficeConnection.getFileContentProvider();
+    String inputUrl=fileContentProvider.getFileURLFromSystemPath("",inputFile.getAbsolutePath());
+    String outputUrl=fileContentProvider.getFileURLFromSystemPath("",outputFile.getAbsolutePath());
+    System.out.println("outputUrl = [" + outputFile.getAbsolutePath() + "]");
+    System.out.println("inputUrl = [" + inputFile.getAbsolutePath() + "]");
+    try {
+      XComponentLoader desktop=openOfficeConnection.getDesktop();
+      updatesMsgSender.sendMessage(room,ReturnCode.UPDATE,"Opening document for conversion.");
+      XComponent document=desktop.loadComponentFromURL(inputUrl,"_blank",0,toPropertyValues(loadProperties));
+      if (document == null) {
+        updatesMsgSender.sendMessage(room,ReturnCode.FILE_NOT_FOUND,"Cannot load the document.");
+        logger.error("Cannot load document from [" + inputUrl + "]");
+        throw new OpenOfficeException("conversion failed: input document is null after loading");
+      }
+      totalNumPages=PageHelper.getDrawPageCount(document);
+      document.dispose();
+      String destDir=outputFile.getParent().toString();
+      for (int i=0; i < totalNumPages; i++) {
+        String slideName="slide-" + i + ".pdf";
+        updatesMsgSender.sendMessage(room,ReturnCode.EXTRACT,totalNumPages,i + 1);
+        outputUrl=destDir + File.separator + room+ "-"+ slideName;
+        java.io.File destFile=new java.io.File(outputUrl);
+        outputUrl=fileContentProvider.getFileURLFromSystemPath("",destFile.getAbsolutePath());
+        System.out.println("new outputUrl = [" + outputUrl + "]");
+        loadAndExport(inputUrl,loadProperties,outputUrl,storeProperties,i);
+      }
+      ArrayList<File> files=getConvertedSlides(destDir);
+      int curSlide=1;
+      for (Iterator it=files.iterator(); it.hasNext(); ) {
+        File aFile=(File)it.next();
+        String fname=aFile.getName();
+        System.out.println("Filename = [" + fname + "]");
+        int dot=fname.lastIndexOf('.');
+        fname=fname.substring(0,dot);
+        fname+=".swf";
+        File outFile=new File(aFile.getParent() + File.separator + fname);
+        System.out.println("Input = [" + aFile.getAbsolutePath() + "]");
+        System.out.println("Output = [" + outFile.getAbsolutePath() + "]");
+        convertPDFtoSWF(aFile,outFile);
+        updatesMsgSender.sendMessage(room,ReturnCode.CONVERT,totalNumPages,curSlide++);
+      }
+    }
+ catch (    OpenOfficeException openOfficeException) {
+      updatesMsgSender.sendMessage(room,ReturnCode.FAIL,"Failed to convert the document.");
+      throw openOfficeException;
+    }
+catch (    Throwable throwable) {
+      updatesMsgSender.sendMessage(room,ReturnCode.FAIL,"Failed to convert the document.");
+      throw new OpenOfficeException("conversion failed",throwable);
+    }
+  }
+}

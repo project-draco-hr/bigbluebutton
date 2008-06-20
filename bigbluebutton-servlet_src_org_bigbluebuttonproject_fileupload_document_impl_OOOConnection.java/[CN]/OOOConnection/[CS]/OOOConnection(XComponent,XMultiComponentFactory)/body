@@ -1,0 +1,4 @@
+{
+  this.componentFactory=componentFactory;
+  this.bridge=bridge;
+}

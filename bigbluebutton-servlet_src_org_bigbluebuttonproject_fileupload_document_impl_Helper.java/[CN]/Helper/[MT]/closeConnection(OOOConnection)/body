@@ -1,0 +1,9 @@
+{
+  if (null != conn && null != conn.getBridge()) {
+    conn.getBridge().dispose();
+    logger.info("Closed OOo connection");
+  }
+ else {
+    logger.info("error: could not close OOo connection");
+  }
+}

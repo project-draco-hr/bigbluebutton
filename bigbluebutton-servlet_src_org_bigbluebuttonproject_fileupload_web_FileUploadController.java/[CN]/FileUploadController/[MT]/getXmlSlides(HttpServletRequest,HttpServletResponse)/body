@@ -1,0 +1,19 @@
+{
+  Integer room=new Integer(request.getParameterValues("room")[0]);
+  logger.info("Getting XML Slides [" + room + "]");
+  logger.info("Servlet Path = [" + request.getServletPath() + "]");
+  logger.info("Host = [" + request.getServerName() + ":"+ request.getServerPort()+ "]");
+  logger.info("Request URI = [" + request.getRequestURI() + "]");
+  logger.info("Request URL = [" + request.getRequestURL() + "]");
+  int lastIndex=request.getRequestURL().lastIndexOf("/");
+  String url=request.getRequestURL().substring(0,lastIndex);
+  String slidesXml=createXml(url,getSlidesForRoom(room));
+  logger.info("XML Slides = " + slidesXml);
+  response.setContentType("text/xml");
+  response.setHeader("Cache-Control","no-cache");
+  ServletOutputStream out=response.getOutputStream();
+  out.print(slidesXml);
+  out.flush();
+  out.close();
+  return null;
+}

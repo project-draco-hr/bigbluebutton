@@ -1,0 +1,4 @@
+{
+  XPropertySet xPageProperties=(XPropertySet)UnoRuntime.queryInterface(XPropertySet.class,xDrawPage);
+  return new Size(((Integer)xPageProperties.getPropertyValue("Width")).intValue(),((Integer)xPageProperties.getPropertyValue("Height")).intValue());
+}

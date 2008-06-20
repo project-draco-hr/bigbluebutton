@@ -1,0 +1,20 @@
+{
+  String strConnectInfo="socket,host=" + strHost + ",port="+ iPort;
+  String strProtocol="urp";
+  String strServiceManager="StarOffice.ServiceManager";
+  XComponentContext ctx=com.sun.star.comp.helper.Bootstrap.createInitialComponentContext(null);
+  Object x=ctx.getServiceManager().createInstanceWithContext("com.sun.star.connection.Connector",ctx);
+  XConnector xConnector=(XConnector)UnoRuntime.queryInterface(XConnector.class,x);
+  XConnection connection=xConnector.connect(strConnectInfo);
+  x=ctx.getServiceManager().createInstanceWithContext("com.sun.star.bridge.BridgeFactory",ctx);
+  XBridgeFactory xBridgeFactory=(XBridgeFactory)UnoRuntime.queryInterface(XBridgeFactory.class,x);
+  String strBridgeName="OOoBridge:" + System.currentTimeMillis();
+  XBridge bridge=xBridgeFactory.createBridge(strBridgeName,strProtocol,connection,null);
+  XComponent xComponent=(XComponent)UnoRuntime.queryInterface(XComponent.class,bridge);
+  x=bridge.getInstance(strServiceManager);
+  if (null == x) {
+    throw new com.sun.star.uno.Exception("Server didn't provide an instance for" + strServiceManager,null);
+  }
+  xOfficeMultiComponentFactory=(XMultiComponentFactory)UnoRuntime.queryInterface(XMultiComponentFactory.class,x);
+  return new OOOConnection(xComponent,xOfficeMultiComponentFactory);
+}

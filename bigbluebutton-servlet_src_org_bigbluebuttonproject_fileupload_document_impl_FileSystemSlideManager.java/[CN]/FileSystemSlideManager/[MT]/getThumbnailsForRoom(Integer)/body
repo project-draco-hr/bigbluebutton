@@ -1,0 +1,18 @@
+{
+  logger.info("getting thumbnails for = [" + room + "]");
+  File file=new File(baseDirectory + File.separator + room+ File.separator+ extractedFolder);
+  File[] files=file.listFiles();
+  ArrayList<SlideDescriptor> listOfFiles=new ArrayList<SlideDescriptor>();
+  for (int i=0; i < files.length; i++) {
+    if (!files[i].isDirectory()) {
+      String filename=(String)files[i].getName();
+      if ((filename.endsWith(".jpg")) && (filename.startsWith("thumb-"))) {
+        logger.info("getting slide = [" + filename + "]");
+        SlideDescriptor slide=new SlideDescriptor(filename,room);
+        listOfFiles.add(slide);
+      }
+    }
+  }
+  Collections.sort(listOfFiles,new SlideComparator());
+  return listOfFiles;
+}

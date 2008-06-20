@@ -1,0 +1,11 @@
+{
+  Object service;
+  try {
+    service=xOfficeMultiComponentFactory.createInstanceWithContext("com.sun.star.ucb.FileContentProvider",xOfficeComponentContext);
+    return (XFileIdentifierConverter)UnoRuntime.queryInterface(XFileIdentifierConverter.class,service);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  return null;
+}

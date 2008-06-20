@@ -1,0 +1,19 @@
+{
+  try {
+    String toReturn="";
+    char current;
+    for (int i=0; i < name.length(); i++) {
+      current=name.charAt(i);
+      if (Character.isDigit(current)) {
+        toReturn+=current;
+      }
+      if (current == '.') {
+        break;
+      }
+    }
+    return Integer.parseInt(toReturn);
+  }
+ catch (  Exception failed) {
+    return -1;
+  }
+}

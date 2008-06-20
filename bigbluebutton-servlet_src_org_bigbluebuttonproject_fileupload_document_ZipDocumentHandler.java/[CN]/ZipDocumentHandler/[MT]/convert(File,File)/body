@@ -1,0 +1,24 @@
+{
+  try {
+    ZipFile zf=new ZipFile(fileInput.getAbsolutePath());
+    if (!destDir.exists()) {
+      destDir.mkdirs();
+    }
+    ZipEntry currentEntry;
+    for (Enumeration entries=zf.entries(); entries.hasMoreElements(); ) {
+      currentEntry=(ZipEntry)entries.nextElement();
+      if (!currentEntry.isDirectory()) {
+        File fileEntry=new File(currentEntry.getName());
+        String fileName=fileEntry.getName().toLowerCase();
+        if ((fileName.endsWith(".jpg")) || (fileName.endsWith(".png")) || (fileName.endsWith(".gif"))) {
+          copyInputStream(zf.getInputStream(currentEntry),new BufferedOutputStream(new FileOutputStream(destDir + File.separator + fileEntry.getName())));
+        }
+      }
+    }
+  }
+ catch (  Exception e) {
+    if (log.isErrorEnabled()) {
+      log.error("Could not load zip document for " + fileInput.getName(),e);
+    }
+  }
+}

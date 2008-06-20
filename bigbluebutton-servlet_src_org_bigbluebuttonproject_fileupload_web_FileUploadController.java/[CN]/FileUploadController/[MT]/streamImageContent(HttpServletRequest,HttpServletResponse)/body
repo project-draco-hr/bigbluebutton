@@ -1,0 +1,8 @@
+{
+  String filename=request.getParameterValues("name")[0];
+  int firstDash=filename.indexOf('-');
+  Integer room=new Integer(filename.substring(0,firstDash));
+  response.setHeader("Cache-Control","no-cache");
+  this.slideDatabase.streamImage(room,filename,response.getOutputStream());
+  return null;
+}

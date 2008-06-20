@@ -1,0 +1,6 @@
+{
+  log.info("adding upload listener to UploadListenerManager...");
+  this.uploadListener=uploadListener;
+  this.roomNo=roomNo;
+  rooms.put(roomNo,this.uploadListener);
+}

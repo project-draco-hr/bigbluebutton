@@ -1,0 +1,6 @@
+{
+  Integer room=new Integer(request.getParameterValues("room")[0]);
+  logger.info("Show Slides [" + room + "]");
+  if (room == null)   return new ModelAndView("upload");
+  return new ModelAndView("upload","slides",getSlidesForRoom(room));
+}

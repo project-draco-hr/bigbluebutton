@@ -1,0 +1,4 @@
+{
+  XHandoutMasterSupplier aHandoutMasterSupplier=(XHandoutMasterSupplier)UnoRuntime.queryInterface(XHandoutMasterSupplier.class,xComponent);
+  return aHandoutMasterSupplier.getHandoutMasterPage();
+}
