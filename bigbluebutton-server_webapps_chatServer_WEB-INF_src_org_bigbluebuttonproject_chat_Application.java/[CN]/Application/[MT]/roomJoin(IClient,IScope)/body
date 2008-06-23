@@ -1,4 +1,4 @@
 {
-  System.out.println("\n\n CLIENT ID IS: " + client.getId());
+  log.info("NEW CLIENT JOINED. CLIENT ID IS: " + client.getId() + "\n");
   return true;
 }
