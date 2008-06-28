@@ -1,0 +1,7 @@
+{
+  if (args.length >= 3) {
+    host=args[0];
+    room=args[1];
+    file=args[2];
+  }
+}

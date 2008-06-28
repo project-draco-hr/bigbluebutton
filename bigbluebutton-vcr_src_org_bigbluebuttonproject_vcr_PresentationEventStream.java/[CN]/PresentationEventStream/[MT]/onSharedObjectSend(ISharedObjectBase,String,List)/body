@@ -1,0 +1,7 @@
+{
+  if (method.equals("newPageNumber")) {
+    int slide=((Integer)params.get(0)).intValue() + 1;
+    out.println("<slide time=\"" + getTimestamp() + "\">"+ slide+ "</slide>");
+    out.flush();
+  }
+}

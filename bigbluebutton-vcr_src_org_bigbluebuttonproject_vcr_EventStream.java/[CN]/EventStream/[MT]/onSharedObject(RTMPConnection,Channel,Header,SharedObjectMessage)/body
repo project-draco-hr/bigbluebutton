@@ -1,0 +1,12 @@
+{
+  ISharedObjectMessage msg=(ISharedObjectMessage)object;
+  for (  ISharedObjectEvent event : msg.getEvents()) {
+switch (event.getType()) {
+case SERVER_SEND_MESSAGE:
+      onSharedObjectSend(null,event.getKey(),(List)event.getValue());
+    break;
+default :
+  super.onSharedObject(conn,channel,source,object);
+}
+}
+}

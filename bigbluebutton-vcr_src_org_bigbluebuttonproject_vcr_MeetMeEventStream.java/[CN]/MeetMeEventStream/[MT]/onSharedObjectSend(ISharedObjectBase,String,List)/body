@@ -1,0 +1,38 @@
+{
+  if (method.equals("userTalk")) {
+    Boolean talkingHolder=whoIsTalking.get((Integer)params.get(0));
+    boolean talking;
+    if (talkingHolder == null) {
+      talking=false;
+    }
+ else {
+      talking=talkingHolder.booleanValue();
+    }
+    if (!talking) {
+      if (((Boolean)params.get(1)).booleanValue()) {
+        whoIsTalking.put((Integer)params.get(0),new Boolean(true));
+        whenAreTheyTalking.put((Integer)params.get(0),new Long(getTimestamp()));
+      }
+ else {
+      }
+    }
+ else {
+      if (!((Boolean)params.get(1)).booleanValue()) {
+        Long startTime=whenAreTheyTalking.get((Integer)params.get(0));
+        out.println("<talk user=\"" + params.get(0) + "\" start=\""+ startTime+ "\" end=\""+ getTimestamp()+ "\"/>");
+        out.flush();
+        whoIsTalking.put((Integer)params.get(0),new Boolean(false));
+      }
+ else {
+      }
+    }
+  }
+ else   if (method.equals("userJoin")) {
+    out.println("<join time=\"" + getTimestamp() + "\" user=\""+ params.get(0)+ "\" cidName=\""+ params.get(1)+ "\" cidNumber=\""+ params.get(2)+ "\" muted=\""+ params.get(3)+ "\" talking=\""+ params.get(4)+ "\"/>");
+    out.flush();
+  }
+ else   if (method.equals("userLeft")) {
+    out.println("<left time=\"" + getTimestamp() + "\" user=\""+ params.get(0)+ "\"/>");
+    out.flush();
+  }
+}

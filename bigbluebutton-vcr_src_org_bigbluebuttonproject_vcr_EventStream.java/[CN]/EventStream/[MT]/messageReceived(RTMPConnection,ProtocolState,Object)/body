@@ -1,0 +1,30 @@
+{
+  if (debug) {
+    Packet packet=(Packet)in;
+    IRTMPEvent message=packet.getMessage();
+    String body=message.toString();
+    if (body.startsWith("Ping")) {
+    }
+ else     if (body.indexOf("userTalk") > -1) {
+      int i=body.indexOf("[");
+      int j=body.indexOf(",",i);
+      int k=body.indexOf("]",j);
+      String user=body.substring(i + 1,j);
+      String talking=body.substring(j + 2,k);
+      if (talking.equals("true")) {
+        System.out.print(user + "<");
+      }
+ else {
+        System.out.print(user + "_");
+      }
+      if (events++ >= 10) {
+        System.out.println();
+        events=0;
+      }
+    }
+ else {
+      System.out.println(getTimestamp() + "@" + message);
+    }
+  }
+  super.messageReceived(conn,state,in);
+}

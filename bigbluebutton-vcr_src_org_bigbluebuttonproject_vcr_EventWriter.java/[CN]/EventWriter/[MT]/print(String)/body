@@ -1,0 +1,14 @@
+{
+  if (mutex.isHeldByCurrentThread()) {
+    super.print(s);
+  }
+ else {
+    mutex.lock();
+    try {
+      super.print(s);
+    }
+  finally {
+      mutex.unlock();
+    }
+  }
+}
