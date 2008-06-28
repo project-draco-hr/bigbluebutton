@@ -1,5 +1,0 @@
-{
-  if (debug) {
-    System.out.println("Update on shared object (meetme): " + key + "{"+ value+ "}");
-  }
-}

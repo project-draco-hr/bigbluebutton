@@ -1,5 +1,0 @@
-{
-  if (debug) {
-  }
-  super.onInvoke(conn,channel,source,invoke,rtmp);
-}

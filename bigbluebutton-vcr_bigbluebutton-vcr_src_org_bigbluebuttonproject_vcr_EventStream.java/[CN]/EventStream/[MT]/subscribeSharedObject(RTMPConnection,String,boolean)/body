@@ -1,6 +1,0 @@
-{
-  IClientSharedObject so=getSharedObject(name,false);
-  so.connect(conn);
-  so.addSharedObjectListener(this);
-  return so;
-}

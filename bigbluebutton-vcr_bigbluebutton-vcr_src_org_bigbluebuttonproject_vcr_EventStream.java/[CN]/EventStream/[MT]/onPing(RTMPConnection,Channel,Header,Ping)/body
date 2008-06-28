@@ -1,3 +1,0 @@
-{
-  super.onPing(conn,channel,source,ping);
-}
