@@ -1,0 +1,6 @@
+{
+  Map<String,Object> tparams=new HashMap<String,Object>();
+  tparams.put("password","student");
+  tparams.put("username","mweiss2");
+  Object[] obj=new Object[]{tparams};
+}

@@ -1,0 +1,30 @@
+{
+  OutputStream out=null;
+  InputStream in=null;
+  try {
+    URL url=new URL("http://" + host + "/blindside/file/display?name="+ slide);
+    new File("slides_" + time).mkdir();
+    out=new BufferedOutputStream(new FileOutputStream("slides_" + time + "/"+ slide));
+    in=url.openConnection().getInputStream();
+    byte[] buffer=new byte[512];
+    int n;
+    while ((n=in.read(buffer)) > -1) {
+      out.write(buffer,0,n);
+    }
+  }
+ catch (  Exception e) {
+    System.err.println("Could not download slide " + slide + ": "+ e);
+  }
+ finally {
+    try {
+      if (in != null) {
+        in.close();
+      }
+      if (out != null) {
+        out.close();
+      }
+    }
+ catch (    IOException e) {
+    }
+  }
+}

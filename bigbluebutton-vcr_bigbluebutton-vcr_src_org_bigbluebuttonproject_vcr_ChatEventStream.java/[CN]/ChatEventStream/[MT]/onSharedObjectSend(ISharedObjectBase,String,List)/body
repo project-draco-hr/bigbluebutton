@@ -1,0 +1,12 @@
+{
+  if (method.equals("newMessage")) {
+    Pattern p=Pattern.compile("\\[(.+)\\]</b> (.+)</font>");
+    Matcher m=p.matcher((String)params.get(0));
+    if (m.find()) {
+      String name=m.group(1);
+      String message=m.group(2);
+      out.println("<chat time=\"" + getTimestamp() + "\" user=\""+ name+ "\">"+ message+ "</chat>");
+      out.flush();
+    }
+  }
+}

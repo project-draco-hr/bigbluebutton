@@ -1,0 +1,3 @@
+{
+  connect(host,1935,getApplication() + "/" + room,null);
+}

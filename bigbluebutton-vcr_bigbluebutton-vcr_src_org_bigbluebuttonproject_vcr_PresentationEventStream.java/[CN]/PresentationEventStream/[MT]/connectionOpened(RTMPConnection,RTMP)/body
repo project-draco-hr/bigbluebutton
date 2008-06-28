@@ -1,0 +1,4 @@
+{
+  super.connectionOpened(conn,state);
+  subscribeSharedObject(conn,"presentationSO");
+}

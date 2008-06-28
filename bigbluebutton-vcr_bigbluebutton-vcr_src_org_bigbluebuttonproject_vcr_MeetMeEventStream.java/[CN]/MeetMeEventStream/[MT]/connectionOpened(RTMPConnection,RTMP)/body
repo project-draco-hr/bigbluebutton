@@ -1,0 +1,5 @@
+{
+  super.connectionOpened(conn,state);
+  meetMeUsersSO=subscribeSharedObject(conn,"meetMeUsersSO");
+  participantsSO=subscribeSharedObject(conn,"participantsSO");
+}

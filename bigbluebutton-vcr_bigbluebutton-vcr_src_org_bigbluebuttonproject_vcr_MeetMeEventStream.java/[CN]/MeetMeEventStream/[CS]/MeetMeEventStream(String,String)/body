@@ -1,0 +1,5 @@
+{
+  super(host,room);
+  whoIsTalking=new HashMap<Integer,Boolean>();
+  whenAreTheyTalking=new HashMap<Integer,Long>();
+}
