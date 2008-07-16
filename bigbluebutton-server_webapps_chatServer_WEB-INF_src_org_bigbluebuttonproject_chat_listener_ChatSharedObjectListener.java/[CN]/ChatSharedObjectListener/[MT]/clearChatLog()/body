@@ -1,0 +1,8 @@
+{
+  if (!buffer.isEmpty()) {
+    buffer.clear();
+  }
+  StringBuffer log=new StringBuffer();
+  Object[] obj=buffer.toArray();
+  return log.toString();
+}
