@@ -1,0 +1,10 @@
+{
+  final Input input=new org.red5.io.amf.Input(in);
+  String name=input.getString();
+  int version=in.getInt();
+  boolean persistent=in.getInt() == 2;
+  in.skip(4);
+  final SharedObjectMessage so=new FlexSharedObjectMessage(null,name,version,persistent);
+  doDecodeSharedObject(so,in,input);
+  return so;
+}

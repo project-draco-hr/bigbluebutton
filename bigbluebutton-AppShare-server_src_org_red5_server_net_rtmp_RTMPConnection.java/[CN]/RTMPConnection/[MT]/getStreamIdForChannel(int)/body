@@ -1,0 +1,6 @@
+{
+  if (channelId < 4) {
+    return 0;
+  }
+  return ((channelId - 4) / 5) + 1;
+}

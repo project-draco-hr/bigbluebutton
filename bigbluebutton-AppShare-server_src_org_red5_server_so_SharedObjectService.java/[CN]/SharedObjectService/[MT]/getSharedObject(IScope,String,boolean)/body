@@ -1,0 +1,8 @@
+{
+synchronized (scope) {
+    if (!hasSharedObject(scope,name)) {
+      createSharedObject(scope,name,persistent);
+    }
+    return getSharedObject(scope,name);
+  }
+}

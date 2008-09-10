@@ -1,0 +1,8 @@
+{
+  String ret="";
+  ret+="VERSION: \t\t" + getVersion() + "\n";
+  ret+="TYPE FLAGS VIDEO: \t" + getFlagVideo() + "\n";
+  ret+="TYPE FLAGS AUDIO: \t" + getFlagAudio() + "\n";
+  ret+="DATA OFFSET: \t\t" + getDataOffset() + "\n";
+  return ret;
+}

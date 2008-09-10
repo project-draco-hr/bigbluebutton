@@ -1,0 +1,14 @@
+{
+  if (!context.isRunning()) {
+    if (log.isDebugEnabled()) {
+      log.debug("Application context already stopped.");
+    }
+    return;
+  }
+  try {
+    context.stop();
+  }
+ catch (  Exception e) {
+    log.error("Could not stop application context.",e);
+  }
+}

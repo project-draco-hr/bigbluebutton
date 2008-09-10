@@ -1,0 +1,8 @@
+{
+  if (obj instanceof ICacheable) {
+    put(name,(ICacheable)obj);
+  }
+ else {
+    put(name,new CacheableImpl(obj));
+  }
+}

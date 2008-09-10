@@ -1,0 +1,10 @@
+{
+  PooledByteBuffer buf;
+synchronized (containerStack) {
+    buf=(PooledByteBuffer)containerStack.pop();
+  }
+  if (buf == null) {
+    buf=new PooledByteBuffer();
+  }
+  return buf;
+}

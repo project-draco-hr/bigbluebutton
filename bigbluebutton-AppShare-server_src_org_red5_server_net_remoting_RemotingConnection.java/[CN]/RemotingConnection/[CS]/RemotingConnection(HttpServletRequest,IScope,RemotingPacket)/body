@@ -1,0 +1,12 @@
+{
+  this.request=request;
+  this.scope=scope;
+  this.packet=packet;
+  this.session=request.getSession();
+  RemotingClient client=(RemotingClient)session.getAttribute(CLIENT);
+  if (client == null) {
+    client=new RemotingClient(session.getId());
+    session.setAttribute(CLIENT,client);
+  }
+  client.register(this);
+}

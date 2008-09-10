@@ -1,0 +1,4 @@
+{
+  IConnection conn=Red5.getConnectionLocal();
+  return invokeOnConnection(conn,method,params,callback);
+}

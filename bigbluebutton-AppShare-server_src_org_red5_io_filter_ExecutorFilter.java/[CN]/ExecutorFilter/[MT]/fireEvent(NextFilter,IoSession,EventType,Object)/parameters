@@ -1,0 +1,4 @@
+NextFilter nextFilter
+IoSession session
+EventType type
+Object data

@@ -1,0 +1,10 @@
+{
+synchronized (session) {
+    SessionBuffer buf=(SessionBuffer)session.getAttribute(KEY);
+    if (buf == null) {
+      buf=new SessionBuffer(session);
+      session.setAttribute(KEY,buf);
+    }
+    return buf;
+  }
+}

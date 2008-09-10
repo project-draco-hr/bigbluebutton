@@ -1,0 +1,5 @@
+{
+  autoExpand(newPosition,0);
+  buf.buf().position(newPosition);
+  return this;
+}

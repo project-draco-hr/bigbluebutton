@@ -1,0 +1,8 @@
+{
+  byte[] baTemp=new byte[4];
+  baTemp[3]=(byte)i;
+  baTemp[2]=(byte)(i >> 8);
+  baTemp[1]=(byte)(i >> 16);
+  baTemp[0]=(byte)(i >> 24);
+  return baTemp;
+}

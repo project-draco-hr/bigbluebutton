@@ -1,0 +1,13 @@
+{
+  int cacheSize=inMemoryMetaCache.size();
+  int randomIndex=random.nextInt(cacheSize);
+  Map.Entry<String,KeyFrameMeta> entryToRemove=null;
+  for (  Map.Entry<String,KeyFrameMeta> cacheEntry : inMemoryMetaCache.entrySet()) {
+    if (randomIndex == 0) {
+      entryToRemove=cacheEntry;
+      break;
+    }
+    randomIndex--;
+  }
+  inMemoryMetaCache.remove(entryToRemove.getKey());
+}

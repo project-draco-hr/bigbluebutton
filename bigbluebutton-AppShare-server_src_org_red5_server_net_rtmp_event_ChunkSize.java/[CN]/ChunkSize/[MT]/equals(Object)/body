@@ -1,0 +1,7 @@
+{
+  if (!(obj instanceof ChunkSize)) {
+    return false;
+  }
+  final ChunkSize other=(ChunkSize)obj;
+  return getSize() == other.getSize();
+}

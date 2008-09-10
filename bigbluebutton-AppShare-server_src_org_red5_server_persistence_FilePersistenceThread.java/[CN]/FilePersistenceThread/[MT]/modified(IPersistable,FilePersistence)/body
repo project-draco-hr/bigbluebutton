@@ -1,0 +1,7 @@
+{
+  FilePersistence previous=objects.put(new UpdateEntry(object,store),store);
+  if (previous != null && !previous.equals(store)) {
+    log.warn("Object {} was also modified in {}, saving instantly",new Object[]{object,previous});
+    previous.saveObject(object);
+  }
+}

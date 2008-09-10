@@ -1,0 +1,14 @@
+{
+  Object bean=null;
+  try {
+    bean=applicationContext.getBean(beanId);
+  }
+ catch (  NoSuchBeanDefinitionException e) {
+    logger.info("Bean lookup failed for " + beanId + " in the application context");
+    logger.debug("",e);
+  }
+  if (bean == null) {
+    bean=getCoreService(beanId);
+  }
+  return bean;
+}

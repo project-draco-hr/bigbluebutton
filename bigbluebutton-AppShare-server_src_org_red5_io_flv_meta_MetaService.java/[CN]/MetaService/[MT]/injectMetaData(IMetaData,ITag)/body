@@ -1,0 +1,14 @@
+{
+  ByteBuffer bb=ByteBuffer.allocate(1000);
+  bb.setAutoExpand(true);
+  Output out=new Output(bb);
+  Serializer ser=new Serializer();
+  ser.serialize(out,"onMetaData");
+  ser.serialize(out,meta);
+  ByteBuffer tmpBody=out.buf().flip();
+  int tmpBodySize=out.buf().limit();
+  int tmpPreviousTagSize=tag.getPreviousTagSize();
+  byte tmpDataType=IoConstants.TYPE_METADATA;
+  int tmpTimestamp=0;
+  return new Tag(tmpDataType,tmpTimestamp,tmpBodySize,tmpBody,tmpPreviousTagSize);
+}

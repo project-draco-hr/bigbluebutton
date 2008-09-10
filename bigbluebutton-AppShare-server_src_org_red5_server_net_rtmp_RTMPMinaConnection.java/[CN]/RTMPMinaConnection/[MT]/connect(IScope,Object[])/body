@@ -1,0 +1,26 @@
+{
+  boolean success=super.connect(newScope,params);
+  if (!success) {
+    return false;
+  }
+  String hostStr=host;
+  int port=1935;
+  if (host != null && host.indexOf(":") > -1) {
+    String[] arr=host.split(":");
+    hostStr=arr[0];
+    port=Integer.parseInt(arr[1]);
+  }
+  try {
+    if (client != null) {
+      oName=JMXFactory.createObjectName("type","RTMPMinaConnection","connectionType",type,"host",hostStr,"port",port + "","clientId",client.getId());
+      JMXAgent.registerMBean(this,this.getClass().getName(),RTMPMinaConnectionMBean.class,oName);
+    }
+ else {
+      log.warn("Client was null");
+    }
+  }
+ catch (  Exception e) {
+    log.warn("Exception registering mbean",e);
+  }
+  return success;
+}

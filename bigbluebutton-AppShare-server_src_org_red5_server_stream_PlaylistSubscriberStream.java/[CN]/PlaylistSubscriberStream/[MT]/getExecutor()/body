@@ -1,0 +1,10 @@
+{
+  if (executor == null) {
+synchronized (PlaylistSubscriberStream.this) {
+      if (executor == null) {
+        executor=new ScheduledThreadPoolExecutor(16);
+      }
+    }
+  }
+  return executor;
+}

@@ -1,0 +1,9 @@
+{
+  fillBuffer(15);
+  int previousTagSize=in.getInt();
+  byte dataType=in.get();
+  int bodySize=IOUtils.readUnsignedMediumInt(in);
+  int timestamp=IOUtils.readUnsignedMediumInt(in);
+  in.getInt();
+  return new Tag(dataType,timestamp,bodySize,null,previousTagSize);
+}

@@ -1,0 +1,35 @@
+{
+  for (int i=0; i < 3; i++) {
+    List<TokenRequest> pendingList=context.pendingRequestArray[i];
+    if (!pendingList.isEmpty()) {
+      for (      TokenRequest request : pendingList) {
+        IBWControllable bc=context.getBWControllable();
+        while (bc != null) {
+          BWContext c=contextMap.get(bc);
+          if (c == null) {
+            break;
+          }
+synchronized (c) {
+            if (c.bwConfig != null && !processNonblockingRequest(request,c)) {
+              break;
+            }
+          }
+          TokenRequestContext requestContext=new TokenRequestContext();
+          requestContext.acquiredToken=request.requestToken;
+          requestContext.bc=bc;
+          request.acquiredStack.push(requestContext);
+          bc=bc.getParentBWControllable();
+        }
+        if (bc == null) {
+          try {
+            request.callback.available(context.buckets[request.channel],(long)request.requestToken);
+          }
+ catch (          Throwable t) {
+            log.error("Error calling request's callback",t);
+          }
+        }
+      }
+      pendingList.clear();
+    }
+  }
+}

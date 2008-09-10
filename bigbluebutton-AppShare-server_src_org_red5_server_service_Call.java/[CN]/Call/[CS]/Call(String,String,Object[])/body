@@ -1,0 +1,5 @@
+{
+  serviceName=name;
+  serviceMethodName=method;
+  arguments=args;
+}

@@ -1,0 +1,19 @@
+{
+  writeAMF3();
+  buf.put(AMF3.TYPE_OBJECT);
+  if (hasReference(map)) {
+    putInteger(getReferenceId(map) << 1);
+    return;
+  }
+  storeReference(map);
+  int type=AMF3.TYPE_OBJECT_VALUE << 2 | 1 << 1 | 1;
+  putInteger(type);
+  putString("");
+  amf3_mode+=1;
+  for (  Map.Entry<Object,Object> entry : map.entrySet()) {
+    putString(entry.getKey().toString());
+    serializer.serialize(this,entry.getValue());
+  }
+  amf3_mode-=1;
+  putString("");
+}

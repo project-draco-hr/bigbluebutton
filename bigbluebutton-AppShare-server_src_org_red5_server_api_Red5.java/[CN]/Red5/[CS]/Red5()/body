@@ -1,0 +1,3 @@
+{
+  conn=Red5.getConnectionLocal();
+}

@@ -1,0 +1,16 @@
+{
+  boolean success;
+  beginUpdate();
+  try {
+    success=so.removeAttribute(name);
+  }
+  finally {
+    endUpdate();
+  }
+  if (success) {
+    for (    ISharedObjectListener listener : serverListeners) {
+      listener.onSharedObjectDelete(this,name);
+    }
+  }
+  return success;
+}

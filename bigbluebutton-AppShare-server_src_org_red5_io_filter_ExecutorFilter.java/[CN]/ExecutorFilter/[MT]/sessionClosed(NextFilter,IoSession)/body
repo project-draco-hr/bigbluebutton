@@ -1,0 +1,3 @@
+{
+  fireEvent(nextFilter,session,EventType.CLOSED,null);
+}

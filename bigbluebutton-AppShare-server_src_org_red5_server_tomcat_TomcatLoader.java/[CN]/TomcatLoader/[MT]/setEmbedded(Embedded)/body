@@ -1,0 +1,4 @@
+{
+  log.info("Setting embedded: " + embedded.getClass().getName());
+  this.embedded=embedded;
+}

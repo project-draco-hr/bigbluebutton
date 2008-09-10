@@ -1,0 +1,77 @@
+{
+  if (e.getType() != IEvent.Type.SHARED_OBJECT || !(e instanceof ISharedObjectMessage)) {
+    super.dispatchEvent(e);
+    return;
+  }
+  ISharedObjectMessage msg=(ISharedObjectMessage)e;
+  if (msg.hasSource()) {
+    beginUpdate(msg.getSource());
+  }
+ else {
+    beginUpdate();
+  }
+  try {
+    for (    ISharedObjectEvent event : msg.getEvents()) {
+switch (event.getType()) {
+case SERVER_CONNECT:
+        if (!isConnectionAllowed()) {
+          so.returnError(SO_NO_READ_ACCESS);
+        }
+ else         if (msg.hasSource()) {
+          IEventListener source=msg.getSource();
+          if (source instanceof BaseConnection) {
+            ((BaseConnection)source).registerBasicScope(this);
+          }
+ else {
+            addEventListener(source);
+          }
+        }
+      break;
+case SERVER_DISCONNECT:
+    if (msg.hasSource()) {
+      IEventListener source=msg.getSource();
+      if (source instanceof BaseConnection) {
+        ((BaseConnection)source).unregisterBasicScope(this);
+      }
+ else {
+        removeEventListener(source);
+      }
+    }
+  break;
+case SERVER_SET_ATTRIBUTE:
+final String key=event.getKey();
+final Object value=event.getValue();
+if (!isWriteAllowed(key,value)) {
+so.returnAttributeValue(key);
+so.returnError(SO_NO_WRITE_ACCESS);
+}
+ else {
+setAttribute(key,value);
+}
+break;
+case SERVER_DELETE_ATTRIBUTE:
+final String property=event.getKey();
+if (!isDeleteAllowed(property)) {
+so.returnAttributeValue(property);
+so.returnError(SO_NO_WRITE_ACCESS);
+}
+ else {
+removeAttribute(property);
+}
+break;
+case SERVER_SEND_MESSAGE:
+final String message=event.getKey();
+final List<?> arguments=(List<?>)event.getValue();
+if (isSendAllowed(message,arguments)) {
+sendMessage(message,arguments);
+}
+break;
+default :
+log.warn("Unknown SO event: " + event.getType());
+}
+}
+}
+  finally {
+endUpdate();
+}
+}

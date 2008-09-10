@@ -1,0 +1,6 @@
+{
+  int split=forward.indexOf(':');
+  String host=forward.substring(0,split);
+  int port=Integer.parseInt(forward.substring(split + 1,forward.length()));
+  this.forward=new InetSocketAddress(host,port);
+}

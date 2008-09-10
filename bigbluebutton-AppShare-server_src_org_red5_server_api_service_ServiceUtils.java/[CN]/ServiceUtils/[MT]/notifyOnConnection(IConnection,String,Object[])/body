@@ -1,0 +1,9 @@
+{
+  if (conn instanceof IServiceCapableConnection) {
+    ((IServiceCapableConnection)conn).notify(method,params);
+    return true;
+  }
+ else {
+    return false;
+  }
+}

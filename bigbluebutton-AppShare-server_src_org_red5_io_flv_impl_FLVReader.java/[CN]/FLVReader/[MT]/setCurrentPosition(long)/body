@@ -1,0 +1,21 @@
+{
+  if (pos == Long.MAX_VALUE) {
+    pos=file.length();
+  }
+  if (!useLoadBuf) {
+    in.position((int)pos);
+    return;
+  }
+  try {
+    if (pos >= (channel.position() - in.limit()) && pos < channel.position()) {
+      in.position((int)(pos - (channel.position() - in.limit())));
+    }
+ else {
+      channel.position(pos);
+      fillBuffer(bufferSize,true);
+    }
+  }
+ catch (  Exception e) {
+    log.error("Error setCurrentPosition",e);
+  }
+}

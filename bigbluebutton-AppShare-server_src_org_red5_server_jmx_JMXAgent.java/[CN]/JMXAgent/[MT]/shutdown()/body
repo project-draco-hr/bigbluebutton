@@ -1,0 +1,26 @@
+{
+  log.info("Shutting down JMX agent");
+  if (null != cs) {
+    try {
+      cs.stop();
+    }
+ catch (    Exception e) {
+      log.error("Exception stopping JMXConnector server {}",e);
+    }
+  }
+  if (null != html) {
+    html.stop();
+  }
+  try {
+    String domain=JMXFactory.getDefaultDomain();
+    for (    ObjectName oname : (Set<ObjectName>)mbs.queryNames(new ObjectName(domain + ":*"),null)) {
+      log.debug("Bean domain: {}",oname.getDomain());
+      if (domain.equals(oname.getDomain())) {
+        unregisterMBean(oname);
+      }
+    }
+  }
+ catch (  Exception e) {
+    log.error("Exception unregistering mbeans {}",e);
+  }
+}

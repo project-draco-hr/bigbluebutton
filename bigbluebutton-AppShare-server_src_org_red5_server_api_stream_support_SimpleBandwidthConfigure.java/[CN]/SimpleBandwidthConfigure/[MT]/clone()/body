@@ -1,0 +1,10 @@
+{
+  SimpleBandwidthConfigure cloned=new SimpleBandwidthConfigure();
+  cloned.channelBandwidth=new long[4];
+  cloned.channelInitialBurst=new long[4];
+  for (int i=0; i < 4; i++) {
+    cloned.channelBandwidth[i]=this.channelBandwidth[i];
+    cloned.channelInitialBurst[i]=this.channelInitialBurst[i];
+  }
+  return cloned;
+}

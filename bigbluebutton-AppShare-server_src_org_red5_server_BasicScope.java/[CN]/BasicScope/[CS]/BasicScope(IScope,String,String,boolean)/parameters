@@ -1,0 +1,4 @@
+IScope parent
+String type
+String name
+boolean persistent

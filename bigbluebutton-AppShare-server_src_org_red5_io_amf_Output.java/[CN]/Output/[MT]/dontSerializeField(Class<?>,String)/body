@@ -1,0 +1,16 @@
+{
+  for (Class<?> clazz=objectClass; !clazz.equals(Object.class); clazz=clazz.getSuperclass()) {
+    try {
+      Field field=clazz.getDeclaredField(keyName);
+      boolean dontSerialize=field.isAnnotationPresent(DontSerialize.class);
+      boolean isTransient=Modifier.isTransient(field.getModifiers());
+      if (dontSerialize && log.isDebugEnabled())       log.debug("Skipping " + field.getName() + " because its marked with @DontSerialize");
+      if (isTransient)       log.warn("Using \"transient\" to declare fields not to be serialized is deprecated and will be removed in Red5 0.8, use \"@DontSerialize\" instead.");
+      return dontSerialize || isTransient;
+    }
+ catch (    NoSuchFieldException nfe) {
+      log.debug("writeObject caught NoSuchFieldException");
+    }
+  }
+  return false;
+}

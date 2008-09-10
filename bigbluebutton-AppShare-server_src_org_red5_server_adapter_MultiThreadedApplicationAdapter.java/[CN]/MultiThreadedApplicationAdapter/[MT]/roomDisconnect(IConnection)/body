@@ -1,0 +1,8 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("roomDisconnect: {}",conn);
+  }
+  for (  IApplication listener : listeners) {
+    listener.roomDisconnect(conn);
+  }
+}

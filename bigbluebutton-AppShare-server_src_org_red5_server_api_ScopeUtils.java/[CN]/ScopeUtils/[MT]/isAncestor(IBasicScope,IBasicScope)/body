@@ -1,0 +1,10 @@
+{
+  IBasicScope current=from;
+  while (current.hasParent()) {
+    current=current.getParent();
+    if (current.equals(ancestor)) {
+      return true;
+    }
+  }
+  return false;
+}

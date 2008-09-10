@@ -1,0 +1,6 @@
+{
+  if (instance == null) {
+    instance=new NoCacheImpl();
+  }
+  return instance;
+}

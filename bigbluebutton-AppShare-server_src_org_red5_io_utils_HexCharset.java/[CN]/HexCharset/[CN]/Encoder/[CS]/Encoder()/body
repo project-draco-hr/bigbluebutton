@@ -1,0 +1,3 @@
+{
+  super(HexCharset.this,0.49F,1.0F);
+}

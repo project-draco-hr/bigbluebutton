@@ -1,0 +1,16 @@
+{
+  StringBuilder out=new StringBuilder();
+  out.append("<div id=\"packet_");
+  out.append(id);
+  out.append("\" class=");
+  out.append("channel_");
+  out.append(packet.getHeader().getChannelId());
+  out.append(" datatype_");
+  out.append(packet.getHeader().getDataType());
+  out.append("\">\n<pre>\n");
+  out.append(packet.getHeader().toString());
+  out.append("\n");
+  out.append(packet.getMessage().toString());
+  out.append("\n<pre>\n</div>\n\n");
+  return out.toString();
+}

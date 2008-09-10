@@ -1,0 +1,7 @@
+{
+  this.scope=scope;
+  this.file=file;
+  offset=0;
+  lastTimestamp=0;
+  startTimestamp=-1;
+}

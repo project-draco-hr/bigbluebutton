@@ -1,0 +1,4 @@
+{
+  super(caps ? "HEX" : "hex",new String[]{"HEX"});
+  codes=caps ? "0123456789ABCDEF" : "0123456789abcdef";
+}

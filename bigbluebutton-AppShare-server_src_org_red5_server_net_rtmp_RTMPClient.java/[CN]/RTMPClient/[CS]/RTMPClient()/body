@@ -1,0 +1,11 @@
+{
+  RTMPCodecFactory codecFactory=new RTMPCodecFactory();
+  codecFactory.setDeserializer(new Deserializer());
+  codecFactory.setSerializer(new Serializer());
+  codecFactory.init();
+  ioHandler=new RTMPMinaIoHandler();
+  ioHandler.setCodecFactory(codecFactory);
+  ioHandler.setMode(RTMP.MODE_CLIENT);
+  ioHandler.setHandler(this);
+  ioHandler.setRtmpConnManager(new RTMPClientConnManager());
+}

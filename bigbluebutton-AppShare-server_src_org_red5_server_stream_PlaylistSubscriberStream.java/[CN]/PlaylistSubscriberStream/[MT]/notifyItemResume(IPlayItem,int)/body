@@ -1,0 +1,11 @@
+{
+  IStreamAwareScopeHandler handler=getStreamAwareHandler();
+  if (handler != null) {
+    try {
+      handler.streamPlaylistVODItemResume(this,item,position);
+    }
+ catch (    Throwable t) {
+      log.error("error notify streamPlaylistVODItemResume",t);
+    }
+  }
+}

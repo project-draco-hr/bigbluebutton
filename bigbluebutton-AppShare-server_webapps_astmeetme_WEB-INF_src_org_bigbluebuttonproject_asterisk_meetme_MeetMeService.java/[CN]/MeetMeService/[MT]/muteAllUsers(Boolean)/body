@@ -1,0 +1,32 @@
+{
+  IScope scope=Red5.getConnectionLocal().getScope();
+  logger.debug("MuteUnmuteAll request for room[" + scope.getName() + "]");
+  if (hasSharedObject(scope,"meetMeUsersSO")) {
+    logger.info("MeetMe::service - Getting current users for room " + scope.getName());
+    Collection<MeetMeUser> currentUsers=roomListener.getCurrentUsers(scope.getName());
+    logger.info("MeetMe::service - There are " + currentUsers.size() + " current users...");
+    for (Iterator it=currentUsers.iterator(); it.hasNext(); ) {
+      MeetMeUser oneUser=(MeetMeUser)it.next();
+      if (mute) {
+        if (!oneUser.isMuted()) {
+          try {
+            oneUser.mute();
+          }
+ catch (          ManagerCommunicationException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+ else {
+        if (oneUser.isMuted()) {
+          try {
+            oneUser.unmute();
+          }
+ catch (          ManagerCommunicationException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    }
+  }
+}

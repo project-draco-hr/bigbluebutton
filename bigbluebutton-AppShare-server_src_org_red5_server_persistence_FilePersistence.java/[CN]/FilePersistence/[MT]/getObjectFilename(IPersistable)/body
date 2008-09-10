@@ -1,0 +1,8 @@
+{
+  String path=getObjectFilepath(object);
+  String name=object.getName();
+  if (name == null) {
+    name=PERSISTENCE_NO_NAME;
+  }
+  return path + name + extension;
+}

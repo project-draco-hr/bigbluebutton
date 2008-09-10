@@ -1,0 +1,7 @@
+{
+  out.writeObject(code);
+  out.writeObject(description);
+  out.writeObject(level);
+  out.writeObject(application);
+  out.writeObject(additional);
+}

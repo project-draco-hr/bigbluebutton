@@ -1,0 +1,20 @@
+{
+  if (!reservedStreams.get(streamId - 1)) {
+    return null;
+  }
+synchronized (streams) {
+    if (streams.get(streamId - 1) != null) {
+      return null;
+    }
+    ClientBroadcastStream cbs=(ClientBroadcastStream)scope.getContext().getBean("clientBroadcastStream");
+    Integer buffer=streamBuffers.get(streamId - 1);
+    if (buffer != null)     cbs.setClientBufferDuration(buffer);
+    cbs.setStreamId(streamId);
+    cbs.setConnection(this);
+    cbs.setName(createStreamName());
+    cbs.setScope(this.getScope());
+    registerStream(cbs);
+    usedStreams++;
+    return cbs;
+  }
+}

@@ -1,0 +1,9 @@
+{
+  File file=getVODProviderFile(scope,name);
+  if (file == null) {
+    return null;
+  }
+  IPipe pipe=new InMemoryPullPullPipe();
+  pipe.subscribe(new FileProvider(scope,file),null);
+  return pipe;
+}

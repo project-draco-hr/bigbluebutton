@@ -1,0 +1,4 @@
+RemotingClient client
+String method
+Object[] params
+IRemotingCallback callback

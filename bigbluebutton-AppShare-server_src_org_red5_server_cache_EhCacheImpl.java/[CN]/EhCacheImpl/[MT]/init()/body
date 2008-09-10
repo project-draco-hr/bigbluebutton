@@ -1,0 +1,43 @@
+{
+  log.info("Loading ehcache");
+  try {
+    CacheManager cm=CacheManager.getInstance();
+    Configuration configuration=new Configuration();
+    String defaultCacheName=Cache.DEFAULT_CACHE_NAME;
+    for (    CacheConfiguration conf : configs) {
+      conf.setDiskExpiryThreadIntervalSeconds(diskExpiryThreadIntervalSeconds);
+      conf.setMemoryStoreEvictionPolicy(memoryStoreEvictionPolicy);
+      if (null == cache) {
+        defaultCacheName=conf.getName();
+        configuration.addDefaultCache(conf);
+      }
+ else {
+        configuration.addCache(conf);
+      }
+    }
+    ConfigurationHelper helper=new ConfigurationHelper(cm,configuration);
+    cache=helper.createDefaultCache();
+    cache.initialise();
+    cache.bootstrap();
+    Set<Cache> caches=helper.createCaches();
+    if (log.isDebugEnabled()) {
+      log.debug("Number of caches: " + caches.size() + " Default cache: "+ (cache != null ? 1 : 0));
+    }
+    for (    Cache cache : caches) {
+      cache.initialise();
+      cache.bootstrap();
+      if (null == cache) {
+        if (log.isDebugEnabled()) {
+          log.debug("Default cache name: " + defaultCacheName);
+        }
+        cache=cm.getCache(defaultCacheName);
+      }
+    }
+  }
+ catch (  Exception e) {
+    log.warn("Error on cache init",e);
+  }
+  if (log.isDebugEnabled()) {
+    log.debug("Cache is null? " + (null == cache));
+  }
+}

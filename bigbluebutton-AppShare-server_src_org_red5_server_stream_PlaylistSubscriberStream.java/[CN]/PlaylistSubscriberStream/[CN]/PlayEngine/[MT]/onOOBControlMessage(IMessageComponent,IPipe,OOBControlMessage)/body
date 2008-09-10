@@ -1,0 +1,7 @@
+{
+  if ("ConnectionConsumer".equals(oobCtrlMsg.getTarget())) {
+    if (source instanceof IProvider) {
+      msgOut.sendOOBControlMessage((IProvider)source,oobCtrlMsg);
+    }
+  }
+}

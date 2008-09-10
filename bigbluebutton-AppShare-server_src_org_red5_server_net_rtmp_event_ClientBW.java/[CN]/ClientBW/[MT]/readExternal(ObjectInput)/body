@@ -1,0 +1,5 @@
+{
+  super.readExternal(in);
+  bandwidth=in.readInt();
+  value2=in.readByte();
+}

@@ -1,0 +1,8 @@
+{
+  final int limit=in.limit();
+  final int numBytesRead=(numBytesMax > in.remaining()) ? in.remaining() : numBytesMax;
+  in.limit(in.position() + numBytesRead);
+  out.put(in);
+  in.limit(limit);
+  return numBytesRead;
+}

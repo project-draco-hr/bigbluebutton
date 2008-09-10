@@ -1,0 +1,10 @@
+{
+  for (  IConsumer consumer : consumers) {
+    try {
+      consumer.onOOBControlMessage(provider,this,oobCtrlMsg);
+    }
+ catch (    Throwable t) {
+      log.error("exception when passing OOBCM from provider to consumers",t);
+    }
+  }
+}

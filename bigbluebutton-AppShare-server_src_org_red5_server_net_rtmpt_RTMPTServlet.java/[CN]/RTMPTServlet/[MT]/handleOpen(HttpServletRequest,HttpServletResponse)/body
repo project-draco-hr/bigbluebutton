@@ -1,0 +1,10 @@
+{
+  skipData(req);
+  RTMPTConnection client=createConnection();
+  client.setServlet(this);
+  if (client.getId() == 0) {
+    returnMessage((byte)0,resp);
+    return;
+  }
+  returnMessage(client.getId() + "\n",resp);
+}

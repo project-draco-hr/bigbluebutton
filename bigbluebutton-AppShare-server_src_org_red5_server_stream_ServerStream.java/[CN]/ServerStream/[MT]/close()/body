@@ -1,0 +1,11 @@
+{
+  if (state == State.PLAYING || state == State.PAUSED) {
+    stop();
+  }
+  if (msgOut != null) {
+    msgOut.unsubscribe(this);
+  }
+  recordPipe.unsubscribe((IProvider)this);
+  notifyBroadcastClose();
+  state=State.CLOSED;
+}

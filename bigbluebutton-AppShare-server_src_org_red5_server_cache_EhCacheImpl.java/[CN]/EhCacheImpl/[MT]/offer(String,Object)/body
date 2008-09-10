@@ -1,0 +1,14 @@
+{
+  boolean result=false;
+  try {
+    result=cache.isKeyInCache(name);
+    if (!result) {
+      put(name,obj);
+    }
+    result=cache.isKeyInCache(name);
+  }
+ catch (  NullPointerException npe) {
+    log.debug("Name: " + name + " Object: "+ obj.getClass().getName(),npe);
+  }
+  return result;
+}

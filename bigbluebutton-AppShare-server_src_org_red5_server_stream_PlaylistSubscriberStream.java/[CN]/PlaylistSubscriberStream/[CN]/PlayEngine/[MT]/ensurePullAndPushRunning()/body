@@ -1,0 +1,12 @@
+{
+  if (!isPullMode) {
+    return;
+  }
+  if (pullAndPushFuture == null) {
+synchronized (this) {
+      if (pullAndPushFuture == null) {
+        pullAndPushFuture=getExecutor().scheduleWithFixedDelay(new PullAndPushRunnable(),0,10,TimeUnit.MILLISECONDS);
+      }
+    }
+  }
+}

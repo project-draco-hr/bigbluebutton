@@ -1,0 +1,18 @@
+{
+  Constructor<?> constructor=null;
+  for (  Class<?> interfaceClass : interfaces) {
+    try {
+      constructor=theClass.getConstructor(new Class[]{interfaceClass});
+    }
+ catch (    NoSuchMethodException err) {
+    }
+    if (constructor != null) {
+      break;
+    }
+    constructor=getPersistenceStoreConstructor(theClass,interfaceClass.getInterfaces());
+    if (constructor != null) {
+      break;
+    }
+  }
+  return constructor;
+}

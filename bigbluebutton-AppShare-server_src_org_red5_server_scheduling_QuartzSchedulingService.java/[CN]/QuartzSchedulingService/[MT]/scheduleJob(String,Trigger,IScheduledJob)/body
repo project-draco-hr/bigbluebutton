@@ -1,0 +1,11 @@
+{
+  JobDetail jobDetail=new JobDetail(name,null,QuartzSchedulingServiceJob.class);
+  jobDetail.getJobDataMap().put(QuartzSchedulingServiceJob.SCHEDULING_SERVICE,this);
+  jobDetail.getJobDataMap().put(QuartzSchedulingServiceJob.SCHEDULED_JOB,job);
+  try {
+    scheduler.scheduleJob(jobDetail,trigger);
+  }
+ catch (  SchedulerException ex) {
+    throw new RuntimeException(ex);
+  }
+}

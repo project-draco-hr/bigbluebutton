@@ -1,0 +1,9 @@
+{
+  ByteBuffer data=client.getPendingMessages(RESPONSE_TARGET_SIZE);
+  if (data == null) {
+    if (client.isClosing())     returnMessage((byte)0,resp);
+ else     returnMessage(client.getPollingDelay(),resp);
+    return;
+  }
+  returnMessage(client,data,resp);
+}

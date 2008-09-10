@@ -1,0 +1,8 @@
+{
+  if (obj instanceof ICacheable) {
+    cache.put(new Element(name,obj));
+  }
+ else {
+    cache.put(new Element(name,new CacheableImpl(obj)));
+  }
+}

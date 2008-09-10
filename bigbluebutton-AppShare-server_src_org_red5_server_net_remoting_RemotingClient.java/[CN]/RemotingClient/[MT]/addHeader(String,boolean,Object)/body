@@ -1,0 +1,4 @@
+{
+  RemotingHeader header=new RemotingHeader(name,required,value);
+  headers.put(name,header);
+}

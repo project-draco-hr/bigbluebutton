@@ -1,0 +1,29 @@
+{
+  if (state != State.PLAYING && state != State.PAUSED) {
+    throw new IllegalStateException();
+  }
+  state=State.STOPPED;
+  if (msgIn != null && !isPullMode) {
+    msgIn.unsubscribe(this);
+    msgIn=null;
+  }
+  notifyItemStop(currentItem);
+  clearWaitJobs();
+  if (!hasMoreItems()) {
+    releasePendingMessage();
+    bwController.resetBuckets(bwContext);
+    isWaitingForToken=false;
+    if (getItemSize() > 0) {
+      sendCompleteStatus();
+    }
+    bytesSent=0;
+    sendClearPing();
+    sendStopStatus(currentItem);
+  }
+ else {
+    if (lastMessage != null) {
+      timestampOffset=lastMessage.getTimestamp();
+    }
+    nextItem();
+  }
+}

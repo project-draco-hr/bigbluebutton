@@ -1,0 +1,9 @@
+{
+  Status reset=new Status(StatusCodes.NS_PLAY_RESET);
+  reset.setClientid(getStreamId());
+  reset.setDetails(item.getName());
+  reset.setDesciption("Playing and resetting " + item.getName() + '.');
+  StatusMessage resetMsg=new StatusMessage();
+  resetMsg.setBody(reset);
+  doPushMessage(resetMsg);
+}

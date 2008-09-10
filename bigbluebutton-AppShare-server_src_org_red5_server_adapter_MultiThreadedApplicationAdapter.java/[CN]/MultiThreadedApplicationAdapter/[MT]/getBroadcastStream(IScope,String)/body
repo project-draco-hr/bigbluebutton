@@ -1,0 +1,6 @@
+{
+  IStreamService service=(IStreamService)getScopeService(scope,IStreamService.class,StreamService.class);
+  if (!(service instanceof StreamService))   return null;
+  IBroadcastScope bs=((StreamService)service).getBroadcastScope(scope,name);
+  return (IClientBroadcastStream)bs.getAttribute(IBroadcastScope.STREAM_ATTRIBUTE);
+}

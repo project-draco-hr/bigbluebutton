@@ -1,0 +1,17 @@
+{
+  if (threadPool == null) {
+    throw new RuntimeException("No thread pool configured.");
+  }
+  try {
+    Object[] params=new Object[]{this,method,methodParams,callback};
+    Class<?>[] paramTypes=new Class[]{RemotingClient.class,String.class,Object[].class,IRemotingCallback.class};
+    Worker worker=new Worker();
+    worker.setClassName("org.red5.server.net.remoting.RemotingClient$RemotingWorker");
+    worker.setMethodName("executeTask");
+    worker.setMethodParams(params);
+    worker.setParamTypes(paramTypes);
+    threadPool.execute(worker);
+  }
+ catch (  Exception err) {
+  }
+}

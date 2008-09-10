@@ -1,0 +1,10 @@
+{
+  try {
+    registry.clear();
+    registry=null;
+    CACHE.clear();
+  }
+ catch (  Exception e) {
+    log.warn("Error on cache shutdown",e);
+  }
+}

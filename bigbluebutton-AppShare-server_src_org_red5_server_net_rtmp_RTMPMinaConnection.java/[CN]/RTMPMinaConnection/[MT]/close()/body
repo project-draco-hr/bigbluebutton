@@ -1,0 +1,11 @@
+{
+  super.close();
+  if (ioSession != null) {
+    ioSession.close();
+  }
+  try {
+    JMXAgent.unregisterMBean(oName);
+  }
+ catch (  Exception e) {
+  }
+}

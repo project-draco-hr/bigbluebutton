@@ -1,0 +1,3 @@
+{
+  this(new ThreadPoolExecutor(corePoolSize,maximumPoolSize,keepAliveTime,TimeUnit.SECONDS,new LinkedBlockingQueue()));
+}

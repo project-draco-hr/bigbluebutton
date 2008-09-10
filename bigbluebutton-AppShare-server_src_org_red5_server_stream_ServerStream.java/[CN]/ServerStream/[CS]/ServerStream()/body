@@ -1,0 +1,5 @@
+{
+  defaultController=new SimplePlaylistController();
+  items=new ArrayList<IPlayItem>();
+  state=State.UNINIT;
+}

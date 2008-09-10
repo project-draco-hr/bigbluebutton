@@ -1,0 +1,22 @@
+{
+  logger.info("Shutting down JBoss context");
+  try {
+    Introspector.flushCaches();
+    JMXAgent.shutdown();
+    FileSystemXmlApplicationContext appContext=(FileSystemXmlApplicationContext)getApplicationContext();
+    ConfigurableBeanFactory factory=appContext.getBeanFactory();
+    if (factory.containsSingleton("default.context")) {
+      for (      String scope : factory.getRegisteredScopeNames()) {
+        logger.debug("Registered scope: " + scope);
+      }
+      for (      String singleton : factory.getSingletonNames()) {
+        logger.debug("Registered singleton: " + singleton);
+      }
+      factory.destroySingletons();
+    }
+    appContext.close();
+  }
+ catch (  Exception e) {
+    logger.warn("JBoss could not be stopped",e);
+  }
+}

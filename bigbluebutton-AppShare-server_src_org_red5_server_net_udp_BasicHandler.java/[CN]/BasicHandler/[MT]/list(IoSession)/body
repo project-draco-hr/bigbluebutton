@@ -1,0 +1,11 @@
+{
+  final int size=1 + 4 + (sessions.size() * 4);
+  ByteBuffer msg=ByteBuffer.allocate(size);
+  msg.put(LIST);
+  msg.putInt(sessions.size());
+  for (  IoSession session : sessions) {
+    msg.putInt(session.getRemoteAddress().hashCode());
+  }
+  msg.flip();
+  to.write(msg);
+}

@@ -1,0 +1,5 @@
+{
+  PrintWriter out=new PrintWriter(writer);
+  print(node,out);
+  out.flush();
+}

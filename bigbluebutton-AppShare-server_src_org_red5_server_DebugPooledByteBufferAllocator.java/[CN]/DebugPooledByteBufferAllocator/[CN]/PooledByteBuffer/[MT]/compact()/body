@@ -1,0 +1,4 @@
+{
+  buf.buf().compact();
+  return this;
+}

@@ -1,0 +1,14 @@
+{
+  double num=buf.getDouble();
+  if (num == Math.round(num)) {
+    if (num < Integer.MAX_VALUE) {
+      return (int)num;
+    }
+ else {
+      return Math.round(num);
+    }
+  }
+ else {
+    return num;
+  }
+}

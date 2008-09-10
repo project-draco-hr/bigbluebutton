@@ -1,0 +1,4 @@
+{
+  flagVideo=(((byte)(((typeFlags << 0x7) >>> 0x7) & 0x01)) > 0x00);
+  flagAudio=(((byte)(((typeFlags << 0x5) >>> 0x7) & 0x01)) > 0x00);
+}

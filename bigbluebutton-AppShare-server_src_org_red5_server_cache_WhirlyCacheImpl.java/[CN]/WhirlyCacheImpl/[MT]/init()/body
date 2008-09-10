@@ -1,0 +1,18 @@
+{
+  log.info("Loading whirlycache");
+  try {
+    CacheManager cm=CacheManager.getInstance();
+    for (    String nm : cm.getCacheNames()) {
+      if (log.isDebugEnabled()) {
+        log.debug("Cache name: " + nm);
+      }
+      if (nm.equals("default")) {
+        cm.destroy("default");
+      }
+    }
+    cache=cm.createCache(cacheConfig);
+  }
+ catch (  Exception e) {
+    log.warn("Error on cache init",e);
+  }
+}

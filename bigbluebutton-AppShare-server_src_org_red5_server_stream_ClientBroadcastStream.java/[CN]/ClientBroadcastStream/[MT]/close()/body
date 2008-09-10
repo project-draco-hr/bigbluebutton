@@ -1,0 +1,17 @@
+{
+  if (closed) {
+    return;
+  }
+  closed=true;
+  if (livePipe != null) {
+    livePipe.unsubscribe((IProvider)this);
+  }
+  recordPipe.unsubscribe((IProvider)this);
+  if (recording) {
+    sendRecordStopNotify();
+  }
+  sendPublishStopNotify();
+  connMsgOut.unsubscribe(this);
+  notifyBroadcastClose();
+  JMXAgent.unregisterMBean(oName);
+}

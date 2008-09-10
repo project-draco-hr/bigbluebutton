@@ -1,0 +1,12 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("writeListType");
+  }
+  if (listType instanceof List) {
+    writeList(out,(List<?>)listType);
+  }
+ else {
+    return false;
+  }
+  return true;
+}

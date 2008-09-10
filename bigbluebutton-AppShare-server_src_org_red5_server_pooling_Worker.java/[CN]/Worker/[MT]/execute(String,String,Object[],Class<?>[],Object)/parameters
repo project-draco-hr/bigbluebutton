@@ -1,0 +1,5 @@
+String clsName
+String methName
+Object[] params
+Class<?>[] paramTypes
+Object synObj

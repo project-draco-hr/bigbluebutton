@@ -1,0 +1,6 @@
+{
+  RTMPTConnection conn=(RTMPTConnection)rtmpConnManager.createConnection(RTMPTConnection.class);
+  conn.setRTMPTHandle(handler);
+  handler.connectionOpened(conn,conn.getState());
+  return conn;
+}

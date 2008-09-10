@@ -1,0 +1,16 @@
+{
+switch (event.getType()) {
+case PipeConnectionEvent.PROVIDER_CONNECT_PUSH:
+    if (event.getProvider() == this) {
+      this.pipe=(IPipe)event.getSource();
+    }
+  break;
+case PipeConnectionEvent.PROVIDER_DISCONNECT:
+if (this.pipe == event.getSource()) {
+  this.pipe=null;
+}
+break;
+default :
+break;
+}
+}

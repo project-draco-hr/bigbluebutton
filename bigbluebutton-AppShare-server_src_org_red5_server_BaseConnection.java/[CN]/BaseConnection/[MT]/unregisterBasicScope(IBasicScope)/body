@@ -1,0 +1,4 @@
+{
+  basicScopes.remove(basicScope);
+  basicScope.removeEventListener(this);
+}

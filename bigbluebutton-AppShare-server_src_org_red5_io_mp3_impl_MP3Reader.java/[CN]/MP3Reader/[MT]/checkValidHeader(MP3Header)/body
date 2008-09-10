@@ -1,0 +1,11 @@
+{
+switch (header.getSampleRate()) {
+case 44100:
+case 22050:
+case 11025:
+case 5513:
+    break;
+default :
+  throw new RuntimeException("Unsupported sample rate: " + header.getSampleRate());
+}
+}

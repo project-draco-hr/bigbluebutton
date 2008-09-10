@@ -1,0 +1,41 @@
+{
+  if (message instanceof ResetMessage) {
+    startTimestamp=-1;
+    offset+=lastTimestamp;
+    return;
+  }
+ else   if (message instanceof StatusMessage) {
+    return;
+  }
+  if (!(message instanceof RTMPMessage)) {
+    return;
+  }
+  if (writer == null) {
+    init();
+  }
+  RTMPMessage rtmpMsg=(RTMPMessage)message;
+  final IRTMPEvent msg=rtmpMsg.getBody();
+  if (startTimestamp == -1) {
+    startTimestamp=msg.getTimestamp();
+  }
+  int timestamp=msg.getTimestamp() - startTimestamp;
+  if (timestamp < 0) {
+    log.warn("Skipping message with negative timestamp.");
+    return;
+  }
+  lastTimestamp=timestamp;
+  ITag tag=new Tag();
+  tag.setDataType(msg.getDataType());
+  tag.setTimestamp(timestamp + offset);
+  if (msg instanceof IStreamData) {
+    ByteBuffer data=((IStreamData)msg).getData().asReadOnlyBuffer();
+    tag.setBodySize(data.limit());
+    tag.setBody(data);
+  }
+  try {
+    writer.writeTag(tag);
+  }
+ catch (  IOException e) {
+    log.error("error writing tag",e);
+  }
+}

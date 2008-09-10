@@ -1,0 +1,6 @@
+{
+  host=request.getLocalName();
+  remoteAddress=request.getRemoteAddr();
+  remoteAddresses=ServletUtils.getRemoteAddresses(request);
+  remotePort=request.getRemotePort();
+}

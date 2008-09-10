@@ -1,0 +1,4 @@
+{
+  pipe.subscribe(provider,null);
+  pipe.subscribe(consumer,null);
+}

@@ -1,0 +1,16 @@
+{
+  boolean status=false;
+  try {
+    String cName=className;
+    if (cName.indexOf('.') != -1) {
+      cName=cName.substring(cName.lastIndexOf('.')).replaceFirst("[\\.]","");
+    }
+    log.debug("Register name: " + cName);
+    mbs.registerMBean(new StandardMBean(Class.forName(className).newInstance(),interfaceClass),name);
+    status=true;
+  }
+ catch (  Exception e) {
+    log.error("Could not register the " + className + " MBean",e);
+  }
+  return status;
+}

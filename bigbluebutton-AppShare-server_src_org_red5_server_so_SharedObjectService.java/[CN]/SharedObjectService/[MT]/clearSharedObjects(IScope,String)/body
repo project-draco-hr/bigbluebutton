@@ -1,0 +1,9 @@
+{
+  boolean result=false;
+synchronized (scope) {
+    if (hasSharedObject(scope,name)) {
+      result=((ISharedObject)scope.getBasicScope(TYPE,name)).clear();
+    }
+  }
+  return result;
+}

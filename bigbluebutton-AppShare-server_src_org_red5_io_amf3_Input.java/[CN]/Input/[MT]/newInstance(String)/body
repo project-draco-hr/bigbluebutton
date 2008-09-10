@@ -1,0 +1,7 @@
+{
+  log.debug("newInstance {}",className);
+  if (className.startsWith("flex.")) {
+    className="org.red5.compatibility." + className;
+  }
+  return super.newInstance(className);
+}

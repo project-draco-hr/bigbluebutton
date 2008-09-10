@@ -1,0 +1,4 @@
+{
+  buf.buf().get(dst,offset,length);
+  return this;
+}

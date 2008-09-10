@@ -1,0 +1,10 @@
+{
+synchronized (objects) {
+    if (!objects.containsKey(name)) {
+      return false;
+    }
+    IPersistable object=objects.remove(name);
+    object.setPersistent(false);
+  }
+  return true;
+}

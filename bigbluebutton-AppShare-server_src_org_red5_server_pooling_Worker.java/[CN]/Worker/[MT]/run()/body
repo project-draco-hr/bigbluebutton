@@ -1,0 +1,25 @@
+{
+  try {
+    Class<?> cls=getClass(this.getClassName());
+    Object obj=cls.newInstance();
+    this.result=MethodUtils.invokeExactMethod(obj,this.getMethodName(),this.getMethodParams(),this.getParamTypes());
+    if (log.isDebugEnabled()) {
+      log.debug(" #### Execution Result = " + result + " for : "+ this);
+    }
+  }
+ catch (  ClassNotFoundException e) {
+    log.error("ClassNotFoundException - " + e);
+  }
+catch (  NoSuchMethodException e) {
+    log.error("NoSuchMethodException - " + e);
+  }
+catch (  IllegalAccessException e) {
+    log.error("IllegalAccessException - " + e);
+  }
+catch (  InvocationTargetException e) {
+    log.error("InvocationTargetException - " + e);
+  }
+catch (  InstantiationException e) {
+    log.error("InstantiationException - " + e);
+  }
+}

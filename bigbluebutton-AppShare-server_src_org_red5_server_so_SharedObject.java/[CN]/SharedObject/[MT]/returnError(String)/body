@@ -1,0 +1,3 @@
+{
+  ownerMessage.addEvent(Type.CLIENT_STATUS,"error",message);
+}

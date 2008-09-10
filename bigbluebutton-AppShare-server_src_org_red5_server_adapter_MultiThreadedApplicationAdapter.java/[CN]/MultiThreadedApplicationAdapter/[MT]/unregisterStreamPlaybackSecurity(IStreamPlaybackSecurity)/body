@@ -1,0 +1,3 @@
+{
+  playbackSecurity.remove(handler);
+}

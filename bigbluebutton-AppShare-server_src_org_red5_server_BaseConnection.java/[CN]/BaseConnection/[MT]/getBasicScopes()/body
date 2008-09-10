@@ -1,0 +1,3 @@
+{
+  return basicScopes.iterator();
+}

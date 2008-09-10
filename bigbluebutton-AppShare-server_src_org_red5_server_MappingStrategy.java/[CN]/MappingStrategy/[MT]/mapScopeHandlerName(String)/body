@@ -1,0 +1,8 @@
+{
+  if (path == null || path.equals(ROOT)) {
+    return defaultApp + HANDLER;
+  }
+ else {
+    return path + HANDLER;
+  }
+}

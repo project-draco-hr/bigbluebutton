@@ -1,0 +1,8 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("setHosts: " + hosts.size());
+  }
+  for (  Host host : hosts) {
+    engine.addChild(host);
+  }
+}

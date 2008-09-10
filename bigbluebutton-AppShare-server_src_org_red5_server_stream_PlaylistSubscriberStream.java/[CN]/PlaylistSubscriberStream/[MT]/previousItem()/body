@@ -1,0 +1,35 @@
+{
+synchronized (items) {
+    stop();
+    moveToPrevious();
+    if (currentItemIndex == -1) {
+      return;
+    }
+    IPlayItem item=items.get(currentItemIndex);
+    int count=items.size();
+    while (count-- > 0) {
+      try {
+        engine.play(item);
+        break;
+      }
+ catch (      IOException err) {
+        log.error("Error while starting to play item, moving to next.",err);
+        moveToPrevious();
+        if (currentItemIndex == -1) {
+          break;
+        }
+        item=items.get(currentItemIndex);
+      }
+catch (      StreamNotFoundException e) {
+        moveToPrevious();
+        if (currentItemIndex == -1) {
+          break;
+        }
+        item=items.get(currentItemIndex);
+      }
+catch (      IllegalStateException e) {
+        break;
+      }
+    }
+  }
+}

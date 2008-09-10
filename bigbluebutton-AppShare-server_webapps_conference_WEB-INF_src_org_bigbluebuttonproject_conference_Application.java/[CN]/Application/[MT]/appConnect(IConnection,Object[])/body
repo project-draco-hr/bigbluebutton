@@ -1,0 +1,4 @@
+{
+  log.info("Blindside.appConnect " + conn.getClient().getId());
+  return true;
+}

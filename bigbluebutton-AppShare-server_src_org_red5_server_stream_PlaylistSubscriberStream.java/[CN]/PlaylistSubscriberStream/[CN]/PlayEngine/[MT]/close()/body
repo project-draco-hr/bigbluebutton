@@ -1,0 +1,11 @@
+{
+  if (msgIn != null) {
+    msgIn.unsubscribe(this);
+    msgIn=null;
+  }
+  state=State.CLOSED;
+  clearWaitJobs();
+  releasePendingMessage();
+  lastMessage=null;
+  sendClearPing();
+}

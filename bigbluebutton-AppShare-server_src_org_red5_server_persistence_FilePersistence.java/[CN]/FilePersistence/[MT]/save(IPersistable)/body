@@ -1,0 +1,8 @@
+{
+  if (!super.save(object)) {
+    return false;
+  }
+  storeThread.modified(object,this);
+  object.setPersistent(true);
+  return true;
+}

@@ -1,0 +1,10 @@
+{
+  if (pendingMessage != null) {
+    IRTMPEvent body=pendingMessage.getBody();
+    if (body instanceof IStreamData && ((IStreamData)body).getData() != null) {
+      ((IStreamData)body).getData().release();
+    }
+    pendingMessage.setBody(null);
+    pendingMessage=null;
+  }
+}

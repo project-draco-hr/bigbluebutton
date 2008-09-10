@@ -1,0 +1,3 @@
+String className
+int type
+List<String> attributeNames

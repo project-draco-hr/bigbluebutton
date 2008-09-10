@@ -1,0 +1,4 @@
+{
+  log=LoggerFactory.getLogger(getClass());
+  events=new HashMap<BaseEvent,Info>();
+}

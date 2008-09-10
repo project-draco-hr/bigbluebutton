@@ -1,0 +1,7 @@
+{
+  this.fos=fos;
+  channel=this.fos.getChannel();
+  out=ByteBuffer.allocate(1024);
+  out.setAutoExpand(true);
+  this.append=append;
+}

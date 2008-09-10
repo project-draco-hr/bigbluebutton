@@ -1,0 +1,3 @@
+RTMPConnection conn
+IServiceCall call
+Object service

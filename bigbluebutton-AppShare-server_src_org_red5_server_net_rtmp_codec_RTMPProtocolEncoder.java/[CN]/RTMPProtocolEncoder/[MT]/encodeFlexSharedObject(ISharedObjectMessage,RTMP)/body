@@ -1,0 +1,7 @@
+{
+  final ByteBuffer out=ByteBuffer.allocate(128);
+  out.setAutoExpand(true);
+  out.put((byte)0x00);
+  doEncodeSharedObject(so,rtmp,out);
+  return out;
+}

@@ -1,0 +1,9 @@
+{
+  if (checkWriteReference(array))   return;
+  storeReference(array);
+  buf.put(AMF.TYPE_ARRAY);
+  buf.putInt(array.size());
+  for (  Object item : array) {
+    serializer.serialize(this,item);
+  }
+}

@@ -1,0 +1,21 @@
+{
+  if (data.limit() == 0) {
+    return true;
+  }
+  if (!this.canHandleData(data)) {
+    return false;
+  }
+  byte first=data.get();
+  data.rewind();
+  if ((first & 0xf0) != FLV_FRAME_KEY) {
+    return true;
+  }
+  this.dataCount=data.limit();
+  if (this.blockSize < this.dataCount) {
+    this.blockSize=this.dataCount;
+    this.blockData=new byte[this.blockSize];
+  }
+  data.get(this.blockData,0,this.dataCount);
+  data.rewind();
+  return true;
+}

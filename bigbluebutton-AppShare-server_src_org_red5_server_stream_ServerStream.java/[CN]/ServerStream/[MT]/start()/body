@@ -1,0 +1,22 @@
+{
+  if (state != State.UNINIT) {
+    throw new IllegalStateException("State " + state + " not valid to start");
+  }
+  if (items.size() == 0) {
+    throw new IllegalStateException("At least one item should be specified to start");
+  }
+  if (publishedName == null) {
+    throw new IllegalStateException("A published name is needed to start");
+  }
+  IProviderService providerService=(IProviderService)getScope().getContext().getBean(IProviderService.BEAN_NAME);
+  providerService.registerBroadcastStream(getScope(),publishedName,this);
+  Map<Object,Object> recordParamMap=new HashMap<Object,Object>();
+  recordPipe=new InMemoryPushPushPipe();
+  recordParamMap.put("record",null);
+  recordPipe.subscribe((IProvider)this,recordParamMap);
+  recordingFilename=null;
+  scheduler=(ISchedulingService)getScope().getContext().getBean(ISchedulingService.BEAN_NAME);
+  state=State.STOPPED;
+  currentItemIndex=-1;
+  nextItem();
+}

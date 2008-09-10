@@ -1,0 +1,8 @@
+{
+  channelBandwidth=new long[4];
+  channelInitialBurst=new long[4];
+  for (int i=0; i < 4; i++) {
+    channelBandwidth[i]=config.getChannelBandwidth()[i];
+    channelInitialBurst[i]=config.getChannelInitialBurst()[i];
+  }
+}

@@ -1,0 +1,5 @@
+{
+  this.video.close();
+  this.audio.close();
+  this.data.close();
+}

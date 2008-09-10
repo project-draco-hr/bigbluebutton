@@ -1,0 +1,5 @@
+{
+  setClientId(msg);
+  log.error("Unknown Flex compatibility request: " + msg);
+  return returnError(msg,"notImplemented","Don't know how to handle " + msg,"Don't know how to handle " + msg);
+}

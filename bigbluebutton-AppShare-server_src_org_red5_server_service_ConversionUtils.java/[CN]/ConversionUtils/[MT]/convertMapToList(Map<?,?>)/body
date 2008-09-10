@@ -1,0 +1,5 @@
+{
+  List<Object> list=new ArrayList<Object>(map.size());
+  list.addAll(map.values());
+  return list;
+}

@@ -1,0 +1,11 @@
+{
+switch (ping.getValue1()) {
+case Ping.PONG_SERVER:
+    conn.pingReceived(ping);
+  break;
+default :
+Packet p=new Packet(source);
+p.setMessage(ping);
+forwardPacket(conn,p);
+}
+}

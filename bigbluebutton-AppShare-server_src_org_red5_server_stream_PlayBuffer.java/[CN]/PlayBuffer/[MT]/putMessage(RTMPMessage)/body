@@ -1,0 +1,13 @@
+{
+  IRTMPEvent body=message.getBody();
+  if (!(body instanceof IStreamData)) {
+    throw new RuntimeException("expected IStreamData but got " + body);
+  }
+  int size=((IStreamData)body).getData().limit();
+  if (messageSize + size > capacity) {
+    return false;
+  }
+  messageSize+=size;
+  messageQueue.offer(message);
+  return true;
+}

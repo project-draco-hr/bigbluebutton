@@ -1,0 +1,3 @@
+{
+  LoaderBase.loader.set(loader);
+}

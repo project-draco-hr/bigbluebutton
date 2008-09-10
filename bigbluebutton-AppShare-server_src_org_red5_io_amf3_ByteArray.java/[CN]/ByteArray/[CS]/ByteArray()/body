@@ -1,0 +1,5 @@
+{
+  data=ByteBuffer.allocate(0);
+  data.setAutoExpand(true);
+  prepareIO();
+}

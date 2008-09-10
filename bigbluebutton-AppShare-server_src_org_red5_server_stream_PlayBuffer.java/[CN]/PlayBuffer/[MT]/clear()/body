@@ -1,0 +1,4 @@
+{
+  messageQueue.clear();
+  messageSize=0;
+}

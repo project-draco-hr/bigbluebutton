@@ -1,0 +1,26 @@
+{
+  StringBuffer buf=new StringBuffer();
+  buf.append("MRTMPPacket: type=");
+switch (header.getType()) {
+case CONNECT:
+    buf.append("CONNECT");
+  break;
+case CLOSE:
+buf.append("CLOSE");
+break;
+case RTMP:
+buf.append("RTMP");
+break;
+default :
+break;
+}
+buf.append(",isDynamic=" + header.isDynamic());
+buf.append(",clientId=" + header.getClientId());
+if (header.getType() == RTMP) {
+RTMPHeader rtmpHeader=(RTMPHeader)header;
+buf.append(",rtmpType=" + rtmpHeader.rtmpType);
+RTMPBody rtmpBody=(RTMPBody)body;
+buf.append(",rtmpBody=" + rtmpBody.rtmpPacket.getMessage());
+}
+return buf.toString();
+}

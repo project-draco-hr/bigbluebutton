@@ -1,0 +1,16 @@
+{
+  do {
+    if (in.remaining() <= 0)     break;
+    if (out.remaining() <= 0)     return CoderResult.OVERFLOW;
+    char inch=in.get();
+    if (!Character.isWhitespace(inch)) {
+      int d=Character.digit(inch,16);
+      if (d < 0)       throw new IllegalArgumentException((new StringBuilder()).append("Bad hex character ").append(inch).toString());
+      if (unpaired)       out.put((byte)(nyble | d));
+ else       nyble=d << 4;
+      unpaired=!unpaired;
+    }
+  }
+ while (true);
+  return CoderResult.UNDERFLOW;
+}

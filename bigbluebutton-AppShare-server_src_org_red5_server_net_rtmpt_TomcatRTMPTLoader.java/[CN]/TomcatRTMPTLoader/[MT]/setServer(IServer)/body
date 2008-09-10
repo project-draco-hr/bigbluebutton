@@ -1,0 +1,4 @@
+{
+  log.debug("RTMPT setServer");
+  this.server=server;
+}

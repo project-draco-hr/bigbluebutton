@@ -1,0 +1,58 @@
+{
+  IRTMPEvent message;
+  if (header.getTimer() == 0xffffff) {
+    int unknown=in.getInt();
+    if (log.isDebugEnabled()) {
+      log.debug("Unknown 4 bytes: " + unknown);
+    }
+  }
+switch (header.getDataType()) {
+case TYPE_CHUNK_SIZE:
+    message=decodeChunkSize(in);
+  break;
+case TYPE_INVOKE:
+message=decodeInvoke(in,rtmp);
+break;
+case TYPE_NOTIFY:
+if (header.getStreamId() == 0) message=decodeNotify(in,header,rtmp);
+ else message=decodeStreamMetadata(in);
+break;
+case TYPE_PING:
+message=decodePing(in);
+break;
+case TYPE_BYTES_READ:
+message=decodeBytesRead(in);
+break;
+case TYPE_AUDIO_DATA:
+message=decodeAudioData(in);
+break;
+case TYPE_VIDEO_DATA:
+message=decodeVideoData(in);
+break;
+case TYPE_FLEX_SHARED_OBJECT:
+message=decodeFlexSharedObject(in,rtmp);
+break;
+case TYPE_SHARED_OBJECT:
+message=decodeSharedObject(in,rtmp);
+break;
+case TYPE_SERVER_BANDWIDTH:
+message=decodeServerBW(in);
+break;
+case TYPE_CLIENT_BANDWIDTH:
+message=decodeClientBW(in);
+break;
+case TYPE_FLEX_MESSAGE:
+message=decodeFlexMessage(in,rtmp);
+break;
+case TYPE_FLEX_STREAM_SEND:
+message=decodeFlexStreamSend(in);
+break;
+default :
+log.warn("Unknown object type: " + header.getDataType());
+message=decodeUnknown(header.getDataType(),in);
+break;
+}
+message.setHeader(header);
+message.setTimestamp(header.getTimer());
+return message;
+}

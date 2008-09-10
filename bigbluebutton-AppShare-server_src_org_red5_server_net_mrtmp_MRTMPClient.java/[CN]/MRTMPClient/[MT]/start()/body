@@ -1,0 +1,7 @@
+{
+  needReconnect=true;
+  ioHandlerWrapper=new IoHandlerWrapper(ioHandler);
+  connectThread=new Thread(this,"MRTMPClient");
+  connectThread.setDaemon(true);
+  connectThread.start();
+}

@@ -1,0 +1,13 @@
+{
+  int result=-1;
+synchronized (reservedStreams) {
+    for (int i=0; true; i++) {
+      if (!reservedStreams.get(i)) {
+        reservedStreams.set(i);
+        result=i;
+        break;
+      }
+    }
+  }
+  return result + 1;
+}

@@ -1,0 +1,9 @@
+{
+  if (obj == null) {
+    return false;
+  }
+  if (!(obj instanceof Invoke)) {
+    return false;
+  }
+  return super.equals(obj);
+}

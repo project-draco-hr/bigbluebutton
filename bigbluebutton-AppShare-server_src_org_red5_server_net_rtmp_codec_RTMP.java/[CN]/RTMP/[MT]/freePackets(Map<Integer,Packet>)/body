@@ -1,0 +1,9 @@
+{
+  for (  Packet packet : packets.values()) {
+    if (packet != null && packet.getData() != null) {
+      packet.getData().release();
+      packet.setData(null);
+    }
+  }
+  packets.clear();
+}

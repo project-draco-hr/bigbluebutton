@@ -1,0 +1,15 @@
+{
+  Status failedStatus=new Status(StatusCodes.NS_RECORD_FAILED);
+  failedStatus.setLevel(Status.ERROR);
+  failedStatus.setClientid(getStreamId());
+  failedStatus.setDetails(getPublishedName());
+  failedStatus.setDesciption(reason);
+  StatusMessage failedMsg=new StatusMessage();
+  failedMsg.setBody(failedStatus);
+  try {
+    connMsgOut.pushMessage(failedMsg);
+  }
+ catch (  IOException err) {
+    log.error("Error while pushing message.",err);
+  }
+}

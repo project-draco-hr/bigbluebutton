@@ -1,0 +1,5 @@
+{
+  super(Type.SYSTEM);
+  this.dataType=dataType;
+  this.data=data;
+}

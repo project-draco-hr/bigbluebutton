@@ -1,0 +1,11 @@
+{
+  ArrayList<RTMPConnection> list=new ArrayList<RTMPConnection>(connMap.size());
+  lock.writeLock().lock();
+  try {
+    list.addAll(connMap.values());
+    return list;
+  }
+  finally {
+    lock.writeLock().unlock();
+  }
+}

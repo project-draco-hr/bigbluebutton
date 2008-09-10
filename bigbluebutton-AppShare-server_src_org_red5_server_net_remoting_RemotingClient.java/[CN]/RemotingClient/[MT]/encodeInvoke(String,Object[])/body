@@ -1,0 +1,35 @@
+{
+  ByteBuffer result=ByteBuffer.allocate(1024);
+  result.setAutoExpand(true);
+  result.putShort((short)0);
+  Collection<RemotingHeader> hdr=headers.values();
+  result.putShort((short)hdr.size());
+  for (  RemotingHeader header : hdr) {
+    Output.putString(result,header.name);
+    result.put(header.required ? (byte)0x01 : (byte)0x00);
+    ByteBuffer tmp=ByteBuffer.allocate(1024);
+    tmp.setAutoExpand(true);
+    Output tmpOut=new Output(tmp);
+    Serializer tmpSer=new Serializer();
+    tmpSer.serialize(tmpOut,header.data);
+    tmp.flip();
+    result.putInt(tmp.limit());
+    result.put(tmp);
+    tmp.release();
+    tmp=null;
+  }
+  result.putShort((short)1);
+  Output.putString(result,method);
+  Output.putString(result,"");
+  ByteBuffer tmp=ByteBuffer.allocate(1024);
+  tmp.setAutoExpand(true);
+  Output tmpOut=new Output(tmp);
+  tmpOut.writeArray(params,new Serializer());
+  tmp.flip();
+  result.putInt(tmp.limit());
+  result.put(tmp);
+  tmp.release();
+  tmp=null;
+  result.flip();
+  return result;
+}

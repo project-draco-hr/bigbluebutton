@@ -1,0 +1,23 @@
+{
+  long misses=0;
+  RecordKeeper rec=new RecordKeeper();
+  long hits=rec.getHits();
+  long ops=rec.getTotalOperations();
+  if (log.isDebugEnabled()) {
+    log.debug("Hits: " + hits + " Operations: "+ ops);
+  }
+  if (hits > 0 && ops > 0) {
+    if (ops > hits) {
+      misses=ops - hits;
+    }
+ else {
+      misses=hits - ops;
+    }
+  }
+ else {
+    if (hits < 0 && ops > 0) {
+      misses=ops;
+    }
+  }
+  return misses;
+}

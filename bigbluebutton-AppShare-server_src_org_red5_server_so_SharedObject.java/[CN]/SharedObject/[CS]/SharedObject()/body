@@ -1,0 +1,6 @@
+{
+  super();
+  ownerMessage=new SharedObjectMessage(null,null,-1,false);
+  persistentSO=false;
+  creationTime=System.currentTimeMillis();
+}

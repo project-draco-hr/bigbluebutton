@@ -1,0 +1,12 @@
+{
+  int targetSize=MINIMUM_CAPACITY;
+  int stackIdx=0;
+  while (size > targetSize) {
+    targetSize<<=1;
+    stackIdx++;
+    if (stackIdx >= bufferStacks.length) {
+      throw new IllegalArgumentException("Buffer size is too big: " + size);
+    }
+  }
+  return stackIdx;
+}

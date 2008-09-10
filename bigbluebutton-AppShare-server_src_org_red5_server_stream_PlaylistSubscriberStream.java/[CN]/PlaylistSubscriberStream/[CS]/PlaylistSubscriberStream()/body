@@ -1,0 +1,7 @@
+{
+  defaultController=new SimplePlaylistController();
+  items=new ArrayList<IPlayItem>();
+  engine=new PlayEngine();
+  currentItemIndex=0;
+  creationTime=System.currentTimeMillis();
+}

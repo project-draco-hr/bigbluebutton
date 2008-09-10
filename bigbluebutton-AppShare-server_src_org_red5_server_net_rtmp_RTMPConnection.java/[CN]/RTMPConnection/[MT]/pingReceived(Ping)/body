@@ -1,0 +1,5 @@
+{
+  lastPongReceived=System.currentTimeMillis();
+  int now=(int)(lastPongReceived & 0xffffffff);
+  lastPingTime=now - pong.getValue2();
+}

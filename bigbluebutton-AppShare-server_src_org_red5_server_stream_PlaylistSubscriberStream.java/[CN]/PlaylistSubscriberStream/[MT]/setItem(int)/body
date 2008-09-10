@@ -1,0 +1,22 @@
+{
+synchronized (items) {
+    if (index < 0 || index >= items.size()) {
+      return;
+    }
+    stop();
+    currentItemIndex=index;
+    IPlayItem item=items.get(currentItemIndex);
+    try {
+      engine.play(item);
+    }
+ catch (    IOException e) {
+      log.error("setItem caught a IOException",e);
+    }
+catch (    StreamNotFoundException e) {
+      log.debug("setItem caught a StreamNotFoundException");
+    }
+catch (    IllegalStateException e) {
+      log.error("Illegal state exception on playlist item setup",e);
+    }
+  }
+}

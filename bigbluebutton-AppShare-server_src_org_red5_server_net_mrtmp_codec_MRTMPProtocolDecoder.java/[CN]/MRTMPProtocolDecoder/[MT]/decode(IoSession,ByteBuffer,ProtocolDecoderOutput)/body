@@ -1,0 +1,34 @@
+{
+  ByteBuffer buffer=(ByteBuffer)session.getAttribute("buffer");
+  if (buffer == null) {
+    buffer=ByteBuffer.allocate(16 * 1024);
+    buffer.setAutoExpand(true);
+    session.setAttribute("buffer",buffer);
+  }
+  buffer.put(in);
+  buffer.flip();
+  while (true) {
+    if (buffer.remaining() < MRTMPPacket.COMMON_HEADER_LENGTH) {
+      break;
+    }
+    int pos=buffer.position();
+    MRTMPPacket.Header header=decodeHeader(buffer);
+    if (header == null) {
+      buffer.position(pos);
+      break;
+    }
+    if (buffer.remaining() < header.getBodyLength()) {
+      buffer.position(pos);
+      break;
+    }
+    MRTMPPacket.Body body=decodeBody(buffer,header);
+    MRTMPPacket packet=new MRTMPPacket();
+    packet.setHeader(header);
+    packet.setBody(body);
+    if (log.isDebugEnabled()) {
+      log.debug(packet.toString());
+    }
+    out.write(packet);
+  }
+  buffer.compact();
+}

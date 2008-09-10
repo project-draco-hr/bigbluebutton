@@ -1,0 +1,3 @@
+{
+  clients.put(client.getId(),client);
+}

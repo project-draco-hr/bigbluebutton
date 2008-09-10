@@ -1,0 +1,10 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("writeIterator");
+  }
+  LinkedList<Object> list=new LinkedList<Object>();
+  while (it.hasNext()) {
+    list.addLast(it.next());
+  }
+  out.writeArray(list,this);
+}

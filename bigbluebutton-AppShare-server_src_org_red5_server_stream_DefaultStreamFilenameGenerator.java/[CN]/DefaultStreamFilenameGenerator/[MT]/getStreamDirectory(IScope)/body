@@ -1,0 +1,16 @@
+{
+  final StringBuilder result=new StringBuilder();
+  final IScope app=ScopeUtils.findApplication(scope);
+  final String prefix="streams/";
+  while (scope != null && scope != app) {
+    result.insert(0,scope.getName() + "/");
+    scope=scope.getParent();
+  }
+  if (result.length() == 0) {
+    return prefix;
+  }
+ else {
+    result.insert(0,prefix).append("/");
+    return result.toString();
+  }
+}

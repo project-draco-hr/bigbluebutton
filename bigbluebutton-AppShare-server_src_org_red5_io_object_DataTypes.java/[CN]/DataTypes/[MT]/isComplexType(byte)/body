@@ -1,0 +1,3 @@
+{
+  return type >= CORE_ARRAY || type <= CORE_OBJECT;
+}

@@ -1,0 +1,17 @@
+{
+  Properties props=new Properties();
+  Resource res=applicationContext.getResource(contextsConfig);
+  if (!res.exists()) {
+    log.error("Contexts config must be set.");
+    return;
+  }
+  props.load(res.getInputStream());
+  for (  Object key : props.keySet()) {
+    String name=(String)key;
+    String config=props.getProperty(name);
+    config=config.replace("${red5.root}",System.getProperty("red5.root"));
+    config=config.replace("${red5.config_root}",System.getProperty("red5.config_root"));
+    log.info("Loading: " + name + " = "+ config);
+    loadContext(name,config);
+  }
+}

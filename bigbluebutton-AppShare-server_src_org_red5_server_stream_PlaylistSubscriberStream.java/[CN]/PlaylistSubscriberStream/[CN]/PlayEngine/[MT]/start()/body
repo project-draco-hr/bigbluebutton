@@ -1,0 +1,12 @@
+{
+  if (state != State.UNINIT) {
+    throw new IllegalStateException();
+  }
+  state=State.STOPPED;
+  schedulingService=(ISchedulingService)getScope().getContext().getBean(ISchedulingService.BEAN_NAME);
+  IConsumerService consumerManager=(IConsumerService)getScope().getContext().getBean(IConsumerService.KEY);
+  msgOut=consumerManager.getConsumerOutput(PlaylistSubscriberStream.this);
+  msgOut.subscribe(this,null);
+  audioBucket=bwController.getAudioBucket(bwContext);
+  videoBucket=bwController.getVideoBucket(bwContext);
+}

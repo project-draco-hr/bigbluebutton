@@ -1,0 +1,11 @@
+{
+  if (depth == UNSET) {
+    if (hasParent()) {
+      depth=parent.getDepth() + 1;
+    }
+ else {
+      depth=0;
+    }
+  }
+  return depth;
+}

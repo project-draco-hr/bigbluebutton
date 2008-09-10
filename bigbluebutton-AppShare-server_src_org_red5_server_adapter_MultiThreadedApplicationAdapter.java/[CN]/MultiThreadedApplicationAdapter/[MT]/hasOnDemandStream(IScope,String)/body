@@ -1,0 +1,4 @@
+{
+  IProviderService service=(IProviderService)getScopeService(scope,IProviderService.class,ProviderService.class);
+  return (service.getVODProviderInput(scope,name) != null);
+}

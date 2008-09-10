@@ -1,0 +1,39 @@
+{
+  IRTMPEvent packet=message.getBody();
+  if (!(packet instanceof VideoData)) {
+    return true;
+  }
+  VideoData video=(VideoData)packet;
+  FrameType type=video.getFrameType();
+  boolean result=false;
+switch (state) {
+case SEND_ALL:
+    result=true;
+  break;
+case SEND_INTERFRAMES:
+if (type == FrameType.KEYFRAME) {
+  if (pending == 0) {
+    state=SEND_ALL;
+  }
+  result=true;
+}
+ else if (type == FrameType.INTERFRAME) {
+  result=true;
+}
+break;
+case SEND_KEYFRAMES:
+result=(type == FrameType.KEYFRAME);
+if (result && pending == 0) {
+state=SEND_KEYFRAMES_CHECK;
+}
+break;
+case SEND_KEYFRAMES_CHECK:
+result=(type == FrameType.KEYFRAME);
+if (result && pending == 0) {
+state=SEND_INTERFRAMES;
+}
+break;
+default :
+}
+return result;
+}

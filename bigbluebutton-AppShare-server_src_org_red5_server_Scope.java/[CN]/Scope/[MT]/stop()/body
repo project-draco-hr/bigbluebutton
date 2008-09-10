@@ -1,0 +1,13 @@
+{
+  if (enabled && running && hasHandler()) {
+    try {
+      if (handler != null) {
+        handler.stop(this);
+      }
+    }
+ catch (    Throwable e) {
+      log.error("Could not stop scope " + this,e);
+    }
+  }
+  running=false;
+}

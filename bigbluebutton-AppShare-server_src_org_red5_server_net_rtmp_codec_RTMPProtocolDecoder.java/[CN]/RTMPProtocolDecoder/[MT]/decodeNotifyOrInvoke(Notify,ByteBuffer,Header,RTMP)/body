@@ -1,0 +1,54 @@
+{
+  int start=in.position();
+  Input input;
+  if (rtmp.getEncoding() == Encoding.AMF3)   input=new org.red5.io.amf3.Input(in);
+ else   input=new org.red5.io.amf.Input(in);
+  String action=deserializer.deserialize(input,String.class);
+  if (!(notify instanceof Invoke) && rtmp != null && rtmp.getMode() == RTMP.MODE_SERVER && header != null && header.getStreamId() != 0 && !isStreamCommand(action)) {
+    in.position(start);
+    notify.setData(in.asReadOnlyBuffer());
+    return notify;
+  }
+  if (log.isDebugEnabled()) {
+    log.debug("Action " + action);
+  }
+  if (header == null || header.getStreamId() == 0) {
+    int invokeId=deserializer.deserialize(input,Number.class).intValue();
+    notify.setInvokeId(invokeId);
+  }
+  Object[] params=new Object[]{};
+  if (in.hasRemaining()) {
+    setupClassLoader();
+    List<Object> paramList=new ArrayList<Object>();
+    final Object obj=deserializer.deserialize(input,Object.class);
+    if (obj instanceof Map) {
+      final Map connParams=(Map)obj;
+      notify.setConnectionParams(connParams);
+    }
+ else     if (obj != null) {
+      paramList.add(obj);
+    }
+    while (in.hasRemaining()) {
+      paramList.add(deserializer.deserialize(input,Object.class));
+    }
+    params=paramList.toArray();
+    if (log.isDebugEnabled()) {
+      log.debug("Num params: " + paramList.size());
+      for (int i=0; i < params.length; i++) {
+        log.debug(" > " + i + ": "+ params[i]);
+      }
+    }
+  }
+  final int dotIndex=action.lastIndexOf('.');
+  String serviceName=(dotIndex == -1) ? null : action.substring(0,dotIndex);
+  String serviceMethod=(dotIndex == -1) ? action : action.substring(dotIndex + 1,action.length());
+  if (notify instanceof Invoke) {
+    PendingCall call=new PendingCall(serviceName,serviceMethod,params);
+    ((Invoke)notify).setCall(call);
+  }
+ else {
+    Call call=new Call(serviceName,serviceMethod,params);
+    notify.setCall(call);
+  }
+  return notify;
+}

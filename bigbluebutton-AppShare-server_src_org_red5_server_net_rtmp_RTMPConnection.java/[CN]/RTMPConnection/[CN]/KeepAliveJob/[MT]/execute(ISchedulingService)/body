@@ -1,0 +1,22 @@
+{
+  long thisRead=getReadBytes();
+  if (thisRead > lastBytesRead) {
+    lastBytesRead=thisRead;
+    return;
+  }
+  if (lastPongReceived > 0 && lastPingSent - lastPongReceived > maxInactivity) {
+    log.debug("Keep alive job name {}",keepAliveJobName);
+    if (log.isDebugEnabled()) {
+      log.debug("Scheduled job list");
+      for (      String jobName : service.getScheduledJobNames()) {
+        log.debug("Job: {}",jobName);
+      }
+    }
+    service.removeScheduledJob(keepAliveJobName);
+    keepAliveJobName=null;
+    log.warn("Closing {} due to too much inactivity ({}).",RTMPConnection.this,(lastPingSent - lastPongReceived));
+    onInactive();
+    return;
+  }
+  ping();
+}

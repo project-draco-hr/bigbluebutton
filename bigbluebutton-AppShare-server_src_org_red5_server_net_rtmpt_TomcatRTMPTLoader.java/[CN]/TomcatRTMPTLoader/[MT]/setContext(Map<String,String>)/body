@@ -1,0 +1,5 @@
+{
+  log.debug("RTMPT setContext (map)");
+  context=embedded.createContext(contextMap.get("path"),contextMap.get("docBase"));
+  context.setReloadable(false);
+}

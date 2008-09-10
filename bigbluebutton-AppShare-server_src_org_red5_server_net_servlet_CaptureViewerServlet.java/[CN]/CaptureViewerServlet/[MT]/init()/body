@@ -1,0 +1,11 @@
+{
+  super.init();
+  try {
+    decoder=new RTMPProtocolDecoder();
+    deserializer=new Deserializer();
+    decoder.setDeserializer(deserializer);
+  }
+ catch (  Exception e) {
+    log.error("{}",e);
+  }
+}

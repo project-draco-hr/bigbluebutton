@@ -1,0 +1,19 @@
+{
+  String serviceName=call.getServiceName();
+  if (log.isDebugEnabled()) {
+    log.debug("Service name " + serviceName);
+  }
+  Object service=getServiceHandler(scope,serviceName);
+  if (service == null) {
+    call.setException(new ServiceNotFoundException(serviceName));
+    call.setStatus(Call.STATUS_SERVICE_NOT_FOUND);
+    log.warn("Service not found: " + serviceName);
+    return false;
+  }
+ else {
+    if (log.isDebugEnabled()) {
+      log.debug("Service found: " + serviceName);
+    }
+  }
+  return invoke(call,service);
+}

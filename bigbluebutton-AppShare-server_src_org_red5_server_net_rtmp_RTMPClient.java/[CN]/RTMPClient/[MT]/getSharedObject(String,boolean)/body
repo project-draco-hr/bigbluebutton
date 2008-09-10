@@ -1,0 +1,10 @@
+{
+  ClientSharedObject result=sharedObjects.get(name);
+  if (result != null) {
+    if (result.isPersistentObject() != persistent)     throw new RuntimeException("Already connected to a shared object with this name, but with different persistence.");
+    return result;
+  }
+  result=new ClientSharedObject(name,persistent);
+  sharedObjects.put(name,result);
+  return result;
+}

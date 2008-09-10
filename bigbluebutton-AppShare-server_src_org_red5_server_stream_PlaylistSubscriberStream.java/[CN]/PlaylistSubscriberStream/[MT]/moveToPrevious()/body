@@ -1,0 +1,8 @@
+{
+  if (controller != null) {
+    currentItemIndex=controller.previousItem(this,currentItemIndex);
+  }
+ else {
+    currentItemIndex=defaultController.previousItem(this,currentItemIndex);
+  }
+}

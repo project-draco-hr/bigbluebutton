@@ -1,0 +1,94 @@
+{
+  final int remaining=in.remaining();
+  if (remaining < 1) {
+    rtmp.bufferDecoding(1);
+    return null;
+  }
+  final int position=in.position();
+  byte headerByte=in.get();
+  int headerValue;
+  int byteCount;
+  if ((headerByte & 0x3f) == 0) {
+    if (remaining < 2) {
+      in.position(position);
+      rtmp.bufferDecoding(2);
+      return null;
+    }
+    headerValue=((int)headerByte & 0xff) << 8 | ((int)in.get() & 0xff);
+    byteCount=2;
+  }
+ else   if ((headerByte & 0x3f) == 1) {
+    if (remaining < 3) {
+      in.position(position);
+      rtmp.bufferDecoding(3);
+      return null;
+    }
+    headerValue=((int)headerByte & 0xff) << 16 | ((int)in.get() & 0xff) << 8 | ((int)in.get() & 0xff);
+    byteCount=3;
+  }
+ else {
+    headerValue=(int)headerByte & 0xff;
+    byteCount=1;
+  }
+  final int channelId=RTMPUtils.decodeChannelId(headerValue,byteCount);
+  if (channelId < 0) {
+    throw new ProtocolException("Bad channel id: " + channelId);
+  }
+  int headerLength=RTMPUtils.getHeaderLength(RTMPUtils.decodeHeaderSize(headerValue,byteCount));
+  headerLength+=byteCount - 1;
+  if (headerLength > remaining) {
+    if (log.isDebugEnabled()) {
+      log.debug("Header too small, buffering. remaining: " + remaining);
+    }
+    in.position(position);
+    rtmp.bufferDecoding(headerLength);
+    return null;
+  }
+  in.position(position);
+  final Header header=decodeHeader(in,rtmp.getLastReadHeader(channelId));
+  if (header == null) {
+    throw new ProtocolException("Header is null, check for error");
+  }
+  rtmp.setLastReadHeader(channelId,header);
+  Packet packet=rtmp.getLastReadPacket(channelId);
+  if (packet == null) {
+    packet=new Packet(header);
+    rtmp.setLastReadPacket(channelId,packet);
+  }
+  final ByteBuffer buf=packet.getData();
+  final int addSize=(header.getTimer() == 0xffffff ? 4 : 0);
+  final int readRemaining=header.getSize() + addSize - buf.position();
+  final int chunkSize=rtmp.getReadChunkSize();
+  final int readAmount=(readRemaining > chunkSize) ? chunkSize : readRemaining;
+  if (in.remaining() < readAmount) {
+    if (log.isDebugEnabled()) {
+      log.debug("Chunk too small, buffering (" + in.remaining() + ','+ readAmount);
+    }
+    in.position(position);
+    rtmp.bufferDecoding(headerLength + readAmount);
+    return null;
+  }
+  BufferUtils.put(buf,in,readAmount);
+  if (buf.position() < header.getSize() + addSize) {
+    rtmp.continueDecoding();
+    return null;
+  }
+  if (log.isWarnEnabled()) {
+    if (buf.position() > header.getSize() + addSize) {
+      log.warn("Packet size expanded from " + (header.getSize() + addSize) + " to "+ buf.position()+ " ("+ header+ ")");
+    }
+  }
+  buf.flip();
+  try {
+    final IRTMPEvent message=decodeMessage(rtmp,packet.getHeader(),buf);
+    packet.setMessage(message);
+    if (message instanceof ChunkSize) {
+      ChunkSize chunkSizeMsg=(ChunkSize)message;
+      rtmp.setReadChunkSize(chunkSizeMsg.getSize());
+    }
+  }
+  finally {
+    rtmp.setLastReadPacket(channelId,null);
+  }
+  return packet;
+}

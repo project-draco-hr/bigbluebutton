@@ -1,0 +1,7 @@
+{
+  ensureNotDisposed();
+  UnexpandableByteBuffer ubb=allocate0(capacity,direct);
+  PooledByteBuffer buf=allocateContainer();
+  buf.init(ubb,true);
+  return buf;
+}

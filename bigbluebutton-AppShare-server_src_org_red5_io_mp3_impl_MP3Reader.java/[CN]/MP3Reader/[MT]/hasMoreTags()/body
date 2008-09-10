@@ -1,0 +1,27 @@
+{
+  MP3Header header=null;
+  while (header == null && in.remaining() > 4) {
+    try {
+      header=new MP3Header(in.getInt());
+    }
+ catch (    IOException e) {
+      log.error("MP3Reader :: hasMoreTags ::>\n",e);
+      break;
+    }
+catch (    Exception e) {
+      searchNextFrame();
+    }
+  }
+  if (header == null) {
+    return false;
+  }
+  if (header.frameSize() == 0) {
+    return false;
+  }
+  if (in.position() + header.frameSize() - 4 > in.limit()) {
+    in.position(in.limit());
+    return false;
+  }
+  in.position(in.position() - 4);
+  return true;
+}

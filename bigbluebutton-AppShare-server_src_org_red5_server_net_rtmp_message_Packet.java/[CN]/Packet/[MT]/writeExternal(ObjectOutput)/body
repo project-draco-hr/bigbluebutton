@@ -1,0 +1,4 @@
+{
+  out.writeObject(header);
+  out.writeObject(message);
+}

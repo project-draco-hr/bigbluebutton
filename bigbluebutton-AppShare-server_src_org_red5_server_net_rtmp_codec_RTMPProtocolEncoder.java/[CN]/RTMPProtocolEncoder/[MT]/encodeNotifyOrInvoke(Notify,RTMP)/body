@@ -1,0 +1,6 @@
+{
+  ByteBuffer out=ByteBuffer.allocate(1024);
+  out.setAutoExpand(true);
+  encodeNotifyOrInvoke(out,invoke,rtmp);
+  return out;
+}

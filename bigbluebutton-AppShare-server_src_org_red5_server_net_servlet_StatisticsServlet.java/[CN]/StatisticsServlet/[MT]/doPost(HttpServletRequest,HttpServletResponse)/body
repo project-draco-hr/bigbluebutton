@@ -1,0 +1,8 @@
+{
+  byte[] result=server.execute(request.getInputStream());
+  response.setContentType("text/xml");
+  response.setContentLength(result.length);
+  OutputStream out=response.getOutputStream();
+  out.write(result);
+  out.close();
+}

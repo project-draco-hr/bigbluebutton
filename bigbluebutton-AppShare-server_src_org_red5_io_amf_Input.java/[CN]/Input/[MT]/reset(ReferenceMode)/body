@@ -1,0 +1,4 @@
+{
+  this.clearReferences();
+  referenceMode=mode;
+}

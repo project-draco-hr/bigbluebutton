@@ -1,0 +1,8 @@
+{
+  if (!hasContext() && hasParent()) {
+    return parent.getContext();
+  }
+ else {
+    return context;
+  }
+}

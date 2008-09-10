@@ -1,0 +1,3 @@
+{
+  nextFilter.filterClose(session);
+}

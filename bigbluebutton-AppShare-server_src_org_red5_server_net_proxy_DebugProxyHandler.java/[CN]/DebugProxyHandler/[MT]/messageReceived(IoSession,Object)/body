@@ -1,0 +1,19 @@
+{
+  if (!log.isDebugEnabled()) {
+    return;
+  }
+  if (in instanceof ByteBuffer) {
+    log.debug("Handskake");
+    return;
+  }
+  try {
+    final Packet packet=(Packet)in;
+    final Object message=packet.getMessage();
+    final Header source=packet.getHeader();
+    log.debug("{}",source);
+    log.debug("{}",message);
+  }
+ catch (  RuntimeException e) {
+    log.error("Exception",e);
+  }
+}

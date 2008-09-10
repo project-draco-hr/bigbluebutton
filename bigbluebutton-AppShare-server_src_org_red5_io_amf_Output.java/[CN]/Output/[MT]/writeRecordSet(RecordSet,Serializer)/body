@@ -1,0 +1,12 @@
+{
+  if (checkWriteReference(recordset))   return;
+  storeReference(recordset);
+  buf.put(AMF.TYPE_CLASS_OBJECT);
+  putString("RecordSet");
+  Map<String,Object> info=recordset.serialize();
+  putString("serverInfo");
+  serializer.serialize(this,info);
+  buf.put((byte)0x00);
+  buf.put((byte)0x00);
+  buf.put(AMF.TYPE_END_OF_OBJECT);
+}

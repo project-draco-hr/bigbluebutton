@@ -1,0 +1,32 @@
+{
+  PostMethod post=new PostMethod(this.url + appendToUrl);
+  ByteBuffer resultBuffer=null;
+  ByteBuffer data=encodeInvoke(method,params);
+  post.setRequestEntity(new InputStreamRequestEntity(data.asInputStream(),data.limit(),CONTENT_TYPE));
+  try {
+    int resultCode=client.executeMethod(post);
+    if (resultCode / 100 != 2) {
+      throw new RuntimeException("Didn't receive success from remoting server.");
+    }
+    resultBuffer=ByteBuffer.allocate((int)post.getResponseContentLength());
+    ServletUtils.copy(post.getResponseBodyAsStream(),resultBuffer.asOutputStream());
+    resultBuffer.flip();
+    Object result=decodeResult(resultBuffer);
+    if (result instanceof RecordSet) {
+      ((RecordSet)result).setRemotingClient(this);
+    }
+    return result;
+  }
+ catch (  Exception ex) {
+  }
+ finally {
+    post.releaseConnection();
+    if (resultBuffer != null) {
+      resultBuffer.release();
+      resultBuffer=null;
+    }
+    data.release();
+    data=null;
+  }
+  return null;
+}

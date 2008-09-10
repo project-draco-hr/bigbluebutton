@@ -1,0 +1,10 @@
+{
+  int ref=readAMF3Integer();
+  if ((ref & 1) == 0) {
+    return (Date)getReference(ref >> 1);
+  }
+  long ms=(long)buf.getDouble();
+  Date date=new Date(ms);
+  storeReference(date);
+  return date;
+}

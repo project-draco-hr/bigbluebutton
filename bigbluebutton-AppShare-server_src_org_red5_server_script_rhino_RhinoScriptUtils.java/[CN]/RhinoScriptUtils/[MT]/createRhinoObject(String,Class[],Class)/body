@@ -1,0 +1,49 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("Script Engine Manager: " + mgr.getClass().getName());
+  }
+  ScriptEngine engine=mgr.getEngineByExtension("js");
+  if (null == engine) {
+    log.warn("Javascript is not supported in this build");
+  }
+  Bindings nameSpace=engine.getBindings(ScriptContext.ENGINE_SCOPE);
+  nameSpace.put("log",log);
+  CompiledScript wrapper=((Compilable)engine).compile(jsWrapper);
+  nameSpace.put("Wrapper",wrapper);
+  String funcName=RhinoScriptUtils.getFunctionName(scriptSource);
+  if (log.isDebugEnabled()) {
+    log.debug("New script: " + funcName);
+  }
+  nameSpace.put(ScriptEngine.FILENAME,funcName);
+  if (null != interfaces) {
+    nameSpace.put("interfaces",interfaces);
+  }
+  if (null != extendedClass) {
+    if (log.isDebugEnabled()) {
+      log.debug("Extended: " + extendedClass.getName());
+    }
+    nameSpace.put("supa",extendedClass.newInstance());
+  }
+  CompiledScript script=((Compilable)engine).compile(scriptSource);
+  Object o=null;
+  try {
+    o=script.eval();
+  }
+ catch (  Exception e) {
+    log.error("Problem evaluating script",e);
+  }
+  if (log.isDebugEnabled()) {
+    log.debug("Result of script call: " + o);
+  }
+  if (null == o) {
+    wrapper.eval();
+  }
+ else {
+    wrapper.eval();
+    o=((Invocable)engine).invokeFunction("Wrapper",new Object[]{engine.get(funcName)});
+    if (log.isDebugEnabled()) {
+      log.debug("Result of invokeFunction: " + o);
+    }
+  }
+  return Proxy.newProxyInstance(ClassUtils.getDefaultClassLoader(),interfaces,new RhinoObjectInvocationHandler(engine,o));
+}

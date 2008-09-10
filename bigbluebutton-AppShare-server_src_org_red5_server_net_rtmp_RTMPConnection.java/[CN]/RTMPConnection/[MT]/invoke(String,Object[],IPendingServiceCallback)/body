@@ -1,0 +1,7 @@
+{
+  IPendingServiceCall call=new PendingCall(method,params);
+  if (callback != null) {
+    call.registerCallback(callback);
+  }
+  invoke(call);
+}

@@ -1,0 +1,6 @@
+{
+  IMRTMPConnection mrtmpConn=mrtmpManager.lookupMRTMPConnection(conn);
+  if (mrtmpConn != null) {
+    mrtmpConn.connect(conn.getId());
+  }
+}

@@ -1,0 +1,6 @@
+{
+  if (timeout < 0) {
+    timeout=0;
+  }
+  this.timeout=timeout;
+}

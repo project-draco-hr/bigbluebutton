@@ -1,0 +1,5 @@
+{
+  out.put((byte)(0xFF & (value >> 16)));
+  out.put((byte)(0xFF & (value >> 8)));
+  out.put((byte)(0xFF & (value >> 0)));
+}

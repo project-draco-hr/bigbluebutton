@@ -1,0 +1,6 @@
+{
+  header=(Header)in.readObject();
+  message=(IRTMPEvent)in.readObject();
+  message.setHeader(header);
+  message.setTimestamp(header.getTimer());
+}

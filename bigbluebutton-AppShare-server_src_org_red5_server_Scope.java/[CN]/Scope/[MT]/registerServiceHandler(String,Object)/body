@@ -1,0 +1,4 @@
+{
+  Map<String,Object> serviceHandlers=getServiceHandlers();
+  serviceHandlers.put(name,handler);
+}

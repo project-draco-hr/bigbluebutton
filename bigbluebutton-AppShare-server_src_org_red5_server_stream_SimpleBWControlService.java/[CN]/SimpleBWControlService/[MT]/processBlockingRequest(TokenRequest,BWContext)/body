@@ -1,0 +1,29 @@
+{
+  context.timeToWait=request.timeout;
+  do {
+    if (context.bwConfig[3] >= 0) {
+      if (context.tokenRc[3] >= request.requestToken) {
+        context.tokenRc[3]-=request.requestToken;
+        request.timeout=context.timeToWait;
+        return true;
+      }
+    }
+ else {
+      if (context.tokenRc[request.channel] < 0)       return true;
+      if (context.tokenRc[request.channel] >= request.requestToken) {
+        context.tokenRc[request.channel]-=request.requestToken;
+        request.timeout=context.timeToWait;
+        return true;
+      }
+    }
+    long beforeWait=System.currentTimeMillis();
+    try {
+      context.wait(context.timeToWait);
+    }
+ catch (    InterruptedException e) {
+    }
+    context.timeToWait-=System.currentTimeMillis() - beforeWait;
+  }
+ while (context.timeToWait > 0);
+  return false;
+}

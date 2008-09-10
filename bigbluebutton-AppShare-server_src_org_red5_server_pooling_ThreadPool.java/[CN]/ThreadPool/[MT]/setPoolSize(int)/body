@@ -1,0 +1,6 @@
+{
+  this.poolSize=poolSize;
+  if (pool == null) {
+    pool=Executors.newFixedThreadPool(poolSize);
+  }
+}

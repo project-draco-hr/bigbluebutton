@@ -1,0 +1,3 @@
+{
+  this.conn=new WeakReference<IStreamCapableConnection>(conn);
+}

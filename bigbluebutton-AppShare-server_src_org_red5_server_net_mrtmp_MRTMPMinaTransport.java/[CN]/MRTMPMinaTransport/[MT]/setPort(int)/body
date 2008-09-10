@@ -1,0 +1,4 @@
+{
+  this.port=port;
+  JMXAgent.updateMBeanAttribute(oName,"port",port);
+}

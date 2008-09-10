@@ -1,0 +1,10 @@
+{
+  if (method.equals("receiveNewMessage")) {
+    if (buffer.size() == chatlogSize) {
+      buffer.removeFirst();
+    }
+    int color=Integer.valueOf(params.get(2).toString()).intValue();
+    String hexColor=Integer.toHexString(color);
+    buffer.addLast("<font color=\"#" + hexColor + "\"><b>["+ (String)params.get(0)+ " @ "+ new Time(System.currentTimeMillis())+ "]</b> "+ (String)params.get(1)+ "</font>"+ "\n");
+  }
+}

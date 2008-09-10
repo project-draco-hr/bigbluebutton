@@ -1,0 +1,4 @@
+{
+  this.result=result;
+  setStatus(result == null ? STATUS_SUCCESS_NULL : STATUS_SUCCESS_RESULT);
+}

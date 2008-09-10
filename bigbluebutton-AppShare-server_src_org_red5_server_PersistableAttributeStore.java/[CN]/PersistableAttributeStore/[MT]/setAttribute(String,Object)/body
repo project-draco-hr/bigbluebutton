@@ -1,0 +1,7 @@
+{
+  boolean result=super.setAttribute(name,value);
+  if (result && name != null && !name.startsWith(IPersistable.TRANSIENT_PREFIX)) {
+    modified();
+  }
+  return result;
+}

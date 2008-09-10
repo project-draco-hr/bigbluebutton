@@ -1,0 +1,6 @@
+{
+  for (  IConnection c : getConnections()) {
+    unregister(c);
+  }
+  super.register(conn);
+}

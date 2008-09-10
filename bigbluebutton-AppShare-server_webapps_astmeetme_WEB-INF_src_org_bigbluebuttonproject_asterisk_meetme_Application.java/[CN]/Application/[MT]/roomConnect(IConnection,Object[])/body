@@ -1,0 +1,13 @@
+{
+  super.roomConnect(conn,params);
+  log.info("MeetMe::roomConnect " + conn.getClient().getId());
+  if (!hasSharedObject(conn.getScope(),"meetMeUsersSO")) {
+    createSharedObject(conn.getScope(),"meetMeUsersSO",false);
+    ISharedObject so=getSharedObject(conn.getScope(),"meetMeUsersSO",false);
+    roomListener.addRoom(conn.getScope().getName(),so);
+  }
+ else {
+    ISharedObject so=getSharedObject(conn.getScope(),"meetMeUsersSO",false);
+  }
+  return true;
+}

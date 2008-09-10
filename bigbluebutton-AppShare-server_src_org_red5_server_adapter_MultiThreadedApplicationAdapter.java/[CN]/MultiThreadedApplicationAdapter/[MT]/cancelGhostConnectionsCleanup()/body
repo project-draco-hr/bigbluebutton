@@ -1,0 +1,5 @@
+{
+  if (ghostCleanupJobName != null) {
+    schedulingService.removeScheduledJob(ghostCleanupJobName);
+  }
+}

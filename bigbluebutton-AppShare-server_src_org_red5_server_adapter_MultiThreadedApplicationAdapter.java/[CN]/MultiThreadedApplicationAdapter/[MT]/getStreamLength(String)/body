@@ -1,0 +1,24 @@
+{
+  IProviderService provider=(IProviderService)getScopeService(scope,IProviderService.class,ProviderService.class);
+  File file=provider.getVODProviderFile(scope,name);
+  if (file == null) {
+    return 0;
+  }
+  double duration=0;
+  IStreamableFileFactory factory=(IStreamableFileFactory)ScopeUtils.getScopeService(scope,IStreamableFileFactory.class,StreamableFileFactory.class);
+  IStreamableFileService service=factory.getService(file);
+  if (service == null) {
+    log.error("No service found for {}",file.getAbsolutePath());
+    return 0;
+  }
+  try {
+    IStreamableFile streamFile=service.getStreamableFile(file);
+    ITagReader reader=streamFile.getReader();
+    duration=(double)reader.getDuration() / 1000;
+    reader.close();
+  }
+ catch (  IOException e) {
+    log.error("error read stream file {}. {}",file.getAbsolutePath(),e);
+  }
+  return duration;
+}

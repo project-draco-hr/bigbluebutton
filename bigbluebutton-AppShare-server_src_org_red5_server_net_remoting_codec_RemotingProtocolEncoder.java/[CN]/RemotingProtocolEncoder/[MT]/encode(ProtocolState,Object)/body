@@ -1,0 +1,86 @@
+{
+  RemotingPacket resp=(RemotingPacket)message;
+  ByteBuffer buf=ByteBuffer.allocate(1024);
+  buf.setAutoExpand(true);
+  Output output;
+  if (resp.getEncoding() == Encoding.AMF0) {
+    buf.putShort((short)0);
+  }
+ else {
+    buf.putShort((short)3);
+  }
+  IRemotingConnection conn=(IRemotingConnection)Red5.getConnectionLocal();
+  Collection<IRemotingHeader> headers=conn.getHeaders();
+synchronized (headers) {
+    buf.putShort((short)headers.size());
+    if (resp.getEncoding() == Encoding.AMF0) {
+      output=new Output(buf);
+    }
+ else {
+      output=new org.red5.io.amf3.Output(buf);
+    }
+    for (    IRemotingHeader header : headers) {
+      Output.putString(buf,IRemotingHeader.PERSISTENT_HEADER);
+      output.writeBoolean(false);
+      Map<String,Object> param=new HashMap<String,Object>();
+      param.put("name",header.getName());
+      param.put("mustUnderstand",header.getMustUnderstand() ? Boolean.TRUE : Boolean.FALSE);
+      param.put("data",header.getName());
+      serializer.serialize(output,param);
+    }
+    headers.clear();
+  }
+  buf.putShort((short)resp.getCalls().size());
+  for (  RemotingCall call : resp.getCalls()) {
+    if (log.isDebugEnabled()) {
+      log.debug("Call");
+    }
+    Output.putString(buf,call.getClientResponse());
+    if (!call.isMessaging) {
+      Output.putString(buf,"null");
+    }
+ else {
+      Output.putString(buf,"");
+    }
+    buf.putInt(-1);
+    if (log.isDebugEnabled()) {
+      log.info("result:" + call.getResult());
+    }
+    if (call.isAMF3) {
+      output=new org.red5.io.amf3.Output(buf);
+    }
+ else {
+      output=new Output(buf);
+    }
+    Object result=call.getClientResult();
+    if (!call.isSuccess()) {
+      if (call.isMessaging && !(result instanceof ErrorMessage)) {
+        AbstractMessage request=(AbstractMessage)call.getArguments()[0];
+        if (result instanceof ServiceNotFoundException) {
+          ServiceNotFoundException ex=(ServiceNotFoundException)result;
+          if (FlexMessagingService.SERVICE_NAME.equals(ex.getServiceName())) {
+            result=FlexMessagingService.returnError(request,"serviceNotAvailable","Flex messaging not activated",ex.getMessage());
+          }
+ else {
+            result=FlexMessagingService.returnError(request,"serviceNotAvailable","Flex messaging not activated",ex.getMessage());
+          }
+        }
+ else         if (result instanceof Throwable) {
+          result=FlexMessagingService.returnError(request,"Server.Invoke.Error",((Throwable)result).getMessage(),(Throwable)result);
+        }
+ else {
+          result=FlexMessagingService.returnError(request,"Server.Invoke.Error",result.toString(),"");
+        }
+      }
+ else       if (!call.isMessaging) {
+        result=generateErrorResult(StatusCodes.NC_CALL_FAILED,call.getException());
+      }
+    }
+    serializer.serialize(output,result);
+  }
+  buf.flip();
+  if (log.isDebugEnabled()) {
+    log.debug(">>" + buf.getHexDump());
+  }
+  return buf;
+}

@@ -1,0 +1,26 @@
+{
+  if (value < 0) {
+    buf.put((byte)(0x80 | ((value >> 22) & 0xff)));
+    buf.put((byte)(0x80 | ((value >> 15) & 0x7f)));
+    buf.put((byte)(0x80 | ((value >> 8) & 0x7f)));
+    buf.put((byte)(value & 0xff));
+  }
+ else   if (value <= 0x7f) {
+    buf.put((byte)value);
+  }
+ else   if (value <= 0x3fff) {
+    buf.put((byte)(0x80 | ((value >> 7) & 0x7f)));
+    buf.put((byte)(value & 0x7f));
+  }
+ else   if (value <= 0x1fffff) {
+    buf.put((byte)(0x80 | ((value >> 14) & 0x7f)));
+    buf.put((byte)(0x80 | ((value >> 7) & 0x7f)));
+    buf.put((byte)(value & 0x7f));
+  }
+ else {
+    buf.put((byte)(0x80 | ((value >> 22) & 0xff)));
+    buf.put((byte)(0x80 | ((value >> 15) & 0x7f)));
+    buf.put((byte)(0x80 | ((value >> 8) & 0x7f)));
+    buf.put((byte)(value & 0xff));
+  }
+}

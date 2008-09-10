@@ -1,0 +1,12 @@
+{
+  if (hasParent()) {
+    if (!parent.hasChildScope(name)) {
+      if (!parent.addChildScope(this)) {
+        return;
+      }
+    }
+  }
+  if (autoStart) {
+    start();
+  }
+}

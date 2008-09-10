@@ -1,0 +1,8 @@
+{
+  try {
+    CacheManager.getInstance().shutdown();
+  }
+ catch (  Exception e) {
+    log.warn("Error on cache shutdown",e);
+  }
+}

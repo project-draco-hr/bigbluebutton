@@ -1,0 +1,22 @@
+{
+  logger.info("Loading JBoss service");
+  System.setProperty("red5.deployment.type","jboss");
+  logger.info("RED5 Server (http://www.osflash.org/red5)");
+  long time=System.currentTimeMillis();
+  try {
+    String root=System.getProperty("red5.root");
+    logger.info("Red5 root: " + root);
+    String configRoot=System.getProperty("red5.config_root");
+    logger.info("Red5 config root: " + configRoot);
+    String classpath=System.getProperty("java.class.path");
+    System.setProperty("java.class.path",classpath + File.pathSeparatorChar + root+ File.pathSeparatorChar+ configRoot);
+    logger.debug("Updated classpath: " + System.getProperty("java.class.path"));
+    ClassPathXmlApplicationContext appCtx=new ClassPathXmlApplicationContext(configRoot + "beanRefContext.xml");
+    this.setApplicationContext(appCtx);
+  }
+ catch (  Exception e) {
+    logger.error("Error during startup",e);
+  }
+  long startupIn=System.currentTimeMillis() - time;
+  logger.info("Startup done in: " + startupIn + " ms");
+}

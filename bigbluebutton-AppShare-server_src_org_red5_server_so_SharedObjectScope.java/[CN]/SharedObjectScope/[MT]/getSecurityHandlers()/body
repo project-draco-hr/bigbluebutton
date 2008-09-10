@@ -1,0 +1,5 @@
+{
+  ISharedObjectSecurityService security=(ISharedObjectSecurityService)ScopeUtils.getScopeService(getParent(),ISharedObjectSecurityService.class);
+  if (security == null)   return null;
+  return security.getSharedObjectSecurity();
+}

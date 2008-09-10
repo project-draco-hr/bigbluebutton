@@ -1,0 +1,11 @@
+{
+  Map<String,Object> serverInfo=new HashMap<String,Object>();
+  serverInfo.put("totalCount",totalCount);
+  serverInfo.put("cursor",cursor);
+  serverInfo.put("serviceName",serviceName);
+  serverInfo.put("columnNames",columns);
+  serverInfo.put("version",version);
+  serverInfo.put("id",id);
+  serverInfo.put("initialData",data);
+  return serverInfo;
+}

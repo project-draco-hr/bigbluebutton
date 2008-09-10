@@ -1,0 +1,4 @@
+IScope parent
+String name
+boolean persistent
+IPersistenceStore store

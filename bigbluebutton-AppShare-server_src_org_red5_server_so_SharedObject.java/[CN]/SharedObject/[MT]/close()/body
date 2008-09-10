@@ -1,0 +1,6 @@
+{
+  super.removeAttributes();
+  listeners.clear();
+  syncEvents.clear();
+  ownerMessage.getEvents().clear();
+}

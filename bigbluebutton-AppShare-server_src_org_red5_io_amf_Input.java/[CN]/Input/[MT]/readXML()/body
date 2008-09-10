@@ -1,0 +1,12 @@
+{
+  final String xmlString=readString();
+  Document doc=null;
+  try {
+    doc=XMLUtils.stringToDoc(xmlString);
+  }
+ catch (  IOException ioex) {
+    log.error("IOException converting xml to dom",ioex);
+  }
+  storeReference(doc);
+  return doc;
+}

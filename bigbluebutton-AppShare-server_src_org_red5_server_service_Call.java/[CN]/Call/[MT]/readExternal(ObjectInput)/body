@@ -1,0 +1,7 @@
+{
+  serviceName=(String)in.readObject();
+  serviceMethodName=(String)in.readObject();
+  arguments=(Object[])in.readObject();
+  status=in.readByte();
+  exception=(Exception)in.readObject();
+}

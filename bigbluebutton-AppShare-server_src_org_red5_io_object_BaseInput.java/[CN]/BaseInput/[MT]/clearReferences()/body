@@ -1,0 +1,4 @@
+{
+  refMap.clear();
+  refId=0;
+}

@@ -1,0 +1,5 @@
+{
+  this.code=code;
+  this.level=level;
+  this.description=description;
+}

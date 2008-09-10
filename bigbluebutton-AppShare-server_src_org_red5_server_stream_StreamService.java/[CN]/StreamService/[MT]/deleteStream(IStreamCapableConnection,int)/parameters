@@ -1,0 +1,2 @@
+IStreamCapableConnection conn
+int streamId

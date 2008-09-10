@@ -1,0 +1,6 @@
+{
+  if (!(other instanceof UpdateEntry)) {
+    return false;
+  }
+  return (object.equals(((UpdateEntry)other).object) && store.equals(((UpdateEntry)other).store));
+}

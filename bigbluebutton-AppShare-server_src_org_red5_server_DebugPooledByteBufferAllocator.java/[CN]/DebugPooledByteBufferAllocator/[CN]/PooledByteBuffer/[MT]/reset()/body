@@ -1,0 +1,4 @@
+{
+  buf.buf().reset();
+  return this;
+}

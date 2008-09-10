@@ -1,0 +1,48 @@
+{
+  MRTMPPacket mrtmpPacket=(MRTMPPacket)message;
+  int clientId=mrtmpPacket.getHeader().getClientId();
+  RTMPConnection conn=rtmpConnManager.getConnection(clientId);
+  if (conn == null) {
+    log.debug("Client " + clientId + " is already closed.");
+    return;
+  }
+  RTMP rtmpState=conn.getState();
+switch (mrtmpPacket.getHeader().getType()) {
+case MRTMPPacket.CLOSE:
+synchronized (rtmpState) {
+      rtmpState.setState(RTMP.STATE_EDGE_DISCONNECTING);
+    }
+  conn.close();
+break;
+case MRTMPPacket.RTMP:
+RTMPHeader rtmpHeader=(RTMPHeader)mrtmpPacket.getHeader();
+RTMPBody rtmpBody=(RTMPBody)mrtmpPacket.getBody();
+boolean toDisconnect=false;
+synchronized (rtmpState) {
+if (rtmpState.getState() == RTMP.STATE_ORIGIN_CONNECT_FORWARDED && rtmpHeader.getRtmpType() == TYPE_INVOKE) {
+Invoke invoke=(Invoke)rtmpBody.getRtmpPacket().getMessage();
+if ("connect".equals(invoke.getCall().getServiceMethodName())) {
+if (invoke.getCall().getStatus() == Call.STATUS_SUCCESS_RESULT) {
+rtmpState.setState(RTMP.STATE_CONNECTED);
+}
+ else {
+toDisconnect=true;
+}
+}
+}
+}
+log.debug("Forward packet to client: {}",rtmpBody.getRtmpPacket().getMessage());
+conn.write(rtmpBody.getRtmpPacket());
+if (toDisconnect) {
+conn.close();
+}
+synchronized (rtmpState) {
+if (rtmpState.getState() == RTMP.STATE_CONNECTED) {
+conn.startRoundTripMeasurement();
+}
+}
+break;
+default :
+break;
+}
+}

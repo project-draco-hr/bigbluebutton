@@ -1,0 +1,7 @@
+{
+  out.writeObject(serviceName);
+  out.writeObject(serviceMethodName);
+  out.writeObject(arguments);
+  out.writeByte(status);
+  out.writeObject(exception);
+}

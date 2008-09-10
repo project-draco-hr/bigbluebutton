@@ -1,0 +1,11 @@
+{
+  if (hasContext()) {
+    return "";
+  }
+ else   if (hasParent()) {
+    return parent.getContextPath() + '/' + name;
+  }
+ else {
+    return null;
+  }
+}

@@ -1,0 +1,20 @@
+{
+  if (scope instanceof IScope) {
+    if (hasHandler()) {
+      getHandler().stop((IScope)scope);
+    }
+    subscopeStats.decrement();
+  }
+  children.remove(scope.getType() + SEPARATOR + scope.getName());
+  if (hasHandler()) {
+    log.debug("Remove child scope");
+    getHandler().removeChildScope(scope);
+  }
+  scope.setStore(null);
+  if (scope instanceof IScope) {
+    final IServer server=getServer();
+    if (server instanceof Server) {
+      ((Server)server).notifyScopeRemoved((IScope)scope);
+    }
+  }
+}

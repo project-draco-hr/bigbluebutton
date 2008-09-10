@@ -1,0 +1,7 @@
+{
+  super.addEventListener(listener);
+  so.register(listener);
+  for (  ISharedObjectListener soListener : serverListeners) {
+    soListener.onSharedObjectConnect(this);
+  }
+}

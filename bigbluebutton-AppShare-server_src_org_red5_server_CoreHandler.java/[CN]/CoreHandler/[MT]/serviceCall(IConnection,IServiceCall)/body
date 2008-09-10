@@ -1,0 +1,10 @@
+{
+  final IContext context=conn.getScope().getContext();
+  if (call.getServiceName() != null) {
+    context.getServiceInvoker().invoke(call,context);
+  }
+ else {
+    context.getServiceInvoker().invoke(call,conn.getScope().getHandler());
+  }
+  return true;
+}

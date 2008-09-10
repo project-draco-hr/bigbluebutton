@@ -1,0 +1,55 @@
+{
+  final List<Object> result=new LinkedList<Object>();
+  try {
+    while (true) {
+      final int remaining=buffer.remaining();
+      if (state.canStartDecoding(remaining)) {
+        state.startDecoding();
+      }
+ else {
+        break;
+      }
+      final Object decodedObject=decode(state,buffer);
+      if (state.hasDecodedObject()) {
+        result.add(decodedObject);
+      }
+ else       if (state.canContinueDecoding()) {
+        continue;
+      }
+ else {
+        break;
+      }
+      if (!buffer.hasRemaining()) {
+        break;
+      }
+    }
+  }
+ catch (  HandshakeFailedException hfe) {
+    buffer.clear();
+    IConnection conn=Red5.getConnectionLocal();
+    if (conn != null) {
+      conn.close();
+    }
+ else {
+      log.error("Handshake validation failed but no current connection!?");
+    }
+    return null;
+  }
+catch (  Exception ex) {
+    log.error("Error decoding buffer",ex);
+    buffer.clear();
+    IConnection conn=Red5.getConnectionLocal();
+    if (conn != null) {
+      log.warn("Closing connection because decoding failed: " + conn.toString());
+      conn.close();
+    }
+ else {
+      log.error("Decoding buffer failed but no current connection!?");
+    }
+    return null;
+  }
+ finally {
+    buffer.compact();
+  }
+  return result;
+}

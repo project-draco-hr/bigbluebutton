@@ -1,0 +1,7 @@
+{
+  if (executor == null) {
+    throw new NullPointerException("executor");
+  }
+  logger.debug("Executor set to: " + executor.getClass().getName());
+  this.executor=executor;
+}

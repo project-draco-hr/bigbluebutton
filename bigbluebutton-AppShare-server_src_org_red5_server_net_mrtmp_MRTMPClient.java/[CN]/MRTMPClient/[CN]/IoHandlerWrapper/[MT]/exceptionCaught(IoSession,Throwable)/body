@@ -1,0 +1,4 @@
+{
+  wrapped.exceptionCaught(session,cause);
+  MRTMPClient.this.reconnect();
+}

@@ -1,0 +1,3 @@
+{
+  this((ResourcePatternResolver)ScopeUtils.findApplication(scope));
+}

@@ -1,0 +1,5 @@
+{
+  if (!(context instanceof BWContext))   return null;
+  BWContext c=(BWContext)context;
+  return c.buckets[0];
+}

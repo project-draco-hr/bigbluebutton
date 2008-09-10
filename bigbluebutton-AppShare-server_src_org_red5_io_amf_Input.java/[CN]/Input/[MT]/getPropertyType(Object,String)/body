@@ -1,0 +1,22 @@
+{
+  try {
+    if (instance != null) {
+      Field field=instance.getClass().getField(propertyName);
+      return field.getType();
+    }
+ else {
+    }
+  }
+ catch (  NoSuchFieldException e1) {
+    try {
+      BeanUtilsBean beanUtilsBean=BeanUtilsBean.getInstance();
+      PropertyUtilsBean propertyUtils=beanUtilsBean.getPropertyUtils();
+      return propertyUtils.getPropertyType(instance,propertyName);
+    }
+ catch (    Exception e2) {
+    }
+  }
+catch (  Exception e) {
+  }
+  return Object.class;
+}

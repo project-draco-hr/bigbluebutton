@@ -1,0 +1,31 @@
+{
+  if (scope.getStore() == null) {
+    try {
+      if (scope instanceof Scope) {
+        ((Scope)scope).setPersistenceClass(this.persistenceClass);
+      }
+    }
+ catch (    Exception error) {
+      log.error("Could not set persistence class. {}",error);
+    }
+  }
+  if (hasHandler() && !getHandler().addChildScope(scope)) {
+    log.debug("Failed to add child scope: {} to {}",scope,this);
+    return false;
+  }
+  if (scope instanceof IScope) {
+    if (hasHandler() && !getHandler().start((IScope)scope)) {
+      log.debug("Failed to start child scope: {} in {}",scope,this);
+      return false;
+    }
+  }
+  if (scope instanceof IScope) {
+    final IServer server=getServer();
+    if (server instanceof Server) {
+      ((Server)server).notifyScopeCreated((IScope)scope);
+    }
+  }
+  log.debug("Add child scope: {} to {}",scope,this);
+  children.put(scope.getType() + SEPARATOR + scope.getName(),scope);
+  return true;
+}

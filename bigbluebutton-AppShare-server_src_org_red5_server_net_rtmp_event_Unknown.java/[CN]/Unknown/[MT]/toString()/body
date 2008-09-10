@@ -1,0 +1,7 @@
+{
+  final ByteBuffer buf=getData();
+  StringBuffer sb=new StringBuffer();
+  sb.append("Size: " + buf.remaining());
+  sb.append("Data:\n\n" + HexDump.formatHexDump(buf.getHexDump()));
+  return sb.toString();
+}

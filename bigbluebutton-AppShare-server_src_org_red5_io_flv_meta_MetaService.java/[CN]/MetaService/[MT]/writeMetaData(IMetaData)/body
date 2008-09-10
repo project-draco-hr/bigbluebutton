@@ -1,0 +1,6 @@
+{
+  IMetaCue meta=(MetaCue)metaData;
+  Output out=new Output(ByteBuffer.allocate(1000));
+  serializer.serialize(out,"onCuePoint");
+  serializer.serialize(out,meta);
+}

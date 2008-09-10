@@ -1,0 +1,26 @@
+{
+switch (ping.getValue1()) {
+case Ping.CLIENT_BUFFER:
+    if (ping.getValue2() != 0) {
+      IClientStream stream=conn.getStreamById(ping.getValue2());
+      int buffer=ping.getValue3();
+      if (stream != null) {
+        stream.setClientBufferDuration(buffer);
+        log.info("Setting client buffer on stream: {}",buffer);
+      }
+ else {
+        conn.rememberStreamBufferDuration(ping.getValue2(),buffer);
+        log.info("Remembering client buffer on stream: {}",buffer);
+      }
+    }
+ else {
+      log.warn("Unhandled ping: {}",ping);
+    }
+  break;
+case Ping.PONG_SERVER:
+conn.pingReceived(ping);
+break;
+default :
+log.warn("Unhandled ping: {}",ping);
+}
+}

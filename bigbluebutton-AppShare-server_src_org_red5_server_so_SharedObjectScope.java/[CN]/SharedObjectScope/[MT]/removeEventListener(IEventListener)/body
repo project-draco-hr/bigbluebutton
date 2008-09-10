@@ -1,0 +1,10 @@
+{
+  so.unregister(listener);
+  super.removeEventListener(listener);
+  if (!so.isPersistentObject() && (so.getListeners() == null || so.getListeners().isEmpty())) {
+    getParent().removeChildScope(this);
+  }
+  for (  ISharedObjectListener soListener : serverListeners) {
+    soListener.onSharedObjectDisconnect(this);
+  }
+}

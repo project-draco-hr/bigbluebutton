@@ -1,0 +1,4 @@
+{
+  buf.buf().mark();
+  return this;
+}

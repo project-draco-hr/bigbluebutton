@@ -1,0 +1,7 @@
+{
+  super.readExternal(in);
+  value1=in.readShort();
+  value2=in.readInt();
+  value3=in.readInt();
+  value4=in.readInt();
+}

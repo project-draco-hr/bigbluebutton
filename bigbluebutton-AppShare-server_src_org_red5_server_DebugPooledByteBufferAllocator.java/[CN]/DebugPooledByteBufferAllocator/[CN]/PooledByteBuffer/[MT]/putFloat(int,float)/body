@@ -1,0 +1,5 @@
+{
+  autoExpand(index,4);
+  buf.buf().putFloat(index,value);
+  return this;
+}

@@ -1,0 +1,11 @@
+{
+  IStreamAwareScopeHandler handler=getStreamAwareHandler();
+  if (handler != null) {
+    try {
+      handler.streamBroadcastClose(this);
+    }
+ catch (    Throwable t) {
+      log.error("error notify streamBroadcastStop",t);
+    }
+  }
+}

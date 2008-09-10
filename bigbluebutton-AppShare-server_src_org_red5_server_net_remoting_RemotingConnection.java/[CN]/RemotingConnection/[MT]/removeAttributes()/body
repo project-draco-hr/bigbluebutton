@@ -1,0 +1,8 @@
+{
+synchronized (session) {
+    final Enumeration<String> names=session.getAttributeNames();
+    while (names.hasMoreElements()) {
+      session.removeAttribute(names.nextElement());
+    }
+  }
+}

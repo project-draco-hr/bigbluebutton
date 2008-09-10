@@ -1,0 +1,10 @@
+{
+  MRTMPPacket mrtmpPacket=new MRTMPPacket();
+  MRTMPPacket.Header header=new MRTMPPacket.Header();
+  MRTMPPacket.Body body=new MRTMPPacket.Body();
+  mrtmpPacket.setHeader(header);
+  mrtmpPacket.setBody(body);
+  header.setType(MRTMPPacket.CLOSE);
+  header.setClientId(clientId);
+  ioSession.write(mrtmpPacket);
+}

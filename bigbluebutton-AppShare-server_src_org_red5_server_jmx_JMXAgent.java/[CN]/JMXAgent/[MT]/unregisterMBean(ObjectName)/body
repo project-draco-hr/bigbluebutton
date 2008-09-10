@@ -1,0 +1,20 @@
+{
+  boolean unregistered=false;
+  if (null != oName) {
+    try {
+      if (mbs.isRegistered(oName)) {
+        log.debug("Mbean is registered");
+        mbs.unregisterMBean(oName);
+        unregistered=!mbs.isRegistered(oName);
+      }
+ else {
+        log.debug("Mbean is not currently registered");
+      }
+    }
+ catch (    Exception e) {
+      log.warn("Exception unregistering mbean {}",e);
+    }
+  }
+  log.debug("leaving unregisterMBean...");
+  return unregistered;
+}

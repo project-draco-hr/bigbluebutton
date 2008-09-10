@@ -1,0 +1,7 @@
+{
+  log.debug("read map");
+  Map<String,Object> result=new ObjectMap<String,Object>();
+  readKeyValues(result,deserializer);
+  storeReference(result);
+  return result;
+}

@@ -1,0 +1,7 @@
+{
+  Collection<String> result=(Collection<String>)conn.getAttribute(PERMISSIONS);
+  if (result == null) {
+    result=Collections.EMPTY_SET;
+  }
+  return result;
+}

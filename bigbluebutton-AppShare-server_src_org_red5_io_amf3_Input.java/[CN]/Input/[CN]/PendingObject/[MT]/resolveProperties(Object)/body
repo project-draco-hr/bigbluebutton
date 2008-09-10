@@ -1,0 +1,17 @@
+{
+  if (properties == null)   return;
+  for (  PendingProperty prop : properties) {
+    try {
+      try {
+        prop.klass.getField(prop.name).set(prop.obj,result);
+      }
+ catch (      Exception e) {
+        BeanUtils.setProperty(prop.obj,prop.name,result);
+      }
+    }
+ catch (    Exception e) {
+      log.error("Error mapping property: {} ({})",prop.name,result);
+    }
+  }
+  properties.clear();
+}

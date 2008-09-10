@@ -1,0 +1,3 @@
+{
+  clientToConnMap.remove(rtmpConn);
+}

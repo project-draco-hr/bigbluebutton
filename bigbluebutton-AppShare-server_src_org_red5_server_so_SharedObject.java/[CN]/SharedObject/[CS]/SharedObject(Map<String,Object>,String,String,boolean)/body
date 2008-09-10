@@ -1,0 +1,10 @@
+{
+  super();
+  this.name=name;
+  this.path=path;
+  persistentSO=false;
+  this.persistentSO=persistent;
+  ownerMessage=new SharedObjectMessage(null,name,0,persistent);
+  creationTime=System.currentTimeMillis();
+  super.setAttributes(data);
+}

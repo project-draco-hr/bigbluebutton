@@ -1,0 +1,12 @@
+{
+  if (name == null) {
+    return false;
+  }
+synchronized (session) {
+    if (!hasAttribute(name)) {
+      return false;
+    }
+    session.removeAttribute(name);
+  }
+  return true;
+}

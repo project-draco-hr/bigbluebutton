@@ -1,0 +1,4 @@
+{
+  log.debug("RTMPT setWrapper");
+  context.addChild(wrapper);
+}

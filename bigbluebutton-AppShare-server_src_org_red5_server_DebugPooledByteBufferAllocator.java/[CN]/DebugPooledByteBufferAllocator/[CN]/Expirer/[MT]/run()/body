@@ -1,0 +1,30 @@
+{
+  while (!timeToStop) {
+    try {
+      Thread.sleep(1000);
+    }
+ catch (    InterruptedException e) {
+      log.debug("InterruptedEx");
+    }
+    long timeout=getTimeoutMillis();
+    if (timeout <= 0L) {
+      continue;
+    }
+    long expirationTime=System.currentTimeMillis() - timeout;
+synchronized (containerStack) {
+      containerStack.expireBefore(expirationTime);
+    }
+    for (int i=directBufferStacks.length - 1; i >= 0; i--) {
+      ExpiringStack stack=directBufferStacks[i];
+synchronized (stack) {
+        stack.expireBefore(expirationTime);
+      }
+    }
+    for (int i=heapBufferStacks.length - 1; i >= 0; i--) {
+      ExpiringStack stack=heapBufferStacks[i];
+synchronized (stack) {
+        stack.expireBefore(expirationTime);
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  KeyFrameMeta meta=analyzeKeyFrames();
+  if (meta == null)   return -1;
+  long old=getCurrentPosition();
+  setCurrentPosition(firstAudioTag);
+  readTagHeader();
+  fillBuffer(1);
+  byte frametype=in.get();
+  setCurrentPosition(old);
+  return frametype & MASK_SOUND_FORMAT;
+}

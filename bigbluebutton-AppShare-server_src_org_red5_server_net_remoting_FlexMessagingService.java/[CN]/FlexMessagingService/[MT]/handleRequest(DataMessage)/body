@@ -1,0 +1,28 @@
+{
+  setClientId(msg);
+  SequencedMessage result=new SequencedMessage();
+  result.clientId=msg.clientId;
+  result.destination=msg.destination;
+  result.correlationId=msg.messageId;
+switch (msg.operation) {
+case Constants.DATA_OPERATION_SET:
+    result.body=new Object[]{msg.body};
+  result.sequenceId=0;
+result.sequenceSize=1;
+break;
+case Constants.DATA_OPERATION_UPDATE:
+for (DataMessage event : (List<DataMessage>)msg.body) {
+evaluateDataUpdate(msg,event);
+}
+AcknowledgeMessage res=new AcknowledgeMessage();
+res.clientId=msg.clientId;
+res.destination=msg.destination;
+res.correlationId=msg.messageId;
+res.body=msg.body;
+return res;
+default :
+log.error("Unknown DataMessage request: " + msg);
+return returnError(msg,"notImplemented","Don't know how to handle " + msg,"Don't know how to handle " + msg);
+}
+return result;
+}

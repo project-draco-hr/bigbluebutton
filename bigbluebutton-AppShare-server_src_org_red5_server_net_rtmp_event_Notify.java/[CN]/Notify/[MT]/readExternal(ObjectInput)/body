@@ -1,0 +1,12 @@
+{
+  super.readExternal(in);
+  call=(IServiceCall)in.readObject();
+  connectionParams=(Map)in.readObject();
+  invokeId=in.readInt();
+  byte[] byteBuf=(byte[])in.readObject();
+  if (byteBuf != null) {
+    data=ByteBuffer.allocate(0);
+    data.setAutoExpand(true);
+    SerializeUtils.ByteArrayToByteBuffer(byteBuf,data);
+  }
+}

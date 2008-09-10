@@ -1,0 +1,11 @@
+{
+  boolean status=false;
+synchronized (scope) {
+    IBasicScope basicScope=scope.getBasicScope(IBroadcastScope.TYPE,name);
+    if (basicScope instanceof IBroadcastScope) {
+      scope.removeChildScope(basicScope);
+      status=true;
+    }
+  }
+  return status;
+}

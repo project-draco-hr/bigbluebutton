@@ -1,0 +1,11 @@
+{
+  if (handler != null) {
+    return handler;
+  }
+ else   if (hasParent()) {
+    return getParent().getHandler();
+  }
+ else {
+    return null;
+  }
+}

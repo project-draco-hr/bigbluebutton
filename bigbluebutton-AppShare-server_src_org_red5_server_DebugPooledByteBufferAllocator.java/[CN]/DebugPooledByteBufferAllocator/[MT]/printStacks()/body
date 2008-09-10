@@ -1,0 +1,11 @@
+{
+synchronized (stacks) {
+    for (    Entry<UnexpandableByteBuffer,StackTraceElement[]> entry : stacks.entrySet()) {
+      System.err.println("Stack for buffer " + entry.getKey());
+      StackTraceElement[] stack=entry.getValue();
+      for (      StackTraceElement element : stack) {
+        System.err.println("  " + element);
+      }
+    }
+  }
+}

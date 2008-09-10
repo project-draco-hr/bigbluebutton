@@ -1,0 +1,3 @@
+{
+  return type >= CUSTOM_AMF_MASK;
+}

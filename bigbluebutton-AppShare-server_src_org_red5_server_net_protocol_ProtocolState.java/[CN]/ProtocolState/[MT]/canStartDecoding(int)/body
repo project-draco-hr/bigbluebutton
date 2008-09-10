@@ -1,0 +1,8 @@
+{
+  if (remaining >= decoderBufferAmount) {
+    return true;
+  }
+ else {
+    return false;
+  }
+}

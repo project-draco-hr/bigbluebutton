@@ -1,0 +1,56 @@
+{
+  setupClassLoader();
+  Input amf3Input=new org.red5.io.amf3.Input(in);
+  while (in.hasRemaining()) {
+    final ISharedObjectEvent.Type type=SharedObjectTypeMapping.toType(in.get());
+    if (type == null) {
+      in.skip(in.remaining());
+      return;
+    }
+    String key=null;
+    Object value=null;
+    final int length=in.getInt();
+    if (type == ISharedObjectEvent.Type.CLIENT_STATUS) {
+      key=input.getString();
+      value=input.getString();
+    }
+ else     if (type == ISharedObjectEvent.Type.CLIENT_UPDATE_DATA) {
+      key=null;
+      final Map<String,Object> map=new HashMap<String,Object>();
+      final int start=in.position();
+      while (in.position() - start < length) {
+        String tmp=input.getString();
+        map.put(tmp,deserializer.deserialize(input,Object.class));
+      }
+      value=map;
+    }
+ else     if (type != ISharedObjectEvent.Type.SERVER_SEND_MESSAGE && type != ISharedObjectEvent.Type.CLIENT_SEND_MESSAGE) {
+      if (length > 0) {
+        key=input.getString();
+        if (length > key.length() + 2) {
+          byte objType=in.get();
+          in.position(in.position() - 1);
+          Input propertyInput;
+          if (objType == AMF.TYPE_AMF3_OBJECT && !(input instanceof org.red5.io.amf3.Input)) {
+            propertyInput=amf3Input;
+          }
+ else {
+            propertyInput=input;
+          }
+          value=deserializer.deserialize(propertyInput,Object.class);
+        }
+      }
+    }
+ else {
+      final int start=in.position();
+      key=deserializer.deserialize(input,String.class);
+      final List<Object> list=new LinkedList<Object>();
+      while (in.position() - start < length) {
+        Object tmp=deserializer.deserialize(input,Object.class);
+        list.add(tmp);
+      }
+      value=list;
+    }
+    so.addEvent(type,key,value);
+  }
+}

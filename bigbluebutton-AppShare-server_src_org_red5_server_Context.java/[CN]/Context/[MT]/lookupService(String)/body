@@ -1,0 +1,15 @@
+{
+  serviceName=getMappingStrategy().mapServiceName(serviceName);
+  try {
+    Object bean=applicationContext.getBean(serviceName);
+    if (bean != null) {
+      return bean;
+    }
+ else {
+      throw new ServiceNotFoundException(serviceName);
+    }
+  }
+ catch (  NoSuchBeanDefinitionException err) {
+    throw new ServiceNotFoundException(serviceName);
+  }
+}

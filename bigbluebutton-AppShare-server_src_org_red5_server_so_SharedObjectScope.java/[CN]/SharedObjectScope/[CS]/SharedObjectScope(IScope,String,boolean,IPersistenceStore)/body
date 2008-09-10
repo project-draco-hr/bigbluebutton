@@ -1,0 +1,16 @@
+{
+  super(parent,TYPE,name,persistent);
+  String path=parent.getContextPath();
+  if ("".equals(path) || path.charAt(0) != '/') {
+    path='/' + path;
+  }
+  so=(SharedObject)store.load(TYPE + path + '/'+ name);
+  if (so == null) {
+    so=new SharedObject(attributes,name,path,persistent,store);
+    store.save(so);
+  }
+ else {
+    so.setName(name);
+    so.setPath(path);
+  }
+}

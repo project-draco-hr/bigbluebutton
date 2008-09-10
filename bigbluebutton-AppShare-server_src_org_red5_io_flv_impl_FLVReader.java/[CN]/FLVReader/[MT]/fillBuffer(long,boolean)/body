@@ -1,0 +1,44 @@
+{
+  try {
+    if (amount > bufferSize) {
+      amount=bufferSize;
+    }
+    if (channelSize - channel.position() < amount) {
+      amount=channelSize - channel.position();
+    }
+    if (in == null) {
+switch (bufferType) {
+case HEAP:
+        in=ByteBuffer.allocate(bufferSize,false);
+      break;
+case DIRECT:
+    in=ByteBuffer.allocate(bufferSize,true);
+  break;
+case AUTO:
+in=ByteBuffer.allocate(bufferSize);
+break;
+default :
+in=ByteBuffer.allocate(bufferSize);
+}
+channel.read(in.buf());
+in.flip();
+useLoadBuf=true;
+}
+if (!useLoadBuf) {
+return;
+}
+if (reload || in.remaining() < amount) {
+if (!reload) {
+in.compact();
+}
+ else {
+in.clear();
+}
+channel.read(in.buf());
+in.flip();
+}
+}
+ catch (Exception e) {
+log.error("Error fillBuffer",e);
+}
+}

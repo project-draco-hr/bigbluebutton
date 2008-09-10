@@ -1,0 +1,33 @@
+{
+  if (contextMap.isEmpty()) {
+    return;
+  }
+  Collection<BWContext> contexts=contextMap.values();
+  for (  BWContext context : contexts) {
+synchronized (context) {
+      if (context.bwConfig != null) {
+        long t=System.currentTimeMillis();
+        long delta=t - context.lastSchedule;
+        context.lastSchedule=t;
+        if (context.bwConfig[3] >= 0) {
+          if (defaultCapacity >= context.tokenRc[3]) {
+            context.tokenRc[3]+=(double)(context.bwConfig[3]) * delta / 8000;
+          }
+        }
+ else {
+          for (int i=0; i < 3; i++) {
+            if (context.bwConfig[i] >= 0 && defaultCapacity >= context.tokenRc[i]) {
+              context.tokenRc[i]+=(double)(context.bwConfig[i]) * delta / 8000;
+            }
+          }
+        }
+      }
+    }
+  }
+  for (  BWContext context : contexts) {
+synchronized (context) {
+      context.notifyAll();
+      invokeCallback(context);
+    }
+  }
+}

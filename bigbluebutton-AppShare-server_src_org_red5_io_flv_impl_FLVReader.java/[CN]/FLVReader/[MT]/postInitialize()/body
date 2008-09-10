@@ -1,0 +1,11 @@
+{
+  ITag tag=null;
+  if (log.isDebugEnabled()) {
+    log.debug("FLVReader 1 - Buffer size: " + getTotalBytes() + " position: "+ getCurrentPosition()+ " remaining: "+ getRemainingBytes());
+  }
+  if (getRemainingBytes() >= 9) {
+    decodeHeader();
+  }
+  keyframeMeta=analyzeKeyFrames();
+  long old=getCurrentPosition();
+}

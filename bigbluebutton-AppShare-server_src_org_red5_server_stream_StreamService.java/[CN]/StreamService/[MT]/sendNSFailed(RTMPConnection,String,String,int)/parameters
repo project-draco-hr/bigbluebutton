@@ -1,0 +1,4 @@
+RTMPConnection conn
+String description
+String name
+int streamId

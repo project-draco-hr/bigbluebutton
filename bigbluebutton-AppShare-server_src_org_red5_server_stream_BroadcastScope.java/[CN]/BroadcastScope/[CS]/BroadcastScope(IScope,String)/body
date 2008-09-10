@@ -1,0 +1,8 @@
+{
+  super(parent,TYPE,name,false);
+  pipe=new InMemoryPushPushPipe();
+  pipe.addPipeConnectionListener(this);
+  compCounter=0;
+  hasRemoved=false;
+  keepOnDisconnect=true;
+}

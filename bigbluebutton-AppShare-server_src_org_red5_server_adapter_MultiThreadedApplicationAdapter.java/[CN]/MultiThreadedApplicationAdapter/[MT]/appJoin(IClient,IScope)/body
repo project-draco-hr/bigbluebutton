@@ -1,0 +1,9 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("appJoin: {} >> {}",client,app);
+  }
+  for (  IApplication listener : listeners) {
+    listener.appJoin(client,app);
+  }
+  return true;
+}

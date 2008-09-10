@@ -1,0 +1,8 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("Servlet mappings: " + mappings.size());
+  }
+  for (  String key : mappings.keySet()) {
+    context.addServletMapping(mappings.get(key),key);
+  }
+}

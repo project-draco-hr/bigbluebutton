@@ -1,0 +1,16 @@
+{
+  if (oName != null) {
+    JMXAgent.unregisterMBean(oName);
+    oName=null;
+  }
+  this.name=name;
+  if (name != null) {
+    try {
+      oName=new ObjectName(JMXFactory.getDefaultDomain() + ":type=" + getClass().getName()+ ",name="+ name);
+    }
+ catch (    MalformedObjectNameException e) {
+      log.error("Invalid object name. {}",e);
+    }
+    JMXAgent.registerMBean(this,this.getClass().getName(),ScopeMBean.class,oName);
+  }
+}

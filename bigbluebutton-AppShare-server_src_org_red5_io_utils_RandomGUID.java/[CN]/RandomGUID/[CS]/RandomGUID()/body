@@ -1,0 +1,3 @@
+{
+  getRandomGUID(false);
+}

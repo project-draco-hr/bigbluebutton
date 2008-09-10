@@ -1,0 +1,33 @@
+{
+  long oldPos=getCurrentPosition();
+  ITag tag=readTagHeader();
+  if (tagPosition == 0 && tag.getDataType() != TYPE_METADATA && generateMetadata) {
+    setCurrentPosition(oldPos);
+    KeyFrameMeta meta=analyzeKeyFrames();
+    tagPosition++;
+    if (meta != null) {
+      return createFileMeta();
+    }
+  }
+  ByteBuffer body=ByteBuffer.allocate(tag.getBodySize(),false);
+  long newPosition=getCurrentPosition() + tag.getBodySize();
+  if (newPosition <= getTotalBytes()) {
+    int limit;
+    while (getCurrentPosition() < newPosition) {
+      fillBuffer(newPosition - getCurrentPosition());
+      if (getCurrentPosition() + in.remaining() > newPosition) {
+        limit=in.limit();
+        in.limit((int)(newPosition - getCurrentPosition()) + in.position());
+        body.put(in);
+        in.limit(limit);
+      }
+ else {
+        body.put(in);
+      }
+    }
+    body.flip();
+    tag.setBody(body);
+    tagPosition++;
+  }
+  return tag;
+}

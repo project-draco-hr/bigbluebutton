@@ -1,0 +1,10 @@
+{
+  IScheduledJob job=new IScheduledJob(){
+    public void execute(    ISchedulingService service) throws CloneNotSupportedException {
+      killGhostConnections();
+    }
+  }
+;
+  cancelGhostConnectionsCleanup();
+  ghostCleanupJobName=schedulingService.addScheduledJob(ghostConnsCleanupPeriod * 1000,job);
+}

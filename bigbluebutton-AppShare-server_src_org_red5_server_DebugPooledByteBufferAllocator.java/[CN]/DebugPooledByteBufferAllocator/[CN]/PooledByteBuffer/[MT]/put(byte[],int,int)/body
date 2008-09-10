@@ -1,0 +1,5 @@
+{
+  autoExpand(length);
+  buf.buf().put(src,offset,length);
+  return this;
+}

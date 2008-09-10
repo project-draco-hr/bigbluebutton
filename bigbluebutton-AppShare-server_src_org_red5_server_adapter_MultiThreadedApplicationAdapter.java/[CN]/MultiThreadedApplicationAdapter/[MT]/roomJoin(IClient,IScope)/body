@@ -1,0 +1,9 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("roomJoin: {} >> {}",client,room);
+  }
+  for (  IApplication listener : listeners) {
+    listener.roomJoin(client,room);
+  }
+  return true;
+}

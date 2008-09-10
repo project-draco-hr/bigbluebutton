@@ -1,0 +1,50 @@
+{
+  if (target == null) {
+    throw new ConversionException("Unable to perform conversion");
+  }
+  if (source == null) {
+    if (target.isPrimitive()) {
+      throw new ConversionException("Unable to convert null to primitive value");
+    }
+    return source;
+  }
+ else   if ((source instanceof Float && ((Float)source).isNaN()) || (source instanceof Double && ((Double)source).isNaN())) {
+    return source;
+  }
+  if (IConnection.class.isAssignableFrom(source.getClass()) && !target.equals(IConnection.class)) {
+    throw new ConversionException("IConnection must match exact.");
+  }
+  if (target.isInstance(source)) {
+    return source;
+  }
+  if (target.isAssignableFrom(source.getClass())) {
+    return source;
+  }
+  if (target.isArray()) {
+    return convertToArray(source,target);
+  }
+  if (target.equals(String.class)) {
+    return source.toString();
+  }
+  if (target.isPrimitive()) {
+    return convertToWrappedPrimitive(source,primitiveMap.get(target));
+  }
+  if (wrapperMap.containsKey(target)) {
+    return convertToWrappedPrimitive(source,target);
+  }
+  if (target.equals(Map.class)) {
+    return convertBeanToMap(source);
+  }
+  if (target.equals(List.class) || target.equals(Collection.class)) {
+    if (source.getClass().equals(LinkedHashMap.class)) {
+      return convertMapToList((LinkedHashMap<?,?>)source);
+    }
+ else     if (source.getClass().isArray()) {
+      return convertArrayToList((Object[])source);
+    }
+  }
+  if (target.equals(Set.class) && source.getClass().isArray()) {
+    return convertArrayToSet((Object[])source);
+  }
+  throw new ConversionException("Unable to preform conversion");
+}

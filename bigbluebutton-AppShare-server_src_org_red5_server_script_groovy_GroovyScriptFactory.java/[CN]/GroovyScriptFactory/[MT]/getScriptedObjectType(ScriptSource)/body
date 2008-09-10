@@ -1,0 +1,15 @@
+{
+synchronized (this.scriptClassMonitor) {
+    if (this.scriptClass == null || scriptSource.isModified()) {
+      this.scriptClass=this.groovyClassLoader.parseClass(scriptSource.getScriptAsString());
+      if (Script.class.isAssignableFrom(this.scriptClass)) {
+        Object result=executeScript(this.scriptClass);
+        this.scriptResultClass=(result != null ? result.getClass() : null);
+      }
+ else {
+        this.scriptResultClass=this.scriptClass;
+      }
+    }
+    return this.scriptResultClass;
+  }
+}

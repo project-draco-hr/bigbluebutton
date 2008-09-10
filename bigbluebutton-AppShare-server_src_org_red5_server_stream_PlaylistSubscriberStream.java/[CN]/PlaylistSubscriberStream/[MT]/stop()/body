@@ -1,0 +1,8 @@
+{
+  try {
+    engine.stop();
+  }
+ catch (  IllegalStateException e) {
+    log.debug("stop caught an IllegalStateException");
+  }
+}

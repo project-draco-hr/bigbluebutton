@@ -1,0 +1,6 @@
+{
+  if (!hasClients()) {
+    return Collections.EMPTY_SET;
+  }
+  return Collections.unmodifiableCollection(clients.values());
+}

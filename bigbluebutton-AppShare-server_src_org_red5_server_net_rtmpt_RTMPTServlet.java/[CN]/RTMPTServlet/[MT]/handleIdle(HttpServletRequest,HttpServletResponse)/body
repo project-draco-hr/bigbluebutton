@@ -1,0 +1,20 @@
+{
+  skipData(req);
+  RTMPTConnection client=getClient(req);
+  if (client == null) {
+    handleBadRequest("Unknown client.",resp);
+    return;
+  }
+ else   if (client.isClosing()) {
+    returnMessage((byte)0,resp);
+    client.realClose();
+    return;
+  }
+ else   if (client.getState().getState() == RTMP.STATE_DISCONNECTED) {
+    removeConnection(client.getId());
+    handleBadRequest("Connection already closed.",resp);
+    return;
+  }
+  client.setServletRequest(req);
+  returnPendingMessages(client,resp);
+}

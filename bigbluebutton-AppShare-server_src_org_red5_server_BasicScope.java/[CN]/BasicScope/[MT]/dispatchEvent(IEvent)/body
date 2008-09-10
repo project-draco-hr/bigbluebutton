@@ -1,0 +1,7 @@
+{
+  for (  IEventListener listener : listeners) {
+    if (event.getSource() == null || event.getSource() != listener) {
+      listener.notifyEvent(event);
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (allocationDebugging) {
+    AllocationDebugger.getInstance().retain(this);
+  }
+  if (refcount > 0) {
+    refcount++;
+  }
+}

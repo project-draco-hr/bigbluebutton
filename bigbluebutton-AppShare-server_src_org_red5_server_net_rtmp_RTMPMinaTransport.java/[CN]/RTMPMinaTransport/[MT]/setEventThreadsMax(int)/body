@@ -1,0 +1,3 @@
+{
+  this.eventThreadsMax=eventThreadsMax;
+}

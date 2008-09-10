@@ -1,0 +1,7 @@
+{
+  Set<Object> set=new HashSet<Object>();
+  for (  Object element : source) {
+    set.add(element);
+  }
+  return set;
+}

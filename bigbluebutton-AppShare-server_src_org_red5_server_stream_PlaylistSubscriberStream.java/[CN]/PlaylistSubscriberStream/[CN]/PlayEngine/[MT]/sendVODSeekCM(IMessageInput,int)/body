@@ -1,0 +1,15 @@
+{
+  OOBControlMessage oobCtrlMsg=new OOBControlMessage();
+  oobCtrlMsg.setTarget(ISeekableProvider.KEY);
+  oobCtrlMsg.setServiceName("seek");
+  Map<Object,Object> paramMap=new HashMap<Object,Object>();
+  paramMap.put("position",position);
+  oobCtrlMsg.setServiceParamMap(paramMap);
+  msgIn.sendOOBControlMessage(this,oobCtrlMsg);
+  if (oobCtrlMsg.getResult() instanceof Integer) {
+    return (Integer)oobCtrlMsg.getResult();
+  }
+ else {
+    return -1;
+  }
+}

@@ -1,0 +1,15 @@
+{
+  try {
+    final RTMP rtmp=(RTMP)state;
+    if (message instanceof ByteBuffer) {
+      return (ByteBuffer)message;
+    }
+ else {
+      return encodePacket(rtmp,(Packet)message);
+    }
+  }
+ catch (  RuntimeException e) {
+    log.error("Error encoding object: ",e);
+  }
+  return null;
+}

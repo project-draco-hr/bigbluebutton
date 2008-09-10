@@ -1,0 +1,13 @@
+{
+  if (name == null) {
+    return null;
+  }
+synchronized (session) {
+    Object result=session.getAttribute(name);
+    if (result == null && defaultValue != null) {
+      session.setAttribute(name,defaultValue);
+      result=defaultValue;
+    }
+    return result;
+  }
+}

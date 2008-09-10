@@ -1,0 +1,5 @@
+Map<String,Object> data
+String name
+String path
+boolean persistent
+IPersistenceStore storage

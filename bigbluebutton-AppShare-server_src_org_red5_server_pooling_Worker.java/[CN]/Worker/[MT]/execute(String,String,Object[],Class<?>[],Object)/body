@@ -1,0 +1,6 @@
+{
+  this.className=clsName;
+  this.methodName=methName;
+  this.methodParams=params;
+  this.paramTypes=paramTypes;
+}

@@ -1,0 +1,12 @@
+{
+  if (name == null) {
+    return false;
+  }
+  if (value == null) {
+    session.removeAttribute(name);
+  }
+ else {
+    session.setAttribute(name,value);
+  }
+  return true;
+}

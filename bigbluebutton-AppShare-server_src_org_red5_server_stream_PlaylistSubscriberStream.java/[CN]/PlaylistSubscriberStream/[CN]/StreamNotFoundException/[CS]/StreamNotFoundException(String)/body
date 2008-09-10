@@ -1,0 +1,3 @@
+{
+  super("Stream " + name + " not found.");
+}

@@ -1,0 +1,4 @@
+{
+  Byte b=(Byte)getNext();
+  return b.byteValue();
+}
