@@ -1,0 +1,4 @@
+{
+  this.clearSharedObjects(appScope,"appSO");
+  super.appDisconnect(conn);
+}

@@ -1,0 +1,172 @@
+{
+switch (Integer.valueOf(b[1]).intValue()) {
+case 0:
+switch (Integer.valueOf(b[2]).intValue()) {
+case 0:
+      so.setAttribute("imageString00",b[0]);
+    System.out.println("Length of String in imageString[0][0]: " + b[0].length());
+  break;
+case 1:
+so.setAttribute("imageString01",b[0]);
+System.out.println("Length of String in imageString[0][1]: " + b[0].length());
+break;
+case 2:
+so.setAttribute("imageString02",b[0]);
+System.out.println("Length of String in imageString[0][2]: " + b[0].length());
+break;
+case 3:
+so.setAttribute("imageString03",b[0]);
+System.out.println("Length of String in imageString[0][3]: " + b[0].length());
+break;
+case 4:
+so.setAttribute("imageString04",b[0]);
+System.out.println("Length of String in imageString[0][4]: " + b[0].length());
+break;
+case 5:
+so.setAttribute("imageString05",b[0]);
+System.out.println("Length of String in imageString[0][5]: " + b[0].length());
+break;
+}
+break;
+case 1:
+switch (Integer.valueOf(b[2]).intValue()) {
+case 0:
+so.setAttribute("imageString10",b[0]);
+System.out.println("Length of String in imageString[1][0]: " + b[0].length());
+break;
+case 1:
+so.setAttribute("imageString11",b[0]);
+System.out.println("Length of String in imageString[1][1]: " + b[0].length());
+break;
+case 2:
+so.setAttribute("imageString12",b[0]);
+System.out.println("Length of String in imageString[1][2]: " + b[0].length());
+break;
+case 3:
+so.setAttribute("imageString13",b[0]);
+System.out.println("Length of String in imageString[1][3]: " + b[0].length());
+break;
+case 4:
+so.setAttribute("imageString14",b[0]);
+System.out.println("Length of String in imageString[1][4]: " + b[0].length());
+break;
+case 5:
+so.setAttribute("imageString15",b[0]);
+System.out.println("Length of String in imageString[1][5]: " + b[0].length());
+break;
+}
+break;
+case 2:
+switch (Integer.valueOf(b[2]).intValue()) {
+case 0:
+so.setAttribute("imageString20",b[0]);
+System.out.println("Length of String in imageString[2][0]: " + b[0].length());
+break;
+case 1:
+so.setAttribute("imageString21",b[0]);
+System.out.println("Length of String in imageString[2][1]: " + b[0].length());
+break;
+case 2:
+so.setAttribute("imageString22",b[0]);
+System.out.println("Length of String in imageString[2][2]: " + b[0].length());
+break;
+case 3:
+so.setAttribute("imageString23",b[0]);
+System.out.println("Length of String in imageString[2][3]: " + b[0].length());
+break;
+case 4:
+so.setAttribute("imageString24",b[0]);
+System.out.println("Length of String in imageString[2][4]: " + b[0].length());
+break;
+case 5:
+so.setAttribute("imageString25",b[0]);
+System.out.println("Length of String in imageString[2][5]: " + b[0].length());
+break;
+}
+break;
+case 3:
+switch (Integer.valueOf(b[2]).intValue()) {
+case 0:
+so.setAttribute("imageString30",b[0]);
+System.out.println("Length of String in imageString[3][0]: " + b[0].length());
+break;
+case 1:
+so.setAttribute("imageString31",b[0]);
+System.out.println("Length of String in imageString[3][1]: " + b[0].length());
+break;
+case 2:
+so.setAttribute("imageString32",b[0]);
+System.out.println("Length of String in imageString[3][2]: " + b[0].length());
+break;
+case 3:
+so.setAttribute("imageString33",b[0]);
+System.out.println("Length of String in imageString[3][3]: " + b[0].length());
+break;
+case 4:
+so.setAttribute("imageString34",b[0]);
+System.out.println("Length of String in imageString[3][4]: " + b[0].length());
+break;
+case 5:
+so.setAttribute("imageString35",b[0]);
+System.out.println("Length of String in imageString[3][5]: " + b[0].length());
+break;
+}
+break;
+case 4:
+switch (Integer.valueOf(b[2]).intValue()) {
+case 0:
+so.setAttribute("imageString40",b[0]);
+System.out.println("Length of String in imageString[4][0]: " + b[0].length());
+break;
+case 1:
+so.setAttribute("imageString41",b[0]);
+System.out.println("Length of String in imageString[4][1]: " + b[0].length());
+break;
+case 2:
+so.setAttribute("imageString42",b[0]);
+System.out.println("Length of String in imageString[4][2]: " + b[0].length());
+break;
+case 3:
+so.setAttribute("imageString43",b[0]);
+System.out.println("Length of String in imageString[4][3]: " + b[0].length());
+break;
+case 4:
+so.setAttribute("imageString44",b[0]);
+System.out.println("Length of String in imageString[4][4]: " + b[0].length());
+break;
+case 5:
+so.setAttribute("imageString45",b[0]);
+System.out.println("Length of String in imageString[4][5]: " + b[0].length());
+break;
+}
+break;
+case 5:
+switch (Integer.valueOf(b[2]).intValue()) {
+case 0:
+so.setAttribute("imageString50",b[0]);
+System.out.println("Length of String in imageString[5][0]: " + b[0].length());
+break;
+case 1:
+so.setAttribute("imageString51",b[0]);
+System.out.println("Length of String in imageString[5][1]: " + b[0].length());
+break;
+case 2:
+so.setAttribute("imageString52",b[0]);
+System.out.println("Length of String in imageString[5][2]: " + b[0].length());
+break;
+case 3:
+so.setAttribute("imageString53",b[0]);
+System.out.println("Length of String in imageString[5][3]: " + b[0].length());
+break;
+case 4:
+so.setAttribute("imageString54",b[0]);
+System.out.println("Length of String in imageString[5][4]: " + b[0].length());
+break;
+case 5:
+so.setAttribute("imageString55",b[0]);
+System.out.println("Length of String in imageString[5][5]: " + b[0].length());
+break;
+}
+break;
+}
+}

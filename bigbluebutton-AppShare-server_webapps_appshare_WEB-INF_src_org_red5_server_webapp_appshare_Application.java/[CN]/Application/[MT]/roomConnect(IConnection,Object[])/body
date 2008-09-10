@@ -1,0 +1,12 @@
+{
+  super.roomConnect(conn,params);
+  System.out.println("appshare::roomConnect " + conn.getClient().getId());
+  if (!hasSharedObject(conn.getScope(),"appSO")) {
+    createSharedObject(conn.getScope(),"appSO",false);
+    so=getSharedObject(conn.getScope(),"appSO",false);
+  }
+ else {
+    so=getSharedObject(conn.getScope(),"appSO",false);
+  }
+  return true;
+}

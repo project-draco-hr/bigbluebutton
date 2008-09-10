@@ -1,0 +1,5 @@
+{
+  super.roomJoin(client,room);
+  System.out.println("appshare::roomJoin - " + client.getId());
+  return true;
+}
