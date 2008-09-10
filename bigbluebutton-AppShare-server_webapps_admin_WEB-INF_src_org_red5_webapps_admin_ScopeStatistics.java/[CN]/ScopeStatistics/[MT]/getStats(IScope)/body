@@ -1,0 +1,26 @@
+{
+  apps=new HashMap();
+  id=0;
+  IScopeStatistics stats=root.getStatistics();
+  extractConnectionData(root);
+  addData("Persistence Data","--");
+  IPersistenceStore data=root.getStore();
+  Collection<IPersistable> objects=data.getObjects();
+  Iterator<IPersistable> iter=objects.iterator();
+  while (iter.hasNext()) {
+    IPersistable name=iter.next();
+    addData("Name",name.getName());
+    addData("Type",name.getType());
+    addData("Path",name.getPath());
+    addData("Last modified",Utils.formatDate(name.getLastModified()));
+  }
+  addData("Scope Data","--");
+  addData("Active sub scopes",stats.getActiveSubscopes());
+  addData("Total sub scopes",stats.getTotalSubscopes());
+  addData("Active clients",stats.getActiveClients());
+  addData("Total clients",stats.getTotalClients());
+  addData("Active connections",stats.getActiveConnections());
+  addData("Total connections",stats.getTotalConnections());
+  addData("Created",Utils.formatDate(stats.getCreationTime()));
+  return apps;
+}

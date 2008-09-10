@@ -1,0 +1,3 @@
+def getInstance(*args):
+    print 'Arguments:', args
+    return Application()

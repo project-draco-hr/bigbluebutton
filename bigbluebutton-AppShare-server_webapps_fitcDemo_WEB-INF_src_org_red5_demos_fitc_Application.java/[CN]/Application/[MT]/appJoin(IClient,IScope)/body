@@ -1,0 +1,5 @@
+{
+  log.info("Client joined app {}",client.getId());
+  IConnection conn=Red5.getConnectionLocal();
+  return true;
+}

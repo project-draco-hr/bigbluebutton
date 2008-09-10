@@ -1,0 +1,16 @@
+{
+  try {
+    MidiDevice dev=getCurrentMidiDevice(true);
+    if (dev == null) {
+      log.error("Midi device is null, call connectToMidi first");
+      return false;
+    }
+    final ShortMessage msg=new ShortMessage();
+    msg.setMessage(arg0);
+    dev.getReceiver().send(msg,time);
+  }
+ catch (  Exception e) {
+    e.printStackTrace(System.err);
+  }
+  return true;
+}

@@ -1,0 +1,2 @@
+def formatDate(self, date):
+    return SimpleDateFormat('dd/MM/yyyy hh:mm:ss').format(date)

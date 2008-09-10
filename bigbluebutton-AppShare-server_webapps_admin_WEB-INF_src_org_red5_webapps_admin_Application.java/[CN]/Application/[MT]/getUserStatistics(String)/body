@@ -1,0 +1,4 @@
+{
+  UserStatistics userstats=new UserStatistics();
+  return userstats.getStats(userid,scope);
+}

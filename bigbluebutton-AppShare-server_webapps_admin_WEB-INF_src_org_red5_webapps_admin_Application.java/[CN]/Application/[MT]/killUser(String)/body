@@ -1,0 +1,11 @@
+{
+  IScope root=ScopeUtils.findRoot(scope);
+  Set<IClient> clients=root.getClients();
+  Iterator<IClient> client=clients.iterator();
+  while (client.hasNext()) {
+    IClient c=client.next();
+    if (c.getId().equals(userid)) {
+      c.disconnect();
+    }
+  }
+}

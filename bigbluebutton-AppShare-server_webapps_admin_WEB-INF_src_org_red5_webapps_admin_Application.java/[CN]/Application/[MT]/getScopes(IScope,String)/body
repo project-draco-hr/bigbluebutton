@@ -1,0 +1,23 @@
+{
+  if (root.getName().equals(scopeName)) {
+    return root;
+  }
+ else {
+    Iterator<String> iter=root.getScopeNames();
+    while (iter.hasNext()) {
+      String name=iter.next();
+      String name2=name.substring(1,name.length());
+      try {
+        IScope parent=root.getScope(name2);
+        IScope scope=getScopes(parent,scopeName);
+        if (scope != null) {
+          return scope;
+        }
+      }
+ catch (      java.lang.NullPointerException npe) {
+        log.debug(npe.toString());
+      }
+    }
+  }
+  return null;
+}

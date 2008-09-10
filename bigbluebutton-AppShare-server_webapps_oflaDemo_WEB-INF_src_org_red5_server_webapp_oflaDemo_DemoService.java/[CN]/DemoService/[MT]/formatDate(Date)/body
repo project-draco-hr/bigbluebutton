@@ -1,0 +1,7 @@
+{
+  SimpleDateFormat formatter;
+  String pattern="dd/MM/yy H:mm:ss";
+  Locale locale=new Locale("en","US");
+  formatter=new SimpleDateFormat(pattern,locale);
+  return formatter.format(date);
+}

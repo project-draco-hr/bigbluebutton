@@ -1,0 +1,4 @@
+double kbitDown
+double deltaDown
+double deltaTime
+double latency

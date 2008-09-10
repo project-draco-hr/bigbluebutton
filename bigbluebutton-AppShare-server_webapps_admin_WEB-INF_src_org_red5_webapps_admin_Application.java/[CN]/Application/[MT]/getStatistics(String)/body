@@ -1,0 +1,4 @@
+{
+  ScopeStatistics scopestats=new ScopeStatistics();
+  return scopestats.getStats(getScope(scopeName));
+}

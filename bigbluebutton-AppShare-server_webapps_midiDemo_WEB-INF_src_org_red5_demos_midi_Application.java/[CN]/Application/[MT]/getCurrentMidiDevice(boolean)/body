@@ -1,0 +1,5 @@
+{
+  IServiceCapableConnection conn=(IServiceCapableConnection)Red5.getConnectionLocal();
+  String name=receiver ? "midiOut" : "midiIn";
+  return (MidiDevice)conn.getAttribute(name);
+}
