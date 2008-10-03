@@ -1,4 +1,0 @@
-{
-  this.comp=comp;
-  this.context=context;
-}

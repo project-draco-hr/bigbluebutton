@@ -1,5 +1,0 @@
-XMultiComponentFactory xOfficeMultiComponentFactory
-String sURL
-String sTargetFrame
-int nSearchFlags
-PropertyValue[] aArgs

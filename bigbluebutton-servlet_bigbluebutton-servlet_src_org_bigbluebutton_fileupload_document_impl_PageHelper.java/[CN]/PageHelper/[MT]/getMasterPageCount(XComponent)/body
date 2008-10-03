@@ -1,5 +1,0 @@
-{
-  XMasterPagesSupplier xMasterPagesSupplier=(XMasterPagesSupplier)UnoRuntime.queryInterface(XMasterPagesSupplier.class,xComponent);
-  XDrawPages xDrawPages=xMasterPagesSupplier.getMasterPages();
-  return xDrawPages.getCount();
-}

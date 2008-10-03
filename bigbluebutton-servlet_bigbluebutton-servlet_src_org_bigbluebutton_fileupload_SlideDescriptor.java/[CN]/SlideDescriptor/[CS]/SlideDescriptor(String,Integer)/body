@@ -1,5 +1,0 @@
-{
-  Assert.notNull(name,"No image name specified");
-  this.name=name;
-  this.room=room;
-}

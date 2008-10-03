@@ -1,4 +1,0 @@
-{
-  XMasterPageTarget xMasterPageTarget=(XMasterPageTarget)UnoRuntime.queryInterface(XMasterPageTarget.class,xDrawPage);
-  return xMasterPageTarget.getMasterPage();
-}

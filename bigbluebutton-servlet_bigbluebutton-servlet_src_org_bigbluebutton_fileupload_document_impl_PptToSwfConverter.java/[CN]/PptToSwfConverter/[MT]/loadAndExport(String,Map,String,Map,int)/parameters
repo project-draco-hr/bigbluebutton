@@ -1,5 +1,0 @@
-String inputUrl
-Map loadProperties
-String outputUrl
-Map storeProperties
-int page
