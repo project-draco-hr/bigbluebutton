@@ -1,0 +1,5 @@
+{
+  XDrawPagesSupplier xDrawPagesSupplier=(XDrawPagesSupplier)UnoRuntime.queryInterface(XDrawPagesSupplier.class,xComponent);
+  XDrawPages xDrawPages=xDrawPagesSupplier.getDrawPages();
+  return xDrawPages.getCount();
+}

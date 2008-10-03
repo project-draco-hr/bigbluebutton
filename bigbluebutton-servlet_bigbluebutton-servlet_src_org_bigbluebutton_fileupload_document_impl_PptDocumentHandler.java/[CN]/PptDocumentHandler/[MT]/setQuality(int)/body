@@ -1,0 +1,5 @@
+{
+  if (newQuality > 0) {
+    quality=newQuality;
+  }
+}

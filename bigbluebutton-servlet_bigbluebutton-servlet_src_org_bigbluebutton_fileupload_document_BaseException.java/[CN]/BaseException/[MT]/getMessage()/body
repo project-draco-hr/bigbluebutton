@@ -1,0 +1,8 @@
+{
+  if (((message == null) || (message.length() == 0)) && exception != null) {
+    return exception.getMessage();
+  }
+ else {
+    return this.message;
+  }
+}

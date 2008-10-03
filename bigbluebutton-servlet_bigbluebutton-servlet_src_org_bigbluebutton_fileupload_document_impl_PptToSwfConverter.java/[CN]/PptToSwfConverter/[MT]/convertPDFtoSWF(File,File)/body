@@ -1,0 +1,23 @@
+{
+  String SPACE=" ";
+  String s=null;
+  String command=swftoolConverter + SPACE + input.getAbsolutePath()+ " "+ output.getAbsolutePath();
+  try {
+    Process p=Runtime.getRuntime().exec(command);
+    BufferedReader stdInput=new BufferedReader(new InputStreamReader(p.getInputStream()));
+    BufferedReader stdError=new BufferedReader(new InputStreamReader(p.getErrorStream()));
+    logger.debug("Here is the standard output of the command:\n");
+    while ((s=stdInput.readLine()) != null) {
+      logger.debug(s);
+    }
+    logger.debug("Here is the standard error of the command (if any):\n");
+    while ((s=stdError.readLine()) != null) {
+      logger.error(s);
+    }
+  }
+ catch (  IOException e) {
+    logger.error("exception happened - here's what I know: ");
+    e.printStackTrace();
+    updatesMsgSender.sendMessage(room,ReturnCode.SWFTOOLS,"Failed while trying to convert document to SWF.");
+  }
+}

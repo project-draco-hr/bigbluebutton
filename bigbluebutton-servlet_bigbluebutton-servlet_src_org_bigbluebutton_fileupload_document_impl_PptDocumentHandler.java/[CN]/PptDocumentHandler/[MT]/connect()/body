@@ -1,0 +1,4 @@
+{
+  logger.info("Connecting to: " + openOfficeHost + ":"+ openOfficePort);
+  return Helper.connectEx(openOfficeHost,openOfficePort);
+}

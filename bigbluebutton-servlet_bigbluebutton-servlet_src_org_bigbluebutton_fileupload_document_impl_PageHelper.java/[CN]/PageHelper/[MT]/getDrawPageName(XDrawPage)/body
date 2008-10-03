@@ -1,0 +1,10 @@
+{
+  XNamed xNamed=(XNamed)UnoRuntime.queryInterface(XNamed.class,xComponent);
+  if (null == xNamed) {
+    logger.info("PageHelper.getDrawPageName() " + " XNamed not found.");
+    return null;
+  }
+ else {
+    return xNamed.getName();
+  }
+}

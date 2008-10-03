@@ -1,0 +1,12 @@
+{
+  template.send(destination,new MessageCreator(){
+    public Message createMessage(    Session session) throws JMSException {
+      Message msgToSend=session.createTextMessage(message);
+      msgToSend.setIntProperty("room",room);
+      msgToSend.setIntProperty("returnCode",code.value());
+      msgToSend.setStringProperty("message",message);
+      return msgToSend;
+    }
+  }
+);
+}

@@ -1,0 +1,5 @@
+{
+  super();
+  this.message=this.getClass().getName();
+  this.exception=e;
+}

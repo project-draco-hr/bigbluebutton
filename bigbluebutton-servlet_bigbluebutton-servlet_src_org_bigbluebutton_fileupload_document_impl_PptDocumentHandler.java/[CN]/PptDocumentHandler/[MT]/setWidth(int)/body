@@ -1,0 +1,5 @@
+{
+  if (newWidth > 0) {
+    width=newWidth;
+  }
+}

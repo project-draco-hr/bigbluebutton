@@ -1,0 +1,15 @@
+{
+  logger.info("Slide folder = " + sourceFolder);
+  File file=new File(sourceFolder);
+  File[] files=file.listFiles();
+  ArrayList<File> listOfFiles=new ArrayList<File>();
+  for (int i=0; i < files.length; i++) {
+    if (!files[i].isDirectory()) {
+      String filename=(String)files[i].getName();
+      if ((filename.toLowerCase().endsWith(".swf")) && !(filename.toLowerCase().startsWith("thumb"))) {
+        listOfFiles.add(files[i]);
+      }
+    }
+  }
+  return listOfFiles;
+}

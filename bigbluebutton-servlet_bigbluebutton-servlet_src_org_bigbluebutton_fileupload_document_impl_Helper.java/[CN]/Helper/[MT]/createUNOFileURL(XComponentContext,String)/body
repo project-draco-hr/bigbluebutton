@@ -1,0 +1,16 @@
+{
+  java.io.File newfile=new java.io.File(filelocation);
+  java.net.URL before=null;
+  try {
+    before=newfile.toURL();
+  }
+ catch (  MalformedURLException e) {
+    logger.error(e);
+  }
+  String myUNOFileURL=com.sun.star.uri.ExternalUriReferenceTranslator.create(componentContext).translateToInternal(before.toExternalForm());
+  if (myUNOFileURL.length() == 0 && filelocation.length() > 0) {
+    logger.error("File URL conversion failed. Filelocation " + "contains illegal characters: " + filelocation);
+  }
+  logger.warn("UNOFileURL = " + myUNOFileURL);
+  return myUNOFileURL;
+}
