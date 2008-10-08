@@ -21,11 +21,9 @@
         headers.put(header.name,header);
       }
  else {
-        log.error("Expected Map but received " + value);
       }
     }
  else {
-      log.warn("Unsupported remoting header \"" + name + "\" received with value "+ value);
     }
   }
 }

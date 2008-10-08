@@ -13,6 +13,5 @@
     threadPool.execute(worker);
   }
  catch (  Exception err) {
-    log.warn("Exception invoking method: " + method);
   }
 }

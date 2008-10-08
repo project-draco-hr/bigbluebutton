@@ -1,0 +1,4 @@
+{
+  System.out.println("---------->" + so.toString() + "| Key:"+ key+ ", Value:"+ value);
+  System.out.println("---------->SO Update has triggered the Listener's onSharedObjectUpdate method.");
+}

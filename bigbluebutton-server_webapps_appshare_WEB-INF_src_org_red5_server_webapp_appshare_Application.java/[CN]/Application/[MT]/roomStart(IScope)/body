@@ -1,0 +1,5 @@
+{
+  System.out.println("appshare::roomStart - " + room.getName());
+  if (!super.roomStart(room))   return false;
+  return true;
+}
