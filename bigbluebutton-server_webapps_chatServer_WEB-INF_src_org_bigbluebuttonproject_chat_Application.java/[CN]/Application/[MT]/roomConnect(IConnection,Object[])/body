@@ -10,7 +10,6 @@
   if (conn instanceof IServiceCapableConnection) {
     IServiceCapableConnection sc=(IServiceCapableConnection)conn;
     String chatLog=chatListener.getChatLog();
-    sc.invoke("setChatLog",new Object[]{chatLog});
   }
   return true;
 }
