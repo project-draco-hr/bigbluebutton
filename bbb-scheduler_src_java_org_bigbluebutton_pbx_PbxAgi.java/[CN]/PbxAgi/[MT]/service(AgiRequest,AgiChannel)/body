@@ -1,0 +1,19 @@
+{
+  String script;
+  Binding binding;
+  script=request.getScript();
+  binding=new Binding();
+  binding.setVariable("request",request);
+  binding.setVariable("channel",channel);
+  binding.setVariable("db",db);
+  try {
+    System.out.println(script.toString());
+    gse.run(script,binding);
+  }
+ catch (  ResourceException e) {
+    throw new AgiException("Unable to load groovy script '" + script + "'",e);
+  }
+catch (  ScriptException e) {
+    throw new AgiException("Exception while running groovy script '" + script + "'",e);
+  }
+}
