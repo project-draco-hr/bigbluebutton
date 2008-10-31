@@ -7,7 +7,6 @@
   slidesXml+=description + DESCRIPTION_END_TAG + "\n";
   slidesXml+=HOST + host + HOST_END_TAG+ "\n";
   slidesXml+=ROOM + room + ROOM_END_TAG+ "\n";
-  logger.info("slidesXml = " + slidesXml);
   for (Iterator it=slides.iterator(); it.hasNext(); ) {
     slidesXml+=SLIDE + NAME;
     SlideDescriptor slide=(SlideDescriptor)it.next();

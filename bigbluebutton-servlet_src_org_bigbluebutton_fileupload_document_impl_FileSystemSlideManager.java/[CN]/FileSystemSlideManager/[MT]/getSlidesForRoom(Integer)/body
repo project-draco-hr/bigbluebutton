@@ -7,7 +7,6 @@
     if (!files[i].isDirectory()) {
       String filename=(String)files[i].getName();
       if ((filename.endsWith(".swf")) && (!filename.startsWith("thumb-"))) {
-        logger.info("getting slide = [" + filename + "]");
         SlideDescriptor slide=new SlideDescriptor(filename,room);
         listOfFiles.add(slide);
       }
