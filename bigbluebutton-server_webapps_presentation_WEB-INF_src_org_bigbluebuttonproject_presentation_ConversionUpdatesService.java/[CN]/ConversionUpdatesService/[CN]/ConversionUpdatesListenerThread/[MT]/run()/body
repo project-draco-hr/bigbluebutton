@@ -18,6 +18,7 @@
  else {
         logger.error("Cannot handle recieved message.");
       }
+      System.out.println("Room = [" + room + ","+ code+ "]");
     }
  catch (    JMSException e) {
       e.printStackTrace();

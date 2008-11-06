@@ -1,9 +1,5 @@
 {
   super.roomJoin(client,room);
   log.info("MeetMe::roomJoin - " + client.getId());
-  IScope scope=Red5.getConnectionLocal().getScope();
-  String roomNumber=scope.getName();
-  IServiceCapableConnection service=(IServiceCapableConnection)Red5.getConnectionLocal();
-  service.invoke("setRoomNumber",new Object[]{roomNumber},this);
   return true;
 }
