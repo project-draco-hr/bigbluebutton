@@ -1,0 +1,4 @@
+{
+  this.die=true;
+  interrupt();
+}

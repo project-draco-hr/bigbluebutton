@@ -4,6 +4,9 @@
     managerConnection.login();
     ((DefaultAsteriskServer)asteriskServer).setManagerConnection(managerConnection);
     ((DefaultAsteriskServer)asteriskServer).initialize();
+    pingThread=new PingThread(managerConnection);
+    pingThread.setTimeout(40000);
+    pingThread.start();
   }
  catch (  IOException e) {
     logger.error("IOException while connecting to Asterisk server.");

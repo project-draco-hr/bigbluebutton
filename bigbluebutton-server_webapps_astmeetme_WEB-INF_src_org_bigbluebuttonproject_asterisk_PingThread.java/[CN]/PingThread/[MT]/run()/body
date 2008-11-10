@@ -1,0 +1,16 @@
+{
+  while (!die) {
+    try {
+      sleep(interval);
+    }
+ catch (    InterruptedException e) {
+    }
+    if (die) {
+      break;
+    }
+    if (connection.getState() != ManagerConnectionState.CONNECTED) {
+      continue;
+    }
+    ping();
+  }
+}
