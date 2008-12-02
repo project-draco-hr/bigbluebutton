@@ -6,11 +6,9 @@
     }
  else {
       response=connection.sendAction(new PingAction(),timeout);
-      logger.debug("Ping response: " + response);
     }
   }
  catch (  Exception e) {
-    System.out.println("Exception on sending Ping:");
     logger.warn("Exception on sending Ping",e);
   }
 }
