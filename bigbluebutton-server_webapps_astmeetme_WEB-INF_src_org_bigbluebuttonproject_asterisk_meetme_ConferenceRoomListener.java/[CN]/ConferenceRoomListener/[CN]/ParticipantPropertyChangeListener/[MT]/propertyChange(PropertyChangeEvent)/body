@@ -1,23 +1,34 @@
 {
   MeetMeUser changedUser=(MeetMeUser)evt.getSource();
   log.info("Received property changed event for " + evt.getPropertyName() + " old = '"+ evt.getOldValue()+ "' new = '"+ evt.getNewValue()+ "' room = '"+ ((MeetMeUser)evt.getSource()).getRoom()+ "'");
-  log.info("New data mute = " + changedUser.isMuted());
   if (evt.getPropertyName().equals("muted")) {
-    List<Object> args=new ArrayList<Object>();
-    args.add(changedUser.getUserNumber());
-    args.add(changedUser.isMuted());
-    so.sendMessage("userMute",args);
-    log.info("User mute event: [" + changedUser.getUserNumber() + ","+ changedUser.isMuted()+ "]");
+    if ((muted == null) || (muted.booleanValue() != changedUser.isMuted())) {
+      List<Object> args=new ArrayList<Object>();
+      args.add(changedUser.getUserNumber());
+      log.info("User mute changed: [" + changedUser.getUserNumber() + ",old="+ muted+ ",new="+ changedUser.isMuted()+ "]");
+      muted=changedUser.isMuted();
+      args.add(muted);
+      so.sendMessage("userMute",args);
+    }
+ else {
+      log.info("User mute same: [" + changedUser.getUserNumber() + ","+ changedUser.isMuted()+ "]");
+    }
   }
  else   if (evt.getPropertyName().equals("talking")) {
     List<Object> args=new ArrayList<Object>();
     args.add(changedUser.getUserNumber());
-    args.add(changedUser.isTalking());
-    so.sendMessage("userTalk",args);
-    log.info("User talk event: [" + changedUser.getUserNumber() + ","+ changedUser.isTalking()+ "]");
+    if ((talking == null) || (talking.booleanValue() != changedUser.isTalking())) {
+      log.info("User talk changed: [" + changedUser.getUserNumber() + ",old="+ talking+ ",new="+ changedUser.isTalking()+ "]");
+      talking=changedUser.isTalking();
+      args.add(talking);
+      so.sendMessage("userTalk",args);
+    }
+ else {
+      log.info("User talk same: [" + changedUser.getUserNumber() + ","+ changedUser.isTalking()+ "]");
+    }
   }
  else   if ("state".equals(evt.getPropertyName())) {
-    log.info("User is changing state to [" + evt.getNewValue() + "]");
+    log.info("User [" + changedUser.getUserNumber() + ","+ evt.getNewValue()+ "]");
     List<Object> args=new ArrayList<Object>();
     args.add(changedUser.getUserNumber());
     if (MeetMeUserState.LEFT == (MeetMeUserState)evt.getNewValue()) {
