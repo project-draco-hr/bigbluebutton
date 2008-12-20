@@ -1,0 +1,5 @@
+{
+  super.appConnect(conn,params);
+  log.info("MeetMe::appConnect - " + conn.getClient().getId());
+  return true;
+}

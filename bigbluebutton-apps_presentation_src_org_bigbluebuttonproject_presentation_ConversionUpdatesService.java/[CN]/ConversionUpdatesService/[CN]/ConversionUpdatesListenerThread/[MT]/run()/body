@@ -1,0 +1,27 @@
+{
+  logger.info("Will wait for document conversion updates messages.");
+  while (waitForMessage) {
+    Message msg=template.receive(destination);
+    int room;
+    try {
+      room=msg.getIntProperty("room");
+      int code=msg.getIntProperty("returnCode");
+      if (msg.propertyExists("message")) {
+        String message=msg.getStringProperty("message");
+        updatesListener.updateMessage(room,code,message);
+      }
+ else       if (msg.propertyExists("totalSlides")) {
+        int totalSlides=msg.getIntProperty("totalSlides");
+        int completedSlides=msg.getIntProperty("slidesCompleted");
+        updatesListener.updateMessage(room,code,totalSlides,completedSlides);
+      }
+ else {
+        logger.error("Cannot handle recieved message.");
+      }
+      System.out.println("Room = [" + room + ","+ code+ "]");
+    }
+ catch (    JMSException e) {
+      e.printStackTrace();
+    }
+  }
+}

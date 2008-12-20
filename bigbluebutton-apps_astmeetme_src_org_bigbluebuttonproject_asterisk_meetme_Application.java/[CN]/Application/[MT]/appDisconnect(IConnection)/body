@@ -1,0 +1,3 @@
+{
+  log.info("MeetMe::appDisconnect - " + conn.getClient().getId());
+}

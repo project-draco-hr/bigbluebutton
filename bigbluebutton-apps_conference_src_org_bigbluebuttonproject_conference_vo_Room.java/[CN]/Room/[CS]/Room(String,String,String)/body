@@ -1,0 +1,5 @@
+{
+  this.room=room;
+  this.moderatorPassword=modPass;
+  this.viewerPassword=viewPass;
+}

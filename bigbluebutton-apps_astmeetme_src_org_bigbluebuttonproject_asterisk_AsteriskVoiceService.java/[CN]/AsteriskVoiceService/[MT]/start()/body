@@ -1,0 +1,23 @@
+{
+  try {
+    logger.info("Logging at " + managerConnection.getHostname() + ":"+ managerConnection.getPort());
+    managerConnection.login();
+    ((DefaultAsteriskServer)asteriskServer).setManagerConnection(managerConnection);
+    ((DefaultAsteriskServer)asteriskServer).initialize();
+    pingThread=new PingThread(managerConnection);
+    pingThread.setTimeout(40000);
+    pingThread.start();
+  }
+ catch (  IOException e) {
+    logger.error("IOException while connecting to Asterisk server.");
+  }
+catch (  TimeoutException e) {
+    logger.error("TimeoutException while connecting to Asterisk server.");
+  }
+catch (  AuthenticationFailedException e) {
+    logger.error("AuthenticationFailedException while connecting to Asterisk server.");
+  }
+catch (  ManagerCommunicationException e) {
+    e.printStackTrace();
+  }
+}

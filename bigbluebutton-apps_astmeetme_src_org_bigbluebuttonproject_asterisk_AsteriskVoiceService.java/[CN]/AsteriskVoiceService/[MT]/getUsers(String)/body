@@ -1,0 +1,11 @@
+{
+  MeetMeRoom room;
+  try {
+    room=asteriskServer.getMeetMeRoom(roomId);
+    return room.getUsers();
+  }
+ catch (  ManagerCommunicationException e) {
+    e.printStackTrace();
+  }
+  return null;
+}

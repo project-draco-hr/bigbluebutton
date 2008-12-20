@@ -1,0 +1,4 @@
+{
+  this.roomNumber=roomNumber;
+  this.user=user;
+}
