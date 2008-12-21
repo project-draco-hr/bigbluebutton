@@ -1,5 +1,0 @@
-{
-  this.userid=userid;
-  this.name=name;
-  this.role=role;
-}

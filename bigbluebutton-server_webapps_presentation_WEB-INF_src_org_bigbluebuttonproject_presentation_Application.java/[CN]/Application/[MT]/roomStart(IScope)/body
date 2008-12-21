@@ -1,5 +1,0 @@
-{
-  log.info("Presentation::roomStart - " + room.getName());
-  if (!super.roomStart(room))   return false;
-  return true;
-}

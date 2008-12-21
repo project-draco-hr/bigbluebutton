@@ -1,8 +1,0 @@
-{
-  super.appStart(app);
-  System.out.println("-----------------------------------------------------");
-  System.out.println("appshare: appStart()");
-  System.out.println("-----------------------------------------------------");
-  appScope=app;
-  return true;
-}

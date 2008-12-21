@@ -1,7 +1,0 @@
-{
-  MeetMeUser changedUser=(MeetMeUser)evt.getSource();
-  String room=changedUser.getRoom().getRoomNumber();
-  log.info("Received property changed event for " + evt.getPropertyName() + " old = "+ evt.getOldValue()+ " new = "+ evt.getNewValue()+ " room = "+ ((MeetMeUser)evt.getSource()).getRoom());
-  if (roomNumber.equals(room)) {
-  }
-}

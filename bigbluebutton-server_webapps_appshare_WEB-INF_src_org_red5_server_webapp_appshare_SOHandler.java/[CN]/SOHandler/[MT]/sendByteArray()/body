@@ -1,5 +1,0 @@
-{
-  IScope scope=Red5.getConnectionLocal().getScope();
-  ISharedObject so=this.getSharedObject(scope,"appSO",false);
-  so.setAttribute("message","it's in handler");
-}

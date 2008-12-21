@@ -1,4 +1,0 @@
-{
-  logger.info("Adding ConferenceRoomListener");
-  asteriskServer.addAsteriskServerListener(listener);
-}

@@ -1,5 +1,0 @@
-{
-  super.roomJoin(client,room);
-  log.info("Presentation::roomJoin - " + client.getId());
-  return true;
-}

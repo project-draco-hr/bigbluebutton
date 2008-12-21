@@ -1,7 +1,0 @@
-{
-  WebApplicationContext ctx=WebApplicationContextUtils.getRequiredWebApplicationContext(event.getServletContext());
-  IVoiceService service=(IVoiceService)ctx.getBean("voiceService");
-  logger.info("Logging into Asterisk server.");
-  service.start();
-  logger.info("Logged in from Asterisk server.");
-}

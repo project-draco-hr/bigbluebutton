@@ -1,5 +1,0 @@
-{
-  log.info("Blindside.roomStart ");
-  if (!super.roomStart(room))   return false;
-  return true;
-}

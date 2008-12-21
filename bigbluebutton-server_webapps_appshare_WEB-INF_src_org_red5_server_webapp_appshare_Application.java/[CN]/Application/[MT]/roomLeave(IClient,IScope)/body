@@ -1,4 +1,0 @@
-{
-  super.roomLeave(client,room);
-  System.out.println("appshare::roomLeave - " + client.getId());
-}

@@ -1,7 +1,0 @@
-{
-  WebApplicationContext ctx=WebApplicationContextUtils.getRequiredWebApplicationContext(event.getServletContext());
-  IConversionUpdatesService service=(IConversionUpdatesService)ctx.getBean("presentationService");
-  logger.info("Connecting to presentation service");
-  service.start();
-  logger.info("Connected to presentation service");
-}

@@ -1,3 +1,0 @@
-{
-  conferenceRooms=this.loadConferenceRooms("conferences/conferences.xml");
-}

@@ -1,3 +1,0 @@
-{
-  return user.getChannel().getCallerId().getNumber();
-}
