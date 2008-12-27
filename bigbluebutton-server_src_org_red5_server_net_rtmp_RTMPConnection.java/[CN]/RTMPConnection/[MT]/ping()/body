@@ -1,4 +1,5 @@
 {
+  log.info("Pinging client");
   long newPingTime=System.currentTimeMillis();
   if (lastPingSent == 0) {
     lastPongReceived=newPingTime;

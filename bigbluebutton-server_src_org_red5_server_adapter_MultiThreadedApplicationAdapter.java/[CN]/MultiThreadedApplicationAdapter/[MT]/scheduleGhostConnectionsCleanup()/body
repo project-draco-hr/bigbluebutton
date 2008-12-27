@@ -1,4 +1,5 @@
 {
+  log.info("Scheduling ghost connections cleanup.");
   IScheduledJob job=new IScheduledJob(){
     public void execute(    ISchedulingService service) throws CloneNotSupportedException {
       killGhostConnections();

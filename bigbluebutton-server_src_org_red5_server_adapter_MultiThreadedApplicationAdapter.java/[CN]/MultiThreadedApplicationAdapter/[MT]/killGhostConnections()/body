@@ -4,6 +4,7 @@
     IConnection conn=iter.next();
     conn.ping();
     if (conn.getLastPingTime() > clientTTL * 1000) {
+      log.warn("Killing ghost connection {}",conn);
       disconnect(conn,scope);
     }
   }
