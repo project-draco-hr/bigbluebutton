@@ -5,7 +5,6 @@
     return;
   }
   if (lastPongReceived > 0 && lastPingSent - lastPongReceived > maxInactivity) {
-    log.debug("Keep alive job name {}",keepAliveJobName);
     if (log.isDebugEnabled()) {
       log.debug("Scheduled job list");
       for (      String jobName : service.getScheduledJobNames()) {
@@ -14,6 +13,7 @@
     }
     service.removeScheduledJob(keepAliveJobName);
     keepAliveJobName=null;
+    log.warn("Closing clientId {}: no response to ping in {} ",getId(),maxInactivity);
     log.warn("Closing {} due to too much inactivity ({}).",RTMPConnection.this,(lastPingSent - lastPongReceived));
     onInactive();
     return;
