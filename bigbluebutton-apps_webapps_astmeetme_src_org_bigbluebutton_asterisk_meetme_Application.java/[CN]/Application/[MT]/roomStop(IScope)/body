@@ -1,0 +1,6 @@
+{
+  String jobId=(String)room.getAttribute("pingJobId");
+  log.info("Removing ping job id {}",jobId);
+  removeScheduledJob(jobId);
+  super.roomStop(room);
+}

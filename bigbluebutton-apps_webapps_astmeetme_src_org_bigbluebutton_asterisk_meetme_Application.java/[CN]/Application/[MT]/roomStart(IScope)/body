@@ -10,6 +10,9 @@
  else {
     ISharedObject so=getSharedObject(room,"meetMeUsersSO",false);
   }
+  String jobId=addScheduledJob(10000,new SOPingJob(room));
+  log.info("Scheduling ping job id {}",jobId);
+  room.setAttribute("pingJobId",jobId);
   roomListener.initializeConferenceUsers(room.getName());
   return true;
 }

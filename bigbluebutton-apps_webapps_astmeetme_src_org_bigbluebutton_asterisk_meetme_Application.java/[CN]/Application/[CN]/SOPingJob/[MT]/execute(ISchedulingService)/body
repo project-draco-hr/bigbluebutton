@@ -1,0 +1,7 @@
+{
+  ISharedObject so=getSharedObject(room,"meetMeUsersSO",false);
+  List<Object> args=new ArrayList<Object>();
+  args.add(room.getName());
+  log.info("Pinging {}",room.getName());
+  so.sendMessage("ping",args);
+}
