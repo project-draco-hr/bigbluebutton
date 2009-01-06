@@ -1,0 +1,8 @@
+{
+  super();
+  this.connection=connection;
+  this.die=false;
+  this.id=idCounter.getAndIncrement();
+  setName("Asterisk-Conference Ping-" + id);
+  setDaemon(true);
+}

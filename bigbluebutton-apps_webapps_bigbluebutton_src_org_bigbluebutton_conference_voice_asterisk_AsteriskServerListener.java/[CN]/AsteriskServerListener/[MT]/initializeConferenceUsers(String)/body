@@ -1,0 +1,11 @@
+{
+  if (meetMeSOs.containsKey(room)) {
+    ISharedObject so=(ISharedObject)meetMeSOs.get(room);
+    Collection<MeetMeUser> currentUsers=voiceService.getUsers(room);
+    log.info("initializeConferenceUsers - There are " + currentUsers.size() + " current users in room ["+ room+ "]");
+    for (Iterator it=currentUsers.iterator(); it.hasNext(); ) {
+      MeetMeUser oneUser=(MeetMeUser)it.next();
+      oneUser.addPropertyChangeListener(new ParticipantPropertyChangeListener(so));
+    }
+  }
+}

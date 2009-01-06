@@ -1,0 +1,9 @@
+{
+  try {
+    room.lock();
+    locked=true;
+  }
+ catch (  ManagerCommunicationException e) {
+    logger.error("Failed to lock room {}",room.getRoomNumber());
+  }
+}

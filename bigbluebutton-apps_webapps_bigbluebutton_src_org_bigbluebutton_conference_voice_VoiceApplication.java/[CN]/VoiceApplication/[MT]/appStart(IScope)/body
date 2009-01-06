@@ -1,3 +1,4 @@
 {
-  return false;
+  voiceService.start();
+  return true;
 }

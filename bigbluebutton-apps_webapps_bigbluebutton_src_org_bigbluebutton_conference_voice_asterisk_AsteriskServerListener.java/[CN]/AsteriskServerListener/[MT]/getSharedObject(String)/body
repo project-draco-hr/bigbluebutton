@@ -1,0 +1,6 @@
+{
+  if (meetMeSOs.containsKey(room)) {
+    return (ISharedObject)meetMeSOs.get(room);
+  }
+  return null;
+}
