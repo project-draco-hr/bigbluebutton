@@ -1,10 +1,2 @@
 {
-  MeetMeRoomAdapter r=new MeetMeRoomAdapter();
-  String id="testParticipant";
-  IParticipant p=new MeetMeUserAdapter();
-  p.setId(id);
-  r.addParticipant(p);
-  assertEquals("Room should have participant",true,r.hasParticipant(id));
-  r.removeParticipant(id);
-  assertEquals("There should be no more participant",false,r.hasParticipant(id));
 }
