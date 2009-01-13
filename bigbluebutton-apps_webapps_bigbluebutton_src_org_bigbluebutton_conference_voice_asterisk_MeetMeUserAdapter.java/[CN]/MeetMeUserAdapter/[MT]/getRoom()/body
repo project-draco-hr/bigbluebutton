@@ -1,5 +1,4 @@
 {
-  MeetMeRoomAdapter room=new MeetMeRoomAdapter();
-  room.setRoom(user.getRoom());
+  MeetMeRoomAdapter room=new MeetMeRoomAdapter(user.getRoom());
   return room;
 }

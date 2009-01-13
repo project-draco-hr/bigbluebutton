@@ -1,0 +1,12 @@
+{
+  IRoom room=null;
+  try {
+    MeetMeRoom r=asteriskServer.getMeetMeRoom(id);
+    room=new MeetMeRoomAdapter(r);
+    room.getParticipants();
+  }
+ catch (  ManagerCommunicationException e) {
+    logger.error("ManagerCommunicationException while getting room.");
+  }
+  return room;
+}
