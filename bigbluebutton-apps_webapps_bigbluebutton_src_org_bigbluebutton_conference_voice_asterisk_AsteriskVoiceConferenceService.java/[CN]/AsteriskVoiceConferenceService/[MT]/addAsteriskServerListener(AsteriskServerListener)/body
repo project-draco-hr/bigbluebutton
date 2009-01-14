@@ -1,3 +1,0 @@
-{
-  asteriskServer.addAsteriskServerListener(listener);
-}

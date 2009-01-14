@@ -1,0 +1,4 @@
+{
+  mock.start();
+  replay(mock);
+}

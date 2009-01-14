@@ -1,2 +1,2 @@
-IConnection arg0
-Object[] arg1
+IConnection connection
+Object[] params

@@ -1,6 +1,7 @@
 {
   try {
     logger.info("Logging at " + managerConnection.getHostname() + ":"+ managerConnection.getPort());
+    asteriskServer.addAsteriskServerListener(this);
     managerConnection.login();
     ((DefaultAsteriskServer)asteriskServer).setManagerConnection(managerConnection);
     ((DefaultAsteriskServer)asteriskServer).initialize();

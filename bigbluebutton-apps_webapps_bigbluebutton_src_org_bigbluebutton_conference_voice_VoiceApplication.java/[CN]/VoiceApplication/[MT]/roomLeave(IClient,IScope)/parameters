@@ -1,2 +1,2 @@
-IClient arg0
-IScope arg1
+IClient client
+IScope scope

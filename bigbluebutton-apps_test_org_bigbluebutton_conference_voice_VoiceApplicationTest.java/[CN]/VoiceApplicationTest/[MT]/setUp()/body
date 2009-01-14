@@ -1,0 +1,5 @@
+{
+  mock=createMock(IVoiceConferenceService.class);
+  app=new VoiceApplication();
+  app.setVoiceService(mock);
+}

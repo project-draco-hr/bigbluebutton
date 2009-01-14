@@ -1,0 +1,7 @@
+{
+  TestRoom t=new TestRoom();
+  t.setName("TestRoom");
+  roomManager.addRoom(t);
+  IRoom r=service.getRoom("TestRoom");
+  assertTrue(r.getName().equals("TestRoom"));
+}

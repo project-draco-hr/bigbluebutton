@@ -1,12 +1,21 @@
 {
-  IRoom room=null;
-  try {
-    MeetMeRoom r=asteriskServer.getMeetMeRoom(id);
-    room=new MeetMeRoomAdapter(r);
-    room.getParticipants();
+  System.out.println("in getRoom");
+  if (roomManager.hasRoom(id)) {
+    System.out.println("Found room in room manager.");
+    return roomManager.getRoom(id);
   }
- catch (  ManagerCommunicationException e) {
-    logger.error("ManagerCommunicationException while getting room.");
+ else {
+    IRoom room=null;
+    try {
+      System.out.println("Getting room from server.");
+      MeetMeRoom r=asteriskServer.getMeetMeRoom(id);
+      room=new MeetMeRoomAdapter(r);
+      roomManager.addRoom(room);
+      return room;
+    }
+ catch (    ManagerCommunicationException e) {
+      logger.error("ManagerCommunicationException while getting room.");
+    }
   }
-  return room;
+  return null;
 }
