@@ -1,5 +1,4 @@
 {
-  iRoomMock=createMock(IRoom.class);
   roomMock=createMock(MeetMeRoom.class);
   serverMock=createMock(AsteriskServer.class);
   service=new AsteriskVoiceConferenceService();
