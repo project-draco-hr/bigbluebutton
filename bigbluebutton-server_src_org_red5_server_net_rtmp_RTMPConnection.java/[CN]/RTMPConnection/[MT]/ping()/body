@@ -9,6 +9,5 @@
   int now=(int)(lastPingSent & 0xffffffff);
   pingRequest.setValue2(now);
   pingRequest.setValue3(Ping.UNDEFINED);
-  log.info("Ping client - clientId {} : {}",getId(),pingRequest);
   ping(pingRequest);
 }
