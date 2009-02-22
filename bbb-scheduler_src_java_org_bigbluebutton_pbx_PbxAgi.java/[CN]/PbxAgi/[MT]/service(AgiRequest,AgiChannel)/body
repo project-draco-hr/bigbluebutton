@@ -7,7 +7,7 @@
   binding.setVariable("channel",channel);
   binding.setVariable("db",db);
   try {
-    System.out.println(script.toString());
+    System.out.println("Executing " + script.toString());
     gse.run(script,binding);
   }
  catch (  ResourceException e) {
