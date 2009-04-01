@@ -1,6 +1,0 @@
-{
-  if (!conferenceRooms.containsKey(room)) {
-    return null;
-  }
-  return conferenceRooms.get(room);
-}

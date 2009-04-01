@@ -1,6 +1,0 @@
-{
-  log.info("Blindside.appStart");
-  appScope=app;
-  initialize();
-  return true;
-}

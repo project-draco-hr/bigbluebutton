@@ -1,4 +1,0 @@
-{
-  participants.put(participant.userid,participant);
-  log.debug("Added participant[" + participant.userid + ","+ participants.size()+ "]");
-}
