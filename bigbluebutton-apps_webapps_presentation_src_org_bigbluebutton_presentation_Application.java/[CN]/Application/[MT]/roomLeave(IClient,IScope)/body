@@ -1,4 +1,0 @@
-{
-  super.roomLeave(client,room);
-  log.info("Presentation::roomLeave - " + client.getId());
-}

@@ -1,6 +1,0 @@
-{
-  super.appStart(app);
-  log.info("Presentation::appStart - ");
-  appScope=app;
-  return true;
-}

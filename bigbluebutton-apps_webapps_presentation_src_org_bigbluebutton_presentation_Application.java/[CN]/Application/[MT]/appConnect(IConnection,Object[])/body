@@ -1,5 +1,0 @@
-{
-  super.appConnect(conn,params);
-  log.info("Presentation::appConnect - " + conn.getClient().getId());
-  return true;
-}
