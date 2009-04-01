@@ -1,8 +1,0 @@
-{
-  Collection<IParticipant> participants=new ArrayList<IParticipant>();
-  for (  MeetMeUser user : room.getUsers()) {
-    MeetMeUserAdapter participant=new MeetMeUserAdapter(user);
-    participants.add(participant);
-  }
-  return participants;
-}

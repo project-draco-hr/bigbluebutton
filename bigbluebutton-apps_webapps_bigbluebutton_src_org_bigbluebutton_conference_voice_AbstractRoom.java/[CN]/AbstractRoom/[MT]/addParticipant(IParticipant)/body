@@ -1,3 +1,0 @@
-{
-  participants.put(p.getId(),p);
-}

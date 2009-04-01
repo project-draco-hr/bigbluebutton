@@ -1,6 +1,0 @@
-{
-  XMLGregorianCalendar xcal=datatypeFactory.newXMLGregorianCalendar(isodate);
-  GregorianCalendar gregCal=xcal.toGregorianCalendar();
-  Date time=gregCal.getTime();
-  return time;
-}

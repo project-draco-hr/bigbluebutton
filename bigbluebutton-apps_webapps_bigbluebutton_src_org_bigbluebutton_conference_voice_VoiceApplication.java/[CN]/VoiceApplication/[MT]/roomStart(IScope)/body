@@ -1,4 +1,0 @@
-{
-  application.hasSharedObject(scope,"meetmeusersSO");
-  return false;
-}

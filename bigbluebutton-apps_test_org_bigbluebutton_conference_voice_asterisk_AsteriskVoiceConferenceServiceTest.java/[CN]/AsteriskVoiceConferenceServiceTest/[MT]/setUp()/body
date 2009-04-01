@@ -1,8 +1,0 @@
-{
-  roomMock=createMock(MeetMeRoom.class);
-  serverMock=createMock(AsteriskServer.class);
-  service=new AsteriskVoiceConferenceService();
-  roomManager=new RoomManager();
-  service.setAsteriskServer(serverMock);
-  service.setRoomManager(roomManager);
-}

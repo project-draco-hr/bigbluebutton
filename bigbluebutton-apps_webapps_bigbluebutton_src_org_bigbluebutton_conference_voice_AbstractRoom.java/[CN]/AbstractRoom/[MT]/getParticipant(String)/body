@@ -1,3 +1,0 @@
-{
-  return (Participant)participants.get(id);
-}

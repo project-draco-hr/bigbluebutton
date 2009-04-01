@@ -1,3 +1,0 @@
-{
-  return (IRoom)rooms.get(name);
-}

@@ -1,8 +1,0 @@
-{
-  try {
-    Date d=DateHelper.parseIsoDate(date);
-  }
- catch (  IllegalArgumentException e) {
-    fail("Expected to parse " + date + " - "+ e.toString());
-  }
-}

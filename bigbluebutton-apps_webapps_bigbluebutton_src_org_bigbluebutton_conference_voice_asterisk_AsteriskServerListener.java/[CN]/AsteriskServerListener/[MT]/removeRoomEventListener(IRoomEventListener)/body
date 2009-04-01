@@ -1,3 +1,0 @@
-{
-  roomEventListeners.remove(listener);
-}

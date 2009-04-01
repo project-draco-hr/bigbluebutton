@@ -1,8 +1,0 @@
-{
-  try {
-    Date d=DateHelper.parseIsoDate(date);
-    fail("Expected to reject " + date);
-  }
- catch (  IllegalArgumentException e) {
-  }
-}

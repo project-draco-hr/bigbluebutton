@@ -1,7 +1,0 @@
-{
-  expect(roomMock.getRoomNumber()).andReturn("TestRoom");
-  replay(roomMock);
-  MeetMeRoomAdapter ma=new MeetMeRoomAdapter(roomMock);
-  assertTrue(ma.getName().equals("TestRoom"));
-  verify(roomMock);
-}

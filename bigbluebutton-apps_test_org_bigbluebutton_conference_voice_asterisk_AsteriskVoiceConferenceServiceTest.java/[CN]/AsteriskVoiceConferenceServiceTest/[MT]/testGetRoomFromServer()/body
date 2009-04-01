@@ -1,6 +1,0 @@
-{
-  expect(serverMock.getMeetMeRoom("TestRoom")).andReturn(roomMock);
-  replay(serverMock);
-  service.getRoom("TestRoom");
-  verify(serverMock);
-}

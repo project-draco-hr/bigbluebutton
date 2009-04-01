@@ -1,7 +1,0 @@
-{
-  log.info("New user joined meetme room: " + user.getRoom() + " "+ user.getChannel().getCallerId().getName());
-  IParticipant p=new MeetMeUserAdapter(user);
-  for (  IRoomEventListener listener : roomEventListeners) {
-    listener.participantJoined(p);
-  }
-}
