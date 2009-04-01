@@ -1,0 +1,15 @@
+{
+  System.out.println("INITIALIZING PBX-AGI");
+  try {
+    db=Sql.newInstance(url,username,password,driver);
+  }
+ catch (  SQLException e) {
+    e.printStackTrace();
+  }
+catch (  ClassNotFoundException e) {
+    e.printStackTrace();
+  }
+  System.out.println("blank");
+  String[] roots=new String[]{scriptsLocation};
+  this.gse=new GroovyScriptEngine(roots);
+}

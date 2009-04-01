@@ -1,0 +1,7 @@
+{
+  StringBuffer buffer=new StringBuffer(actions.size() * 10);
+  for (Iterator iter=actions.iterator(); iter.hasNext(); ) {
+    buffer.append(iter.next()).append(',');
+  }
+  return buffer.substring(0,buffer.length() - 1);
+}

@@ -1,0 +1,4 @@
+{
+  this.target=target;
+  this.actions=new HashSet(actions);
+}

@@ -1,0 +1,7 @@
+{
+  if (!(obj instanceof JsecBasicPermission)) {
+    return false;
+  }
+  JsecBasicPermission p=(JsecBasicPermission)obj;
+  return (this.target == null ? p.target == null : this.target.equals(p.target)) && this.actions.equals(p.actions);
+}

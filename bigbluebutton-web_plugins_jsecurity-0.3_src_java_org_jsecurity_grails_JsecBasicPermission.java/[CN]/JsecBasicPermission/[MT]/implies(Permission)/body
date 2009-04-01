@@ -1,0 +1,16 @@
+{
+  boolean implies=(p instanceof JsecBasicPermission);
+  if (implies) {
+    JsecBasicPermission perm=(JsecBasicPermission)p;
+    if (this.target == null) {
+      implies=perm.target == null;
+    }
+ else     if (!this.target.equals(WILDCARD)) {
+      implies=this.target.equals(perm.target);
+    }
+    if (implies && !this.actions.contains(WILDCARD)) {
+      implies=this.actions.containsAll(perm.actions);
+    }
+  }
+  return implies;
+}
