@@ -1,6 +1,0 @@
-{
-  super.appStart(app);
-  log.info("MeetMe::appStart - ");
-  appScope=app;
-  return true;
-}

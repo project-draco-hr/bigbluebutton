@@ -1,4 +1,0 @@
-{
-  if (!super.appStart(app))   return false;
-  return true;
-}
