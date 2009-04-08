@@ -1,3 +1,0 @@
-{
-  ApplicationContext context=new ClassPathXmlApplicationContext("beans.xml");
-}
