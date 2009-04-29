@@ -1,0 +1,27 @@
+{
+  BufferedImage image=null;
+  try {
+    image=ImageIO.read(new File("strawberry.jpg"));
+  }
+ catch (  IOException e) {
+    System.out.println(e.getMessage());
+  }
+  System.out.println(image.getType());
+  System.out.println(BufferedImage.TYPE_3BYTE_BGR);
+  IConverter converter=null;
+  try {
+    converter=ConverterFactory.createConverter(image,IPixelFormat.Type.BGR24);
+  }
+ catch (  UnsupportedOperationException e) {
+    System.out.println(e.getMessage());
+    e.printStackTrace();
+    System.exit(0);
+  }
+  IVideoPicture picture=converter.toPicture(image,1000);
+  IPacket packet=IPacket.make();
+  IStreamCoder streamCoder=IStreamCoder.make(IStreamCoder.Direction.ENCODING);
+  streamCoder.setCodec(ICodec.ID.CODEC_ID_H264);
+  if (streamCoder.encodeVideo(packet,picture,-1) < 0) {
+    throw new RuntimeException("could not encode");
+  }
+}

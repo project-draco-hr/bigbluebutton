@@ -1,0 +1,30 @@
+{
+  outContainer=IContainer.make();
+  int retval=outContainer.open(outputFileName,IContainer.Type.WRITE,null);
+  if (retval < 0)   throw new RuntimeException("could not open output file");
+  int numStreams=1;
+  outStream=outContainer.addNewStream(0);
+  outStreamCoder=outStream.getStreamCoder();
+  ICodec codec=ICodec.guessEncodingCodec(null,null,outputFileName,null,ICodec.Type.CODEC_TYPE_VIDEO);
+  if (codec == null)   throw new RuntimeException("could not guess codec");
+  System.out.println("Codec: " + codec.getID());
+  outStreamCoder.setNumPicturesInGroupOfPictures(30);
+  outStreamCoder.setCodec(codec);
+  outStreamCoder.setBitRate(25000);
+  outStreamCoder.setBitRateTolerance(9000);
+  int width=1680;
+  int height=1050;
+  outStreamCoder.setPixelType(IPixelFormat.Type.YUV420P);
+  outStreamCoder.setHeight(height);
+  outStreamCoder.setWidth(width);
+  outStreamCoder.setFlag(IStreamCoder.Flags.FLAG_QSCALE,true);
+  outStreamCoder.setGlobalQuality(0);
+  IRational frameRate=IRational.make(3,1);
+  outStreamCoder.setFrameRate(frameRate);
+  outStreamCoder.setTimeBase(IRational.make(frameRate.getDenominator(),frameRate.getNumerator()));
+  frameRate=null;
+  retval=outStreamCoder.open();
+  if (retval < 0)   throw new RuntimeException("could not open input decoder");
+  retval=outContainer.writeHeader();
+  if (retval < 0)   throw new RuntimeException("could not write file header");
+}

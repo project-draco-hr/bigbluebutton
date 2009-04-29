@@ -1,0 +1,4 @@
+{
+  byte[] rawBytes=aSamples.getData().getByteArray(0,aSamples.getSize());
+  mLine.write(rawBytes,0,aSamples.getSize());
+}

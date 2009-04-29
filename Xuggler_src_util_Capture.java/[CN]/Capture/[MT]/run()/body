@@ -1,0 +1,11 @@
+{
+  while (running) {
+    process(robot.createScreenCapture(this.screenBounds));
+    try {
+      Thread.sleep(INTERVAL);
+    }
+ catch (    InterruptedException e) {
+      System.out.println(e.getMessage());
+    }
+  }
+}
