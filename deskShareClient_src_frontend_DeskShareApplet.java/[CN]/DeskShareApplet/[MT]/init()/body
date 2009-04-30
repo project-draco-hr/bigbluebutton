@@ -1,0 +1,4 @@
+{
+  Capture capture=new Capture();
+  captureThread=new Thread(capture);
+}
