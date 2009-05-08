@@ -1,0 +1,12 @@
+{
+  if (mVideoResampler == null && mOutVideoCoder != null) {
+    if (picture.getWidth() <= 0 || picture.getHeight() <= 0)     throw new RuntimeException("frame has no data in it so cannot resample");
+    if (mOutVideoCoder.getPixelType() != picture.getPixelType() || mOutVideoCoder.getWidth() != picture.getWidth() || mOutVideoCoder.getHeight() != picture.getHeight()) {
+      mVideoResampler=IVideoResampler.make(mOutVideoCoder.getWidth(),mOutVideoCoder.getHeight(),mOutVideoCoder.getPixelType(),picture.getWidth(),picture.getHeight(),picture.getPixelType());
+      if (mVideoResampler == null) {
+        log.error("Could not create a video resampler; this object is only available in the GPL version of aaffmpeg");
+        throw new RuntimeException("needed to resample video but couldn't allocate a resampler; you need the GPL version of AAFFMPEG installed?");
+      }
+    }
+  }
+}

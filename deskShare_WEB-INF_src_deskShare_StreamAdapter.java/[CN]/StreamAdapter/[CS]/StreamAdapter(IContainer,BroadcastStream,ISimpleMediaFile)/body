@@ -1,0 +1,22 @@
+{
+  this.inContainer=aInContainer;
+  this.outInfo=aOutInfo;
+  this.outBStream=aOutStream;
+  outputHandler=new IRTMPEventIOHandler(){
+    public Red5Message read() throws InterruptedException {
+      return null;
+    }
+    public void write(    Red5Message message) throws InterruptedException {
+      try {
+        IRTMPEvent event=message.getData();
+        if (event != null) {
+          outBStream.dispatchEvent(event);
+          event.release();
+        }
+      }
+  finally {
+      }
+    }
+  }
+;
+}

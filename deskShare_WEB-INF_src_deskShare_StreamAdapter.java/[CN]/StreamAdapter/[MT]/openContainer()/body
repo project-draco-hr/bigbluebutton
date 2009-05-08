@@ -1,0 +1,20 @@
+{
+  try {
+    outputURL=Red5HandlerFactory.DEFAULT_PROTOCOL + ":screencast";
+    outInfo.setURL(outputURL);
+    factory.registerStream(outputHandler,outInfo);
+    outContainer=IContainer.make();
+    IContainerFormat outFormat=IContainerFormat.make();
+    outFormat.setOutputFormat("flv",outputURL,null);
+    outContainer.open(outputURL,IContainer.Type.WRITE,outFormat);
+    IStream outStream=outContainer.addNewStream(0);
+    IStreamCoder outCoder=outStream.getStreamCoder();
+    ICodec.ID outCodecID=outInfo.getVideoCodec();
+    ICodec outCodec=ICodec.findEncodingCodec(outCodecID);
+    outCoder.setCodec(outCodec);
+    outCoder.setWidth(outInfo.getVideoWidth());
+    outCoder.setHeight(outInfo.getVideoHeight());
+  }
+  finally {
+  }
+}

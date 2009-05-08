@@ -1,0 +1,13 @@
+{
+  try {
+    openContainer();
+    transcode();
+  }
+ catch (  Throwable e) {
+    log.error("uncaught exception: " + e.getMessage());
+    e.printStackTrace();
+  }
+ finally {
+    closeContainer();
+  }
+}

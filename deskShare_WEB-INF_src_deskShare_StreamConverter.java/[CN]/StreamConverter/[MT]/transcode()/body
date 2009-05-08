@@ -1,0 +1,46 @@
+{
+  int retval=-1;
+synchronized (this) {
+    mIsRunning=true;
+    notifyAll();
+  }
+  IPacket iPacket=IPacket.make();
+  log.debug("Packets and Audio buffers created");
+  while (mKeepRunning) {
+    try {
+      try {
+        retval=mInContainer.readNextPacket(iPacket);
+      }
+  finally {
+      }
+      if (retval < 0) {
+        log.debug("container is empty; exiting transcoding thread");
+        mKeepRunning=false;
+        break;
+      }
+      log.debug("next packet read");
+      IPacket decodePacket=iPacket;
+      if (mPacketListener != null) {
+        try {
+          decodePacket=mPacketListener.preDecode(iPacket);
+          if (decodePacket == null)           decodePacket=iPacket;
+        }
+  finally {
+        }
+      }
+      openInputCoders(decodePacket);
+      int i=decodePacket.getStreamIndex();
+      if (i == mVideoStreamId) {
+        log.debug("video stream id matches: {}",i);
+        if (mInVideoCoder == null)         throw new RuntimeException("video coder not set up");
+        if (mOutputInfo.hasVideo())         decodeVideo(decodePacket);
+ else         log.debug("dropping video because output has no video");
+      }
+ else {
+        log.debug("dropping packet from stream we haven't set-up: {}",i);
+      }
+    }
+  finally {
+    }
+  }
+}

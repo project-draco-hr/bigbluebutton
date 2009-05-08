@@ -1,0 +1,88 @@
+{
+  mOutputStream=aOutputStream;
+  mOutputInfo=aOutputInfo;
+  mInputQueue=new Red5StreamingQueue();
+  mPacketListener=aPacketListener;
+  mVideoPictureListener=aPictureListener;
+  mVideoStreamId=-1;
+  if (mOutputInfo.getContainerFormat() != null) {
+    IContainerFormat fmt=mOutputInfo.getContainerFormat();
+    if (fmt.getInputFormatShortName() != "flv")     throw new IllegalArgumentException("currently we only support inputs from FLV files");
+  }
+  if (mOutputInfo.hasAudio()) {
+    if (!mOutputInfo.isAudioBitRateKnown() || mOutputInfo.getAudioBitRate() <= 0)     throw new IllegalArgumentException("must set audio bit rate when outputting audio");
+    if (!mOutputInfo.isAudioChannelsKnown() || mOutputInfo.getAudioChannels() <= 0)     throw new IllegalArgumentException("must set audio channels when outputting audio");
+    if (!mOutputInfo.isAudioSampleRateKnown() || mOutputInfo.getAudioSampleRate() <= 0)     throw new IllegalArgumentException("must set audio sample rate when outputting audio");
+    if (mOutputInfo.getAudioCodec() == ICodec.ID.CODEC_ID_NONE)     throw new IllegalArgumentException("must set audio code when outputting audio");
+  }
+  if (mOutputInfo.hasVideo()) {
+    if (!mOutputInfo.isVideoBitRateKnown() || mOutputInfo.getVideoBitRate() <= 0)     throw new IllegalArgumentException("must set video bit rate when outputting video");
+    if (!mOutputInfo.isVideoHeightKnown() || mOutputInfo.getVideoHeight() <= 0)     throw new IllegalArgumentException("must set video height when outputting video");
+    if (!mOutputInfo.isVideoWidthKnown() || mOutputInfo.getVideoWidth() <= 0)     throw new IllegalArgumentException("must set video width when outputting video");
+    if (mOutputInfo.getVideoCodec() == ICodec.ID.CODEC_ID_NONE)     throw new IllegalArgumentException("must set video codec when outputting video");
+    if (!IVideoResampler.isSupported(IVideoResampler.Feature.FEATURE_IMAGERESCALING))     log.warn("Your installed version of AAFFMPEG doesn't support video resampling; Transcoding will fail if resizing is required");
+  }
+  if (!(mOutputInfo.hasAudio() || mOutputInfo.hasVideo()))   throw new IllegalArgumentException("must output either audio or video");
+  mInputListener=new IStreamListener(){
+    public void packetReceived(    IBroadcastStream aStream,    IStreamPacket aPacket){
+      try {
+        if (aPacket instanceof VideoData) {
+          Red5Message.Type type=Red5Message.Type.INTERFRAME;
+          VideoData dataPacket=(VideoData)aPacket;
+switch (dataPacket.getFrameType()) {
+case DISPOSABLE_INTERFRAME:
+            type=Red5Message.Type.DISPOSABLE_INTERFRAME;
+          break;
+case INTERFRAME:
+        type=Red5Message.Type.INTERFRAME;
+      break;
+case KEYFRAME:
+case UNKNOWN:
+    type=Red5Message.Type.KEY_FRAME;
+  break;
+}
+if (type != Red5Message.Type.DISPOSABLE_INTERFRAME) {
+log.debug("  adding packet type: {}; ts: {}; on stream: {}",new Object[]{dataPacket.getFrameType(),aPacket.getTimestamp(),aStream.getPublishedName()});
+mInputQueue.put(new Red5Message(type,dataPacket));
+}
+}
+ else if (aPacket instanceof IRTMPEvent) {
+log.debug("  adding packet type: {}; ts: {}; on stream: {}",new Object[]{"OTHER",aPacket.getTimestamp(),aStream.getPublishedName()});
+Red5Message.Type type=Red5Message.Type.OTHER;
+IRTMPEvent dataPacket=(IRTMPEvent)aPacket;
+mInputQueue.put(new Red5Message(type,dataPacket));
+}
+ else {
+log.debug("dropping packet type: {}; ts: {}; on stream: {}",new Object[]{"UNKNOWN",aPacket.getTimestamp(),aStream.getPublishedName()});
+}
+}
+ catch (InterruptedException ex) {
+log.error("exception: {}",ex);
+}
+ finally {
+}
+}
+}
+;
+mOutputHandler=new IRTMPEventIOHandler(){
+/** 
+ * Reading not supported on this handler.
+ * @return null
+ */
+public Red5Message read() throws InterruptedException {
+return null;
+}
+public void write(Red5Message aMsg) throws InterruptedException {
+try {
+IRTMPEvent event=aMsg.getData();
+if (event != null) {
+mOutputStream.dispatchEvent(event);
+event.release();
+}
+}
+  finally {
+}
+}
+}
+;
+}

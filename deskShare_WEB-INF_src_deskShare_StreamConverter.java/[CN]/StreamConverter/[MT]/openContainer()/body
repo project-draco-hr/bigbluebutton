@@ -1,0 +1,61 @@
+{
+  try {
+    String threadName="Transcoder[]";
+    log.debug("Changing thread name: {}; to {};",Thread.currentThread().getName(),threadName);
+    Thread.currentThread().setName(threadName);
+    int retval=-1;
+{
+      mInputURL=Red5HandlerFactory.DEFAULT_PROTOCOL;
+      ISimpleMediaFile inputInfo=new SimpleMediaFile();
+      inputInfo.setURL(mInputURL);
+      mFactory.registerStream(mInputQueue,inputInfo);
+      mInContainer=IContainer.make();
+      log.debug("About to open input url: {}",mInputURL);
+      IContainerFormat inFormat=IContainerFormat.make();
+      inFormat.setInputFormat("flv");
+      retval=mInContainer.open(mInputURL,IContainer.Type.READ,inFormat,true,false);
+      if (retval < 0) {
+        throw new RuntimeException("Could not open input: " + mInputURL);
+      }
+    }
+{
+      mOutputURL=Red5HandlerFactory.DEFAULT_PROTOCOL + ":" + mOutputStream.getName();
+      mOutputInfo.setURL(mOutputURL);
+      mFactory.registerStream(mOutputHandler,mOutputInfo);
+      mOutContainer=IContainer.make();
+      IContainerFormat outFormat=IContainerFormat.make();
+      outFormat.setOutputFormat("flv",mOutputURL,null);
+      retval=mOutContainer.open(mOutputURL,IContainer.Type.WRITE,outFormat);
+      if (retval < 0)       throw new RuntimeException("could not open output: " + mOutputURL);
+      if (mOutputInfo.hasVideo()) {
+        IStream outStream=mOutContainer.addNewStream(1);
+        if (outStream == null)         throw new RuntimeException("could not add video stream to output: " + mOutputURL);
+        IStreamCoder outCoder=outStream.getStreamCoder();
+        ICodec.ID outCodecId=mOutputInfo.getVideoCodec();
+        ICodec outCodec=ICodec.findEncodingCodec(outCodecId);
+        if (outCodec == null) {
+          log.error("Could not encode using the codec: {}",mOutputInfo.getAudioCodec());
+          throw new RuntimeException("Could not encode using the codec: " + mOutputInfo.getAudioCodec());
+        }
+        outCoder.setCodec(outCodec);
+        outCoder.setWidth(mOutputInfo.getVideoWidth());
+        outCoder.setHeight(mOutputInfo.getVideoHeight());
+        outCoder.setPixelType(mOutputInfo.getVideoPixelFormat());
+        outCoder.setGlobalQuality(mOutputInfo.getVideoGlobalQuality());
+        outCoder.setBitRate(mOutputInfo.getVideoBitRate());
+        outCoder.setNumPicturesInGroupOfPictures(mOutputInfo.getVideoNumPicturesInGroupOfPictures());
+        outCoder.setFlag(IStreamCoder.Flags.FLAG_QSCALE,true);
+        if (mOutputInfo.getVideoTimeBase() != null)         outCoder.setTimeBase(mOutputInfo.getVideoTimeBase());
+ else         outCoder.setTimeBase(IRational.make(1,1000));
+        outCoder.open();
+        mOutVideoCoder=outCoder;
+      }
+    }
+    retval=mOutContainer.writeHeader();
+    if (retval < 0) {
+      throw new RuntimeException("could not write header for output");
+    }
+  }
+  finally {
+  }
+}

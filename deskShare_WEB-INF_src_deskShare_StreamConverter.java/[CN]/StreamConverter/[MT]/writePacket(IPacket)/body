@@ -1,0 +1,20 @@
+{
+  int retval;
+  IPacket encodedPacket=oPacket;
+  if (mPacketListener != null) {
+    try {
+      encodedPacket=mPacketListener.postEncode(oPacket);
+      if (encodedPacket == null)       encodedPacket=oPacket;
+    }
+  finally {
+    }
+  }
+  try {
+    retval=mOutContainer.writePacket(encodedPacket,false);
+  }
+  finally {
+  }
+  if (retval < 0) {
+    throw new RuntimeException("could not write output packet");
+  }
+}
