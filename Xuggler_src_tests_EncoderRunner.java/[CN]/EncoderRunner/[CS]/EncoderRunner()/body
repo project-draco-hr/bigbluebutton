@@ -1,9 +1,0 @@
-{
-  try {
-    serverSocket=new ServerSocket(PORT);
-    imageEncoder=new BuffImageEncodeV2();
-  }
- catch (  IOException e) {
-    e.printStackTrace(System.out);
-  }
-}

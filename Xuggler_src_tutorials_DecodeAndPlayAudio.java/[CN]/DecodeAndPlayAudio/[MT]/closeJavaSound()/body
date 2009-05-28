@@ -1,7 +1,0 @@
-{
-  if (mLine != null) {
-    mLine.drain();
-    mLine.close();
-    mLine=null;
-  }
-}
