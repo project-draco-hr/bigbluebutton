@@ -1,7 +1,0 @@
-{
-  log.info("deskShare appDisconnect");
-  if (appScope == conn.getScope() && serverStream != null) {
-    serverStream.close();
-  }
-  super.appDisconnect(conn);
-}
