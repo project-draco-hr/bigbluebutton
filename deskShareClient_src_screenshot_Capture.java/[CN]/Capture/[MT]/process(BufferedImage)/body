@@ -1,4 +1,0 @@
-{
-  this.index++;
-  if (this.index > 5)   this.running=false;
-}
