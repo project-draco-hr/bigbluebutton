@@ -1,4 +1,0 @@
-{
-  super.connectionOpened(conn,state);
-  chatSO=subscribeSharedObject(conn,"chatSO");
-}

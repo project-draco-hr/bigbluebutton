@@ -1,7 +1,0 @@
-{
-  super.connectionOpened(conn,state);
-  participantsSO=subscribeSharedObject(conn,"participantsSO");
-  if (participantsSO == null) {
-    System.err.println("Could not connect to shared object particiantsSO");
-  }
-}

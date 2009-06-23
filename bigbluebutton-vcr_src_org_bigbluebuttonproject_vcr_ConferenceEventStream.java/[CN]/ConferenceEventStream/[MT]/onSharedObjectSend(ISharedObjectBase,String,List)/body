@@ -1,6 +1,0 @@
-{
-  if (method.equals("")) {
-    out.println("<status time=\"" + getTimestamp() + "\" user=\""+ params.get(0)+ "\"/>");
-    out.flush();
-  }
-}

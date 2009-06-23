@@ -1,4 +1,0 @@
-{
-  VCR vcr=new VCR(args);
-  vcr.startRecording();
-}

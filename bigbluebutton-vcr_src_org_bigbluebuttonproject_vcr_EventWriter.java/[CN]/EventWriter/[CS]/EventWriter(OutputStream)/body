@@ -1,4 +1,0 @@
-{
-  super(out);
-  mutex=new ReentrantLock();
-}

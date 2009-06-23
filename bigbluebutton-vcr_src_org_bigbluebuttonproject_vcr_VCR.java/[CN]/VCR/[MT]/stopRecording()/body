@@ -1,5 +1,0 @@
-{
-  out.println("</seq>");
-  out.println("</lecture>");
-  out.flush();
-}

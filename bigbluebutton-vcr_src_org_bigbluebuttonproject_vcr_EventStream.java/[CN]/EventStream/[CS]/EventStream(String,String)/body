@@ -1,5 +1,0 @@
-{
-  this.host=host;
-  this.room=room;
-  init();
-}

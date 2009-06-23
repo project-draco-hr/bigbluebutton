@@ -1,3 +1,0 @@
-{
-  return subscribeSharedObject(conn,name,false);
-}
