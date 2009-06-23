@@ -1,3 +1,0 @@
-{
-  rtmpConnManager.removeConnection(clientId);
-}

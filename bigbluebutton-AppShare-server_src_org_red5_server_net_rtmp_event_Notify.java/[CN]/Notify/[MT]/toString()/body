@@ -1,5 +1,0 @@
-{
-  StringBuffer sb=new StringBuffer();
-  sb.append("Notify: ").append(call);
-  return sb.toString();
-}

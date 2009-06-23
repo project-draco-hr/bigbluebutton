@@ -1,5 +1,0 @@
-{
-  for (  IConnectionListener listener : connectionListeners) {
-    listener.notifyConnected(conn);
-  }
-}

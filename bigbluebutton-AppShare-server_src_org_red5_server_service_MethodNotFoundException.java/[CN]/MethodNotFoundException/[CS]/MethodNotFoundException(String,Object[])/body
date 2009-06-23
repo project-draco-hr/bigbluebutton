@@ -1,3 +1,0 @@
-{
-  super("Method " + methodName + " with arguments "+ Arrays.asList(args)+ " not found");
-}

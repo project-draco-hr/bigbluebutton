@@ -1,3 +1,0 @@
-{
-  setIterator=clients.values().iterator();
-}

@@ -1,3 +1,0 @@
-{
-  return "Status code: " + getCode() + " desc: "+ getDescription()+ " level: "+ getLevel();
-}

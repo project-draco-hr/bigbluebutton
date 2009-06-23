@@ -1,5 +1,0 @@
-{
-  super(buf);
-  amf3_mode=0;
-  stringReferences=new LinkedList<String>();
-}

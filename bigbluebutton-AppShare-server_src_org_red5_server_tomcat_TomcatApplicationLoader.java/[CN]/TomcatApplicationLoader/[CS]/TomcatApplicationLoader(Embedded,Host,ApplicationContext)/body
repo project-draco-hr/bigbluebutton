@@ -1,5 +1,0 @@
-{
-  this.embedded=embedded;
-  this.host=host;
-  this.rootCtx=rootCtx;
-}

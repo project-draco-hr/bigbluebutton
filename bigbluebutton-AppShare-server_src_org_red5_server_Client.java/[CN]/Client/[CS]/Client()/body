@@ -1,3 +1,0 @@
-{
-  log.debug("Default ctor called");
-}

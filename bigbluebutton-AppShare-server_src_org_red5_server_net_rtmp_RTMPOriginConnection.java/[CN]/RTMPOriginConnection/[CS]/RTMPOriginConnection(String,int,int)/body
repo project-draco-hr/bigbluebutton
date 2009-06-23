@@ -1,7 +1,0 @@
-{
-  super(type);
-  setId(clientId);
-  this.ioSessionId=ioSessionId;
-  state=new RTMP(RTMP.MODE_SERVER);
-  state.setState(RTMP.STATE_CONNECTED);
-}

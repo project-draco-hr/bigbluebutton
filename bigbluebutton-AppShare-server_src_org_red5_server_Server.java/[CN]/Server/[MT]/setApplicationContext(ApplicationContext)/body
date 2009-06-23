@@ -1,4 +1,0 @@
-{
-  log.debug("Setting application context");
-  this.applicationContext=applicationContext;
-}

@@ -1,4 +1,0 @@
-{
-  log.info("Registering global scope: " + scope.getName());
-  globals.put(scope.getName(),scope);
-}

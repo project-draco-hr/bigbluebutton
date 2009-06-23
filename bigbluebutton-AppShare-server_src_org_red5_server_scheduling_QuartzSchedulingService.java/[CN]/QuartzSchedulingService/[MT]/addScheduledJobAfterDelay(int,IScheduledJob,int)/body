@@ -1,7 +1,0 @@
-{
-  String result=getJobName();
-  long startTime=System.currentTimeMillis() + delay;
-  SimpleTrigger trigger=new SimpleTrigger("Trigger_" + result,null,new Date(startTime),null,SimpleTrigger.REPEAT_INDEFINITELY,interval);
-  scheduleJob(result,trigger,job);
-  return result;
-}

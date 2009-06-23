@@ -1,8 +1,0 @@
-{
-  if (clientCallback != null) {
-    return clientCallback + (isSuccess() && !(getClientResult() instanceof ErrorMessage) ? HANDLER_SUCCESS : HANDLER_ERROR);
-  }
- else {
-    return null;
-  }
-}

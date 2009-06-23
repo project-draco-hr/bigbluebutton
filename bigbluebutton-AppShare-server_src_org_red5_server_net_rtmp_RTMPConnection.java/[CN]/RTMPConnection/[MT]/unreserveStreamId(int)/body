@@ -1,6 +1,0 @@
-{
-  deleteStreamById(streamId);
-  if (streamId > 0) {
-    reservedStreams.clear(streamId - 1);
-  }
-}

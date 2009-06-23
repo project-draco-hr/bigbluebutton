@@ -1,7 +1,0 @@
-{
-  IScope current=from;
-  while (current.hasParent() && current.getDepth() != APPLICATION) {
-    current=current.getParent();
-  }
-  return current;
-}

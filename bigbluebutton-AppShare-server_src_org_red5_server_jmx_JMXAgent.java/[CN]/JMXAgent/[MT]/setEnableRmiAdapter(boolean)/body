@@ -1,3 +1,0 @@
-{
-  JMXAgent.enableRmiAdapter=enableRmiAdapter;
-}

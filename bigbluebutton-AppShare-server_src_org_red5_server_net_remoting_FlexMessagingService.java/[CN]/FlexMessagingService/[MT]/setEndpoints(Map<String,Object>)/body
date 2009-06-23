@@ -1,4 +1,0 @@
-{
-  this.endpoints=endpoints;
-  log.info("Configured endpoints: " + endpoints);
-}

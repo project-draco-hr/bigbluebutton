@@ -1,8 +1,0 @@
-{
-  if (directory.startsWith("file:")) {
-    directory=directory.substring(5);
-  }
-  Context c=embedded.createContext(contextPath,directory);
-  LoaderBase.setRed5ApplicationContext(contextPath,new TomcatApplicationContext(c));
-  host.addChild(c);
-}

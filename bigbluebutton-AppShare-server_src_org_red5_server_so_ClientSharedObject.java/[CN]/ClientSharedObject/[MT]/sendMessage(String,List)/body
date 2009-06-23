@@ -1,4 +1,0 @@
-{
-  ownerMessage.addEvent(Type.SERVER_SEND_MESSAGE,handler,arguments);
-  notifyModified();
-}

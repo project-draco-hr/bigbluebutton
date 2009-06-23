@@ -1,3 +1,0 @@
-def getInstance(*args):
-    print 'Arguments:', args
-    return DemoService()

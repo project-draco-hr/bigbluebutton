@@ -1,5 +1,0 @@
-{
-  ByteBuffer result=ByteBuffer.allocate(calculateHeaderSize(header,lastHeader));
-  encodeHeader(header,lastHeader,result);
-  return result;
-}

@@ -1,5 +1,0 @@
-{
-  Map<String,Object> headers=readHeaders(in);
-  List<RemotingCall> calls=decodeCalls(in);
-  return new RemotingPacket(headers,calls);
-}

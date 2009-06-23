@@ -1,9 +1,0 @@
-{
-  if (checkWriteReference(array))   return;
-  storeReference(array);
-  buf.put(AMF.TYPE_ARRAY);
-  buf.putInt(Array.getLength(array));
-  for (int i=0; i < Array.getLength(array); i++) {
-    serializer.serialize(this,Array.get(array,i));
-  }
-}

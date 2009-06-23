@@ -1,8 +1,0 @@
-{
-  List<String> result=new ArrayList<String>();
-  Iterator<String> it=scope.getBasicScopeNames(IBroadcastScope.TYPE);
-  while (it.hasNext()) {
-    result.add(it.next());
-  }
-  return result;
-}

@@ -1,8 +1,0 @@
-{
-  try {
-    scheduler.deleteJob(name,null);
-  }
- catch (  SchedulerException ex) {
-    throw new RuntimeException(ex);
-  }
-}

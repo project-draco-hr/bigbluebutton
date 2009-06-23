@@ -1,5 +1,0 @@
-{
-  so.setAttribute("endOfUpdate",u[0]);
-  so.setAttribute("tilewidth",Integer.valueOf(u[1]).intValue());
-  so.setAttribute("tileheight",Integer.valueOf(u[2]).intValue());
-}

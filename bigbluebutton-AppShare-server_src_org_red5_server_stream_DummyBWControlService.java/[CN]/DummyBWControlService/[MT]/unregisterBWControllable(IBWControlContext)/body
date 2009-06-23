@@ -1,3 +1,0 @@
-{
-  contextMap.remove(context.getBWControllable());
-}

@@ -1,6 +1,0 @@
-{
-  if (channelId < 4) {
-    return null;
-  }
-  return streams.get(getStreamIdForChannel(channelId) - 1);
-}

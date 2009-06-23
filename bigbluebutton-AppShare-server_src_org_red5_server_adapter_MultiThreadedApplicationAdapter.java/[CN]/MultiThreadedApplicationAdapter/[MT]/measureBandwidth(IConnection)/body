@@ -1,3 +1,0 @@
-{
-  ServiceUtils.invokeOnConnection(conn,"onBWDone",new Object[]{});
-}

@@ -1,5 +1,0 @@
-{
-  final Charset cs=Charset.forName(encoding);
-  final java.nio.ByteBuffer strBuf=cs.encode(value);
-  buffer.put(strBuf);
-}

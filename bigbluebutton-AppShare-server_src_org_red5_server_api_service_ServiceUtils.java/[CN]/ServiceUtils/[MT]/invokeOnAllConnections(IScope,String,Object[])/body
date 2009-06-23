@@ -1,3 +1,0 @@
-{
-  invokeOnAllConnections(scope,method,params,null);
-}

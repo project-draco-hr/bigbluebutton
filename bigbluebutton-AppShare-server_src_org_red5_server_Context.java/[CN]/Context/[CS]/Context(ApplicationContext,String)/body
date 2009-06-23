@@ -1,4 +1,0 @@
-{
-  setApplicationContext(context);
-  this.contextPath=contextPath;
-}

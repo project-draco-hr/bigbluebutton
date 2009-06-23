@@ -1,7 +1,0 @@
-{
-  if (log.isDebugEnabled()) {
-    log.debug("Write reference");
-  }
-  buf.put(AMF.TYPE_REFERENCE);
-  buf.putShort(getReferenceId(obj));
-}

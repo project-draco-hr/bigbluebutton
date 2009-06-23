@@ -1,8 +1,0 @@
-{
-  lastAudio=0;
-  lastVideo=0;
-  lastNotify=0;
-  firstVideo=true;
-  firstAudio=true;
-  firstNotify=true;
-}

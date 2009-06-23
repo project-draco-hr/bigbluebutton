@@ -1,8 +1,0 @@
-{
-  if (obj instanceof ICacheable) {
-    cache.store(name,obj);
-  }
- else {
-    cache.store(name,new CacheableImpl(obj));
-  }
-}

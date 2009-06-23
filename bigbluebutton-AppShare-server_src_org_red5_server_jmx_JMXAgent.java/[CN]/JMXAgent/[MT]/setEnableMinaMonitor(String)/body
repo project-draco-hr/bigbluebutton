@@ -1,3 +1,0 @@
-{
-  JMXAgent.enableMinaMonitor=enableMinaMonitor.matches("true|on|yes");
-}

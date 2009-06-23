@@ -1,5 +1,0 @@
-{
-  super.writeExternal(out);
-  out.writeInt(clientid);
-  out.writeObject(details);
-}

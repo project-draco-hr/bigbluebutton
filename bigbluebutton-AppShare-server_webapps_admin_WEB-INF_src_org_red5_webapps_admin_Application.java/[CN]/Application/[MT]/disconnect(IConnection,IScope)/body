@@ -1,5 +1,0 @@
-{
-  String rid=conn.getClient().getId();
-  log.info("Client with id {} disconnected.",rid);
-  super.disconnect(conn,scope);
-}

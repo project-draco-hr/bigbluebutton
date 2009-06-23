@@ -1,8 +1,0 @@
-{
-  out.writeByte(dataType);
-  out.writeInt(channelId);
-  out.writeInt(size);
-  out.writeInt(streamId);
-  out.writeInt(timer);
-  out.writeBoolean(timerRelative);
-}

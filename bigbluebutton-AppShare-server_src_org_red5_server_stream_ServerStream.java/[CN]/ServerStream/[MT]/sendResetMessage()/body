@@ -1,8 +1,0 @@
-{
-  try {
-    pushMessage(new ResetMessage());
-  }
- catch (  IOException err) {
-    log.error("Error while sending reset message.",err);
-  }
-}

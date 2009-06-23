@@ -1,4 +1,0 @@
-{
-  byte[] ba=in.getBytes();
-  return toHexString(ba);
-}

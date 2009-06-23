@@ -1,3 +1,0 @@
-{
-  return parent.getPath() + '/' + parent.getName();
-}

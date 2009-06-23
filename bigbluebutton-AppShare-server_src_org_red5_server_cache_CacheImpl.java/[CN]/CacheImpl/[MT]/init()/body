@@ -1,6 +1,0 @@
-{
-  log.info("Loading generic object cache");
-  if (log.isDebugEnabled()) {
-    log.debug("Appcontext: " + applicationContext.toString());
-  }
-}

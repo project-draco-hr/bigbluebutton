@@ -1,5 +1,0 @@
-{
-  super(code,level,description);
-  this.details=details;
-  this.clientid=clientid;
-}

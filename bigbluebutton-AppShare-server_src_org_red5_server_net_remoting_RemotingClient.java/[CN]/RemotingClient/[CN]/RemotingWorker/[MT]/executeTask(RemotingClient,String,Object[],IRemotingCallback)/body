@@ -1,9 +1,0 @@
-{
-  try {
-    Object result=client.invokeMethod(method,params);
-    callback.resultReceived(client,method,params,result);
-  }
- catch (  Exception err) {
-    callback.errorReceived(client,method,params,err);
-  }
-}

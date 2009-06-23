@@ -1,8 +1,0 @@
-{
-  if (path == null || path.equals(ROOT)) {
-    return defaultApp + DIR;
-  }
- else {
-    return path + DIR;
-  }
-}

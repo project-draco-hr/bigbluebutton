@@ -1,4 +1,0 @@
-{
-  buf.put(AMF.TYPE_NUMBER);
-  buf.putDouble(num.doubleValue());
-}

@@ -1,7 +1,0 @@
-{
-  this.dataType=dataType;
-  this.timestamp=timestamp;
-  this.bodySize=bodySize;
-  this.body=body;
-  this.previuosTagSize=previousTagSize;
-}

@@ -1,4 +1,0 @@
-RTMPConnection conn
-int videoChannel
-int audioChannel
-int dataChannel

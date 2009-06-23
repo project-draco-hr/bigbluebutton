@@ -1,5 +1,0 @@
-{
-  IServiceCapableConnection service=(IServiceCapableConnection)conn;
-  log.info("Setting userId and role [" + conn.getClient().getId() + ","+ role.toString()+ "]");
-  service.invoke("setUserIdAndRole",new Object[]{conn.getClient().getId(),role.toString()},this);
-}

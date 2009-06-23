@@ -1,9 +1,0 @@
-{
-  TokenRequest request=new TokenRequest();
-  request.type=TokenRequestType.NONBLOCKING;
-  request.callback=callback;
-  request.channel=channel;
-  request.initialBC=bc;
-  request.requestToken=tokenCount;
-  return processRequest(request);
-}

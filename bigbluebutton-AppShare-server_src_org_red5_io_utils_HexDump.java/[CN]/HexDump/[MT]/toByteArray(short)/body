@@ -1,6 +1,0 @@
-{
-  byte[] baTemp=new byte[2];
-  baTemp[1]=(byte)(s);
-  baTemp[0]=(byte)(s >> 8);
-  return baTemp;
-}

@@ -1,6 +1,0 @@
-{
-  if (id.startsWith(path)) {
-    id=id.substring(path.length() + 1);
-  }
-  return super.getObjectPath(id,name);
-}

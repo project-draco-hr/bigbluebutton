@@ -1,7 +1,0 @@
-{
-  super.writeExternal(out);
-  out.writeObject(name);
-  out.writeInt(version);
-  out.writeBoolean(persistent);
-  out.writeObject(events);
-}

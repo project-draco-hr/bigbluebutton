@@ -1,5 +1,0 @@
-{
-  final ByteBuffer out=ByteBuffer.allocate(4);
-  out.putInt(bytesRead.getBytesRead());
-  return out;
-}

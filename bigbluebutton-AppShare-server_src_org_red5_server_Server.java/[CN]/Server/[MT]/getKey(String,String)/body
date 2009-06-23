@@ -1,9 +1,0 @@
-{
-  if (hostName == null) {
-    hostName=EMPTY;
-  }
-  if (contextPath == null) {
-    contextPath=EMPTY;
-  }
-  return hostName + SLASH + contextPath;
-}

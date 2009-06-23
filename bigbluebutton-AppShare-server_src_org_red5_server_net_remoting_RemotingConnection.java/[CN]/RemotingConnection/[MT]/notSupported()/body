@@ -1,3 +1,0 @@
-{
-  throw new RuntimeException("not supported for this type of connection");
-}

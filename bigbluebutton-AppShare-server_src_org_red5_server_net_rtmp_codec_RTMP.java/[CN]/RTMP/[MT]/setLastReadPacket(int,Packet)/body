@@ -1,7 +1,0 @@
-{
-  Packet prevPacket=readPackets.put(channelId,packet);
-  if (prevPacket != null && prevPacket.getData() != null) {
-    prevPacket.getData().release();
-    prevPacket.setData(null);
-  }
-}

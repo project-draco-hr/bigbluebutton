@@ -1,9 +1,0 @@
-{
-  if (file.exists()) {
-    file.delete();
-  }
-  file.createNewFile();
-  ITagWriter writer=new FLVWriter(new FileOutputStream(file),false);
-  writer.writeHeader();
-  return writer;
-}

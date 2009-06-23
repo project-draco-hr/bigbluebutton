@@ -1,6 +1,0 @@
-{
-synchronized (ioHandlerWrapper) {
-    needReconnect=true;
-    ioHandlerWrapper.notifyAll();
-  }
-}

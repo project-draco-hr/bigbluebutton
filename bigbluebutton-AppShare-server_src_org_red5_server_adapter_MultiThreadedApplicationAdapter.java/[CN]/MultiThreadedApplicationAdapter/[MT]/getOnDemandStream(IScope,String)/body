@@ -1,5 +1,0 @@
-{
-  log.warn("This won't work until the refactoring of the streaming code is complete.");
-  IOnDemandStreamService service=(IOnDemandStreamService)getScopeService(scope,IOnDemandStreamService.class,StreamService.class,false);
-  return service.getOnDemandStream(scope,name);
-}

@@ -1,5 +1,0 @@
-{
-  Notify notify=new Notify();
-  notify.setCall(call);
-  getChannel(channel).write(notify);
-}

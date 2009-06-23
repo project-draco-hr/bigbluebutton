@@ -1,3 +1,0 @@
-{
-  securityHandlers.remove(handler);
-}

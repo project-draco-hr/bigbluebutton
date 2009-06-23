@@ -1,3 +1,0 @@
-{
-  streams.put(stream.getStreamId() - 1,stream);
-}

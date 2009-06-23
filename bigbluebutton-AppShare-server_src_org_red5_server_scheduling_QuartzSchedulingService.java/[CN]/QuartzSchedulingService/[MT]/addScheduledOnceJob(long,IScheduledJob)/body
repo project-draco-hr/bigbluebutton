@@ -1,3 +1,0 @@
-{
-  return addScheduledOnceJob(new Date(System.currentTimeMillis() + timeDelta),job);
-}

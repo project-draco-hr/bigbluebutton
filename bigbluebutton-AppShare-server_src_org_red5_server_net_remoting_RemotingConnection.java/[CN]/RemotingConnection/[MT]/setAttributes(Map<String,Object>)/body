@@ -1,9 +1,0 @@
-{
-  for (  Map.Entry<String,Object> entry : values.entrySet()) {
-    final String name=entry.getKey();
-    final Object value=entry.getValue();
-    if (name != null && value != null) {
-      session.setAttribute(name,value);
-    }
-  }
-}

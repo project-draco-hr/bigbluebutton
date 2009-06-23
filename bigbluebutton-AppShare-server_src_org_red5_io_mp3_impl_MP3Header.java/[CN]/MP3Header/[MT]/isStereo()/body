@@ -1,3 +1,0 @@
-{
-  return (channelMode != 3);
-}

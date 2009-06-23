@@ -1,3 +1,0 @@
-ProtocolState state
-ByteBuffer in
-IoSession session

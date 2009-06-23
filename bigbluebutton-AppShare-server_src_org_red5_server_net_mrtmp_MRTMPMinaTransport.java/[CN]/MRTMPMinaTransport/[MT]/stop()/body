@@ -1,5 +1,0 @@
-{
-  log.info("MRTMP Mina Transport unbind");
-  acceptor.unbindAll();
-  eventExecutor.shutdown();
-}

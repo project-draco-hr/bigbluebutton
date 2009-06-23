@@ -1,4 +1,0 @@
-{
-  lastReadChannel=channelId;
-  readHeaders.put(channelId,header);
-}

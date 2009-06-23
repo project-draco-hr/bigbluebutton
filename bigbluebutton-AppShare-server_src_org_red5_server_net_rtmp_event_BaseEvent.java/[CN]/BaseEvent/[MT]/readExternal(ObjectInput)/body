@@ -1,4 +1,0 @@
-{
-  type=(Type)in.readObject();
-  timestamp=in.readInt();
-}

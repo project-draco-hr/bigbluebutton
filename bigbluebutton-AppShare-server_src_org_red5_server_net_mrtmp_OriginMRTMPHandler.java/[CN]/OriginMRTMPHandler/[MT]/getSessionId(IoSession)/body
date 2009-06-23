@@ -1,7 +1,0 @@
-{
-  MRTMPOriginConnection mrtmpConn=(MRTMPOriginConnection)session.getAttachment();
-  if (mrtmpConn != null) {
-    return mrtmpConn.hashCode();
-  }
-  return 0;
-}

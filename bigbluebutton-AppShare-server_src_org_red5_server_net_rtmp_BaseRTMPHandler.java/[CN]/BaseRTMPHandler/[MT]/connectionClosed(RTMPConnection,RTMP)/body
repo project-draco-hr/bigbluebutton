@@ -1,4 +1,0 @@
-{
-  state.setState(RTMP.STATE_DISCONNECTED);
-  conn.close();
-}

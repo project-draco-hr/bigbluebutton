@@ -1,7 +1,0 @@
-String type
-String host
-String remoteAddress
-int remotePort
-String path
-String sessionId
-Map<String,Object> params

@@ -1,5 +1,0 @@
-{
-  super.roomJoin(client,room);
-  log.info("Blindside::roomJoin - " + client.getId());
-  return true;
-}

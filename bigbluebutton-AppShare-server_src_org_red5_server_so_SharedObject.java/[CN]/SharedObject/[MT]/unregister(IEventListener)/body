@@ -1,5 +1,0 @@
-{
-  listeners.remove(listener);
-  listenerStats.decrement();
-  checkRelease();
-}

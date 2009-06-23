@@ -1,5 +1,0 @@
-{
-  Map statusMap=new BeanMap(statusObject);
-  Output output=new Output(out);
-  serializer.serialize(output,statusMap);
-}

@@ -1,5 +1,0 @@
-{
-  SocketSessionConfig ssc=(SocketSessionConfig)session.getConfig();
-  ssc.setTcpNoDelay(true);
-  super.sessionOpened(session);
-}

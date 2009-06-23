@@ -1,6 +1,0 @@
-{
-  log.info("MeetMe::roomStart - " + room.getName());
-  if (!super.roomStart(room))   return false;
-  initialize();
-  return true;
-}

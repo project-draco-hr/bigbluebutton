@@ -1,3 +1,0 @@
-{
-  return new Resolver().resolve(metaData,md);
-}

@@ -1,9 +1,0 @@
-{
-  if (log.isDebugEnabled()) {
-    log.debug(msg);
-    log.debug("Size: " + buf.remaining());
-    log.debug("Data:\n\n" + HexDump.formatHexDump(buf.getHexDump()));
-    final String string=toString(buf);
-    log.debug("\n" + string + "\n");
-  }
-}

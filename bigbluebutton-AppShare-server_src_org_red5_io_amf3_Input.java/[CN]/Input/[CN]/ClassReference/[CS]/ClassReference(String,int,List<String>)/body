@@ -1,5 +1,0 @@
-{
-  this.className=className;
-  this.type=type;
-  this.attributeNames=attributeNames;
-}

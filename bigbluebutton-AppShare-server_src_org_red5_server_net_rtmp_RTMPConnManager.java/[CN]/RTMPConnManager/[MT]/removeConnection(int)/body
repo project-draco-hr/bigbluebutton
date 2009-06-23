@@ -1,9 +1,0 @@
-{
-  lock.writeLock().lock();
-  try {
-    return connMap.remove(clientId);
-  }
-  finally {
-    lock.writeLock().unlock();
-  }
-}

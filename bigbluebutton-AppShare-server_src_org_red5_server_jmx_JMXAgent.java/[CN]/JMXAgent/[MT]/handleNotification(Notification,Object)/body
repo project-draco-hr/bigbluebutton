@@ -1,3 +1,0 @@
-{
-  log.debug("handleNotification " + notification.getMessage());
-}

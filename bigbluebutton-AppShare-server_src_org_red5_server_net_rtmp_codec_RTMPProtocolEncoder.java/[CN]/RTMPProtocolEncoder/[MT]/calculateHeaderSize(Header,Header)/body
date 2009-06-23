@@ -1,8 +1,0 @@
-{
-  final byte headerType=getHeaderType(header,lastHeader);
-  int channelIdAdd;
-  if (header.getChannelId() > 320)   channelIdAdd=2;
- else   if (header.getChannelId() > 63)   channelIdAdd=1;
- else   channelIdAdd=0;
-  return RTMPUtils.getHeaderLength(headerType) + channelIdAdd;
-}

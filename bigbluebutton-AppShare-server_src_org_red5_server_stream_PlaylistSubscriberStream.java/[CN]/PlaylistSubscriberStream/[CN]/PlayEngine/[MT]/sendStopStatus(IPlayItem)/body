@@ -1,9 +1,0 @@
-{
-  Status stop=new Status(StatusCodes.NS_PLAY_STOP);
-  stop.setClientid(getStreamId());
-  stop.setDesciption("Stopped playing " + item.getName() + ".");
-  stop.setDetails(item.getName());
-  StatusMessage stopMsg=new StatusMessage();
-  stopMsg.setBody(stop);
-  doPushMessage(stopMsg);
-}

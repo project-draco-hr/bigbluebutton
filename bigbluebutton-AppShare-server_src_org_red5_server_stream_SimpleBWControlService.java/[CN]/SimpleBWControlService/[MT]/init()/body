@@ -1,4 +1,0 @@
-{
-  tokenDistributor=new Timer("Token Distributor",true);
-  tokenDistributor.scheduleAtFixedRate(this,0,interval);
-}

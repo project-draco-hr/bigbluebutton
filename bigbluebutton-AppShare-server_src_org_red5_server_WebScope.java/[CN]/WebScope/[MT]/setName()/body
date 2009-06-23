@@ -1,3 +1,0 @@
-{
-  throw new RuntimeException("Cannot set name, you must set context path");
-}

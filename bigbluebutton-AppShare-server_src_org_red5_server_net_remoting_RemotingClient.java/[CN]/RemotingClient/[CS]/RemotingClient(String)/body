@@ -1,3 +1,0 @@
-{
-  this(url,DEFAULT_TIMEOUT);
-}

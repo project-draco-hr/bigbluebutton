@@ -1,6 +1,0 @@
-{
-  if (object.isPersistent()) {
-    return true;
-  }
-  return (doLoad(getObjectFilename(object),object) != null);
-}

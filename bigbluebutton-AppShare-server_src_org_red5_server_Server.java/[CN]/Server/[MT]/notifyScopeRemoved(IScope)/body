@@ -1,5 +1,0 @@
-{
-  for (  IScopeListener listener : scopeListeners) {
-    listener.notifyScopeRemoved(scope);
-  }
-}

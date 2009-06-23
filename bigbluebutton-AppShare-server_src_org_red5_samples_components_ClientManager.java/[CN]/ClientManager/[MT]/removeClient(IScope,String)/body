@@ -1,9 +1,0 @@
-{
-  ISharedObject so=getSharedObject(scope);
-  if (!so.hasAttribute(uid)) {
-    return null;
-  }
-  String username=so.getStringAttribute(uid);
-  so.removeAttribute(uid);
-  return username;
-}

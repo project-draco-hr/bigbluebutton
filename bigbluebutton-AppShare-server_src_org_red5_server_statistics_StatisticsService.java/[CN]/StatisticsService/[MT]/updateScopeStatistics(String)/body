@@ -1,5 +1,0 @@
-{
-  IScope scope=getScope(path);
-  ISharedObject so=getScopeStatisticsSO(Red5.getConnectionLocal().getScope());
-  so.setAttribute(path,scope.getAttributes());
-}

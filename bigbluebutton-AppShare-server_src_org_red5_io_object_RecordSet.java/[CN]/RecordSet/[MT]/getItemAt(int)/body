@@ -1,7 +1,0 @@
-{
-  if (index < 0 || index >= totalCount) {
-    return null;
-  }
-  ensureAvailable(index);
-  return data.get(index);
-}

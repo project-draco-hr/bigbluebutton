@@ -1,4 +1,0 @@
-{
-  log.debug("Setting voice Services...");
-  this.voiceService=voiceService;
-}

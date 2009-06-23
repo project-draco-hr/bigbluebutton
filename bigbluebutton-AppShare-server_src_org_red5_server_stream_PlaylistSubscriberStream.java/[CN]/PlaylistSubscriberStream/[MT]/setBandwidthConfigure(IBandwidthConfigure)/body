@@ -1,4 +1,0 @@
-{
-  super.setBandwidthConfigure(config);
-  engine.updateBandwithConfigure();
-}

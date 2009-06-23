@@ -1,5 +1,0 @@
-{
-synchronized (items) {
-    items.add(index,item);
-  }
-}

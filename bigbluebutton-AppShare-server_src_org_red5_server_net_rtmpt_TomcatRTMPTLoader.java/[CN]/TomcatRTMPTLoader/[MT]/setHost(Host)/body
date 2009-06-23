@@ -1,4 +1,0 @@
-{
-  log.debug("RTMPT setHost");
-  this.host=host;
-}

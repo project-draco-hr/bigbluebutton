@@ -1,5 +1,0 @@
-{
-  super(resolver);
-  setPath(path);
-  storeThread=FilePersistenceThread.getInstance();
-}

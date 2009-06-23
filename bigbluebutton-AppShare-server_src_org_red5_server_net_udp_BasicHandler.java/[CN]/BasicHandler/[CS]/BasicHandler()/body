@@ -1,4 +1,0 @@
-{
-  timer.scheduleAtFixedRate(new TimeoutTask(),0,TICK);
-  showInfo=log.isInfoEnabled();
-}

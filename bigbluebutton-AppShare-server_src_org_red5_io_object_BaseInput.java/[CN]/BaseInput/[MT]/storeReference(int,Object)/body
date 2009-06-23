@@ -1,3 +1,0 @@
-{
-  refMap.put(Integer.valueOf(refId),newRef);
-}

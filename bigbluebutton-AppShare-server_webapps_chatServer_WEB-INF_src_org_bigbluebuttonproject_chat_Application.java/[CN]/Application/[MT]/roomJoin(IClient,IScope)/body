@@ -1,4 +1,0 @@
-{
-  log.info("NEW CLIENT JOINED. CLIENT ID IS: " + client.getId() + "\n");
-  return true;
-}

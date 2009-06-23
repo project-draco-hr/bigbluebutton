@@ -1,3 +1,0 @@
-{
-  return (RTMPMinaConnection)rtmpConnManager.createConnection(EdgeRTMPMinaConnection.class);
-}

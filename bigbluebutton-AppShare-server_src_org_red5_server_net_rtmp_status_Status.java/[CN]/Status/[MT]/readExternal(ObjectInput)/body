@@ -1,7 +1,0 @@
-{
-  clientid=in.readInt();
-  code=(String)in.readObject();
-  description=(String)in.readObject();
-  details=(String)in.readObject();
-  level=(String)in.readObject();
-}

@@ -1,3 +1,0 @@
-{
-  JMXAgent.enableHtmlAdapter=enableHtmlAdapterString.matches("true|on|yes");
-}

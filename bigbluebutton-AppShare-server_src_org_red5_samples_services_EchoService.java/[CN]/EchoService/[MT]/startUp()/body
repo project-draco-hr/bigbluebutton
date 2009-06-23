@@ -1,3 +1,0 @@
-{
-  log.info("The Echo Service has started...");
-}

@@ -1,3 +1,0 @@
-{
-  return new MeetMeRoomAdapter(user.getRoom());
-}

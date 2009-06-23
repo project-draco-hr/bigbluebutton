@@ -1,7 +1,0 @@
-{
-  Map<String,Object> serviceHandlers=getServiceHandlers(false);
-  if (serviceHandlers == null) {
-    return null;
-  }
-  return serviceHandlers.get(name);
-}

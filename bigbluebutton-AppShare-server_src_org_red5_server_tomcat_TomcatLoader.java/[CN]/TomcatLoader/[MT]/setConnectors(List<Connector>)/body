@@ -1,8 +1,0 @@
-{
-  if (log.isDebugEnabled()) {
-    log.debug("setConnectors: " + connectors.size());
-  }
-  for (  Connector ctr : connectors) {
-    embedded.addConnector(ctr);
-  }
-}

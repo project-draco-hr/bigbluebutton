@@ -1,9 +1,0 @@
-{
-  if (this == obj)   return true;
-  if (obj == null)   return false;
-  if (getClass() != obj.getClass())   return false;
-  final StaticConnId other=(StaticConnId)obj;
-  if (clientId != other.clientId)   return false;
-  if (sessionId != other.sessionId)   return false;
-  return true;
-}

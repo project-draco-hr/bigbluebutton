@@ -1,3 +1,0 @@
-{
-  return writePackets.get(channelId);
-}

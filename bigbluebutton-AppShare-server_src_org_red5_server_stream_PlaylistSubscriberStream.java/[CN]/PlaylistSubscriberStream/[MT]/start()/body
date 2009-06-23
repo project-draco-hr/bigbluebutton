@@ -1,6 +1,0 @@
-{
-  bwController=(IBWControlService)getScope().getContext().getBean(IBWControlService.KEY);
-  bwContext=bwController.registerBWControllable(this);
-  engine.start();
-  notifySubscriberStart();
-}

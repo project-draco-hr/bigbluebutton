@@ -1,8 +1,0 @@
-{
-  char[] buf=new char[8];
-  for (int i=7; i >= 0; i--) {
-    buf[i]=HEX_DIGITS[n & 0x0F];
-    n>>>=4;
-  }
-  return new String(buf);
-}

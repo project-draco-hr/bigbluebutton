@@ -1,6 +1,0 @@
-{
-  MRTMPEdgeConnection conn=(MRTMPEdgeConnection)session.getAttachment();
-  mrtmpManager.unregisterConnection(conn);
-  conn.close();
-  log.debug("Closed MRTMP Edge Connection " + conn);
-}

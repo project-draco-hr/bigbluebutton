@@ -1,3 +1,0 @@
-{
-  return new ClientBW(in.getInt(),in.get());
-}

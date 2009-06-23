@@ -1,6 +1,0 @@
-{
-  super(serviceName,serviceMethod,args);
-  setClientCallback(callback);
-  this.isAMF3=isAMF3;
-  this.isMessaging=isMessaging;
-}

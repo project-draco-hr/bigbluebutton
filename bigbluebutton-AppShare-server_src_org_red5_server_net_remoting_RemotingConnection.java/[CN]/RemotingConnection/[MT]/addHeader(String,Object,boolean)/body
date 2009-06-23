@@ -1,5 +1,0 @@
-{
-synchronized (headers) {
-    headers.add(new RemotingHeader(name,mustUnderstand,value));
-  }
-}

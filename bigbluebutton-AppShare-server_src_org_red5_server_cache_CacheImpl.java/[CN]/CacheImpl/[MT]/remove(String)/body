@@ -1,3 +1,0 @@
-{
-  return CACHE.remove(name) != null ? true : false;
-}

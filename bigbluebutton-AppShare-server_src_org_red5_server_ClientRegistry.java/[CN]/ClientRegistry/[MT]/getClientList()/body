@@ -1,7 +1,0 @@
-{
-  ClientList<Client> list=new ClientList<Client>();
-  for (  IClient c : clients.values()) {
-    list.add((Client)c);
-  }
-  return list;
-}

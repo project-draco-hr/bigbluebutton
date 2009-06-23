@@ -1,8 +1,0 @@
-{
-  try {
-    voiceService.addAsteriskServerListener(roomListener);
-  }
- catch (  ManagerCommunicationException e) {
-    e.printStackTrace();
-  }
-}

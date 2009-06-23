@@ -1,8 +1,0 @@
-{
-  if (log.isDebugEnabled()) {
-    log.debug("setValves: " + valves.size());
-  }
-  for (  Valve valve : valves) {
-    ((StandardHost)baseHost).addValve(valve);
-  }
-}

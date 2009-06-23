@@ -1,7 +1,0 @@
-{
-  updateCounter-=1;
-  if (updateCounter == 0) {
-    notifyModified();
-    source=null;
-  }
-}

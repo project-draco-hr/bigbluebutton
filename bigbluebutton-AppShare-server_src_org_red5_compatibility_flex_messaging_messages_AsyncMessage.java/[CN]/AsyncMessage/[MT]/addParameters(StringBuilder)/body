@@ -1,4 +1,0 @@
-{
-  super.addParameters(result);
-  result.append(",correlationId=" + correlationId);
-}

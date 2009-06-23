@@ -1,6 +1,0 @@
-{
-  ByteBuffer buffer=(ByteBuffer)session.getAttribute("buffer");
-  if (buffer != null) {
-    buffer.release();
-  }
-}

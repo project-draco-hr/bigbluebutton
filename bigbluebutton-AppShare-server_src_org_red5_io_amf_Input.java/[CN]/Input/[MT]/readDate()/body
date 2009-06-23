@@ -1,7 +1,0 @@
-{
-  long ms=(long)buf.getDouble();
-  @SuppressWarnings("unused") short timeZoneMins=buf.getShort();
-  Date date=new Date(ms);
-  storeReference(date);
-  return date;
-}

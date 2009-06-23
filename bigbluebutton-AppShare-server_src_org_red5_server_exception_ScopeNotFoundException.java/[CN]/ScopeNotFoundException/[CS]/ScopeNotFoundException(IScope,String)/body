@@ -1,3 +1,0 @@
-{
-  super("Scope not found: " + childName + " in "+ scope);
-}

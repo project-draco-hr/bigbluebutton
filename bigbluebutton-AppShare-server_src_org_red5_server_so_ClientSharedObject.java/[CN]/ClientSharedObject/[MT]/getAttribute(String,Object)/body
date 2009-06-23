@@ -1,6 +1,0 @@
-{
-  if (!hasAttribute(name)) {
-    setAttribute(name,defaultValue);
-  }
-  return getAttribute(name);
-}

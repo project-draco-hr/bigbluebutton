@@ -1,6 +1,0 @@
-String serviceName
-String serviceMethod
-Object[] args
-String callback
-boolean isAMF3
-boolean isMessaging

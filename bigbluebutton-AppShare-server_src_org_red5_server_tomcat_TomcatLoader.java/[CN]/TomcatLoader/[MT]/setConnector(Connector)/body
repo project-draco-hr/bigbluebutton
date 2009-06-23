@@ -1,4 +1,0 @@
-{
-  log.info("Setting connector: " + connector.getClass().getName());
-  this.connector=connector;
-}

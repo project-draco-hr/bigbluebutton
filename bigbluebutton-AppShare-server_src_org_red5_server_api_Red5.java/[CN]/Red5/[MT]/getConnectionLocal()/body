@@ -1,9 +1,0 @@
-{
-  WeakReference<IConnection> ref=connThreadLocal.get();
-  if (ref != null) {
-    return ref.get();
-  }
- else {
-    return null;
-  }
-}

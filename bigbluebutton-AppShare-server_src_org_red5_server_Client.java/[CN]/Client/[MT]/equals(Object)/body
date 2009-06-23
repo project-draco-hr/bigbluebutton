@@ -1,6 +1,0 @@
-{
-  if (!(obj instanceof Client)) {
-    return false;
-  }
-  return ((Client)obj).getId().equals(id);
-}

@@ -1,5 +1,0 @@
-{
-  final ByteBuffer result=msg.getData();
-  result.acquire();
-  return result;
-}

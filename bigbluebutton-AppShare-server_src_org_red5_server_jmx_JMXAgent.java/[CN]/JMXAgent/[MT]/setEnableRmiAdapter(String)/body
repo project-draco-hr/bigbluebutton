@@ -1,3 +1,0 @@
-{
-  JMXAgent.enableRmiAdapter=enableRmiAdapterString.matches("true|on|yes");
-}

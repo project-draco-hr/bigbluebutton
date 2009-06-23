@@ -1,9 +1,0 @@
-{
-  stop();
-  moveToNext();
-  if (currentItemIndex == -1) {
-    return;
-  }
-  IPlayItem item=items.get(currentItemIndex);
-  play(item);
-}

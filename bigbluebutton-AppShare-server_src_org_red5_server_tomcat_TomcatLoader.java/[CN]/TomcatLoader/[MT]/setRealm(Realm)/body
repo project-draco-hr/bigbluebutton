@@ -1,4 +1,0 @@
-{
-  log.info("Setting realm: " + realm.getClass().getName());
-  this.realm=realm;
-}

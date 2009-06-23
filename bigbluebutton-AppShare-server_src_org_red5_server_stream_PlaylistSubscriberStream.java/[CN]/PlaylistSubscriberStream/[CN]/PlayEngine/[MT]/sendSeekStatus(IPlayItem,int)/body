@@ -1,9 +1,0 @@
-{
-  Status seek=new Status(StatusCodes.NS_SEEK_NOTIFY);
-  seek.setClientid(getStreamId());
-  seek.setDetails(item.getName());
-  seek.setDesciption("Seeking " + position + " (stream ID: "+ getStreamId()+ ").");
-  StatusMessage seekMsg=new StatusMessage();
-  seekMsg.setBody(seek);
-  doPushMessage(seekMsg);
-}

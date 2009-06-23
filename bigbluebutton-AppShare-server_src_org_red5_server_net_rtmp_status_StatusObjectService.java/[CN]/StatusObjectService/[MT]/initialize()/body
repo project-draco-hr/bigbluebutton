@@ -1,7 +1,0 @@
-{
-  log.debug("Loading status objects");
-  loadStatusObjects();
-  log.debug("Caching status objects");
-  cacheStatusObjects();
-  log.debug("Status service ready");
-}

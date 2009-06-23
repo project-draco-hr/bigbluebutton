@@ -1,9 +1,0 @@
-{
-  if (log.isDebugEnabled()) {
-    log.debug("appConnect: {}",conn);
-  }
-  for (  IApplication listener : listeners) {
-    listener.appConnect(conn,params);
-  }
-  return true;
-}

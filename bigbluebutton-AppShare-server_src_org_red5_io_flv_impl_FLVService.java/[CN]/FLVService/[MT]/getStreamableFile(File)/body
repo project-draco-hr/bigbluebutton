@@ -1,3 +1,0 @@
-{
-  return new FLV(file,generateMetadata);
-}

@@ -1,3 +1,0 @@
-{
-  invokeOnClient(null,scope,method,params,callback);
-}

@@ -1,3 +1,0 @@
-{
-  log.info("Adding request for: " + name);
-}

@@ -1,3 +1,0 @@
-{
-  throw new RuntimeException("Cannot set parent, you must set global scope");
-}

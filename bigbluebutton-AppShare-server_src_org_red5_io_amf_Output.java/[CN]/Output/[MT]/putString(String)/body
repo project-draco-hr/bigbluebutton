@@ -1,3 +1,0 @@
-{
-  putString(buf,string);
-}

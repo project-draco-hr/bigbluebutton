@@ -1,4 +1,0 @@
-{
-  RecordKeeper rec=new RecordKeeper();
-  return rec.getHits();
-}

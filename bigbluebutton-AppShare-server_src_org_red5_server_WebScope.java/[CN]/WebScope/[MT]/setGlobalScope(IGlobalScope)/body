@@ -1,9 +1,0 @@
-{
-  super.setParent(globalScope);
-  try {
-    setPersistenceClass(globalScope.getStore().getClass().getName());
-  }
- catch (  Exception error) {
-    log.error("Could not set persistence class.",error);
-  }
-}

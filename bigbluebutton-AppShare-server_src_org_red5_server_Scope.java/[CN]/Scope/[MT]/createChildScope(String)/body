@@ -1,6 +1,0 @@
-{
-  final Scope scope=new Scope(name);
-  scope.setParent(this);
-  subscopeStats.increment();
-  return addChildScope(scope);
-}

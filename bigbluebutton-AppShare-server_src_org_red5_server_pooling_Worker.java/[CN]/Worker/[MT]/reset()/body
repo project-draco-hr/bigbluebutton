@@ -1,6 +1,0 @@
-{
-  this.className=null;
-  this.methodName=null;
-  this.methodParams=null;
-  this.paramTypes=null;
-}

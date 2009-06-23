@@ -1,3 +1,0 @@
-{
-  return readPackets.get(channelId);
-}

@@ -1,4 +1,0 @@
-{
-  ISharedObjectService service=(ISharedObjectService)ScopeUtils.getScopeService(scope,ISharedObjectService.class,false);
-  return service.getSharedObject(scope,name,persistent);
-}

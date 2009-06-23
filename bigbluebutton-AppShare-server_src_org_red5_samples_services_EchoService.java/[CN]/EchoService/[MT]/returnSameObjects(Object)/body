@@ -1,8 +1,0 @@
-{
-  List<Object> result=new ArrayList<Object>();
-  SampleObject object=new SampleObject();
-  for (int i=0; i < 4; i++) {
-    result.add(object);
-  }
-  return result;
-}

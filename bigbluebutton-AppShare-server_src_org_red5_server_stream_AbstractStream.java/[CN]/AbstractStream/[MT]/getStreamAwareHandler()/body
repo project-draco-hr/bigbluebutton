@@ -1,9 +1,0 @@
-{
-  if (scope != null) {
-    IScopeHandler handler=scope.getHandler();
-    if (handler instanceof IStreamAwareScopeHandler) {
-      return (IStreamAwareScopeHandler)handler;
-    }
-  }
-  return null;
-}

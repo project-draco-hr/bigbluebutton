@@ -1,7 +1,0 @@
-{
-  PipeConnectionEvent event=new PipeConnectionEvent(this);
-  event.setProvider(provider);
-  event.setType(type);
-  event.setParamMap(paramMap);
-  firePipeConnectionEvent(event);
-}

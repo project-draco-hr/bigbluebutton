@@ -1,3 +1,0 @@
-{
-  refMap.put(new IdentityWrapper(obj),Short.valueOf(refId++));
-}

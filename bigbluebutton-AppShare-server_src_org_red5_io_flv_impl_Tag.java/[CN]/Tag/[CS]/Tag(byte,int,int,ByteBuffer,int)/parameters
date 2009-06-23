@@ -1,5 +1,0 @@
-byte dataType
-int timestamp
-int bodySize
-ByteBuffer body
-int previousTagSize

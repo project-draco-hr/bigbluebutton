@@ -1,8 +1,0 @@
-{
-  log.info("Remove mapping host: " + hostName + " context: "+ contextPath);
-  final String key=getKey(hostName,contextPath);
-  if (log.isDebugEnabled()) {
-    log.debug("Remove mapping: " + key);
-  }
-  return (mapping.remove(key) != null);
-}

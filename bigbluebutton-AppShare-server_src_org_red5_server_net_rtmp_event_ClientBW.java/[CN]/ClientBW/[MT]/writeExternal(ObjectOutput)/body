@@ -1,5 +1,0 @@
-{
-  super.writeExternal(out);
-  out.writeInt(bandwidth);
-  out.writeByte(value2);
-}

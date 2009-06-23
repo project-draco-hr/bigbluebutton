@@ -1,5 +1,0 @@
-{
-  buffer.putShort((short)value.length());
-  final java.nio.ByteBuffer strBuf=AMF3.CHARSET.encode(value);
-  buffer.put(strBuf);
-}

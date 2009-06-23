@@ -1,7 +1,0 @@
-{
-  this.id=id;
-  this.registry=registry;
-  this.creationTime=System.currentTimeMillis();
-  oName=JMXFactory.createObjectName("type","Client","id",id);
-  JMXAgent.registerMBean(this,this.getClass().getName(),ClientMBean.class,oName);
-}

@@ -1,4 +1,0 @@
-{
-  log.info("Midi demo app started");
-  return super.appStart(app);
-}
