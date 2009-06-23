@@ -1,0 +1,4 @@
+{
+  Thread thread=new Thread(capThread);
+  thread.start();
+}

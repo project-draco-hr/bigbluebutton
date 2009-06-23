@@ -1,0 +1,22 @@
+{
+  System.out.println("Starting");
+  Capture capture=new Capture(0,0,800,600);
+  while (index < 20) {
+    BufferedImage image=capture.takeSingleSnapshot();
+    try {
+      ImageIO.write(image,"jpeg",new File(Integer.toString(index) + ".jpeg"));
+      index++;
+      System.out.println(index);
+    }
+ catch (    Exception e) {
+      e.printStackTrace(System.out);
+      System.exit(0);
+    }
+    try {
+      Thread.sleep(200);
+    }
+ catch (    Exception e) {
+      System.exit(0);
+    }
+  }
+}

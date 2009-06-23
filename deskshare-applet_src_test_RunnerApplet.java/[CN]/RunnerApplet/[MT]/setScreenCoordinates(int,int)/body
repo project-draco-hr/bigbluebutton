@@ -1,0 +1,4 @@
+{
+  capThread.capture.setX(x);
+  capThread.capture.setY(y);
+}
