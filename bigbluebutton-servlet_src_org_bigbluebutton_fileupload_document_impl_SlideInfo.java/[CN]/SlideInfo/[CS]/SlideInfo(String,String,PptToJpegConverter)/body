@@ -1,5 +1,0 @@
-{
-  this.strName=strName;
-  this.strPath=strPath;
-  this.format=format;
-}

@@ -1,5 +1,0 @@
-File fileSource
-File fileOutDir
-String strMachine
-int iPort
-PptToJpegConverter format

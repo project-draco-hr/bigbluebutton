@@ -1,3 +1,0 @@
-{
-  return this.slideDatabase.getSlidesForRoom(room);
-}

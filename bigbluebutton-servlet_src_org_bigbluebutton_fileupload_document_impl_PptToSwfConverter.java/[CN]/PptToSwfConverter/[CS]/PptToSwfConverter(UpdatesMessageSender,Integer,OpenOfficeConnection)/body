@@ -1,5 +1,0 @@
-{
-  super(connection);
-  this.room=room;
-  this.updatesMsgSender=updatesMsgSender;
-}

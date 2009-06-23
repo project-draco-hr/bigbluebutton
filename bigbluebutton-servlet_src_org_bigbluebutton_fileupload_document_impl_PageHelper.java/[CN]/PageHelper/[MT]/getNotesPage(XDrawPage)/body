@@ -1,4 +1,0 @@
-{
-  XPresentationPage aPresentationPage=(XPresentationPage)UnoRuntime.queryInterface(XPresentationPage.class,xDrawPage);
-  return aPresentationPage.getNotesPage();
-}

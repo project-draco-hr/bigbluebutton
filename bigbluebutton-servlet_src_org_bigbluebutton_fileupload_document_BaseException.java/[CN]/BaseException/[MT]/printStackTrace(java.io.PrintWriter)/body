@@ -1,8 +1,0 @@
-{
-  super.printStackTrace(s);
-  if (exception != null) {
-    s.println();
-    s.println("Embedded exception:");
-    exception.printStackTrace(s);
-  }
-}

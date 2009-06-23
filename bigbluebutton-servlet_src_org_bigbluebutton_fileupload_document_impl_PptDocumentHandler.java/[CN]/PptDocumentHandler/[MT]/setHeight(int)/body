@@ -1,5 +1,0 @@
-{
-  if (newHeight > 0) {
-    height=newHeight;
-  }
-}

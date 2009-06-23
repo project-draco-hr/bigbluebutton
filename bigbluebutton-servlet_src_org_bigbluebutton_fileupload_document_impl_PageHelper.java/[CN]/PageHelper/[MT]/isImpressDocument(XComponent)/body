@@ -1,4 +1,0 @@
-{
-  XServiceInfo xInfo=(XServiceInfo)UnoRuntime.queryInterface(XServiceInfo.class,xComponent);
-  return xInfo.supportsService("com.sun.star.presentation.PresentationDocument");
-}
