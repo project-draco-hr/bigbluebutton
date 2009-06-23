@@ -1,0 +1,18 @@
+{
+  log.debug("started publishing stream in " + aScope.getName());
+  System.out.println("started publishing stream in " + aScope.getName());
+  broadcastStream=new BroadcastStream(outStreamName);
+  broadcastStream.setPublishedName(outStreamName);
+  broadcastStream.setScope(aScope);
+  IContext context=aScope.getContext();
+  IProviderService providerService=(IProviderService)context.getBean(IProviderService.BEAN_NAME);
+  if (providerService.registerBroadcastStream(aScope,outStreamName,broadcastStream)) {
+    IBroadcastScope bScope=(BroadcastScope)providerService.getLiveProviderInput(aScope,outStreamName,true);
+    bScope.setAttribute(IBroadcastScope.STREAM_ATTRIBUTE,broadcastStream);
+  }
+ else {
+    log.error("could not register broadcast stream");
+    throw new RuntimeException("could not register broadcast stream");
+  }
+  broadcastStream.start();
+}

@@ -1,0 +1,6 @@
+{
+  this.fileName=fileName;
+  this.width=width;
+  this.height=height;
+  setupStreams2();
+}

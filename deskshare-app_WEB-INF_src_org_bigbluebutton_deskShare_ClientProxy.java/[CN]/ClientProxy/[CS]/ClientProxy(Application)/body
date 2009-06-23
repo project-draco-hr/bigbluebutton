@@ -1,0 +1,12 @@
+{
+  roomList=new ArrayList<RoomThread>();
+  this.application=app;
+  this.scope=app.getAppScope();
+  try {
+    serverSocket=new ServerSocket(DeskShareConstants.PORT);
+  }
+ catch (  IOException e) {
+    System.out.println(e.getMessage());
+    e.printStackTrace(System.out);
+  }
+}

@@ -1,0 +1,9 @@
+{
+  log.info("deskShare appStart");
+  System.out.println("deskShare appStart");
+  this.appScope=app;
+  clientProxy=new ClientProxy(this);
+  Thread clientThread=new Thread(clientProxy);
+  clientThread.start();
+  return true;
+}

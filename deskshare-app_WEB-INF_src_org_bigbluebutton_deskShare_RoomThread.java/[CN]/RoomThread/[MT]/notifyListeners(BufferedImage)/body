@@ -1,0 +1,3 @@
+{
+  for (  IImageListener i : imageListeners)   i.imageReceived(image);
+}
