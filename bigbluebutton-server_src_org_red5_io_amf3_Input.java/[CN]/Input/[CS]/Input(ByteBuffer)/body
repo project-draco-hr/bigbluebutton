@@ -1,6 +1,0 @@
-{
-  super(buf);
-  amf3_mode=0;
-  stringReferences=new ArrayList<String>();
-  classReferences=new ArrayList<ClassReference>();
-}

@@ -1,8 +1,0 @@
-{
-  Set<String> result=new HashSet<String>();
-  Iterator<String> iter=scope.getBasicScopeNames(TYPE);
-  while (iter.hasNext()) {
-    result.add(iter.next());
-  }
-  return result;
-}

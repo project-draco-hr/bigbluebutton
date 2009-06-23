@@ -1,3 +1,0 @@
-{
-  return (IScope)children.get(TYPE + SEPARATOR + name);
-}

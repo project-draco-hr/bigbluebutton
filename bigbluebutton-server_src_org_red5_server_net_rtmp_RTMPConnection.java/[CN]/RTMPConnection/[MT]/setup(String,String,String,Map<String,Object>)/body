@@ -1,9 +1,0 @@
-{
-  this.host=host;
-  this.path=path;
-  this.sessionId=sessionId;
-  this.params=params;
-  if (params.get("objectEncoding") == Integer.valueOf(3)) {
-    encoding=Encoding.AMF3;
-  }
-}

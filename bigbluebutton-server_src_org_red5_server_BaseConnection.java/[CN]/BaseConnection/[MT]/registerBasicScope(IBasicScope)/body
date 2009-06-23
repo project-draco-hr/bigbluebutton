@@ -1,4 +1,0 @@
-{
-  basicScopes.add(basicScope);
-  basicScope.addEventListener(this);
-}

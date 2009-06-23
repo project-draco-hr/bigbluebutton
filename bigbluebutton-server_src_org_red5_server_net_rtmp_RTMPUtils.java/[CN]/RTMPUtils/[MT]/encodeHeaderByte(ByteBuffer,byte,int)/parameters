@@ -1,3 +1,0 @@
-ByteBuffer out
-byte headerSize
-int channelId

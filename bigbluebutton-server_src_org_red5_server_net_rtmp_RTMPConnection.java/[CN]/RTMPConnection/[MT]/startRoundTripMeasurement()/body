@@ -1,9 +1,0 @@
-{
-  if (pingInterval <= 0) {
-    return;
-  }
-  if (keepAliveJobName == null) {
-    keepAliveJobName=schedulingService.addScheduledJob(pingInterval,new KeepAliveJob());
-  }
-  log.debug("Keep alive job name {}",keepAliveJobName);
-}

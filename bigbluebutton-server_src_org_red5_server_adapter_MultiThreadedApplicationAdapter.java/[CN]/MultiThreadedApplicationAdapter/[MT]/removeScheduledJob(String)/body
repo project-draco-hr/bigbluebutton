@@ -1,4 +1,0 @@
-{
-  ISchedulingService service=(ISchedulingService)getScopeService(scope,ISchedulingService.class,QuartzSchedulingService.class,false);
-  service.removeScheduledJob(name);
-}

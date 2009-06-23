@@ -1,4 +1,0 @@
-{
-  notSupported();
-  return false;
-}

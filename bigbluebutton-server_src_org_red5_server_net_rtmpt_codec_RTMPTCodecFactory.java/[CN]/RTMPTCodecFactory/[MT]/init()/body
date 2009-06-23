@@ -1,6 +1,0 @@
-{
-  decoder=new RTMPTProtocolDecoder();
-  decoder.setDeserializer(deserializer);
-  encoder=new RTMPTProtocolEncoder();
-  encoder.setSerializer(serializer);
-}

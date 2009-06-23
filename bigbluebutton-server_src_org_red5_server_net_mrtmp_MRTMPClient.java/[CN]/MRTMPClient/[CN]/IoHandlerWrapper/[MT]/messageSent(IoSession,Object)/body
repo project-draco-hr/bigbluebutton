@@ -1,3 +1,0 @@
-{
-  wrapped.messageSent(session,message);
-}

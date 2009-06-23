@@ -1,6 +1,0 @@
-{
-  org.apache.catalina.Context c=embedded.createContext(path,docBase);
-  baseHost.addChild(c);
-  LoaderBase.setRed5ApplicationContext(path,new TomcatApplicationContext(c));
-  return c;
-}

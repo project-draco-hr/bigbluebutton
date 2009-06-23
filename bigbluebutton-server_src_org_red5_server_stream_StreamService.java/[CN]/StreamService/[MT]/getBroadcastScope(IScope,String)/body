@@ -1,9 +1,0 @@
-{
-  IBasicScope basicScope=scope.getBasicScope(IBroadcastScope.TYPE,name);
-  if (!(basicScope instanceof IBroadcastScope)) {
-    return null;
-  }
- else {
-    return (IBroadcastScope)basicScope;
-  }
-}

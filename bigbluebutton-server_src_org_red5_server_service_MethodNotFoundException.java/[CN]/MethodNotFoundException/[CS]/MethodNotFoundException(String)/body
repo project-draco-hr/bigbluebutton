@@ -1,3 +1,0 @@
-{
-  super("Method " + methodName + " without arguments not found");
-}

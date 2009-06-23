@@ -1,4 +1,0 @@
-{
-  timestamp=System.currentTimeMillis();
-  messageId=new RandomGUID().toString();
-}

@@ -1,7 +1,0 @@
-{
-  final int PRIME=31;
-  int result=1;
-  result=PRIME * result + clientId;
-  result=PRIME * result + sessionId;
-  return result;
-}

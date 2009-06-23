@@ -1,9 +1,0 @@
-{
-  int pos=buf.position();
-  int limit=buf.limit();
-  final java.nio.ByteBuffer strBuf=buf.buf();
-  final String string=CHARSET.decode(strBuf).toString();
-  buf.position(pos);
-  buf.limit(limit);
-  return string;
-}

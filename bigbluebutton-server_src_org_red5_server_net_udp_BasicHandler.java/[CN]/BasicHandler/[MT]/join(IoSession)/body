@@ -1,8 +1,0 @@
-{
-  final int size=5;
-  ByteBuffer msg=ByteBuffer.allocate(size);
-  msg.put(JOIN);
-  msg.putInt(session.getRemoteAddress().hashCode());
-  msg.flip();
-  broadcast(null,msg);
-}

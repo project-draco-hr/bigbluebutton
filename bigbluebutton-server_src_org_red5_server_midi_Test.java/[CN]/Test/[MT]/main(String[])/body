@@ -1,3 +1,0 @@
-{
-  @SuppressWarnings("unused") Test t=new Test();
-}

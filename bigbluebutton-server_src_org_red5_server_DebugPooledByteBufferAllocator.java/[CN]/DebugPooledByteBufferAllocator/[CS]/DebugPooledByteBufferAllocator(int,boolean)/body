@@ -1,6 +1,0 @@
-{
-  this.saveStacks=saveStacks;
-  setTimeout(timeout);
-  expirer=new Expirer();
-  expirer.start();
-}

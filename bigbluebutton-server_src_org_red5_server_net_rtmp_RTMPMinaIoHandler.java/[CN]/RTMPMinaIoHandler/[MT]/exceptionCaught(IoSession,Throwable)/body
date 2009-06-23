@@ -1,3 +1,0 @@
-{
-  log.debug("Exception caught {}",cause);
-}

@@ -1,5 +1,0 @@
-{
-  autoExpand(2);
-  buf.buf().putChar(value);
-  return this;
-}

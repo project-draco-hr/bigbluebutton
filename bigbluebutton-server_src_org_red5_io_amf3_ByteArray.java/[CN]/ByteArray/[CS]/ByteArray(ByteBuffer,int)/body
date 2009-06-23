@@ -1,9 +1,0 @@
-{
-  data=ByteBuffer.allocate(length);
-  data.setAutoExpand(true);
-  byte[] tmp=new byte[length];
-  buffer.get(tmp);
-  data.put(tmp);
-  data.flip();
-  prepareIO();
-}

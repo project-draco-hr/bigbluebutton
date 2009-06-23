@@ -1,7 +1,0 @@
-{
-  super.init();
-  appCtx=WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-  if (appCtx == null) {
-    appCtx=(WebApplicationContext)getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
-  }
-}

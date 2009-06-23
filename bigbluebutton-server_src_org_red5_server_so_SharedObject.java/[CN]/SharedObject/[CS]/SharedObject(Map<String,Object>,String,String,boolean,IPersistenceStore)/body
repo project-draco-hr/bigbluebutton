@@ -1,4 +1,0 @@
-{
-  this(data,name,path,persistent);
-  setStore(storage);
-}

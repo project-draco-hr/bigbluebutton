@@ -1,5 +1,0 @@
-{
-  if (msg.clientId == null) {
-    msg.clientId=new RandomGUID().toString();
-  }
-}

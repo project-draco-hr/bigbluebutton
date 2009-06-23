@@ -1,3 +1,0 @@
-{
-  measureBandwidth(Red5.getConnectionLocal());
-}

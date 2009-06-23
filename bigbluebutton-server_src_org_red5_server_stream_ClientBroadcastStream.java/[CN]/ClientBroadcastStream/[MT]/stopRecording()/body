@@ -1,8 +1,0 @@
-{
-  if (recording) {
-    recording=false;
-    recordingFilename=null;
-    recordPipe.unsubscribe(recordingFile);
-    sendRecordStopNotify();
-  }
-}

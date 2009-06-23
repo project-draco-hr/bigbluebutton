@@ -1,9 +1,0 @@
-{
-  final Header header=new Header();
-  header.setChannelId(channelId);
-  header.setTimer(timer);
-  header.setSize(size);
-  header.setDataType(dataType);
-  header.setStreamId(streamId);
-  return header;
-}

@@ -1,5 +1,0 @@
-{
-  PooledByteBuffer newBuf=allocateContainer();
-  newBuf.init(new UnexpandableByteBuffer(buf.buf().slice(),buf),false);
-  return newBuf;
-}

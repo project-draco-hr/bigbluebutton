@@ -1,8 +1,0 @@
-{
-  if (!isStarted && providerPipe != null && consumerPipe != null) {
-    puller=new Thread(this);
-    puller.setDaemon(true);
-    isStarted=true;
-    puller.start();
-  }
-}

@@ -1,7 +1,0 @@
-{
-  IServiceCapableConnection service=(IServiceCapableConnection)conn;
-  log.info("Client connected {} conn {}",new Object[]{conn.getClient().getId(),conn});
-  log.info("Setting stream id: {}",getClients().size());
-  service.invoke("setId",new Object[]{conn.getClient().getId()},this);
-  return true;
-}

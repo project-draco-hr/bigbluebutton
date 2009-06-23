@@ -1,9 +1,0 @@
-{
-  if (!unpaired) {
-    implReset();
-    return CoderResult.UNDERFLOW;
-  }
- else {
-    throw new IllegalArgumentException("Hex string must be an even number of digits");
-  }
-}

@@ -1,4 +1,0 @@
-{
-  logger.debug("StreamableFileFactory set services");
-  this.services=services;
-}

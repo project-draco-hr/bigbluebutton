@@ -1,5 +1,0 @@
-{
-  Assert.hasText(scriptSourceLocator,"'scriptSourceLocator' must not be empty");
-  this.scriptSourceLocator=scriptSourceLocator;
-  this.groovyObjectCustomizer=groovyObjectCustomizer;
-}

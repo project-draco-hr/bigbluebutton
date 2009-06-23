@@ -1,4 +1,0 @@
-{
-  if (ioSession == null)   return 0;
-  return ioSession.getReadBytes();
-}

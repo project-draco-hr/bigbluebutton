@@ -1,3 +1,0 @@
-{
-  throw new RuntimeException("ByteArray objects not supported with AMF0");
-}

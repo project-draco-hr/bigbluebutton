@@ -1,8 +1,0 @@
-{
-  super();
-  if (instance != null) {
-    log.error("Instance was not null, this is not a good sign");
-  }
-  instance=this;
-  final ScheduledFuture<?> instanceHandle=scheduler.scheduleAtFixedRate(this,storeInterval,storeInterval,java.util.concurrent.TimeUnit.MILLISECONDS);
-}

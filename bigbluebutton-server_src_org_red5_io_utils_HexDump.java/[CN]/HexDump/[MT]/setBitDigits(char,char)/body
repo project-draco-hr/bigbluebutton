@@ -1,4 +1,0 @@
-{
-  BIT_DIGIT[0]=zeroBit;
-  BIT_DIGIT[1]=oneBit;
-}

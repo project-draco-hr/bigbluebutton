@@ -1,4 +1,0 @@
-AbstractMessage request
-String faultCode
-String faultString
-Throwable error

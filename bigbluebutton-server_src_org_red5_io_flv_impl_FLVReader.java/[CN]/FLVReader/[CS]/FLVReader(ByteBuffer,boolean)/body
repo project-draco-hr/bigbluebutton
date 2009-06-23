@@ -1,5 +1,0 @@
-{
-  this.generateMetadata=generateMetadata;
-  in=buffer;
-  postInitialize();
-}

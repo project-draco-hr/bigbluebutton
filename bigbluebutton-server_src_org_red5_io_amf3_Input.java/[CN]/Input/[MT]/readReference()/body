@@ -1,3 +1,0 @@
-{
-  throw new RuntimeException("AMF3 doesn't support direct references.");
-}

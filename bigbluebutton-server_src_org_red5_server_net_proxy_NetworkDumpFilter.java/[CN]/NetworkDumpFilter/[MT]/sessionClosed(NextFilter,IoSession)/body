@@ -1,9 +1,0 @@
-{
-  if (headers.isOpen()) {
-    headers.close();
-  }
-  if (raw.isOpen()) {
-    raw.close();
-  }
-  next.sessionClosed(session);
-}

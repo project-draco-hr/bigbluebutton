@@ -1,9 +1,0 @@
-{
-  if (data.limit() == 0) {
-    return false;
-  }
-  byte first=data.get();
-  boolean result=((first & 0x0f) == FLV_CODEC_SORENSON);
-  data.rewind();
-  return result;
-}

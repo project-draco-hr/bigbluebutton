@@ -1,4 +1,0 @@
-{
-  final Integer id=getClientId(req);
-  return getConnection(id);
-}

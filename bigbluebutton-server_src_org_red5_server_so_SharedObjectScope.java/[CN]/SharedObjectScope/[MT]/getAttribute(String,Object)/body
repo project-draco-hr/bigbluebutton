@@ -1,9 +1,0 @@
-{
-  beginUpdate();
-  try {
-    return so.getAttribute(name,value);
-  }
-  finally {
-    endUpdate();
-  }
-}

@@ -1,4 +1,0 @@
-{
-  dataInput.setEndian(endian);
-  dataOutput.setEndian(endian);
-}

@@ -1,4 +1,0 @@
-{
-  server.registerGlobal(this);
-  init();
-}

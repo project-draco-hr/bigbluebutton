@@ -1,4 +1,0 @@
-{
-  logger.debug("Attempt to set app context");
-  applicationContext.set(applicationCtx);
-}

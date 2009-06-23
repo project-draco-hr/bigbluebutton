@@ -1,4 +1,0 @@
-{
-  log.debug("test called on: " + getName());
-  return val + val;
-}

@@ -1,5 +1,0 @@
-{
-  autoExpand(newLimit,0);
-  buf.buf().limit(newLimit);
-  return this;
-}

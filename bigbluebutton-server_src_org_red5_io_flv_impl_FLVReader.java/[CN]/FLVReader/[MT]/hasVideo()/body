@@ -1,5 +1,0 @@
-{
-  KeyFrameMeta meta=analyzeKeyFrames();
-  if (meta == null)   return false;
-  return (!meta.audioOnly && meta.positions.length > 0);
-}

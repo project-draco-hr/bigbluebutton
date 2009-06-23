@@ -1,3 +1,0 @@
-{
-  return refMap.containsKey(new IdentityWrapper(obj));
-}

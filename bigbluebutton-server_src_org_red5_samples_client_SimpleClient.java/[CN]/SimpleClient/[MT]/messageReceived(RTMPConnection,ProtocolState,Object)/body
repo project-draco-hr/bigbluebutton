@@ -1,7 +1,0 @@
-{
-  System.out.println("message received " + message);
-  if (message instanceof Packet) {
-    Packet p=(Packet)message;
-    System.out.println("got packet " + p.getMessage());
-  }
-}

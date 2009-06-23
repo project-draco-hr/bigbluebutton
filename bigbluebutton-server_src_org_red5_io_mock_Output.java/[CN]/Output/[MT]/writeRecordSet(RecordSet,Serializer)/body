@@ -1,4 +1,0 @@
-{
-  list.add(Byte.valueOf(DataTypes.CORE_OBJECT));
-  list.add(recordset);
-}

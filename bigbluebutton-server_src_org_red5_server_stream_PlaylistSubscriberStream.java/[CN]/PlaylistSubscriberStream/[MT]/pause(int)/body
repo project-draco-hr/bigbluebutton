@@ -1,8 +1,0 @@
-{
-  try {
-    engine.pause(position);
-  }
- catch (  IllegalStateException e) {
-    log.debug("pause caught an IllegalStateException");
-  }
-}

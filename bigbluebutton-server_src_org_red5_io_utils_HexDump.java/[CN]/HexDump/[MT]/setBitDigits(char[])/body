@@ -1,6 +1,0 @@
-{
-  if (bd.length != 2) {
-    throw new Exception("wrong number of characters!");
-  }
-  BIT_DIGIT=bd;
-}

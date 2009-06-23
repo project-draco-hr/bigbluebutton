@@ -1,3 +1,0 @@
-{
-  return (currentDataType == AMF3.TYPE_BOOLEAN_TRUE) ? Boolean.TRUE : Boolean.FALSE;
-}

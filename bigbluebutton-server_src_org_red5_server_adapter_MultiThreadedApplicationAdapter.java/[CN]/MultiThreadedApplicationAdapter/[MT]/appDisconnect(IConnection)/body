@@ -1,8 +1,0 @@
-{
-  if (log.isDebugEnabled()) {
-    log.debug("appDisconnect: {}",conn);
-  }
-  for (  IApplication listener : listeners) {
-    listener.appDisconnect(conn);
-  }
-}

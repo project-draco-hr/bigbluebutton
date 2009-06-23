@@ -1,7 +1,0 @@
-{
-  super.removeAttributes();
-  ownerMessage.addEvent(Type.CLIENT_CLEAR_DATA,name,null);
-  notifyModified();
-  changeStats.incrementAndGet();
-  return true;
-}

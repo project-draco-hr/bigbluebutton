@@ -1,3 +1,0 @@
-{
-  return (local.get() == null) ? "unknown" : (String)local.get();
-}

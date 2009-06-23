@@ -1,3 +1,0 @@
-{
-  item=(Map<T,V>)input.readObject();
-}

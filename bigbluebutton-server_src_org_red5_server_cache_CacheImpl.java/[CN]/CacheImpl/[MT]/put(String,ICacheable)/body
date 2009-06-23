@@ -1,7 +1,0 @@
-{
-  obj.setName(name);
-  registry.put(name,1);
-  SoftReference<ICacheable> value=new SoftReference<ICacheable>(obj);
-  CACHE.put(name,value);
-  log.info(name + " has been added to the cache. Current size: " + CACHE.size());
-}

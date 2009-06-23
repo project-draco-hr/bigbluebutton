@@ -1,3 +1,0 @@
-{
-  return "RTMP Mina Transport [port=" + port + "]";
-}

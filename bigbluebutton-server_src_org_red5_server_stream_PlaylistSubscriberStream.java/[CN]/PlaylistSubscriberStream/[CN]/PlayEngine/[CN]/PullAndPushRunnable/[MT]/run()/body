@@ -1,9 +1,0 @@
-{
-  try {
-    pullAndPush();
-  }
- catch (  IOException err) {
-    log.error("Error while getting message.",err);
-    PlayEngine.this.stop();
-  }
-}

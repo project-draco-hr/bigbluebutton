@@ -1,4 +1,0 @@
-{
-  super(Type.STREAM_DATA);
-  this.data=data;
-}

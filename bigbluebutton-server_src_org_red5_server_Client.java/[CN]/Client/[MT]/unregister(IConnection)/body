@@ -1,9 +1,0 @@
-{
-  connToScope.remove(conn);
-  if (connToScope.isEmpty()) {
-    if (registry != null) {
-      registry.removeClient(this);
-    }
-    JMXAgent.unregisterMBean(oName);
-  }
-}

@@ -1,8 +1,0 @@
-{
-  final Channel value=new Channel(this,channelId);
-  Channel result=channels.putIfAbsent(channelId,value);
-  if (result == null) {
-    result=value;
-  }
-  return result;
-}

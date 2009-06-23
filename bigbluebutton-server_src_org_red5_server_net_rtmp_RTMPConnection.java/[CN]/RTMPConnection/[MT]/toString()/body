@@ -1,4 +1,0 @@
-{
-  Object[] args=new Object[]{getClass().getSimpleName(),getRemoteAddress(),getRemotePort(),getHost(),getReadBytes(),getWrittenBytes()};
-  return String.format("%1$s from %2$s : %3$s to %4$s (in: %5$s out %6$s )",args);
-}

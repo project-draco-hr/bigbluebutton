@@ -1,5 +1,0 @@
-{
-  autoExpand(index,2);
-  buf.buf().putShort(index,value);
-  return this;
-}

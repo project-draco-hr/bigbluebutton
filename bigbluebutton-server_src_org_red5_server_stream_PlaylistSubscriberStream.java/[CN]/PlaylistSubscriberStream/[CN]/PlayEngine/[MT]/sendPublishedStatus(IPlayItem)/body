@@ -1,8 +1,0 @@
-{
-  Status published=new Status(StatusCodes.NS_PLAY_PUBLISHNOTIFY);
-  published.setClientid(getStreamId());
-  published.setDetails(item.getName());
-  StatusMessage unpublishedMsg=new StatusMessage();
-  unpublishedMsg.setBody(published);
-  doPushMessage(unpublishedMsg);
-}

@@ -1,3 +1,0 @@
-{
-  return (int)(metaCue.getTime() * 1000.00);
-}

@@ -1,9 +1,0 @@
-{
-  resp.setStatus(HttpServletResponse.SC_OK);
-  resp.setHeader("Connection","Keep-Alive");
-  resp.setHeader("Cache-Control","no-cache");
-  resp.setContentType(CONTENT_TYPE);
-  resp.setContentLength(message.length());
-  resp.getWriter().write(message);
-  resp.flushBuffer();
-}

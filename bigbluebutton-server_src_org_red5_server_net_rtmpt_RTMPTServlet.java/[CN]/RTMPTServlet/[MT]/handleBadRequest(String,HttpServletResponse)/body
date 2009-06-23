@@ -1,7 +1,0 @@
-{
-  resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-  resp.setContentType("text/plain");
-  resp.setContentLength(message.length());
-  resp.getWriter().write(message);
-  resp.flushBuffer();
-}

@@ -1,5 +1,0 @@
-{
-  this.header=header;
-  data=ByteBuffer.allocate(header.getSize() + (header.getTimer() == 0xffffff ? 4 : 0),false);
-  data.setAutoExpand(true);
-}

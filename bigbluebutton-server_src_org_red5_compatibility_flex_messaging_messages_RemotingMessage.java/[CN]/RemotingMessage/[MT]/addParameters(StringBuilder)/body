@@ -1,5 +1,0 @@
-{
-  super.addParameters(result);
-  result.append(",operation=" + operation);
-  result.append(",source=" + source);
-}

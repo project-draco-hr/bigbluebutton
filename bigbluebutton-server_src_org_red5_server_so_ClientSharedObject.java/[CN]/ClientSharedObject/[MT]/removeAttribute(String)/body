@@ -1,5 +1,0 @@
-{
-  ownerMessage.addEvent(Type.SERVER_DELETE_ATTRIBUTE,name,null);
-  notifyModified();
-  return true;
-}

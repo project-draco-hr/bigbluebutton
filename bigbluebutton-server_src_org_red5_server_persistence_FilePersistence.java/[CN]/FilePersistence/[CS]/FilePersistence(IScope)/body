@@ -1,5 +1,0 @@
-{
-  super(scope);
-  setPath(path);
-  storeThread=FilePersistenceThread.getInstance();
-}

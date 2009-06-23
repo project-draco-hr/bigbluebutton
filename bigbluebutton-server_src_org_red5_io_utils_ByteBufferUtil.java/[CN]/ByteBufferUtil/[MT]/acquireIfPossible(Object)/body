@@ -1,4 +1,0 @@
-{
-  if (message instanceof ByteBuffer) {
-  }
-}

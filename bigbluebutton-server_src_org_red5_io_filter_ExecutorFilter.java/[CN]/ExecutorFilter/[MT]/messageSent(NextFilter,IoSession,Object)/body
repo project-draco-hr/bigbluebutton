@@ -1,3 +1,0 @@
-{
-  fireEvent(nextFilter,session,EventType.SENT,message);
-}

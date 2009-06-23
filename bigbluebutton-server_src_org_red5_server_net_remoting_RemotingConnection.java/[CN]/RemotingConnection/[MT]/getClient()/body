@@ -1,3 +1,0 @@
-{
-  return (IClient)session.getAttribute(CLIENT);
-}

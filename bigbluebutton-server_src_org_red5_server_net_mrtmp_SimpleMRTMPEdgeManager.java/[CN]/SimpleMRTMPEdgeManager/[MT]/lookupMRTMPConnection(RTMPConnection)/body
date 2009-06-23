@@ -1,8 +1,0 @@
-{
-  if (connList.size() > 0) {
-    return connList.get(0);
-  }
- else {
-    return null;
-  }
-}

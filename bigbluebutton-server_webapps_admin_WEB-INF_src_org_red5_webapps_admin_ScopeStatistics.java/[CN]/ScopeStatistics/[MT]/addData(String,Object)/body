@@ -1,7 +1,0 @@
-{
-  HashMap<String,Object> app=new HashMap();
-  app.put("name",name);
-  app.put("value",value.toString());
-  apps.put(id,app);
-  id++;
-}

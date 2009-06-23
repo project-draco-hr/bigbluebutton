@@ -1,4 +1,0 @@
-{
-  System.out.println("getListOfAvailableFLVs empty");
-  return new HashMap(1);
-}

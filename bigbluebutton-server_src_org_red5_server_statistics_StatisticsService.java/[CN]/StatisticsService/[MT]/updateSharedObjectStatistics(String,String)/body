@@ -1,8 +1,0 @@
-{
-  IScope scope=getScope(path);
-  ISharedObjectService soService=(ISharedObjectService)ScopeUtils.getScopeService(scope,ISharedObjectService.class,false);
-  ISharedObject sourceSO=soService.getSharedObject(scope,name);
-  if (sourceSO == null)   throw new SharedObjectException();
-  ISharedObject so=getSharedObjectStatisticsSO(Red5.getConnectionLocal().getScope());
-  so.setAttribute(path + '|' + name,sourceSO.getData());
-}

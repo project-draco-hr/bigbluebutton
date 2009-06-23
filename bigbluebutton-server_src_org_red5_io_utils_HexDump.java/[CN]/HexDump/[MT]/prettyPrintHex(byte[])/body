@@ -1,4 +1,0 @@
-{
-  HexCharset hde=(HexCharset)HexCharset.forName("HEX");
-  return new String(hde.encode(new String(baToConvert)).array());
-}

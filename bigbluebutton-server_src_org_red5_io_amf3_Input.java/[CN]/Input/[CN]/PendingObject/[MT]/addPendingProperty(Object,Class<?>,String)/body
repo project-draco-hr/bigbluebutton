@@ -1,6 +1,0 @@
-{
-  if (properties == null) {
-    properties=new ArrayList<PendingProperty>();
-  }
-  properties.add(new PendingProperty(obj,klass,name));
-}

@@ -1,7 +1,0 @@
-{
-  Assert.hasText(scriptSourceLocator);
-  Assert.notEmpty(scriptInterfaces);
-  this.scriptSourceLocator=scriptSourceLocator;
-  this.scriptInterfaces=scriptInterfaces;
-  this.arguments=null;
-}

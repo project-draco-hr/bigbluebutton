@@ -1,5 +1,0 @@
-{
-  final ByteBuffer result=unknown.getData();
-  result.acquire();
-  return result;
-}

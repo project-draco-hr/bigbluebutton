@@ -1,9 +1,0 @@
-{
-  Status failed=new Status(StatusCodes.NS_FAILED);
-  failed.setClientid(streamId);
-  failed.setDesciption(description);
-  failed.setDetails(name);
-  failed.setLevel("error");
-  Channel channel=conn.getChannel((byte)(4 + ((streamId - 1) * 5)));
-  channel.sendStatus(failed);
-}

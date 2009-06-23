@@ -1,9 +1,0 @@
-{
-  this.state=state;
-  if (state == STATE_DISCONNECTED) {
-    freePackets(readPackets);
-    freePackets(writePackets);
-    readHeaders.clear();
-    writeHeaders.clear();
-  }
-}

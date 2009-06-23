@@ -1,9 +1,0 @@
-{
-  this.persistenceClass=persistenceClass;
-  if (persistenceClass != null) {
-    setStore(PersistenceUtils.getPersistenceStore(this,persistenceClass));
-  }
- else {
-    setStore(null);
-  }
-}

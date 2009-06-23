@@ -1,7 +1,0 @@
-{
-  out.writeInt(clientid);
-  out.writeObject(code);
-  out.writeObject(description);
-  out.writeObject(details);
-  out.writeObject(level);
-}

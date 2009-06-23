@@ -1,4 +1,0 @@
-{
-  int duration=1;
-  sendOnPlayStatus(StatusCodes.NS_PLAY_SWITCH,duration,bytesSent);
-}

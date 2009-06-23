@@ -1,8 +1,0 @@
-{
-  if (permissions == null) {
-    conn.removeAttribute(PERMISSIONS);
-  }
- else {
-    conn.setAttribute(PERMISSIONS,permissions);
-  }
-}

@@ -1,7 +1,0 @@
-{
-  code=(String)in.readObject();
-  description=(String)in.readObject();
-  level=(String)in.readObject();
-  application=in.readObject();
-  additional=(Map<String,Object>)in.readObject();
-}

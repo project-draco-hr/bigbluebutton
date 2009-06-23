@@ -1,9 +1,0 @@
-{
-  this.state=new RTMP(RTMP.MODE_SERVER);
-  this.buffer=ByteBuffer.allocate(2048);
-  this.buffer.setAutoExpand(true);
-  this.handler=handler;
-  this.decoder=handler.getCodecFactory().getSimpleDecoder();
-  this.encoder=handler.getCodecFactory().getSimpleEncoder();
-  clientId=hashCode();
-}

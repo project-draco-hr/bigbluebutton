@@ -1,9 +1,0 @@
-{
-  if (log.isDebugEnabled()) {
-    log.debug("Message sent");
-  }
-  if (message instanceof ByteBuffer) {
-    return;
-  }
-  conn.messageSent((Packet)message);
-}

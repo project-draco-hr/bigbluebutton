@@ -1,3 +1,0 @@
-{
-  System.out.println(md5.encodePassword(this.password,this.salt).toString());
-}

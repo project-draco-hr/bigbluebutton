@@ -1,8 +1,0 @@
-{
-  int limit=buffer.limit();
-  final java.nio.ByteBuffer strBuf=buffer.buf();
-  strBuf.limit(strBuf.position() + length);
-  final String string=AMF3.CHARSET.decode(strBuf).toString();
-  buffer.limit(limit);
-  return string;
-}

@@ -1,4 +1,0 @@
-{
-  pipe.unsubscribe(provider);
-  pipe.unsubscribe(consumer);
-}

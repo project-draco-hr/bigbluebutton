@@ -1,4 +1,0 @@
-{
-  dataInput=new DataInput(new Input(data),new Deserializer());
-  dataOutput=new DataOutput(new Output(data),new Serializer());
-}

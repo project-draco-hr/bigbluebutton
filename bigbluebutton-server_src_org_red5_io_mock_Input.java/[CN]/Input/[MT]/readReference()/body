@@ -1,4 +1,0 @@
-{
-  final Short num=(Short)getNext();
-  return getReference(num.shortValue());
-}

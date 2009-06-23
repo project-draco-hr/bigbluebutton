@@ -1,5 +1,0 @@
-{
-  waitForHandshakeJob=null;
-  waitForHandshakeService=null;
-  onInactive();
-}

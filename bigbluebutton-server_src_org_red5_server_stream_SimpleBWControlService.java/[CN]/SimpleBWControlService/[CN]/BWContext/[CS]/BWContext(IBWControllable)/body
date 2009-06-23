@@ -1,5 +1,0 @@
-{
-  this.controllable=controllable;
-  Arrays.fill(tokenRc,0);
-  pendingRequestArray=new List[]{new CopyOnWriteArrayList<TokenRequest>(),new CopyOnWriteArrayList<TokenRequest>(),new CopyOnWriteArrayList<TokenRequest>()};
-}

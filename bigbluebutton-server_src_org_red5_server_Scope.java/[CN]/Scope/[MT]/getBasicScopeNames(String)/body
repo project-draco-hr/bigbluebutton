@@ -1,8 +1,0 @@
-{
-  if (type == null) {
-    return children.keySet().iterator();
-  }
- else {
-    return new PrefixFilteringStringIterator(children.keySet().iterator(),type + SEPARATOR);
-  }
-}

@@ -1,5 +1,0 @@
-{
-  super.readExternal(in);
-  clientid=in.readInt();
-  details=(String)in.readObject();
-}

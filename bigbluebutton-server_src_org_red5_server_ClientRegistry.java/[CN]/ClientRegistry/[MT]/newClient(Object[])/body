@@ -1,6 +1,0 @@
-{
-  String id=nextId();
-  IClient client=new Client(id,this);
-  addClient(id,client);
-  return client;
-}

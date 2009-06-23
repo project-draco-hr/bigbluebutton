@@ -1,7 +1,0 @@
-{
-  Map<String,String> data=new HashMap<String,String>();
-  data.put("userid",userid);
-  data.put("password",password);
-  RemotingHeader header=new RemotingHeader(RemotingHeader.CREDENTIALS,true,data);
-  headers.put(RemotingHeader.CREDENTIALS,header);
-}

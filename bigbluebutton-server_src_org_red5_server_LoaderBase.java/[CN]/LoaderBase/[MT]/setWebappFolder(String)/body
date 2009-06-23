@@ -1,7 +1,0 @@
-{
-  File fp=new File(webappFolder);
-  if (!fp.isDirectory()) {
-    throw new RuntimeException("Webapp folder " + webappFolder + " doesn't exist.");
-  }
-  this.webappFolder=webappFolder;
-}

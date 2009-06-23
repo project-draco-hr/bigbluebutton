@@ -1,6 +1,0 @@
-{
-  String result=getJobName();
-  SimpleTrigger trigger=new SimpleTrigger("Trigger_" + result,null,date);
-  scheduleJob(result,trigger,job);
-  return result;
-}

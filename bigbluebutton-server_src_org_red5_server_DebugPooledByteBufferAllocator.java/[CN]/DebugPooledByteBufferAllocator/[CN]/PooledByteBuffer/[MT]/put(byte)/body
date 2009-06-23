@@ -1,5 +1,0 @@
-{
-  autoExpand(1);
-  buf.buf().put(b);
-  return this;
-}

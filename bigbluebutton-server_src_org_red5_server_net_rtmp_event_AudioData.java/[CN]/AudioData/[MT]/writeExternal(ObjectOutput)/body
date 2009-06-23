@@ -1,9 +1,0 @@
-{
-  super.writeExternal(out);
-  if (data != null) {
-    out.writeObject(SerializeUtils.ByteBufferToByteArray(data));
-  }
- else {
-    out.writeObject(null);
-  }
-}

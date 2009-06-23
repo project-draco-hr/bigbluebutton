@@ -1,4 +1,0 @@
-{
-  IScope scope=Red5.getConnectionLocal().getScope();
-  invokeOnAllConnections(scope,method,params,callback);
-}

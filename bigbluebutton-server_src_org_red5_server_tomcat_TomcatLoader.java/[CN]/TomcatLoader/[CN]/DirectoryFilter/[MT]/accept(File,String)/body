@@ -1,8 +1,0 @@
-{
-  File f=new File(dir,name);
-  if (log.isDebugEnabled()) {
-    log.debug("Filtering: " + dir.getName() + " name: "+ name);
-    log.debug("Constructed dir: " + f.getAbsolutePath());
-  }
-  return f.isDirectory() && f.canRead() && !f.isHidden();
-}

@@ -1,4 +1,0 @@
-{
-  Deserializer deserializer=new Deserializer();
-  setAttributes(deserializer.deserialize(input,Map.class));
-}

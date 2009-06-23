@@ -1,4 +1,0 @@
-{
-  this.autoExpand=autoExpand;
-  return this;
-}

@@ -1,4 +1,0 @@
-{
-  IProviderService service=(IProviderService)getScopeService(scope,IProviderService.class,ProviderService.class);
-  return service.getBroadcastStreamNames(scope);
-}

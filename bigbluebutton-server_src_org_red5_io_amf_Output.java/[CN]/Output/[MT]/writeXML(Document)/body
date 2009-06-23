@@ -1,4 +1,0 @@
-{
-  buf.put(AMF.TYPE_XML);
-  putString(XMLUtils.docToString(xml));
-}

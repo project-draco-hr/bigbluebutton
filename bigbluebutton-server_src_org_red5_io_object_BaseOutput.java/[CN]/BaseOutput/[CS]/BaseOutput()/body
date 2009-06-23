@@ -1,3 +1,0 @@
-{
-  refMap=new HashMap<IdentityWrapper,Short>();
-}

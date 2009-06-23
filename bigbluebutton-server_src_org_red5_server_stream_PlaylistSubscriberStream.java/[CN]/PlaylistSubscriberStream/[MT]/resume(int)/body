@@ -1,8 +1,0 @@
-{
-  try {
-    engine.resume(position);
-  }
- catch (  IllegalStateException e) {
-    log.debug("resume caught an IllegalStateException");
-  }
-}

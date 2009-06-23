@@ -1,4 +1,0 @@
-{
-  buf.put(AMF.TYPE_BOOLEAN);
-  buf.put(bol ? AMF.VALUE_TRUE : AMF.VALUE_FALSE);
-}

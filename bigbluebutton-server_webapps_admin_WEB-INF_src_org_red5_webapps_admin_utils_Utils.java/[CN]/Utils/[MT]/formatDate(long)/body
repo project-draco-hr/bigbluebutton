@@ -1,6 +1,0 @@
-{
-  Calendar calendar=Calendar.getInstance();
-  calendar.setTimeInMillis(d);
-  SimpleDateFormat date=new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
-  return date.format(calendar.getTime());
-}

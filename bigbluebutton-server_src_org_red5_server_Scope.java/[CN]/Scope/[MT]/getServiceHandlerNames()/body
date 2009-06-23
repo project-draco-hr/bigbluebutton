@@ -1,7 +1,0 @@
-{
-  Map<String,Object> serviceHandlers=getServiceHandlers(false);
-  if (serviceHandlers == null) {
-    return Collections.EMPTY_SET;
-  }
-  return serviceHandlers.keySet();
-}

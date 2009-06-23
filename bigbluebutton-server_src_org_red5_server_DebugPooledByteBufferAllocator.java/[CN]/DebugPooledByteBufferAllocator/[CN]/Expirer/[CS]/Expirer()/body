@@ -1,4 +1,0 @@
-{
-  super("PooledByteBufferExpirer-" + threadId++);
-  setDaemon(true);
-}

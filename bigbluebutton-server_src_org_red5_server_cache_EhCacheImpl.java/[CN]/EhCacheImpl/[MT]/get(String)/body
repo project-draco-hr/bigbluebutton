@@ -1,9 +1,0 @@
-{
-  ICacheable ic=null;
-  try {
-    ic=(ICacheable)cache.get(name).getObjectValue();
-  }
- catch (  NullPointerException npe) {
-  }
-  return ic;
-}

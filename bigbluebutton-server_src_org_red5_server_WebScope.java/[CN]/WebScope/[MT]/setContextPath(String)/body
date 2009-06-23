@@ -1,4 +1,0 @@
-{
-  this.contextPath=contextPath;
-  super.setName(contextPath.substring(1));
-}

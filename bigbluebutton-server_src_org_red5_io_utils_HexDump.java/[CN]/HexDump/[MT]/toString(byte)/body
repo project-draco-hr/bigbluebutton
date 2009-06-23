@@ -1,5 +1,0 @@
-{
-  byte[] ba=new byte[1];
-  ba[0]=b;
-  return new String(ba);
-}

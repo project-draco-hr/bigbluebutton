@@ -1,6 +1,0 @@
-{
-  final ByteBuffer out=ByteBuffer.allocate(5);
-  out.putInt(clientBW.getBandwidth());
-  out.put(clientBW.getValue2());
-  return out;
-}

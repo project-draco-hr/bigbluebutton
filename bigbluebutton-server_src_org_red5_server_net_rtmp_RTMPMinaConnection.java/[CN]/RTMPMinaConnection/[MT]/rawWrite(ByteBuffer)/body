@@ -1,5 +1,0 @@
-{
-  if (ioSession != null) {
-    ioSession.write(out);
-  }
-}

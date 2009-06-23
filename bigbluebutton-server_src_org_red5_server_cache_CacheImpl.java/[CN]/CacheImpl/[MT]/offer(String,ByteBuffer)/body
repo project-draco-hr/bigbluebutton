@@ -1,3 +1,0 @@
-{
-  return offer(key,new CacheableImpl(obj));
-}

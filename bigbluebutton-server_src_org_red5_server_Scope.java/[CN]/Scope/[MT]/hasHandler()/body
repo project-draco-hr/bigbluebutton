@@ -1,3 +1,0 @@
-{
-  return (handler != null || (hasParent() && getParent().hasHandler()));
-}

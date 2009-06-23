@@ -1,3 +1,0 @@
-{
-  return decodeNotifyOrInvoke(new Notify(),in,header,rtmp);
-}

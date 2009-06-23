@@ -1,3 +1,0 @@
-{
-  pendingCalls.put(invokeId,call);
-}

@@ -1,9 +1,0 @@
-{
-  log.debug("Getting scripted object...");
-  try {
-    return RhinoScriptUtils.createRhinoObject(actualScriptSource.getScriptAsString(),actualInterfaces,extendedClass);
-  }
- catch (  Exception ex) {
-    throw new ScriptCompilationException("Could not compile Rhino script: " + actualScriptSource,ex);
-  }
-}

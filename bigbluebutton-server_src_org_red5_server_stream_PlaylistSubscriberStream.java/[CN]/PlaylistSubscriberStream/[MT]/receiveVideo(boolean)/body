@@ -1,7 +1,0 @@
-{
-  final boolean seek=(!receiveVideo && receive);
-  receiveVideo=receive;
-  if (seek) {
-    seekToCurrentPlayback();
-  }
-}

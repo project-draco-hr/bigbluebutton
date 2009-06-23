@@ -1,6 +1,0 @@
-{
-synchronized (items) {
-    stop();
-    items.clear();
-  }
-}

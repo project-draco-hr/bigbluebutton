@@ -1,3 +1,0 @@
-{
-  return encodeNotifyOrInvoke(invoke,rtmp);
-}

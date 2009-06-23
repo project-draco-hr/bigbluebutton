@@ -1,5 +1,0 @@
-{
-  buf.put(AMF.TYPE_DATE);
-  buf.putDouble(date.getTime());
-  buf.putShort((short)(TimeZone.getDefault().getRawOffset() / 60 / 1000));
-}

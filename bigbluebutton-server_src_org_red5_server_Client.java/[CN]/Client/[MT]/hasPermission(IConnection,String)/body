@@ -1,4 +1,0 @@
-{
-  final Collection<String> permissions=getPermissions(conn);
-  return permissions.contains(permissionName);
-}

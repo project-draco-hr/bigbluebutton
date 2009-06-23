@@ -1,3 +1,0 @@
-{
-  return "GroovyScriptFactory: script source locator [" + this.scriptSourceLocator + "]";
-}

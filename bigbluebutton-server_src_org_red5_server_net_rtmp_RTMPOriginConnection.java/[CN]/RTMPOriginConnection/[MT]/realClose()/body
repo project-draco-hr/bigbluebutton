@@ -1,6 +1,0 @@
-{
-  if (state.getState() != RTMP.STATE_DISCONNECTED) {
-    state.setState(RTMP.STATE_DISCONNECTED);
-    super.close();
-  }
-}

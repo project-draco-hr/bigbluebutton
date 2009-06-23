@@ -1,5 +1,0 @@
-{
-  final ByteBuffer result=videoData.getData();
-  result.acquire();
-  return result;
-}

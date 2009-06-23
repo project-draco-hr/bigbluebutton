@@ -1,7 +1,0 @@
-{
-  Object[] converted=new Object[target.length];
-  for (int i=0; i < target.length; i++) {
-    converted[i]=convert(source[i],target[i]);
-  }
-  return converted;
-}

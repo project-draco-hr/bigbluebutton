@@ -1,4 +1,0 @@
-{
-  log.info("Setting max entries for this cache to " + max);
-  CacheImpl.capacity=max;
-}

@@ -1,9 +1,0 @@
-{
-  Info info=events.get(event);
-  if (info != null) {
-    info.refcount++;
-  }
- else {
-    log.warn("Retain called on already released event.");
-  }
-}

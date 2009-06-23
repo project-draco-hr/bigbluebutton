@@ -1,3 +1,0 @@
-{
-  return scope.getAttribute(name,defaultValue);
-}

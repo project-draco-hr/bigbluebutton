@@ -1,5 +1,0 @@
-{
-  parentBuf.acquire();
-  this.buf=buf;
-  this.parentBuf=parentBuf;
-}

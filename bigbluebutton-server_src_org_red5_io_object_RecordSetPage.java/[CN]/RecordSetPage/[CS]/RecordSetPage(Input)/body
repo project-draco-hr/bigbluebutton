@@ -1,6 +1,0 @@
-{
-  Deserializer deserizalizer=new Deserializer();
-  Map mapResult=deserizalizer.deserialize(input,Map.class);
-  cursor=(Integer)mapResult.get("Cursor");
-  data=(List<List<Object>>)mapResult.get("Page");
-}

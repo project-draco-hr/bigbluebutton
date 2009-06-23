@@ -1,3 +1,0 @@
-{
-  return refMap.get(Integer.valueOf(id));
-}

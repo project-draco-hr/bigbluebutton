@@ -1,5 +1,0 @@
-{
-  IoAcceptor acceptor=new DatagramAcceptor();
-  acceptor.bind(new InetSocketAddress(PORT),new BasicHandler());
-  System.out.println("Listening on port " + PORT);
-}

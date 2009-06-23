@@ -1,5 +1,0 @@
-{
-  ownerMessage.addEvent(Type.CLIENT_SEND_MESSAGE,handler,arguments);
-  syncEvents.add(new SharedObjectEvent(Type.CLIENT_SEND_MESSAGE,handler,arguments));
-  sendStats.incrementAndGet();
-}

@@ -1,6 +1,0 @@
-{
-  super(Type.SHARED_OBJECT,source);
-  this.name=name;
-  this.version=version;
-  this.persistent=persistent;
-}

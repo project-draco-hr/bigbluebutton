@@ -1,9 +1,0 @@
-{
-  Status start=new Status(StatusCodes.NS_PLAY_START);
-  start.setClientid(getStreamId());
-  start.setDetails(item.getName());
-  start.setDesciption("Started playing " + item.getName() + '.');
-  StatusMessage startMsg=new StatusMessage();
-  startMsg.setBody(start);
-  doPushMessage(startMsg);
-}

@@ -1,3 +1,0 @@
-{
-  this.groovyClassLoader=new GroovyClassLoader(classLoader);
-}

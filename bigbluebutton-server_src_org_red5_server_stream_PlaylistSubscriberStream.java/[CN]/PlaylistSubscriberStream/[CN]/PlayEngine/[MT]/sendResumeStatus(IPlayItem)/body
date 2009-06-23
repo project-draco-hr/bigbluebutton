@@ -1,8 +1,0 @@
-{
-  Status resume=new Status(StatusCodes.NS_UNPAUSE_NOTIFY);
-  resume.setClientid(getStreamId());
-  resume.setDetails(item.getName());
-  StatusMessage resumeMsg=new StatusMessage();
-  resumeMsg.setBody(resume);
-  doPushMessage(resumeMsg);
-}

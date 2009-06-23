@@ -1,5 +1,0 @@
-def appStart(self, app):
-    ApplicationAdapter.appStart(self, app)
-    print 'Python appStart', app
-    self.appScope = app
-    return 1

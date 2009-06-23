@@ -1,7 +1,0 @@
-{
-  handshake=new byte[length];
-  int old=data.position();
-  data.position(start);
-  data.get(handshake);
-  data.position(old);
-}

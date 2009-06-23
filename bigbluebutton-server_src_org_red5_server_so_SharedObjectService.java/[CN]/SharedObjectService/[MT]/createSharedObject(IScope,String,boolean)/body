@@ -1,9 +1,0 @@
-{
-synchronized (scope) {
-    if (hasSharedObject(scope,name)) {
-      return true;
-    }
-    final IBasicScope soScope=new SharedObjectScope(scope,name,persistent,getStore(scope,persistent));
-    return scope.addChildScope(soScope);
-  }
-}

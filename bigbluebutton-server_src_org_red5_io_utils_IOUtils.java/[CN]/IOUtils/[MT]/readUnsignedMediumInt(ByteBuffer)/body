@@ -1,7 +1,0 @@
-{
-  int val=0;
-  val+=(in.get() & 0xFF) * 256 * 256;
-  val+=(in.get() & 0xFF) * 256;
-  val+=(in.get() & 0xFF);
-  return val;
-}

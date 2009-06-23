@@ -1,6 +1,0 @@
-{
-  registerStreamPublishSecurity(new PublishSecurity());
-  registerSharedObjectSecurity(new SharedObjectSecurity());
-  registerStreamPlaybackSecurity(new PlaybackSecurity());
-  return super.appStart(app);
-}

@@ -1,6 +1,0 @@
-{
-  decoder=new RTMPMinaProtocolDecoder();
-  decoder.setDeserializer(deserializer);
-  encoder=new RTMPMinaProtocolEncoder();
-  encoder.setSerializer(serializer);
-}

@@ -1,9 +1,0 @@
-{
-  int count=buf.getInt();
-  List<Object> result=new ArrayList<Object>(count);
-  storeReference(result);
-  for (int i=0; i < count; i++) {
-    result.add(deserializer.deserialize(this,Object.class));
-  }
-  return result;
-}

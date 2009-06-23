@@ -1,4 +1,0 @@
-{
-  resetBuckets(context);
-  contextMap.remove(context.getBWControllable());
-}

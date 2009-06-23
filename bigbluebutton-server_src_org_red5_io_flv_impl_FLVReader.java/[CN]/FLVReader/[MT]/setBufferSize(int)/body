@@ -1,6 +1,0 @@
-{
-  if (bufferSize < 1024) {
-    bufferSize=1024;
-  }
-  FLVReader.bufferSize=bufferSize;
-}

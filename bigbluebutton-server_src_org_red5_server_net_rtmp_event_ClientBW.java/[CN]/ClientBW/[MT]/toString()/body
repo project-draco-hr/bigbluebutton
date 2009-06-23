@@ -1,3 +1,0 @@
-{
-  return "ClientBW: " + bandwidth + " value2: "+ value2;
-}

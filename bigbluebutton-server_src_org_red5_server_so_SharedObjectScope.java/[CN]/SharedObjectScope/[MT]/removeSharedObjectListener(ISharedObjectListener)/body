@@ -1,3 +1,0 @@
-{
-  serverListeners.remove(listener);
-}

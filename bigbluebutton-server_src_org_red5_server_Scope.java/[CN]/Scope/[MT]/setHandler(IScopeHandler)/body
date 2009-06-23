@@ -1,6 +1,0 @@
-{
-  this.handler=handler;
-  if (handler instanceof IScopeAware) {
-    ((IScopeAware)handler).setScope(this);
-  }
-}

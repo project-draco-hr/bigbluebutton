@@ -1,6 +1,0 @@
-{
-  if (state.getState() == RTMP.STATE_DISCONNECTED) {
-    return (byte)0;
-  }
-  return (byte)(this.pollingDelay + 1);
-}

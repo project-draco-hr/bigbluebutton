@@ -1,4 +1,0 @@
-{
-  IConnection conn=Red5.getConnectionLocal();
-  return notifyOnConnection(conn,method,params);
-}

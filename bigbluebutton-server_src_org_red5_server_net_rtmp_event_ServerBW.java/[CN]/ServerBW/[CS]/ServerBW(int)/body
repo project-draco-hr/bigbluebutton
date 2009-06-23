@@ -1,4 +1,0 @@
-{
-  super(Type.STREAM_CONTROL);
-  this.bandwidth=bandwidth;
-}

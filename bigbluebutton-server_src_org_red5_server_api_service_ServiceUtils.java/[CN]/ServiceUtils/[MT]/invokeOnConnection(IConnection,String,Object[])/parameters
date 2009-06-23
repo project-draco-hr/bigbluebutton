@@ -1,3 +1,0 @@
-IConnection conn
-String method
-Object[] params

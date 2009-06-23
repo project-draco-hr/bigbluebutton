@@ -1,5 +1,0 @@
-{
-  byte[] ba=new byte[1];
-  ba[0]=b;
-  return toHexString(ba,0,ba.length);
-}

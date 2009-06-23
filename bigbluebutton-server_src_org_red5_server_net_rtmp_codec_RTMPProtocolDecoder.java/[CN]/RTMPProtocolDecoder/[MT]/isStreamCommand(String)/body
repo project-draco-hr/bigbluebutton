@@ -1,3 +1,0 @@
-{
-  return (ACTION_CREATE_STREAM.equals(action) || ACTION_DELETE_STREAM.equals(action) || ACTION_PUBLISH.equals(action)|| ACTION_PLAY.equals(action)|| ACTION_SEEK.equals(action)|| ACTION_PAUSE.equals(action)|| ACTION_CLOSE_STREAM.equals(action)|| ACTION_RECEIVE_VIDEO.equals(action)|| ACTION_RECEIVE_AUDIO.equals(action));
-}

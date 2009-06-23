@@ -1,9 +1,0 @@
-{
-  if (this.dataCount == 0) {
-    return null;
-  }
-  ByteBuffer result=ByteBuffer.allocate(this.dataCount);
-  result.put(this.blockData,0,this.dataCount);
-  result.rewind();
-  return result;
-}

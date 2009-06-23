@@ -1,8 +1,0 @@
-{
-  if (hasParent()) {
-    parent.removeChildScope(this);
-  }
-  if (hasHandler()) {
-    handler.stop(this);
-  }
-}

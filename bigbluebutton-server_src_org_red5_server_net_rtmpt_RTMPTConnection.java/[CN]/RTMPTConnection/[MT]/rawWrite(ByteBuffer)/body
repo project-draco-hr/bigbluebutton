@@ -1,5 +1,0 @@
-{
-synchronized (this.pendingMessages) {
-    this.pendingMessages.add(packet);
-  }
-}

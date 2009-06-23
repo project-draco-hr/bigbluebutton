@@ -1,4 +1,0 @@
-{
-  metaService.setInStream(new FileInputStream(file));
-  return null;
-}

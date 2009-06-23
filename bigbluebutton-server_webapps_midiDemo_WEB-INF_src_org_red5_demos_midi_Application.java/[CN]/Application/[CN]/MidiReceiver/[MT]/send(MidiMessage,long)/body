@@ -1,8 +1,0 @@
-{
-  byte[] msg=midi.getMessage();
-  int len=midi.getLength();
-  if (len <= 1) {
-    return;
-  }
-  conn.invoke("midi",new Object[]{time,msg});
-}

@@ -1,3 +1,0 @@
-{
-  clientToConnMap=Collections.synchronizedMap(new HashMap<RTMPConnection,IMRTMPConnection>());
-}

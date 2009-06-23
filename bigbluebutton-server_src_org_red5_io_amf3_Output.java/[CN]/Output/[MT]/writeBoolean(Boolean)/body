@@ -1,4 +1,0 @@
-{
-  writeAMF3();
-  buf.put(bol ? AMF3.TYPE_BOOLEAN_TRUE : AMF3.TYPE_BOOLEAN_FALSE);
-}
