@@ -9,4 +9,5 @@
   }
   this.toolkit=Toolkit.getDefaultToolkit();
   this.screenBounds=new Rectangle(x,y,this.width,this.height);
+  this.needScale=areDimensionsScaled(this.width,this.height);
 }
