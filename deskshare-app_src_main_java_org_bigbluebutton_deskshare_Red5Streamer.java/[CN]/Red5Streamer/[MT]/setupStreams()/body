@@ -1,5 +1,5 @@
 {
-  System.out.println("In setupStreams");
+  log.debug("Setting up streams: {}",broadcastStream.getName());
   String outputURL=Red5HandlerFactory.DEFAULT_PROTOCOL + ":" + broadcastStream.getName();
   ICodec videoCodec=ICodec.findEncodingCodec(ICodec.ID.CODEC_ID_FLV1);
   ISimpleMediaFile outInfo=new SimpleMediaFile();
@@ -19,10 +19,10 @@
   outFormat.setOutputFormat("flv",outputURL,null);
   int retval=outContainer.open(outputURL,IContainer.Type.WRITE,outFormat);
   if (retval < 0) {
-    System.out.println("could not open output container");
+    log.error("could not open output container");
     throw new RuntimeException("could not open output file");
   }
-  System.out.println("Output container is open.");
+  log.debug("Output container is open.");
   outStream=outContainer.addNewStream(0);
   outStreamCoder=outStream.getStreamCoder();
   outStreamCoder.setNumPicturesInGroupOfPictures(DeskShareConstants.NUM_PICTURES_IN_GROUP);
@@ -42,6 +42,8 @@
   retval=outStreamCoder.open();
   if (retval < 0)   throw new RuntimeException("could not open input decoder");
   retval=outContainer.writeHeader();
-  if (retval < 0)   throw new RuntimeException("could not write file header");
- else   System.out.println("Header written");
+  if (retval < 0) {
+    log.error("could not write file header");
+    throw new RuntimeException("could not write file header");
+  }
 }

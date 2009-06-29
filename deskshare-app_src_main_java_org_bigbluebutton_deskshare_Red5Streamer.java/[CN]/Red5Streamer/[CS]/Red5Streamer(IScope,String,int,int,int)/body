@@ -9,7 +9,7 @@
       return null;
     }
     public void write(    Red5Message message) throws InterruptedException {
-      System.out.println("Handler writing message to stream " + outStreamName);
+      log.debug("Handler writing message to stream " + outStreamName);
       try {
         IRTMPEvent event=message.getData();
         if (event != null) {

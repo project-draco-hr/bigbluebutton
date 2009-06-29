@@ -6,7 +6,7 @@
     serverSocket=new ServerSocket(DeskShareConstants.PORT);
   }
  catch (  IOException e) {
-    System.out.println(e.getMessage());
+    log.error(e.getMessage());
     e.printStackTrace(System.out);
   }
 }

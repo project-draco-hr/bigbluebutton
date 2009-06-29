@@ -3,5 +3,5 @@
   broadcastStream.close();
   int retval=outContainer.writeTrailer();
   if (retval < 0)   throw new RuntimeException("Could not write trailer to output file");
-  System.out.println("stopping and closing stream" + outStreamName);
+  log.info("stopping and closing stream" + outStreamName);
 }

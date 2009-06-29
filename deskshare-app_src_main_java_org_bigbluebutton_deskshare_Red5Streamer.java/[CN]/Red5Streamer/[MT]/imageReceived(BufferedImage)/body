@@ -5,7 +5,7 @@
     converter=ConverterFactory.createConverter(image,IPixelFormat.Type.YUV420P);
   }
  catch (  UnsupportedOperationException e) {
-    System.out.println("could not create converter");
+    log.error("could not create converter");
   }
   IVideoPicture outFrame=converter.toPicture(image,timestamp);
   timestamp+=timestampBase;
