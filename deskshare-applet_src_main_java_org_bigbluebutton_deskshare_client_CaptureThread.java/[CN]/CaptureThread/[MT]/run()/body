@@ -1,0 +1,39 @@
+{
+  System.out.println("Capture thread run()");
+  DataOutputStream outStream=null;
+  try {
+    socket=new Socket(IP,PORT);
+    PrintWriter out=new PrintWriter(socket.getOutputStream(),true);
+    out.println(roomNumber);
+    out.println(Integer.toString(capture.getVideoWidth()) + "x" + Integer.toString(capture.getVideoHeight())+ "x"+ Integer.toString(capture.getProperFrameRate()));
+    outStream=new DataOutputStream(socket.getOutputStream());
+  }
+ catch (  Exception e) {
+    e.printStackTrace(System.out);
+    System.exit(0);
+  }
+  while (true) {
+    BufferedImage image=capture.takeSingleSnapshot();
+    try {
+      ByteArrayOutputStream byteConvert=new ByteArrayOutputStream();
+      ImageIO.write(image,"jpeg",byteConvert);
+      byte[] imageData=byteConvert.toByteArray();
+      outStream.writeLong(imageData.length);
+      outStream.write(imageData);
+      System.out.println("Sent: " + imageData.length);
+      outStream.flush();
+    }
+ catch (    Exception e) {
+      e.printStackTrace(System.out);
+      System.exit(0);
+    }
+    try {
+      System.out.println("Sleeping for " + timeBase);
+      Thread.sleep(timeBase);
+    }
+ catch (    Exception e) {
+      System.out.println("Exception sleeping.");
+      System.exit(0);
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{
+  out.println(Integer.toString(videoWidth) + "x" + Integer.toString(videoHeight)+ "x"+ Integer.toString(frameRate));
+}

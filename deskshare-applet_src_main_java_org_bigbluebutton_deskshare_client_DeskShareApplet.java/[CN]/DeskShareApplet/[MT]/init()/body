@@ -1,0 +1,9 @@
+{
+  screenWidth=Integer.parseInt(getParameter("CAPTURE_WIDTH"));
+  screenHeight=Integer.parseInt(getParameter("CAPTURE_HEIGHT"));
+  x=Integer.parseInt(getParameter("X"));
+  y=Integer.parseInt(getParameter("Y"));
+  room=getParameter("ROOM");
+  host=getParameter("IP");
+  httpTunnel=Boolean.getBoolean(getParameter("TUNNEL"));
+}

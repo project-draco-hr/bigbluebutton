@@ -1,0 +1,5 @@
+{
+  for (  IScreenCaptureListener listener : listeners) {
+    listener.onScreenCaptured(image);
+  }
+}

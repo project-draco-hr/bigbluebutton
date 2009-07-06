@@ -1,0 +1,16 @@
+{
+  System.out.println("RunnerApplet start()");
+  capture=new ScreenCapture(x,y,screenWidth,screenHeight);
+  captureTaker=new ScreenCaptureTaker(capture);
+  if (httpTunnel) {
+    captureSender=new HttpScreenCaptureSender();
+  }
+ else {
+    captureSender=new SocketScreenCaptureSender();
+    ((SocketScreenCaptureSender)captureSender).connect(host,room,capture.getVideoWidth(),capture.getVideoHeight(),capture.getProperFrameRate());
+  }
+  captureTaker.addListener(this);
+  captureTaker.setCapture(true);
+  captureTakerThread=new Thread(captureTaker);
+  captureTakerThread.start();
+}

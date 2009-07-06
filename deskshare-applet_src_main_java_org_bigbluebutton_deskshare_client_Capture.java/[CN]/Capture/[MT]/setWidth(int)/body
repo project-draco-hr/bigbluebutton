@@ -1,0 +1,6 @@
+{
+  int screenWidth=toolkit.getScreenSize().width;
+  if (width > screenWidth)   this.width=screenWidth;
+ else   this.width=width;
+  updateBounds();
+}

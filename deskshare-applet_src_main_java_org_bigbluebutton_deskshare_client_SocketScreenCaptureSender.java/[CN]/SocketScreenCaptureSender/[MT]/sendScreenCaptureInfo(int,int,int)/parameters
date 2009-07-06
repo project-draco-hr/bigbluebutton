@@ -1,0 +1,3 @@
+int videoWidth
+int videoHeight
+int frameRate

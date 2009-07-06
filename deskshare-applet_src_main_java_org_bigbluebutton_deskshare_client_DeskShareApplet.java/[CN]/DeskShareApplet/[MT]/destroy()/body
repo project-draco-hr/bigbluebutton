@@ -1,0 +1,3 @@
+{
+  captureTaker.setCapture(false);
+}
