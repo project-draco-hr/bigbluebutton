@@ -1,4 +1,5 @@
 {
+  System.out.println("Capture thread constructor.");
   this.capture=capture;
   this.roomNumber=room;
   this.IP=IP;

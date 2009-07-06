@@ -1,4 +1,5 @@
 {
+  System.out.println("Capture thread run()");
   DataOutputStream outStream=null;
   try {
     socket=new Socket(IP,PORT);
@@ -27,9 +28,11 @@
       System.exit(0);
     }
     try {
+      System.out.println("Sleeping for " + timeBase);
       Thread.sleep(timeBase);
     }
  catch (    Exception e) {
+      System.out.println("Exception sleeping.");
       System.exit(0);
     }
   }

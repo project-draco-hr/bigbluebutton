@@ -1,4 +1,5 @@
 {
+  System.out.println("Closing connection.");
   try {
     socket.close();
   }
