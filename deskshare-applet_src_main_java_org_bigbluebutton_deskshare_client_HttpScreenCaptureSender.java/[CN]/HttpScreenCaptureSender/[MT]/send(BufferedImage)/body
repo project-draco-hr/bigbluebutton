@@ -1,2 +1,13 @@
 {
+  ByteArrayOutputStream byteConvert=new ByteArrayOutputStream();
+  try {
+    ImageIO.write(screenCapture,"jpeg",byteConvert);
+    byte[] imageData=byteConvert.toByteArray();
+    mpfOutStream.writeField("room",room);
+    mpfOutStream.writeField("video",videoInfo);
+    mpfOutStream.writeFile("screen","image/jpeg","screen.jpg",imageData);
+  }
+ catch (  IOException e) {
+    System.out.println("IOException while converting screen capture.");
+  }
 }

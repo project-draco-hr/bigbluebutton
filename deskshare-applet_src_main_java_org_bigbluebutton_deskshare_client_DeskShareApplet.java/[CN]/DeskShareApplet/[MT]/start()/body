@@ -7,7 +7,7 @@
   }
  else {
     captureSender=new SocketScreenCaptureSender();
-    ((SocketScreenCaptureSender)captureSender).connect(host,room,capture.getVideoWidth(),capture.getVideoHeight(),capture.getProperFrameRate());
+    captureSender.connect(host,room,capture.getVideoWidth(),capture.getVideoHeight(),capture.getProperFrameRate());
   }
   captureTaker.addListener(this);
   captureTaker.setCapture(true);
