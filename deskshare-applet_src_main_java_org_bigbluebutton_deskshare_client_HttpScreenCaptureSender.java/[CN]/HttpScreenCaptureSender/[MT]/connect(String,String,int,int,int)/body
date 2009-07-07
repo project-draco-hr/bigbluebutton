@@ -5,18 +5,4 @@
   this.videoHeight=videoHeight;
   this.frameRate=frameRate;
   videoInfo=Integer.toString(videoWidth) + "x" + Integer.toString(videoHeight)+ "x"+ Integer.toString(frameRate);
-  String urlString="";
-  try {
-    urlString="http://" + host + "/"+ servletName;
-    url=new URL(urlString);
-    conn=MultiPartFormOutputStream.createConnection(url);
-    conn.setRequestProperty("Connection","Keep-Alive");
-    mpfOutStream=new MultiPartFormOutputStream(conn.getOutputStream(),MultiPartFormOutputStream.createBoundary());
-  }
- catch (  MalformedURLException e) {
-    System.out.println("MalformedURLException for " + urlString);
-  }
-catch (  IOException e) {
-    System.out.println("IOException while creating URL connection.");
-  }
 }

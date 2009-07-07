@@ -1,4 +1,5 @@
 {
+  connect();
   ByteArrayOutputStream byteConvert=new ByteArrayOutputStream();
   try {
     ImageIO.write(screenCapture,"jpeg",byteConvert);
@@ -6,6 +7,7 @@
     mpfOutStream.writeField("room",room);
     mpfOutStream.writeField("video",videoInfo);
     mpfOutStream.writeFile("screen","image/jpeg","screen.jpg",imageData);
+    System.out.println("Http-Sent: " + imageData.length);
   }
  catch (  IOException e) {
     System.out.println("IOException while converting screen capture.");
