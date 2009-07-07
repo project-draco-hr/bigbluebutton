@@ -1,0 +1,14 @@
+{
+  if (name == null) {
+    throw new IllegalArgumentException("Name cannot be null or empty.");
+  }
+  if (value == null) {
+    value="";
+  }
+  dos.writeBytes(twoHyphens + boundary + lineEnd);
+  dos.writeBytes("Content-Disposition: form-data; name=\"" + name + "\"");
+  dos.writeBytes(lineEnd);
+  dos.writeBytes(lineEnd);
+  dos.writeBytes(value);
+  dos.writeBytes(lineEnd);
+}

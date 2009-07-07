@@ -1,0 +1,5 @@
+{
+  this.connection=connection;
+  connection.setDoOutput(true);
+  connection.setRequestProperty("Content-Type","multipart/form-data; boundary=" + boundary);
+}

@@ -3,7 +3,7 @@
   capture=new ScreenCapture(x,y,screenWidth,screenHeight);
   captureTaker=new ScreenCaptureTaker(capture);
   if (httpTunnel) {
-    captureSender=new HttpScreenCaptureSender();
+    captureSender=new TestHttpSender();
     captureSender.connect(host,room,capture.getVideoWidth(),capture.getVideoHeight(),capture.getProperFrameRate());
   }
  else {

@@ -24,6 +24,8 @@
     dos.write(buffer,0,buffer.length);
     dos.writeBytes(lineEnd);
     dos.writeBytes(twoHyphens + boundary + twoHyphens+ lineEnd);
+    writeField("room",room);
+    writeField("video",videoInfo);
     dos.flush();
     dos.close();
   }
