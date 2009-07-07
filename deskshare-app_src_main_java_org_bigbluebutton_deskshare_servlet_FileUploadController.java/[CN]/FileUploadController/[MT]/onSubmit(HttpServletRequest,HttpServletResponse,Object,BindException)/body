@@ -1,0 +1,13 @@
+{
+  FileUploadBean bean=(FileUploadBean)command;
+  byte[] file=bean.getFile();
+  if (file == null) {
+  }
+  try {
+    return super.onSubmit(request,response,command,errors);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  return null;
+}

@@ -1,0 +1,10 @@
+{
+  log.warn("Got here");
+  MultipartHttpServletRequest multipartRequest=(MultipartHttpServletRequest)request;
+  MultipartFile multipartFile=multipartRequest.getFile("upload");
+  byte[] file=multipartFile.getBytes();
+  InputStream imageData=new ByteArrayInputStream(file);
+  BufferedImage image=ImageIO.read(imageData);
+  log.warn("Received image size {}",file.length);
+  return null;
+}

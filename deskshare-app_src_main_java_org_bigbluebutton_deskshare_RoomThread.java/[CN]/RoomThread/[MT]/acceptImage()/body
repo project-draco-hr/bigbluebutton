@@ -7,6 +7,7 @@
   try {
     inStream=new DataInputStream(socket.getInputStream());
     int totalBytes=inStream.readInt();
+    System.out.println("Receiving " + totalBytes + " bytes");
     if (totalBytes > 1000000 || totalBytes <= 0)     return;
     byte[] appendedBuffer=new byte[totalBytes];
     inStream.readFully(appendedBuffer);
