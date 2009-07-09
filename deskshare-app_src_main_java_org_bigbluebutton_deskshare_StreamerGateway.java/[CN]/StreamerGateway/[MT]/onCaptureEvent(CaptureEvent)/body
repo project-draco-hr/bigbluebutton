@@ -1,0 +1,6 @@
+{
+  DeskShareStream ds=dsMap.get(event.getRoom());
+  if (ds != null) {
+    ds.accept(event);
+  }
+}

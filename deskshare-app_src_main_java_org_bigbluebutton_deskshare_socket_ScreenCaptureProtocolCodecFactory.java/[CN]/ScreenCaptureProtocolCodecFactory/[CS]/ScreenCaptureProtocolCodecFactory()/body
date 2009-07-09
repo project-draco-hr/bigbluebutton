@@ -1,0 +1,4 @@
+{
+  encoder=null;
+  decoder=new ScreenCaptureProtocolDecoder();
+}

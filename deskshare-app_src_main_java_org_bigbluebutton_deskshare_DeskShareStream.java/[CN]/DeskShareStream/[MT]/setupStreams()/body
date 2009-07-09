@@ -1,0 +1,49 @@
+{
+  log.debug("Setting up streams: {}",broadcastStream.getName());
+  String outputURL=Red5HandlerFactory.DEFAULT_PROTOCOL + ":" + broadcastStream.getName();
+  ICodec videoCodec=ICodec.findEncodingCodec(ICodec.ID.CODEC_ID_FLV1);
+  ISimpleMediaFile outInfo=new SimpleMediaFile();
+  outInfo.setURL(outputURL);
+  outInfo.setHasVideo(true);
+  outInfo.setHasAudio(false);
+  outInfo.setVideoWidth(width);
+  outInfo.setVideoHeight(height);
+  outInfo.setVideoBitRate(DeskShareConstants.BIT_RATE);
+  outInfo.setVideoPixelFormat(IPixelFormat.Type.YUV420P);
+  outInfo.setVideoNumPicturesInGroupOfPictures(DeskShareConstants.NUM_PICTURES_IN_GROUP);
+  outInfo.setVideoCodec(ICodec.ID.CODEC_ID_FLV1);
+  outInfo.setVideoGlobalQuality(0);
+  factory.registerStream(outputHandler,outInfo);
+  outContainer=IContainer.make();
+  IContainerFormat outFormat=IContainerFormat.make();
+  outFormat.setOutputFormat("flv",outputURL,null);
+  int retval=outContainer.open(outputURL,IContainer.Type.WRITE,outFormat);
+  if (retval < 0) {
+    log.error("could not open output container");
+    throw new RuntimeException("could not open output file");
+  }
+  log.debug("Output container is open.");
+  outStream=outContainer.addNewStream(0);
+  outStreamCoder=outStream.getStreamCoder();
+  outStreamCoder.setNumPicturesInGroupOfPictures(DeskShareConstants.NUM_PICTURES_IN_GROUP);
+  outStreamCoder.setCodec(videoCodec);
+  outStreamCoder.setBitRate(DeskShareConstants.BIT_RATE);
+  outStreamCoder.setBitRateTolerance(DeskShareConstants.BIT_RATE_TOLERANCE);
+  outStreamCoder.setPixelType(IPixelFormat.Type.YUV420P);
+  outStreamCoder.setHeight(height);
+  outStreamCoder.setWidth(width);
+  outStreamCoder.setFlag(IStreamCoder.Flags.FLAG_QSCALE,true);
+  outStreamCoder.setGlobalQuality(0);
+  IRational frameRate=IRational.make(this.frameRate,1);
+  outStreamCoder.setFrameRate(frameRate);
+  IRational timeBase=IRational.make(frameRate.getDenominator(),frameRate.getNumerator());
+  outStreamCoder.setTimeBase(timeBase);
+  frameRate=null;
+  retval=outStreamCoder.open();
+  if (retval < 0)   throw new RuntimeException("could not open input decoder");
+  retval=outContainer.writeHeader();
+  if (retval < 0) {
+    log.error("could not write file header");
+    throw new RuntimeException("could not write file header");
+  }
+}

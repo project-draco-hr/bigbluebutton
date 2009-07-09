@@ -1,0 +1,21 @@
+{
+  startPublishing(scope);
+  setupStreams();
+  handleEvent=true;
+  log.debug("Starting stream {}",outStreamName);
+  eventHandler=new Runnable(){
+    public void run(){
+      while (handleEvent) {
+        try {
+          CaptureEvent event=queue.take();
+          handleCaptureEvent(event);
+        }
+ catch (        InterruptedException e) {
+          log.warn("InterruptedExeption while taking event.");
+        }
+      }
+    }
+  }
+;
+  exec.execute(eventHandler);
+}

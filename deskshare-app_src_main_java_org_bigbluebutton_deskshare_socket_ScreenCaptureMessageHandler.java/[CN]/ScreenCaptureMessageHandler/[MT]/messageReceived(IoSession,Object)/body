@@ -1,0 +1,12 @@
+{
+  CapturedScreen cs=(CapturedScreen)message;
+  String room=cs.getRoom();
+  log.debug("Got room {}",room);
+  if (session.containsAttribute("room")) {
+    sendCaptureEvent(cs);
+  }
+ else {
+    session.setAttribute("room",room);
+    sendCaptureStartEvent(cs);
+  }
+}

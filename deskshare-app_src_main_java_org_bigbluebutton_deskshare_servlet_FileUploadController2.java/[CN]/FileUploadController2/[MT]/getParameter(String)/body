@@ -1,0 +1,11 @@
+{
+  ServletContext ctx=getServletContext();
+  log.info("Got the servlet context: {}",ctx);
+  ApplicationContext appCtx=(ApplicationContext)ctx.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+  log.info("Got the application context: {}",appCtx);
+  MyBean bean=(MyBean)appCtx.getBean("mybean");
+  String param=bean.getParameter();
+  log.info("Got the parameter - {} = {}",paramName,param);
+  bean.sendMessage("Pass this....");
+  return param;
+}

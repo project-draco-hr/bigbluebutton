@@ -1,0 +1,5 @@
+{
+  log.debug("Session Closed.");
+  String room=(String)session.getAttribute("room");
+  sendCaptureEndEvent(room);
+}

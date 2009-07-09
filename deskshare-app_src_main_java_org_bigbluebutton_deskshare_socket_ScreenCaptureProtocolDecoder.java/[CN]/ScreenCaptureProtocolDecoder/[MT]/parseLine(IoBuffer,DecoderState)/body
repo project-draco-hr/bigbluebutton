@@ -1,0 +1,14 @@
+{
+  try {
+    String line=in.getString(Charset.forName("UTF-8").newDecoder());
+    if (decoderState.room == null) {
+      decoderState.room=line.trim();
+    }
+ else {
+      decoderState.videoInfo=line.trim();
+    }
+  }
+ catch (  CharacterCodingException e1) {
+    e1.printStackTrace();
+  }
+}

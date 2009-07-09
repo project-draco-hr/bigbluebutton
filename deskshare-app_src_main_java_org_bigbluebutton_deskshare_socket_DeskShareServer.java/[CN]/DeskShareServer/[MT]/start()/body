@@ -1,0 +1,12 @@
+{
+  acceptor=new NioSocketAcceptor();
+  acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(new ScreenCaptureProtocolCodecFactory()));
+  acceptor.setHandler(screenCaptureHandler);
+  acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE,10);
+  try {
+    acceptor.bind(new InetSocketAddress(PORT));
+  }
+ catch (  IOException e) {
+    log.error("IOException while binding to port {}",PORT);
+  }
+}

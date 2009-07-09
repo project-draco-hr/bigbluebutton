@@ -1,0 +1,4 @@
+{
+  handleEvent=false;
+  streamEnded();
+}

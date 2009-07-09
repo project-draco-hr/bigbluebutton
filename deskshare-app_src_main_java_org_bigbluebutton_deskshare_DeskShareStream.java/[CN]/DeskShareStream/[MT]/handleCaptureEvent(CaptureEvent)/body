@@ -1,0 +1,4 @@
+{
+  BufferedImage image=event.getCapturedScreen();
+  imageReceived(image);
+}
