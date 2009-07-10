@@ -1,10 +1,14 @@
 {
+  this.room=room;
+  this.videoWidth=videoWidth;
+  this.videoHeight=videoHeight;
+  this.frameRate=frameRate;
   try {
     socket=new Socket(host,PORT);
     out=new PrintWriter(socket.getOutputStream(),true);
+    outStream=new DataOutputStream(socket.getOutputStream());
     sendRoom(room);
     sendScreenCaptureInfo(videoWidth,videoHeight,frameRate);
-    outStream=new DataOutputStream(socket.getOutputStream());
   }
  catch (  UnknownHostException e) {
     System.out.println("Unknow host: " + host);

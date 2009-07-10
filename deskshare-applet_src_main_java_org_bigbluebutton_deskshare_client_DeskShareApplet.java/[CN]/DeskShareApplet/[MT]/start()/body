@@ -4,12 +4,11 @@
   captureTaker=new ScreenCaptureTaker(capture);
   if (httpTunnel) {
     captureSender=new TestHttpSender();
-    captureSender.connect(host,room,capture.getVideoWidth(),capture.getVideoHeight(),capture.getProperFrameRate());
   }
  else {
     captureSender=new SocketScreenCaptureSender();
-    captureSender.connect(host,room,capture.getVideoWidth(),capture.getVideoHeight(),capture.getProperFrameRate());
   }
+  captureSender.connect(host,room,capture.getVideoWidth(),capture.getVideoHeight(),capture.getProperFrameRate());
   captureTaker.addListener(this);
   captureTaker.setCapture(true);
   captureTakerThread=new Thread(captureTaker);

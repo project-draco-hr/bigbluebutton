@@ -3,7 +3,6 @@
     BufferedImage image=capture.takeSingleSnapshot();
     notifyListeners(image);
     try {
-      System.out.println("Sleeping for " + timeBase);
       Thread.sleep(timeBase);
     }
  catch (    Exception e) {

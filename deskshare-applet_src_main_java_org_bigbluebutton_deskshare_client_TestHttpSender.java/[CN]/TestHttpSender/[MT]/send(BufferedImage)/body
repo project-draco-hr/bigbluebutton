@@ -1,16 +1,21 @@
 {
-  String data;
   try {
     URL url=new URL("http://192.168.0.136/deskshare/sample/showslides");
     URLConnection conn=url.openConnection();
     ClientHttpRequest chr=new ClientHttpRequest(conn);
     chr.setParameter("room",room);
     chr.setParameter("videoInfo",videoInfo);
+    chr.setParameter("startCapture",startCapture);
+    System.out.println("Start capture = " + startCapture);
+    if (startCapture) {
+      startCapture=false;
+    }
     ByteArrayOutputStream byteConvert=new ByteArrayOutputStream();
     ImageIO.write(screenCapture,"jpeg",byteConvert);
     byte[] imageData=byteConvert.toByteArray();
     ByteArrayInputStream cap=new ByteArrayInputStream(imageData);
     chr.setParameter("upload","screen",cap);
+    System.out.println("Image length = " + imageData.length);
     chr.post();
   }
  catch (  UnsupportedEncodingException e) {

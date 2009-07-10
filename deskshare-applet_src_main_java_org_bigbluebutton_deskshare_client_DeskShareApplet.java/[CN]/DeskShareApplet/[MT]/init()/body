@@ -5,5 +5,8 @@
   y=Integer.parseInt(getParameter("Y"));
   room=getParameter("ROOM");
   host=getParameter("IP");
-  httpTunnel=Boolean.getBoolean(getParameter("TUNNEL"));
+  httpTunnel=Boolean.parseBoolean(getParameter("TUNNEL"));
+  System.out.println("Tunnel " + httpTunnel);
+  String t=getParameter("TUNNEL");
+  System.out.println("Tunnel param " + t);
 }
