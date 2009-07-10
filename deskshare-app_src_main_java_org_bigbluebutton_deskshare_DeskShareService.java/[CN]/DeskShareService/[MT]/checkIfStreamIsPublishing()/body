@@ -1,0 +1,5 @@
+{
+  String roomName=Red5.getConnectionLocal().getScope().getName();
+  log.debug("Checking if {} is streaming.",roomName);
+  return sg.isStreaming(roomName);
+}

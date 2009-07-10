@@ -1,0 +1,7 @@
+{
+  DeskShareStream ds=dsMap.get(room);
+  if (ds != null) {
+    return true;
+  }
+  return false;
+}

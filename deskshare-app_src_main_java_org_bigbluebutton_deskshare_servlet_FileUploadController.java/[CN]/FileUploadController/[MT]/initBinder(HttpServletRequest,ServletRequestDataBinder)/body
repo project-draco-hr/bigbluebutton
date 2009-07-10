@@ -1,4 +1,0 @@
-{
-  System.out.println("Binding the servlet....");
-  binder.registerCustomEditor(byte[].class,new ByteArrayMultipartFileEditor());
-}
