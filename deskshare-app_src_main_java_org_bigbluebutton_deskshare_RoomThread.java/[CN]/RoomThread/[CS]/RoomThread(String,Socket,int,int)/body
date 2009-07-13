@@ -1,8 +1,0 @@
-{
-  this.roomName=roomNumber;
-  this.socket=socket;
-  this.keepCapturing=true;
-  imageListeners=new ArrayList<IImageListener>();
-  this.width=width;
-  this.height=height;
-}

@@ -1,7 +1,0 @@
-{
-  for (int i=0; i < roomList.size(); i++) {
-    RoomThread rm=roomList.get(i);
-    if (rm.getStreamName().equalsIgnoreCase(room))     return rm.getScreenWidth();
-  }
-  return 0;
-}

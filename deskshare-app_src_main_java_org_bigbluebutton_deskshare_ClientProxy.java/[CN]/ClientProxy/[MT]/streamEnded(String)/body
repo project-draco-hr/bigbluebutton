@@ -1,8 +1,0 @@
-{
-  for (int i=0; i < roomList.size(); i++) {
-    if (roomList.get(i).getStreamName().equalsIgnoreCase(streamName)) {
-      log.info("Removing stream " + streamName);
-      roomList.remove(i);
-    }
-  }
-}

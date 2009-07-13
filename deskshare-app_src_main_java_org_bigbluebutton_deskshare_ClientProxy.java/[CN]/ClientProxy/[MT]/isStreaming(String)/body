@@ -1,6 +1,0 @@
-{
-  for (int i=0; i < roomList.size(); i++) {
-    if (roomList.get(i).getStreamName().equalsIgnoreCase(room))     return true;
-  }
-  return false;
-}

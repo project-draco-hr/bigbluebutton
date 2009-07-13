@@ -1,8 +1,0 @@
-{
-  debugIndex++;
-  try {
-    ImageIO.write(image,"jpeg",new File(debugIndex + ".jpeg"));
-  }
- catch (  IOException e) {
-  }
-}

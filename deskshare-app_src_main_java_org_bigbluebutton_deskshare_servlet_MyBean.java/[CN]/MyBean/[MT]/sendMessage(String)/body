@@ -1,3 +1,0 @@
-{
-  log.debug("Got send message {}",message);
-}
