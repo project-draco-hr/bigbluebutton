@@ -1,15 +1,30 @@
 {
-  connect();
-  ByteArrayOutputStream byteConvert=new ByteArrayOutputStream();
   try {
+    URL url=new URL("http://" + host + "/deskshare/tunnel/screen");
+    URLConnection conn=url.openConnection();
+    ClientHttpRequest chr=new ClientHttpRequest(conn);
+    chr.setParameter("room",room);
+    chr.setParameter("videoInfo",videoInfo);
+    chr.setParameter("startCapture",startCapture);
+    System.out.println("Start capture = " + startCapture);
+    if (startCapture) {
+      startCapture=false;
+    }
+    ByteArrayOutputStream byteConvert=new ByteArrayOutputStream();
     ImageIO.write(screenCapture,"jpeg",byteConvert);
     byte[] imageData=byteConvert.toByteArray();
-    mpfOutStream.writeField("room",room);
-    mpfOutStream.writeField("video",videoInfo);
-    mpfOutStream.writeFile("screen","image/jpeg","screen.jpg",imageData);
-    System.out.println("Http-Sent: " + imageData.length);
+    ByteArrayInputStream cap=new ByteArrayInputStream(imageData);
+    chr.setParameter("upload","screen",cap);
+    System.out.println("Image length = " + imageData.length);
+    chr.post();
   }
- catch (  IOException e) {
-    System.out.println("IOException while converting screen capture.");
+ catch (  UnsupportedEncodingException e) {
+    e.printStackTrace();
+  }
+catch (  MalformedURLException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
   }
 }

@@ -3,7 +3,7 @@
   capture=new ScreenCapture(x,y,screenWidth,screenHeight);
   captureTaker=new ScreenCaptureTaker(capture);
   if (httpTunnel) {
-    captureSender=new TestHttpSender();
+    captureSender=new HttpScreenCaptureSender();
   }
  else {
     captureSender=new SocketScreenCaptureSender();

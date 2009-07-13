@@ -1,8 +1,0 @@
-{
-  this.host=host;
-  this.room=room;
-  this.videoWidth=videoWidth;
-  this.videoHeight=videoHeight;
-  this.frameRate=frameRate;
-  videoInfo=Integer.toString(videoWidth) + "x" + Integer.toString(videoHeight)+ "x"+ Integer.toString(frameRate);
-}
