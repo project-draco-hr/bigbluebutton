@@ -9,7 +9,7 @@
       try {
         in.position(start);
         in.limit(position);
-        parseLine(in.slice(),decoderState);
+        parseLine(session,in.slice());
       }
   finally {
         in.position(position);

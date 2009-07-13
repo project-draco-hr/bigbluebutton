@@ -1,0 +1,8 @@
+{
+  super();
+  this.screen=screen;
+  this.room=room;
+  this.width=width;
+  this.height=height;
+  this.frameRate=frameRate;
+}

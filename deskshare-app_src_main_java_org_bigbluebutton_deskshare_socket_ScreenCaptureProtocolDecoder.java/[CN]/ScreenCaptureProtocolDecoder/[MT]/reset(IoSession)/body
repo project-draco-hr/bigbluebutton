@@ -1,0 +1,5 @@
+{
+  session.removeAttribute(ROOM);
+  session.removeAttribute(VIDEO_INFO);
+  session.removeAttribute(CAPTURED_SCREEN);
+}

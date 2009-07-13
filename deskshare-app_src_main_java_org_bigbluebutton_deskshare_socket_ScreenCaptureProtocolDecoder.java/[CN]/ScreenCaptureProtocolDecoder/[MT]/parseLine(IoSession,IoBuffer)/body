@@ -1,11 +1,11 @@
 {
   try {
     String line=in.getString(Charset.forName("UTF-8").newDecoder());
-    if (decoderState.room == null) {
-      decoderState.room=line.trim();
+    if (!session.containsAttribute(ROOM)) {
+      session.setAttribute(ROOM,line.trim());
     }
  else {
-      decoderState.videoInfo=line.trim();
+      session.setAttribute(VIDEO_INFO,line.trim());
     }
   }
  catch (  CharacterCodingException e1) {

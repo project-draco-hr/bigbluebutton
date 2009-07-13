@@ -1,3 +1,4 @@
 {
   acceptor.unbind();
+  acceptor.dispose();
 }

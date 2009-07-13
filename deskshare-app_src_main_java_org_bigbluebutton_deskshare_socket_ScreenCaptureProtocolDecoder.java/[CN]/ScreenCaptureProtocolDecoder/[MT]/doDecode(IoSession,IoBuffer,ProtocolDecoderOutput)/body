@@ -1,47 +1,23 @@
 {
-  DecoderState decoderState=(DecoderState)session.getAttribute(DECODER_STATE_KEY);
-  if (decoderState == null) {
-    decoderState=new DecoderState();
-    session.setAttribute(DECODER_STATE_KEY,decoderState);
+  if (!session.containsAttribute(ROOM)) {
+    return decodeRoom(session,in);
   }
-  if (decoderState.room == null) {
-    log.debug("In decoderState.room");
-    if (getCrLfTerminatedString(in,decoderState)) {
-      capturedScreen=new CapturedScreen();
-      capturedScreen.setRoom(decoderState.room);
-      log.debug("Decoded room {}",decoderState.room);
-      return true;
-    }
-    return false;
+ else   if (!session.containsAttribute(VIDEO_INFO)) {
+    return decodeRoom(session,in);
   }
-  if (decoderState.videoInfo == null) {
-    log.debug("In decoderState.videoInfo");
-    if (getCrLfTerminatedString(in,decoderState)) {
-      log.debug("Decoded videoInfo {}",decoderState.videoInfo);
-      String[] screenDimensions=decoderState.videoInfo.split("x");
+ else {
+    if (decodeCapturedScreen(session,in)) {
+      BufferedImage screen=(BufferedImage)session.getAttribute(CAPTURED_SCREEN);
+      String room=(String)session.getAttribute(ROOM);
+      String videoInfo=(String)session.getAttribute(VIDEO_INFO);
+      String[] screenDimensions=videoInfo.split("x");
       int width=Integer.parseInt(screenDimensions[0]);
       int height=Integer.parseInt(screenDimensions[1]);
       int frameRate=Integer.parseInt(screenDimensions[2]);
-      capturedScreen.setWidth(width);
-      capturedScreen.setHeight(height);
-      capturedScreen.setFrameRate(frameRate);
+      CapturedScreen cs=new CapturedScreen(screen,room,width,height,frameRate);
+      out.write(cs);
+      reset(session);
       return true;
-    }
-    return false;
-  }
-  if (decoderState.capturedScreen == null) {
-    if (in.prefixedDataAvailable(4,MAX_IMAGE_SIZE)) {
-      BufferedImage image=readImage(in);
-      capturedScreen.setScreen(image);
-      out.write(capturedScreen);
-      decoderState.room=null;
-      decoderState.videoInfo=null;
-      decoderState.capturedScreen=null;
-      capturedScreen=null;
-      return true;
-    }
- else {
-      return false;
     }
   }
   return false;
