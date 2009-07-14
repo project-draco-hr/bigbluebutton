@@ -1,0 +1,4 @@
+{
+  log.debug("getListOfAvailableFLVs, Got a string: {}",string);
+  return getListOfAvailableFLVs();
+}

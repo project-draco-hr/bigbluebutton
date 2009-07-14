@@ -1,0 +1,7 @@
+{
+  super.appStart(app);
+  log.info("oflaDemo appStart");
+  System.out.println("oflaDemo appStart");
+  appScope=app;
+  return true;
+}
