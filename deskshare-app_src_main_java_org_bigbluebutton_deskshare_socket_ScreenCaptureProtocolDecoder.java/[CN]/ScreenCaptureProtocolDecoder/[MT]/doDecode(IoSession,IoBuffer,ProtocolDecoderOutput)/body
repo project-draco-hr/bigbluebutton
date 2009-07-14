@@ -6,16 +6,20 @@
     return decodeRoom(session,in);
   }
  else {
-    if (decodeCapturedScreen(session,in)) {
-      BufferedImage screen=(BufferedImage)session.getAttribute(CAPTURED_SCREEN);
-      String room=(String)session.getAttribute(ROOM);
-      String videoInfo=(String)session.getAttribute(VIDEO_INFO);
-      String[] screenDimensions=videoInfo.split("x");
-      int width=Integer.parseInt(screenDimensions[0]);
-      int height=Integer.parseInt(screenDimensions[1]);
-      int frameRate=Integer.parseInt(screenDimensions[2]);
-      CapturedScreen cs=new CapturedScreen(screen,room,width,height,frameRate);
-      out.write(cs);
+    if (canDecodeCapturedScreen(session,in)) {
+      byte[] bytes=new byte[getLength(in)];
+      log.debug("Reading image with length {}",bytes.length);
+      in.get(bytes);
+      ByteArrayInputStream bais=new ByteArrayInputStream(bytes);
+      try {
+        BufferedImage image=ImageIO.read(bais);
+        ;
+        session.setAttribute(CAPTURED_SCREEN,image);
+        sendDecodedMessage(session,out);
+      }
+ catch (      IOException e) {
+        log.error("Failed to get captured screen for room {}",(String)session.getAttribute(ROOM));
+      }
       reset(session);
       return true;
     }

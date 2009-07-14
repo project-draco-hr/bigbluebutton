@@ -1,0 +1,6 @@
+{
+  if (in.prefixedDataAvailable(4,MAX_IMAGE_SIZE)) {
+    return true;
+  }
+  return false;
+}
