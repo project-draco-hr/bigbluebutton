@@ -10,4 +10,5 @@
       System.exit(0);
     }
   }
+  System.out.println("Stopping screen capture.");
 }
