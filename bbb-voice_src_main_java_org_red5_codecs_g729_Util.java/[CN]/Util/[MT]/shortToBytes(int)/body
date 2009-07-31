@@ -1,0 +1,7 @@
+{
+  byte[] bytes=new byte[2];
+  int hexBase=0xff;
+  bytes[0]=(byte)(hexBase & myInt);
+  bytes[1]=(byte)(((hexBase << 8) & myInt) >> 8);
+  return bytes;
+}

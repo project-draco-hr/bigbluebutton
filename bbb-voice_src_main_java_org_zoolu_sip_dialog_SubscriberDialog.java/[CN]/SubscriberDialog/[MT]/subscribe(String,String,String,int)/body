@@ -1,0 +1,15 @@
+{
+  printLog("inside subscribe(target=" + target + ",subscriber="+ subscriber+ ",contact="+ contact+ ",id="+ id+ ",expires="+ expires+ ")",LogLevel.MEDIUM);
+  SipURL request_uri=new SipURL(target);
+  NameAddress to_url=new NameAddress(target);
+  NameAddress from_url=new NameAddress(subscriber);
+  NameAddress contact_url;
+  if (contact != null)   contact_url=new NameAddress(contact);
+ else   contact_url=from_url;
+  String content_type=null;
+  String body=null;
+  Message req=MessageFactory.createSubscribeRequest(sip_provider,request_uri,to_url,from_url,contact_url,event,id,content_type,body);
+  req.setHeader(new AcceptHeader("application/pidf+xml"));
+  req.setExpiresHeader(new ExpiresHeader(expires));
+  subscribe(req);
+}

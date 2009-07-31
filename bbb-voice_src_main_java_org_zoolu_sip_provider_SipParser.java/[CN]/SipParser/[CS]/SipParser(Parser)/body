@@ -1,0 +1,3 @@
+{
+  super(p.getWholeString(),p.getPos());
+}

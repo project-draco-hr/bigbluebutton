@@ -1,0 +1,33 @@
+{
+  Exception error=null;
+  try {
+    server_socket.setSoTimeout(socket_timeout);
+    long expire=0;
+    if (alive_time > 0)     expire=System.currentTimeMillis() + alive_time;
+    while (!stop) {
+      TcpSocket socket=null;
+      try {
+        socket=new TcpSocket(server_socket.accept());
+      }
+ catch (      InterruptedIOException ie) {
+        if (alive_time > 0 && System.currentTimeMillis() > expire)         halt();
+        continue;
+      }
+      if (listener != null)       listener.onIncomingConnection(this,socket);
+      if (alive_time > 0)       expire=System.currentTimeMillis() + alive_time;
+    }
+  }
+ catch (  Exception e) {
+    error=e;
+    stop=true;
+  }
+  is_running=false;
+  try {
+    server_socket.close();
+  }
+ catch (  java.io.IOException e) {
+  }
+  server_socket=null;
+  if (listener != null)   listener.onServerTerminated(this,error);
+  listener=null;
+}

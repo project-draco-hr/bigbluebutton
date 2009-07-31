@@ -1,0 +1,20 @@
+{
+  int l1=1 << k1;
+  int i2=l1 >> 2;
+  int j2=l1 - 1;
+  int k2=l1 >> 1;
+  int l2=k2 - 1;
+  for (int i3=0; i3 < i2; ) {
+    af2[j1 + k2]=af[i3];
+    af2[j1 + j2]=af[l2];
+    af2[j1 + i3]=-af1[i1 + l2] * d[k2] - af1[i1 + k2] * d[l2];
+    af2[j1 + l2]=-af1[i1 + j2] * d[i3] - af1[i1 + i3] * d[j2];
+    af[i3]=af1[i1 + i3] * d[i3] - af1[i1 + j2] * d[j2];
+    af[l2]=af1[i1 + l2] * d[l2] - af1[i1 + k2] * d[k2];
+    i3++;
+    k2++;
+    j2--;
+    l2--;
+  }
+  process(af2,j1,af2,j1,k1);
+}

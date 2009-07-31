@@ -1,0 +1,5 @@
+{
+  SipParser par=new SipParser(str,index);
+  par.goToNextHeader();
+  return par.getPos();
+}

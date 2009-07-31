@@ -1,0 +1,37 @@
+{
+  printLog("onReceivedMessage()",LogLevel.MEDIUM);
+  if (statusIs(D_TERMINATED)) {
+    printLog("subscription already terminated: message discarded",LogLevel.MEDIUM);
+    return;
+  }
+  if (msg.isRequest() && msg.isNotify()) {
+    TransactionServer ts=new TransactionServer(sip_provider,msg,null);
+    ts.respondWith(MessageFactory.createResponse(msg,200,SipResponses.reasonOf(200),null));
+    NameAddress to=msg.getToHeader().getNameAddress();
+    NameAddress from=msg.getFromHeader().getNameAddress();
+    NameAddress contact=null;
+    if (msg.hasContactHeader())     contact=msg.getContactHeader().getNameAddress();
+    String state=null;
+    if (msg.hasSubscriptionStateHeader())     state=msg.getSubscriptionStateHeader().getState();
+    String content_type=null;
+    if (msg.hasContentTypeHeader())     content_type=msg.getContentTypeHeader().getContentType();
+    String body=null;
+    if (msg.hasBody())     body=msg.getBody();
+    if (listener != null)     listener.onDlgNotify(this,to,from,contact,state,content_type,body,msg);
+    if (state != null) {
+      if (state.equalsIgnoreCase(ACTIVE) && !statusIs(D_TERMINATED)) {
+        changeStatus(D_ACTIVE);
+      }
+ else       if (state.equalsIgnoreCase(PENDING) && statusIs(D_ACCEPTED)) {
+        changeStatus(D_PENDING);
+      }
+ else       if (state.equalsIgnoreCase(TERMINATED) && !statusIs(D_TERMINATED)) {
+        changeStatus(D_TERMINATED);
+        if (listener != null)         listener.onDlgSubscriptionTerminated(this);
+      }
+    }
+  }
+ else {
+    printLog("message is not a NOTIFY: message discarded",LogLevel.HIGH);
+  }
+}

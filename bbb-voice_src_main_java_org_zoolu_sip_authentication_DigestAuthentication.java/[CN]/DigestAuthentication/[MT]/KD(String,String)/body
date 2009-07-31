@@ -1,0 +1,5 @@
+{
+  StringBuffer sb=new StringBuffer();
+  sb.append(secret).append(":").append(data);
+  return MD5(sb.toString());
+}

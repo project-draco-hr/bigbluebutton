@@ -1,0 +1,3 @@
+{
+  notifier_dialog.accept(user_profile.expires,user_profile.contact_url);
+}

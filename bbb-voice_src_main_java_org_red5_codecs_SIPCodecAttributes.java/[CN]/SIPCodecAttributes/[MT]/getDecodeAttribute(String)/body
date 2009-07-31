@@ -1,0 +1,3 @@
+{
+  return codecDecodeAttributes.get(attributeName);
+}

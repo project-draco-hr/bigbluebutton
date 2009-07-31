@@ -1,0 +1,6 @@
+InputStream input_stream
+boolean do_sync
+long frame_rate
+int frame_size
+String dest_addr
+int dest_port

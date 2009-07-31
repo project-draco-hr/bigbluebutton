@@ -1,0 +1,13 @@
+{
+  char[] name_separators={'=',' ','\t'};
+  SipParser par=new SipParser(value);
+  par.skipString();
+  par.skipWSPCRLF();
+  Vector names=new Vector();
+  while (par.hasMore()) {
+    String name=par.getWord(name_separators);
+    names.addElement(name);
+    par.goToCommaHeaderSeparator().skipChar().skipWSPCRLF();
+  }
+  return names;
+}

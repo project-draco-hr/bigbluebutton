@@ -1,0 +1,4 @@
+{
+  if (url != null && url.indexOf(';') >= 0)   return true;
+ else   return false;
+}

@@ -1,0 +1,14 @@
+{
+  float b;
+  int i, j;
+  f[fs + 0]=(float)1.0;
+  b=(float)-2.0 * lsp[lsps + 0];
+  f[fs + 1]=b;
+  for (i=2; i <= LD8KConstants.NC; i++) {
+    b=(float)-2.0 * lsp[lsps + 2 * i - 2];
+    f[i]=b * f[fs + i - 1] + (float)2.0 * f[fs + i - 2];
+    for (j=i - 1; j > 1; j--)     f[fs + j]+=b * f[fs + j - 1] + f[fs + j - 2];
+    f[fs + 1]+=b;
+  }
+  return;
+}

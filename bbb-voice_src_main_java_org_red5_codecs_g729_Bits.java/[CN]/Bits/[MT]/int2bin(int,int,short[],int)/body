@@ -1,0 +1,11 @@
+{
+  int pt_bitstream;
+  short i, bit;
+  pt_bitstream=bitstreams + no_of_bits;
+  for (i=0; i < no_of_bits; i++) {
+    bit=(short)(value & 0x0001);
+    if (bit == 0)     bitstream[--pt_bitstream]=LD8KConstants.BIT_0;
+ else     bitstream[--pt_bitstream]=LD8KConstants.BIT_1;
+    value>>=1;
+  }
+}

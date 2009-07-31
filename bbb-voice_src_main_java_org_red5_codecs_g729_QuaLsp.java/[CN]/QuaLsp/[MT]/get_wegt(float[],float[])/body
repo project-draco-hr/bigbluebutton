@@ -1,0 +1,18 @@
+{
+  int i;
+  float tmp;
+  tmp=flsp[1] - LD8KConstants.PI04 - (float)1.0;
+  if (tmp > (float)0.0)   wegt[0]=(float)1.0;
+ else   wegt[0]=tmp * tmp * (float)10. + (float)1.0;
+  for (i=1; i < LD8KConstants.M - 1; i++) {
+    tmp=flsp[i + 1] - flsp[i - 1] - (float)1.0;
+    if (tmp > (float)0.0)     wegt[i]=(float)1.0;
+ else     wegt[i]=tmp * tmp * (float)10. + (float)1.0;
+  }
+  tmp=LD8KConstants.PI92 - flsp[LD8KConstants.M - 2] - (float)1.0;
+  if (tmp > (float)0.0)   wegt[LD8KConstants.M - 1]=(float)1.0;
+ else   wegt[LD8KConstants.M - 1]=tmp * tmp * (float)10. + (float)1.0;
+  wegt[4]*=LD8KConstants.CONST12;
+  wegt[5]*=LD8KConstants.CONST12;
+  return;
+}

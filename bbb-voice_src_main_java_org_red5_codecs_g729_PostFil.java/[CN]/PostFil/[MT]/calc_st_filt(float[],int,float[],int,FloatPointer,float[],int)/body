@@ -1,0 +1,18 @@
+{
+  float h[]=new float[LD8KConstants.LONG_H_ST];
+  float g0, temp;
+  int i;
+  Filter.syn_filt(apond1,apond1s,apond2,apond2s,h,0,LD8KConstants.LONG_H_ST,mem_zero,0,0);
+  calc_rc0_h(h,0,parcor0);
+  g0=(float)0.;
+  for (i=0; i < LD8KConstants.LONG_H_ST; i++) {
+    g0+=(float)Math.abs(h[i]);
+  }
+  if (g0 > (float)1.) {
+    temp=(float)1. / g0;
+    for (i=0; i < LD8KConstants.L_SUBFR; i++) {
+      sig_ltp_ptr[i + sigs]=sig_ltp_ptr[i + sigs] * temp;
+    }
+  }
+  return;
+}

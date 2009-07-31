@@ -1,0 +1,13 @@
+{
+  title=frame_title;
+  caller=caller_frame;
+  if (caller != null)   caller.setEnabled(false);
+  panel1=new ImagePanel(image);
+  label1=null;
+  try {
+    jbInit();
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

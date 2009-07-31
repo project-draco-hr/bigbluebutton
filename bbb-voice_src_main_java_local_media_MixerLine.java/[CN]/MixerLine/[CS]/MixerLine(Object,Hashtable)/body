@@ -1,0 +1,4 @@
+{
+  this.mixer_id=mixer_id;
+  this.input_lines=input_lines;
+}

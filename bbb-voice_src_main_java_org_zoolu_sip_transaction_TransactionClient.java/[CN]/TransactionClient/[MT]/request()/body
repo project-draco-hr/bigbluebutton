@@ -1,0 +1,8 @@
+{
+  printLog("start",LogLevel.LOW);
+  changeStatus(STATE_TRYING);
+  retransmission_to.start();
+  transaction_to.start();
+  sip_provider.addSipProviderListener(transaction_id,this);
+  connection_id=sip_provider.sendMessage(request);
+}

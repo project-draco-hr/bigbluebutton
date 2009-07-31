@@ -1,0 +1,5 @@
+{
+  long wmask=0x10000;
+  wmask*=wmask;
+  return (long)(((long)n + wmask) % wmask);
+}

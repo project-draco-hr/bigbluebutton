@@ -1,0 +1,5 @@
+String media
+int port
+int num
+String transport
+Vector formatlist

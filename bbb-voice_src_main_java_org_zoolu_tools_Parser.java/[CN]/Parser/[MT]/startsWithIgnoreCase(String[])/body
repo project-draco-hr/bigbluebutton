@@ -1,0 +1,10 @@
+{
+  for (int i=0; i < ss.length; i++) {
+    boolean equal=true;
+    for (int k=0; k < ss[i].length() && (index + k) < str.length(); k++) {
+      if (!(equal=(compareIgnoreCase(ss[i].charAt(k),str.charAt(index + k)) == 0)))       break;
+    }
+    if (equal)     return true;
+  }
+  return false;
+}

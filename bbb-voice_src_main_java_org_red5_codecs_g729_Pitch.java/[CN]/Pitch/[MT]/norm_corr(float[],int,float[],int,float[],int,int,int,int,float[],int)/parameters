@@ -1,0 +1,11 @@
+float exc[]
+int excs
+float xn[]
+int xns
+float h[]
+int hs
+int l_subfr
+int t_min
+int t_max
+float corr_norm[]
+int cs

@@ -1,0 +1,5 @@
+{
+  c_server=new Hashtable();
+  s_clients=new Hashtable();
+  s_response=new Hashtable();
+}

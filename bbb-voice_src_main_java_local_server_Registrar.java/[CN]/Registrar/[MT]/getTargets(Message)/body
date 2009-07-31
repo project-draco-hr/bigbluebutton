@@ -1,0 +1,35 @@
+{
+  printLog("inside getTargets(msg)",LogLevel.LOW);
+  Vector targets=new Vector();
+  if (location_service == null) {
+    printLog("Location service is not active",LogLevel.HIGH);
+    return targets;
+  }
+  SipURL request_uri=msg.getRequestLine().getAddress();
+  String username=request_uri.getUserName();
+  if (username == null) {
+    printLog("no username found",LogLevel.HIGH);
+    return targets;
+  }
+  String user=username + "@" + request_uri.getHost();
+  printLog("user: " + user,LogLevel.MEDIUM);
+  if (!location_service.hasUser(user)) {
+    printLog("user " + user + " not found",LogLevel.HIGH);
+    return targets;
+  }
+  SipURL to_url=msg.getToHeader().getNameAddress().getAddress();
+  Enumeration e=location_service.getUserContactURLs(user);
+  printLog("message targets: ",LogLevel.LOW);
+  for (int i=0; e.hasMoreElements(); i++) {
+    String url=(String)e.nextElement();
+    if (location_service.isUserContactExpired(user,url)) {
+      location_service.removeUserContact(user,url);
+      printLog("target" + i + " expired: contact url removed",LogLevel.LOW);
+    }
+ else {
+      targets.addElement(url);
+      printLog("target" + i + "="+ targets.elementAt(i),LogLevel.LOW);
+    }
+  }
+  return targets;
+}

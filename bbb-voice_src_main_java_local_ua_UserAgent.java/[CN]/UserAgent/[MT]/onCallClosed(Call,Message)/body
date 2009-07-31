@@ -1,0 +1,10 @@
+{
+  printLog("onCallClosed()",LogLevel.LOW);
+  if (call != this.call) {
+    printLog("NOT the current call",LogLevel.LOW);
+    return;
+  }
+  printLog("CLOSE/OK",LogLevel.HIGH);
+  if (listener != null)   listener.onUaCallClosed(this);
+  changeStatus(UA_IDLE);
+}

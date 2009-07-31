@@ -1,0 +1,28 @@
+{
+  ConnectionIdentifier conn_id=new ConnectionIdentifier(conn);
+  if (connections.containsKey(conn_id)) {
+    printLog("trying to add the already established connection " + conn_id,LogLevel.HIGH);
+    printLog("connection " + conn_id + " will be replaced",LogLevel.HIGH);
+    ConnectedTransport old_conn=(ConnectedTransport)connections.get(conn_id);
+    old_conn.halt();
+    connections.remove(conn_id);
+  }
+ else   if (connections.size() >= nmax_connections) {
+    printLog("reached the maximum number of connection: removing the older unused connection",LogLevel.HIGH);
+    long older_time=System.currentTimeMillis();
+    ConnectionIdentifier older_id=null;
+    for (Enumeration e=connections.elements(); e.hasMoreElements(); ) {
+      ConnectedTransport co=(ConnectedTransport)e.nextElement();
+      if (co.getLastTimeMillis() < older_time)       older_id=new ConnectionIdentifier(co);
+    }
+    if (older_id != null)     removeConnection(older_id);
+  }
+  connections.put(conn_id,conn);
+  conn_id=new ConnectionIdentifier(conn);
+  conn=(ConnectedTransport)connections.get(conn_id);
+  printLog("active connenctions:",LogLevel.LOW);
+  for (Enumeration e=connections.keys(); e.hasMoreElements(); ) {
+    ConnectionIdentifier id=(ConnectionIdentifier)e.nextElement();
+    printLog("conn-id=" + id + ": "+ ((ConnectedTransport)connections.get(id)).toString(),LogLevel.LOW);
+  }
+}

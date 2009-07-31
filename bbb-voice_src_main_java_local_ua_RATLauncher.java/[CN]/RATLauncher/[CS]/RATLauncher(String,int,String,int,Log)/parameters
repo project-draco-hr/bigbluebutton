@@ -1,0 +1,5 @@
+String rat_comm
+int local_port
+String remote_addr
+int remote_port
+Log logger

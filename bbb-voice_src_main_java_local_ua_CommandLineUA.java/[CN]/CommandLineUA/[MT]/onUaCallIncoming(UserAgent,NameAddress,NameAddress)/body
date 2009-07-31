@@ -1,0 +1,13 @@
+{
+  if (ua.user_profile.redirect_to != null) {
+    ua.redirect(ua.user_profile.redirect_to);
+    printOut("call redirected to " + ua.user_profile.redirect_to);
+  }
+ else   if (ua.user_profile.accept_time >= 0) {
+    ua.automaticAccept(ua.user_profile.accept_time);
+  }
+ else {
+    printOut("incoming call from " + caller.toString());
+    printOut("accept? [yes/no]");
+  }
+}

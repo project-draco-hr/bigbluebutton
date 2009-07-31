@@ -1,0 +1,9 @@
+{
+  printLog("inside respond(" + code + ","+ reason+ ")",LogLevel.MEDIUM);
+  NameAddress contact_url=null;
+  if (contact != null)   contact_url=new NameAddress(contact);
+  Message resp=MessageFactory.createResponse(subscribe_req,code,SipResponses.reasonOf(code),contact_url);
+  if (expires >= 0)   resp.setExpiresHeader(new ExpiresHeader(expires));
+  if (body != null)   resp.setBody(content_type,body);
+  respond(resp);
+}

@@ -1,0 +1,5 @@
+{
+  Header h=getHeader(SipHeaders.Refer_To);
+  if (h == null)   return null;
+  return new ReferToHeader(h);
+}

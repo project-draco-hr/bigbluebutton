@@ -1,0 +1,11 @@
+{
+  int begin=0;
+  if (!str.startsWith(type + "=",index)) {
+    begin=str.indexOf("\n" + type + "=",index);
+    if (begin < 0) {
+      return null;
+    }
+    index=begin + 1;
+  }
+  return parseSdpField();
+}

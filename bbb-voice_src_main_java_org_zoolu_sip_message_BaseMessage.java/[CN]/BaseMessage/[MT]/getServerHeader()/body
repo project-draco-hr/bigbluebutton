@@ -1,0 +1,5 @@
+{
+  Header h=getHeader(SipHeaders.Server);
+  if (h == null)   return null;
+ else   return new ServerHeader(h);
+}

@@ -1,0 +1,28 @@
+{
+  String daddr=null;
+  int dport=0;
+  int rport=0;
+  boolean help=true;
+  for (int i=0; i < args.length; i++) {
+    if (args[i].equals("-h")) {
+      break;
+    }
+    if (i == 0 && args.length > 1) {
+      rport=Integer.parseInt(args[i++]);
+      daddr=args[i++];
+      dport=Integer.parseInt(args[i++]);
+      help=false;
+      continue;
+    }
+    System.out.println("unrecognized param '" + args[i] + "'\n");
+    help=true;
+  }
+  if (help) {
+    System.out.println("usage:\n  java RtpStreamTranslator <recv_port> <dest_addr> <dest_port> [options]");
+    System.out.println("   options:");
+    System.out.println("   -h               this help");
+    System.exit(0);
+  }
+  RtpStreamTranslator translator=new RtpStreamTranslator(rport,daddr,dport);
+  translator.start();
+}

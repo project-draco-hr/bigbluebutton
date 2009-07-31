@@ -1,0 +1,17 @@
+{
+  this.source_line=source_line;
+  PipedInputStream piped_input_stream=new PipedInputStream();
+  output_stream=new PipedOutputStream(piped_input_stream);
+  AudioInputStream audio_input_stream=new AudioInputStream(piped_input_stream,format,-1);
+  if (audio_input_stream == null) {
+    String err="Failed while creating a new AudioInputStream.";
+    throw new IOException(err);
+  }
+  input_stream=AudioSystem.getAudioInputStream(source_line.getFormat(),audio_input_stream);
+  if (input_stream == null) {
+    String err="Failed while getting a transcoded AudioInputStream from AudioSystem.";
+    err+="\n       input codec: " + format.toString();
+    err+="\n       output codec:" + source_line.getFormat().toString();
+    throw new IOException(err);
+  }
+}

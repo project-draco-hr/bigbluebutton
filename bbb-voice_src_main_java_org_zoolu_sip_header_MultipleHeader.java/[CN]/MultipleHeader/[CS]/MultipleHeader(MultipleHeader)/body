@@ -1,0 +1,5 @@
+{
+  name=mhd.getName();
+  values=mhd.getValues();
+  compact=mhd.isCommaSeparated();
+}

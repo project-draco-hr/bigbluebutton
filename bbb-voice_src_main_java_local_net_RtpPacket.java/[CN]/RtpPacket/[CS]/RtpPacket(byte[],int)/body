@@ -1,0 +1,6 @@
+{
+  packet=buffer;
+  packet_len=packet_length;
+  if (packet_len < 12)   packet_len=12;
+  init(0x0F);
+}

@@ -1,0 +1,9 @@
+{
+  String method=getString();
+  skipWSP();
+  int begin=getPos();
+  int end=indexOfEOH();
+  String request_uri=getString(end - begin);
+  goToNextLine();
+  return new RequestLine(method,(new SipParser(request_uri)).getSipURL());
+}

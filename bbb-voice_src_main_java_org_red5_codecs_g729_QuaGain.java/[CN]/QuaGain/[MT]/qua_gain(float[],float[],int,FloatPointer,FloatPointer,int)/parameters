@@ -1,0 +1,6 @@
+float code[]
+float[] g_coeff
+int l_subfr
+FloatPointer gain_pit
+FloatPointer gain_code
+int tameflag

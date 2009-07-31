@@ -1,0 +1,12 @@
+{
+  int val=((int)buf[byteOffset] & 0xff) >> bitOffset;
+  final int bits_read=8 - bitOffset;
+  if (len >= bits_read) {
+    ++byteOffset;
+    if (len > bits_read) {
+      val|=buf[byteOffset] << bits_read;
+    }
+  }
+  bitOffset=(bitOffset + len) & 7;
+  return val & ((1 << len) - 1);
+}

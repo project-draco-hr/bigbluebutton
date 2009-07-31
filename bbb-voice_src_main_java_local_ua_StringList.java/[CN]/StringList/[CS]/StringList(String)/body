@@ -1,0 +1,5 @@
+{
+  list=new Vector();
+  file_name=file;
+  load();
+}

@@ -1,0 +1,5 @@
+{
+  Header h=getHeader(SipHeaders.Subscription_State);
+  if (h == null)   return null;
+  return new SubscriptionStateHeader(h);
+}

@@ -1,0 +1,5 @@
+{
+  sip_provider_client=sip_provider;
+  sip_provider_server=sip_provider;
+  state=new StatefulProxyState();
+}

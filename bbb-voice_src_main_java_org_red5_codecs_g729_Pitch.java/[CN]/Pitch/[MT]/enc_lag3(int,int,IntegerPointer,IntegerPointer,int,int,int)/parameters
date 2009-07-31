@@ -1,0 +1,7 @@
+int T0
+int T0_frac
+IntegerPointer T0_min
+IntegerPointer T0_max
+int pit_min
+int pit_max
+int pit_flag

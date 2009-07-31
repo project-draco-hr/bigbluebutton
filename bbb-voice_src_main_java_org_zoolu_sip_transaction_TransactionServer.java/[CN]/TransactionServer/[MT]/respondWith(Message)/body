@@ -1,0 +1,18 @@
+{
+  response=resp;
+  if (statusIs(STATE_TRYING) || statusIs(STATE_PROCEEDING)) {
+    sip_provider.sendMessage(response,connection_id);
+    int code=response.getStatusLine().getCode();
+    if (code >= 100 && code < 200 && statusIs(STATE_TRYING)) {
+      changeStatus(STATE_PROCEEDING);
+    }
+    if (code >= 200 && code < 700) {
+      changeStatus(STATE_COMPLETED);
+      if (connection_id == null)       clearing_to.start();
+ else {
+        printLog("clearing_to=0 for reliable transport",LogLevel.LOW);
+        onTimeout(clearing_to);
+      }
+    }
+  }
+}

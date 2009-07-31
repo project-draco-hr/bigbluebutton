@@ -1,0 +1,5 @@
+{
+  Header h=getHeader(SipHeaders.Call_ID);
+  if (h == null)   return null;
+ else   return new CallIdHeader(h);
+}

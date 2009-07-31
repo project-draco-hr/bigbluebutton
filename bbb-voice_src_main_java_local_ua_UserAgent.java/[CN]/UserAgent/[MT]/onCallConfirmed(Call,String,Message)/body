@@ -1,0 +1,12 @@
+{
+  printLog("onCallConfirmed()",LogLevel.LOW);
+  if (call != this.call) {
+    printLog("NOT the current call",LogLevel.LOW);
+    return;
+  }
+  printLog("CONFIRMED/CALL",LogLevel.HIGH);
+  changeStatus(UA_ONCALL);
+  if (clip_on != null)   clip_on.replay();
+  launchMediaApplication();
+  if (user_profile.hangup_time > 0)   this.automaticHangup(user_profile.hangup_time);
+}

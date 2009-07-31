@@ -1,0 +1,16 @@
+{
+  char[] name_separators={'=',' ','\t'};
+  SipParser par=new SipParser(value);
+  par.skipWSPCRLF();
+  while (par.hasMore()) {
+    String name=par.getWord(name_separators);
+    if (name.equals(param_name)) {
+      par.goTo('=').skipChar().skipWSP();
+      int comma=par.indexOfCommaHeaderSeparator();
+      if (comma >= 0)       par=new SipParser(par.getString(comma - par.getPos()));
+      return par.getStringUnquoted();
+    }
+ else     par.goToCommaHeaderSeparator().skipChar().skipWSPCRLF();
+  }
+  return null;
+}

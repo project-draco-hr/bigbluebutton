@@ -1,0 +1,4 @@
+{
+  decoder.decode(bufferIn,bufferOut);
+  return bufferOut.length;
+}

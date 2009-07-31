@@ -1,0 +1,20 @@
+{
+  printLog("Subscription request from " + watcher,LogLevel.HIGH);
+  pa.accept();
+  if (pa.user_profile.accept_time >= 0) {
+    pa.activate();
+  }
+ else {
+    if (stdin != null) {
+      printOut("Do you want to activate the subscription? [yes/no]");
+      String line=readLine();
+      if (line.toLowerCase().startsWith("n")) {
+        pa.terminate();
+      }
+ else {
+        pa.activate();
+      }
+    }
+ else     pa.terminate();
+  }
+}

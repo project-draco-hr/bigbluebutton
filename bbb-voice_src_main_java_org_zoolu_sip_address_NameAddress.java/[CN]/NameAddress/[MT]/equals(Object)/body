@@ -1,0 +1,4 @@
+{
+  NameAddress naddr=(NameAddress)obj;
+  return url.equals(naddr.getAddress());
+}

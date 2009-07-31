@@ -1,0 +1,49 @@
+{
+  int i, j, nf, ip;
+  float xlow, ylow, xhigh, yhigh, xmid, ymid, xint;
+  float[] coef;
+  float f1[]=new float[LD8KConstants.NC + 1], f2[]=new float[LD8KConstants.NC + 1];
+  f1[0]=(float)1.0;
+  f2[0]=(float)1.0;
+  for (i=1, j=LD8KConstants.M; i <= LD8KConstants.NC; i++, j--) {
+    f1[i]=a[i] + a[j] - f1[i - 1];
+    f2[i]=a[i] - a[j] + f2[i - 1];
+  }
+  nf=0;
+  ip=0;
+  coef=f1;
+  xlow=TabLD8k.grid[0];
+  ylow=chebyshev(xlow,f1,LD8KConstants.NC);
+  j=0;
+  while ((nf < LD8KConstants.M) && (j < LD8KConstants.GRID_POINTS)) {
+    j++;
+    xhigh=xlow;
+    yhigh=ylow;
+    xlow=TabLD8k.grid[j];
+    ylow=chebyshev(xlow,coef,LD8KConstants.NC);
+    if (ylow * yhigh <= (float)0.0) {
+      j--;
+      for (i=0; i < 4; i++) {
+        xmid=(float)0.5 * (xlow + xhigh);
+        ymid=chebyshev(xmid,coef,LD8KConstants.NC);
+        if (ylow * ymid <= (float)0.0) {
+          yhigh=ymid;
+          xhigh=xmid;
+        }
+ else {
+          ylow=ymid;
+          xlow=xmid;
+        }
+      }
+      xint=xlow - ylow * (xhigh - xlow) / (yhigh - ylow);
+      lsp[nf]=xint;
+      nf++;
+      ip=1 - ip;
+      coef=ip != 0 ? f2 : f1;
+      xlow=xint;
+      ylow=chebyshev(xlow,coef,LD8KConstants.NC);
+    }
+  }
+  if (nf < LD8KConstants.M)   for (i=0; i < LD8KConstants.M; i++)   lsp[i]=old_lsp[i];
+  return;
+}

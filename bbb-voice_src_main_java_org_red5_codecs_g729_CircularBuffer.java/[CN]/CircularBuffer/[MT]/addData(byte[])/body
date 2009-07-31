@@ -1,0 +1,10 @@
+{
+  boolean zeros=false;
+  if (!zeros) {
+    for (int q=0; q < data.length; q++) {
+      buffer[(cursor + q) % buffer.length]=data[q];
+    }
+    availableData+=data.length;
+    if (availableData > buffer.length)     availableData=buffer.length;
+  }
+}

@@ -1,0 +1,16 @@
+{
+  SplitterLine sl=(SplitterLine)splitter_lines.get(id);
+  splitter_lines.remove(id);
+  for (Enumeration e=mixer_lines.keys(); e.hasMoreElements(); ) {
+    Object mid=e.nextElement();
+    if (!mid.equals(id)) {
+      sl.removeLine(mid);
+      ((MixerLine)mixer_lines.get(mid)).removeLine(id);
+    }
+  }
+  try {
+    sl.close();
+  }
+ catch (  Exception e) {
+  }
+}

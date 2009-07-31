@@ -1,0 +1,5 @@
+{
+  MultipleHeader mh=getRecordRoutes();
+  if (mh == null)   return null;
+  return new RecordRouteHeader(mh.getTop());
+}

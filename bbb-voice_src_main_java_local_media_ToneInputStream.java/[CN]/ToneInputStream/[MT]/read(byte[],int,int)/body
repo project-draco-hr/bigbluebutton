@@ -1,0 +1,6 @@
+{
+  for (int i=off; i < off + len; i++) {
+    b[i]=(byte)read();
+  }
+  return len;
+}

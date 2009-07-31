@@ -1,0 +1,5 @@
+{
+  MultipleHeader hd=(MultipleHeader)obj;
+  if (hd.getName().equals(this.getName()) && hd.getValues().equals(this.getValues()))   return true;
+ else   return false;
+}

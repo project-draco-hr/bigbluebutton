@@ -1,0 +1,4 @@
+{
+  String method=getCSeqHeader().getMethod();
+  return new MethodIdentifier(method);
+}

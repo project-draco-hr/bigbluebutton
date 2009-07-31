@@ -1,0 +1,7 @@
+{
+  if (dialog != null) {
+    dialog.refuse();
+    dialog.cancel();
+    dialog.bye();
+  }
+}

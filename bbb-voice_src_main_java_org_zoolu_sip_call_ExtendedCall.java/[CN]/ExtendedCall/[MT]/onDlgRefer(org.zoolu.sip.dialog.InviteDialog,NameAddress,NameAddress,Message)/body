@@ -1,0 +1,9 @@
+{
+  if (d != dialog) {
+    printLog("NOT the current dialog",LogLevel.HIGH);
+    return;
+  }
+  printLog("onDlgRefer(" + refer_to.toString() + ")",LogLevel.LOW);
+  refer=msg;
+  if (xcall_listener != null)   xcall_listener.onCallTransfer(this,refer_to,referred_by,msg);
+}

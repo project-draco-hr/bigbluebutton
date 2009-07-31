@@ -1,0 +1,12 @@
+{
+  if (event instanceof RealizeCompleteEvent || event instanceof FormatChangeEvent) {
+    if (event instanceof RealizeCompleteEvent)     System.out.println("RealizeComplete event");
+    if (event instanceof FormatChangeEvent)     System.out.println("FormatChange event");
+    if ((visualComp=receiver.getVisualComponent()) != null)     panel.add("Center",visualComp);
+    if ((controlComp=receiver.getControlPanelComponent()) != null)     panel.add("South",controlComp);
+    this.setVisible(true);
+    return;
+  }
+ else {
+  }
+}

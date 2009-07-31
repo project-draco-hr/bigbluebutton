@@ -1,0 +1,16 @@
+{
+  if (bitOffset == 0) {
+    buf[byteOffset]=(byte)val;
+  }
+ else {
+    buf[byteOffset]|=(byte)(val << bitOffset);
+  }
+  bitOffset+=len;
+  if (bitOffset >= 8) {
+    ++byteOffset;
+    bitOffset-=8;
+    if (bitOffset > 0) {
+      buf[byteOffset]=(byte)(val >> (len - bitOffset));
+    }
+  }
+}

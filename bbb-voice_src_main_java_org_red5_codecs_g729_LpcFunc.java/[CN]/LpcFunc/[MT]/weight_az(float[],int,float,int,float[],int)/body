@@ -1,0 +1,12 @@
+{
+  float fac;
+  int i;
+  ap[aps]=a[as];
+  fac=gamma;
+  for (i=1; i < m; i++) {
+    ap[aps + i]=fac * a[as + i];
+    fac*=gamma;
+  }
+  ap[aps + m]=fac * a[as + m];
+  return;
+}

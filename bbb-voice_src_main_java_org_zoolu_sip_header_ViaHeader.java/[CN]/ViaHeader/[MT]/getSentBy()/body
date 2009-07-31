@@ -1,0 +1,7 @@
+{
+  SipParser par=new SipParser(value);
+  par.goTo('/').skipChar().goTo('/').skipString().skipWSP();
+  if (!par.hasMore())   return null;
+  String sentby=value.substring(par.getPos(),par.indexOfSeparator());
+  return sentby;
+}

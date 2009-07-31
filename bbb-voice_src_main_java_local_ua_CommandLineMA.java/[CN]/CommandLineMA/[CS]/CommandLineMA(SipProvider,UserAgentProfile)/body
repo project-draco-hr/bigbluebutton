@@ -1,0 +1,6 @@
+{
+  log=sip_provider.getLog();
+  ma=new MessageAgent(sip_provider,user_profile,this);
+  ma.receive();
+  ra=new RegisterAgent(sip_provider,user_profile.from_url,user_profile.contact_url,this);
+}

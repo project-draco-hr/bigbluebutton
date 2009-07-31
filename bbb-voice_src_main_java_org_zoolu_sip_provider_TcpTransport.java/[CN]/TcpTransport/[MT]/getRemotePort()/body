@@ -1,0 +1,4 @@
+{
+  if (tcp_conn != null)   return tcp_conn.getRemotePort();
+ else   return 0;
+}

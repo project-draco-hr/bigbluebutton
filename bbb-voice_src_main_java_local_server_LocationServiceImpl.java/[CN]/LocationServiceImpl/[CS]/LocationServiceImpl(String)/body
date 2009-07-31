@@ -1,0 +1,5 @@
+{
+  filename=file_name;
+  users=new Hashtable();
+  load();
+}

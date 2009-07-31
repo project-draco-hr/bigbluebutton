@@ -1,0 +1,4 @@
+{
+  setParameter("expires",Integer.toString(secs));
+  return this;
+}

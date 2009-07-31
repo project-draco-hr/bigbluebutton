@@ -1,0 +1,8 @@
+{
+  String subscription_state=req.getSubscriptionStateHeader().getState();
+  if (subscription_state.equalsIgnoreCase(ACTIVE) && (statusIs(D_SUBSCRIBED) || statusIs(D_PENDING)))   changeStatus(D_ACTIVE);
+ else   if (subscription_state.equalsIgnoreCase(PENDING) && statusIs(D_SUBSCRIBED))   changeStatus(D_PENDING);
+ else   if (subscription_state.equalsIgnoreCase(TERMINATED) && !statusIs(D_TERMINATED))   changeStatus(D_TERMINATED);
+  TransactionClient notify_transaction=new TransactionClient(sip_provider,req,this);
+  notify_transaction.request();
+}

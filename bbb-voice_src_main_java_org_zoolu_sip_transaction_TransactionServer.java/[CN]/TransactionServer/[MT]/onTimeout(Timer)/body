@@ -1,0 +1,13 @@
+{
+  try {
+    if (to.equals(clearing_to)) {
+      printLog("Clearing timeout expired",LogLevel.HIGH);
+      sip_provider.removeSipProviderListener(transaction_id);
+      changeStatus(STATE_TERMINATED);
+      transaction_listener=null;
+    }
+  }
+ catch (  Exception e) {
+    printException(e,LogLevel.HIGH);
+  }
+}

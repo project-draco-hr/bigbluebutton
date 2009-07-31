@@ -1,0 +1,8 @@
+{
+  int j, k;
+  for (j=0; j < LD8KConstants.M; j++) {
+    lsp[j]=lsp_ele[j] * fg_sum[j];
+    for (k=0; k < LD8KConstants.MA_NP; k++)     lsp[j]+=freq_prev[k][j] * fg[k][j];
+  }
+  return;
+}

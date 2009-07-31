@@ -1,0 +1,6 @@
+{
+  printLog("inside processRequestToRemoteUA(msg)",LogLevel.MEDIUM);
+  printLog("request not for local server",LogLevel.HIGH);
+  if (!msg.isAck())   sip_provider.sendMessage(MessageFactory.createResponse(msg,404,SipResponses.reasonOf(404),null));
+ else   printLog("message discarded",LogLevel.HIGH);
+}

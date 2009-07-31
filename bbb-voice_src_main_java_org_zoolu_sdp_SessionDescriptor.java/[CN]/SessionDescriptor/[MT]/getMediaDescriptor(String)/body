@@ -1,0 +1,7 @@
+{
+  for (int i=0; i < media.size(); i++) {
+    MediaDescriptor md=(MediaDescriptor)media.elementAt(i);
+    if (md.getMedia().getMedia().equals(media_type))     return md;
+  }
+  return null;
+}

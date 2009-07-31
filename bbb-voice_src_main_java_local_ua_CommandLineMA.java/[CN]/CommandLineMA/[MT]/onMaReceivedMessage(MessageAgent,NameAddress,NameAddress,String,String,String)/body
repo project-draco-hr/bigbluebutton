@@ -1,0 +1,7 @@
+{
+  remote_user=sender;
+  printLog("NEW MESSAGE:");
+  printLog("From: " + sender);
+  if (subject != null)   printLog("Subject: " + subject);
+  printLog("Content: " + content);
+}

@@ -1,0 +1,8 @@
+{
+  printLog("onCallTransferAccepted()",LogLevel.LOW);
+  if (call != this.call) {
+    printLog("NOT the current call",LogLevel.LOW);
+    return;
+  }
+  printLog("Transfer accepted",LogLevel.HIGH);
+}

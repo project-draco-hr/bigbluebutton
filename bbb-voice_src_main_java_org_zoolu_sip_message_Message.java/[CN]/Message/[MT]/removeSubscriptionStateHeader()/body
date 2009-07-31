@@ -1,0 +1,3 @@
+{
+  removeHeader(SipHeaders.Subscription_State);
+}

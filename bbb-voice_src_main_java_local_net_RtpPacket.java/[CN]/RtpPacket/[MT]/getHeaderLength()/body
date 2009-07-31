@@ -1,0 +1,4 @@
+{
+  if (packet_len >= 12)   return 12 + 4 * getCscrCount();
+ else   return packet_len;
+}

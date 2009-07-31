@@ -1,0 +1,15 @@
+{
+  printLog("inside invite(callee,caller,contact,sdp)",LogLevel.MEDIUM);
+  if (!statusIs(D_INIT))   return;
+  NameAddress to_url=new NameAddress(callee);
+  NameAddress from_url=new NameAddress(caller);
+  SipURL request_uri=to_url.getAddress();
+  NameAddress contact_url=null;
+  if (contact != null) {
+    if (contact.indexOf("sip:") >= 0)     contact_url=new NameAddress(contact);
+ else     contact_url=new NameAddress(new SipURL(contact,sip_provider.getViaAddress(),sip_provider.getPort()));
+  }
+ else   contact_url=from_url;
+  Message invite=MessageFactory.createInviteRequest(sip_provider,request_uri,to_url,from_url,contact_url,session_descriptor);
+  invite(invite);
+}

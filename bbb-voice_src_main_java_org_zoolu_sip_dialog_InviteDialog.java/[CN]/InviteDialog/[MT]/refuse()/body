@@ -1,0 +1,4 @@
+{
+  printLog("inside refuse()",LogLevel.MEDIUM);
+  refuse(403,SipResponses.reasonOf(403));
+}

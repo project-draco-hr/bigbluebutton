@@ -1,0 +1,15 @@
+{
+  printLog("inside processTimeout(t)",LogLevel.MEDIUM);
+  TransactionServer ts=state.getServer(transaction);
+  state.removeClient(transaction);
+  if (ts == null)   return;
+  HashSet clients=(HashSet)state.getClients(ts);
+  if (clients == null)   return;
+  if (clients.isEmpty()) {
+    printLog("DEBUG: responding..",LogLevel.LOW);
+    Message resp=state.getFinalResponse(ts);
+    updateProxingResponse(resp);
+    if (resp.hasViaHeader())     statefulServerResponse(ts,resp);
+    state.removeServer(ts);
+  }
+}

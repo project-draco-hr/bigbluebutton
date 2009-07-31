@@ -1,0 +1,9 @@
+{
+  this.transaction_listener=listener;
+  this.transaction_id=transaction_id;
+  retransmission_to=new Timer(SipStack.retransmission_timeout,"Retransmission",this);
+  transaction_to=new Timer(SipStack.transaction_timeout,"Transaction",this);
+  clearing_to=new Timer(SipStack.clearing_timeout,"Clearing",this);
+  printLog("id: " + String.valueOf(transaction_id),LogLevel.HIGH);
+  printLog("created",LogLevel.HIGH);
+}

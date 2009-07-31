@@ -1,0 +1,45 @@
+{
+  if (val == 124) {
+    value=4228;
+    shift=19;
+    return;
+  }
+ else   if (val == 0) {
+    value=0;
+    shift=0;
+    return;
+  }
+  final int sign=((~val >>> 31) << 1) - 1;
+  int abs=val * sign;
+  int scale=-1;
+  while ((abs & (1 << 15)) == 0) {
+    abs<<=1;
+    ++scale;
+  }
+  abs>>=1;
+  shift=27 - scale;
+  final int table_val=table9[(abs - 0x3e00) >> 10];
+  int tmp=abs * table_val;
+  tmp=(1 << 30) - tmp;
+  tmp+=(1 << 14);
+  tmp>>=15;
+  tmp*=table_val;
+  tmp+=(1 << 14);
+  tmp>>=15;
+  final int tmp2=tmp;
+  tmp*=abs;
+  tmp=(1 << 29) - tmp;
+  tmp+=(1 << 14);
+  tmp>>=15;
+  tmp*=tmp2;
+  tmp+=(1 << 13);
+  tmp>>=14;
+  tmp*=sign;
+  if (tmp > 32767 && sign == 1) {
+    tmp=32767;
+  }
+ else   if (tmp < -32768 && sign == -1) {
+    tmp=-32768;
+  }
+  value=tmp;
+}

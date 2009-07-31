@@ -1,0 +1,21 @@
+{
+  final int len=1 << len_log2;
+  final int quarter_len=len >> 2;
+  int y=len - 1;
+  int x=len >> 1;
+  int j=x - 1;
+  int i=0;
+  auxceps(in,0,len_log2,out,out_off);
+  for (; i < quarter_len; ++i, --j, ++x, --y) {
+    final double state_i=state[i];
+    final double state_j=state[j];
+    final double out_x=out[out_off + x];
+    final double out_y=out[out_off + y];
+    state[i]=-out[out_off + j];
+    state[j]=-out[out_off + i];
+    out[out_off + i]=(float)(state_i * table7[y] + out_x * table7[i]);
+    out[out_off + j]=(float)(state_j * table7[x] + out_y * table7[j]);
+    out[out_off + x]=(float)(table7[x] * -out_y + table7[j] * state_j);
+    out[out_off + y]=(float)(table7[y] * -out_x + table7[i] * state_i);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (inet_address == null)   try {
+    inet_address=InetAddress.getByName(address);
+  }
+ catch (  java.net.UnknownHostException e) {
+  }
+  return inet_address;
+}

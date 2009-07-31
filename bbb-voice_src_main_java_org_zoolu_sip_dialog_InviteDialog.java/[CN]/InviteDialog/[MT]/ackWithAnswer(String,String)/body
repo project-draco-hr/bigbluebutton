@@ -1,0 +1,5 @@
+{
+  if (contact != null)   setLocalContact(new NameAddress(contact));
+  Message ack=MessageFactory.create2xxAckRequest(this,session_descriptor);
+  ackWithAnswer(ack);
+}

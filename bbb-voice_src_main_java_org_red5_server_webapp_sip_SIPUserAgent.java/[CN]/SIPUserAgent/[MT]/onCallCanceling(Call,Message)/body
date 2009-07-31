@@ -1,0 +1,12 @@
+{
+  printLog("onCallCanceling","Init...");
+  if (call != this.call) {
+    printLog("onCallCanceling","NOT the current call.");
+    return;
+  }
+  printLog("onCallCanceling","CANCEL.");
+  changeStatus(UA_IDLE);
+  if (listener != null) {
+    listener.onUaCallCancelled(this);
+  }
+}

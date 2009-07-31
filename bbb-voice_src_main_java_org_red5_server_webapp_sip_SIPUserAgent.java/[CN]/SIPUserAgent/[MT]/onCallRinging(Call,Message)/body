@@ -1,0 +1,11 @@
+{
+  printLog("onCallRinging","Init...");
+  if (call != this.call && call != callTransfer) {
+    printLog("onCallRinging","NOT the current call.");
+    return;
+  }
+  printLog("onCallRinging","RINGING.");
+  if (listener != null) {
+    listener.onUaCallRinging(this);
+  }
+}

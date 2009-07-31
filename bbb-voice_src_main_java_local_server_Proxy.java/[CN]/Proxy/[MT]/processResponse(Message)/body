@@ -1,0 +1,7 @@
+{
+  printLog("inside processResponse(msg)",LogLevel.MEDIUM);
+  if (call_logger != null)   call_logger.update(resp);
+  updateProxingResponse(resp);
+  if (resp.hasViaHeader())   sip_provider.sendMessage(resp);
+ else   printLog("no VIA header found: message discarded",LogLevel.HIGH);
+}

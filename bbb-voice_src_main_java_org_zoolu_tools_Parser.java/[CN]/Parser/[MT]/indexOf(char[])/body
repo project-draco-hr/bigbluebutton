@@ -1,0 +1,12 @@
+{
+  boolean found=false;
+  int begin=index;
+  while (begin < str.length() && !found) {
+    for (int i=0; i < cc.length; i++)     if (str.charAt(begin) == cc[i]) {
+      found=true;
+      break;
+    }
+    begin++;
+  }
+  return (found) ? (begin - 1) : -1;
+}

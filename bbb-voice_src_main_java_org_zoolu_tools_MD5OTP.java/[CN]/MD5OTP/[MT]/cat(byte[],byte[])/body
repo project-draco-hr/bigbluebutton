@@ -1,0 +1,6 @@
+{
+  byte[] cc=new byte[aa.length + bb.length];
+  for (int i=0; i < aa.length; i++)   cc[i]=aa[i];
+  for (int i=0; i < bb.length; i++)   cc[i + aa.length]=bb[i];
+  return cc;
+}

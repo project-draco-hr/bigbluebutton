@@ -1,0 +1,13 @@
+{
+  if (d != dialog) {
+    printLog("NOT the current dialog",LogLevel.HIGH);
+    return;
+  }
+  printLog("onDlgReferResponse(" + code + " "+ reason+ ")",LogLevel.LOW);
+  if (code >= 200 && code < 300) {
+    if (xcall_listener != null)     xcall_listener.onCallTransferAccepted(this,msg);
+  }
+ else   if (code >= 300) {
+    if (xcall_listener != null)     xcall_listener.onCallTransferRefused(this,reason,msg);
+  }
+}

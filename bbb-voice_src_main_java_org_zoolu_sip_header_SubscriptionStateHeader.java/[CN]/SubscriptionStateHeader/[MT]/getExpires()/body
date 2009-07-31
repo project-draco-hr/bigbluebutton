@@ -1,0 +1,5 @@
+{
+  String exp=getParameter("expires");
+  if (exp != null)   return Integer.parseInt(exp);
+ else   return -1;
+}

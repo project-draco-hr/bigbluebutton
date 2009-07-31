@@ -1,0 +1,6 @@
+float signal[]
+int signals
+int l_frame
+int lagmax
+int lagmin
+FloatPointer cor_max

@@ -1,0 +1,9 @@
+{
+  log=sip_provider.getLog();
+  this.user_profile=user_profile;
+  ua=new UserAgent(sip_provider,user_profile,this);
+  ra=new RegisterAgent(sip_provider,user_profile.from_url,user_profile.contact_url,user_profile.username,user_profile.realm,user_profile.passwd,this);
+  if (!user_profile.no_prompt)   stdin=new BufferedReader(new InputStreamReader(System.in));
+  if (!user_profile.no_prompt)   stdout=System.out;
+  run();
+}

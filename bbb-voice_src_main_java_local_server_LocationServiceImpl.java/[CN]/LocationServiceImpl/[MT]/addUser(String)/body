@@ -1,0 +1,7 @@
+{
+  if (hasUser(user))   return this;
+  UserBindingInfo ur=new UserBindingInfo(user);
+  users.put(user,ur);
+  changed=true;
+  return this;
+}

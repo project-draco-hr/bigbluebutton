@@ -1,0 +1,9 @@
+{
+  StringBuffer str=new StringBuffer();
+  if (request_line != null)   str.append(request_line.toString());
+ else   if (status_line != null)   str.append(status_line.toString());
+  for (int i=0; i < headers.size(); i++)   str.append(((Header)headers.elementAt(i)).toString());
+  str.append("\r\n");
+  if (body != null)   str.append(body);
+  return str.toString();
+}

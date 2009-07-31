@@ -1,0 +1,7 @@
+{
+  String username=sip_url.getUserName();
+  if ((username != null && username.startsWith(prefix)) || prefix.equalsIgnoreCase(DEFAULT_PREFIX)) {
+    return new SipURL(username,nexthop.getAddress().toString(),nexthop.getPort());
+  }
+ else   return null;
+}

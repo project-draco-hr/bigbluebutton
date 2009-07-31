@@ -1,0 +1,11 @@
+{
+  Vector elements=new Vector();
+  Parser par=new Parser(value);
+  char[] delim={','};
+  while (par.hasMore()) {
+    String elem=par.getWord(delim).trim();
+    if (elem != null && elem.length() > 0)     elements.addElement(elem);
+    par.skipChar();
+  }
+  return elements;
+}

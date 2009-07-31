@@ -1,0 +1,3 @@
+{
+  ilbcDecoder=new ilbc_decoder(incomingPacketization,1);
+}

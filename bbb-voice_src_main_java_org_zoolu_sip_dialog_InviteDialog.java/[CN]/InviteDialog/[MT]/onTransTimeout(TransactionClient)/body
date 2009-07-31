@@ -1,0 +1,14 @@
+{
+  printLog("inside onTransTimeout(tc,msg)",LogLevel.LOW);
+  if (tc.getTransactionMethod().equals(SipMethods.INVITE)) {
+    if (!verifyStatus(statusIs(D_INVITING) || statusIs(D_ReINVITING)))     return;
+    changeStatus(D_CLOSE);
+    listener.onDlgTimeout(this);
+    listener.onDlgClose(this);
+  }
+ else   if (tc.getTransactionMethod().equals(SipMethods.BYE)) {
+    if (!verifyStatus(statusIs(D_BYEING)))     return;
+    changeStatus(D_CLOSE);
+    listener.onDlgClose(this);
+  }
+}

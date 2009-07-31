@@ -1,0 +1,7 @@
+String filename
+String logname
+int loglevel
+long logsize
+int n_rotations
+int t_scale
+int t_value

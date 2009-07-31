@@ -1,0 +1,7 @@
+{
+  printLog("onTransTimeout()",LogLevel.MEDIUM);
+  if (!statusIs(D_TERMINATED)) {
+    changeStatus(D_TERMINATED);
+    if (listener != null)     listener.onDlgNotifyTimeout(this);
+  }
+}

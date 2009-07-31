@@ -1,0 +1,3 @@
+IPlaylistSubscriberStream stream
+IPlayItem item
+int position

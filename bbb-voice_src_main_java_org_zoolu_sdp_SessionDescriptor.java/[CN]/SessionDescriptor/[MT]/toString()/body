@@ -1,0 +1,11 @@
+{
+  StringBuffer sb=new StringBuffer();
+  if (v != null)   sb.append(v.toString());
+  if (o != null)   sb.append(o.toString());
+  if (s != null)   sb.append(s.toString());
+  if (c != null)   sb.append(c.toString());
+  if (t != null)   sb.append(t.toString());
+  for (int i=0; i < av.size(); i++)   sb.append(((AttributeField)av.elementAt(i)).toString());
+  for (int i=0; i < media.size(); i++)   sb.append(((MediaDescriptor)media.elementAt(i)).toString());
+  return sb.toString();
+}

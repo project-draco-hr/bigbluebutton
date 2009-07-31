@@ -1,0 +1,4 @@
+Message req
+int code
+String reason
+NameAddress contact

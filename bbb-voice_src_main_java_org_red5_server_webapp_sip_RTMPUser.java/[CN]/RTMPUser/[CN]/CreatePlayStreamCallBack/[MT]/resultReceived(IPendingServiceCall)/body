@@ -1,0 +1,10 @@
+{
+  Integer streamIdInt=(Integer)call.getResult();
+  if (conn != null && streamIdInt != null) {
+    PlayNetStream stream=new PlayNetStream();
+    stream.setConnection(conn);
+    stream.setStreamId(streamIdInt.intValue());
+    conn.addClientStream(stream);
+  }
+  wrapped.resultReceived(call);
+}

@@ -1,0 +1,23 @@
+{
+  try {
+    sink=Manager.createDataSink(processor.getDataOutput(),dest);
+  }
+ catch (  NoDataSinkException e) {
+    e.printStackTrace();
+    return "Failed creating DataSink";
+  }
+  System.out.println("DataSink created");
+  System.out.println("Dest= " + sink.getOutputLocator() + " , "+ sink.getContentType());
+  try {
+    sink.open();
+    System.out.println("DataSink opened");
+    sink.start();
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+    return "Failed starting DataSink";
+  }
+  processor.start();
+  System.out.println("Start sending");
+  return null;
+}

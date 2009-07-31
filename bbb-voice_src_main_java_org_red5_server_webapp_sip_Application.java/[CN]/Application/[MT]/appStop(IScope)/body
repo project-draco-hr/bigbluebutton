@@ -1,0 +1,4 @@
+{
+  loginfo("Red5SIP stopping in scope " + scope.getName());
+  sipManager.destroyAllSessions();
+}

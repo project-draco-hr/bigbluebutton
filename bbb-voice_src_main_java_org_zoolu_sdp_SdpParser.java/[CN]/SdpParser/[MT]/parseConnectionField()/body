@@ -1,0 +1,5 @@
+{
+  SdpField sf=parseSdpField('c');
+  if (sf != null)   return new ConnectionField(sf);
+ else   return null;
+}

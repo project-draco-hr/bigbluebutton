@@ -1,0 +1,10 @@
+{
+  boolean hasAttribute=false;
+  if (codecEncodeAttributes.containsKey(attributeName)) {
+    String attributeValue=codecEncodeAttributes.get(attributeName);
+    if ((attributeValue != null) && (!attributeValue.isEmpty())) {
+      hasAttribute=true;
+    }
+  }
+  return hasAttribute;
+}

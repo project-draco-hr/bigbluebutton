@@ -1,0 +1,14 @@
+{
+  if (hasRouteHeader()) {
+    MultipleHeader mrh=getRoutes();
+    RouteHeader rh=new RouteHeader(mrh.getTop());
+    if (!(new RouteHeader(mrh.getTop())).getNameAddress().getAddress().hasLr()) {
+      SipURL next_hop=(new RouteHeader(mrh.getTop())).getNameAddress().getAddress();
+      SipURL recipient=getRequestLine().getAddress();
+      mrh.removeTop();
+      mrh.addBottom(new RouteHeader(new NameAddress(recipient)));
+      setRoutes(mrh);
+      setRequestLine(new RequestLine(getRequestLine().getMethod(),next_hop));
+    }
+  }
+}

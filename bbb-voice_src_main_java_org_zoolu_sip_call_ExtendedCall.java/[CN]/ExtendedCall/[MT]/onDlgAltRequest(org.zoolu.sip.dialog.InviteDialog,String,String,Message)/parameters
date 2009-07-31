@@ -1,0 +1,4 @@
+org.zoolu.sip.dialog.InviteDialog d
+String method
+String body
+Message msg

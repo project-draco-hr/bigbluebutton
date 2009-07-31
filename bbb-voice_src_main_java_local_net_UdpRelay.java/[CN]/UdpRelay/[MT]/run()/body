@@ -1,0 +1,34 @@
+{
+  try {
+    DatagramSocket socket=new DatagramSocket(local_port);
+    byte[] buf=new byte[MAX_PKT_SIZE];
+    socket.setSoTimeout(socket_to);
+    DatagramPacket packet=new DatagramPacket(buf,buf.length);
+    long keepalive_to=((1000) * (long)alive_to) - socket_to;
+    long expire=System.currentTimeMillis() + keepalive_to;
+    while (!stop) {
+      try {
+        socket.receive(packet);
+      }
+ catch (      InterruptedIOException ie) {
+        if (alive_to > 0 && System.currentTimeMillis() > expire)         halt();
+        continue;
+      }
+      if (src_port != packet.getPort() || !src_addr.equals(packet.getAddress().getHostAddress().toString())) {
+        src_port=packet.getPort();
+        src_addr=packet.getAddress().getHostAddress();
+        if (listener != null)         listener.onUdpRelaySourceChanged(this,src_addr,src_port);
+      }
+      packet.setAddress(InetAddress.getByName(dest_addr));
+      packet.setPort(dest_port);
+      socket.send(packet);
+      packet=new DatagramPacket(buf,buf.length);
+      expire=System.currentTimeMillis() + keepalive_to;
+    }
+    socket.close();
+    if (listener != null)     listener.onUdpRelayTerminated(this);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

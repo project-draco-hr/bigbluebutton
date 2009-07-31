@@ -1,0 +1,6 @@
+int index
+float code[]
+int l_subfr
+int bfi
+FloatPointer gain_pit
+FloatPointer gain_code

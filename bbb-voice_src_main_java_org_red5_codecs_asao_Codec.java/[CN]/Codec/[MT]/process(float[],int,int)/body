@@ -1,0 +1,81 @@
+{
+  int k1=1 << j1;
+  processIt(af,i1,k1);
+  int l1=0;
+  for (int j2=k1 >> 1; j2 > 0; ) {
+    float f1=af[i1 + l1];
+    float f3=af[i1 + l1 + 1];
+    float f5=af[i1 + l1 + 2];
+    float f7=af[i1 + l1 + 3];
+    af[i1 + l1]=f1 + f5;
+    af[i1 + l1 + 1]=f3 + f7;
+    af[i1 + l1 + 2]=f1 - f5;
+    af[i1 + l1 + 3]=f3 - f7;
+    j2--;
+    l1+=4;
+  }
+  l1=0;
+  for (int k2=k1 >> 2; k2 > 0; ) {
+    float f2=af[i1 + l1];
+    float f4=af[i1 + l1 + 1];
+    float f6=af[i1 + l1 + 2];
+    float f8=af[i1 + l1 + 3];
+    float f9=af[i1 + l1 + 4];
+    float f10=af[i1 + l1 + 5];
+    float f11=af[i1 + l1 + 6];
+    float f12=af[i1 + l1 + 7];
+    af[i1 + l1]=f2 + f9;
+    af[i1 + l1 + 1]=f4 + f10;
+    af[i1 + l1 + 2]=f6 + f12;
+    af[i1 + l1 + 3]=f8 - f11;
+    af[i1 + l1 + 4]=f2 - f9;
+    af[i1 + l1 + 5]=f4 - f10;
+    af[i1 + l1 + 6]=f6 - f12;
+    af[i1 + l1 + 7]=f8 + f11;
+    k2--;
+    l1+=8;
+  }
+  int l2=0;
+  int i3=k1 >> 3;
+  int j3=64;
+  int k3=4;
+  for (int l3=j1 - 2; l3 > 0; ) {
+    int i2=0;
+    for (int i4=i3; i4 != 0; ) {
+      for (int j4=k3 >> 1; j4 > 0; ) {
+        int l4=i2 + (k3 << 1);
+        double d1=af[i1 + i2];
+        double d3=af[i1 + i2 + 1];
+        double d5=af[i1 + l4];
+        double d7=af[i1 + l4 + 1];
+        af[i1 + l4]=(float)(d1 - (d5 * (double)e[128 - l2] + d7 * (double)e[l2]));
+        af[i1 + i2]=(float)(d1 + (d5 * (double)e[128 - l2] + d7 * (double)e[l2]));
+        af[i1 + l4 + 1]=(float)(d3 + (d5 * (double)e[l2] - d7 * (double)e[128 - l2]));
+        af[i1 + i2 + 1]=(float)(d3 - (d5 * (double)e[l2] - d7 * (double)e[128 - l2]));
+        j4--;
+        i2+=2;
+        l2+=j3;
+      }
+      for (int k4=k3 >> 1; k4 > 0; ) {
+        int i5=i2 + (k3 << 1);
+        double d2=af[i1 + i2];
+        double d4=af[i1 + i2 + 1];
+        double d6=af[i1 + i5];
+        double d8=af[i1 + i5 + 1];
+        af[i1 + i5]=(float)(d2 + (d6 * (double)e[128 - l2] - d8 * (double)e[l2]));
+        af[i1 + i2]=(float)(d2 - (d6 * (double)e[128 - l2] - d8 * (double)e[l2]));
+        af[i1 + i5 + 1]=(float)(d4 + (d8 * (double)e[128 - l2] + d6 * (double)e[l2]));
+        af[i1 + i2 + 1]=(float)(d4 - (d8 * (double)e[128 - l2] + d6 * (double)e[l2]));
+        k4--;
+        i2+=2;
+        l2-=j3;
+      }
+      i4--;
+      i2+=k3 << 1;
+    }
+    l3--;
+    k3<<=1;
+    j3>>=1;
+    i3>>=1;
+  }
+}

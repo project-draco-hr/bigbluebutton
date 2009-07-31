@@ -1,0 +1,6 @@
+{
+  this.sip_provider=sip_provider;
+  this.listener=listener;
+  this.id=id;
+  sip_provider.addSipProviderListener(id,this);
+}

@@ -1,0 +1,17 @@
+{
+  StringBuffer sb=new StringBuffer();
+  sb.append("method=").append(method).append("\n");
+  sb.append("username=").append(username).append("\n");
+  sb.append("passwd=").append(passwd).append("\n");
+  sb.append("realm=").append(realm).append("\n");
+  sb.append("nonce=").append(nonce).append("\n");
+  sb.append("opaque=").append(opaque).append("\n");
+  sb.append("algorithm=").append(algorithm).append("\n");
+  sb.append("qop=").append(qop).append("\n");
+  sb.append("uri=").append(uri).append("\n");
+  sb.append("cnonce=").append(cnonce).append("\n");
+  sb.append("nc=").append(nc).append("\n");
+  sb.append("response=").append(response).append("\n");
+  sb.append("body=").append(body).append("\n");
+  return sb.toString();
+}

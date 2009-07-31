@@ -1,0 +1,13 @@
+{
+  log=logger;
+  localport=local_port;
+  remoteport=remote_port;
+  remoteaddr=remote_addr;
+  if (remote_addr.startsWith("127.")) {
+    printLog("Patch for JMF: replaced local destination address " + remote_addr + " with 255.255.255.255");
+    remote_addr="255.255.255.255";
+  }
+  dir=direction;
+  if (dir >= 0)   sender=new JMediaSender("audio",null,remote_addr,remote_port);
+  if (dir <= 0)   receiver=new JMediaReceiver("audio",local_port,null);
+}

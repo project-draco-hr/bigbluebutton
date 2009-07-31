@@ -1,0 +1,11 @@
+{
+  String name;
+  Vector params=new Vector();
+  while (hasMore()) {
+    name=getWord(param_separators);
+    if (name.length() > 0)     params.addElement(new String(name));
+    goToSkippingQuoted(';');
+    if (hasMore())     skipChar();
+  }
+  return params;
+}

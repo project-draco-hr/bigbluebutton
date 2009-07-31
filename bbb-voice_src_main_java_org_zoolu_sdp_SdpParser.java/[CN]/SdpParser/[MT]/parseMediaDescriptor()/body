@@ -1,0 +1,18 @@
+{
+  MediaField m=parseMediaField();
+  if (m == null)   return null;
+  int begin=index;
+  int end=str.indexOf("\nm",begin);
+  if (end < 0)   end=str.length();
+ else   end++;
+  index=end;
+  SdpParser par=new SdpParser(str.substring(begin,end));
+  ConnectionField c=par.parseConnectionField();
+  Vector av=new Vector();
+  AttributeField a=par.parseAttributeField();
+  while (a != null) {
+    av.addElement(a);
+    a=par.parseAttributeField();
+  }
+  return new MediaDescriptor(m,c,av);
+}

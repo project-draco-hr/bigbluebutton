@@ -1,0 +1,5 @@
+{
+  if (!hasUser(user))   return null;
+  changed=true;
+  return getUserBindingInfo(user).getContacts();
+}

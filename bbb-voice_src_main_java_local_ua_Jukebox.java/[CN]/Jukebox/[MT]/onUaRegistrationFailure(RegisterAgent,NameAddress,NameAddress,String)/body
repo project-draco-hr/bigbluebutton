@@ -1,0 +1,3 @@
+{
+  printLog("Registration failure: " + result,LogLevel.HIGH);
+}

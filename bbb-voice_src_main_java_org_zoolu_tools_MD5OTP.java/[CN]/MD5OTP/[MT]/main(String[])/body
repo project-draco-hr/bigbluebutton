@@ -1,0 +1,15 @@
+{
+  if (args.length < 2) {
+    System.out.println("Usage:\n\n   java MD5OTP <message> <pass_phrase> [<iv>]");
+    System.exit(0);
+  }
+  byte[] msg=args[0].getBytes();
+  byte[] key=args[1].getBytes();
+  byte[] iv=null;
+  if (args.length > 2)   iv=args[2].getBytes();
+  System.out.println("m= " + asHex(msg) + " ("+ new String(msg)+ ")");
+  byte[] cip=(new MD5OTP(key,iv)).update(msg);
+  System.out.println("c= " + asHex(cip));
+  cip=(new MD5OTP(key,iv)).update(cip);
+  System.out.println("m= " + asHex(cip) + " ("+ new String(cip)+ ")");
+}

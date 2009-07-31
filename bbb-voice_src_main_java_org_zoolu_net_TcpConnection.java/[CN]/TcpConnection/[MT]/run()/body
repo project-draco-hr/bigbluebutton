@@ -1,0 +1,45 @@
+{
+  byte[] buff=new byte[BUFFER_SIZE];
+  long expire=0;
+  if (alive_time > 0)   expire=System.currentTimeMillis() + alive_time;
+  try {
+    if (error != null)     throw error;
+    socket.setSoTimeout(socket_timeout);
+    while (!stop) {
+      int len=0;
+      if (istream != null) {
+        try {
+          len=istream.read(buff);
+        }
+ catch (        InterruptedIOException ie) {
+          if (alive_time > 0 && System.currentTimeMillis() > expire)           halt();
+          continue;
+        }
+      }
+      if (len < 0) {
+        stop=true;
+      }
+ else       if (len > 0) {
+        if (listener != null)         listener.onReceivedData(this,buff,len);
+        if (alive_time > 0)         expire=System.currentTimeMillis() + alive_time;
+      }
+    }
+  }
+ catch (  Exception e) {
+    error=e;
+    stop=true;
+  }
+  is_running=false;
+  if (istream != null)   try {
+    istream.close();
+  }
+ catch (  Exception e) {
+  }
+  if (ostream != null)   try {
+    ostream.close();
+  }
+ catch (  Exception e) {
+  }
+  if (listener != null)   listener.onConnectionTerminated(this,error);
+  listener=null;
+}

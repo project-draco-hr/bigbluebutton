@@ -1,0 +1,3 @@
+{
+  copyBytes(src,dst,offset,4);
+}

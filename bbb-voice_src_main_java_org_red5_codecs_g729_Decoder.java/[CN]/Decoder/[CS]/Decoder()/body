@@ -1,0 +1,10 @@
+{
+  for (int i=0; i < LD8KConstants.M; i++) {
+    synth_buf[i]=(float)0.0;
+  }
+  synth=0 + LD8KConstants.M;
+  decLD.init_decod_ld8k();
+  postFil.init_post_filter();
+  postPro.init_post_process();
+  voicing=60;
+}

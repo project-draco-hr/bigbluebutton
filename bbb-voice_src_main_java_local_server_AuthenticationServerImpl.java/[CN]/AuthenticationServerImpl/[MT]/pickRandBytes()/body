@@ -1,0 +1,3 @@
+{
+  return MD5(Long.toHexString(org.zoolu.tools.Random.nextLong()));
+}

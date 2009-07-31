@@ -1,0 +1,52 @@
+{
+  if (rtp_socket_in == null || rtp_socket_out == null) {
+    if (DEBUG)     println("ERROR: RTP socket_in or socket_out is null");
+    return;
+  }
+  byte[] buffer_in=new byte[BUFFER_SIZE];
+  RtpPacket rtp_packet_in=new RtpPacket(buffer_in,0);
+  byte[] buffer_out=new byte[BUFFER_SIZE];
+  RtpPacket rtp_packet_out=new RtpPacket(buffer_out,0);
+  if (DEBUG)   println("Reading blocks of max " + BUFFER_SIZE + " bytes");
+  running=true;
+  try {
+    rtp_socket_in.getDatagramSocket().setSoTimeout(SO_TIMEOUT);
+    while (running) {
+      try {
+        rtp_socket_in.receive(rtp_packet_in);
+        if (running) {
+          byte[] pkt1=rtp_packet_in.getPacket();
+          int offset1=rtp_packet_in.getHeaderLength();
+          int len1=rtp_packet_in.getPayloadLength();
+          byte[] pkt2=rtp_packet_out.getPacket();
+          int offset2=rtp_packet_out.getHeaderLength();
+          int pos2=offset2;
+          for (int i=0; i < len1; i++) {
+            int linear=G711.ulaw2linear(pkt1[offset1 + i]);
+            pkt2[pos2++]=(byte)G711.linear2ulaw(linear);
+          }
+          rtp_packet_out.setPayloadType(rtp_packet_in.getPayloadType());
+          rtp_packet_out.setSequenceNumber(rtp_packet_in.getSequenceNumber());
+          rtp_packet_out.setTimestamp(rtp_packet_in.getTimestamp());
+          rtp_packet_out.setPayloadLength(pos2 - offset2);
+          rtp_socket_out.send(rtp_packet_out);
+        }
+      }
+ catch (      java.io.InterruptedIOException e) {
+      }
+    }
+  }
+ catch (  Exception e) {
+    running=false;
+    e.printStackTrace();
+  }
+  DatagramSocket socket_in=rtp_socket_in.getDatagramSocket();
+  rtp_socket_in.close();
+  if (socket_in_is_local && socket_in != null)   socket_in.close();
+  DatagramSocket socket_out=rtp_socket_out.getDatagramSocket();
+  rtp_socket_out.close();
+  if (socket_out_is_local && socket_out != null)   socket_out.close();
+  rtp_socket_in=null;
+  rtp_socket_out=null;
+  if (DEBUG)   println("rtp translator terminated");
+}

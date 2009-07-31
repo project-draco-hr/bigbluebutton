@@ -1,0 +1,4 @@
+{
+  contact_list.put(contact.getAddress().toString(),(new ContactHeader(contact)).setExpires(expire));
+  return this;
+}

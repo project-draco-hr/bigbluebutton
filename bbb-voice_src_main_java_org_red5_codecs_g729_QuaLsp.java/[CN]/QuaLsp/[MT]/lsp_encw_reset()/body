@@ -1,0 +1,5 @@
+{
+  int i;
+  for (i=0; i < LD8KConstants.MA_NP; i++)   Util.copy(freq_prev_reset,freq_prev[i],LD8KConstants.M);
+  return;
+}

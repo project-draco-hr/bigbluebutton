@@ -1,0 +1,59 @@
+{
+  StateTable j2=new StateTable(abyte0,j1);
+  process(af,af1,i1,af2,0,7);
+  process(af,af1,i1 + 128,af2,128,7);
+  for (int k1=0; k1 < 23; k1++) {
+    double d1=0.0D;
+    int j4=f[k1];
+    for (int j5=f[k1 + 1]; j4 < j5; j4++) {
+      double d2=af2[j4];
+      double d3=af2[j4 + 128];
+      d1+=d2 * d2 + d3 * d3;
+    }
+    af3[k1]=Math.round(Math.log(Math.max(1.0D,d1 / (double)h[k1])) * 1477.3197004799999D);
+  }
+  int l1=process(af3[0],i_nelly_init_table,0,64);
+  af4[0]=i_nelly_init_table[l1];
+  j2.state(l1,g[0]);
+  for (int l2=1; l2 < 23; l2++) {
+    int i2=process(af3[l2] - af4[l2 - 1],j_nelly_delta_table,0,32);
+    af4[l2]=af4[l2 - 1] + j_nelly_delta_table[i2];
+    j2.state(i2,g[l2]);
+  }
+  for (int i3=0; i3 < 23; i3++) {
+    af3[i3]=(float)(1.0D / Math.pow(2D,(double)af4[i3] * 0.00048828125D));
+  }
+  for (int j3=0; j3 < 23; j3++) {
+    int l3=f[j3];
+    for (int k4=f[j3 + 1]; l3 < k4; l3++) {
+      af5[l3]=af4[j3];
+      af6[l3]=af3[j3];
+    }
+  }
+  int k3=process(af5,124,198,ai);
+  for (int i4=0; i4 < 256; i4+=128) {
+    for (int l4=0; l4 < 124; l4++) {
+      int k5=ai[l4];
+      if (k5 > 0) {
+        int l5=1 << k5;
+        int k2=processIt(af6[l4] * af2[i4 + l4],k__nelly_dequantization_table,l5 - 1,(l5 << 1) - 1);
+        j2.state(k2,k5);
+      }
+    }
+    int i5=k3;
+    do {
+      if (i5 <= 0) {
+        continue;
+      }
+      if (i5 > 8) {
+        j2.state(0,8);
+      }
+ else {
+        j2.state(0,i5);
+        continue;
+      }
+      i5-=8;
+    }
+ while (true);
+  }
+}

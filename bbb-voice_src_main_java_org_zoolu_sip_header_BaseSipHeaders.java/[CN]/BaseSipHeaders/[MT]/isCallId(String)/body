@@ -1,0 +1,3 @@
+{
+  return same(str,Call_ID) || same(str,Call_ID_short);
+}

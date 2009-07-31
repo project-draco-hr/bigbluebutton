@@ -1,0 +1,5 @@
+{
+  String address="127.0.0.1";
+  String owner="user@" + address;
+  init(new OriginField(owner,"0","0",address),new SessionNameField("Session SIP/SDP"),new ConnectionField("IP4",address),new TimeField());
+}

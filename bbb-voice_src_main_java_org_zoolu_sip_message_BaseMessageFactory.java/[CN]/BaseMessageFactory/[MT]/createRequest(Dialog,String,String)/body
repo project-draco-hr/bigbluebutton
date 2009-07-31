@@ -1,0 +1,27 @@
+{
+  NameAddress to=dialog.getRemoteName();
+  NameAddress from=dialog.getLocalName();
+  NameAddress target=dialog.getRemoteContact();
+  if (target == null)   target=to;
+  SipURL request_uri=target.getAddress();
+  if (request_uri == null)   request_uri=dialog.getRemoteName().getAddress();
+  SipProvider sip_provider=dialog.getSipProvider();
+  String via_addr=sip_provider.getViaAddress();
+  int host_port=sip_provider.getPort();
+  boolean rport=sip_provider.isRportSet();
+  String proto;
+  if (target.getAddress().hasTransport())   proto=target.getAddress().getTransport();
+ else   proto=sip_provider.getDefaultTransport();
+  NameAddress contact=dialog.getLocalContact();
+  if (contact == null)   contact=from;
+  if (!SipMethods.isAck(method) && !SipMethods.isCancel(method))   dialog.incLocalCSeq();
+  String call_id=dialog.getCallID();
+  long cseq=dialog.getLocalCSeq();
+  String local_tag=dialog.getLocalTag();
+  String remote_tag=dialog.getRemoteTag();
+  Message req=createRequest(method,request_uri,to,from,contact,proto,via_addr,host_port,rport,call_id,cseq,local_tag,remote_tag,null,body);
+  Vector route=dialog.getRoute();
+  if (route != null && route.size() > 0)   req.addRoutes(new MultipleHeader(SipHeaders.Route,route));
+  req.rfc2543RouteAdapt();
+  return req;
+}

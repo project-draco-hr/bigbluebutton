@@ -1,0 +1,23 @@
+{
+  printLog("onCallClosing","Init...");
+  if (call != this.call && call != callTransfer) {
+    printLog("onCallClosing","NOT the current call.");
+    return;
+  }
+  if (call != callTransfer && callTransfer != null) {
+    printLog("onCallClosing","CLOSE PREVIOUS CALL.");
+    this.call=callTransfer;
+    callTransfer=null;
+    return;
+  }
+  printLog("onCallClosing","CLOSE.");
+  closeMediaApplication();
+  if (clip_off != null) {
+    clip_off.replay();
+  }
+  if (listener != null) {
+    listener.onUaCallClosed(this);
+  }
+  changeStatus(UA_IDLE);
+  initSessionDescriptor();
+}

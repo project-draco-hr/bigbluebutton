@@ -1,0 +1,13 @@
+{
+  for (Enumeration e=output_lines.keys(); e.hasMoreElements(); ) {
+    Object line_id=e.nextElement();
+    try {
+      ((OutputStream)output_lines.get(line_id)).write(b);
+    }
+ catch (    IOException ex) {
+      System.err.println("SL(" + splitter_id + "): ERROR while writing on line "+ line_id);
+      ex.printStackTrace();
+      throw new IOException("SplitterLine error");
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  init();
+  parseIt(new String(data,offset,len));
+}

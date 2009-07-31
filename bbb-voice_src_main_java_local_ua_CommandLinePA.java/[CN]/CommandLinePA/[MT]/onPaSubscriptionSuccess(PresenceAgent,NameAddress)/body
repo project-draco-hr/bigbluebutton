@@ -1,0 +1,3 @@
+{
+  printLog("Subscription for " + presentity + " accepted. ",LogLevel.HIGH);
+}

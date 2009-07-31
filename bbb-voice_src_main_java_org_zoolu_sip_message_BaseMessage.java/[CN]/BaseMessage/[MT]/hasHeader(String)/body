@@ -1,0 +1,5 @@
+{
+  Header hd=getHeader(name);
+  if (hd == null)   return false;
+ else   return true;
+}

@@ -1,0 +1,3 @@
+{
+  ((ExtendedInviteDialog)dialog).refer(new NameAddress(transfer_to));
+}

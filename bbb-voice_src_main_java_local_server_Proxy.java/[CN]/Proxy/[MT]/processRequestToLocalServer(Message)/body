@@ -1,0 +1,11 @@
+{
+  printLog("inside processRequestToLocalServer(msg)",LogLevel.MEDIUM);
+  if (msg.isRegister()) {
+    super.processRequestToLocalServer(msg);
+  }
+ else   if (!msg.isAck()) {
+    int result=484;
+    Message resp=MessageFactory.createResponse(msg,result,SipResponses.reasonOf(result),null);
+    sip_provider.sendMessage(resp);
+  }
+}

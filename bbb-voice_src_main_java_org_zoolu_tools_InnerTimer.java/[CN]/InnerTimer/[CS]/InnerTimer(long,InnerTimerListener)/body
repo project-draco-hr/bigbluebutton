@@ -1,0 +1,5 @@
+{
+  this.timeout=timeout;
+  this.listener=listener;
+  start();
+}

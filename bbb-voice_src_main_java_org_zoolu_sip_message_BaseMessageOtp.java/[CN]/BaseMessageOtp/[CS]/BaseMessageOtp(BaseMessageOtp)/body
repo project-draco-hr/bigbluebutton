@@ -1,0 +1,12 @@
+{
+  init();
+  remote_addr=msg.remote_addr;
+  remote_port=msg.remote_port;
+  transport_proto=msg.transport_proto;
+  connection_id=msg.connection_id;
+  request_line=msg.request_line;
+  status_line=msg.status_line;
+  headers=new Vector();
+  for (int i=0; i < msg.headers.size(); i++)   headers.addElement(msg.headers.elementAt(i));
+  body=msg.body;
+}

@@ -1,0 +1,30 @@
+{
+  printLog("inside processRequestToRemoteUA(msg)",LogLevel.MEDIUM);
+  if (call_logger != null)   call_logger.update(msg);
+  if (!server_profile.is_open_proxy) {
+    SipURL from_url=msg.getFromHeader().getNameAddress().getAddress();
+    String from_username=from_url.getUserName();
+    String from_hostaddr=from_url.getHost();
+    String caller=(from_username == null) ? from_hostaddr : from_username + "@" + from_hostaddr;
+    if (!location_service.hasUser(caller)) {
+      SipURL to_url=msg.getToHeader().getNameAddress().getAddress();
+      String to_username=to_url.getUserName();
+      String to_hostaddr=to_url.getHost();
+      String callee=(to_username == null) ? to_hostaddr : to_username + "@" + to_hostaddr;
+      if (!location_service.hasUser(callee)) {
+        printLog("both users " + caller + " and "+ callee+ " are not registered with the local server: proxy denied.",LogLevel.HIGH);
+        sip_provider.sendMessage(MessageFactory.createResponse(msg,503,SipResponses.reasonOf(503),null));
+        return;
+      }
+    }
+  }
+  if (server_profile.do_proxy_authentication && !msg.isAck() && !msg.isCancel()) {
+    Message err_resp=as.authenticateProxyRequest(msg);
+    if (err_resp != null) {
+      sip_provider.sendMessage(err_resp);
+      return;
+    }
+  }
+  updateProxingRequest(msg);
+  sip_provider.sendMessage(msg);
+}

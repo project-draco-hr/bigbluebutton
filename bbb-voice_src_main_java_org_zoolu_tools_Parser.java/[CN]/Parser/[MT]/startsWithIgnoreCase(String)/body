@@ -1,0 +1,6 @@
+{
+  for (int k=0; k < s.length() && (index + k) < str.length(); k++) {
+    if (compareIgnoreCase(s.charAt(k),str.charAt(index + k)) != 0)     return false;
+  }
+  return true;
+}

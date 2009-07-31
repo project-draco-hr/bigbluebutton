@@ -1,0 +1,7 @@
+{
+  int len=b.length;
+  byte b0=b[0];
+  for (int i=1; i < len; i++)   b[i - 1]=b[i];
+  b[len - 1]=b0;
+  return b;
+}

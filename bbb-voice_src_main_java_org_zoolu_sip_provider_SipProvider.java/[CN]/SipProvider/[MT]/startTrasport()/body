@@ -1,0 +1,22 @@
+{
+  if (transport_udp) {
+    try {
+      if (host_ipaddr == null)       udp=new UdpTransport(host_port,this);
+ else       udp=new UdpTransport(host_port,host_ipaddr,this);
+      printLog("udp is up",LogLevel.MEDIUM);
+    }
+ catch (    Exception e) {
+      printException(e,LogLevel.HIGH);
+    }
+  }
+  if (transport_tcp) {
+    try {
+      if (host_ipaddr == null)       tcp_server=new TcpServer(host_port,this);
+ else       tcp_server=new TcpServer(host_port,host_ipaddr,this);
+      printLog("tcp is up",LogLevel.MEDIUM);
+    }
+ catch (    Exception e) {
+      printException(e,LogLevel.HIGH);
+    }
+  }
+}

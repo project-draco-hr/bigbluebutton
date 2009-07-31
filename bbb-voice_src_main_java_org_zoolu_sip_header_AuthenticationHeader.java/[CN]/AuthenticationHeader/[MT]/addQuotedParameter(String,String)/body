@@ -1,0 +1,6 @@
+{
+  if (value.indexOf('=') < 0)   value+=" ";
+ else   value+="," + LWS_SEPARATOR;
+  if (param_value.indexOf('"') >= 0)   value+=param_name + "=" + param_value;
+ else   value+=param_name + "=\"" + param_value+ "\"";
+}

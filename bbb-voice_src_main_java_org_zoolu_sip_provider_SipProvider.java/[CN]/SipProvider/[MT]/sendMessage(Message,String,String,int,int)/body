@@ -1,0 +1,11 @@
+{
+  if (log_all_packets || msg.getLength() > MIN_MESSAGE_LENGTH)   printLog("Resolving host address '" + dest_addr + "'",LogLevel.MEDIUM);
+  try {
+    IpAddress dest_ipaddr=IpAddress.getByName(dest_addr);
+    return sendMessage(msg,proto,dest_ipaddr,dest_port,ttl);
+  }
+ catch (  Exception e) {
+    printException(e,LogLevel.HIGH);
+    return null;
+  }
+}

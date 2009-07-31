@@ -1,0 +1,7 @@
+String method
+String uri
+WwwAuthenticateHeader ah
+String qop
+String body
+String username
+String passwd

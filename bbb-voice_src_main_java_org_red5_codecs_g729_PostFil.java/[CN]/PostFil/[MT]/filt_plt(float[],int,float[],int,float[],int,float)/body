@@ -1,0 +1,12 @@
+{
+  int n;
+  float temp;
+  float gain_plt_1;
+  gain_plt_1=(float)1. - gain_plt;
+  for (n=0; n < LD8KConstants.L_SUBFR; n++) {
+    temp=gain_plt * s_in[n + ins];
+    temp+=gain_plt_1 * s_ltp[n + ltps];
+    s_out[n + outs]=temp;
+  }
+  return;
+}

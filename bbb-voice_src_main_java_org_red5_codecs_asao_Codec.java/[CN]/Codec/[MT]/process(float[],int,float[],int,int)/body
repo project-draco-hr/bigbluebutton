@@ -1,0 +1,41 @@
+{
+  int l1=1 << k1;
+  int i2=(l1 >> 1) - 1;
+  int j2=l1 >> 2;
+  for (int k2=0; k2 < j2; k2++) {
+    int l2=k2 << 1;
+    int i3=l1 - 1 - l2;
+    int k3=i3 - 1;
+    double d1=af[i1 + l2];
+    double d2=af[i1 + l2 + 1];
+    double d4=af[i1 + i3];
+    double d6=af[i1 + k3];
+    af1[j1 + l2]=(float)((double)a[k2] * d1 - (double)c[k2] * d4);
+    af1[j1 + l2 + 1]=(float)(d4 * (double)a[k2] + d1 * (double)c[k2]);
+    af1[j1 + k3]=(float)((double)a[i2 - k2] * d6 - (double)c[i2 - k2] * d2);
+    af1[j1 + i3]=(float)(d2 * (double)a[i2 - k2] + d6 * (double)c[i2 - k2]);
+  }
+  process(af1,j1,k1 - 1);
+  float f1=af1[(j1 + l1) - 1];
+  float f2=af1[(j1 + l1) - 2];
+  af1[j1]=b[0] * af1[j1];
+  af1[(j1 + l1) - 1]=af1[j1 + 1] * -b[0];
+  af1[(j1 + l1) - 2]=b[i2] * af1[(j1 + l1) - 2] + b[1] * f1;
+  af1[j1 + 1]=f2 * b[1] - f1 * b[i2];
+  int j3=1;
+  int l3=l1 - 3;
+  int i4=i2;
+  for (int j4=3; j3 < j2; j4+=2) {
+    double d3=af1[j1 + l3];
+    double d5=af1[(j1 + l3) - 1];
+    double d7=af1[j1 + j4];
+    double d8=af1[(j1 + j4) - 1];
+    af1[(j1 + j4) - 1]=(float)((double)b[i4] * d7 + (double)b[j4 - 1 >> 1] * d8);
+    af1[j1 + j4]=(float)(d5 * (double)b[j4 + 1 >> 1] - d3 * (double)b[i4 - 1]);
+    af1[j1 + l3]=(float)(d8 * (double)b[i4] - d7 * (double)b[j4 - 1 >> 1]);
+    af1[(j1 + l3) - 1]=(float)((double)b[j4 + 1 >> 1] * d3 + (double)b[i4 - 1] * d5);
+    j3++;
+    i4--;
+    l3-=2;
+  }
+}

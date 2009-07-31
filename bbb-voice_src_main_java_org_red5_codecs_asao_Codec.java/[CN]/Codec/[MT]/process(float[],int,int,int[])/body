@@ -1,0 +1,136 @@
+{
+  float f1=0.0F;
+  for (int k1=0; k1 < i1; k1++) {
+    if (af[k1] > f1) {
+      f1=af[k1];
+    }
+  }
+  int l1=process((int)f1) - 16;
+  short[] aword0=new short[124];
+  if (l1 < 0) {
+    for (int i2=0; i2 < i1; i2++) {
+      aword0[i2]=(short)((int)af[i2] >> -l1);
+    }
+  }
+ else {
+    for (int j2=0; j2 < i1; j2++) {
+      aword0[j2]=(short)((int)af[j2] << l1);
+    }
+  }
+  SetupTable setupTable=new SetupTable(i1);
+  for (int k2=0; k2 < i1; k2++) {
+    aword0[k2]=(short)(aword0[k2] * 3 >> 2);
+  }
+  int l2=0;
+  for (int i3=0; i3 < i1; i3++) {
+    l2+=aword0[i3];
+  }
+  l1+=11;
+  l2-=j1 << l1;
+  int j3=0;
+  int k3=l2 - (j1 << l1);
+  j3=(k3 >> 16) * setupTable.parameterA >> 15;
+  int l3=31 - setupTable.parameterB - process(k3);
+  if (l3 >= 0) {
+    j3<<=l3;
+  }
+ else {
+    j3>>=-l3;
+  }
+  k3=process(aword0,l1,i1,6,j3);
+  if (k3 != j1) {
+    int i4=k3 - j1;
+    int l4=0;
+    if (i4 <= 0) {
+      for (; i4 >= -16384; i4<<=1) {
+        l4++;
+      }
+    }
+ else {
+      for (; i4 < 16384; i4<<=1) {
+        l4++;
+      }
+    }
+    int k5=i4 * setupTable.parameterA >> 15;
+    l4=l1 - ((setupTable.parameterB + l4) - 15);
+    if (l4 >= 0) {
+      k5<<=l4;
+    }
+ else {
+      k5>>=-l4;
+    }
+    int l5=1;
+    int i6;
+    int j6;
+    do {
+      i6=k3;
+      j6=j3;
+      j3+=k5;
+      k3=process(aword0,l1,i1,6,j3);
+    }
+ while (++l5 <= 19 && (k3 - j1) * (i6 - j1) > 0);
+    if (k3 != j1) {
+      int k6;
+      int l6;
+      int i7;
+      if (k3 > j1) {
+        k6=j3;
+        j3=j6;
+        l6=k3;
+        i7=i6;
+      }
+ else {
+        k6=j6;
+        l6=i6;
+        i7=k3;
+      }
+      while (k3 != j1 && l5 < 20) {
+        int j7=j3 + k6 >> 1;
+        k3=process(aword0,l1,i1,6,j7);
+        l5++;
+        if (k3 > j1) {
+          k6=j7;
+          l6=k3;
+        }
+ else {
+          j3=j7;
+          i7=k3;
+        }
+      }
+      int k7=Math.abs(l6 - j1);
+      int l7=Math.abs(i7 - j1);
+      if (k7 < l7) {
+        j3=k6;
+        k3=l6;
+      }
+ else {
+        k3=i7;
+      }
+    }
+  }
+  for (int j4=0; j4 < i1; j4++) {
+    int i5=aword0[j4] - j3;
+    if (i5 >= 0) {
+      i5=i5 + (1 << l1 - 1) >> l1;
+    }
+ else {
+      i5=0;
+    }
+    ai[j4]=Math.min(i5,6);
+  }
+  if (k3 > j1) {
+    int k4=0;
+    int j5;
+    for (j5=0; j5 < j1; ) {
+      j5+=ai[k4];
+      k4++;
+    }
+    j5-=ai[k4 - 1];
+    ai[k4 - 1]=j1 - j5;
+    k3=j1;
+    for (; k4 < i1; k4++) {
+      ai[k4]=0;
+    }
+  }
+  return j1 - k3;
+}

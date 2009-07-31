@@ -1,0 +1,4 @@
+{
+  if (port < 0)   setParameter(rport_param,null);
+ else   setParameter(rport_param,Integer.toString(port));
+}

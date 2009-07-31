@@ -1,0 +1,10 @@
+{
+  short[] fake=new short[82];
+  fake[0]=LD8KConstants.SYNC_WORD;
+  fake[1]=LD8KConstants.SIZE_WORD;
+  for (int q=0; q < 80; q++) {
+    if ((real[q / 8] & (1 << (7 - (q % 8)))) != 0)     fake[q + 2]=LD8KConstants.BIT_1;
+ else     fake[q + 2]=LD8KConstants.BIT_0;
+  }
+  return fake;
+}

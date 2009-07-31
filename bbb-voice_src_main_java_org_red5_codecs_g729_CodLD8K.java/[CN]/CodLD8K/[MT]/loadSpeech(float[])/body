@@ -1,0 +1,6 @@
+{
+  int i=239;
+  for (int q=79; q >= 0; q--) {
+    old_speech_array[i--]=newSpeech[q];
+  }
+}

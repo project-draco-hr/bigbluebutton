@@ -1,0 +1,5 @@
+{
+  if (branch == null)   branch="";
+  if (method.equals(SipMethods.ACK))   method=SipMethods.INVITE;
+  id=call_id + "-" + seqn+ "-"+ method+ "-"+ sent_by+ "-"+ branch;
+}

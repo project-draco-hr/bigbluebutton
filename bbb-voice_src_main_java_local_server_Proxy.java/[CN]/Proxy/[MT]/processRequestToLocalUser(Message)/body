@@ -1,0 +1,31 @@
+{
+  printLog("inside processRequestToLocalUser(msg)",LogLevel.MEDIUM);
+  if (server_profile.call_log)   call_logger.update(msg);
+  if (server_profile.do_proxy_authentication && !msg.isAck() && !msg.isCancel()) {
+    Message err_resp=as.authenticateProxyRequest(msg);
+    if (err_resp != null) {
+      sip_provider.sendMessage(err_resp);
+      return;
+    }
+  }
+  Vector targets=getTargets(msg);
+  if (targets.isEmpty()) {
+    SipURL request_uri=msg.getRequestLine().getAddress();
+    SipURL new_target=getPhoneTarget(request_uri);
+    if (new_target != null)     targets.addElement(new_target.toString());
+  }
+  if (targets.isEmpty()) {
+    printLog("No target found, message discarded",LogLevel.HIGH);
+    if (!msg.isAck())     sip_provider.sendMessage(MessageFactory.createResponse(msg,404,SipResponses.reasonOf(404),null));
+    return;
+  }
+  printLog("message will be forwarded to all user's contacts",LogLevel.MEDIUM);
+  for (int i=0; i < targets.size(); i++) {
+    SipURL url=new SipURL((String)(targets.elementAt(i)));
+    Message request=new Message(msg);
+    request.removeRequestLine();
+    request.setRequestLine(new RequestLine(msg.getRequestLine().getMethod(),url));
+    updateProxingRequest(request);
+    sip_provider.sendMessage(request);
+  }
+}

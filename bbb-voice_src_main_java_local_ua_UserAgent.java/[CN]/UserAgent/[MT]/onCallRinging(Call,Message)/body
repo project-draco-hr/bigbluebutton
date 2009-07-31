@@ -1,0 +1,10 @@
+{
+  printLog("onCallRinging()",LogLevel.LOW);
+  if (call != this.call && call != call_transfer) {
+    printLog("NOT the current call",LogLevel.LOW);
+    return;
+  }
+  printLog("RINGING",LogLevel.HIGH);
+  if (clip_on != null)   clip_on.replay();
+  if (listener != null)   listener.onUaCallRinging(this);
+}

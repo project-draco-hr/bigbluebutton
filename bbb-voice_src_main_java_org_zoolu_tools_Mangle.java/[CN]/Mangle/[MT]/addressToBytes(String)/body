@@ -1,0 +1,14 @@
+{
+  int begin=0, end;
+  byte[] b=new byte[4];
+  for (int i=0; i < 4; i++) {
+    String num;
+    if (i < 3) {
+      end=addr.indexOf('.',begin);
+      b[i]=(byte)Integer.parseInt(addr.substring(begin,end));
+      begin=end + 1;
+    }
+ else     b[3]=(byte)Integer.parseInt(addr.substring(begin));
+  }
+  return b;
+}

@@ -1,0 +1,6 @@
+{
+  if (target_line.isOpen())   target_line.stop();
+ else {
+    System.err.print("WARNING: Audio stop error: target line is not open.");
+  }
+}

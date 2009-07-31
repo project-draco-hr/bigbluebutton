@@ -1,0 +1,13 @@
+{
+  try {
+    while (!stop) {
+      sendToken();
+      Thread.sleep(delta_time);
+      if (expire > 0 && System.currentTimeMillis() > expire)       halt();
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  udp_socket=null;
+}

@@ -1,0 +1,13 @@
+{
+  char[] port_terminators={';','?'};
+  Parser par=new Parser(url,4);
+  int begin=par.indexOf(':');
+  if (begin < 0)   return -1;
+ else {
+    begin++;
+    par.setPos(begin);
+    int end=par.indexOf(port_terminators);
+    if (end < 0)     return Integer.parseInt(url.substring(begin));
+ else     return Integer.parseInt(url.substring(begin,end));
+  }
+}

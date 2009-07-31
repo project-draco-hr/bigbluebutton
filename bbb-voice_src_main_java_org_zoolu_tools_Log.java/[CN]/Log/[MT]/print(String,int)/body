@@ -1,0 +1,14 @@
+{
+  if (do_log && level <= verbose_level) {
+    if (log_tag != null)     out_stream.print(log_tag + ": " + message);
+ else     out_stream.print(message);
+    if (max_size >= 0) {
+      counter+=tag_size + message.length();
+      if (counter > max_size) {
+        out_stream.println("\r\n----MAXIMUM LOG SIZE----\r\nSuccessive logs are lost.");
+        do_log=false;
+      }
+    }
+  }
+  return this;
+}

@@ -1,0 +1,5 @@
+{
+  for (Enumeration e=output_lines.elements(); e.hasMoreElements(); ) {
+    ((OutputStream)e.nextElement()).flush();
+  }
+}

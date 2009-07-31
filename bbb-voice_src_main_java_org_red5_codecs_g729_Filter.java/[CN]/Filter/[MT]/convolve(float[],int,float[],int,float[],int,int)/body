@@ -1,0 +1,10 @@
+{
+  float temp;
+  int i, n;
+  for (n=0; n < l; n++) {
+    temp=(float)0.0;
+    for (i=0; i <= n; i++)     temp+=x[xs + i] * h[hs + n - i];
+    y[ys + n]=temp;
+  }
+  return;
+}

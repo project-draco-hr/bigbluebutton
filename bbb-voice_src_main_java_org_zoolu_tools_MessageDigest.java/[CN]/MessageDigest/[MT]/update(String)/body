@@ -1,0 +1,4 @@
+{
+  byte[] buf=str.getBytes();
+  return update(buf,0,buf.length);
+}

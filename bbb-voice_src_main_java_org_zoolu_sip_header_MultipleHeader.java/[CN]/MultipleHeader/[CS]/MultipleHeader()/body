@@ -1,0 +1,5 @@
+{
+  name=null;
+  values=new Vector();
+  compact=true;
+}

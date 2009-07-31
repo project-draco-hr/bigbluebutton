@@ -1,0 +1,4 @@
+{
+  printLog("inside ring()",LogLevel.MEDIUM);
+  respond(180,SipResponses.reasonOf(180),null,null);
+}

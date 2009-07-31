@@ -1,0 +1,11 @@
+{
+  printLog("onCallReInviteRefused","Init...");
+  if (call != this.call) {
+    printLog("onCallReInviteRefused","NOT the current call");
+    return;
+  }
+  printLog("onCallReInviteRefused","RE-INVITE-REFUSED (" + reason + ")/CALL.");
+  if (listener != null) {
+    listener.onUaCallFailed(this);
+  }
+}

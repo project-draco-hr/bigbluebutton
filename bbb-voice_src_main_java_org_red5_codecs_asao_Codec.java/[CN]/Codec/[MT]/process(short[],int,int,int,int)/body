@@ -1,0 +1,12 @@
+{
+  if (j1 <= 0) {
+    return 0;
+  }
+  int i2=0;
+  int j2=1 << i1 - 1;
+  for (int k2=0; k2 < j1; k2++) {
+    int l2=aword0[k2] - l1;
+    i2+=Math.min(l2 >= 0 ? l2 + j2 >> i1 : 0,k1);
+  }
+  return i2;
+}

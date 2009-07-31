@@ -1,0 +1,9 @@
+{
+  v=new SdpField('v',"0");
+  o=origin;
+  s=session;
+  c=connection;
+  t=time;
+  av=new Vector();
+  media=new Vector();
+}

@@ -1,0 +1,15 @@
+{
+  String err=null;
+  try {
+    System.out.println("Trying to realize the player");
+    player.realize();
+    while (player.getState() != player.Realized)     ;
+    System.out.println("Player realized");
+    player.start();
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    err="Failed trying to start the player";
+  }
+  return err;
+}

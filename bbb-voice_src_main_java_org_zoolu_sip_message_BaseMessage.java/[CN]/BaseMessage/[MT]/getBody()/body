@@ -1,0 +1,14 @@
+{
+  if (!hasBody())   return null;
+  int begin=(new SipParser(message)).goToBody().getPos();
+  int len;
+  if (this.hasContentLengthHeader())   len=getContentLengthHeader().getContentLength();
+ else {
+    len=message.length() - begin;
+  }
+  int end=begin + len;
+  if (end > message.length()) {
+    end=message.length();
+  }
+  return message.substring(begin,end);
+}

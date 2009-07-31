@@ -1,0 +1,3 @@
+{
+  return (status >= D_PENDING && status < D_TERMINATED);
+}

@@ -1,0 +1,4 @@
+{
+  this.name=name;
+  contact_list=new Hashtable();
+}

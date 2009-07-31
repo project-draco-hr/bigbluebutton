@@ -1,0 +1,17 @@
+{
+  String file=null;
+  for (int i=0; i < args.length; i++) {
+    if (args[i].equals("-f") && args.length > (i + 1)) {
+      file=args[++i];
+      continue;
+    }
+    if (args[i].equals("-h")) {
+      System.out.println("usage:\n   java Redirect [-f <config_file>] \n");
+      System.exit(0);
+    }
+  }
+  SipStack.init(file);
+  SipProvider sip_provider=new SipProvider(file);
+  ServerProfile server_profile=new ServerProfile(file);
+  new Redirect(sip_provider,server_profile);
+}

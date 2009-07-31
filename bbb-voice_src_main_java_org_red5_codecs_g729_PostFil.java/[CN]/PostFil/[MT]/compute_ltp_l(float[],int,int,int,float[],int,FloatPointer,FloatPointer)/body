@@ -1,0 +1,25 @@
+{
+  int ptr_h;
+  int n, i, ptr2;
+  float temp;
+  ptr_h=(phase - 1) * LD8KConstants.LH2_L;
+  ptr2=0 - ltpdel + LD8KConstants.LH_UP_L;
+  for (n=0; n < LD8KConstants.L_SUBFR; n++) {
+    temp=(float)0.;
+    for (i=0; i < LD8KConstants.LH2_L; i++) {
+      temp+=TabLD8k.tab_hup_l[ptr_h + i] * s_in[ins + ptr2--];
+    }
+    y_up[ys + n]=temp;
+    ptr2+=LD8KConstants.LH2_L_P1;
+  }
+  num.value=(float)0.;
+  for (n=0; n < LD8KConstants.L_SUBFR; n++) {
+    num.value+=y_up[ys + n] * s_in[ins + n];
+  }
+  if (num.value < (float)0.0)   num.value=(float)0.0;
+  den.value=(float)0.;
+  for (n=0; n < LD8KConstants.L_SUBFR; n++) {
+    den.value+=y_up[ys + n] * y_up[ys + n];
+  }
+  return;
+}

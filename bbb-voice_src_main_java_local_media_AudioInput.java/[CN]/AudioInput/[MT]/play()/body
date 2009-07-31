@@ -1,0 +1,6 @@
+{
+  if (target_line.isOpen())   target_line.start();
+ else {
+    System.err.print("WARNING: Audio play error: target line is not open.");
+  }
+}

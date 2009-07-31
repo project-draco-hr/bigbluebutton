@@ -1,0 +1,9 @@
+{
+  String source=caller.getAddress().toString();
+  String sourceName=caller.hasDisplayName() ? caller.getDisplayName() : "";
+  String destination=callee.getAddress().toString();
+  String destinationName=callee.hasDisplayName() ? callee.getDisplayName() : "";
+  if (service != null) {
+    ((IServiceCapableConnection)service).invoke("incoming",new Object[]{source,sourceName,destination,destinationName});
+  }
+}

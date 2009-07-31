@@ -1,0 +1,4 @@
+{
+  this.configurable=configurable;
+  loadFile(file);
+}

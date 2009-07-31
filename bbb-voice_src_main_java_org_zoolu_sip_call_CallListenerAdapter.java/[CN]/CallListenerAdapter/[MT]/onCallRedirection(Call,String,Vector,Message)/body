@@ -1,0 +1,3 @@
+{
+  call.call((String)contact_list.elementAt(0));
+}

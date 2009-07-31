@@ -1,0 +1,3 @@
+{
+  printLog("Notification failure (reason: " + reason + ").",LogLevel.HIGH);
+}

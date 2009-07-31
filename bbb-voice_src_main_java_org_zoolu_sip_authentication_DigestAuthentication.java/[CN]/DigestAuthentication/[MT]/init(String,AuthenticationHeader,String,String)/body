@@ -1,0 +1,15 @@
+{
+  this.method=method;
+  this.username=ah.getUsernameParam();
+  this.passwd=passwd;
+  this.realm=ah.getRealmParam();
+  this.opaque=ah.getOpaqueParam();
+  this.nonce=ah.getNonceParam();
+  this.algorithm=ah.getAlgorithParam();
+  this.qop=ah.getQopParam();
+  this.uri=ah.getUriParam();
+  this.cnonce=ah.getCnonceParam();
+  this.nc=ah.getNcParam();
+  this.response=ah.getResponseParam();
+  this.body=body;
+}

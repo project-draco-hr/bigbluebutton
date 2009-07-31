@@ -1,0 +1,8 @@
+{
+  if (e1 == null) {
+    e1=new NellyEncoderMap(this);
+  }
+  NellyEncoderMap nellyEncoderMap=(NellyEncoderMap)e1;
+  Codec.process(nellyEncoderMap.a,af,j,abyte0,k,nellyEncoderMap.c,nellyEncoderMap.d,nellyEncoderMap.e,nellyEncoderMap.f,nellyEncoderMap.g,nellyEncoderMap.h);
+  return e1;
+}

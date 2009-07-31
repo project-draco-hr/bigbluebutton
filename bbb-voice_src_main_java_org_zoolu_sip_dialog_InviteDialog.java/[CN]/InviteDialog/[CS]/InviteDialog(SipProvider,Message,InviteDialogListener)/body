@@ -1,0 +1,8 @@
+{
+  super(sip_provider);
+  init(listener);
+  changeStatus(D_INVITED);
+  invite_req=invite;
+  invite_ts=new InviteTransactionServer(sip_provider,invite_req,this);
+  update(Dialog.UAS,invite_req);
+}

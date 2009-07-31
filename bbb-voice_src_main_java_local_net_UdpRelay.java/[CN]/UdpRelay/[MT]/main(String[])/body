@@ -1,0 +1,12 @@
+{
+  if (args.length < 3) {
+    System.out.println("usage:\n   java UdpRelay <local_port> <address> <port> [ <alive_time> ]");
+    System.exit(0);
+  }
+  int local_port=Integer.parseInt(args[0]);
+  int remote_port=Integer.parseInt(args[2]);
+  String remote_address=args[1];
+  int alive_time=0;
+  if (args.length > 3)   alive_time=Integer.parseInt(args[3]);
+  new UdpRelay(local_port,remote_address,remote_port,alive_time,null);
+}

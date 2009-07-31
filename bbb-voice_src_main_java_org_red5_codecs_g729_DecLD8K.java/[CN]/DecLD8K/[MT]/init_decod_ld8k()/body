@@ -1,0 +1,11 @@
+{
+  exc=0 + LD8KConstants.PIT_MAX + LD8KConstants.L_INTERPOL;
+  Util.set_zero(old_exc_array,LD8KConstants.PIT_MAX + LD8KConstants.L_INTERPOL);
+  Util.set_zero(mem_syn,LD8KConstants.M);
+  sharp=LD8KConstants.SHARPMIN;
+  old_t0=60;
+  gain_code.value=(float)0.;
+  gain_pitch.value=(float)0.;
+  lspDec.lsp_decw_reset();
+  return;
+}

@@ -1,0 +1,7 @@
+{
+  this.sip_provider=sip_provider;
+  if (message == null) {
+    message=new Message("\r\n");
+  }
+  this.message=message;
+}

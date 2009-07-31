@@ -1,0 +1,4 @@
+SIPRegisterAgent ra
+NameAddress target
+NameAddress contact
+String result

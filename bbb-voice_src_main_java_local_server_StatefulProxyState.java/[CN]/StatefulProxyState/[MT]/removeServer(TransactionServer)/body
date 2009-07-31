@@ -1,0 +1,5 @@
+{
+  TransactionIdentifier sid=ts.getTransactionId();
+  s_clients.remove(sid);
+  s_response.remove(sid);
+}

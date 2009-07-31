@@ -1,0 +1,197 @@
+{
+  int i0, i1, i2, i3, ip0, ip1, ip2, ip3;
+  int i, j, time;
+  float ps0, ps1, ps2, ps3, alp0, alp1, alp2, alp3;
+  float ps3c, psc, alpha;
+  float average, max0, max1, max2, thres;
+  float p_sign[]=new float[LD8KConstants.L_SUBFR];
+  int rri0i0, rri1i1, rri2i2, rri3i3, rri4i4;
+  int rri0i1, rri0i2, rri0i3, rri0i4;
+  int rri1i2, rri1i3, rri1i4;
+  int rri2i3, rri2i4;
+  int ptr_ri0i0, ptr_ri1i1, ptr_ri2i2, ptr_ri3i3, ptr_ri4i4;
+  int ptr_ri0i1, ptr_ri0i2, ptr_ri0i3, ptr_ri0i4;
+  int ptr_ri1i2, ptr_ri1i3, ptr_ri1i4;
+  int ptr_ri2i3, ptr_ri2i4;
+  rri0i0=0;
+  rri1i1=rri0i0 + LD8KConstants.NB_POS;
+  rri2i2=rri1i1 + LD8KConstants.NB_POS;
+  rri3i3=rri2i2 + LD8KConstants.NB_POS;
+  rri4i4=rri3i3 + LD8KConstants.NB_POS;
+  rri0i1=rri4i4 + LD8KConstants.NB_POS;
+  rri0i2=rri0i1 + LD8KConstants.MSIZE;
+  rri0i3=rri0i2 + LD8KConstants.MSIZE;
+  rri0i4=rri0i3 + LD8KConstants.MSIZE;
+  rri1i2=rri0i4 + LD8KConstants.MSIZE;
+  rri1i3=rri1i2 + LD8KConstants.MSIZE;
+  rri1i4=rri1i3 + LD8KConstants.MSIZE;
+  rri2i3=rri1i4 + LD8KConstants.MSIZE;
+  rri2i4=rri2i3 + LD8KConstants.MSIZE;
+  if (i_subfr == 0)   extra=30;
+  for (i=0; i < LD8KConstants.L_SUBFR; i++) {
+    if (dn[i] >= (float)0.0) {
+      p_sign[i]=(float)1.0;
+    }
+ else {
+      p_sign[i]=(float)-1.0;
+      dn[i]=-dn[i];
+    }
+  }
+  average=dn[0] + dn[1] + dn[2];
+  max0=dn[0];
+  max1=dn[1];
+  max2=dn[2];
+  for (i=5; i < LD8KConstants.L_SUBFR; i+=LD8KConstants.STEP) {
+    average+=dn[i] + dn[i + 1] + dn[i + 2];
+    if (dn[i] > max0)     max0=dn[i];
+    if (dn[i + 1] > max1)     max1=dn[i + 1];
+    if (dn[i + 2] > max2)     max2=dn[i + 2];
+  }
+  max0+=max1 + max2;
+  average*=(float)0.125;
+  thres=average + (max0 - average) * LD8KConstants.THRESHFCB;
+  ptr_ri0i1=rri0i1;
+  ptr_ri0i2=rri0i2;
+  ptr_ri0i3=rri0i3;
+  ptr_ri0i4=rri0i4;
+  for (i0=0; i0 < LD8KConstants.L_SUBFR; i0+=LD8KConstants.STEP) {
+    for (i1=1; i1 < LD8KConstants.L_SUBFR; i1+=LD8KConstants.STEP) {
+      rr[ptr_ri0i1]*=(p_sign[i0] * p_sign[i1]);
+      ptr_ri0i1++;
+      rr[ptr_ri0i2]*=(p_sign[i0] * p_sign[i1 + 1]);
+      ptr_ri0i2++;
+      rr[ptr_ri0i3]*=(p_sign[i0] * p_sign[i1 + 2]);
+      ptr_ri0i3++;
+      rr[ptr_ri0i4]*=(p_sign[i0] * p_sign[i1 + 3]);
+      ptr_ri0i4++;
+    }
+  }
+  ptr_ri1i2=rri1i2;
+  ptr_ri1i3=rri1i3;
+  ptr_ri1i4=rri1i4;
+  for (i1=1; i1 < LD8KConstants.L_SUBFR; i1+=LD8KConstants.STEP) {
+    for (i2=2; i2 < LD8KConstants.L_SUBFR; i2+=LD8KConstants.STEP) {
+      rr[ptr_ri1i2]*=(p_sign[i1] * p_sign[i2]);
+      ptr_ri1i2++;
+      rr[ptr_ri1i3]*=(p_sign[i1] * p_sign[i2 + 1]);
+      ptr_ri1i3++;
+      rr[ptr_ri1i4]*=(p_sign[i1] * p_sign[i2 + 2]);
+      ptr_ri1i4++;
+    }
+  }
+  ptr_ri2i3=rri2i3;
+  ptr_ri2i4=rri2i4;
+  for (i2=2; i2 < LD8KConstants.L_SUBFR; i2+=LD8KConstants.STEP) {
+    for (i3=3; i3 < LD8KConstants.L_SUBFR; i3+=LD8KConstants.STEP) {
+      rr[ptr_ri2i3]*=(p_sign[i2] * p_sign[i3]);
+      ptr_ri2i3++;
+      rr[ptr_ri2i4]*=(p_sign[i2] * p_sign[i3 + 1]);
+      ptr_ri2i4++;
+    }
+  }
+  ip0=0;
+  ip1=1;
+  ip2=2;
+  ip3=3;
+  psc=(float)0.0;
+  alpha=(float)1000000.0;
+  time=LD8KConstants.MAX_TIME + extra;
+  ptr_ri0i0=rri0i0;
+  ptr_ri0i1=rri0i1;
+  ptr_ri0i2=rri0i2;
+  ptr_ri0i3=rri0i3;
+  ptr_ri0i4=rri0i4;
+  end_search:   for (i0=0; i0 < LD8KConstants.L_SUBFR; i0+=LD8KConstants.STEP) {
+    ps0=dn[i0];
+    alp0=rr[ptr_ri0i0++];
+    ptr_ri1i1=rri1i1;
+    ptr_ri1i2=rri1i2;
+    ptr_ri1i3=rri1i3;
+    ptr_ri1i4=rri1i4;
+    for (i1=1; i1 < LD8KConstants.L_SUBFR; i1+=LD8KConstants.STEP) {
+      ps1=ps0 + dn[i1];
+      alp1=alp0 + rr[ptr_ri1i1++] + (float)2.0 * rr[ptr_ri0i1++];
+      ptr_ri2i2=rri2i2;
+      ptr_ri2i3=rri2i3;
+      ptr_ri2i4=rri2i4;
+      for (i2=2; i2 < LD8KConstants.L_SUBFR; i2+=LD8KConstants.STEP) {
+        ps2=ps1 + dn[i2];
+        alp2=alp1 + rr[ptr_ri2i2++] + (float)2.0 * (rr[ptr_ri0i2++] + rr[ptr_ri1i2++]);
+        if (ps2 > thres) {
+          ptr_ri3i3=rri3i3;
+          for (i3=3; i3 < LD8KConstants.L_SUBFR; i3+=LD8KConstants.STEP) {
+            ps3=ps2 + dn[i3];
+            alp3=alp2 + rr[ptr_ri3i3++] + (float)2.0 * (rr[ptr_ri1i3++] + rr[ptr_ri0i3++] + rr[ptr_ri2i3++]);
+            ps3c=ps3 * ps3;
+            if ((ps3c * alpha) > (psc * alp3)) {
+              psc=ps3c;
+              alpha=alp3;
+              ip0=i0;
+              ip1=i1;
+              ip2=i2;
+              ip3=i3;
+            }
+          }
+          ptr_ri0i3-=LD8KConstants.NB_POS;
+          ptr_ri1i3-=LD8KConstants.NB_POS;
+          ptr_ri4i4=rri4i4;
+          for (i3=4; i3 < LD8KConstants.L_SUBFR; i3+=LD8KConstants.STEP) {
+            ps3=ps2 + dn[i3];
+            alp3=alp2 + rr[ptr_ri4i4++] + (float)2.0 * (rr[ptr_ri1i4++] + rr[ptr_ri0i4++] + rr[ptr_ri2i4++]);
+            ps3c=ps3 * ps3;
+            if ((ps3c * alpha) > (psc * alp3)) {
+              psc=ps3c;
+              alpha=alp3;
+              ip0=i0;
+              ip1=i1;
+              ip2=i2;
+              ip3=i3;
+            }
+          }
+          ptr_ri0i4-=LD8KConstants.NB_POS;
+          ptr_ri1i4-=LD8KConstants.NB_POS;
+          time--;
+          if (time <= 0)           break end_search;
+        }
+ else {
+          ptr_ri2i3+=LD8KConstants.NB_POS;
+          ptr_ri2i4+=LD8KConstants.NB_POS;
+        }
+      }
+      ptr_ri0i2-=LD8KConstants.NB_POS;
+      ptr_ri1i3+=LD8KConstants.NB_POS;
+      ptr_ri1i4+=LD8KConstants.NB_POS;
+    }
+    ptr_ri0i2+=LD8KConstants.NB_POS;
+    ptr_ri0i3+=LD8KConstants.NB_POS;
+    ptr_ri0i4+=LD8KConstants.NB_POS;
+  }
+  extra=time;
+  for (i=0; i < LD8KConstants.L_SUBFR; i++)   cod[i]=(float)0.0;
+  cod[ip0]=p_sign[ip0];
+  cod[ip1]=p_sign[ip1];
+  cod[ip2]=p_sign[ip2];
+  cod[ip3]=p_sign[ip3];
+  for (i=0; i < LD8KConstants.L_SUBFR; i++)   y[i]=(float)0.0;
+  if (p_sign[ip0] > (float)0.0)   for (i=ip0, j=0; i < LD8KConstants.L_SUBFR; i++, j++)   y[i]=h[j];
+ else   for (i=ip0, j=0; i < LD8KConstants.L_SUBFR; i++, j++)   y[i]=-h[j];
+  if (p_sign[ip1] > (float)0.0)   for (i=ip1, j=0; i < LD8KConstants.L_SUBFR; i++, j++)   y[i]=y[i] + h[j];
+ else   for (i=ip1, j=0; i < LD8KConstants.L_SUBFR; i++, j++)   y[i]=y[i] - h[j];
+  if (p_sign[ip2] > (float)0.0)   for (i=ip2, j=0; i < LD8KConstants.L_SUBFR; i++, j++)   y[i]=y[i] + h[j];
+ else   for (i=ip2, j=0; i < LD8KConstants.L_SUBFR; i++, j++)   y[i]=y[i] - h[j];
+  if (p_sign[ip3] > (float)0.0)   for (i=ip3, j=0; i < LD8KConstants.L_SUBFR; i++, j++)   y[i]=y[i] + h[j];
+ else   for (i=ip3, j=0; i < LD8KConstants.L_SUBFR; i++, j++)   y[i]=y[i] - h[j];
+  i=0;
+  if (p_sign[ip0] > (float)0.0)   i+=1;
+  if (p_sign[ip1] > (float)0.0)   i+=2;
+  if (p_sign[ip2] > (float)0.0)   i+=4;
+  if (p_sign[ip3] > (float)0.0)   i+=8;
+  signs.value=i;
+  ip0=ip0 / 5;
+  ip1=ip1 / 5;
+  ip2=ip2 / 5;
+  j=(ip3 % 5) - 3;
+  ip3=((ip3 / 5) << 1) + j;
+  i=(ip0) + (ip1 << 3) + (ip2 << 6)+ (ip3 << 9);
+  return i;
+}

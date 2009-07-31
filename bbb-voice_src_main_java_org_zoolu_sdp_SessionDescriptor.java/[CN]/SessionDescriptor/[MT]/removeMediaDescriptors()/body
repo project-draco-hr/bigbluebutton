@@ -1,0 +1,4 @@
+{
+  media.setSize(0);
+  return this;
+}

@@ -1,0 +1,3 @@
+{
+  notifier_dialog.notify(state,expires,content_type,body);
+}

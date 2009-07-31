@@ -1,0 +1,6 @@
+{
+  ua.printLog("UAS: WAITING FOR INCOMING CALL");
+  if (!ua.user_profile.audio && !ua.user_profile.video)   ua.printLog("ONLY SIGNALING, NO MEDIA");
+  ua.listen();
+  printOut("digit the callee's URL to make a call or press 'enter' to exit");
+}

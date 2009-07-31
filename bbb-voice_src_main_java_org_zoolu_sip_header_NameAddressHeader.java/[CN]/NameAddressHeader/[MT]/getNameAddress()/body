@@ -1,0 +1,4 @@
+{
+  NameAddress naddr=(new SipParser(value)).getNameAddress();
+  return naddr;
+}

@@ -1,0 +1,84 @@
+{
+  this.setSize(W_Width,W_Height);
+  Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
+  Dimension frameSize=this.getSize();
+  if (frameSize.height > screenSize.height)   frameSize.height=screenSize.height;
+  if (frameSize.width > screenSize.width)   frameSize.width=screenSize.width;
+  this.setLocation((screenSize.width - frameSize.width) / 2 - 40,(screenSize.height - frameSize.height) / 2 - 40);
+  this.setResizable(false);
+  this.setTitle(user_profile.contact_url);
+  this.addWindowListener(new java.awt.event.WindowAdapter(){
+    public void windowClosing(    WindowEvent e){
+      this_windowClosing(e);
+    }
+  }
+);
+  jPanel1.setLayout(borderLayout3);
+  jPanel2.setLayout(borderLayout2);
+  display.setBackground(Color.black);
+  display.setForeground(Color.green);
+  display.setEditable(false);
+  display.setText(app_name);
+  jPanel4.setLayout(borderLayout1);
+  jPanel5.setLayout(gridLayout2);
+  jPanel3.setLayout(gridLayout3);
+  gridLayout3.setRows(2);
+  gridLayout3.setColumns(1);
+  if (icon_call != null && icon_call.getIconWidth() > 0)   jButton1.setIcon(icon_call);
+ else   jButton1.setText("Call");
+  jButton1.addActionListener(new java.awt.event.ActionListener(){
+    public void actionPerformed(    ActionEvent e){
+      jButton1_actionPerformed();
+    }
+  }
+);
+  jButton1.addKeyListener(new java.awt.event.KeyAdapter(){
+    public void keyTyped(    KeyEvent e){
+      jButton1_actionPerformed();
+    }
+  }
+);
+  if (icon_hangup != null && icon_hangup.getIconWidth() > 0)   jButton2.setIcon(icon_hangup);
+ else   jButton2.setText("Hungup");
+  jButton2.addActionListener(new java.awt.event.ActionListener(){
+    public void actionPerformed(    ActionEvent e){
+      jButton2_actionPerformed();
+    }
+  }
+);
+  jButton2.addKeyListener(new java.awt.event.KeyAdapter(){
+    public void keyTyped(    KeyEvent e){
+      jButton2_actionPerformed();
+    }
+  }
+);
+  jComboBox1.addActionListener(new java.awt.event.ActionListener(){
+    public void actionPerformed(    ActionEvent e){
+      jComboBox1_actionPerformed(e);
+    }
+  }
+);
+  comboBoxEditor1.addActionListener(new java.awt.event.ActionListener(){
+    public void actionPerformed(    ActionEvent e){
+      comboBoxEditor1_actionPerformed(e);
+    }
+  }
+);
+  jButton2.setFont(new java.awt.Font("Dialog",0,10));
+  jButton1.setFont(new java.awt.Font("Dialog",0,10));
+  comboBoxEditor1.getEditorComponent().setBackground(Color.yellow);
+  jComboBox1.setEditable(true);
+  jComboBox1.setEditor(comboBoxEditor1);
+  jComboBox1.setSelectedItem(null);
+  jPanel3.setPreferredSize(new Dimension(0,C_Height));
+  this.getContentPane().add(jPanel1,BorderLayout.CENTER);
+  jPanel1.add(jPanel2,BorderLayout.CENTER);
+  jPanel1.add(jPanel3,BorderLayout.SOUTH);
+  jPanel2.add(display,BorderLayout.CENTER);
+  jPanel3.add(jPanel4,null);
+  jPanel3.add(jPanel5,null);
+  jPanel4.add(jComboBox1,BorderLayout.CENTER);
+  jPanel5.add(jButton1,null);
+  jPanel5.add(jButton2,null);
+  this.setVisible(true);
+}

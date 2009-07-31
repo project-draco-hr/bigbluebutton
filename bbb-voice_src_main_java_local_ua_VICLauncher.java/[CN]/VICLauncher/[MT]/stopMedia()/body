@@ -1,0 +1,4 @@
+{
+  if (media_process != null)   media_process.destroy();
+  return true;
+}

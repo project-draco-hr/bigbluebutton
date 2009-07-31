@@ -1,0 +1,14 @@
+{
+  float y2y2, xny2, y1y2;
+  int i;
+  y2y2=(float)0.01;
+  for (i=0; i < LD8KConstants.L_SUBFR; i++)   y2y2+=y2[i] * y2[i];
+  g_coeff[2]=y2y2;
+  xny2=(float)0.01;
+  for (i=0; i < LD8KConstants.L_SUBFR; i++)   xny2+=xn[i] * y2[i];
+  g_coeff[3]=(float)-2.0 * xny2;
+  y1y2=(float)0.01;
+  for (i=0; i < LD8KConstants.L_SUBFR; i++)   y1y2+=y1[i] * y2[i];
+  g_coeff[4]=(float)2.0 * y1y2;
+  return;
+}

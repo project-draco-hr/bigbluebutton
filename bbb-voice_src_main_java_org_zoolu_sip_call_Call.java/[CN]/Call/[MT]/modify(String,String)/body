@@ -1,0 +1,4 @@
+{
+  local_sdp=sdp;
+  if (dialog != null)   dialog.reInvite(contact,local_sdp);
+}

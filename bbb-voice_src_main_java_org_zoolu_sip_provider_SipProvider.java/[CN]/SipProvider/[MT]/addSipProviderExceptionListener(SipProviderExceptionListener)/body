@@ -1,0 +1,11 @@
+{
+  printLog("adding SipProviderExceptionListener",LogLevel.MEDIUM);
+  if (exception_listeners.contains(e_listener)) {
+    printWarning("trying to add an already present SipProviderExceptionListener.",LogLevel.HIGH);
+    return false;
+  }
+ else {
+    exception_listeners.add(e_listener);
+    return true;
+  }
+}

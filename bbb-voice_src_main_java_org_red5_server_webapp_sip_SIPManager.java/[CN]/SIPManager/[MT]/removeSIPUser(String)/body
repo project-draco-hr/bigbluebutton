@@ -1,0 +1,5 @@
+{
+  SIPUser sess=sessions.remove(sipID);
+  sess=null;
+  return sess;
+}

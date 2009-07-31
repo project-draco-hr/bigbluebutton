@@ -1,0 +1,7 @@
+{
+  int header_len=getHeaderLength();
+  int len=packet_len - header_len;
+  byte[] payload=new byte[len];
+  for (int i=0; i < len; i++)   payload[i]=packet[header_len + i];
+  return payload;
+}

@@ -1,0 +1,9 @@
+{
+  printLog("onCallModifying","Init...");
+  if (call != this.call) {
+    printLog("onCallModifying","NOT the current call.");
+    return;
+  }
+  printLog("onCallModifying","RE-INVITE/MODIFY.");
+  super.onCallModifying(call,sdp,invite);
+}

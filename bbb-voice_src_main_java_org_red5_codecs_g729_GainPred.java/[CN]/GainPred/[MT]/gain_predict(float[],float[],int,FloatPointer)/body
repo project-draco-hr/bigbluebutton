@@ -1,0 +1,13 @@
+{
+  float ener_code, pred_code;
+  int i;
+  pred_code=LD8KConstants.MEAN_ENER;
+  ener_code=(float)0.01;
+  for (i=0; i < l_subfr; i++)   ener_code+=code[i] * code[i];
+  ener_code=(float)10.0 * (float)Math.log10(ener_code / (float)l_subfr);
+  pred_code-=ener_code;
+  for (i=0; i < 4; i++)   pred_code+=TabLD8k.pred[i] * past_qua_en[i];
+  gcode0.value=pred_code;
+  gcode0.value=(float)Math.pow((double)10.0,(double)(gcode0.value / 20.0));
+  return;
+}

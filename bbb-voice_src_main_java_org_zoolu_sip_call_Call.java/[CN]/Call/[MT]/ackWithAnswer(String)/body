@@ -1,0 +1,4 @@
+{
+  local_sdp=sdp;
+  dialog.ackWithAnswer(contact_url,sdp);
+}

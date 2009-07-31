@@ -1,0 +1,32 @@
+{
+  int i;
+  float gain_in, gain_out;
+  float g0, gain;
+  gain_in=(float)0.;
+  for (i=0; i < LD8KConstants.L_SUBFR; i++) {
+    gain_in+=(float)Math.abs(sig_in[ins + i]);
+  }
+  if (gain_in == (float)0.) {
+    g0=(float)0.;
+  }
+ else {
+    gain_out=(float)0.;
+    for (i=0; i < LD8KConstants.L_SUBFR; i++) {
+      gain_out+=(float)Math.abs(sig_out[outs + i]);
+    }
+    if (gain_out == (float)0.) {
+      gain_prec.value=(float)0.;
+      return;
+    }
+    g0=gain_in / gain_out;
+    g0*=LD8KConstants.AGC_FAC1;
+  }
+  gain=gain_prec.value;
+  for (i=0; i < LD8KConstants.L_SUBFR; i++) {
+    gain*=LD8KConstants.AGC_FAC;
+    gain+=g0;
+    sig_out[outs + i]*=gain;
+  }
+  gain_prec.value=gain;
+  return;
+}

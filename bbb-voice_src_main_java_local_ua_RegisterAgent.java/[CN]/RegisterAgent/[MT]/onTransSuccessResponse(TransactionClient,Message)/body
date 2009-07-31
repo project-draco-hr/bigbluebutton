@@ -1,0 +1,23 @@
+{
+  if (transaction.getTransactionMethod().equals(SipMethods.REGISTER)) {
+    if (resp.hasAuthenticationInfoHeader()) {
+      next_nonce=resp.getAuthenticationInfoHeader().getNextnonceParam();
+    }
+    StatusLine status=resp.getStatusLine();
+    String result=status.getCode() + " " + status.getReason();
+    int expires=0;
+    if (resp.hasExpiresHeader()) {
+      expires=resp.getExpiresHeader().getDeltaSeconds();
+    }
+ else     if (resp.hasContactHeader()) {
+      Vector contacts=resp.getContacts().getHeaders();
+      for (int i=0; i < contacts.size(); i++) {
+        int exp_i=(new ContactHeader((Header)contacts.elementAt(i))).getExpires();
+        if (exp_i > 0 && (expires == 0 || exp_i < expires))         expires=exp_i;
+      }
+    }
+    if (expires > 0 && expires < renew_time)     renew_time=expires;
+    printLog("Registration success: " + result,LogLevel.HIGH);
+    if (listener != null)     listener.onUaRegistrationSuccess(this,target,contact,result);
+  }
+}

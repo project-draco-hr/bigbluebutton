@@ -1,0 +1,7 @@
+{
+  if (message == null || message.length() < 4)   return false;
+  String version=message.substring(0,4);
+  String target="SIP/";
+  if (version.equalsIgnoreCase(target))   return true;
+  return false;
+}

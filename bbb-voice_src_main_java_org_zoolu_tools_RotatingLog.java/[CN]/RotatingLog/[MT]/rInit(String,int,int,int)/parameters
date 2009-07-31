@@ -1,0 +1,4 @@
+String f_name
+int n_rotations
+int t_scale
+int t_value

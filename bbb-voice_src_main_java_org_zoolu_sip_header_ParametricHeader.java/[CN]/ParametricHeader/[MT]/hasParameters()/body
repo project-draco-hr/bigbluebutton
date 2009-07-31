@@ -1,0 +1,3 @@
+{
+  return indexOfFirstSemi() >= 0;
+}

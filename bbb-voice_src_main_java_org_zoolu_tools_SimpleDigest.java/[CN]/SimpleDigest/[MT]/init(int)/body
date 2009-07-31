@@ -1,0 +1,7 @@
+{
+  is_done=false;
+  message_digest=new byte[size];
+  for (int i=0; i < size; i++)   message_digest[i]=(byte)(i);
+  index=0;
+  add_term=0;
+}

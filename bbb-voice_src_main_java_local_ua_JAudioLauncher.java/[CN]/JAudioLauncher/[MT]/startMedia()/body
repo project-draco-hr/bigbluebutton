@@ -1,0 +1,14 @@
+{
+  printLog("starting java audio..",LogLevel.HIGH);
+  if (sender != null) {
+    printLog("start sending",LogLevel.LOW);
+    sender.start();
+    if (audio_input != null)     audio_input.play();
+  }
+  if (receiver != null) {
+    printLog("start receiving",LogLevel.LOW);
+    receiver.start();
+    if (audio_output != null)     audio_output.play();
+  }
+  return true;
+}

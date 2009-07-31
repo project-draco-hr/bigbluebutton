@@ -1,0 +1,8 @@
+{
+  printLog("Message successfully delivered (" + result + ").");
+  Message req=tc.getRequestMessage();
+  NameAddress recipient=req.getToHeader().getNameAddress();
+  String subject=null;
+  if (req.hasSubjectHeader())   subject=req.getSubjectHeader().getSubject();
+  if (listener != null)   listener.onMaDeliverySuccess(this,recipient,subject,result);
+}

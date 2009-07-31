@@ -1,0 +1,10 @@
+{
+  super(sip_provider,from_url,contact_url,call_listener);
+  this.xcall_listener=call_listener;
+  this.refer=null;
+  this.username=username;
+  this.realm=realm;
+  this.passwd=passwd;
+  this.next_nonce=null;
+  this.qop=null;
+}

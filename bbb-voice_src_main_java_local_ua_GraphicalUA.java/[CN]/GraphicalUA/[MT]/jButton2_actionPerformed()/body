@@ -1,0 +1,7 @@
+{
+  if (!ua.statusIs(UserAgent.UA_IDLE)) {
+    ua.hangup();
+    ua.listen();
+    display.setText("HANGUP");
+  }
+}

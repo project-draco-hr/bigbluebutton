@@ -1,0 +1,3 @@
+{
+  return hasParameter(lr_param);
+}

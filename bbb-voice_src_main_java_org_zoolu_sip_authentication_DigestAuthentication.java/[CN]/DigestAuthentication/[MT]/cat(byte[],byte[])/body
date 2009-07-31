@@ -1,0 +1,7 @@
+{
+  int len=a.length + b.length;
+  byte[] c=new byte[len];
+  for (int i=0; i < a.length; i++)   c[i]=a[i];
+  for (int i=0; i < b.length; i++)   c[i + a.length]=b[i];
+  return c;
+}

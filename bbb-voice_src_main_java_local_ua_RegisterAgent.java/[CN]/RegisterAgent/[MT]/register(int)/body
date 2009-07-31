@@ -1,0 +1,22 @@
+{
+  attempts=0;
+  if (expire_time > 0)   this.expire_time=expire_time;
+  Message req=MessageFactory.createRegisterRequest(sip_provider,target,target,contact);
+  req.setExpiresHeader(new ExpiresHeader(String.valueOf(expire_time)));
+  if (next_nonce != null) {
+    AuthorizationHeader ah=new AuthorizationHeader("Digest");
+    SipURL target_url=target.getAddress();
+    ah.addUsernameParam(username);
+    ah.addRealmParam(realm);
+    ah.addNonceParam(next_nonce);
+    ah.addUriParam(req.getRequestLine().getAddress().toString());
+    ah.addQopParam(qop);
+    String response=(new DigestAuthentication(SipMethods.REGISTER,ah,null,passwd)).getResponse();
+    ah.addResponseParam(response);
+    req.setAuthorizationHeader(ah);
+  }
+  if (expire_time > 0)   printLog("Registering contact " + contact + " (it expires in "+ expire_time+ " secs)",LogLevel.HIGH);
+ else   printLog("Unregistering contact " + contact,LogLevel.HIGH);
+  TransactionClient t=new TransactionClient(sip_provider,req,this);
+  t.request();
+}

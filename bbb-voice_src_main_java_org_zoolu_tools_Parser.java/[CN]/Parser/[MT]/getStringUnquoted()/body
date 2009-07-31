@@ -1,0 +1,13 @@
+{
+  while (index < str.length() && !isChar(str.charAt(index)))   index++;
+  if (index == str.length())   return str.substring(index,index);
+  int next_qmark;
+  if (str.charAt(index) == '"' && (next_qmark=str.indexOf("\"",index + 1)) > 0) {
+    String qtext=str.substring(index + 1,next_qmark);
+    index=next_qmark + 1;
+    return qtext;
+  }
+ else {
+    return getString();
+  }
+}

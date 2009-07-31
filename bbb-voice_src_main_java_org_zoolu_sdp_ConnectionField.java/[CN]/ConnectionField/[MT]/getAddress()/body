@@ -1,0 +1,6 @@
+{
+  String address=(new Parser(value)).skipString().skipString().getString();
+  int i=address.indexOf("/");
+  if (i < 0)   return address;
+ else   return address.substring(0,i);
+}

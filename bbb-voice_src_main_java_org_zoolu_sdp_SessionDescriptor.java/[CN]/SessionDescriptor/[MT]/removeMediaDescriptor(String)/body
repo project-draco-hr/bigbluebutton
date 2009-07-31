@@ -1,0 +1,4 @@
+{
+  for (int i=media.size() - 1; i >= 0; i--)   if (((MediaDescriptor)media.elementAt(i)).getMedia().getMedia().equals(media_type))   media.removeElementAt(i);
+  return this;
+}

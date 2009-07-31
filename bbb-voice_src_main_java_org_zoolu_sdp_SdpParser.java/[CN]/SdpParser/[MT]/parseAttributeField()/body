@@ -1,0 +1,5 @@
+{
+  SdpField sf=parseSdpField('a');
+  if (sf != null)   return new AttributeField(sf);
+ else   return null;
+}

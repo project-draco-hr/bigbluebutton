@@ -1,0 +1,6 @@
+{
+  Parser par=new Parser(str,index);
+  par.goToNextLine();
+  int i=par.getPos();
+  return (i < str.length()) ? i : -1;
+}

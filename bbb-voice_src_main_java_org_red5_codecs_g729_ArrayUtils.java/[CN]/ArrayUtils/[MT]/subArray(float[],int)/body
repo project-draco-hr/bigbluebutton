@@ -1,0 +1,8 @@
+{
+  int nl=array.length - start;
+  float[] ret=new float[nl];
+  for (int q=start; q < array.length; q++) {
+    ret[q - start]=array[q];
+  }
+  return ret;
+}

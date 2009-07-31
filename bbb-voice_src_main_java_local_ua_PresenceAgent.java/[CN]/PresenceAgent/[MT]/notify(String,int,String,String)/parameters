@@ -1,0 +1,4 @@
+String state
+int expires
+String content_type
+String body

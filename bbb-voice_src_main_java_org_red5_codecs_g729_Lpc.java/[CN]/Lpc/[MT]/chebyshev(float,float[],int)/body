@@ -1,0 +1,13 @@
+{
+  float b1, b2, b0, x2;
+  int i;
+  x2=(float)2.0 * x;
+  b2=(float)1.0;
+  b1=x2 + f[1];
+  for (i=2; i < n; i++) {
+    b0=x2 * b1 - b2 + f[i];
+    b2=b1;
+    b1=b0;
+  }
+  return (x * b1 - b2 + (float)0.5 * f[n]);
+}

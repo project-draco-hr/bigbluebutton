@@ -1,0 +1,5 @@
+{
+  SipParser par=new SipParser(value);
+  par.skipString();
+  return par.getString();
+}

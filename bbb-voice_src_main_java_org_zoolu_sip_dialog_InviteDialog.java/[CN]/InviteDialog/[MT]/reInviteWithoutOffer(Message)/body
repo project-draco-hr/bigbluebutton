@@ -1,0 +1,4 @@
+{
+  invite_offer=false;
+  reInvite(invite);
+}

@@ -1,0 +1,14 @@
+{
+  MixerLine ml=new MixerLine(id);
+  for (Enumeration e=splitter_lines.keys(); e.hasMoreElements(); ) {
+    Object sid=e.nextElement();
+    if (!sid.equals(id)) {
+      ExtendedPipedInputStream is=new ExtendedPipedInputStream();
+      ExtendedPipedOutputStream os=new ExtendedPipedOutputStream(is);
+      ml.addLine(sid,is);
+      ((SplitterLine)splitter_lines.get(sid)).addLine(id,os);
+    }
+  }
+  mixer_lines.put(id,ml);
+  return ml;
+}

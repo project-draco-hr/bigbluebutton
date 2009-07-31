@@ -1,0 +1,5 @@
+{
+  ByteArrayOutputStream err=new ByteArrayOutputStream();
+  e.printStackTrace(new PrintStream(err));
+  return err.toString();
+}

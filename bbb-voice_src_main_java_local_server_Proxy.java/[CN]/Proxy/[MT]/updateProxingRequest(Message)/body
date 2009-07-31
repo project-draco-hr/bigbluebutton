@@ -1,0 +1,63 @@
+{
+  printLog("inside updateProxingRequest(msg)",LogLevel.LOW);
+  boolean is_on_route=false;
+  if (msg.hasRouteHeader()) {
+    MultipleHeader mr=msg.getRoutes();
+    SipURL route=(new RouteHeader(mr.getTop())).getNameAddress().getAddress();
+    if (isResponsibleFor(route.getHost(),route.getPort())) {
+      mr.removeTop();
+      if (mr.size() > 0)       msg.setRoutes(mr);
+ else       msg.removeRoutes();
+      is_on_route=true;
+    }
+  }
+  if (server_profile.on_route && msg.isInvite() && !is_on_route) {
+    SipURL rr_url;
+    if (sip_provider.getPort() == SipStack.default_port)     rr_url=new SipURL(sip_provider.getViaAddress());
+ else     rr_url=new SipURL(sip_provider.getViaAddress(),sip_provider.getPort());
+    if (server_profile.loose_route)     rr_url.addLr();
+    RecordRouteHeader rrh=new RecordRouteHeader(new NameAddress(rr_url));
+    msg.addRecordRouteHeader(rrh);
+  }
+  String proto=null;
+  if (msg.hasRouteHeader()) {
+    SipURL route=msg.getRouteHeader().getNameAddress().getAddress();
+    if (route.hasTransport())     proto=route.getTransport();
+  }
+ else   proto=msg.getRequestLine().getAddress().getTransport();
+  if (proto == null)   proto=sip_provider.getDefaultTransport();
+  ViaHeader via=new ViaHeader(proto,sip_provider.getViaAddress(),sip_provider.getPort());
+  if (sip_provider.isRportSet())   via.setRport();
+  String branch=sip_provider.pickBranch(msg);
+  if (server_profile.loop_detection) {
+    String loop_tag=msg.getHeader(Loop_Tag).getValue();
+    if (loop_tag != null) {
+      msg.removeHeader(Loop_Tag);
+      branch+=loop_tag;
+    }
+  }
+  via.setBranch(branch);
+  msg.addViaHeader(via);
+  MaxForwardsHeader maxfwd=msg.getMaxForwardsHeader();
+  if (maxfwd != null)   maxfwd.decrement();
+ else   maxfwd=new MaxForwardsHeader(SipStack.max_forwards);
+  msg.setMaxForwardsHeader(maxfwd);
+  if (server_profile.domain_routing_rules != null && server_profile.domain_routing_rules.length > 0) {
+    RequestLine rl=msg.getRequestLine();
+    SipURL request_uri=rl.getAddress();
+    for (int i=0; i < server_profile.domain_routing_rules.length; i++) {
+      RoutingRule rule=(RoutingRule)server_profile.domain_routing_rules[i];
+      SipURL nexthop=rule.getNexthop(request_uri);
+      if (nexthop != null) {
+        printLog("domain-based routing: " + rule.toString() + ": YES",LogLevel.MEDIUM);
+        printLog("target=" + nexthop.toString(),LogLevel.MEDIUM);
+        rl=new RequestLine(rl.getMethod(),nexthop);
+        msg.setRequestLine(rl);
+        break;
+      }
+ else       printLog("prefix-based routing: " + rule.toString() + ": NO",LogLevel.MEDIUM);
+    }
+  }
+  msg.rfc2543RouteAdapt();
+  return msg;
+}

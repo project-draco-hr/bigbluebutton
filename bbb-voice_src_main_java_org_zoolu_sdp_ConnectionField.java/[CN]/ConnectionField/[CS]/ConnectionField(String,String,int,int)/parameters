@@ -1,0 +1,4 @@
+String address_type
+String address
+int ttl
+int num

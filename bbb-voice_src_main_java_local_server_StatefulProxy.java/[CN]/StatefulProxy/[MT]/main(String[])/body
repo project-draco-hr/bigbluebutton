@@ -1,0 +1,34 @@
+{
+  String file=null;
+  boolean prompt_exit=false;
+  for (int i=0; i < args.length; i++) {
+    if (args[i].equals("-f") && args.length > (i + 1)) {
+      file=args[++i];
+      continue;
+    }
+    if (args[i].equals("--prompt")) {
+      prompt_exit=true;
+      continue;
+    }
+    if (args[i].equals("-h")) {
+      System.out.println("usage:\n   java StatefulProxy [options] \n");
+      System.out.println("   options:");
+      System.out.println("   -h               this help");
+      System.out.println("   -f <config_file> specifies a configuration file");
+      System.out.println("   --prompt         prompt for exit");
+      System.exit(0);
+    }
+  }
+  SipStack.init(file);
+  SipProvider sip_provider=new SipProvider(file);
+  ServerProfile server_profile=new ServerProfile(file);
+  StatefulProxy sproxy=new StatefulProxy(sip_provider,server_profile);
+  if (prompt_exit)   try {
+    System.out.println("press 'enter' to exit");
+    BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+    in.readLine();
+    System.exit(0);
+  }
+ catch (  Exception e) {
+  }
+}

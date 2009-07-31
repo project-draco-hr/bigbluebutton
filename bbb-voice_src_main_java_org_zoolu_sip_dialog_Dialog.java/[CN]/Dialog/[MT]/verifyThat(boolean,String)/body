@@ -1,0 +1,7 @@
+{
+  if (!expression) {
+    if (str == null || str.length() == 0)     printWarning("expression check failed. ",1);
+ else     printWarning(str,1);
+  }
+  return expression;
+}

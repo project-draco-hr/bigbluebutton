@@ -1,0 +1,5 @@
+{
+  SdpField sf=parseSdpField('t');
+  if (sf != null)   return new TimeField(sf);
+ else   return null;
+}

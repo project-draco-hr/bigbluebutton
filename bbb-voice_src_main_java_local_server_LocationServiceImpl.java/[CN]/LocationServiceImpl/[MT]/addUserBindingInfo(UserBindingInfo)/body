@@ -1,0 +1,4 @@
+{
+  if (hasUser(ur.getName()))   removeUser(ur.getName());
+  users.put(ur.getName(),ur);
+}

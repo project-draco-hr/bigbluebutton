@@ -1,0 +1,5 @@
+String file_name
+String log_tag
+int verbose_level
+long max_size
+boolean append

@@ -1,0 +1,9 @@
+{
+  this.sip_provider=sip_provider;
+  this.log=sip_provider.getLog();
+  this.listener=listener;
+  this.user_profile=user_profile;
+  user_profile.initContactAddress(sip_provider);
+  notifier_dialog=new NotifierDialog(sip_provider,this);
+  notifier_dialog.listen();
+}

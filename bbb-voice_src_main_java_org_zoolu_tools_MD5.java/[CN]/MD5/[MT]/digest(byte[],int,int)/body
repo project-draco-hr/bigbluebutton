@@ -1,0 +1,4 @@
+{
+  MD5 md5=new MD5(buffer,offset,len);
+  return md5.doFinal();
+}

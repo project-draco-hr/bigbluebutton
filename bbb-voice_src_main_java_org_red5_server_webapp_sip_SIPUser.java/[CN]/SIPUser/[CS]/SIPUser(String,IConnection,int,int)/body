@@ -1,0 +1,12 @@
+{
+  p("SIPUser Constructor: sip port " + sipPort + " rtp port:"+ rtpPort);
+  try {
+    this.sessionID=sessionID;
+    this.service=service;
+    this.sipPort=sipPort;
+    this.rtpPort=rtpPort;
+  }
+ catch (  Exception e) {
+    p("SIPUser constructor: Exception:>\n" + e);
+  }
+}

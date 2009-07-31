@@ -1,0 +1,19 @@
+{
+  int n;
+  float mu, ga, temp;
+  int ptrs;
+  if (parcor0 > (float)0.) {
+    mu=parcor0 * LD8KConstants.GAMMA3_PLUS;
+  }
+ else {
+    mu=parcor0 * LD8KConstants.GAMMA3_MINUS;
+  }
+  ga=(float)1. / ((float)1. - (float)Math.abs(mu));
+  ptrs=ins;
+  for (n=0; n < LD8KConstants.L_SUBFR; n++) {
+    temp=mu * (sig_in[ptrs++]);
+    temp+=(sig_in[ptrs]);
+    sig_out[outs + n]=ga * temp;
+  }
+  return;
+}

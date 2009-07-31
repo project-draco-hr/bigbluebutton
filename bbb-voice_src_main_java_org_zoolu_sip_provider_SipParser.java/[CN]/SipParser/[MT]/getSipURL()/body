@@ -1,0 +1,10 @@
+{
+  goTo("sip:");
+  if (!hasMore())   return null;
+  int begin=getPos();
+  int end=indexOf(uri_separators);
+  if (end < 0)   end=str.length();
+  String url=getString(end - begin);
+  if (hasMore())   skipChar();
+  return new SipURL(url);
+}

@@ -1,0 +1,14 @@
+{
+  if (ua.statusIs(UserAgent.UA_IDLE)) {
+    String url=(String)comboBoxEditor1.getItem();
+    if (url != null && url.length() > 0) {
+      ua.hangup();
+      ua.call(url);
+      display.setText("CALLING " + url);
+    }
+  }
+ else   if (ua.statusIs(UserAgent.UA_INCOMING_CALL)) {
+    ua.accept();
+    display.setText("ON CALL");
+  }
+}

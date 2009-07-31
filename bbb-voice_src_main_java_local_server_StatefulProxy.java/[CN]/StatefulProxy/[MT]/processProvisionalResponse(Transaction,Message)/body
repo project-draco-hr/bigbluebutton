@@ -1,0 +1,9 @@
+{
+  printLog("inside processProvisionalResponse(t,resp)",LogLevel.MEDIUM);
+  int code=resp.getStatusLine().getCode();
+  TransactionServer ts=state.getServer(transaction);
+  if (ts != null && code != 100) {
+    updateProxingResponse(resp);
+    if (resp.hasViaHeader())     ts.respondWith(resp);
+  }
+}

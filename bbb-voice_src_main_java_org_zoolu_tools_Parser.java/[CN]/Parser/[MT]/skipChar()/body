@@ -1,0 +1,4 @@
+{
+  if (index < str.length())   index++;
+  return this;
+}

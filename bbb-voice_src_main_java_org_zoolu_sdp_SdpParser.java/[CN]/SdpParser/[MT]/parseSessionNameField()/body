@@ -1,0 +1,5 @@
+{
+  SdpField sf=parseSdpField('s');
+  if (sf != null)   return new SessionNameField(sf);
+ else   return null;
+}

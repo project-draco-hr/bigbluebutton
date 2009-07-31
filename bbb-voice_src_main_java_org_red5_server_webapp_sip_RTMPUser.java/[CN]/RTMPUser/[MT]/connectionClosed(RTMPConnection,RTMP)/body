@@ -1,0 +1,4 @@
+{
+  logger.debug("connection closed");
+  super.connectionClosed(conn,state);
+}

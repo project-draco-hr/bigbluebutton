@@ -1,0 +1,4 @@
+{
+  printLog("inside redirect(" + code + ","+ reason+ ","+ contact+ ")",LogLevel.MEDIUM);
+  respond(code,reason,contact,null);
+}

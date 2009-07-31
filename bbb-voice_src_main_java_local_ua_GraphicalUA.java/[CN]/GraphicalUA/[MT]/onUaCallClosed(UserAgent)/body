@@ -1,0 +1,4 @@
+{
+  display.setText("BYE");
+  ua.listen();
+}

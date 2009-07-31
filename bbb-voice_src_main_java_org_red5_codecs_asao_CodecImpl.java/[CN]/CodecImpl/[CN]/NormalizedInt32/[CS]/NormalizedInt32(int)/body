@@ -1,0 +1,31 @@
+{
+  if (val == 0) {
+    value=val;
+    scale=31;
+    return;
+  }
+ else   if (val >= (1 << 30)) {
+    value=0;
+    scale=0;
+    return;
+  }
+  int v=val;
+  int s=0;
+  if (v > 0) {
+    do {
+      v<<=1;
+      ++s;
+    }
+ while (v < (1 << 30));
+  }
+ else {
+    final int floor=1 << 31;
+    do {
+      v<<=1;
+      ++s;
+    }
+ while (v > floor + (1 << 30));
+  }
+  value=v;
+  scale=s;
+}

@@ -1,0 +1,4 @@
+{
+  if (message.startsWith(method))   return true;
+ else   return false;
+}

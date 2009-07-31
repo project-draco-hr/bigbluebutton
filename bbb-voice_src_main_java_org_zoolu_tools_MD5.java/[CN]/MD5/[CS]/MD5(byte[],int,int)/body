@@ -1,0 +1,4 @@
+{
+  init();
+  update(buffer,offset,len);
+}

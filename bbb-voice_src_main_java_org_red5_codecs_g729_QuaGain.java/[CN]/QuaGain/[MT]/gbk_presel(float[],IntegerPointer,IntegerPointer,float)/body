@@ -1,0 +1,38 @@
+{
+  float x, y;
+  x=(best_gain[1] - (TabLD8k.coef[0][0] * best_gain[0] + TabLD8k.coef[1][1]) * gcode0) * LD8KConstants.INV_COEF;
+  y=(TabLD8k.coef[1][0] * (-TabLD8k.coef[0][1] + best_gain[0] * TabLD8k.coef[0][0]) * gcode0 - TabLD8k.coef[0][0] * best_gain[1]) * LD8KConstants.INV_COEF;
+  if (gcode0 > (float)0.0) {
+    cand1.value=0;
+    do {
+      if (y > TabLD8k.thr1[cand1.value] * gcode0) {
+        cand1.value=cand1.value + 1;
+      }
+ else       break;
+    }
+ while ((cand1.value) < (LD8KConstants.NCODE1 - LD8KConstants.NCAN1));
+    cand2.value=0;
+    do {
+      if (x > TabLD8k.thr2[cand2.value] * gcode0) {
+        cand2.value=cand2.value + 1;
+      }
+ else       break;
+    }
+ while ((cand2.value) < (LD8KConstants.NCODE2 - LD8KConstants.NCAN2));
+  }
+ else {
+    cand1.value=0;
+    do {
+      if (y < TabLD8k.thr1[cand1.value] * gcode0)       (cand1.value)++;
+ else       break;
+    }
+ while ((cand1.value) < (LD8KConstants.NCODE1 - LD8KConstants.NCAN1));
+    cand2.value=0;
+    do {
+      if (x < TabLD8k.thr2[cand2.value] * gcode0)       (cand2.value)++;
+ else       break;
+    }
+ while ((cand2.value) < (LD8KConstants.NCODE2 - LD8KConstants.NCAN2));
+  }
+  return;
+}

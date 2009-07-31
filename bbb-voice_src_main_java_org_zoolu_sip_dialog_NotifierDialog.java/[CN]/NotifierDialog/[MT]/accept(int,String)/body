@@ -1,0 +1,4 @@
+{
+  printLog("inside accept()",LogLevel.MEDIUM);
+  respond(202,SipResponses.reasonOf(202),expires,contact,null,null);
+}

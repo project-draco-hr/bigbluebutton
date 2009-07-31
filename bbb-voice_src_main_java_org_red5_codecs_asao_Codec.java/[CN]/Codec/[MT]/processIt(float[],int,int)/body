@@ -1,0 +1,19 @@
+{
+  int k1=1;
+  int l1=1;
+  for (int i2=j1 << 1; l1 < i2; l1+=2) {
+    if (l1 < k1) {
+      float f1=af[i1 + l1];
+      af[i1 + l1]=af[i1 + k1];
+      af[i1 + k1]=f1;
+      float f2=af[(i1 + l1) - 1];
+      af[(i1 + l1) - 1]=af[(i1 + k1) - 1];
+      af[(i1 + k1) - 1]=f2;
+    }
+    int j2;
+    for (j2=j1; j2 > 1 && j2 < k1; j2>>=1) {
+      k1-=j2;
+    }
+    k1+=j2;
+  }
+}

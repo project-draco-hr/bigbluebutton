@@ -1,0 +1,4 @@
+{
+  super(provider,server_profile);
+  if (server_profile.call_log)   call_logger=new CallLoggerImpl(SipStack.log_path + "//" + provider.getViaAddress()+ "."+ provider.getPort()+ "_calls.log");
+}

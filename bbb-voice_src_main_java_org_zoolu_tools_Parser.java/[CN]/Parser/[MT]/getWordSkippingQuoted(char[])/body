@@ -1,0 +1,12 @@
+{
+  int begin=index;
+  while (begin < str.length() && isAnyOf(separators,str.charAt(begin)))   begin++;
+  boolean inside_quoted_string=false;
+  int end=begin;
+  while (end < str.length() && (!isAnyOf(separators,str.charAt(end)) || inside_quoted_string)) {
+    if (str.charAt(end) == '"')     inside_quoted_string=!inside_quoted_string;
+    end++;
+  }
+  index=end;
+  return str.substring(begin,end);
+}

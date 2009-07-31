@@ -1,0 +1,5 @@
+{
+  active=true;
+  if (SINGLE_THREAD)   new InnerTimerST(time,this);
+ else   new InnerTimer(time,this);
+}

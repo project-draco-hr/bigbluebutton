@@ -1,0 +1,3 @@
+{
+  return Random.nextNumString(12) + "@" + getViaAddress();
+}

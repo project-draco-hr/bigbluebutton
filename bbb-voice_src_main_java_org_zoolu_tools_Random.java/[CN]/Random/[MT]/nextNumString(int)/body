@@ -1,0 +1,5 @@
+{
+  byte[] buff=new byte[len];
+  for (int i=0; i < len; i++)   buff[i]=(byte)(48 + nextInt(10));
+  return new String(buff);
+}

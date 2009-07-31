@@ -1,0 +1,14 @@
+{
+  try {
+    sink.stop();
+    sink.close();
+  }
+ catch (  IOException e) {
+    return "Failed closing DataSink";
+  }
+  System.out.println("Stop sending");
+  processor.stop();
+  processor.deallocate();
+  processor.close();
+  return null;
+}

@@ -1,0 +1,18 @@
+{
+  int d=0;
+  if (len <= 0) {
+    return d;
+  }
+  final int var_1=1 << (scale - 1);
+  for (int i=0; i < len; ++i) {
+    int var_2=(int)in[i] - base;
+    if (var_2 < 0) {
+      var_2=0;
+    }
+ else {
+      var_2=(var_2 + var_1) >> scale;
+    }
+    d+=Math.min(var_2,upper_bound);
+  }
+  return d;
+}

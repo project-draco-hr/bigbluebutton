@@ -1,0 +1,6 @@
+NotifierDialog dialog
+NameAddress target
+NameAddress subscriber
+String event
+String id
+Message msg

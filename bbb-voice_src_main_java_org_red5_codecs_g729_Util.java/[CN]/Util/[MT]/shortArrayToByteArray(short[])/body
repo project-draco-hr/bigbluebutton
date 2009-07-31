@@ -1,0 +1,9 @@
+{
+  byte[] s=new byte[values.length * 2];
+  for (int q=0; q < values.length; q++) {
+    byte[] bytes=shortToBytes(values[q]);
+    s[2 * q]=bytes[0];
+    s[2 * q + 1]=bytes[1];
+  }
+  return s;
+}

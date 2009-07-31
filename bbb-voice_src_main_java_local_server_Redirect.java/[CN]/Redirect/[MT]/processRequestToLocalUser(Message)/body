@@ -1,0 +1,15 @@
+{
+  printLog("inside processRequestToLocalUser(msg)",LogLevel.MEDIUM);
+  Vector contacts=getTargets(msg);
+  if (contacts.isEmpty()) {
+    printLog("No target found, message discarded",LogLevel.HIGH);
+    if (!msg.isAck())     sip_provider.sendMessage(MessageFactory.createResponse(msg,404,SipResponses.reasonOf(404),null));
+    return;
+  }
+  printLog("message will be redirect to all user's contacts",LogLevel.MEDIUM);
+  MultipleHeader mc=new MultipleHeader(SipHeaders.Contact,contacts);
+  mc.setCommaSeparated(true);
+  Message resp=MessageFactory.createResponse(msg,302,SipResponses.reasonOf(302),null);
+  resp.setContacts(mc);
+  sip_provider.sendMessage(resp);
+}

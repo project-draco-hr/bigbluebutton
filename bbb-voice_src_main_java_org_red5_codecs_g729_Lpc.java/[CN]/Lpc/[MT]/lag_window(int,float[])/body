@@ -1,0 +1,5 @@
+{
+  int i;
+  for (i=1; i <= m; i++)   r[i]*=TabLD8k.lwindow[i - 1];
+  return;
+}

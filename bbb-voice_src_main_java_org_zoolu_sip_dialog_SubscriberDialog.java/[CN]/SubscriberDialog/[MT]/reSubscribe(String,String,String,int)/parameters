@@ -1,0 +1,4 @@
+String target
+String subscriber
+String contact
+int expires

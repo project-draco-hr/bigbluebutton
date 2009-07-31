@@ -1,0 +1,5 @@
+short[] in
+int scale
+int len
+int upper_bound
+int base

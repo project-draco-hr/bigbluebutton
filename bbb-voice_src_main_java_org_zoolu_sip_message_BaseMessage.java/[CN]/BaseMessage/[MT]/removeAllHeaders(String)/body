@@ -1,0 +1,13 @@
+{
+  String[] target={'\n' + hname,'\r' + hname};
+  SipParser par=new SipParser(message);
+  par.goTo(target);
+  while (par.hasMore()) {
+    par.skipChar();
+    String head=message.substring(0,par.getPos());
+    String tail=message.substring(par.indexOfNextHeader());
+    message=head.concat(tail);
+    par=new SipParser(message,par.getPos() - 1);
+    par.goTo(target);
+  }
+}

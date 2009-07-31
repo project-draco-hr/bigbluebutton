@@ -1,0 +1,4 @@
+{
+  log.debug("SipAudioLauncher - " + method + " -> "+ message);
+  System.out.println("SipAudioLauncher - " + method + " -> "+ message);
+}

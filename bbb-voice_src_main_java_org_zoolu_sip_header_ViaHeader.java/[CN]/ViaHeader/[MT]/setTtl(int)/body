@@ -1,0 +1,3 @@
+{
+  setParameter(ttl_param,Integer.toString(ttl));
+}

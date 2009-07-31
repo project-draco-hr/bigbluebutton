@@ -1,0 +1,5 @@
+{
+  super(hname,auth_scheme);
+  if (auth_params.size() > 0)   value+=" " + (String)auth_params.elementAt(0);
+  for (int i=1; i < auth_params.size(); i++)   value+="," + LWS_SEPARATOR + (String)auth_params.elementAt(i);
+}

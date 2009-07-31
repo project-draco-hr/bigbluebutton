@@ -1,0 +1,9 @@
+{
+  if (!hasHeader(refer_header))   addHeaders(str,false);
+ else {
+    SipParser par=new SipParser(message);
+    par.goTo(refer_header);
+    int here=par.indexOfNextHeader();
+    message=message.substring(0,here) + str + message.substring(here);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  if (body != null)   printLog("Notification: " + body,LogLevel.HIGH);
+ else   printLog("Notification: " + state,LogLevel.HIGH);
+}

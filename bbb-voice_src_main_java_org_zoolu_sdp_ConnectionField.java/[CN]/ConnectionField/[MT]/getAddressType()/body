@@ -1,0 +1,4 @@
+{
+  String type=(new Parser(value)).skipString().getString();
+  return type;
+}

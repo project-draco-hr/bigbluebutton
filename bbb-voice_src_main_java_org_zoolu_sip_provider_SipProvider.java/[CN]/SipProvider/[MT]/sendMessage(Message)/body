@@ -1,0 +1,44 @@
+{
+  printLog("Sending message:\r\n" + msg.toString(),LogLevel.LOWER);
+  ViaHeader via=msg.getViaHeader();
+  String proto=via.getProtocol().toLowerCase();
+  printLog("using transport " + proto,LogLevel.MEDIUM);
+  String dest_addr=null;
+  int dest_port=0;
+  int ttl=0;
+  if (msg.isRequest()) {
+    if (outbound_proxy != null) {
+      dest_addr=outbound_proxy.getAddress().toString();
+      dest_port=outbound_proxy.getPort();
+    }
+ else {
+      if (msg.hasRouteHeader() && msg.getRouteHeader().getNameAddress().getAddress().hasLr()) {
+        SipURL url=msg.getRouteHeader().getNameAddress().getAddress();
+        dest_addr=url.getHost();
+        dest_port=url.getPort();
+      }
+ else {
+        SipURL url=msg.getRequestLine().getAddress();
+        dest_addr=url.getHost();
+        dest_port=url.getPort();
+        if (url.hasMaddr()) {
+          dest_addr=url.getMaddr();
+          if (url.hasTtl())           ttl=url.getTtl();
+          via.setMaddr(dest_addr);
+          if (ttl > 0)           via.setTtl(ttl);
+          msg.removeViaHeader();
+          msg.addViaHeader(via);
+        }
+      }
+    }
+  }
+ else {
+    SipURL url=via.getSipURL();
+    if (via.hasReceived())     dest_addr=via.getReceived();
+ else     dest_addr=url.getHost();
+    if (via.hasRport())     dest_port=via.getRport();
+    if (dest_port <= 0)     dest_port=url.getPort();
+  }
+  if (dest_port <= 0)   dest_port=SipStack.default_port;
+  return sendMessage(msg,proto,dest_addr,dest_port,ttl);
+}

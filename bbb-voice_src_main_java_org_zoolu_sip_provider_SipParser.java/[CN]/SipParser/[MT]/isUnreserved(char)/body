@@ -1,0 +1,3 @@
+{
+  return (isAlphanum(c) || isMark(c));
+}

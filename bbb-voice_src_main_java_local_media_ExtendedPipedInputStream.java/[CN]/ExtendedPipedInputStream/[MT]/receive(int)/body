@@ -1,0 +1,7 @@
+{
+  try {
+    if (in != out)     super.receive(b);
+  }
+ catch (  IOException e) {
+  }
+}

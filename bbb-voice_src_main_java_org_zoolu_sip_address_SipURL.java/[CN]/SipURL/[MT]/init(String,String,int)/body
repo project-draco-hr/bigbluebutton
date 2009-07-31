@@ -1,0 +1,7 @@
+{
+  StringBuffer sb=new StringBuffer("sip:");
+  if (username != null)   sb.append(username).append('@');
+  sb.append(hostname);
+  if (portnumber > 0)   sb.append(":" + portnumber);
+  url=sb.toString();
+}

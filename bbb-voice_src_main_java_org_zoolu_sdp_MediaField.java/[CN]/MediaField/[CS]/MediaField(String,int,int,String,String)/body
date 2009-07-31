@@ -1,0 +1,6 @@
+{
+  super('m',null);
+  value=media + " " + port;
+  if (num > 0)   value+="/" + num;
+  value+=" " + transport + " "+ formats;
+}

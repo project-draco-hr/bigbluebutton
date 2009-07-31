@@ -1,0 +1,7 @@
+{
+  log=logger;
+  command=rat_comm;
+  localport=local_port;
+  remoteport=remote_port;
+  remoteaddr=remote_addr;
+}

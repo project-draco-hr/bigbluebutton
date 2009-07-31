@@ -1,0 +1,6 @@
+{
+  retransmission_to.halt();
+  transaction_to.halt();
+  changeStatus(STATE_TERMINATED);
+  transaction_listener=null;
+}

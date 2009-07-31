@@ -1,0 +1,13 @@
+{
+  log=logger;
+  localport=local_port;
+  remoteport=remote_port;
+  remoteaddr=remote_addr;
+  dir=direction;
+  if (remote_addr.startsWith("127.")) {
+    printLog("Patch for JMF: replaced local destination address " + remote_addr + " with 255.255.255.255");
+    remote_addr="255.255.255.255";
+  }
+  if (dir >= 0)   sender=new JMediaSender("video",null,remote_addr,remote_port);
+  if (dir <= 0)   receiver=new JVisualReceiver("video",local_port);
+}

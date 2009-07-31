@@ -1,0 +1,12 @@
+{
+  byte[] c=new byte[m.length];
+  for (int i=0; i < m.length; i++) {
+    index++;
+    if (index == size) {
+      h=hash(cat(skey,h));
+      index=0;
+    }
+    c[i]=(byte)(m[i] ^ h[index]);
+  }
+  return c;
+}

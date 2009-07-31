@@ -1,0 +1,6 @@
+{
+  this.local_port=local_port;
+  this.dest_sockets=dest_sockets;
+  this.no_relay_dest_socket=no_dest_socket;
+  stop=false;
+}

@@ -1,0 +1,11 @@
+{
+  boolean isPayloadAttribute=false;
+  printLog("isPayloadRelatedAttribute","Init...");
+  printLog("isPayloadRelatedAttribute","AttributeName = [" + attribute.getAttributeName() + "], AttributeValue = ["+ attribute.getAttributeValue()+ "].");
+  if ((attribute.getAttributeName().compareToIgnoreCase(SIPCodec.ATTRIBUTE_RTPMAP) == 0) || (attribute.getAttributeName().compareToIgnoreCase(SIPCodec.ATTRIBUTE_AS) == 0) || (attribute.getAttributeName().compareToIgnoreCase(SIPCodec.ATTRIBUTE_FMTP) == 0)) {
+    isPayloadAttribute=true;
+  }
+  printLog("isPayloadRelatedAttribute","isPayloadAttribute = " + isPayloadAttribute);
+  printLog("isPayloadRelatedAttribute","End...");
+  return isPayloadAttribute;
+}

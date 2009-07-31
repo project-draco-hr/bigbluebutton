@@ -1,0 +1,5 @@
+{
+  printLog("inside statefulServerResponse(msg)",LogLevel.MEDIUM);
+  printLog("Server response: " + resp.getStatusLine().toString(),LogLevel.MEDIUM);
+  ts.respondWith(resp);
+}

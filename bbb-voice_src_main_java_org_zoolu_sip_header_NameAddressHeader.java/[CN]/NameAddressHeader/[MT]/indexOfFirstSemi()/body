@@ -1,0 +1,8 @@
+{
+  Parser par=new Parser(value);
+  par.goToSkippingQuoted('>');
+  if (par.getPos() == value.length())   par.setPos(0);
+  par.goToSkippingQuoted(';');
+  if (par.getPos() < value.length())   return par.getPos();
+ else   return -1;
+}

@@ -1,0 +1,9 @@
+{
+  if (udp_provider != null) {
+    byte[] data=msg.toString().getBytes();
+    UdpPacket packet=new UdpPacket(data,data.length);
+    packet.setIpAddress(dest_ipaddr);
+    packet.setPort(dest_port);
+    udp_provider.send(packet);
+  }
+}

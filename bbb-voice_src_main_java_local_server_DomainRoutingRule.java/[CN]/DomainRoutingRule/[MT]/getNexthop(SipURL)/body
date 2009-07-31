@@ -1,0 +1,7 @@
+{
+  String host=sip_url.getHost();
+  if ((host.equalsIgnoreCase(domain))) {
+    return new SipURL(sip_url.getUserName(),nexthop.getAddress().toString(),nexthop.getPort());
+  }
+ else   return null;
+}

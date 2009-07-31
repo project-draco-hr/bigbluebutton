@@ -1,0 +1,43 @@
+{
+  printLog("message received",LogLevel.MEDIUM);
+  if (msg.isRequest()) {
+    printLog("message is a request",LogLevel.MEDIUM);
+    Message err_resp=validateRequest(msg);
+    if (err_resp != null) {
+      if (!msg.isAck())       sip_provider.sendMessage(err_resp);
+      return;
+    }
+    SipURL target=msg.getRequestLine().getAddress();
+    if (isResponsibleFor(target.getHost(),target.getPort()) && msg.hasRouteHeader()) {
+      SipURL route_url=(new RouteHeader(msg.getRoutes().getBottom())).getNameAddress().getAddress();
+      if (!route_url.hasLr()) {
+        printLog("probably the message was compliant to RFC2543 Strict Route rule: message is updated to RFC3261",LogLevel.MEDIUM);
+        msg.rfc2543toRfc3261RouteUpdate();
+        target=msg.getRequestLine().getAddress();
+        printLog("new recipient: " + target.toString(),LogLevel.LOW);
+      }
+    }
+    if (isResponsibleFor(msg)) {
+      printLog("the request is for the local server",LogLevel.LOW);
+      if (target.hasUserName()) {
+        printLog("the request is for a local user",LogLevel.LOW);
+        processRequestToLocalUser(msg);
+      }
+ else {
+        printLog("no username: the request is for the local server",LogLevel.LOW);
+        processRequestToLocalServer(msg);
+      }
+    }
+ else {
+      printLog("the request is not for the local server",LogLevel.LOW);
+      processRequestToRemoteUA(msg);
+    }
+  }
+ else {
+    if (msg.isResponse()) {
+      printLog("message is a response",LogLevel.LOW);
+      processResponse(msg);
+    }
+ else     printWarning("received message is not recognized as a request nor a response: discarded",LogLevel.HIGH);
+  }
+}

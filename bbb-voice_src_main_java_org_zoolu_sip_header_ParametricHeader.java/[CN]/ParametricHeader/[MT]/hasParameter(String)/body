@@ -1,0 +1,5 @@
+{
+  int index=indexOfFirstSemi();
+  if (index < 0)   return false;
+  return (new SipParser((new Parser(getValue(),index)).skipChar().skipWSP())).hasParameter(name);
+}

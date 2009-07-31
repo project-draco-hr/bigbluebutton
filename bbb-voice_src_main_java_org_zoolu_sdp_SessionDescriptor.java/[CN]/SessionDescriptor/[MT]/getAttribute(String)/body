@@ -1,0 +1,7 @@
+{
+  for (int i=0; i < media.size(); i++) {
+    AttributeField af=(AttributeField)av.elementAt(i);
+    if (af.getAttributeName().equals(attribute_name))     return af;
+  }
+  return null;
+}

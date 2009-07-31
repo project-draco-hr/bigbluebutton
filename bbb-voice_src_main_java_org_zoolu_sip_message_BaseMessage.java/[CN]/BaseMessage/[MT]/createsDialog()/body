@@ -1,0 +1,6 @@
+{
+  if (!isRequest())   return false;
+  String method=getRequestLine().getMethod();
+  for (int i=0; i < SipMethods.dialog_methods.length; i++)   if (method.equalsIgnoreCase(SipMethods.dialog_methods[i]))   return true;
+  return false;
+}

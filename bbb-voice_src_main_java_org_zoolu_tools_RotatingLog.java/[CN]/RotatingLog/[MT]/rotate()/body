@@ -1,0 +1,17 @@
+{
+  if (num_rotations > 0) {
+    for (int i=num_rotations - 2; i > 0; i--) {
+      rename(file_name + i,file_name + (i + 1));
+    }
+    if (out_stream != null)     out_stream.close();
+    if (num_rotations > 1)     rename(file_name,file_name + 1);
+    try {
+      out_stream=new PrintStream(new FileOutputStream(file_name));
+    }
+ catch (    IOException e) {
+      e.printStackTrace();
+    }
+    init(out_stream,log_tag,verbose_level,max_size);
+  }
+  return this;
+}

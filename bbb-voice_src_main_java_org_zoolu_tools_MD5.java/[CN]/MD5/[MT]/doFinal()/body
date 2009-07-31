@@ -1,0 +1,21 @@
+{
+  if (message_digest != null)   return message_digest;
+  int npad=64 - ((block_offset + 8) % 64);
+  long len=count * 8;
+  byte[] len_field=new byte[8];
+  for (int i=0; i < 8; i++) {
+    len_field[i]=(byte)(len % 256);
+    len>>=8;
+  }
+  update(zeropadding,0,npad);
+  update(len_field,0,8);
+  message_digest=new byte[16];
+  int k=0;
+  for (int i=0; i < 4; i++) {
+    message_digest[k++]=(byte)((state[i]) & 0xff);
+    message_digest[k++]=(byte)((state[i] >>> 8) & 0xff);
+    message_digest[k++]=(byte)((state[i] >>> 16) & 0xff);
+    message_digest[k++]=(byte)((state[i] >>> 24) & 0xff);
+  }
+  return message_digest;
+}

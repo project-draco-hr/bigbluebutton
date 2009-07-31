@@ -1,0 +1,4 @@
+{
+  if (sipurl.startsWith("sip:"))   url=new String(sipurl);
+ else   url="sip:" + sipurl;
+}

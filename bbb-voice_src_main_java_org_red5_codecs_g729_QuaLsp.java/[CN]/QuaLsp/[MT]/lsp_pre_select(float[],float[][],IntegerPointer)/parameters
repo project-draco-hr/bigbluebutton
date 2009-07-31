@@ -1,0 +1,3 @@
+float rbuf[]
+float lspcb1[][]
+IntegerPointer cand

@@ -1,0 +1,4 @@
+{
+  o=origin;
+  return this;
+}

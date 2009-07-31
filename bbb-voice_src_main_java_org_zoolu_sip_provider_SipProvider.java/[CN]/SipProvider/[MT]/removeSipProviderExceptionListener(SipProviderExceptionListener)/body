@@ -1,0 +1,11 @@
+{
+  printLog("removing SipProviderExceptionListener",LogLevel.MEDIUM);
+  if (!exception_listeners.contains(e_listener)) {
+    printWarning("trying to remove a missed SipProviderExceptionListener.",LogLevel.HIGH);
+    return false;
+  }
+ else {
+    exception_listeners.remove(e_listener);
+    return true;
+  }
+}

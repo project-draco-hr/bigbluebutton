@@ -1,0 +1,4 @@
+{
+  dialog=new InviteDialog(sip_provider,this);
+  dialog.listen();
+}

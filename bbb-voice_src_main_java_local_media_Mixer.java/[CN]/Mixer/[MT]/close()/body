@@ -1,0 +1,10 @@
+{
+  for (Enumeration e=splitter_lines.elements(); e.hasMoreElements(); ) {
+    ((SplitterLine)e.nextElement()).close();
+  }
+  for (Enumeration e=mixer_lines.elements(); e.hasMoreElements(); ) {
+    ((MixerLine)e.nextElement()).close();
+  }
+  mixer_lines=null;
+  splitter_lines=null;
+}

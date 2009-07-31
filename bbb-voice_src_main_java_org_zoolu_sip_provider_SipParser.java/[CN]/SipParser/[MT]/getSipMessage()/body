@@ -1,0 +1,23 @@
+{
+  skipCRLF();
+  String text;
+  if (getPos() == 0)   text=str;
+ else   text=getRemainingString();
+  Message msg=new Message(text);
+  if (!msg.hasContentLengthHeader())   return null;
+  int body_len=msg.getContentLengthHeader().getContentLength();
+  int begin=getPos();
+  goToEndOfLastHeader();
+  if (!hasMore())   return null;
+  goTo('\n');
+  if (!hasMore())   return null;
+  skipChar().goTo('\n');
+  if (!hasMore())   return null;
+  int body_pos=skipChar().getPos();
+  int end=body_pos + body_len;
+  if (end <= str.length()) {
+    index=end;
+    return new Message(str.substring(begin,end));
+  }
+ else   return null;
+}

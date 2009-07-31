@@ -1,0 +1,10 @@
+{
+  int secs=-1;
+  if (isDate()) {
+    Date date=(new SipParser((new Parser(value)).getStringUnquoted())).getDate();
+    secs=(int)((date.getTime() - System.currentTimeMillis()) / 1000);
+    if (secs < 0)     secs=0;
+  }
+ else   secs=(new SipParser(value)).getInt();
+  return secs;
+}

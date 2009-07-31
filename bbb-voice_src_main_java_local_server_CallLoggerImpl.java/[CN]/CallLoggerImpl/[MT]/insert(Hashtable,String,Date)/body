@@ -1,0 +1,17 @@
+{
+  if (!invite_dates.containsKey(call_id) && !accepted_dates.containsKey(call_id) && !refused_dates.containsKey(call_id)&& !bye_dates.containsKey(call_id))   ;
+{
+    if (calls.size() >= MAX_SIZE) {
+      String call_0=(String)calls.elementAt(0);
+      invite_dates.remove(call_0);
+      accepted_dates.remove(call_0);
+      refused_dates.remove(call_0);
+      bye_dates.remove(call_0);
+      callers.remove(call_0);
+      callees.remove(call_0);
+      calls.removeElementAt(0);
+    }
+    calls.addElement(call_id);
+  }
+  table.put(call_id,time);
+}

@@ -1,0 +1,11 @@
+{
+  printOut("incoming call from " + caller.toString());
+  String audio_file=callee.getAddress().getParameter(PARAM_RESOURCE);
+  if (audio_file != null) {
+    if (new File(audio_file).isFile()) {
+      user_profile.send_file=audio_file;
+    }
+  }
+  if (user_profile.send_file != null)   ua.accept();
+ else   ua.hangup();
+}

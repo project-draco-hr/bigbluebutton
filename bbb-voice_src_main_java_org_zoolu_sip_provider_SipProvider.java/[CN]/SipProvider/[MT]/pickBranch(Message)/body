@@ -1,0 +1,15 @@
+{
+  StringBuffer sb=new StringBuffer();
+  sb.append(msg.getRequestLine().getAddress().toString());
+  sb.append(getViaAddress() + getPort());
+  ViaHeader top_via=msg.getViaHeader();
+  if (top_via.hasBranch())   sb.append(top_via.getBranch());
+ else {
+    sb.append(top_via.getHost() + top_via.getPort());
+    sb.append(msg.getCSeqHeader().getSequenceNumber());
+    sb.append(msg.getCallIdHeader().getCallId());
+    sb.append(msg.getFromHeader().getTag());
+    sb.append(msg.getToHeader().getTag());
+  }
+  return "z9hG4bK" + (new SimpleDigest(5,sb.toString())).asHex();
+}

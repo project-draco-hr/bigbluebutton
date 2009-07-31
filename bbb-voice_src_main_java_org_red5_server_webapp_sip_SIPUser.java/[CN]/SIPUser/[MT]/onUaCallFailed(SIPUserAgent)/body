@@ -1,0 +1,8 @@
+{
+  sipReady=false;
+  closeStreams();
+  if (service != null) {
+    ((IServiceCapableConnection)service).invoke("callState",new Object[]{"onUaCallFailed"});
+  }
+  ua.listen();
+}

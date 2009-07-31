@@ -1,0 +1,8 @@
+int t0
+float[] signal_ptr
+int signals
+float[] coeff
+int coeffs
+float[] sig_out
+int outs
+IntegerPointer vo

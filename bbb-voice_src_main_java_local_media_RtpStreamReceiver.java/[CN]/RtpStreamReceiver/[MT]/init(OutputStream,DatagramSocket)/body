@@ -1,0 +1,4 @@
+{
+  this.output_stream=output_stream;
+  if (socket != null)   rtp_socket=new RtpSocket(socket);
+}

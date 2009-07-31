@@ -1,0 +1,43 @@
+{
+  String method=msg.getCSeqHeader().getMethod();
+  String call_id=msg.getCallIdHeader().getCallId();
+  if (method.equalsIgnoreCase(SipMethods.INVITE)) {
+    if (msg.isRequest()) {
+      if (!invite_dates.containsKey(call_id)) {
+        Date time=new Date();
+        String caller=msg.getFromHeader().getNameAddress().getAddress().toString();
+        String callee=msg.getToHeader().getNameAddress().getAddress().toString();
+        insert(invite_dates,call_id,time);
+        callers.put(call_id,caller);
+        callees.put(call_id,callee);
+        eventlog(time,call_id,SipMethods.INVITE,caller,callee);
+      }
+    }
+ else {
+      StatusLine status_line=msg.getStatusLine();
+      int code=status_line.getCode();
+      if (code >= 200 && code < 300 && !accepted_dates.containsKey(call_id)) {
+        Date time=new Date();
+        insert(accepted_dates,call_id,time);
+        String reason=status_line.getReason();
+        eventlog(time,call_id,String.valueOf(code) + " " + reason,"","");
+      }
+ else       if (code >= 300 && !refused_dates.containsKey(call_id)) {
+        Date time=new Date();
+        insert(refused_dates,call_id,time);
+        String reason=status_line.getReason();
+        eventlog(time,call_id,String.valueOf(code) + " " + reason,"","");
+      }
+    }
+  }
+ else   if (method.equalsIgnoreCase(SipMethods.BYE)) {
+    if (msg.isRequest()) {
+      if (!bye_dates.containsKey(call_id)) {
+        Date time=new Date();
+        insert(bye_dates,call_id,time);
+        eventlog(time,call_id,SipMethods.BYE,"","");
+        calllog(call_id);
+      }
+    }
+  }
+}

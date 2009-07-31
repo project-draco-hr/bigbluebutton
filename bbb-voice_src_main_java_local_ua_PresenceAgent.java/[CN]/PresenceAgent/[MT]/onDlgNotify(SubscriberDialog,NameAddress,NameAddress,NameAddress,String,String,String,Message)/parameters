@@ -1,0 +1,8 @@
+SubscriberDialog dialog
+NameAddress target
+NameAddress notifier
+NameAddress contact
+String state
+String content_type
+String body
+Message msg

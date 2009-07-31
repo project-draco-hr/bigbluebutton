@@ -1,0 +1,7 @@
+{
+  this.listener=listener;
+  tcp_conn=new TcpConnection(socket,this);
+  connection_id=null;
+  last_time=System.currentTimeMillis();
+  text="";
+}

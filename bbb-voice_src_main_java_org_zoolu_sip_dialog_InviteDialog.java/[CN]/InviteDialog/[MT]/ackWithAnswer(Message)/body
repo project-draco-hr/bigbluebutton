@@ -1,0 +1,6 @@
+{
+  ack_req=ack;
+  invite_offer=true;
+  AckTransactionClient ack_tc=new AckTransactionClient(sip_provider,ack,null);
+  ack_tc.request();
+}

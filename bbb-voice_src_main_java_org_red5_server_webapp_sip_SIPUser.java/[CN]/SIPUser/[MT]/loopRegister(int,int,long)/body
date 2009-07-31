@@ -1,0 +1,6 @@
+{
+  if (ra.isRegistering()) {
+    ra.halt();
+  }
+  ra.loopRegister(expire_time,renew_time,keepalive_time);
+}

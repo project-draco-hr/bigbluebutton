@@ -1,0 +1,3 @@
+{
+  printLog("WARNING: " + str,level);
+}

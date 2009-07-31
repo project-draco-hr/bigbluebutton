@@ -1,0 +1,4 @@
+org.zoolu.sip.dialog.InviteDialog d
+NameAddress refer_to
+NameAddress referred_by
+Message msg

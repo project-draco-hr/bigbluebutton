@@ -1,0 +1,7 @@
+{
+  short i;
+  for (i=0; i < LD8KConstants.PRM_SIZE; i++) {
+    prm[i + ps]=bin2int(TabLD8k.bitsno[i],bits,bitss);
+    bitss+=TabLD8k.bitsno[i];
+  }
+}

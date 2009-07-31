@@ -1,0 +1,18 @@
+{
+  int i, j;
+  float dmin, dist, temp;
+  cand.value=0;
+  dmin=LD8KConstants.FLT_MAX_G729;
+  for (i=0; i < LD8KConstants.NC0; i++) {
+    dist=(float)0.;
+    for (j=0; j < LD8KConstants.M; j++) {
+      temp=rbuf[j] - lspcb1[i][j];
+      dist+=temp * temp;
+    }
+    if (dist < dmin) {
+      dmin=dist;
+      cand.value=i;
+    }
+  }
+  return;
+}

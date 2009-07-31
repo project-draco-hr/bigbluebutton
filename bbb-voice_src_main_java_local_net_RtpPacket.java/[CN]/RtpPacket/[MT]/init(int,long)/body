@@ -1,0 +1,3 @@
+{
+  init(ptype,Random.nextInt(),Random.nextLong(),sscr);
+}

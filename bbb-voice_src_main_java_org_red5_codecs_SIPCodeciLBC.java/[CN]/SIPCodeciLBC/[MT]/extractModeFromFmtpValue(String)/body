@@ -1,0 +1,4 @@
+{
+  int modePos=fmtpValue.indexOf(" mode=") + 6;
+  return Integer.parseInt(fmtpValue.substring(modePos));
+}

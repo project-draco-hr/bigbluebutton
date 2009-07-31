@@ -1,0 +1,4 @@
+{
+  SipParser par=new SipParser(url);
+  return ((SipParser)par.goTo(';').skipChar()).getParameters();
+}

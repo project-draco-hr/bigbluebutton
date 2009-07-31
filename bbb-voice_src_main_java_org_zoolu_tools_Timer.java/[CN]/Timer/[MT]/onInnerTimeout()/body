@@ -1,0 +1,5 @@
+{
+  if (active && listener != null)   listener.onTimeout(this);
+  listener=null;
+  active=false;
+}

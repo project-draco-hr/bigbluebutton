@@ -1,0 +1,4 @@
+{
+  if (mheader.isCommaSeparated())   addHeader(mheader.toHeader(),top);
+ else   addHeaders(mheader.getHeaders(),top);
+}

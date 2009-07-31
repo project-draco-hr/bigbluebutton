@@ -1,0 +1,7 @@
+{
+  boolean supported=true;
+  for (Enumeration e=input_lines.elements(); e.hasMoreElements(); ) {
+    if (!((InputStream)e.nextElement()).markSupported())     supported=false;
+  }
+  return supported;
+}

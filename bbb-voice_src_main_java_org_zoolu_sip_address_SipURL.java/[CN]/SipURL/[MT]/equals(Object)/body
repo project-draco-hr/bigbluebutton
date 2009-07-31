@@ -1,0 +1,4 @@
+{
+  SipURL newurl=(SipURL)obj;
+  return url.toString().equals(newurl.toString());
+}

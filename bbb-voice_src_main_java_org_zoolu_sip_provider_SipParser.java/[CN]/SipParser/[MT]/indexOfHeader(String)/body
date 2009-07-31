@@ -1,0 +1,8 @@
+{
+  if (str.startsWith(hname,index))   return index;
+  String[] target={'\n' + hname,'\r' + hname};
+  SipParser par=new SipParser(str,index);
+  par.goToIgnoreCase(target);
+  if (par.hasMore())   par.skipChar();
+  return par.getPos();
+}

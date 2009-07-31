@@ -1,0 +1,5 @@
+{
+  bytes=abyte0;
+  offset=i;
+  length=Math.min(j,abyte0.length - i);
+}

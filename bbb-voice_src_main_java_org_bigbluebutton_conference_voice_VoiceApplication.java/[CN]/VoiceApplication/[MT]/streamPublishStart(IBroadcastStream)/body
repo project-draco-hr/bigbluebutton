@@ -1,0 +1,4 @@
+{
+  loginfo("Red5SIP Stream publish start: " + stream.getPublishedName());
+  IConnection current=Red5.getConnectionLocal();
+}

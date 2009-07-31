@@ -1,0 +1,3 @@
+String file_name
+String log_tag
+int verbose_level

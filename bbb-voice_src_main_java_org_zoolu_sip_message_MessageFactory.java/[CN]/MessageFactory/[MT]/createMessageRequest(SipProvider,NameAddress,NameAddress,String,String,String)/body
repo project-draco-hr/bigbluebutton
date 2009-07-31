@@ -1,0 +1,10 @@
+{
+  SipURL request_uri=recipient.getAddress();
+  String callid=sip_provider.pickCallId();
+  int cseq=SipProvider.pickInitialCSeq();
+  String localtag=SipProvider.pickTag();
+  Message req=createRequest(sip_provider,SipMethods.MESSAGE,request_uri,recipient,from,null,callid,cseq,localtag,null,null,null);
+  if (subject != null)   req.setSubjectHeader(new SubjectHeader(subject));
+  req.setBody(type,body);
+  return req;
+}

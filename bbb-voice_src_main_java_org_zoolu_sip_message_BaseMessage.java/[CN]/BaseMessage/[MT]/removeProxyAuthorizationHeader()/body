@@ -1,0 +1,3 @@
+{
+  removeHeader(SipHeaders.Proxy_Authorization);
+}

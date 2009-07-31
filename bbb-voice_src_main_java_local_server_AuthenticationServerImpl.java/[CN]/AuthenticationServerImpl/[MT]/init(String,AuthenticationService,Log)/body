@@ -1,0 +1,6 @@
+{
+  this.log=log;
+  this.realm=realm;
+  this.authentication_service=authentication_service;
+  this.rand=pickRandBytes();
+}

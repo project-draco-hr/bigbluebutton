@@ -1,0 +1,13 @@
+{
+  try {
+    if (socket_out == null) {
+      socket_out=new DatagramSocket();
+      socket_out_is_local=true;
+    }
+    rtp_socket_in=new RtpSocket(socket_in);
+    rtp_socket_out=new RtpSocket(socket_out,InetAddress.getByName(dest_addr),dest_port);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

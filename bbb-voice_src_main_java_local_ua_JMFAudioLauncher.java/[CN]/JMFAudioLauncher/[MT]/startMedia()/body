@@ -1,0 +1,9 @@
+{
+  printLog("launching JMF-Audio...");
+  String err1=null, err2=null;
+  if (sender != null)   err1=sender.start();
+  if (err1 != null)   printLog("Error trying to send audio stream: " + err1);
+  if (receiver != null)   err2=receiver.start();
+  if (err2 != null)   printLog("Error trying to receive audio stream: " + err2);
+  return (err1 == null && err2 == null);
+}

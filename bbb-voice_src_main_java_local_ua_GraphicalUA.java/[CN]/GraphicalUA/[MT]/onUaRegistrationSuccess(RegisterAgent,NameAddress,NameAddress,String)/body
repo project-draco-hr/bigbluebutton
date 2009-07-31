@@ -1,0 +1,4 @@
+{
+  ua.printLog("Registration success: " + result,LogLevel.HIGH);
+  this.setTitle(user_profile.from_url);
+}

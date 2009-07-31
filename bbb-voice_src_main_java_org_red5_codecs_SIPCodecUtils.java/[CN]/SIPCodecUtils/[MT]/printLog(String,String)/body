@@ -1,0 +1,4 @@
+{
+  log.debug("SIPCodecUtils - " + method + " -> "+ message);
+  System.out.println("SIPCodecUtils - " + method + " -> "+ message);
+}

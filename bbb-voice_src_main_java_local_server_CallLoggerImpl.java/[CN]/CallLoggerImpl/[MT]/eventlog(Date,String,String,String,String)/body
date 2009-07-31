@@ -1,0 +1,3 @@
+{
+  call_log.println(DateFormat.formatYYYYMMDD(time) + "\t" + call_id+ "\t"+ event+ "\t"+ caller+ "\t"+ callee);
+}

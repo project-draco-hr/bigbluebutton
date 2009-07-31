@@ -1,0 +1,8 @@
+{
+  super();
+  this.sip_provider=provider;
+  this.log=sip_provider.getLog();
+  this.dialog_sqn=dialog_counter++;
+  this.status=0;
+  this.dialog_id=null;
+}

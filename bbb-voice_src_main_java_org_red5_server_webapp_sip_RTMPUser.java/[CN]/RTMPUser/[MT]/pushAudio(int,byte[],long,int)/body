@@ -1,0 +1,20 @@
+{
+  if (buffer == null) {
+    buffer=IoBuffer.allocate(1024);
+    buffer.setAutoExpand(true);
+  }
+  buffer.clear();
+  buffer.put((byte)codec);
+  buffer.put(audio);
+  buffer.flip();
+  AudioData audioData=new AudioData(buffer);
+  audioData.setTimestamp((int)ts);
+  kt++;
+  if (kt < 10) {
+    logger.debug("+++ " + audioData);
+    System.out.println("+++ " + audioData);
+  }
+  RTMPMessage rtmpMsg=new RTMPMessage();
+  rtmpMsg.setBody(audioData);
+  publishStreamData(publishStreamId,rtmpMsg);
+}

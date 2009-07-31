@@ -1,0 +1,8 @@
+{
+  String str="";
+  for (Enumeration i=getUserBindings(); i.hasMoreElements(); ) {
+    UserBindingInfo u=(UserBindingInfo)i.nextElement();
+    str+=u.toString();
+  }
+  return str;
+}

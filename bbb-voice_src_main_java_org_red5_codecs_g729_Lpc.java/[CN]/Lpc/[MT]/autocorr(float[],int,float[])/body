@@ -1,0 +1,13 @@
+{
+  float y[]=new float[LD8KConstants.L_WINDOW];
+  float sum;
+  int i, j;
+  for (i=0; i < LD8KConstants.L_WINDOW; i++)   y[i]=x[i] * TabLD8k.hamwindow[i];
+  for (i=0; i <= m; i++) {
+    sum=(float)0.0;
+    for (j=0; j < LD8KConstants.L_WINDOW - i; j++)     sum+=y[j] * y[j + i];
+    r[i]=sum;
+  }
+  if (r[0] < (float)1.0)   r[0]=(float)1.0;
+  return;
+}

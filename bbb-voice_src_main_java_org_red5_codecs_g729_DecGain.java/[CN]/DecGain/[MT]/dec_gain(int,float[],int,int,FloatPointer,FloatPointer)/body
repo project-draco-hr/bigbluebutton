@@ -1,0 +1,20 @@
+{
+  int index1, index2;
+  float g_code;
+  FloatPointer gcode0=new FloatPointer();
+  if (bfi != 0) {
+    gain_pit.value*=(float)0.9;
+    if (gain_pit.value > (float)0.9)     gain_pit.value=(float)0.9;
+    gain_code.value*=(float)0.98;
+    GainPred.gain_update_erasure(past_qua_en);
+    return;
+  }
+  index1=TabLD8k.imap1[index / LD8KConstants.NCODE2];
+  index2=TabLD8k.imap2[index % LD8KConstants.NCODE2];
+  gain_pit.value=TabLD8k.gbk1[index1][0] + TabLD8k.gbk2[index2][0];
+  GainPred.gain_predict(past_qua_en,code,l_subfr,gcode0);
+  g_code=TabLD8k.gbk1[index1][1] + TabLD8k.gbk2[index2][1];
+  gain_code.value=g_code * gcode0.value;
+  GainPred.gain_update(past_qua_en,g_code);
+  return;
+}

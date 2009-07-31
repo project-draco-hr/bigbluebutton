@@ -1,0 +1,25 @@
+{
+  int k1=1 << j1;
+  int l1=k1 >> 2;
+  int i2=k1 - 1;
+  int j2=k1 >> 1;
+  int k2=j2 - 1;
+  int l2=0;
+  process(af1,0,af2,i1,j1);
+  while (l2 < l1) {
+    double d1=af[l2];
+    double d2=af[k2];
+    double d3=af2[i1 + j2];
+    double d4=af2[i1 + i2];
+    af[l2]=-af2[i1 + k2];
+    af[k2]=-af2[i1 + l2];
+    af2[i1 + l2]=(float)(d1 * (double)d[i2] + d3 * (double)d[l2]);
+    af2[i1 + k2]=(float)(d2 * (double)d[j2] + d4 * (double)d[k2]);
+    af2[i1 + j2]=(float)((double)d[j2] * -d4 + (double)d[k2] * d2);
+    af2[i1 + i2]=(float)((double)d[i2] * -d3 + (double)d[l2] * d1);
+    l2++;
+    k2--;
+    j2++;
+    i2--;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  int pos=(new SipParser(message)).goToEndOfLastHeader().goToNextLine().getPos();
+  message=message.substring(0,pos);
+  removeContentLengthHeader();
+  removeContentTypeHeader();
+}

@@ -1,0 +1,29 @@
+{
+  if (file == null) {
+    return;
+  }
+  BufferedReader in=null;
+  try {
+    in=new BufferedReader(new FileReader(file));
+    while (true) {
+      String line=null;
+      try {
+        line=in.readLine();
+      }
+ catch (      Exception e) {
+        e.printStackTrace();
+        System.exit(0);
+      }
+      if (line == null)       break;
+      if (!line.startsWith("#")) {
+        if (configurable == null)         parseLine(line);
+ else         configurable.parseLine(line);
+      }
+    }
+    in.close();
+  }
+ catch (  Exception e) {
+    System.err.println("WARNING: error reading file \"" + file + "\"");
+    return;
+  }
+}

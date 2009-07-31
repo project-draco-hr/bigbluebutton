@@ -1,0 +1,97 @@
+{
+  super(provider,profile);
+  printLog("Domains=" + getLocalDomains(),LogLevel.HIGH);
+  String location_service_class=profile.location_service;
+  for (int i=0; i < LOCATION_SERVICES.length; i++)   if (LOCATION_SERVICES[i].equalsIgnoreCase(profile.location_service)) {
+    location_service_class=LOCATION_SERVICE_CLASSES[i];
+    break;
+  }
+  try {
+    Class myclass=Class.forName(location_service_class);
+    Class[] parameter_types={Class.forName("java.lang.String")};
+    Object[] parameters={profile.location_db};
+    try {
+      java.lang.reflect.Constructor constructor=myclass.getConstructor(parameter_types);
+      location_service=(LocationService)constructor.newInstance(parameters);
+    }
+ catch (    NoSuchMethodException e) {
+      printException(e,LogLevel.MEDIUM);
+      location_service=(LocationService)myclass.newInstance();
+    }
+  }
+ catch (  Exception e) {
+    printException(e,LogLevel.HIGH);
+    printLog("Error trying to use location service '" + location_service_class + "': use default class.",LogLevel.HIGH);
+  }
+  if (location_service == null)   location_service=new LocationServiceImpl(profile.location_db);
+  if (profile.clean_location_db) {
+    printLog("LocationService \"" + profile.location_db + "\": cleaned\r\n",LogLevel.MEDIUM);
+    location_service.removeAllContacts();
+    location_service.sync();
+  }
+ else {
+    boolean changed=false;
+    for (Enumeration u=location_service.getUsers(); u.hasMoreElements(); ) {
+      String user=(String)u.nextElement();
+      for (Enumeration c=location_service.getUserContactURLs(user); c.hasMoreElements(); ) {
+        String contact=(String)c.nextElement();
+        if ((changed=location_service.isUserContactExpired(user,contact)) == true)         location_service.removeUserContact(user,contact);
+      }
+    }
+    if (changed)     location_service.sync();
+  }
+  printLog("LocationService (" + profile.authentication_service + "): size="+ location_service.size()+ "\r\n"+ location_service.toString(),LogLevel.MEDIUM);
+  if (server_profile.do_authentication || server_profile.do_proxy_authentication) {
+    String realm=(server_profile.authentication_realm != null) ? server_profile.authentication_realm : sip_provider.getViaAddress();
+    String authentication_service_class=profile.authentication_service;
+    for (int i=0; i < AUTHENTICATION_SERVICES.length; i++)     if (AUTHENTICATION_SERVICES[i].equalsIgnoreCase(profile.authentication_service)) {
+      authentication_service_class=AUTHENTICATION_SERVICE_CLASSES[i];
+      break;
+    }
+    try {
+      Class myclass=Class.forName(authentication_service_class);
+      Class[] parameter_types={Class.forName("java.lang.String")};
+      Object[] parameters={profile.authentication_db};
+      try {
+        java.lang.reflect.Constructor constructor=myclass.getConstructor(parameter_types);
+        authentication_service=(AuthenticationService)constructor.newInstance(parameters);
+      }
+ catch (      NoSuchMethodException e) {
+        printException(e,LogLevel.MEDIUM);
+        authentication_service=(AuthenticationService)myclass.newInstance();
+      }
+    }
+ catch (    Exception e) {
+      printException(e,LogLevel.HIGH);
+      printLog("Error trying to use authentication service '" + authentication_service_class + "': use default class.",LogLevel.HIGH);
+    }
+    if (authentication_service == null)     authentication_service=new AuthenticationServiceImpl(server_profile.authentication_db);
+    printLog("AuthenticationService (" + profile.authentication_service + "): size="+ authentication_service.size()+ "\r\n"+ authentication_service.toString(),LogLevel.MEDIUM);
+    String authentication_server_class=profile.authentication_scheme;
+    for (int i=0; i < AUTHENTICATION_SCHEMES.length; i++)     if (AUTHENTICATION_SCHEMES[i].equalsIgnoreCase(profile.authentication_scheme)) {
+      authentication_server_class=AUTHENTICATION_SERVER_CLASSES[i];
+      break;
+    }
+    try {
+      Class myclass=Class.forName(authentication_server_class);
+      Class[] parameter_types={Class.forName("java.lang.String"),Class.forName("local.server.AuthenticationService"),Class.forName("org.zoolu.tools.Log")};
+      Object[] parameters={realm,authentication_service,sip_provider.getLog()};
+      try {
+        java.lang.reflect.Constructor constructor=myclass.getConstructor(parameter_types);
+        as=(AuthenticationServer)constructor.newInstance(parameters);
+      }
+ catch (      NoSuchMethodException e) {
+        printException(e,LogLevel.MEDIUM);
+        as=(AuthenticationServer)myclass.newInstance();
+      }
+    }
+ catch (    Exception e) {
+      printException(e,LogLevel.HIGH);
+      printLog("Error trying to use authentication server '" + authentication_server_class + "': use default class.",LogLevel.HIGH);
+    }
+    if (as == null)     as=new AuthenticationServerImpl(realm,authentication_service,sip_provider.getLog());
+    printLog("AuthenticationServer: scheme: " + profile.authentication_scheme,LogLevel.MEDIUM);
+    printLog("AuthenticationServer: realm: " + profile.authentication_realm,LogLevel.MEDIUM);
+  }
+ else   as=null;
+}

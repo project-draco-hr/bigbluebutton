@@ -1,0 +1,5 @@
+{
+  index=indexOf(cc);
+  if (index < 0)   index=str.length();
+  return this;
+}

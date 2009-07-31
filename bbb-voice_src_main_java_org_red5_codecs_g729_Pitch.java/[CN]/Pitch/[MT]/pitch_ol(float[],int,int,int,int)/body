@@ -1,0 +1,13 @@
+{
+  FloatPointer max1=new FloatPointer(), max2=new FloatPointer(), max3=new FloatPointer();
+  int p_max1, p_max2, p_max3;
+  p_max1=lag_max(signal,signals,l_frame,pit_max,80,max1);
+  p_max2=lag_max(signal,signals,l_frame,79,40,max2);
+  p_max3=lag_max(signal,signals,l_frame,39,pit_min,max3);
+  if (max1.value * LD8KConstants.THRESHPIT < max2.value) {
+    max1.value=max2.value;
+    p_max1=p_max2;
+  }
+  if (max1.value * LD8KConstants.THRESHPIT < max3.value)   p_max1=p_max3;
+  return (p_max1);
+}

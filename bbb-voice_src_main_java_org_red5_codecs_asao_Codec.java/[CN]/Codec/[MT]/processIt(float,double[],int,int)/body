@@ -1,0 +1,18 @@
+{
+  int k1=i1;
+  int l1=j1;
+  do {
+    int i2=k1 + l1 >> 1;
+    if (f1 > af[i2]) {
+      k1=i2;
+    }
+ else {
+      l1=i2;
+    }
+  }
+ while (l1 - k1 > 1);
+  if (l1 != j1 && f1 - af[k1] > af[l1] - f1) {
+    k1=l1;
+  }
+  return k1 - i1;
+}

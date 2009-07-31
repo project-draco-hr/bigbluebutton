@@ -1,0 +1,3 @@
+{
+  codecDecodeAttributes.put(attributeName,attributeValue);
+}

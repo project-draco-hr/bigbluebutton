@@ -1,0 +1,18 @@
+{
+  boolean first=true;
+  String hname=hd.getName();
+  for (int i=0; i < headers.size(); i++) {
+    Header h=(Header)headers.elementAt(i);
+    if (hname.equalsIgnoreCase(h.getName())) {
+      if (first) {
+        headers.setElementAt(h,i);
+        first=false;
+      }
+ else {
+        headers.removeElementAt(i);
+        i--;
+      }
+    }
+  }
+  if (first)   headers.addElement(hd);
+}

@@ -1,0 +1,4 @@
+{
+  super(SipHeaders.Alert_Info,null);
+  setAbsoluteURI(absolute_uri);
+}

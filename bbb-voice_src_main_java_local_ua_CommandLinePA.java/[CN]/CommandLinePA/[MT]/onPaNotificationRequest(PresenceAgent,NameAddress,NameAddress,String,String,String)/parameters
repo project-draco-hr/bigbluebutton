@@ -1,0 +1,6 @@
+PresenceAgent pa
+NameAddress recipient
+NameAddress notifier
+String state
+String content_type
+String body

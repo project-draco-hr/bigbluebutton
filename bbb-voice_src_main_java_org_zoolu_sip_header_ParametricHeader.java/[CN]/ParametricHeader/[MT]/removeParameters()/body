@@ -1,0 +1,7 @@
+{
+  if (!hasParameters())   return;
+  String header=getValue();
+  int i=header.indexOf(';');
+  header=header.substring(0,i);
+  setValue(header);
+}

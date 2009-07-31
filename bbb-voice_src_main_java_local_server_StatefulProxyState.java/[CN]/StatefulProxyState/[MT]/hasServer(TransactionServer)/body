@@ -1,0 +1,4 @@
+{
+  TransactionIdentifier sid=ts.getTransactionId();
+  return s_clients.containsKey(sid);
+}

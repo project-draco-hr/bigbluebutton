@@ -1,0 +1,5 @@
+{
+  index=indexOfIgnoreCase(ss);
+  if (index < 0)   index=str.length();
+  return this;
+}

@@ -1,0 +1,6 @@
+{
+  int cc=getCscrCount();
+  long[] cscr=new long[cc];
+  for (int i=0; i < cc; i++)   cscr[i]=getLong(packet,12 + 4 * i,16 + 4 * i);
+  return cscr;
+}

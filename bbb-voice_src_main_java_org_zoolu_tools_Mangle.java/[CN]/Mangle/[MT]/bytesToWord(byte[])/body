@@ -1,0 +1,3 @@
+{
+  return ((((((long)uByte(b[3]) << 8) + uByte(b[2])) << 8) + uByte(b[1])) << 8) + uByte(b[0]);
+}

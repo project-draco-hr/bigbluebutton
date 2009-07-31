@@ -1,0 +1,3 @@
+String protocol
+IpAddress remote_ipaddr
+int remote_port

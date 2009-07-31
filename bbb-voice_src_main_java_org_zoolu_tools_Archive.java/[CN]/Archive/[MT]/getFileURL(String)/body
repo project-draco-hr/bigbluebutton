@@ -1,0 +1,11 @@
+{
+  if (file_name == null)   return null;
+  String url="file:" + BASE_PATH + "/"+ file_name;
+  try {
+    return new URL("file:" + BASE_PATH + "/"+ file_name);
+  }
+ catch (  java.net.MalformedURLException e) {
+    System.err.println("ERROR: malformed url " + url);
+    return null;
+  }
+}

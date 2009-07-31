@@ -1,0 +1,8 @@
+{
+  Parser par=new Parser(str,index);
+  while (par.hasMore()) {
+    if (par.startsWithIgnoreCase(ss))     return par.getPos();
+ else     par.skipChar();
+  }
+  return -1;
+}

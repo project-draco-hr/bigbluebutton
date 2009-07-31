@@ -1,0 +1,5 @@
+{
+  m=media;
+  c=connection;
+  av=new Vector();
+}

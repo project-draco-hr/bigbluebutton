@@ -1,0 +1,26 @@
+{
+  this.setTitle(title);
+  this.setResizable(false);
+  this.addWindowListener(new java.awt.event.WindowAdapter(){
+    public void windowClosing(    WindowEvent e){
+      closeWindow();
+    }
+  }
+);
+  button1.setLabel("OK");
+  button1.addActionListener(new java.awt.event.ActionListener(){
+    public void actionPerformed(    ActionEvent e){
+      closeWindow();
+    }
+  }
+);
+  this.add(button1,BorderLayout.SOUTH);
+  if (label1 != null)   this.add(label1,BorderLayout.CENTER);
+ else   if (panel1 != null)   this.add(panel1,BorderLayout.CENTER);
+  this.setSize(200,150);
+  Point point=caller.getLocationOnScreen();
+  Dimension callerSize=caller.getSize();
+  Dimension frameSize=this.getSize();
+  this.setLocation((callerSize.width - frameSize.width) / 2 + point.x,(callerSize.height - frameSize.height) / 2 + +point.y);
+  this.setVisible(true);
+}

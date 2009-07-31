@@ -1,0 +1,5 @@
+SipProvider provider
+String username
+String realm
+String passwd
+ExtendedInviteDialogListener listener

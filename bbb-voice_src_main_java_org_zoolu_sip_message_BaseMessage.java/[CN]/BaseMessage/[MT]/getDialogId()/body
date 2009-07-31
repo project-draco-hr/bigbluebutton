@@ -1,0 +1,13 @@
+{
+  String call_id=getCallIdHeader().getCallId();
+  String local_tag, remote_tag;
+  if (isRequest()) {
+    local_tag=getToHeader().getTag();
+    remote_tag=getFromHeader().getTag();
+  }
+ else {
+    local_tag=getFromHeader().getTag();
+    remote_tag=getToHeader().getTag();
+  }
+  return new DialogIdentifier(call_id,local_tag,remote_tag);
+}

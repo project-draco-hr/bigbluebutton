@@ -1,0 +1,4 @@
+{
+  if (contact_list.containsKey(url))   contact_list.remove(url);
+  return this;
+}

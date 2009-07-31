@@ -1,0 +1,13 @@
+{
+  log=sip_provider.getLog();
+  this.user_profile=user_profile;
+  this.sip_provider=sip_provider;
+  if (user_profile.contact_url == null)   user_profile.contact_url=user_profile.username + "@" + sip_provider.getViaAddress()+ ":"+ sip_provider.getPort();
+  if (!user_profile.no_prompt)   stdout=System.out;
+  if (user_profile.do_register) {
+    RegisterAgent ra=new RegisterAgent(sip_provider,user_profile.from_url,user_profile.contact_url,user_profile.username,user_profile.realm,user_profile.passwd,this);
+    ra.loopRegister(user_profile.expires,user_profile.expires / 2);
+  }
+  UserAgent ua=new UserAgent(sip_provider,user_profile,this);
+  ua.listen();
+}

@@ -1,0 +1,16 @@
+{
+  last_time=System.currentTimeMillis();
+  text+=new String(data,0,len);
+  SipParser par=new SipParser(text);
+  Message msg=par.getSipMessage();
+  while (msg != null) {
+    msg.setRemoteAddress(tcp_conn.getRemoteAddress().toString());
+    msg.setRemotePort(tcp_conn.getRemotePort());
+    msg.setTransport(PROTO_TCP);
+    msg.setConnectionId(connection_id);
+    if (listener != null)     listener.onReceivedMessage(this,msg);
+    text=par.getRemainingString();
+    par=new SipParser(text);
+    msg=par.getSipMessage();
+  }
+}

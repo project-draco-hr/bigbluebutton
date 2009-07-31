@@ -1,0 +1,8 @@
+{
+  int begin=index;
+  while (begin < str.length() && !isChar(str.charAt(begin)))   begin++;
+  int end=begin;
+  while (end < str.length() && isChar(str.charAt(end)))   end++;
+  index=end;
+  return str.substring(begin,end);
+}

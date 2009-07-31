@@ -1,0 +1,3 @@
+{
+  super(SipHeaders.Via,"SIP/2.0/" + proto.toUpperCase() + " "+ host+ ":"+ port);
+}

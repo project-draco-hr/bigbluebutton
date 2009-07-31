@@ -1,0 +1,4 @@
+{
+  if (packet_len >= 12)   return getBit(packet[1],7);
+ else   return false;
+}

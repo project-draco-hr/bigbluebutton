@@ -1,0 +1,24 @@
+{
+  Message req=new Message();
+  req.setRequestLine(new RequestLine(method,request_uri));
+  ViaHeader via=new ViaHeader(proto,via_addr,host_port);
+  if (rport)   via.setRport();
+  if (branch == null)   branch=SipProvider.pickBranch();
+  via.setBranch(branch);
+  req.addViaHeader(via);
+  req.setMaxForwardsHeader(new MaxForwardsHeader(70));
+  if (remote_tag == null)   req.setToHeader(new ToHeader(to));
+ else   req.setToHeader(new ToHeader(to,remote_tag));
+  req.setFromHeader(new FromHeader(from,local_tag));
+  req.setCallIdHeader(new CallIdHeader(call_id));
+  req.setCSeqHeader(new CSeqHeader(cseq,method));
+  if (contact != null) {
+    MultipleHeader contacts=new MultipleHeader(SipHeaders.Contact);
+    contacts.addBottom(new ContactHeader(contact));
+    req.setContacts(contacts);
+  }
+  req.setExpiresHeader(new ExpiresHeader(String.valueOf(SipStack.default_expires)));
+  if (SipStack.ua_info != null)   req.setUserAgentHeader(new UserAgentHeader(SipStack.ua_info));
+  req.setBody(body);
+  return req;
+}

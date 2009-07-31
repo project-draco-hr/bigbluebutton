@@ -1,0 +1,19 @@
+{
+  int i;
+  short sp16[]=new short[LD8KConstants.L_FRAME];
+  byte[] ret;
+  float temp;
+  if (length > LD8KConstants.L_FRAME) {
+    throw new RuntimeException("error in fwrite16\n");
+  }
+  for (i=0; i < length; i++) {
+    temp=data[i];
+    if (temp >= (float)0.0)     temp+=(float)0.5;
+ else     temp-=(float)0.5;
+    if (temp > (float)32767.0)     temp=(float)32767.0;
+    if (temp < (float)-32768.0)     temp=(float)-32768.0;
+    sp16[i]=(short)temp;
+  }
+  ret=shortArrayToByteArray(sp16);
+  return ret;
+}

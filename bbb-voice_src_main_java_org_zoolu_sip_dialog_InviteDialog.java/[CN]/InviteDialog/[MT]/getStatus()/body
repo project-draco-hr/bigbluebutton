@@ -1,0 +1,36 @@
+{
+switch (status) {
+case D_INIT:
+    return "D_INIT";
+case D_WAITING:
+  return "D_WAITING";
+case D_INVITING:
+return "D_INVITING";
+case D_INVITED:
+return "D_INVITED";
+case D_REFUSED:
+return "D_REFUSED";
+case D_ACCEPTED:
+return "D_ACCEPTED";
+case D_CALL:
+return "D_CALL";
+case D_ReWAITING:
+return "D_ReWAITING";
+case D_ReINVITING:
+return "D_ReINVITING";
+case D_ReINVITED:
+return "D_ReINVITED";
+case D_ReREFUSED:
+return "D_ReREFUSED";
+case D_ReACCEPTED:
+return "D_ReACCEPTED";
+case D_BYEING:
+return "D_BYEING";
+case D_BYED:
+return "D_BYED";
+case D_CLOSE:
+return "D_CLOSE";
+default :
+return null;
+}
+}

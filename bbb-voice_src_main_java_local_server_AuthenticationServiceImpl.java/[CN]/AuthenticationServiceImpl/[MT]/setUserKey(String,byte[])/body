@@ -1,0 +1,8 @@
+{
+  UserAuthInfo ur=getUserAuthInfo(user);
+  if (ur != null) {
+    ur.setKey(key);
+    changed=true;
+  }
+  return this;
+}

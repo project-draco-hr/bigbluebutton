@@ -1,0 +1,19 @@
+{
+  log=sip_provider.getLog();
+  this.user_profile=user_profile;
+  ua=new UserAgent(sip_provider,user_profile,this);
+  ua.listen();
+  ra=new RegisterAgent(sip_provider,user_profile.from_url,user_profile.contact_url,user_profile.username,user_profile.realm,user_profile.passwd,this);
+  String jar_file=user_profile.ua_jar;
+  icon_call=Archive.getImageIcon(Archive.getJarURL(jar_file,CALL_GIF));
+  icon_hangup=Archive.getImageIcon(Archive.getJarURL(jar_file,HANGUP_GIF));
+  contact_list=new StringList(user_profile.contacts_file);
+  jComboBox1=new JComboBox(contact_list.getElements());
+  try {
+    jbInit();
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  run();
+}

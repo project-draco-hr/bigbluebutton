@@ -1,0 +1,4 @@
+{
+  if (!isResponse())   return;
+  removeFirstLine();
+}

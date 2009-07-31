@@ -1,0 +1,10 @@
+{
+  if (mheader.isCommaSeparated())   addHeaderAfter(mheader.toHeader(),refer_hname);
+ else {
+    int index=indexOfHeader(refer_hname);
+    if (index >= 0)     index++;
+ else     index=headers.size();
+    Vector hs=mheader.getHeaders();
+    for (int k=0; k < hs.size(); k++)     headers.insertElementAt(hs.elementAt(k),index + k);
+  }
+}

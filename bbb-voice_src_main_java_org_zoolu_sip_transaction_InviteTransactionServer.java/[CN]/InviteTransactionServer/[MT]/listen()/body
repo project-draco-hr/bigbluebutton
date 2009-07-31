@@ -1,0 +1,7 @@
+{
+  printLog("start",LogLevel.LOW);
+  if (statusIs(STATE_IDLE)) {
+    changeStatus(STATE_WAITING);
+    sip_provider.addSipProviderListener(new TransactionIdentifier(SipMethods.INVITE),this);
+  }
+}

@@ -1,0 +1,38 @@
+{
+  Vector new_media=new Vector();
+  if (m_descs != null) {
+    for (Enumeration e=m_descs.elements(); e.hasMoreElements(); ) {
+      MediaDescriptor spec_md=(MediaDescriptor)e.nextElement();
+      MediaDescriptor prev_md=sdp.getMediaDescriptor(spec_md.getMedia().getMedia());
+      if (prev_md != null) {
+        Vector spec_attributes=spec_md.getAttributes();
+        Vector prev_attributes=prev_md.getAttributes();
+        if (spec_attributes.size() == 0 || prev_attributes.size() == 0) {
+          new_media.addElement(prev_md);
+        }
+ else {
+          Vector new_attributes=new Vector();
+          for (Enumeration i=spec_attributes.elements(); i.hasMoreElements(); ) {
+            AttributeField spec_attr=(AttributeField)i.nextElement();
+            String spec_name=spec_attr.getAttributeName();
+            String spec_value=spec_attr.getAttributeValue();
+            for (Enumeration k=prev_attributes.elements(); k.hasMoreElements(); ) {
+              AttributeField prev_attr=(AttributeField)k.nextElement();
+              String prev_name=prev_attr.getAttributeName();
+              String prev_value=prev_attr.getAttributeValue();
+              if (prev_name.equals(spec_name) && prev_value.equalsIgnoreCase(spec_value)) {
+                new_attributes.addElement(prev_attr);
+                break;
+              }
+            }
+          }
+          if (new_attributes.size() > 0)           new_media.addElement(new MediaDescriptor(prev_md.getMedia(),prev_md.getConnection(),new_attributes));
+        }
+      }
+    }
+  }
+  SessionDescriptor new_sdp=new SessionDescriptor(sdp);
+  new_sdp.removeMediaDescriptors();
+  new_sdp.addMediaDescriptors(new_media);
+  return new_sdp;
+}

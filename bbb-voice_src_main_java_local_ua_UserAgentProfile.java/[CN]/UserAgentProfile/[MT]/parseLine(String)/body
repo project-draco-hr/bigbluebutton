@@ -1,0 +1,185 @@
+{
+  String attribute;
+  Parser par;
+  int index=line.indexOf("=");
+  if (index > 0) {
+    attribute=line.substring(0,index).trim();
+    par=new Parser(line,index + 1);
+  }
+ else {
+    attribute=line;
+    par=new Parser("");
+  }
+  if (attribute.equals("from_url")) {
+    from_url=par.getRemainingString().trim();
+    return;
+  }
+  if (attribute.equals("contact_url")) {
+    contact_url=par.getRemainingString().trim();
+    return;
+  }
+  if (attribute.equals("username")) {
+    username=par.getString();
+    return;
+  }
+  if (attribute.equals("realm")) {
+    realm=par.getRemainingString().trim();
+    return;
+  }
+  if (attribute.equals("passwd")) {
+    passwd=par.getRemainingString().trim();
+    return;
+  }
+  if (attribute.equals("ua_jar")) {
+    ua_jar=par.getStringUnquoted();
+    return;
+  }
+  if (attribute.equals("contacts_file")) {
+    contacts_file=par.getStringUnquoted();
+    return;
+  }
+  if (attribute.equals("do_register")) {
+    do_register=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("do_unregister")) {
+    do_unregister=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("do_unregister_all")) {
+    do_unregister_all=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("expires")) {
+    expires=par.getInt();
+    return;
+  }
+  if (attribute.equals("keepalive_time")) {
+    keepalive_time=par.getInt();
+    return;
+  }
+  if (attribute.equals("call_to")) {
+    call_to=par.getRemainingString().trim();
+    return;
+  }
+  if (attribute.equals("accept_time")) {
+    accept_time=par.getInt();
+    return;
+  }
+  if (attribute.equals("hangup_time")) {
+    hangup_time=par.getInt();
+    return;
+  }
+  if (attribute.equals("transfer_time")) {
+    transfer_time=par.getInt();
+    return;
+  }
+  if (attribute.equals("re_invite_time")) {
+    re_invite_time=par.getInt();
+    return;
+  }
+  if (attribute.equals("redirect_to")) {
+    redirect_to=par.getRemainingString().trim();
+    return;
+  }
+  if (attribute.equals("transfer_to")) {
+    transfer_to=par.getRemainingString().trim();
+    return;
+  }
+  if (attribute.equals("no_offer")) {
+    no_offer=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("no_prompt")) {
+    no_prompt=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("audio")) {
+    audio=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("video")) {
+    video=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("recv_only")) {
+    recv_only=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("send_only")) {
+    send_only=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("send_tone")) {
+    send_tone=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("send_file")) {
+    send_file=par.getRemainingString().trim();
+    return;
+  }
+  if (attribute.equals("recv_file")) {
+    recv_file=par.getRemainingString().trim();
+    return;
+  }
+  if (attribute.equals("audio_port")) {
+    audio_port=par.getInt();
+    return;
+  }
+  if (attribute.equals("audio_avp")) {
+    audio_avp=par.getInt();
+    return;
+  }
+  if (attribute.equals("audio_codec")) {
+    audio_codec=par.getString();
+    return;
+  }
+  if (attribute.equals("audio_sample_rate")) {
+    audio_sample_rate=par.getInt();
+    return;
+  }
+  if (attribute.equals("audio_sample_size")) {
+    audio_sample_size=par.getInt();
+    return;
+  }
+  if (attribute.equals("audio_frame_size")) {
+    audio_frame_size=par.getInt();
+    return;
+  }
+  if (attribute.equals("video_port")) {
+    video_port=par.getInt();
+    return;
+  }
+  if (attribute.equals("video_avp")) {
+    video_avp=par.getInt();
+    return;
+  }
+  if (attribute.equals("use_jmf")) {
+    use_jmf=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("use_rat")) {
+    use_rat=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("bin_rat")) {
+    bin_rat=par.getStringUnquoted();
+    return;
+  }
+  if (attribute.equals("use_vic")) {
+    use_vic=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("bin_vic")) {
+    bin_vic=par.getStringUnquoted();
+    return;
+  }
+  if (attribute.equals("contact_user")) {
+    username=par.getString();
+    return;
+  }
+  if (attribute.equals("auto_accept")) {
+    accept_time=((par.getString().toLowerCase().startsWith("y"))) ? 0 : -1;
+    return;
+  }
+}

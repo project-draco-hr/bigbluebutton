@@ -1,0 +1,10 @@
+{
+  loopRegister(expire_time,renew_time);
+  if (keepalive_time > 0) {
+    SipURL target_url=target.getAddress();
+    String target_host=target_url.getHost();
+    int targe_port=target_url.getPort();
+    if (targe_port < 0)     targe_port=SipStack.default_port;
+    new KeepAliveSip(sip_provider,new SocketAddress(target_host,targe_port),null,keepalive_time);
+  }
+}

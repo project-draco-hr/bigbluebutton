@@ -1,0 +1,9 @@
+{
+  logger.debug("onStreamEvent " + notify);
+  ObjectMap map=(ObjectMap)notify.getCall().getArguments()[0];
+  String code=(String)map.get("code");
+  if (StatusCodes.NS_PUBLISH_START.equals(code)) {
+    logger.debug("onStreamEvent Publish start");
+    startPublish=true;
+  }
+}

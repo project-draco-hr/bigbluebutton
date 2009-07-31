@@ -1,0 +1,18 @@
+{
+  float apond1[]=new float[LD8KConstants.MP1];
+  float sig_ltp[]=new float[LD8KConstants.L_SUBFRP1];
+  int sig_ltp_ptr;
+  FloatPointer parcor0=new FloatPointer();
+  LpcFunc.weight_az(coeff,coeffs,LD8KConstants.GAMMA1_PST,LD8KConstants.M,apond1,0);
+  LpcFunc.weight_az(coeff,coeffs,LD8KConstants.GAMMA2_PST,LD8KConstants.M,apond2,0);
+  Filter.residu(apond2,0,signal_ptr,signals,res2,res2_ptr,LD8KConstants.L_SUBFR);
+  sig_ltp_ptr=1;
+  pst_ltp(t0,res2,res2_ptr,sig_ltp,sig_ltp_ptr,vo);
+  sig_ltp[0]=mem_stp[ptr_mem_stp];
+  calc_st_filt(apond2,0,apond1,0,parcor0,sig_ltp,sig_ltp_ptr);
+  Filter.syn_filt(apond1,0,sig_ltp,sig_ltp_ptr,sig_ltp,sig_ltp_ptr,LD8KConstants.L_SUBFR,mem_stp,0,1);
+  filt_mu(sig_ltp,0,sig_out,outs,parcor0.value);
+  scale_st(signal_ptr,signals,sig_out,outs,gain_prec);
+  Util.copy(res2,LD8KConstants.L_SUBFR,res2,0,LD8KConstants.MEM_RES2);
+  return;
+}

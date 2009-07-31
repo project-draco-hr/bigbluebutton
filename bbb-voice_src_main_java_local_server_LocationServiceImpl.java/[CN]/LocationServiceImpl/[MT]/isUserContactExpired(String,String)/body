@@ -1,0 +1,4 @@
+{
+  if (!hasUser(user))   return true;
+  return getUserBindingInfo(user).isExpired(url);
+}

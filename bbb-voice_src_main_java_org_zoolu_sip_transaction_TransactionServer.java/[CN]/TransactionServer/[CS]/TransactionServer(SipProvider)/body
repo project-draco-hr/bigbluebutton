@@ -1,0 +1,5 @@
+{
+  super(sip_provider);
+  transaction_listener=null;
+  response=null;
+}

@@ -1,0 +1,8 @@
+{
+  float[] af=new float[64];
+  int i1=0;
+  for (int j1=af.length; i1 < j1; i1++) {
+    af[i1]=(float)(Math.cos((double)((float)i1 / 64F) * 1.5707963267948966D) * Math.sqrt(0.015625D));
+  }
+  return af;
+}

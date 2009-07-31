@@ -1,0 +1,18 @@
+{
+  stop=true;
+  int waitcnt=0;
+  while (is_running && waitcnt++ < (socket_timeout / 500 + 4)) {
+    try {
+      sleep(500);
+    }
+ catch (    Exception e) {
+    }
+  }
+  if (server_socket != null) {
+    try {
+      server_socket.close();
+    }
+ catch (    Exception e) {
+    }
+  }
+}

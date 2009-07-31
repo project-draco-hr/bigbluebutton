@@ -1,0 +1,18 @@
+{
+  int i, j;
+  float yy_b[]=new float[LD8KConstants.L_SUBFR + LD8KConstants.M];
+  double s;
+  int yy, py, pa;
+  yy=0;
+  for (i=0; i < LD8KConstants.M; i++)   yy_b[yy++]=mem[mems++];
+  for (i=0; i < l; i++) {
+    py=yy;
+    pa=0;
+    s=x[xs++];
+    for (j=0; j < LD8KConstants.M; j++)     s-=(a[as + ++pa]) * (double)(yy_b[--py]);
+    yy_b[yy++]=(float)s;
+    y[ys++]=(float)s;
+  }
+  if (update != 0)   for (i=0; i < LD8KConstants.M; i++)   mem[--mems]=yy_b[--yy];
+  return;
+}

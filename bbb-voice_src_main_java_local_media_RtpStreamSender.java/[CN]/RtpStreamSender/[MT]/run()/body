@@ -1,0 +1,46 @@
+{
+  if (rtp_socket == null || input_stream == null)   return;
+  byte[] buffer=new byte[frame_size + 12];
+  RtpPacket rtp_packet=new RtpPacket(buffer,0);
+  rtp_packet.setPayloadType(p_type);
+  int seqn=0;
+  long time=0;
+  long byte_rate=frame_rate * frame_size;
+  running=true;
+  if (DEBUG)   println("Reading blocks of " + (buffer.length - 12) + " bytes");
+  try {
+    while (running) {
+      int num=input_stream.read(buffer,12,buffer.length - 12);
+      if (num > 0) {
+        rtp_packet.setSequenceNumber(seqn++);
+        rtp_packet.setTimestamp(time);
+        rtp_packet.setPayloadLength(num);
+        rtp_socket.send(rtp_packet);
+        long frame_time=(num * 1000) / byte_rate;
+        time+=frame_time;
+        if (do_sync) {
+          frame_time-=sync_adj;
+          try {
+            Thread.sleep(frame_time);
+          }
+ catch (          Exception e) {
+          }
+        }
+      }
+ else       if (num < 0) {
+        running=false;
+        if (DEBUG)         println("Error reading from InputStream");
+      }
+    }
+  }
+ catch (  Exception e) {
+    running=false;
+    e.printStackTrace();
+  }
+  DatagramSocket socket=rtp_socket.getDatagramSocket();
+  rtp_socket.close();
+  if (socket_is_local && socket != null)   socket.close();
+  input_stream=null;
+  rtp_socket=null;
+  if (DEBUG)   println("rtp sender terminated");
+}

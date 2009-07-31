@@ -1,0 +1,3 @@
+{
+  return same(str,Contact) || same(str,Contact_short);
+}

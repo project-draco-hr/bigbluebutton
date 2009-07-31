@@ -1,0 +1,7 @@
+{
+  preProc.pre_process(media,LD8KConstants.L_FRAME);
+  encoder.loadSpeech(media);
+  encoder.coder_ld8k(prm,0);
+  Bits.prm2bits_ld8k(prm,serial);
+  return Bits.toRealBits(serial);
+}

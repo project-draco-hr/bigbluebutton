@@ -1,0 +1,6 @@
+{
+  String str=remote_addr + ":" + remote_port+ "/"+ proto+ " ("+ len+ " bytes)";
+  if (message != null)   str+=": " + message;
+  println(DateFormat.formatHHMMSS(new Date()) + ", " + str,level);
+  return this;
+}

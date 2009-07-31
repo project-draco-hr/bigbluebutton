@@ -1,0 +1,4 @@
+DatagramSocket socket_in
+DatagramSocket socket_out
+String dest_addr
+int dest_port

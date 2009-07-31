@@ -1,0 +1,9 @@
+{
+  this.sip_provider=sip_provider;
+  log=sip_provider.getLog();
+  this.transaction_id=null;
+  this.request=null;
+  this.connection_id=null;
+  this.transaction_sqn=transaction_counter++;
+  this.status=STATE_IDLE;
+}

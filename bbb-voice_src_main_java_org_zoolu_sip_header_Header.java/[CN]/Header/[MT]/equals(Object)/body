@@ -1,0 +1,10 @@
+{
+  try {
+    Header hd=(Header)obj;
+    if (hd.getName().equals(this.getName()) && hd.getValue().equals(this.getValue()))     return true;
+ else     return false;
+  }
+ catch (  Exception e) {
+    return false;
+  }
+}

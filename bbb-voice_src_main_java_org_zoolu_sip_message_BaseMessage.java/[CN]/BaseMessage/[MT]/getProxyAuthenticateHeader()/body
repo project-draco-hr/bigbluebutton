@@ -1,0 +1,5 @@
+{
+  Header h=getHeader(SipHeaders.Proxy_Authenticate);
+  if (h == null)   return null;
+ else   return new ProxyAuthenticateHeader(h);
+}

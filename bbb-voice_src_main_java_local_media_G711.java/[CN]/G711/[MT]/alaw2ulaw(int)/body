@@ -1,0 +1,4 @@
+{
+  aval&=0xff;
+  return ((aval & 0x80) != 0) ? (0xFF ^ _a2u[aval ^ 0xD5]) : (0x7F ^ _a2u[aval ^ 0x55]);
+}

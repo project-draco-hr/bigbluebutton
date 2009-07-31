@@ -1,0 +1,3 @@
+{
+  return (status >= D_ACCEPTED && status < D_TERMINATED);
+}

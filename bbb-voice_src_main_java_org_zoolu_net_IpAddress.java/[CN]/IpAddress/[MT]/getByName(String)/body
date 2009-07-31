@@ -1,0 +1,4 @@
+{
+  InetAddress iaddr=InetAddress.getByName(host_addr);
+  return new IpAddress(iaddr);
+}

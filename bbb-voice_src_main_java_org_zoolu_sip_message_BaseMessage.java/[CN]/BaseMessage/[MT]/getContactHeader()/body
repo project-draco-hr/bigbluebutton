@@ -1,0 +1,5 @@
+{
+  MultipleHeader mh=getContacts();
+  if (mh == null)   return null;
+  return new ContactHeader(mh.getTop());
+}

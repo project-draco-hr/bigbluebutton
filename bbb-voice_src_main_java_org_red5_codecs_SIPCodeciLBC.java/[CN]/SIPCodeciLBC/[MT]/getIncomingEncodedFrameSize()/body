@@ -1,0 +1,9 @@
+{
+  if (incomingPacketization == sampleFrame20ms) {
+    return defaultEncodedFrameSize20ms;
+  }
+ else   if (incomingPacketization == sampleFrame30ms) {
+    return defaultEncodedFrameSize30ms;
+  }
+  return defaultEncodedFrameSize20ms;
+}

@@ -1,0 +1,7 @@
+{
+  int offset=0;
+  int len=64;
+  for (int i=0; offset < len; i++, offset+=4) {
+    out[i]=((int)(buffer[offset] & 0xff)) | (((int)(buffer[offset + 1] & 0xff)) << 8) | (((int)(buffer[offset + 2] & 0xff)) << 16)| (((int)buffer[offset + 3]) << 24);
+  }
+}

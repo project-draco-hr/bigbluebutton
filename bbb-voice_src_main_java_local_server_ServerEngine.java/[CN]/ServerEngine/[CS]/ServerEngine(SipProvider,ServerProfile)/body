@@ -1,0 +1,6 @@
+{
+  server_profile=profile;
+  sip_provider=provider;
+  log=sip_provider.getLog();
+  sip_provider.addSipProviderListener(SipProvider.ANY,this);
+}

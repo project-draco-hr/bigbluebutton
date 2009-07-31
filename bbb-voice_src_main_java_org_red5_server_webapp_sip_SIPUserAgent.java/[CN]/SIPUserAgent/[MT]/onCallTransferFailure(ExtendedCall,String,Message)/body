@@ -1,0 +1,8 @@
+{
+  printLog("onCallTransferFailure","Init...");
+  if (call != this.call) {
+    printLog("onCallTransferFailure","NOT the current call.");
+    return;
+  }
+  printLog("onCallTransferFailure","Transfer failed.");
+}

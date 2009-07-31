@@ -1,0 +1,3 @@
+String media_type
+int port
+JMediaReceiverListener listener

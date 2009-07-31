@@ -1,0 +1,6 @@
+{
+  super.paintComponent(g);
+  int x=this.getWidth();
+  int y=this.getHeight();
+  g.drawImage(image,0,0,x,y,this);
+}

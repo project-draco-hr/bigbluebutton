@@ -1,0 +1,13 @@
+{
+  AttributeField newAttribute=null;
+  printLog("parseAttributeField","Init...");
+  printLog("parseAttributeField","codecMediaAttribute = [" + codecMediaAttribute + "].");
+  String attribName=codecMediaAttribute.substring(0,codecMediaAttribute.indexOf(":"));
+  String attribValue=codecMediaAttribute.substring(codecMediaAttribute.indexOf(":") + 1);
+  printLog("parseAttributeField","attribName = [" + attribName + "] attribValue  = ["+ attribValue+ "].");
+  if ((!attribName.isEmpty()) && (!attribValue.isEmpty())) {
+    newAttribute=new AttributeField(attribName,attribValue);
+  }
+  printLog("parseAttributeField","End...");
+  return newAttribute;
+}

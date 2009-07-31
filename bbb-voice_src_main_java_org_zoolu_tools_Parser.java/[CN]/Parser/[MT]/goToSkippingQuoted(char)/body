@@ -1,0 +1,15 @@
+{
+  boolean inside_quotes=false;
+  try {
+    while (index < str.length() && (!(nextChar() == c) || inside_quotes)) {
+      if (nextChar() == '"')       inside_quotes=!inside_quotes;
+      index++;
+    }
+  }
+ catch (  RuntimeException e) {
+    System.out.println("len= " + str.length());
+    System.out.println("index= " + index);
+    throw e;
+  }
+  return this;
+}

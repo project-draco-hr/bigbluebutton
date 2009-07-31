@@ -1,0 +1,4 @@
+{
+  int index=(new Parser(value)).goToSkippingQuoted(';').getPos();
+  return (index >= value.length()) ? -1 : index;
+}

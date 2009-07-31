@@ -1,0 +1,9 @@
+{
+  Message req=MessageFactory.createNotifyRequest(this,event,id,content_type,body);
+  if (state != null) {
+    SubscriptionStateHeader sh=new SubscriptionStateHeader(state);
+    if (expires >= 0)     sh.setExpires(expires);
+    req.setSubscriptionStateHeader(sh);
+  }
+  notify(req);
+}

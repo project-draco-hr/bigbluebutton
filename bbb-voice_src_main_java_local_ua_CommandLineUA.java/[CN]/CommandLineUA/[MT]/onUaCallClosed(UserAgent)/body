@@ -1,0 +1,4 @@
+{
+  if (ua.user_profile.call_to != null)   exit();
+ else   listen();
+}

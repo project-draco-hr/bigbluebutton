@@ -1,0 +1,12 @@
+{
+  if (!server_profile.domain_port_any && port > 0 && port != sip_provider.getPort())   return false;
+  if (domain.equals(sip_provider.getViaAddress()))   return true;
+  boolean it_is=false;
+  for (int i=0; i < server_profile.domain_names.length; i++) {
+    if (server_profile.domain_names[i].equals(domain)) {
+      it_is=true;
+      break;
+    }
+  }
+  return it_is;
+}

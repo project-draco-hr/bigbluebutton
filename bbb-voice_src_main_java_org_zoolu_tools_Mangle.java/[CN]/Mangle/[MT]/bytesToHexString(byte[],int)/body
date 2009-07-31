@@ -1,0 +1,8 @@
+{
+  String s=new String();
+  for (int i=0; i < len; i++) {
+    s+=Integer.toHexString((((b[i] + 256) % 256) / 16) % 16);
+    s+=Integer.toHexString(((b[i] + 256) % 256) % 16);
+  }
+  return s;
+}

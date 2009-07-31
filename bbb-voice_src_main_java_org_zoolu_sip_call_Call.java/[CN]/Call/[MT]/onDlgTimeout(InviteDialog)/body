@@ -1,0 +1,7 @@
+{
+  if (d != dialog) {
+    printLog("NOT the current dialog",LogLevel.HIGH);
+    return;
+  }
+  if (listener != null)   listener.onCallTimeout(this);
+}

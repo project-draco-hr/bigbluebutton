@@ -1,0 +1,7 @@
+Message req
+int code
+String reason
+String local_tag
+NameAddress contact
+String content_type
+String body

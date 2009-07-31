@@ -1,0 +1,4 @@
+{
+  printLog("inside accept(sdp)",LogLevel.MEDIUM);
+  respond(200,SipResponses.reasonOf(200),contact,sdp);
+}

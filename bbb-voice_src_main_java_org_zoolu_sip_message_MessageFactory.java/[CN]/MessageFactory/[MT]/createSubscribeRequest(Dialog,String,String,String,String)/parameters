@@ -1,0 +1,5 @@
+Dialog dialog
+String event
+String id
+String content_type
+String body

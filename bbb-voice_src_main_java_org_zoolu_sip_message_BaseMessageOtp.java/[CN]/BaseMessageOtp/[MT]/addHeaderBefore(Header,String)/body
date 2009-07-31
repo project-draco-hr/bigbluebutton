@@ -1,0 +1,5 @@
+{
+  int i=indexOfHeader(refer_hname);
+  if (i < 0)   i=0;
+  headers.insertElementAt(new_header,i);
+}

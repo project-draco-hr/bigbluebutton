@@ -1,0 +1,7 @@
+{
+  if (str.indexOf("<sip:") >= 0)   return new NameAddress(str);
+ else {
+    SipURL url=completeSipURL(str);
+    return new NameAddress(url);
+  }
+}

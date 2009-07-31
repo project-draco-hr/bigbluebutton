@@ -1,0 +1,5 @@
+{
+  Vector v=new Vector(av.size());
+  for (int i=0; i < av.size(); i++)   v.addElement((AttributeField)av.elementAt(i));
+  return v;
+}

@@ -1,0 +1,28 @@
+{
+  float acf0, acf1;
+  float temp, temp2;
+  int ptrs;
+  int i;
+  temp=(float)0.;
+  for (i=0; i < LD8KConstants.LONG_H_ST; i++) {
+    temp+=h[hs + i] * h[hs + i];
+  }
+  acf0=temp;
+  temp=(float)0.;
+  ptrs=0;
+  for (i=0; i < LD8KConstants.LONG_H_ST - 1; i++) {
+    temp2=h[hs + ptrs++];
+    temp+=temp2 * (h[hs + ptrs]);
+  }
+  acf1=temp;
+  if (acf0 == (float)0.) {
+    rc0.value=(float)0.;
+    return;
+  }
+  if (acf0 < Math.abs(acf1)) {
+    rc0.value=(float)0.0;
+    return;
+  }
+  rc0.value=-acf1 / acf0;
+  return;
+}

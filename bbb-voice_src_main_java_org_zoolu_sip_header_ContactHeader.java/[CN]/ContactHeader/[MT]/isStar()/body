@@ -1,0 +1,4 @@
+{
+  if (value.indexOf('*') >= 0)   return true;
+ else   return false;
+}

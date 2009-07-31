@@ -1,0 +1,7 @@
+{
+  setVersion(2);
+  setPayloadType(ptype);
+  setSequenceNumber(seqn);
+  setTimestamp(timestamp);
+  setSscr(sscr);
+}

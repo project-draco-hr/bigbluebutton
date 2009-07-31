@@ -1,0 +1,6 @@
+{
+  ua.hangup();
+  ua.printLog("UAC: CALLING " + target_url);
+  if (!ua.user_profile.audio && !ua.user_profile.video)   ua.printLog("ONLY SIGNALING, NO MEDIA");
+  ua.call(target_url);
+}

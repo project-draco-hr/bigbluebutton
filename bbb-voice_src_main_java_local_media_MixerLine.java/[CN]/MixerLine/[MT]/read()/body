@@ -1,0 +1,19 @@
+{
+  int sum=0;
+  int count=0;
+  int err_code=0;
+  for (Enumeration e=input_lines.elements(); e.hasMoreElements(); ) {
+    InputStream is=(InputStream)e.nextElement();
+    if (is.available() > 0)     ;
+{
+      int value=is.read();
+      if (value > 0) {
+        count++;
+        sum+=G711.ulaw2linear(value);
+      }
+ else       err_code=value;
+    }
+  }
+  if (count > 0 || err_code == 0)   return G711.linear2ulaw(sum);
+ else   return err_code;
+}

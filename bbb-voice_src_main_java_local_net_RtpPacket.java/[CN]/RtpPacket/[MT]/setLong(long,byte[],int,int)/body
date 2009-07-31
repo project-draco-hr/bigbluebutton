@@ -1,0 +1,6 @@
+{
+  for (end--; end >= begin; end--) {
+    data[end]=(byte)(n % 256);
+    n>>=8;
+  }
+}

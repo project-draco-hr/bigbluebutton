@@ -1,0 +1,18 @@
+{
+  if (source_line == null)   initAudioLine();
+  if (format == null) {
+    float fFrameRate=8000.0F;
+    format=new AudioFormat(AudioFormat.Encoding.ULAW,fFrameRate,8,1,1,fFrameRate,false);
+  }
+  if (source_line.isOpen()) {
+    try {
+      audio_output_stream=new AudioOutputStream(source_line,format);
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+    }
+  }
+ else {
+    System.err.print("WARNING: Audio init error: source line is not open.");
+  }
+}

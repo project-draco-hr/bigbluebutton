@@ -1,0 +1,17 @@
+{
+  ctr_listener=listener;
+  try {
+    String media_url="rtp://:" + port + "/"+ media_type;
+    System.out.println("Receiver URL= " + media_url);
+    MediaLocator media_locator=new MediaLocator(media_url);
+    player=Manager.createPlayer(media_locator);
+    if (player == null) {
+      System.out.println("Player cannot be created");
+      return;
+    }
+    player.addControllerListener(this);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

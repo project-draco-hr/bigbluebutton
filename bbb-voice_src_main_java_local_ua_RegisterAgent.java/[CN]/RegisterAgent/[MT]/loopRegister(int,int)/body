@@ -1,0 +1,6 @@
+{
+  this.expire_time=expire_time;
+  this.renew_time=renew_time;
+  loop=true;
+  if (!is_running)   (new Thread(this)).start();
+}

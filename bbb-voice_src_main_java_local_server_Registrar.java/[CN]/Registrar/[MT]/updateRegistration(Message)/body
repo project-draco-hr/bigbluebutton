@@ -1,0 +1,94 @@
+{
+  ToHeader th=msg.getToHeader();
+  if (th == null) {
+    printLog("ToHeader missed: message discarded",LogLevel.HIGH);
+    int result=400;
+    return MessageFactory.createResponse(msg,result,SipResponses.reasonOf(result),null);
+  }
+  SipURL dest_uri=th.getNameAddress().getAddress();
+  String user=dest_uri.getUserName() + "@" + dest_uri.getHost();
+  int exp_secs=server_profile.expires;
+  ExpiresHeader eh=msg.getExpiresHeader();
+  if (eh != null) {
+    exp_secs=eh.getDeltaSeconds();
+  }
+  if (exp_secs < 0)   exp_secs=0;
+ else   if (exp_secs > server_profile.expires)   exp_secs=server_profile.expires;
+  if (!location_service.hasUser(user)) {
+    if (server_profile.register_new_users) {
+      location_service.addUser(user);
+      printLog("new user '" + user + "' added.",LogLevel.HIGH);
+    }
+ else {
+      printLog("user '" + user + "' unknown: message discarded.",LogLevel.HIGH);
+      int result=404;
+      return MessageFactory.createResponse(msg,result,SipResponses.reasonOf(result),null);
+    }
+  }
+  SipURL to_url=msg.getToHeader().getNameAddress().getAddress();
+  if (!msg.hasContactHeader()) {
+    printLog("no contact found: fetching bindings..",LogLevel.MEDIUM);
+    int result=200;
+    Message resp=MessageFactory.createResponse(msg,result,SipResponses.reasonOf(result),null);
+    Vector v=new Vector();
+    for (Enumeration e=location_service.getUserContactURLs(user); e.hasMoreElements(); ) {
+      String url=(String)e.nextElement();
+      int expires=(int)(location_service.getUserContactExpirationDate(user,url).getTime() - System.currentTimeMillis()) / 1000;
+      if (expires > 0) {
+        ContactHeader ch=new ContactHeader(location_service.getUserContactNameAddress(user,url));
+        ch.setExpires(expires);
+        v.addElement(ch);
+      }
+    }
+    if (v.size() > 0)     resp.setContacts(new MultipleHeader(v));
+    return resp;
+  }
+  Vector contacts=msg.getContacts().getHeaders();
+  int result=200;
+  Message resp=MessageFactory.createResponse(msg,result,SipResponses.reasonOf(result),null);
+  ContactHeader contact_0=new ContactHeader((Header)contacts.elementAt(0));
+  if (contact_0.isStar()) {
+    printLog("DEBUG: ContactHeader is star",LogLevel.LOW);
+    Vector resp_contacts=new Vector();
+    for (Enumeration e=location_service.getUserContactURLs(user); e.hasMoreElements(); ) {
+      String url=(String)(e.nextElement());
+      NameAddress name_address=location_service.getUserContactNameAddress(user,url);
+      location_service.removeUserContact(user,url);
+      printLog("contact removed: " + url,LogLevel.LOW);
+      if (exp_secs > 0) {
+        Date exp_date=new Date(System.currentTimeMillis() + ((long)exp_secs) * 1000);
+        location_service.addUserContact(user,name_address,exp_date);
+        printLog("contact added: " + url + "; expire: "+ DateFormat.formatEEEddMMM(location_service.getUserContactExpirationDate(user,url)),LogLevel.LOW);
+      }
+      ContactHeader contact_i=new ContactHeader(name_address.getAddress());
+      contact_i.setExpires(exp_secs);
+      resp_contacts.addElement(contact_i);
+    }
+    if (resp_contacts.size() > 0)     resp.setContacts(new MultipleHeader(resp_contacts));
+  }
+ else {
+    Vector resp_contacts=new Vector();
+    for (int i=0; i < contacts.size(); i++) {
+      ContactHeader contact_i=new ContactHeader((Header)contacts.elementAt(i));
+      NameAddress name_address=contact_i.getNameAddress();
+      String url=name_address.getAddress().toString();
+      int exp_secs_i=exp_secs;
+      if (contact_i.hasExpires()) {
+        exp_secs_i=contact_i.getExpires();
+      }
+      if (exp_secs_i < 0)       exp_secs_i=0;
+ else       if (exp_secs_i > server_profile.expires)       exp_secs_i=server_profile.expires;
+      location_service.removeUserContact(user,url);
+      if (exp_secs_i > 0) {
+        Date exp_date=new Date(System.currentTimeMillis() + ((long)exp_secs) * 1000);
+        location_service.addUserContact(user,name_address,exp_date);
+        printLog("registration of user " + user + " updated",LogLevel.HIGH);
+      }
+      contact_i.setExpires(exp_secs_i);
+      resp_contacts.addElement(contact_i);
+    }
+    if (resp_contacts.size() > 0)     resp.setContacts(new MultipleHeader(resp_contacts));
+  }
+  location_service.sync();
+  return resp;
+}

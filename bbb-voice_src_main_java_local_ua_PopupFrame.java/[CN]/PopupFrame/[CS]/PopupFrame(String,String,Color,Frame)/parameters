@@ -1,0 +1,4 @@
+String frame_title
+String text
+Color bkgrd_color
+Frame caller_frame

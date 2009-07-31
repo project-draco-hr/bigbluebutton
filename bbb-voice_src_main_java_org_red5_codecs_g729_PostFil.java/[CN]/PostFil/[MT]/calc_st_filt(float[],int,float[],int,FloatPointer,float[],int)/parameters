@@ -1,0 +1,7 @@
+float[] apond2
+int apond2s
+float[] apond1
+int apond1s
+FloatPointer parcor0
+float[] sig_ltp_ptr
+int sigs

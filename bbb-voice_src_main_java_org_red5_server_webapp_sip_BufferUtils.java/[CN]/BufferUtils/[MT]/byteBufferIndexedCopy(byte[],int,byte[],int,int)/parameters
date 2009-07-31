@@ -1,0 +1,5 @@
+byte[] destBuffer
+int startDestBuffer
+byte[] origBuffer
+int startOrigBuffer
+int copySize

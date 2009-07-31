@@ -1,0 +1,5 @@
+{
+  MultipleHeader mh=getRoutes();
+  if (mh == null)   return null;
+  return new RouteHeader(mh.getTop());
+}

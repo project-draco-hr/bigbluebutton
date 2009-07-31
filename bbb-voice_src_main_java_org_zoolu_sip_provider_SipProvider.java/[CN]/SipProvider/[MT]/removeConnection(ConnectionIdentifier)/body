@@ -1,0 +1,12 @@
+{
+  if (connections.containsKey(conn_id)) {
+    ConnectedTransport conn=(ConnectedTransport)connections.get(conn_id);
+    conn.halt();
+    connections.remove(conn_id);
+    printLog("active connenctions:",LogLevel.LOW);
+    for (Enumeration e=connections.elements(); e.hasMoreElements(); ) {
+      ConnectedTransport co=(ConnectedTransport)e.nextElement();
+      printLog("conn " + co.toString(),LogLevel.LOW);
+    }
+  }
+}

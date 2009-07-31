@@ -1,0 +1,12 @@
+{
+  StringBuffer sb=new StringBuffer();
+  sb.append(method);
+  sb.append(":");
+  if (uri != null)   sb.append(uri);
+  if (qop != null && qop.equalsIgnoreCase("auth-int")) {
+    sb.append(":");
+    if (body == null)     sb.append(HEX(MD5("")));
+ else     sb.append(HEX(MD5(body)));
+  }
+  return sb.toString();
+}

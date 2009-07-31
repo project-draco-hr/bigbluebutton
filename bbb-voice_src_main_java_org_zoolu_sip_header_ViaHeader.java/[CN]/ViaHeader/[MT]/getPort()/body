@@ -1,0 +1,6 @@
+{
+  SipParser par=new SipParser(getSentBy());
+  par.goTo(':');
+  if (par.hasMore())   return par.skipChar().getInt();
+  return -1;
+}

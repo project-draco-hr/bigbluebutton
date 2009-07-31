@@ -1,0 +1,17 @@
+{
+  float fFrameRate=8000.0F;
+  AudioFormat format=new AudioFormat(AudioFormat.Encoding.PCM_SIGNED,fFrameRate,16,1,2,fFrameRate,false);
+  DataLine.Info lineInfo=new DataLine.Info(SourceDataLine.class,format,INTERNAL_BUFFER_SIZE);
+  if (!AudioSystem.isLineSupported(lineInfo)) {
+    System.err.println("ERROR: AudioLine not supported by this System.");
+  }
+  try {
+    source_line=(SourceDataLine)AudioSystem.getLine(lineInfo);
+    if (DEBUG)     println("SourceDataLine: " + source_line);
+    source_line.open(format,INTERNAL_BUFFER_SIZE);
+  }
+ catch (  LineUnavailableException e) {
+    System.err.println("ERROR: LineUnavailableException at AudioReceiver()");
+    e.printStackTrace();
+  }
+}

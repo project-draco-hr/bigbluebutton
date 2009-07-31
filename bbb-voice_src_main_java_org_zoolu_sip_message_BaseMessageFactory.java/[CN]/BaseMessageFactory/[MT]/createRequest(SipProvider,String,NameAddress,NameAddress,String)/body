@@ -1,0 +1,5 @@
+{
+  String contact_user=from.getAddress().getUserName();
+  NameAddress contact=new NameAddress(new SipURL(contact_user,sip_provider.getViaAddress(),sip_provider.getPort()));
+  return createRequest(sip_provider,method,to.getAddress(),to,from,contact,body);
+}

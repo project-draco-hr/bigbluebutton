@@ -1,0 +1,8 @@
+{
+  if (!SipStack.isInit())   SipStack.init();
+  loadFile(file);
+  if (authentication_realm != null && authentication_realm.equals(Configure.NONE))   authentication_realm=null;
+  if (domain_names == null)   domain_names=new String[0];
+  if (phone_routing_rules == null)   phone_routing_rules=new RoutingRule[0];
+  if (domain_routing_rules == null)   domain_routing_rules=new RoutingRule[0];
+}

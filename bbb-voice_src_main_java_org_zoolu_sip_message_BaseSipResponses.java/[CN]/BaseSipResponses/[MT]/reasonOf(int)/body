@@ -1,0 +1,5 @@
+{
+  if (!is_init)   init();
+  if (reasons[code] != null)   return reasons[code];
+ else   return reasons[((int)(code / 100)) * 100];
+}

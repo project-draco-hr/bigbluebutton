@@ -1,0 +1,10 @@
+{
+  this.dialog_listener=listener;
+  this.transactions=new Hashtable();
+  this.username=null;
+  this.realm=null;
+  this.passwd=null;
+  this.next_nonce=null;
+  this.qop=null;
+  this.attempts=0;
+}

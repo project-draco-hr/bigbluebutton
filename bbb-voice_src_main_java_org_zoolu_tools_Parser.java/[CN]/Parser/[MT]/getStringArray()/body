@@ -1,0 +1,6 @@
+{
+  Vector list=getStringVector();
+  String[] array=new String[list.size()];
+  for (int i=0; i < list.size(); i++)   array[i]=(String)list.elementAt(i);
+  return array;
+}

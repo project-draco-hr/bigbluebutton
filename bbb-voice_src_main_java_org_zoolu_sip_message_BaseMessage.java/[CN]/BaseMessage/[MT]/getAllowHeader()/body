@@ -1,0 +1,5 @@
+{
+  Header h=getHeader(SipHeaders.Allow);
+  if (h == null)   return null;
+ else   return new AllowHeader(h);
+}

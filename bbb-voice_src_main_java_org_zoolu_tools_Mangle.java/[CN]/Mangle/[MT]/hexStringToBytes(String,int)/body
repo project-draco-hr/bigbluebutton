@@ -1,0 +1,15 @@
+{
+  if (str.indexOf(":") >= 0) {
+    String aux="";
+    char c;
+    for (int i=0; i < str.length(); i++)     if ((c=str.charAt(i)) != ':')     aux+=c;
+    str=aux;
+  }
+  if (len < 0)   len=str.length() / 2;
+  byte[] b=new byte[len];
+  for (int i=0; i < len; i++) {
+    if (len < str.length() / 2)     b[i]=(byte)Integer.parseInt(str.substring(i * 2,i * 2 + 2),16);
+ else     b[i]=0;
+  }
+  return b;
+}

@@ -1,0 +1,9 @@
+{
+  printLog("inside reInvite(invite)",LogLevel.MEDIUM);
+  if (!statusIs(D_CALL))   return;
+  changeStatus(D_ReINVITING);
+  invite_req=invite;
+  update(Dialog.UAC,invite_req);
+  InviteTransactionClient invite_tc=new InviteTransactionClient(sip_provider,invite_req,this);
+  invite_tc.request();
+}

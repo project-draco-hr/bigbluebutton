@@ -1,0 +1,6 @@
+{
+  SipParser par=new SipParser(naddr);
+  NameAddress na=par.getNameAddress();
+  name=na.name;
+  url=na.url;
+}

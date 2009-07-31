@@ -1,0 +1,8 @@
+{
+  log=sip_provider.getLog();
+  this.listener=listener;
+  this.invite_req=null;
+  this.ack_req=null;
+  this.invite_offer=true;
+  changeStatus(D_INIT);
+}

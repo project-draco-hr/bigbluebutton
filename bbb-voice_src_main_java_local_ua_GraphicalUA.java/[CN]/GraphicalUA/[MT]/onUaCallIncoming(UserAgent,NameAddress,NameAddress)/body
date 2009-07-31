@@ -1,0 +1,17 @@
+{
+  if (ua.user_profile.redirect_to != null) {
+    display.setText("CALL redirected to " + ua.user_profile.redirect_to);
+    ua.redirect(ua.user_profile.redirect_to);
+  }
+ else   if (ua.user_profile.accept_time >= 0) {
+    display.setText("ON CALL");
+    jComboBox1.setSelectedItem(null);
+    comboBoxEditor1.setItem(caller.toString());
+    ua.automaticAccept(ua.user_profile.accept_time);
+  }
+ else {
+    display.setText("INCOMING CALL");
+    jComboBox1.setSelectedItem(null);
+    comboBoxEditor1.setItem(caller.toString());
+  }
+}

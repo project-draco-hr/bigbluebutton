@@ -1,0 +1,25 @@
+{
+  int i, aux;
+  if (top) {
+    if (this.hasRequestLine() || this.hasStatusLine()) {
+      SipParser par=new SipParser(message);
+      par.goToNextHeader();
+      i=par.getPos();
+    }
+ else     i=0;
+  }
+ else {
+    SipParser par=new SipParser(message);
+    i=par.goToEndOfLastHeader().goToNextLine().getPos();
+    par=new SipParser(message);
+    aux=par.indexOfHeader(SipHeaders.Content_Length);
+    if (aux < i)     i=aux;
+    aux=par.indexOfHeader(SipHeaders.Content_Type);
+    if (aux < i)     i=aux;
+  }
+  String head=message.substring(0,i);
+  String tail=message.substring(i);
+  String new_message=head.concat(str);
+  new_message=new_message.concat(tail);
+  message=new_message;
+}

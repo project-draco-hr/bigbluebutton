@@ -1,0 +1,6 @@
+{
+  printLog("incoming connection from " + socket.getAddress() + ":"+ socket.getPort(),LogLevel.MEDIUM);
+  ConnectedTransport conn=new TcpTransport(socket,this);
+  printLog("tcp connection " + conn + " opened",LogLevel.MEDIUM);
+  addConnection(conn);
+}

@@ -1,0 +1,4 @@
+{
+  if (log != null)   log.println("UA: " + str,level + SipStack.LOG_LEVEL_UA);
+  if ((user_profile == null || !user_profile.no_prompt) && level <= LogLevel.HIGH)   System.out.println("UA: " + str);
+}

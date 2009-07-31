@@ -1,0 +1,10 @@
+{
+  try {
+    IpAddress ipaddr=(IpAddress)obj;
+    if (!toString().equals(ipaddr.toString()))     return false;
+    return true;
+  }
+ catch (  Exception e) {
+    return false;
+  }
+}

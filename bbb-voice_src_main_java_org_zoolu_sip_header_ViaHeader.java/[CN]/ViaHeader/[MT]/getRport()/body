@@ -1,0 +1,5 @@
+{
+  String value=getParameter(rport_param);
+  if (value != null)   return Integer.parseInt(value);
+ else   return -1;
+}

@@ -1,0 +1,8 @@
+{
+  this.listener=listener;
+  TcpSocket socket=new TcpSocket(remote_ipaddr,remote_port);
+  tcp_conn=new TcpConnection(socket,this);
+  connection_id=new ConnectionIdentifier(this);
+  last_time=System.currentTimeMillis();
+  text="";
+}

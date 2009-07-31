@@ -1,0 +1,8 @@
+{
+  String str="";
+  for (Enumeration e=getUserAuthInfos(); e.hasMoreElements(); ) {
+    UserAuthInfo ur=(UserAuthInfo)e.nextElement();
+    str+=ur.toString();
+  }
+  return str;
+}

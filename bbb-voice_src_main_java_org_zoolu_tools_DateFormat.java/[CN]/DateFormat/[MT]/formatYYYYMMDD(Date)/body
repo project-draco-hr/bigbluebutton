@@ -1,0 +1,20 @@
+{
+  Calendar cal=Calendar.getInstance();
+  cal.setTime(date);
+  String weekday=WEEKDAYS[cal.get(Calendar.DAY_OF_WEEK) - 1];
+  String year=Integer.toString(cal.get(Calendar.YEAR));
+  String day=Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
+  String hour=Integer.toString(cal.get(Calendar.HOUR_OF_DAY));
+  String min=Integer.toString(cal.get(Calendar.MINUTE));
+  String sec=Integer.toString(cal.get(Calendar.SECOND));
+  String millisec=Integer.toString(cal.get(Calendar.MILLISECOND));
+  if (day.length() == 1)   day="0" + day;
+  if (hour.length() == 1)   hour="0" + hour;
+  if (min.length() == 1)   min="0" + min;
+  if (sec.length() == 1)   sec="0" + sec;
+  if (millisec.length() == 1)   millisec="00" + millisec;
+ else   if (millisec.length() == 2)   millisec="0" + millisec;
+  String month=Integer.toString(cal.get(Calendar.MONTH) + 1);
+  if (month.length() == 1)   month="0" + month;
+  return year + "-" + month+ "-"+ day+ " "+ hour+ ":"+ min+ ":"+ sec+ "."+ millisec;
+}

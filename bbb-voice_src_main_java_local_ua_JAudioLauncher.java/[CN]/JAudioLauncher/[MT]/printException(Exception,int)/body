@@ -1,0 +1,4 @@
+{
+  if (log != null)   log.printException(e,level + SipStack.LOG_LEVEL_UA);
+  if (level <= LogLevel.HIGH)   e.printStackTrace();
+}

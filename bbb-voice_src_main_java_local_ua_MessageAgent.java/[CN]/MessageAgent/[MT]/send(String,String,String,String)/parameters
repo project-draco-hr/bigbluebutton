@@ -1,0 +1,4 @@
+String recipient
+String subject
+String content_type
+String content

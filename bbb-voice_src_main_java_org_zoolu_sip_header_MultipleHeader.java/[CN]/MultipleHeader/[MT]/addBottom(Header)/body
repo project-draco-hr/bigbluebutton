@@ -1,0 +1,4 @@
+{
+  if (!MultipleHeader.isCommaSeparated(hd))   values.addElement(hd.getValue());
+ else   addBottom(new MultipleHeader(hd));
+}

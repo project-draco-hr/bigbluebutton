@@ -1,0 +1,3 @@
+{
+  ma.send(recipient,subject,text);
+}

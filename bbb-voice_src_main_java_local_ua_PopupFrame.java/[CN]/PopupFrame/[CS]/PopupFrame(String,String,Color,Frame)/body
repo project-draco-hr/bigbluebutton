@@ -1,0 +1,16 @@
+{
+  title=frame_title;
+  caller=caller_frame;
+  if (caller != null)   caller.setEnabled(false);
+  panel1=null;
+  label1=new Label(text);
+  label1.setFont(new java.awt.Font("Monospaced",0,12));
+  label1.setAlignment(1);
+  label1.setBackground(bkgrd_color);
+  try {
+    jbInit();
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

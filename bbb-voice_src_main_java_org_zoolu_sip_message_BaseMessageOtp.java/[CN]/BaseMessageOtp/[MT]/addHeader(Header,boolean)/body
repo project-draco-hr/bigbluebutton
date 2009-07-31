@@ -1,0 +1,4 @@
+{
+  if (top)   headers.insertElementAt(header,0);
+ else   headers.addElement(header);
+}

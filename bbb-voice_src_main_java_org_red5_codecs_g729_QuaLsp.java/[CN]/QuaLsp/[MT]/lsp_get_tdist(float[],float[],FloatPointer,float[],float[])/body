@@ -1,0 +1,10 @@
+{
+  int j;
+  float tmp;
+  tdist.value=(float)0.0;
+  for (j=0; j < LD8KConstants.M; j++) {
+    tmp=(buf[j] - rbuf[j]) * fg_sum[j];
+    tdist.value+=wegt[j] * tmp * tmp;
+  }
+  return;
+}

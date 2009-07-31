@@ -1,0 +1,10 @@
+{
+  if (player != null) {
+    player.stop();
+    player.deallocate();
+    player.close();
+    System.out.println("Player stopped");
+    player=null;
+  }
+  return null;
+}

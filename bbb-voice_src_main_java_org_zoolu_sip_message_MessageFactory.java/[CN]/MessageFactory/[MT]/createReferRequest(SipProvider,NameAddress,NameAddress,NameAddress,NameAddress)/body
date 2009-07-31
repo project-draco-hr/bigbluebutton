@@ -1,0 +1,10 @@
+{
+  SipURL request_uri=recipient.getAddress();
+  String callid=sip_provider.pickCallId();
+  int cseq=SipProvider.pickInitialCSeq();
+  String localtag=SipProvider.pickTag();
+  Message req=createRequest(sip_provider,SipMethods.REFER,request_uri,recipient,from,contact,callid,cseq,localtag,null,null,null);
+  req.setReferToHeader(new ReferToHeader(refer_to));
+  req.setReferredByHeader(new ReferredByHeader(from));
+  return req;
+}

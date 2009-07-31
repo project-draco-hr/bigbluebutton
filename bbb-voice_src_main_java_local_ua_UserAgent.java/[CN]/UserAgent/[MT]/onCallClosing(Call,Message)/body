@@ -1,0 +1,18 @@
+{
+  printLog("onCallClosing()",LogLevel.LOW);
+  if (call != this.call && call != call_transfer) {
+    printLog("NOT the current call",LogLevel.LOW);
+    return;
+  }
+  if (call != call_transfer && call_transfer != null) {
+    printLog("CLOSE PREVIOUS CALL",LogLevel.HIGH);
+    this.call=call_transfer;
+    call_transfer=null;
+    return;
+  }
+  printLog("CLOSE",LogLevel.HIGH);
+  closeMediaApplication();
+  if (clip_off != null)   clip_off.replay();
+  if (listener != null)   listener.onUaCallClosed(this);
+  changeStatus(UA_IDLE);
+}

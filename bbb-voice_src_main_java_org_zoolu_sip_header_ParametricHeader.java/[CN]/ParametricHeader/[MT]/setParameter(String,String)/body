@@ -1,0 +1,8 @@
+{
+  if (getValue() == null)   setValue("");
+  if (hasParameter(name))   removeParameter(name);
+  String header=getValue();
+  header=header.concat(";" + name);
+  if (value != null)   header=header.concat("=" + value);
+  setValue(header);
+}

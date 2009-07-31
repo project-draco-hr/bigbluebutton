@@ -1,0 +1,6 @@
+{
+  goToEndOfLastHeader();
+  goTo('\n').skipChar();
+  goTo('\n').skipChar();
+  return this;
+}

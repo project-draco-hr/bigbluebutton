@@ -1,0 +1,54 @@
+{
+  int i, j, index1=0, index2=0;
+  IntegerPointer cand1=new IntegerPointer(0), cand2=new IntegerPointer(0);
+  FloatPointer gcode0=new FloatPointer((float)0);
+  float dist=0;
+  float dist_min=0;
+  float g_pitch=0;
+  float g_code=0;
+  float best_gain[]=new float[2], tmp;
+  GainPred.gain_predict(past_qua_en,code,l_subfr,gcode0);
+  tmp=(float)-1. / ((float)4. * g_coeff[0] * g_coeff[2] - g_coeff[4] * g_coeff[4]);
+  best_gain[0]=((float)2. * g_coeff[2] * g_coeff[1] - g_coeff[3] * g_coeff[4]) * tmp;
+  best_gain[1]=((float)2. * g_coeff[0] * g_coeff[3] - g_coeff[1] * g_coeff[4]) * tmp;
+  if (tameflag == 1) {
+    if (best_gain[0] > LD8KConstants.GPCLIP2)     best_gain[0]=LD8KConstants.GPCLIP2;
+  }
+  gbk_presel(best_gain,cand1,cand2,gcode0.value);
+  dist_min=LD8KConstants.FLT_MAX_G729;
+  if (tameflag == 1) {
+    for (i=0; i < LD8KConstants.NCAN1; i++) {
+      for (j=0; j < LD8KConstants.NCAN2; j++) {
+        g_pitch=TabLD8k.gbk1[cand1.value + i][0] + TabLD8k.gbk2[cand2.value + j][0];
+        if (g_pitch < LD8KConstants.GP0999) {
+          g_code=gcode0.value * (TabLD8k.gbk1[cand1.value + i][1] + TabLD8k.gbk2[cand2.value + j][1]);
+          dist=g_pitch * g_pitch * g_coeff[0] + g_pitch * g_coeff[1] + g_code * g_code * g_coeff[2] + g_code * g_coeff[3] + g_pitch * g_code * g_coeff[4];
+          if (dist < dist_min) {
+            dist_min=dist;
+            index1=cand1.value + i;
+            index2=cand2.value + j;
+          }
+        }
+      }
+    }
+  }
+ else {
+    for (i=0; i < LD8KConstants.NCAN1; i++) {
+      for (j=0; j < LD8KConstants.NCAN2; j++) {
+        g_pitch=TabLD8k.gbk1[cand1.value + i][0] + TabLD8k.gbk2[cand2.value + j][0];
+        g_code=gcode0.value * (TabLD8k.gbk1[cand1.value + i][1] + TabLD8k.gbk2[cand2.value + j][1]);
+        dist=g_pitch * g_pitch * g_coeff[0] + g_pitch * g_coeff[1] + g_code * g_code * g_coeff[2] + g_code * g_coeff[3] + g_pitch * g_code * g_coeff[4];
+        if (dist < dist_min) {
+          dist_min=dist;
+          index1=cand1.value + i;
+          index2=cand2.value + j;
+        }
+      }
+    }
+  }
+  gain_pit.value=TabLD8k.gbk1[index1][0] + TabLD8k.gbk2[index2][0];
+  g_code=TabLD8k.gbk1[index1][1] + TabLD8k.gbk2[index2][1];
+  gain_code.value=g_code * gcode0.value;
+  GainPred.gain_update(past_qua_en,g_code);
+  return (TabLD8k.map1[index1] * LD8KConstants.NCODE2 + TabLD8k.map2[index2]);
+}

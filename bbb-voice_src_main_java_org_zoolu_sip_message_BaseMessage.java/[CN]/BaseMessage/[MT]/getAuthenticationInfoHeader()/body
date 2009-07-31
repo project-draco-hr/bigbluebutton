@@ -1,0 +1,5 @@
+{
+  Header h=getHeader(SipHeaders.Authentication_Info);
+  if (h == null)   return null;
+ else   return new AuthenticationInfoHeader(h);
+}

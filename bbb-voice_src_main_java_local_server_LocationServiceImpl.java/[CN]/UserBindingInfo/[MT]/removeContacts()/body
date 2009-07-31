@@ -1,0 +1,4 @@
+{
+  contact_list.clear();
+  return this;
+}

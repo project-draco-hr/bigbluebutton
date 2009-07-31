@@ -1,0 +1,6 @@
+{
+  m=new MediaField(media);
+  if (connection != null)   c=new ConnectionField(connection);
+  av=new Vector();
+  if (attribute != null)   av.addElement(new AttributeField(attribute));
+}

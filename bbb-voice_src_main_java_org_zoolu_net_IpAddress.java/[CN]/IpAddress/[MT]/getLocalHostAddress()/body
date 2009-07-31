@@ -1,0 +1,8 @@
+{
+  try {
+    return new IpAddress(java.net.InetAddress.getLocalHost());
+  }
+ catch (  java.net.UnknownHostException e) {
+    return new IpAddress("127.0.0.1");
+  }
+}

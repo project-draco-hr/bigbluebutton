@@ -1,0 +1,5 @@
+float signal[]
+int signals
+int pit_min
+int pit_max
+int l_frame

@@ -1,0 +1,19 @@
+{
+  if (msg.isRequest()) {
+    if (statusIs(STATE_WAITING)) {
+      request=new Message(msg);
+      connection_id=msg.getConnectionId();
+      sip_provider.removeSipProviderListener(transaction_id);
+      transaction_id=request.getTransactionId();
+      sip_provider.addSipProviderListener(transaction_id,this);
+      changeStatus(STATE_TRYING);
+      if (transaction_listener != null)       transaction_listener.onTransRequest(this,msg);
+      return;
+    }
+    if (statusIs(STATE_PROCEEDING) || statusIs(STATE_COMPLETED)) {
+      printLog("response retransmission",LogLevel.LOW);
+      sip_provider.sendMessage(response,connection_id);
+      return;
+    }
+  }
+}

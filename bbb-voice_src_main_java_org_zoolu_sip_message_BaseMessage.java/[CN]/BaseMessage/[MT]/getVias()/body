@@ -1,0 +1,5 @@
+{
+  Vector v=getHeaders(SipHeaders.Via);
+  if (v.size() > 0)   return new MultipleHeader(v);
+ else   return null;
+}

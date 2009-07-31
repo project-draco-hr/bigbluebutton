@@ -1,0 +1,4 @@
+{
+  if (value != null)   url=url + ";" + name+ "="+ value;
+ else   url=url + ";" + name;
+}

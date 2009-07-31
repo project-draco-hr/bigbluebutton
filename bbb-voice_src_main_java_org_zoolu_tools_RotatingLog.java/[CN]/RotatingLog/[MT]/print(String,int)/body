@@ -1,0 +1,8 @@
+{
+  long now=Calendar.getInstance().getTime().getTime();
+  if (now > next_rotation) {
+    rotate();
+    updateNextRotationTime();
+  }
+  return super.print(message,level);
+}

@@ -1,0 +1,40 @@
+{
+  if (udp_socket == null || input_stream == null)   return;
+  byte[] buffer=new byte[frame_size];
+  UdpPacket udp_packet=new UdpPacket(buffer,0);
+  long time=0;
+  long start_time=System.currentTimeMillis();
+  long byte_rate=frame_rate * frame_size;
+  running=true;
+  if (DEBUG)   println("Reading blocks of " + (buffer.length) + " bytes");
+  try {
+    while (running) {
+      int num=input_stream.read(buffer,12,buffer.length);
+      if (num > 0) {
+        udp_packet.setLength(num);
+        udp_socket.send(udp_packet);
+        time+=(num * 1000) / byte_rate;
+        if (do_sync) {
+          long frame_time=start_time + time - System.currentTimeMillis();
+          try {
+            Thread.sleep(frame_time);
+          }
+ catch (          Exception e) {
+          }
+        }
+      }
+ else       if (num < 0) {
+        println("Error reading from InputStream");
+        running=false;
+      }
+    }
+  }
+ catch (  Exception e) {
+    running=false;
+    e.printStackTrace();
+  }
+  if (socket_is_local && udp_socket != null)   udp_socket.close();
+  input_stream=null;
+  udp_socket=null;
+  if (DEBUG)   println("udp sender terminated");
+}

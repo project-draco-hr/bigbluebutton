@@ -1,0 +1,38 @@
+{
+  final int len=1 << len_log2;
+  final int half_len_m1=(len >> 1) - 1;
+  final int quarter_len=len >> 2;
+  for (int i=0; i < quarter_len; ++i) {
+    final int i2=i << 1;
+    final int j=len - 1 - i2;
+    final int k=j - 1;
+    final double in_i2=in[in_off + i2];
+    final double in_i2_1=in[in_off + i2 + 1];
+    final double in_j=in[in_off + j];
+    final double in_k=in[in_off + k];
+    out[out_off + i2]=(float)(table4[i] * in_i2 - table6[i] * in_j);
+    out[out_off + i2 + 1]=(float)(in_j * table4[i] + in_i2 * table6[i]);
+    out[out_off + k]=(float)(table4[half_len_m1 - i] * in_k - table6[half_len_m1 - i] * in_i2_1);
+    out[out_off + j]=(float)(in_i2_1 * table4[half_len_m1 - i] + in_k * table6[half_len_m1 - i]);
+  }
+  HarXfm(out,out_off,len_log2 - 1);
+  final float last_out=out[out_off + len - 1];
+  final float pre_last_out=out[out_off + len - 2];
+  out[out_off]=table5[0] * out[out_off];
+  out[out_off + len - 1]=out[out_off + 1] * -table5[0];
+  out[out_off + len - 2]=table5[half_len_m1] * out[out_off + len - 2] + table5[1] * last_out;
+  out[out_off + 1]=pre_last_out * table5[1] - last_out * table5[half_len_m1];
+  int i_out=len - 3;
+  int i_tbl=half_len_m1;
+  int j=3;
+  for (int i=1; i < quarter_len; ++i, --i_tbl, i_out-=2, j+=2) {
+    final double old_out_a=out[out_off + i_out];
+    final double old_out_b=out[out_off + i_out - 1];
+    final double old_out_c=out[out_off + j];
+    final double old_out_d=out[out_off + j - 1];
+    out[out_off + j - 1]=(float)(table5[i_tbl] * old_out_c + table5[(j - 1) >> 1] * old_out_d);
+    out[out_off + j]=(float)(old_out_b * table5[(j + 1) >> 1] - old_out_a * table5[i_tbl - 1]);
+    out[out_off + i_out]=(float)(old_out_d * table5[i_tbl] - old_out_c * table5[(j - 1) >> 1]);
+    out[out_off + i_out - 1]=(float)(table5[(j + 1) >> 1] * old_out_a + table5[i_tbl - 1] * old_out_b);
+  }
+}

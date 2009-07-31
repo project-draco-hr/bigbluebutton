@@ -1,0 +1,12 @@
+{
+  PrintStream os=null;
+  if (verbose_level > 0) {
+    try {
+      os=new PrintStream(new FileOutputStream(file_name));
+    }
+ catch (    IOException e) {
+      e.printStackTrace();
+    }
+    init(os,log_tag,verbose_level,MAX_SIZE);
+  }
+}

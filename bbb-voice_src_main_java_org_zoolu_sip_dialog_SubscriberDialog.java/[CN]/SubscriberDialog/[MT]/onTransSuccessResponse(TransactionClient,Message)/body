@@ -1,0 +1,13 @@
+{
+  printLog("onTransSuccessResponse()",LogLevel.MEDIUM);
+  if (!statusIs(D_ACTIVE)) {
+    changeStatus(D_ACCEPTED);
+    update(UAC,resp);
+    StatusLine status_line=resp.getStatusLine();
+    if (listener != null)     listener.onDlgSubscriptionSuccess(this,status_line.getCode(),status_line.getReason(),resp);
+  }
+ else   if (statusIs(D_ACTIVE)) {
+    StatusLine status_line=resp.getStatusLine();
+    if (listener != null)     listener.onDlgSubscriptionSuccess(this,status_line.getCode(),status_line.getReason(),resp);
+  }
+}

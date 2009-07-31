@@ -1,0 +1,5 @@
+{
+  int i=value.indexOf(":");
+  if (i < 0)   return value;
+ else   return value.substring(0,i);
+}

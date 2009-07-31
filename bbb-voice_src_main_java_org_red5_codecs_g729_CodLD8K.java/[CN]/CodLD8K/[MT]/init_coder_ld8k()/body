@@ -1,0 +1,14 @@
+{
+  new_speech=old_speech + LD8KConstants.L_TOTAL - LD8KConstants.L_FRAME;
+  speech=new_speech - LD8KConstants.L_NEXT;
+  p_window=old_speech + LD8KConstants.L_TOTAL - LD8KConstants.L_WINDOW;
+  wsp=old_wsp + LD8KConstants.PIT_MAX;
+  exc=old_exc + LD8KConstants.PIT_MAX + LD8KConstants.L_INTERPOL;
+  zero=ai_zero + LD8KConstants.MP1;
+  error=mem_err + LD8KConstants.M;
+  sharp=LD8KConstants.SHARPMIN;
+  System.arraycopy(lsp_old,0,lsp_old_q,0,LD8KConstants.M);
+  quaLsp.lsp_encw_reset();
+  tamingFunc.init_exc_err();
+  return;
+}

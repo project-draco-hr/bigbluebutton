@@ -1,0 +1,6 @@
+{
+  if (clip != null) {
+    rewind();
+    clip.start();
+  }
+}

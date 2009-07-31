@@ -1,0 +1,4 @@
+{
+  do_log=false;
+  out_stream.close();
+}

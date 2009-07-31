@@ -1,0 +1,15 @@
+{
+  while (hasMore()) {
+    if (getWord(param_separators).equals(name)) {
+      skipWSP();
+      if (nextChar() == '=') {
+        skipChar();
+        return getWordSkippingQuoted(param_separators);
+      }
+ else       return null;
+    }
+    goToSkippingQuoted(';');
+    if (hasMore())     skipChar();
+  }
+  return null;
+}

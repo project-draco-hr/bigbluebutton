@@ -1,0 +1,4 @@
+{
+  MessageDigest md=new SimpleDigest(size,str);
+  return md.doFinal();
+}

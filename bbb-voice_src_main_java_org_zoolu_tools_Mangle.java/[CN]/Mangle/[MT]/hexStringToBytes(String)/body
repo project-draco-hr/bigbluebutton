@@ -1,0 +1,3 @@
+{
+  return hexStringToBytes(str,-1);
+}

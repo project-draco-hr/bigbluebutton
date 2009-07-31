@@ -1,0 +1,4 @@
+{
+  if (hasRouteHeader())   removeRoutes();
+  addRoutes(routes);
+}

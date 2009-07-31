@@ -1,0 +1,4 @@
+{
+  Arrays.fill(buffer,offset,offset + getOutgoingEncodedFrameSize(),(byte)G711.linear2alaw(0));
+  return getOutgoingEncodedFrameSize();
+}

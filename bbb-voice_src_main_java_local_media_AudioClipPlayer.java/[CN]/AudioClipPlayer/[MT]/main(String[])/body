@@ -1,0 +1,8 @@
+{
+  if (args.length < 1) {
+    System.out.println("AudioClipPlayer: usage:\n  java AudioClipPlayer <filename>");
+    System.exit(0);
+  }
+  AudioClipPlayer p=new AudioClipPlayer(args[0],null);
+  p.play();
+}

@@ -1,0 +1,10 @@
+{
+  status=newstatus;
+  printLog("changed dialog state: " + getStatus(),LogLevel.MEDIUM);
+  if (isTerminated()) {
+    if (dialog_id != null && sip_provider.getListeners().containsKey(dialog_id))     sip_provider.removeSipProviderListener(dialog_id);
+  }
+ else   if (isEarly() || isConfirmed()) {
+    if (dialog_id != null && !sip_provider.getListeners().containsKey(dialog_id))     sip_provider.addSipProviderListener(dialog_id,this);
+  }
+}

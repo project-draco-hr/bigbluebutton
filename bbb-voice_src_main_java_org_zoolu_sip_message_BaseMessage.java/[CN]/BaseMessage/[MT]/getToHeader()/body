@@ -1,0 +1,5 @@
+{
+  Header h=getHeader(SipHeaders.To);
+  if (h == null)   return null;
+ else   return new ToHeader(h);
+}

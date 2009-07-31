@@ -1,0 +1,4 @@
+{
+  if (++i < v.size())   return v.elementAt(i);
+ else   return null;
+}

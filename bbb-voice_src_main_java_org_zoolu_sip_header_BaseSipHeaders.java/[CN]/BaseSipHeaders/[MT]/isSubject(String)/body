@@ -1,0 +1,3 @@
+{
+  return same(str,Subject) || same(str,Subject_short);
+}

@@ -1,0 +1,4 @@
+{
+  SipParser par=new SipParser(value);
+  return par.goTo('/').skipChar().goTo('/').skipChar().skipWSP().getString();
+}

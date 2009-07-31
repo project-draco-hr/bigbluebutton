@@ -1,0 +1,3 @@
+{
+  removeHeader(SipHeaders.Content_Length);
+}

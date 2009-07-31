@@ -1,0 +1,7 @@
+{
+  rewind();
+  if (clip != null) {
+    if (n <= 0)     clip.loop(Clip.LOOP_CONTINUOUSLY);
+ else     clip.loop(n - 1);
+  }
+}

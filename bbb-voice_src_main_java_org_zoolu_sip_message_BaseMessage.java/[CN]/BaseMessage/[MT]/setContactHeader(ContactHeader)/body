@@ -1,0 +1,4 @@
+{
+  if (hasContactHeader())   removeContacts();
+  addHeader(ch,false);
+}

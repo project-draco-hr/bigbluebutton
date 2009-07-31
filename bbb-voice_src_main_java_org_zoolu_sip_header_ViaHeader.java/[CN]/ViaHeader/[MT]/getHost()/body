@@ -1,0 +1,7 @@
+{
+  String sentby=getSentBy();
+  SipParser par=new SipParser(sentby);
+  par.goTo(':');
+  if (par.hasMore())   return sentby.substring(0,par.getPos());
+ else   return sentby;
+}

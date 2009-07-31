@@ -1,0 +1,5 @@
+{
+  if (username != null)   dialog=new ExtendedInviteDialog(sip_provider,username,realm,passwd,this);
+ else   dialog=new ExtendedInviteDialog(sip_provider,this);
+  dialog.listen();
+}

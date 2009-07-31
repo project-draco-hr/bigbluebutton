@@ -1,0 +1,43 @@
+{
+  int uguale=stringacod.indexOf("=");
+  if (uguale != -1)   stringacod=stringacod.substring(0,uguale);
+  int[] bin=new int[3];
+  int iter=(stringacod.length()) / 4;
+  int resto=(stringacod.length()) % 4;
+  int nzero=0;
+  if (resto != 0)   nzero=1;
+  byte[] output=new byte[iter * 3 + nzero * (resto - 1)];
+  int i=0;
+  for (i=0; i < iter; i++) {
+    aux[0]=base64codes.indexOf(stringacod.charAt(i * 4));
+    aux[1]=base64codes.indexOf(stringacod.charAt(i * 4 + 1));
+    aux[2]=base64codes.indexOf(stringacod.charAt(i * 4 + 2));
+    aux[3]=base64codes.indexOf(stringacod.charAt(i * 4 + 3));
+    bin[0]=(aux[0] << 2) + (aux[1] >>> 4);
+    bin[1]=(aux[1] % 16 << 4) + (aux[2] >>> 2);
+    bin[2]=(aux[2] % 4 << 6) + aux[3];
+    output[i * 3]=(byte)bin[0];
+    output[i * 3 + 1]=(byte)bin[1];
+    output[i * 3 + 2]=(byte)bin[2];
+  }
+  if (i == iter) {
+    if (resto == 0) {
+    }
+    if (resto == 2) {
+      aux[0]=base64codes.indexOf(stringacod.charAt(i * 4));
+      aux[1]=base64codes.indexOf(stringacod.charAt(i * 4 + 1));
+      bin[0]=(aux[0] << 2) + (aux[1] >>> 4);
+      output[i * 3]=(byte)bin[0];
+    }
+    if (resto == 3) {
+      aux[0]=base64codes.indexOf(stringacod.charAt(i * 4));
+      aux[1]=base64codes.indexOf(stringacod.charAt(i * 4 + 1));
+      aux[2]=base64codes.indexOf(stringacod.charAt(i * 4 + 2));
+      bin[0]=(aux[0] << 2) + (aux[1] >>> 4);
+      bin[1]=(aux[1] % 16 << 4) + (aux[2] >>> 2);
+      output[i * 3]=(byte)bin[0];
+      output[i * 3 + 1]=(byte)bin[1];
+    }
+  }
+  return output;
+}

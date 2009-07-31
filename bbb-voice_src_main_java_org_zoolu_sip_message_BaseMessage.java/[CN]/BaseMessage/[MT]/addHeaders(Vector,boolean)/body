@@ -1,0 +1,5 @@
+{
+  String str="";
+  for (int i=0; i < headers.size(); i++)   str+=((Header)headers.elementAt(i)).toString();
+  addHeaders(str,top);
+}

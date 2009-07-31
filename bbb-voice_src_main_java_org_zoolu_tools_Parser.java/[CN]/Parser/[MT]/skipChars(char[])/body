@@ -1,0 +1,4 @@
+{
+  while (index < str.length() && isAnyOf(cc,nextChar()))   index++;
+  return this;
+}

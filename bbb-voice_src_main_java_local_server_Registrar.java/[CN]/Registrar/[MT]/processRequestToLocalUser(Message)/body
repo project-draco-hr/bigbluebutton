@@ -1,0 +1,5 @@
+{
+  printLog("inside processRequestToLocalUser(msg)",LogLevel.MEDIUM);
+  if (!msg.isAck())   sip_provider.sendMessage(MessageFactory.createResponse(msg,404,SipResponses.reasonOf(404),null));
+ else   printLog("message discarded",LogLevel.HIGH);
+}

@@ -1,0 +1,8 @@
+{
+  Vector v=new Vector(values.size());
+  for (int i=0; i < values.size(); i++) {
+    Header h=new Header(name,(String)values.elementAt(i));
+    v.addElement(h);
+  }
+  return v;
+}

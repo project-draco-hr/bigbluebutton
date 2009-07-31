@@ -1,0 +1,4 @@
+String username
+String sess_id
+String sess_version
+String address

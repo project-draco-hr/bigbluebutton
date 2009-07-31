@@ -1,0 +1,5 @@
+{
+  logger.debug("connection opened");
+  super.connectionOpened(conn,state);
+  this.conn=conn;
+}

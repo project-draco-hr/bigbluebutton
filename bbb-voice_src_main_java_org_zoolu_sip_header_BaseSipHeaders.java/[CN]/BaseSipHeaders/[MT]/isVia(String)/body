@@ -1,0 +1,3 @@
+{
+  return same(str,Via) || same(str,Via_short);
+}

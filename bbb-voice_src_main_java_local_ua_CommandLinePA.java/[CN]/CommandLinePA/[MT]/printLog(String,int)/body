@@ -1,0 +1,4 @@
+{
+  if (log != null)   log.println("CommandLinePA: " + str,level + SipStack.LOG_LEVEL_UA);
+  printOut(str);
+}

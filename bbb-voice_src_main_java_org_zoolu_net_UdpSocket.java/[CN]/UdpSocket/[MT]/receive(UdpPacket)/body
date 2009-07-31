@@ -1,0 +1,5 @@
+{
+  DatagramPacket dgram=pkt.getDatagramPacket();
+  socket.receive(dgram);
+  pkt.setDatagramPacket(dgram);
+}

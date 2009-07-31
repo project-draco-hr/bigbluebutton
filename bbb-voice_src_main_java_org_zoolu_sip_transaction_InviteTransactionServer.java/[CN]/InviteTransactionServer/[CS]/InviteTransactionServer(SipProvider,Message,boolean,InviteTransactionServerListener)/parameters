@@ -1,0 +1,4 @@
+SipProvider sip_provider
+Message invite
+boolean auto_trying
+InviteTransactionServerListener listener

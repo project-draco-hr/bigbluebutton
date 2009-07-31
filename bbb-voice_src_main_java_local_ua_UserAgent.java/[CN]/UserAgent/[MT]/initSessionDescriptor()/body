@@ -1,0 +1,4 @@
+{
+  SessionDescriptor sdp=new SessionDescriptor(user_profile.from_url,sip_provider.getViaAddress());
+  local_session=sdp.toString();
+}

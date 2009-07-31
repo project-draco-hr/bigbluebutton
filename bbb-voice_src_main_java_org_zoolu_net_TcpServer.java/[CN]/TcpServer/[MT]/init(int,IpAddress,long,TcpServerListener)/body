@@ -1,0 +1,10 @@
+{
+  this.setName(this.getClass().getName() + ".T" + this.getName().replaceAll("Thread-",""));
+  this.listener=listener;
+  if (bind_ipaddr == null)   server_socket=new ServerSocket(port);
+ else   server_socket=new ServerSocket(port,socket_backlog,bind_ipaddr.getInetAddress());
+  this.socket_timeout=DEFAULT_SOCKET_TIMEOUT;
+  this.alive_time=alive_time;
+  this.stop=false;
+  this.is_running=true;
+}

@@ -1,0 +1,4 @@
+{
+  if (packet_len >= 12)   return getInt(packet,2,4);
+ else   return 0;
+}

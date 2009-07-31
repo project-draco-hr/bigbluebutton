@@ -1,0 +1,4 @@
+{
+  init(size);
+  update(str);
+}

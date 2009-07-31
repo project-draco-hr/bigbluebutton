@@ -1,0 +1,9 @@
+{
+  if (realm == null && contact_url != null)   realm=new NameAddress(contact_url).getAddress().getHost();
+  if (username == null)   username=(contact_url != null) ? new NameAddress(contact_url).getAddress().getUserName() : "user";
+  if (call_to != null && call_to.equalsIgnoreCase(Configure.NONE))   call_to=null;
+  if (redirect_to != null && redirect_to.equalsIgnoreCase(Configure.NONE))   redirect_to=null;
+  if (transfer_to != null && transfer_to.equalsIgnoreCase(Configure.NONE))   transfer_to=null;
+  if (send_file != null && send_file.equalsIgnoreCase(Configure.NONE))   send_file=null;
+  if (recv_file != null && recv_file.equalsIgnoreCase(Configure.NONE))   recv_file=null;
+}

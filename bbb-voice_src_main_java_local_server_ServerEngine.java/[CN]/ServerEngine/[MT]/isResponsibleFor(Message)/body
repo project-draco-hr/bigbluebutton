@@ -1,0 +1,4 @@
+{
+  SipURL target=req.getRequestLine().getAddress();
+  return isResponsibleFor(target.getHost(),target.getPort());
+}

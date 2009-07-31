@@ -1,0 +1,7 @@
+{
+  printLog("inside bye()",LogLevel.MEDIUM);
+  if (statusIs(D_CALL)) {
+    Message bye=MessageFactory.createByeRequest(this);
+    bye(bye);
+  }
+}

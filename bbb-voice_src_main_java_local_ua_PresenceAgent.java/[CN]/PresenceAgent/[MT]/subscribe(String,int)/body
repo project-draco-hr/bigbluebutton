@@ -1,0 +1,5 @@
+{
+  if (subscriber_dialog == null)   subscriber_dialog=new SubscriberDialog(sip_provider,"presence",null,this);
+  if (expires < 0)   expires=SipStack.default_expires;
+  subscriber_dialog.subscribe(presentity,user_profile.from_url,user_profile.contact_url,expires);
+}

@@ -1,0 +1,17 @@
+{
+  Message resp=new Message();
+  resp.setStatusLine(new StatusLine(code,reason));
+  resp.setVias(req.getVias());
+  if (code >= 180 && code < 300 && req.hasRecordRouteHeader())   resp.setRecordRoutes(req.getRecordRoutes());
+  ToHeader toh=req.getToHeader();
+  if (local_tag != null)   toh.setParameter("tag",local_tag);
+  resp.setToHeader(toh);
+  resp.setFromHeader(req.getFromHeader());
+  resp.setCallIdHeader(req.getCallIdHeader());
+  resp.setCSeqHeader(req.getCSeqHeader());
+  if (contact != null)   resp.setContactHeader(new ContactHeader(contact));
+  if (SipStack.server_info != null)   resp.setServerHeader(new ServerHeader(SipStack.server_info));
+  if (content_type == null)   resp.setBody(body);
+ else   resp.setBody(content_type,body);
+  return resp;
+}

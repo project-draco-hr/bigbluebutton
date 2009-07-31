@@ -1,0 +1,4 @@
+{
+  int ret=super.read(b,off,len);
+  return ret;
+}

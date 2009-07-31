@@ -1,0 +1,23 @@
+{
+  if (localport != remoteport) {
+    printLog("UDP local relay: src_port=" + localport + ", dest_port="+ remoteport);
+    printLog("UDP local relay: src_port=" + (localport + 1) + ", dest_port="+ (remoteport + 1));
+    new UdpRelay(localport,"127.0.0.1",remoteport,null);
+    new UdpRelay(localport + 1,"127.0.0.1",remoteport + 1,null);
+  }
+ else {
+    printLog("local_port==remote_port --> no UDP relay is needed");
+  }
+  printLog("launching VIC-Audio...");
+  String cmds[]={"","",""};
+  cmds[0]=command;
+  cmds[1]=remoteaddr + "/" + remoteport;
+  try {
+    media_process=Runtime.getRuntime().exec(cmds);
+    return true;
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    return false;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  SdpParser par=new SdpParser(str);
+  SdpField sf=par.parseSdpField();
+  type=sf.type;
+  value=sf.value;
+}

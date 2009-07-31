@@ -1,0 +1,3 @@
+{
+  values.removeElementAt(values.size() - 1);
+}

@@ -1,0 +1,10 @@
+{
+  if (message == null || isResponse())   return false;
+  String firstline=(new SipParser(message)).getLine();
+  String version=(new SipParser(firstline)).skipString().skipString().getString();
+  if (version == null || version.length() < 4)   return false;
+  version=version.substring(0,4);
+  String target="SIP/";
+  if (version.equalsIgnoreCase(target))   return true;
+  return false;
+}

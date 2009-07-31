@@ -1,0 +1,18 @@
+{
+  printLog("onCallRefused","Init...");
+  if (call != this.call) {
+    printLog("onCallRefused","NOT the current call.");
+    return;
+  }
+  printLog("onCallRefused","REFUSED (" + reason + ").");
+  changeStatus(UA_IDLE);
+  if (call == callTransfer) {
+    StatusLine status_line=resp.getStatusLine();
+    int code=status_line.getCode();
+    this.call.notify(code,reason);
+    callTransfer=null;
+  }
+  if (listener != null) {
+    listener.onUaCallFailed(this);
+  }
+}

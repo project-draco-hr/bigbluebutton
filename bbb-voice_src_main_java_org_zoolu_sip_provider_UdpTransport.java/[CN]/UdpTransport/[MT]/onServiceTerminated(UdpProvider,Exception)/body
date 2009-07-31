@@ -1,0 +1,11 @@
+{
+  if (listener != null)   listener.onTransportTerminated(this,error);
+  UdpSocket socket=udp.getUdpSocket();
+  if (socket != null)   try {
+    socket.close();
+  }
+ catch (  Exception e) {
+  }
+  this.udp_provider=null;
+  this.listener=null;
+}

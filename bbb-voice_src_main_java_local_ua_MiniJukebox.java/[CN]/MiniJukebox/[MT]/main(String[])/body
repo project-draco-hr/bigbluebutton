@@ -1,0 +1,85 @@
+{
+  String file=null;
+  boolean opt_regist=false;
+  boolean opt_unregist=false;
+  boolean opt_unregist_all=false;
+  int opt_expires=0;
+  int opt_hangup_time=0;
+  int opt_media_port=21068;
+  String opt_send_file=null;
+  boolean opt_no_prompt=false;
+  try {
+    for (int i=0; i < args.length; i++) {
+      if (args[i].equals("-f") && args.length > (i + 1)) {
+        file=args[++i];
+        continue;
+      }
+      if (args[i].equals("-p") && args.length > (i + 1)) {
+        opt_media_port=Integer.parseInt(args[++i]);
+        continue;
+      }
+      if (args[i].equals("-g") && args.length > (i + 1)) {
+        opt_regist=true;
+        String time=args[++i];
+        if (time.charAt(time.length() - 1) == 'h')         opt_expires=Integer.parseInt(time.substring(0,time.length() - 1)) * 3600;
+ else         opt_expires=Integer.parseInt(time);
+        continue;
+      }
+      if (args[i].equals("-u")) {
+        opt_unregist=true;
+        continue;
+      }
+      if (args[i].equals("-z")) {
+        opt_unregist_all=true;
+        continue;
+      }
+      if (args[i].equals("-t") && args.length > (i + 1)) {
+        opt_hangup_time=Integer.parseInt(args[++i]);
+        continue;
+      }
+      if (args[i].equals("--send-file")) {
+        opt_send_file=args[++i];
+        continue;
+      }
+      if (args[i].equals("--no-prompt")) {
+        opt_no_prompt=true;
+        continue;
+      }
+      if (!args[i].equals("-h"))       System.out.println("unrecognized param '" + args[i] + "'\n");
+      System.out.println("usage:\n   java MiniJukebox [options]");
+      System.out.println("   options:");
+      System.out.println("   -h                 this help");
+      System.out.println("   -f <config_file>   specifies a configuration file");
+      System.out.println("   -t <secs>          specipies the call duration (0 means manual hangup)");
+      System.out.println("   -p <port>          local media port");
+      System.out.println("   -g <time>          registers the contact URL with the registrar server");
+      System.out.println("                      where time is the duration of the registration, and can be");
+      System.out.println("                      in seconds (default) or hours ( -r 7200 is the same as -r 2h )");
+      System.out.println("   -u                 unregisters the contact URL with the registrar server");
+      System.out.println("                      (is the same as -g 0)");
+      System.out.println("   -z                 unregisters ALL the contact URLs");
+      System.out.println("   --send-file <file> default audio file");
+      System.out.println("   --no-prompt        do not prompt");
+      System.exit(0);
+    }
+    SipStack.init(file);
+    SipProvider sip_provider=new SipProvider(file);
+    UserAgentProfile user_profile=new UserAgentProfile(file);
+    if (opt_regist)     user_profile.do_register=true;
+    if (opt_unregist)     user_profile.do_unregister=true;
+    if (opt_unregist_all)     user_profile.do_unregister_all=true;
+    if (opt_expires > 0)     user_profile.expires=opt_expires;
+    if (opt_hangup_time > 0)     user_profile.hangup_time=opt_hangup_time;
+    if (opt_media_port != 21068)     user_profile.video_port=(user_profile.audio_port=opt_media_port) + 2;
+    if (opt_send_file != null)     user_profile.send_file=opt_send_file;
+    if (opt_no_prompt)     user_profile.no_prompt=true;
+    user_profile.accept_time=0;
+    user_profile.audio=true;
+    user_profile.send_only=true;
+    new MiniJukebox(sip_provider,user_profile);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    System.exit(0);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  Header h=getHeader(SipHeaders.Subject);
+  if (h == null)   return null;
+ else   return new SubjectHeader(h);
+}

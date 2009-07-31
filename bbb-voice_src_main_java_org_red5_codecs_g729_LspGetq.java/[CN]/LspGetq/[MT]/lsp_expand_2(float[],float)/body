@@ -1,0 +1,13 @@
+{
+  int j;
+  float diff, tmp;
+  for (j=LD8KConstants.NC; j < LD8KConstants.M; j++) {
+    diff=buf[j - 1] - buf[j];
+    tmp=(diff + gap) * (float)0.5;
+    if (tmp > 0) {
+      buf[j - 1]-=tmp;
+      buf[j]+=tmp;
+    }
+  }
+  return;
+}

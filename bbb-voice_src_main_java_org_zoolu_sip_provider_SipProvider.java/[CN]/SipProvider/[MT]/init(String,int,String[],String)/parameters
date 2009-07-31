@@ -1,0 +1,4 @@
+String viaddr
+int port
+String[] protocols
+String ifaddr

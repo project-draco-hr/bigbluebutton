@@ -1,0 +1,4 @@
+{
+  addUser(user,NULL_ARRAY);
+  return this;
+}

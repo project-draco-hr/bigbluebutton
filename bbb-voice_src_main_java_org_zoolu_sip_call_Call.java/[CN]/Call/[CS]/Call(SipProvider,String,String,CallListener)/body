@@ -1,0 +1,10 @@
+{
+  this.sip_provider=sip_provider;
+  this.log=sip_provider.getLog();
+  this.listener=call_listener;
+  this.from_url=from_url;
+  this.contact_url=contact_url;
+  this.dialog=null;
+  this.local_sdp=null;
+  this.remote_sdp=null;
+}

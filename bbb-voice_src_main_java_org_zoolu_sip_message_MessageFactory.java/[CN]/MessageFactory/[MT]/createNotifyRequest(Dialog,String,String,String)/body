@@ -1,0 +1,7 @@
+{
+  Message req=createRequest(dialog,SipMethods.NOTIFY,null);
+  req.removeExpiresHeader();
+  req.setEventHeader(new EventHeader(event,id));
+  req.setBody("message/sipfrag;version=2.0",sipfragment);
+  return req;
+}

@@ -1,0 +1,10 @@
+float a[]
+int as
+float x[]
+int xs
+float y[]
+int ys
+int l
+float mem[]
+int mems
+int update

@@ -1,0 +1,8 @@
+{
+  try {
+    if (stdin != null)     return stdin.readLine();
+  }
+ catch (  IOException e) {
+  }
+  return null;
+}

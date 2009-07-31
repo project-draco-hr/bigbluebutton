@@ -1,0 +1,13 @@
+{
+  int secs=-1;
+  String exp_param=getParameter("expires");
+  if (exp_param != null) {
+    if (exp_param.indexOf("GMT") >= 0) {
+      Date date=(new SipParser((new Parser(exp_param)).getStringUnquoted())).getDate();
+      secs=(int)((date.getTime() - System.currentTimeMillis()) / 1000);
+      if (secs < 0)       secs=0;
+    }
+ else     secs=(new SipParser(exp_param)).getInt();
+  }
+  return secs;
+}

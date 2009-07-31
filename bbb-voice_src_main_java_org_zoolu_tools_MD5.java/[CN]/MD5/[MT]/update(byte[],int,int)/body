@@ -1,0 +1,16 @@
+{
+  if (message_digest != null)   return this;
+  count+=len;
+  int size=block.length - block_offset;
+  while (len >= size) {
+    for (int i=0; i < size; i++)     block[block_offset + i]=buffer[offset + i];
+    transform(state,block);
+    offset+=size;
+    len-=size;
+    block_offset=0;
+    size=block.length - block_offset;
+  }
+  for (int i=0; i < len; i++)   block[block_offset + i]=buffer[offset + i];
+  block_offset+=len;
+  return this;
+}

@@ -1,0 +1,4 @@
+{
+  if (hasContentLengthHeader())   return getContentLengthHeader().getContentLength() > 0;
+ else   return hasContentTypeHeader();
+}

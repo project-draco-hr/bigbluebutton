@@ -1,0 +1,17 @@
+{
+  if (d == 0) {
+    a[b + c]=(byte)i;
+  }
+ else {
+    a[b + c]|=(byte)(i << d);
+  }
+  d+=k;
+  if (d < 8) {
+    return;
+  }
+  c++;
+  d-=8;
+  if (d > 0) {
+    a[b + c]=(byte)(i >> k - d);
+  }
+}

@@ -1,0 +1,18 @@
+{
+  int index=url.indexOf(';');
+  if (index < 0)   return;
+  Parser par=new Parser(url,index);
+  while (par.hasMore()) {
+    int begin_param=par.getPos();
+    par.skipChar();
+    if (par.getWord(SipParser.param_separators).equals(name)) {
+      String top=url.substring(0,begin_param);
+      par.goToSkippingQuoted(';');
+      String bottom="";
+      if (par.hasMore())       bottom=url.substring(par.getPos());
+      url=top.concat(bottom);
+      return;
+    }
+    par.goTo(';');
+  }
+}

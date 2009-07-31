@@ -1,0 +1,10 @@
+{
+  codecEncodeAttributes=new Hashtable<String,String>();
+  for (int i=0; i < encodeAttributes.length; i++) {
+    codecEncodeAttributes.put(encodeAttributes[i],"");
+  }
+  codecDecodeAttributes=new Hashtable<String,String>();
+  for (int i=0; i < decodeAttributes.length; i++) {
+    codecDecodeAttributes.put(decodeAttributes[i],"");
+  }
+}

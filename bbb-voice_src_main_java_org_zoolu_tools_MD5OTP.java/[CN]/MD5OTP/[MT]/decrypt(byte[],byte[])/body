@@ -1,0 +1,5 @@
+{
+  byte[] iv=sub(c,0,16);
+  byte[] buf=sub(c,16,c.length);
+  return (new MD5OTP(key,iv)).update(buf);
+}

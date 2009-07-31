@@ -1,0 +1,3 @@
+{
+  init(frequence,ampliture,sample_rate,sample_size,codec,big_endian);
+}

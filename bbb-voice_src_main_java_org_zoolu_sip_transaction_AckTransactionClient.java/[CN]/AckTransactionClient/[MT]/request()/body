@@ -1,0 +1,6 @@
+{
+  printLog("start",LogLevel.LOW);
+  sip_provider.sendMessage(request);
+  changeStatus(STATE_TERMINATED);
+  transaction_listener=null;
+}

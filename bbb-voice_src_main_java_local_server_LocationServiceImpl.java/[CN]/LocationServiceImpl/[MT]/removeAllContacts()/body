@@ -1,0 +1,7 @@
+{
+  for (Enumeration i=getUserBindings(); i.hasMoreElements(); ) {
+    ((UserBindingInfo)i.nextElement()).removeContacts();
+  }
+  changed=true;
+  return this;
+}

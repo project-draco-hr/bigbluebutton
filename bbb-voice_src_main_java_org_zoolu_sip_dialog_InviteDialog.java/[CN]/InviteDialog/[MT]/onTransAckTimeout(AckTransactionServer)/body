@@ -1,0 +1,7 @@
+{
+  printLog("inside onAckSrvTimeout(ts)",LogLevel.LOW);
+  if (!verifyStatus(statusIs(D_ACCEPTED) || statusIs(D_ReACCEPTED) || statusIs(D_REFUSED)|| statusIs(D_ReREFUSED)))   return;
+  printLog("No ACK received..",LogLevel.HIGH);
+  changeStatus(D_CLOSE);
+  listener.onDlgClose(this);
+}

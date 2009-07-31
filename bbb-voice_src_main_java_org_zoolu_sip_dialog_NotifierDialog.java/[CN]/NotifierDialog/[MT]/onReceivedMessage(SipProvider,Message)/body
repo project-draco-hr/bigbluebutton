@@ -1,0 +1,27 @@
+{
+  printLog("onReceivedMessage()",LogLevel.MEDIUM);
+  if (statusIs(D_TERMINATED)) {
+    printLog("subscription already terminated: message discarded",LogLevel.MEDIUM);
+    return;
+  }
+  if (msg.isRequest() && msg.isSubscribe()) {
+    if (statusIs(this.D_WAITING)) {
+      changeStatus(D_SUBSCRIBED);
+      sip_provider.removeSipProviderListener(new MethodIdentifier(SipMethods.SUBSCRIBE));
+    }
+    subscribe_req=msg;
+    NameAddress target=msg.getToHeader().getNameAddress();
+    NameAddress subscriber=msg.getFromHeader().getNameAddress();
+    EventHeader eh=msg.getEventHeader();
+    if (eh != null) {
+      event=eh.getEvent();
+      id=eh.getId();
+    }
+    update(UAS,msg);
+    subscribe_transaction=new TransactionServer(sip_provider,msg,null);
+    if (listener != null)     listener.onDlgSubscribe(this,target,subscriber,event,id,msg);
+  }
+ else {
+    printLog("message is not a SUBSCRIBE: message discarded",LogLevel.HIGH);
+  }
+}

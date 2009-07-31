@@ -1,0 +1,12 @@
+{
+  if (args.length >= 2)   try {
+    int port=Integer.parseInt(args[1]);
+    JMediaReceiver media_receiver=new JMediaReceiver(args[0],port,null);
+    media_receiver.start();
+    return;
+  }
+ catch (  Exception e) {
+    System.out.println("Error creating the receiver");
+  }
+  System.out.println("usage:\n  java JMediaReceiver audio|video <local_port>");
+}

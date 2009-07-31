@@ -1,0 +1,16 @@
+{
+  if (!str.startsWith("sip:") && str.indexOf("@") < 0 && str.indexOf(".") < 0 && str.indexOf(":") < 0) {
+    String url="sip:" + str + "@";
+    if (outbound_proxy != null) {
+      url+=outbound_proxy.getAddress().toString();
+      int port=outbound_proxy.getPort();
+      if (port > 0 && port != SipStack.default_port)       url+=":" + port;
+    }
+ else {
+      url+=via_addr;
+      if (host_port > 0 && host_port != SipStack.default_port)       url+=":" + host_port;
+    }
+    return new SipURL(url);
+  }
+ else   return new SipURL(str);
+}

@@ -1,0 +1,19 @@
+{
+  int mask;
+  int seg;
+  int uval;
+  if (pcm_val < 0) {
+    pcm_val=BIAS - pcm_val;
+    mask=0x7F;
+  }
+ else {
+    pcm_val+=BIAS;
+    mask=0xFF;
+  }
+  seg=search(pcm_val,seg_end);
+  if (seg >= 8)   return (0x7F ^ mask);
+ else {
+    uval=(seg << 4) | ((pcm_val >> (seg + 3)) & 0xF);
+    return (uval ^ mask);
+  }
+}

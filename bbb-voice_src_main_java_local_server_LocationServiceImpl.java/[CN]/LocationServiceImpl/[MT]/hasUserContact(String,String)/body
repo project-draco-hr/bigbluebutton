@@ -1,0 +1,4 @@
+{
+  if (!hasUser(user))   return false;
+  return getUserBindingInfo(user).hasContact(url);
+}

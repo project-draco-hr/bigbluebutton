@@ -1,0 +1,4 @@
+{
+  if (server_socket != null)   return "tcp:" + server_socket.getInetAddress() + ":"+ server_socket.getLocalPort();
+ else   return null;
+}

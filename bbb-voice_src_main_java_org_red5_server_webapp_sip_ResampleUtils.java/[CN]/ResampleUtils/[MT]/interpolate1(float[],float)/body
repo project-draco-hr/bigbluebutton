@@ -1,0 +1,10 @@
+{
+  try {
+    int ip=((int)index);
+    float fp=index - ip;
+    return data[ip % data.length] * (1 - fp) + data[(ip + 1) % data.length] * fp;
+  }
+ catch (  ArrayIndexOutOfBoundsException e) {
+    return 0;
+  }
+}

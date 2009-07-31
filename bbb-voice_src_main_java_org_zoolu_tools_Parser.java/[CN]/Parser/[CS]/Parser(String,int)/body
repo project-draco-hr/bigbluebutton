@@ -1,0 +1,5 @@
+{
+  if (s == null)   throw (new RuntimeException("Tried to costruct a new Parser with a null String"));
+  str=s;
+  index=i;
+}

@@ -1,0 +1,7 @@
+float xn[]
+int xns
+float y1[]
+int y1s
+float g_coeff[]
+int gs
+int l_subfr

@@ -1,0 +1,5 @@
+InviteDialog d
+NameAddress callee
+NameAddress caller
+String sdp
+Message msg

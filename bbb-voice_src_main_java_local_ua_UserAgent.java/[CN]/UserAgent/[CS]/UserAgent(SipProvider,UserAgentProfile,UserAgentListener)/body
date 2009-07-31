@@ -1,0 +1,25 @@
+{
+  this.sip_provider=sip_provider;
+  log=sip_provider.getLog();
+  this.listener=listener;
+  this.user_profile=user_profile;
+  user_profile.initContactAddress(sip_provider);
+  if (!user_profile.use_rat && !user_profile.use_jmf) {
+    if (user_profile.audio && !user_profile.recv_only && user_profile.send_file == null && !user_profile.send_tone)     local.media.AudioInput.initAudioLine();
+    if (user_profile.audio && !user_profile.send_only && user_profile.recv_file == null)     local.media.AudioOutput.initAudioLine();
+  }
+  if (!user_profile.use_rat) {
+    try {
+      String jar_file=user_profile.ua_jar;
+      clip_on=new AudioClipPlayer(Archive.getAudioInputStream(Archive.getJarURL(jar_file,CLIP_ON)),null);
+      clip_off=new AudioClipPlayer(Archive.getAudioInputStream(Archive.getJarURL(jar_file,CLIP_OFF)),null);
+      clip_ring=new AudioClipPlayer(Archive.getAudioInputStream(Archive.getJarURL(jar_file,CLIP_RING)),null);
+    }
+ catch (    Exception e) {
+      printException(e,LogLevel.HIGH);
+    }
+  }
+  initSessionDescriptor();
+  if (user_profile.audio || !user_profile.video)   addMediaDescriptor("audio",user_profile.audio_port,user_profile.audio_avp,user_profile.audio_codec,user_profile.audio_sample_rate);
+  if (user_profile.video)   addMediaDescriptor("video",user_profile.video_port,user_profile.video_avp,null,0);
+}

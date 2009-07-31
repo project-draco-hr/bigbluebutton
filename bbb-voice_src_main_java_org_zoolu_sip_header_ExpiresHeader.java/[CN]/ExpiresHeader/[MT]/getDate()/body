@@ -1,0 +1,11 @@
+{
+  Date date=null;
+  if (isDate()) {
+    date=(new SipParser((new Parser(value)).getStringUnquoted())).getDate();
+  }
+ else {
+    long secs=getDeltaSeconds();
+    if (secs >= 0)     date=new Date(System.currentTimeMillis() + secs * 1000);
+  }
+  return date;
+}

@@ -1,0 +1,9 @@
+{
+  attempts=0;
+  NameAddress user=new NameAddress(target);
+  Message req=MessageFactory.createRegisterRequest(sipProvider,target,target,null);
+  req.setExpiresHeader(new ExpiresHeader(String.valueOf(0)));
+  printLog("Unregistering all contacts");
+  TransactionClient t=new TransactionClient(sipProvider,req,this);
+  t.request();
+}

@@ -1,0 +1,10 @@
+{
+  if (SipStack.debug_level > 0) {
+    String filename=SipStack.log_path + "//" + via_addr+ "."+ host_port;
+    event_log=new RotatingLog(filename + "_events.log",null,SipStack.debug_level,SipStack.max_logsize * 1024,SipStack.log_rotations,SipStack.rotation_scale,SipStack.rotation_time);
+    message_log=new RotatingLog(filename + "_messages.log",null,SipStack.debug_level,SipStack.max_logsize * 1024,SipStack.log_rotations,SipStack.rotation_scale,SipStack.rotation_time);
+  }
+  printLog("Date: " + DateFormat.formatHHMMSS(new Date()),LogLevel.HIGH);
+  printLog("SipStack: " + SipStack.release,LogLevel.HIGH);
+  printLog("new SipProvider(): " + toString(),LogLevel.HIGH);
+}

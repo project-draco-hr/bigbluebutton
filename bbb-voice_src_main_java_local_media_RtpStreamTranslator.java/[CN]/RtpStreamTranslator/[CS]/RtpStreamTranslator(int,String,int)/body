@@ -1,0 +1,10 @@
+{
+  try {
+    DatagramSocket recv_socket=new DatagramSocket(recv_port);
+    socket_in_is_local=true;
+    init(recv_socket,null,dest_addr,dest_port);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

@@ -1,0 +1,4 @@
+{
+  log.debug("SipUserAgent - " + method + " -> "+ message);
+  System.out.println("SipUserAgent - " + method + " -> "+ message);
+}

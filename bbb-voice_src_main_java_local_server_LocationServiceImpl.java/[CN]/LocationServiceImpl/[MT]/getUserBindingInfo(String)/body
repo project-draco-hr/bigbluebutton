@@ -1,0 +1,3 @@
+{
+  return (UserBindingInfo)users.get(user);
+}

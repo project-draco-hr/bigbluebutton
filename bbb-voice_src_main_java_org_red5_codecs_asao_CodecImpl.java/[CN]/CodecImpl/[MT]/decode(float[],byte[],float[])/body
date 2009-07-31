@@ -1,0 +1,63 @@
+{
+  byte[] unpacked_input=new byte[124];
+  float[] var_808=new float[128];
+  float[] var_608=new float[124];
+  float[] var_418=new float[124];
+  BitStream bs=new BitStream();
+  int unpacked_byte=bs.pop(gainBit[0],in);
+  unpacked_input[0]=(byte)unpacked_byte;
+  var_808[0]=table1[unpacked_byte];
+  for (int i=1; i < 23; ++i) {
+    unpacked_byte=bs.pop(gainBit[i],in);
+    unpacked_input[i]=(byte)unpacked_byte;
+    var_808[i]=var_808[i - 1] + table2[unpacked_byte];
+  }
+  ;
+  for (int i=0; i < 23; ++i) {
+    final float pow=(float)Math.pow(2.0,var_808[i] * (0.5 * 0.0009765625));
+    int bound=bandBound[i];
+    final int next_bound=bandBound[i + 1];
+    for (; bound < next_bound; ++bound) {
+      var_418[bound]=var_808[i];
+      var_608[bound]=pow;
+    }
+  }
+  int packed_byte_sizes[]=new int[124];
+  final int leftover=wc(var_418,124,198,packed_byte_sizes);
+  for (int out_off=0; out_off < 256; out_off+=128) {
+    for (int i=0; i < 124; ++i) {
+      final int packed_size=packed_byte_sizes[i];
+      float val=var_608[i];
+      if (packed_size > 0) {
+        final int pow2=1 << packed_size;
+        unpacked_byte=bs.pop(packed_size,in);
+        unpacked_input[i]=(byte)unpacked_byte;
+        val*=table3[pow2 - 1 + unpacked_byte];
+      }
+ else {
+        final double rnd_u32=Math.random() * 4294967296.0;
+        if (rnd_u32 < (1 << 30) + (1 << 14)) {
+          val*=-0.707099974;
+        }
+ else {
+          val*=0.707099974;
+        }
+      }
+      var_808[i]=val;
+    }
+    for (int i=124; i < 128; ++i) {
+      var_808[i]=0;
+    }
+    for (int i=leftover; i > 0; i-=8) {
+      if (i > 8) {
+        bs.pop(8,in);
+      }
+ else {
+        bs.pop(i,in);
+        break;
+      }
+    }
+    iTransfm(state,var_808,7,out,out_off);
+  }
+  return state;
+}

@@ -1,0 +1,7 @@
+{
+  int t;
+  u_val=~u_val;
+  t=((u_val & QUANT_MASK) << 3) + BIAS;
+  t<<=(u_val & SEG_MASK) >> SEG_SHIFT;
+  return ((u_val & SIGN_BIT) != 0) ? (BIAS - t) : (t - BIAS);
+}

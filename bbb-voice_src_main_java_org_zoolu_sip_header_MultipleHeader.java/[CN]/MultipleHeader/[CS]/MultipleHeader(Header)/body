@@ -1,0 +1,13 @@
+{
+  name=hd.getName();
+  values=new Vector();
+  SipParser par=new SipParser(hd.getValue());
+  int comma=par.indexOfCommaHeaderSeparator();
+  while (comma >= 0) {
+    values.addElement(par.getString(comma - par.getPos()).trim());
+    par.skipChar();
+    comma=par.indexOfCommaHeaderSeparator();
+  }
+  values.addElement(par.getRemainingString().trim());
+  compact=true;
+}

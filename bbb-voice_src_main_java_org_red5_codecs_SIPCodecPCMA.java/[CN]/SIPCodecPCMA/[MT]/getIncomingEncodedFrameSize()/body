@@ -1,0 +1,3 @@
+{
+  return (defaultEncodedFrameSize / SIPCodec.DEFAULT_PACKETIZATION) * incomingPacketization;
+}

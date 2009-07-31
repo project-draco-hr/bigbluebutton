@@ -1,0 +1,3 @@
+{
+  outbound_proxy=soaddr;
+}

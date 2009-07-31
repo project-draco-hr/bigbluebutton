@@ -1,0 +1,9 @@
+{
+  this.listener=listener;
+  this.socket=socket;
+  this.socket_timeout=DEFAULT_SOCKET_TIMEOUT;
+  this.alive_time=alive_time;
+  this.minimum_length=0;
+  this.stop=false;
+  this.is_running=true;
+}

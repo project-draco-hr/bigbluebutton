@@ -1,0 +1,3 @@
+{
+  ua.printLog("Registration success: " + result,LogLevel.HIGH);
+}

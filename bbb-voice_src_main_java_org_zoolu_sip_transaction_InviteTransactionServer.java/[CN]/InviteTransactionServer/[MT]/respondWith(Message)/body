@@ -1,0 +1,26 @@
+{
+  response=resp;
+  int code=response.getStatusLine().getCode();
+  if (statusIs(STATE_TRYING) || statusIs(STATE_PROCEEDING))   sip_provider.sendMessage(response,connection_id);
+  if (code >= 100 && code < 200 && statusIs(STATE_TRYING)) {
+    changeStatus(STATE_PROCEEDING);
+    return;
+  }
+  if (code >= 200 && code < 300 && (statusIs(STATE_TRYING) || statusIs(STATE_PROCEEDING))) {
+    sip_provider.removeSipProviderListener(transaction_id);
+    changeStatus(STATE_TERMINATED);
+    transaction_listener=null;
+    return;
+  }
+  if (code >= 300 && code < 700 && (statusIs(STATE_TRYING) || statusIs(STATE_PROCEEDING))) {
+    changeStatus(STATE_COMPLETED);
+    if (connection_id == null) {
+      retransmission_to.start();
+      end_to.start();
+    }
+ else {
+      printLog("No retransmissions for reliable transport (" + connection_id + ")",LogLevel.LOW);
+      onTimeout(end_to);
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  super(sip_provider);
+  this.listener=listener;
+  this.subscribe_transaction=null;
+  this.event=event;
+  this.id=null;
+  changeStatus(D_INIT);
+}

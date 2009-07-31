@@ -1,0 +1,8 @@
+{
+  try {
+    return data[((int)index) % data.length];
+  }
+ catch (  ArrayIndexOutOfBoundsException e) {
+    return 0;
+  }
+}

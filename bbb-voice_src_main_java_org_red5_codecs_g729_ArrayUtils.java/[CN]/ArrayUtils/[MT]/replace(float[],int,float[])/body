@@ -1,0 +1,5 @@
+{
+  for (int q=start; q < array.length; q++) {
+    array[q]=tmp[q - start];
+  }
+}

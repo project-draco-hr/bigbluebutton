@@ -1,0 +1,4 @@
+float best_gain[]
+IntegerPointer cand1
+IntegerPointer cand2
+float gcode0

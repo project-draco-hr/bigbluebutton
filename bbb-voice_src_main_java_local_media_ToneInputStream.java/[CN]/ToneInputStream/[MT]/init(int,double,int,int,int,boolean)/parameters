@@ -1,0 +1,6 @@
+int frequence
+double ampliture
+int sample_rate
+int sample_size
+int codec
+boolean big_endian

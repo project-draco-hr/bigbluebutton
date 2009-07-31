@@ -1,0 +1,3 @@
+{
+  for (int k=0; k < src.length; k++)   dst[offset + k]=src[k];
+}

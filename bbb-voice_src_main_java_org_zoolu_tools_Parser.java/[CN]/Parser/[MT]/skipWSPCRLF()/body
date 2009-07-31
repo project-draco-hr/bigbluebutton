@@ -1,0 +1,4 @@
+{
+  while (index < str.length() && isWSPCRLF(str.charAt(index)))   index++;
+  return this;
+}

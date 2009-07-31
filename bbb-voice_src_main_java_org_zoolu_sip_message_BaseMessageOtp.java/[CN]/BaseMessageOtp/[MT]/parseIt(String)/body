@@ -1,0 +1,21 @@
+{
+  SipParser par=new SipParser(str);
+  String version=str.substring(0,4);
+  if (version.equalsIgnoreCase("SIP/"))   status_line=par.getStatusLine();
+ else   request_line=par.getRequestLine();
+  headers=new Vector();
+  Header h=par.getHeader();
+  while (h != null) {
+    headers.addElement(h);
+    h=par.getHeader();
+  }
+  ContentLengthHeader clh=getContentLengthHeader();
+  if (clh != null) {
+    int len=clh.getContentLength();
+    body=par.getString(len);
+  }
+ else   if (getContentTypeHeader() != null) {
+    body=par.getRemainingString();
+    if (body.length() == 0)     body=null;
+  }
+}

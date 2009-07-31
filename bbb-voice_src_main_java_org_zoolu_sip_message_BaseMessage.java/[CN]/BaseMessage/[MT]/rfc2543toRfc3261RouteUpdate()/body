@@ -1,0 +1,12 @@
+{
+  RequestLine request_line=getRequestLine();
+  SipURL next_hop=request_line.getAddress();
+  MultipleHeader mrh=getRoutes();
+  SipURL target=(new RouteHeader(mrh.getBottom())).getNameAddress().getAddress();
+  mrh.removeBottom();
+  next_hop.addLr();
+  mrh.addTop(new RouteHeader(new NameAddress(next_hop)));
+  removeRoutes();
+  addRoutes(mrh);
+  setRequestLine(new RequestLine(request_line.getMethod(),target));
+}

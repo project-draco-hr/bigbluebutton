@@ -1,0 +1,3 @@
+{
+  super('o',username + " " + sess_id+ " "+ sess_version+ " IN "+ addrtype+ " "+ address);
+}

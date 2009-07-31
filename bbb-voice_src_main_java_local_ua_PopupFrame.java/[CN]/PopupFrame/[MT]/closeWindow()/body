@@ -1,0 +1,4 @@
+{
+  if (caller != null)   caller.setEnabled(true);
+  this.dispose();
+}

@@ -1,0 +1,3 @@
+SessionDescriptor newSdp
+MediaDescriptor localMedia
+AttributeField remoteAttribute

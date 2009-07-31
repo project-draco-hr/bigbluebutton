@@ -1,0 +1,6 @@
+{
+  super();
+  socket=new RtpSocket(datagram_socket);
+  byte[] buff=new byte[MAX_PACKET_SIZE];
+  packet=new RtpPacket(buff,0);
+}

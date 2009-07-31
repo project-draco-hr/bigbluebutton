@@ -1,0 +1,33 @@
+{
+  int o1=0;
+  int l1=s1.length;
+  int resampledLength=(int)((float)l1 / sampleRateFactor);
+  float[] tmp=new float[resampledLength];
+  double oldIndex=o1;
+  for (int i=o1; i < o1 + resampledLength; i++) {
+    if (((int)oldIndex + 1) < s1.length) {
+      tmp[i]=interpolate0(s1,(float)oldIndex);
+    }
+ else {
+      break;
+    }
+    oldIndex+=sampleRateFactor;
+  }
+  oldIndex=o1;
+  for (int i=o1; i < o1 + resampledLength; i++) {
+    if (((int)oldIndex + 1) < s1.length) {
+      tmp[i]=interpolate1(s1,(float)oldIndex);
+    }
+ else {
+      break;
+    }
+    oldIndex+=sampleRateFactor;
+  }
+  byte[] outSample=new byte[resampledLength * 2];
+  int pos=0;
+  for (int z=o1; z < o1 + resampledLength; z++) {
+    outSample[pos++]=(byte)((int)tmp[z] & 0xFF);
+    outSample[pos++]=(byte)(((int)tmp[z] & 0xFF00) >> 8);
+  }
+  return outSample;
+}

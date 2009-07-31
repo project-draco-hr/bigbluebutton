@@ -1,0 +1,5 @@
+{
+  for (Enumeration e=input_lines.elements(); e.hasMoreElements(); ) {
+    ((InputStream)e.nextElement()).mark(readlimit);
+  }
+}

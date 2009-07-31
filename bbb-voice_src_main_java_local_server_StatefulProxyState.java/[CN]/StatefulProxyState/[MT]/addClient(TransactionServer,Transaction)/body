@@ -1,0 +1,11 @@
+{
+  c_server.put(tc.getTransactionId(),ts);
+  TransactionIdentifier sid=ts.getTransactionId();
+  HashSet clients=(HashSet)s_clients.get(sid);
+  if (clients == null)   clients=new HashSet();
+  clients.add(tc);
+  s_clients.put(sid,clients);
+  Message request=new Message(ts.getRequestMessage());
+  Message resp=MessageFactory.createResponse(request,408,SipResponses.reasonOf(408),null);
+  s_response.put(sid,resp);
+}

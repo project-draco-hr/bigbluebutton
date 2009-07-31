@@ -1,0 +1,5 @@
+{
+  MultipleHeader mh=getRecordRoutes();
+  mh.removeTop();
+  setRecordRoutes(mh);
+}

@@ -1,0 +1,3 @@
+{
+  return "SIP/2.0 " + code + " "+ reason+ "\r\n";
+}

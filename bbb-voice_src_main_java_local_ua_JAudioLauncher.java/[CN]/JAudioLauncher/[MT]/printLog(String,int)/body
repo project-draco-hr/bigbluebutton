@@ -1,0 +1,4 @@
+{
+  if (log != null)   log.println("AudioLauncher: " + str,level + SipStack.LOG_LEVEL_UA);
+  if (level <= LogLevel.HIGH)   System.out.println("AudioLauncher: " + str);
+}

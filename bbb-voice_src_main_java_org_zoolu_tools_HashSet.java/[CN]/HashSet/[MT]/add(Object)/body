@@ -1,0 +1,4 @@
+{
+  set.addElement(o);
+  return true;
+}

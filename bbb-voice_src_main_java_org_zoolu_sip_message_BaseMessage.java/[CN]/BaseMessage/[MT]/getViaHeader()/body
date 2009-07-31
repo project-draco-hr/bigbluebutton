@@ -1,0 +1,5 @@
+{
+  MultipleHeader mh=getVias();
+  if (mh == null)   return null;
+  return new ViaHeader(mh.getTop());
+}

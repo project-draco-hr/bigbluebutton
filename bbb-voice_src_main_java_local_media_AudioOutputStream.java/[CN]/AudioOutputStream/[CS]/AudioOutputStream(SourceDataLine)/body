@@ -1,0 +1,5 @@
+{
+  this.source_line=source_line;
+  input_stream=null;
+  output_stream=null;
+}

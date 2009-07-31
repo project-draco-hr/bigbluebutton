@@ -1,0 +1,31 @@
+{
+  if (rtp_socket == null) {
+    if (DEBUG)     println("ERROR: RTP socket is null");
+    return;
+  }
+  byte[] buffer=new byte[BUFFER_SIZE];
+  RtpPacket rtp_packet=new RtpPacket(buffer,0);
+  if (DEBUG)   println("Reading blocks of max " + buffer.length + " bytes");
+  running=true;
+  try {
+    rtp_socket.getDatagramSocket().setSoTimeout(SO_TIMEOUT);
+    while (running) {
+      try {
+        rtp_socket.receive(rtp_packet);
+        if (running)         output_stream.write(rtp_packet.getPacket(),rtp_packet.getHeaderLength(),rtp_packet.getPayloadLength());
+      }
+ catch (      java.io.InterruptedIOException e) {
+      }
+    }
+  }
+ catch (  Exception e) {
+    running=false;
+    e.printStackTrace();
+  }
+  DatagramSocket socket=rtp_socket.getDatagramSocket();
+  rtp_socket.close();
+  if (socket_is_local && socket != null)   socket.close();
+  output_stream=null;
+  rtp_socket=null;
+  if (DEBUG)   println("rtp receiver terminated");
+}

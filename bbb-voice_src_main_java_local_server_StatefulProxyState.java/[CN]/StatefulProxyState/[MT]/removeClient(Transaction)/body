@@ -1,0 +1,13 @@
+{
+  TransactionIdentifier cid=tc.getTransactionId();
+  TransactionServer ts=(TransactionServer)c_server.get(cid);
+  if (ts == null)   return;
+  c_server.remove(cid);
+  TransactionIdentifier sid=ts.getTransactionId();
+  HashSet clients=(HashSet)s_clients.get(sid);
+  if (clients == null)   return;
+  Transaction target=null;
+  Transaction aux;
+  for (Iterator i=clients.iterator(); i.hasNext(); )   if ((aux=(Transaction)i.next()).getTransactionId().equals(cid))   target=aux;
+  if (target != null)   clients.remove(target);
+}

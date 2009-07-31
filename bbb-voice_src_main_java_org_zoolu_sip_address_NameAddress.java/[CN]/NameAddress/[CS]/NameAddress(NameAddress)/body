@@ -1,0 +1,4 @@
+{
+  name=name_address.getDisplayName();
+  url=name_address.getAddress();
+}

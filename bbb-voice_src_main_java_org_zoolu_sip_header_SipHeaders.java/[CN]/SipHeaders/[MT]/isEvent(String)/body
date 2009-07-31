@@ -1,0 +1,3 @@
+{
+  return same(str,Event) || same(str,Event_short);
+}

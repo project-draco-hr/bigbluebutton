@@ -1,0 +1,3 @@
+{
+  return (new SimpleDigest(8,req.toString())).asHex();
+}

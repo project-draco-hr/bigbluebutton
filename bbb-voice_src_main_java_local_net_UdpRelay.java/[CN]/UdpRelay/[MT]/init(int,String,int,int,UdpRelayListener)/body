@@ -1,0 +1,10 @@
+{
+  this.local_port=local_port;
+  this.dest_addr=dest_addr;
+  this.dest_port=dest_port;
+  this.alive_to=alive_time;
+  this.listener=listener;
+  src_addr="0.0.0.0";
+  src_port=0;
+  stop=false;
+}

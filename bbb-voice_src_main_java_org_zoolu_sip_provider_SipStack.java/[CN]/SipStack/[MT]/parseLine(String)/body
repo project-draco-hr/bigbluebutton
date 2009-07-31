@@ -1,0 +1,98 @@
+{
+  String attribute;
+  Parser par;
+  int index=line.indexOf("=");
+  if (index > 0) {
+    attribute=line.substring(0,index).trim();
+    par=new Parser(line,index + 1);
+  }
+ else {
+    attribute=line;
+    par=new Parser("");
+  }
+  char[] delim={' ',','};
+  if (attribute.equals("default_port")) {
+    default_port=par.getInt();
+    return;
+  }
+  if (attribute.equals("default_transport_protocols")) {
+    default_transport_protocols=par.getWordArray(delim);
+    return;
+  }
+  if (attribute.equals("default_nmax_connections")) {
+    default_nmax_connections=par.getInt();
+    return;
+  }
+  if (attribute.equals("use_rport")) {
+    use_rport=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("force_rport")) {
+    force_rport=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("max_forwards")) {
+    max_forwards=par.getInt();
+    return;
+  }
+  if (attribute.equals("retransmission_timeout")) {
+    retransmission_timeout=par.getInt();
+    return;
+  }
+  if (attribute.equals("max_retransmission_timeout")) {
+    max_retransmission_timeout=par.getInt();
+    return;
+  }
+  if (attribute.equals("transaction_timeout")) {
+    transaction_timeout=par.getInt();
+    return;
+  }
+  if (attribute.equals("clearing_timeout")) {
+    clearing_timeout=par.getInt();
+    return;
+  }
+  if (attribute.equals("single_timer")) {
+    single_timer=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("early_dialog")) {
+    early_dialog=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("default_expires")) {
+    default_expires=par.getInt();
+    return;
+  }
+  if (attribute.equals("ua_info")) {
+    ua_info=par.getRemainingString().trim();
+    return;
+  }
+  if (attribute.equals("server_info")) {
+    server_info=par.getRemainingString().trim();
+    return;
+  }
+  if (attribute.equals("debug_level")) {
+    debug_level=par.getInt();
+    return;
+  }
+  if (attribute.equals("log_path")) {
+    log_path=par.getString();
+    return;
+  }
+  if (attribute.equals("max_logsize")) {
+    max_logsize=par.getInt();
+    return;
+  }
+  if (attribute.equals("log_rotations")) {
+    log_rotations=par.getInt();
+    return;
+  }
+  if (attribute.equals("log_rotation_time")) {
+    log_rotation_time=par.getRemainingString();
+    return;
+  }
+  if (attribute.equals("host_addr"))   printLog("WARNING: parameter 'host_addr' is no more supported; use 'via_addr' instead.");
+  if (attribute.equals("all_interfaces"))   printLog("WARNING: parameter 'all_interfaces' is no more supported; use 'host_iaddr' for setting a specific interface or let it undefined.");
+  if (attribute.equals("use_outbound"))   printLog("WARNING: parameter 'use_outbound' is no more supported; use 'outbound_addr' for setting an outbound proxy or let it undefined.");
+  if (attribute.equals("log_file"))   printLog("WARNING: parameter 'log_file' is no more supported.");
+}

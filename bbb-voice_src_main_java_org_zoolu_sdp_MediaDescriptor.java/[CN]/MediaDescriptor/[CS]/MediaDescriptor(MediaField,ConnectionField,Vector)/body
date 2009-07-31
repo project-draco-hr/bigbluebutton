@@ -1,0 +1,7 @@
+{
+  m=media;
+  c=connection;
+  av=new Vector(attributes.size());
+  av.setSize(attributes.size());
+  for (int i=0; i < attributes.size(); i++)   av.setElementAt((AttributeField)attributes.elementAt(i),i);
+}

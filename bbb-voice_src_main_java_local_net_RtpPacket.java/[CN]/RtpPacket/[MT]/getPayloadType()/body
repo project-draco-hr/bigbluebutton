@@ -1,0 +1,4 @@
+{
+  if (packet_len >= 12)   return (packet[1] & 0x7F);
+ else   return -1;
+}

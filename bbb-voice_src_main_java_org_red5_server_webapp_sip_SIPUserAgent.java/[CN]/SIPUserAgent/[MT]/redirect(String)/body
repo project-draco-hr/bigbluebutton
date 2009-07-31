@@ -1,0 +1,9 @@
+{
+  printLog("redirect","Init...");
+  if (clip_ring != null) {
+    clip_ring.stop();
+  }
+  if (call != null) {
+    call.redirect(redirection);
+  }
+}

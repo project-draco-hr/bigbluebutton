@@ -1,0 +1,17 @@
+{
+  String username=request_uri.getUserName();
+  if (username != null && isPhoneNumber(username)) {
+    printLog(username + " is a phone number",LogLevel.MEDIUM);
+    for (int i=0; i < server_profile.phone_routing_rules.length; i++) {
+      RoutingRule rule=(RoutingRule)server_profile.phone_routing_rules[i];
+      SipURL nexthop=rule.getNexthop(request_uri);
+      if (nexthop != null) {
+        printLog("prefix-based routing: " + rule.toString() + ": YES",LogLevel.MEDIUM);
+        printLog("target=" + nexthop.toString(),LogLevel.MEDIUM);
+        return nexthop;
+      }
+ else       printLog("prefix-based routing: " + rule.toString() + ": NO",LogLevel.MEDIUM);
+    }
+  }
+  return null;
+}

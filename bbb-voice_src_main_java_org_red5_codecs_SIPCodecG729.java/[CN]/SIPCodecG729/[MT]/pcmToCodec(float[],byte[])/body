@@ -1,0 +1,4 @@
+{
+  encoder.encode(bufferIn,bufferOut);
+  return bufferOut.length;
+}

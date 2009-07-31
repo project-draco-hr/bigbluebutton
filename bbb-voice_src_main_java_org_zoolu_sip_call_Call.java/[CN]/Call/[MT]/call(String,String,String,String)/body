@@ -1,0 +1,9 @@
+{
+  printLog("calling " + callee,LogLevel.HIGH);
+  if (from == null)   from=from_url;
+  if (contact == null)   contact=contact_url;
+  if (sdp != null)   local_sdp=sdp;
+  dialog=new InviteDialog(sip_provider,this);
+  if (local_sdp != null)   dialog.invite(callee,from,contact,local_sdp);
+ else   dialog.inviteWithoutOffer(callee,from,contact);
+}

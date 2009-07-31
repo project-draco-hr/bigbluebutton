@@ -1,0 +1,5 @@
+{
+  if (value.indexOf('=') < 0)   value+=" ";
+ else   value+="," + LWS_SEPARATOR;
+  value+=param_name + "=" + param_value;
+}

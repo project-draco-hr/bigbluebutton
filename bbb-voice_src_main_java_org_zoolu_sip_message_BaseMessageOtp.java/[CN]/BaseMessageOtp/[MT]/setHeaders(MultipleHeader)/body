@@ -1,0 +1,22 @@
+{
+  if (mheader.isCommaSeparated())   setHeader(mheader.toHeader());
+ else {
+    boolean first=true;
+    String hname=mheader.getName();
+    for (int i=0; i < headers.size(); i++) {
+      Header h=(Header)headers.elementAt(i);
+      if (hname.equalsIgnoreCase(h.getName())) {
+        if (first) {
+          Vector hs=mheader.getHeaders();
+          for (int k=0; k < hs.size(); k++)           headers.insertElementAt(hs.elementAt(k),i + k);
+          first=false;
+          i+=hs.size() - 1;
+        }
+ else {
+          headers.removeElementAt(i);
+          i--;
+        }
+      }
+    }
+  }
+}

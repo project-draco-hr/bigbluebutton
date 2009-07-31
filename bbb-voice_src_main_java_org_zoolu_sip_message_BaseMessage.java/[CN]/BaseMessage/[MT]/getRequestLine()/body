@@ -1,0 +1,10 @@
+{
+  if (!isRequest()) {
+    return null;
+  }
+  SipParser par=new SipParser(message);
+  String method=par.getString();
+  par.skipWSP();
+  par=new SipParser(par.subParser(par.indexOfEOH() - par.getPos()));
+  return new RequestLine(method,par.getSipURL());
+}

@@ -1,0 +1,12 @@
+{
+  try {
+    if (delay_time > 0)     Thread.sleep(delay_time * 1000);
+    if (call != null && call.isOnCall()) {
+      printLog("REFER/TRANSFER");
+      call.transfer(transfer_to);
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

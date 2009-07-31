@@ -1,0 +1,3 @@
+{
+  init(realm,authentication_service,log);
+}

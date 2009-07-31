@@ -1,0 +1,37 @@
+{
+  printLog("inside respond(resp)",LogLevel.MEDIUM);
+  String method=resp.getCSeqHeader().getMethod();
+  if (method.equals(SipMethods.INVITE)) {
+    if (!verifyStatus(statusIs(D_INVITED) || statusIs(D_ReINVITED))) {
+      printLog("respond(): InviteDialog not in (re)invited state: No response now",LogLevel.HIGH);
+      return;
+    }
+    int code=resp.getStatusLine().getCode();
+    if (code >= 100 && code < 200) {
+      invite_ts.respondWith(resp);
+      return;
+    }
+    if (code >= 200) {
+      update(Dialog.UAS,resp);
+    }
+    if (code >= 200 && code < 300) {
+      if (statusIs(D_INVITED))       changeStatus(D_ACCEPTED);
+ else       changeStatus(D_ReACCEPTED);
+      invite_ts.terminate();
+      ConnectionIdentifier conn_id=invite_ts.getConnectionId();
+      ack_ts=new AckTransactionServer(sip_provider,conn_id,resp,this);
+      ack_ts.respond();
+      return;
+    }
+ else {
+      if (statusIs(D_INVITED))       changeStatus(D_REFUSED);
+ else       changeStatus(D_ReREFUSED);
+      invite_ts.respondWith(resp);
+      return;
+    }
+  }
+  if (method.equals(SipMethods.BYE)) {
+    if (!verifyStatus(statusIs(D_BYED)))     return;
+    bye_ts.respondWith(resp);
+  }
+}

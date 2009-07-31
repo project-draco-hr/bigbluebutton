@@ -1,0 +1,4 @@
+{
+  if (response == null)   return false;
+ else   return response.equals(getResponse());
+}

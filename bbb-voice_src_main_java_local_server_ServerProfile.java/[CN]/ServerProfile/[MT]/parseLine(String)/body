@@ -1,0 +1,147 @@
+{
+  String attribute;
+  Parser par;
+  int index=line.indexOf("=");
+  if (index > 0) {
+    attribute=line.substring(0,index).trim();
+    par=new Parser(line,index + 1);
+  }
+ else {
+    attribute=line;
+    par=new Parser("");
+  }
+  if (attribute.equals("is_registrar")) {
+    is_registrar=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("expires")) {
+    expires=par.getInt();
+    return;
+  }
+  if (attribute.equals("register_new_users")) {
+    register_new_users=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("is_open_proxy")) {
+    is_open_proxy=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("location_service")) {
+    location_service=par.getString();
+    return;
+  }
+  if (attribute.equals("location_db")) {
+    location_db=par.getString();
+    return;
+  }
+  if (attribute.equals("clean_location_db")) {
+    clean_location_db=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("do_authentication")) {
+    do_authentication=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("do_proxy_authentication")) {
+    do_proxy_authentication=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("authentication_scheme")) {
+    authentication_scheme=par.getString();
+    return;
+  }
+  if (attribute.equals("authentication_realm")) {
+    authentication_realm=par.getString();
+    return;
+  }
+  if (attribute.equals("authentication_service")) {
+    authentication_service=par.getString();
+    return;
+  }
+  if (attribute.equals("authentication_db")) {
+    authentication_db=par.getString();
+    return;
+  }
+  if (attribute.equals("call_log")) {
+    call_log=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("on_route")) {
+    on_route=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("loose_route")) {
+    loose_route=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("loop_detection")) {
+    loop_detection=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("domain_port_any")) {
+    domain_port_any=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("domain_names")) {
+    char[] delim={' ',','};
+    Vector aux=new Vector();
+    do {
+      String domain=par.getWord(delim);
+      if (domain.equals(SipProvider.AUTO_CONFIGURATION)) {
+        String host_addr=null;
+        String host_name=null;
+        try {
+          InetAddress address=java.net.InetAddress.getLocalHost();
+          host_addr=address.getHostAddress();
+          host_name=address.getHostName();
+        }
+ catch (        java.net.UnknownHostException e) {
+          if (host_addr == null)           host_addr="127.0.0.1";
+          if (host_name == null)           host_name="localhost";
+        }
+        aux.addElement(host_addr);
+        aux.addElement(host_name);
+      }
+ else {
+        aux.addElement(domain);
+      }
+    }
+ while (par.hasMore());
+    domain_names=new String[aux.size()];
+    for (int i=0; i < aux.size(); i++)     domain_names[i]=(String)aux.elementAt(i);
+    return;
+  }
+  if (attribute.equals("phone_routing_rules")) {
+    char[] delim={' ',',','}'};
+    Vector aux=new Vector();
+    par.goTo('{');
+    while (par.hasMore()) {
+      par.goTo("prefix").skipN(6).goTo('=').skipChar();
+      String prefix=par.getWord(delim);
+      if (prefix.equals("*"))       prefix=PrefixRoutingRule.DEFAULT_PREFIX;
+      par.goTo("nexthop").skipN(7).goTo('=').skipChar();
+      String nexthop=par.getWord(delim);
+      aux.addElement(new PrefixRoutingRule(prefix,new SocketAddress(nexthop)));
+      par.goTo('{');
+    }
+    phone_routing_rules=new RoutingRule[aux.size()];
+    for (int i=0; i < aux.size(); i++)     phone_routing_rules[i]=(RoutingRule)aux.elementAt(i);
+    return;
+  }
+  if (attribute.equals("domain_routing_rules")) {
+    char[] delim={' ',',','}'};
+    Vector aux=new Vector();
+    par.goTo('{');
+    while (par.hasMore()) {
+      par.goTo("domain").skipN(6).goTo('=').skipChar();
+      String prefix=par.getWord(delim);
+      par.goTo("nexthop").skipN(7).goTo('=').skipChar();
+      String nexthop=par.getWord(delim);
+      aux.addElement(new DomainRoutingRule(prefix,new SocketAddress(nexthop)));
+      par.goTo('{');
+    }
+    domain_routing_rules=new RoutingRule[aux.size()];
+    for (int i=0; i < aux.size(); i++)     domain_routing_rules[i]=(RoutingRule)aux.elementAt(i);
+    return;
+  }
+}

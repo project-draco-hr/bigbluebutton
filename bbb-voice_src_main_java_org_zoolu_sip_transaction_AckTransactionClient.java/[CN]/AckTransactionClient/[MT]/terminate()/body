@@ -1,0 +1,4 @@
+{
+  changeStatus(STATE_TERMINATED);
+  transaction_listener=null;
+}

@@ -1,0 +1,11 @@
+float exc[]
+int excs
+float xn[]
+int xns
+float h[]
+int hs
+int l_subfr
+int t0_min
+int t0_max
+int i_subfr
+IntegerPointer pit_frac

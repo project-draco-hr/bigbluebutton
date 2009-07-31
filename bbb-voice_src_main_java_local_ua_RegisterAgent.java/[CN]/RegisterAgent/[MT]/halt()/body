@@ -1,0 +1,4 @@
+{
+  if (is_running)   loop=false;
+  if (keep_alive != null)   keep_alive.halt();
+}

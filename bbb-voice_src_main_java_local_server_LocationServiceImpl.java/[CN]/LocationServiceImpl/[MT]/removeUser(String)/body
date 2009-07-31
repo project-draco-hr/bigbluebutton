@@ -1,0 +1,6 @@
+{
+  if (!hasUser(user))   return this;
+  users.remove(user);
+  changed=true;
+  return this;
+}

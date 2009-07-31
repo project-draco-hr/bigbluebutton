@@ -1,0 +1,11 @@
+{
+  printLog("inside respond(" + code + ","+ reason+ ")",LogLevel.MEDIUM);
+  if (statusIs(D_INVITED) || statusIs(D_ReINVITED)) {
+    NameAddress contact_address=null;
+    if (contact != null)     contact_address=new NameAddress(contact);
+    Message resp=MessageFactory.createResponse(invite_req,code,reason,contact_address);
+    resp.setBody(sdp);
+    respond(resp);
+  }
+ else   printWarning("Dialog isn't in \"invited\" state: cannot respond (" + code + "/"+ getStatus()+ "/"+ getDialogID()+ ")",LogLevel.MEDIUM);
+}

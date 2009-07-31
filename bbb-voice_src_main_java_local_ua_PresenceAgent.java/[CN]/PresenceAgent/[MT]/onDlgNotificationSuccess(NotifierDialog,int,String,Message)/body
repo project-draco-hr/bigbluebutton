@@ -1,0 +1,3 @@
+{
+  printLog("onDlgNotificationSuccess()",LogLevel.MEDIUM);
+}

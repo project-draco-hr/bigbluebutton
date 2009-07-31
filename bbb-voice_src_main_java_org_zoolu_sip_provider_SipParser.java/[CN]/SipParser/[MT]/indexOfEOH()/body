@@ -1,0 +1,10 @@
+{
+  SipParser par=new SipParser(str,index);
+  while (true) {
+    par.goTo(CRLF);
+    if (!par.hasMore())     return str.length();
+    int end=par.getPos();
+    par.goToNextLine();
+    if (!par.hasMore() || !isWSP(par.nextChar()))     return end;
+  }
+}

@@ -1,0 +1,7 @@
+{
+  if (is_init)   return;
+  BaseSipResponses.init();
+  reasons[202]="Accepted";
+  reasons[489]="Bad Event";
+  is_init=true;
+}

@@ -1,0 +1,21 @@
+{
+  String toStringRet="";
+  if (codecEncodeAttributes.size() > 0) {
+    toStringRet+="Encode attributes:\n";
+  }
+  for (Enumeration keysEnum=codecEncodeAttributes.keys(); keysEnum.hasMoreElements(); ) {
+    String attributeName=(String)keysEnum.nextElement();
+    toStringRet+="\t" + attributeName + "="+ codecEncodeAttributes.get(attributeName);
+  }
+  if (codecDecodeAttributes.size() > 0) {
+    if (codecEncodeAttributes.size() > 0) {
+      toStringRet+="\n";
+    }
+    toStringRet+="Decode attributes:\n";
+  }
+  for (Enumeration keysEnum=codecDecodeAttributes.keys(); keysEnum.hasMoreElements(); ) {
+    String attributeName=(String)keysEnum.nextElement();
+    toStringRet+="\t" + attributeName + "="+ codecDecodeAttributes.get(attributeName);
+  }
+  return toStringRet;
+}

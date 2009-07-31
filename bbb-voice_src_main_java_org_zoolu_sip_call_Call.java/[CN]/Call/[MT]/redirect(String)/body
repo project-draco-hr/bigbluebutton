@@ -1,0 +1,3 @@
+{
+  if (dialog != null)   dialog.redirect(302,"Moved Temporarily",redirect_url);
+}

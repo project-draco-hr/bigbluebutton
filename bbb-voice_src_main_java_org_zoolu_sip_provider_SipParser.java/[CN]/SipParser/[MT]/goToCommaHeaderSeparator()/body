@@ -1,0 +1,6 @@
+{
+  int comma=indexOfCommaHeaderSeparator();
+  if (comma < 0)   index=str.length();
+ else   index=comma;
+  return this;
+}

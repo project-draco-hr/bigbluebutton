@@ -1,0 +1,3 @@
+{
+  ((ExtendedInviteDialog)dialog).notify(code,reason);
+}

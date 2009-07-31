@@ -1,0 +1,5 @@
+{
+  byte[] cc=new byte[end - begin];
+  for (int i=begin; i < end; i++)   cc[i - begin]=bb[i];
+  return cc;
+}

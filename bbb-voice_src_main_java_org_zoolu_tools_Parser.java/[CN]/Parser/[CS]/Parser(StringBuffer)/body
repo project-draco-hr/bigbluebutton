@@ -1,0 +1,5 @@
+{
+  if (sb == null)   throw (new RuntimeException("Tried to costruct a new Parser with a null StringBuffer"));
+  str=sb.toString();
+  index=0;
+}

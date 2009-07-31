@@ -1,0 +1,7 @@
+{
+  Message msg=new Message(packet);
+  msg.setRemoteAddress(packet.getIpAddress().toString());
+  msg.setRemotePort(packet.getPort());
+  msg.setTransport(PROTO_UDP);
+  if (listener != null)   listener.onReceivedMessage(this,msg);
+}

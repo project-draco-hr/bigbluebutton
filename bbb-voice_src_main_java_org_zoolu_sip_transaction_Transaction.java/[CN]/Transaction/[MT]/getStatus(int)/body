@@ -1,0 +1,20 @@
+{
+switch (st) {
+case STATE_IDLE:
+    return "T_Idle";
+case STATE_WAITING:
+  return "T_Waiting";
+case STATE_TRYING:
+return "T_Trying";
+case STATE_PROCEEDING:
+return "T_Proceeding";
+case STATE_COMPLETED:
+return "T_Completed";
+case STATE_CONFIRMED:
+return "T_Confirmed";
+case STATE_TERMINATED:
+return "T_Terminated";
+default :
+return null;
+}
+}

@@ -1,0 +1,8 @@
+{
+  name=((Header)headers.elementAt(0)).getName();
+  values=new Vector(headers.size());
+  for (int i=0; i < headers.size(); i++) {
+    addBottom((Header)headers.elementAt(i));
+  }
+  compact=false;
+}

@@ -1,0 +1,8 @@
+{
+  this.sipProvider=sip_provider;
+  this.listener=listener;
+  this.userProfile=user_profile;
+  this.rtmpUser=rtmpUser;
+  user_profile.initContactAddress(sip_provider);
+  initSessionDescriptor();
+}

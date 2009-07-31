@@ -1,0 +1,11 @@
+{
+  int i;
+  float av_pred_en;
+  av_pred_en=(float)0.0;
+  for (i=0; i < 4; i++)   av_pred_en+=past_qua_en[i];
+  av_pred_en=av_pred_en * (float)0.25 - (float)4.0;
+  if (av_pred_en < (float)-14.0)   av_pred_en=(float)-14.0;
+  for (i=3; i > 0; i--)   past_qua_en[i]=past_qua_en[i - 1];
+  past_qua_en[0]=av_pred_en;
+  return;
+}

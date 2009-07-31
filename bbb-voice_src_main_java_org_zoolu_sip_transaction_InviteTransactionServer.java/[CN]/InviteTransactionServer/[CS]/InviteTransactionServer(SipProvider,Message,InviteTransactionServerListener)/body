@@ -1,0 +1,11 @@
+{
+  super(sip_provider);
+  request=new Message(invite);
+  init(listener,request.getTransactionId(),request.getConnectionId());
+  changeStatus(STATE_TRYING);
+  sip_provider.addSipProviderListener(transaction_id,this);
+  if (auto_trying) {
+    Message trying100=MessageFactory.createResponse(request,100,SipResponses.reasonOf(100),null);
+    respondWith(trying100);
+  }
+}

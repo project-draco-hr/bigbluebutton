@@ -1,0 +1,8 @@
+{
+  while (index < str.length() && !isCRLF(str.charAt(index)))   index++;
+  if (index < str.length()) {
+    if (str.startsWith("\r\n",index))     index+=2;
+ else     index++;
+  }
+  return this;
+}

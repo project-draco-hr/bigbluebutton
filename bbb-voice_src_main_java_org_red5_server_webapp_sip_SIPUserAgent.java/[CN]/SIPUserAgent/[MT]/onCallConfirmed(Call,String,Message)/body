@@ -1,0 +1,13 @@
+{
+  printLog("onCallConfirmed","Init...");
+  if (call != this.call) {
+    printLog("onCallConfirmed","NOT the current call.");
+    return;
+  }
+  printLog("onCallConfirmed","CONFIRMED/CALL.");
+  changeStatus(UA_ONCALL);
+  if (clip_on != null) {
+    clip_on.replay();
+  }
+  launchMediaApplication();
+}

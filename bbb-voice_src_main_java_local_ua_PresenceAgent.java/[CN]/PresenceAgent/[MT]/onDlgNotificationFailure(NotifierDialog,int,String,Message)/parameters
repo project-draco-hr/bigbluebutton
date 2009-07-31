@@ -1,0 +1,4 @@
+NotifierDialog dialog
+int code
+String reason
+Message msg

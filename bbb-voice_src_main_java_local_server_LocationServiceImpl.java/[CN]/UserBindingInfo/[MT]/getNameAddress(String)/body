@@ -1,0 +1,4 @@
+{
+  if (contact_list.containsKey(url))   return ((ContactHeader)contact_list.get(url)).getNameAddress();
+ else   return null;
+}

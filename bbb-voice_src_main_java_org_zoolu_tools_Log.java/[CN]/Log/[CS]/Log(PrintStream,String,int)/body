@@ -1,0 +1,3 @@
+{
+  init(out_stream,log_tag,verbose_level,-1);
+}

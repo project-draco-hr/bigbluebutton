@@ -1,0 +1,4 @@
+{
+  log.debug("SdpUtils - " + method + " -> "+ message);
+  System.out.println("SdpUtils - " + method + " -> "+ message);
+}

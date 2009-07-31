@@ -1,0 +1,6 @@
+{
+  for (int i=0; i < av.size(); i++) {
+    if (((AttributeField)av.elementAt(i)).getAttributeName().equals(attribute_name))     return true;
+  }
+  return false;
+}

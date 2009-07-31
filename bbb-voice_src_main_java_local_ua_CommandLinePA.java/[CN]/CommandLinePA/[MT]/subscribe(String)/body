@@ -1,0 +1,3 @@
+{
+  pa.subscribe(presentity,SipStack.default_expires);
+}

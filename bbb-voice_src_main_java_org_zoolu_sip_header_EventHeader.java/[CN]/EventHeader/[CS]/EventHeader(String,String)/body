@@ -1,0 +1,4 @@
+{
+  super(SipHeaders.Event,event_package);
+  if (id != null)   this.setParameter("id",id);
+}

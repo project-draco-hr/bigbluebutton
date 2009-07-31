@@ -1,0 +1,6 @@
+{
+  super('c',null);
+  value="IN " + address_type + " "+ address;
+  if (ttl > 0)   value+="/" + ttl;
+  if (num > 0)   value+="/" + num;
+}

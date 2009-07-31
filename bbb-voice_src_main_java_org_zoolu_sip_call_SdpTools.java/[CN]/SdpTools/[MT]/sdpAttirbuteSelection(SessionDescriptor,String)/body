@@ -1,0 +1,14 @@
+{
+  Vector new_media=new Vector();
+  for (Enumeration e=sdp.getMediaDescriptors().elements(); e.hasMoreElements(); ) {
+    MediaDescriptor md=(MediaDescriptor)e.nextElement();
+    AttributeField attr=md.getAttribute(a_name);
+    if (attr != null) {
+      new_media.addElement(new MediaDescriptor(md.getMedia(),md.getConnection(),attr));
+    }
+  }
+  SessionDescriptor new_sdp=new SessionDescriptor(sdp);
+  new_sdp.removeMediaDescriptors();
+  new_sdp.addMediaDescriptors(new_media);
+  return new_sdp;
+}

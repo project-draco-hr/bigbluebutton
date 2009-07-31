@@ -1,0 +1,8 @@
+{
+  int i;
+  float lsf[]=new float[LD8KConstants.M], lsf_q[]=new float[LD8KConstants.M];
+  for (i=0; i < LD8KConstants.M; i++)   lsf[i]=(float)Math.acos(lsp[i]);
+  lsp_qua_cs(lsf,lsf_q,ana);
+  for (i=0; i < LD8KConstants.M; i++)   lsp_q[i]=(float)Math.cos(lsf_q[i]);
+  return;
+}

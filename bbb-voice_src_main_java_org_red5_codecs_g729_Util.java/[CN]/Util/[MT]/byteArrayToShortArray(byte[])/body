@@ -1,0 +1,7 @@
+{
+  short[] s=new short[bytes.length / 2];
+  for (int q=0; q < s.length; q++) {
+    s[q]=bytesToShort(bytes[2 * q],bytes[2 * q + 1]);
+  }
+  return s;
+}

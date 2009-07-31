@@ -1,0 +1,11 @@
+{
+  NameAddress naddr=(new SipParser(value)).getNameAddress();
+  SipURL url=naddr.getAddress();
+  for (int i=0; i < ENDPOINT_PARAMS.length; i++) {
+    if (url.hasParameter(ENDPOINT_PARAMS[i])) {
+      url.removeParameter(ENDPOINT_PARAMS[i]);
+      naddr=new NameAddress(naddr.getDisplayName(),url);
+    }
+  }
+  return naddr;
+}

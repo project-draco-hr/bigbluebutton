@@ -1,0 +1,13 @@
+{
+  printLog("inside subscribe(req)",LogLevel.MEDIUM);
+  if (statusIs(D_TERMINATED)) {
+    printLog("subscription already terminated: request aborted",LogLevel.MEDIUM);
+    return;
+  }
+  if (statusIs(D_INIT)) {
+    changeStatus(D_SUBSCRIBING);
+  }
+  update(UAC,req);
+  subscribe_transaction=new TransactionClient(sip_provider,req,this);
+  subscribe_transaction.request();
+}

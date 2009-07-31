@@ -1,0 +1,20 @@
+{
+  int begin=from;
+  int end=to;
+  do {
+    final int middle=(begin + end) >> 1;
+    if (target > values[middle]) {
+      begin=middle;
+    }
+ else {
+      end=middle;
+    }
+  }
+ while (end - begin > 1);
+  if (end != to) {
+    if (target - values[begin] > values[end] - target) {
+      begin=end;
+    }
+  }
+  return begin - from;
+}

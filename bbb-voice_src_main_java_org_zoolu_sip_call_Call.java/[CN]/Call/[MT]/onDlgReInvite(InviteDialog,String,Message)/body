@@ -1,0 +1,8 @@
+{
+  if (d != dialog) {
+    printLog("NOT the current dialog",LogLevel.HIGH);
+    return;
+  }
+  if (sdp != null && sdp.length() != 0)   remote_sdp=sdp;
+  if (listener != null)   listener.onCallModifying(this,sdp,msg);
+}

@@ -1,0 +1,12 @@
+{
+  boolean found=false;
+  int begin=index;
+  while (begin < str.length() && !found) {
+    for (int i=0; i < ss.length; i++)     if (str.startsWith(ss[i],begin)) {
+      found=true;
+      break;
+    }
+    begin++;
+  }
+  return (found) ? (begin - 1) : -1;
+}

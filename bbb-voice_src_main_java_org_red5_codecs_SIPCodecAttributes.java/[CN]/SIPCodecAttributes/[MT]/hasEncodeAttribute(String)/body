@@ -1,0 +1,3 @@
+{
+  return codecEncodeAttributes.containsKey(attributeName);
+}

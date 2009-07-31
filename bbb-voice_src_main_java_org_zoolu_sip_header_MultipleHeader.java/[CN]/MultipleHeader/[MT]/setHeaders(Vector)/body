@@ -1,0 +1,6 @@
+{
+  values=new Vector(hdv.size());
+  for (int i=0; i < hdv.size(); i++) {
+    values.addElement(((Header)hdv.elementAt(i)).getValue());
+  }
+}

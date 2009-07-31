@@ -1,0 +1,11 @@
+{
+  printLog("closeMediaApplication","Init...");
+  if (audioApp != null) {
+    audioApp.stopMedia();
+    audioApp=null;
+  }
+  if (videoApp != null) {
+    videoApp.stopMedia();
+    videoApp=null;
+  }
+}

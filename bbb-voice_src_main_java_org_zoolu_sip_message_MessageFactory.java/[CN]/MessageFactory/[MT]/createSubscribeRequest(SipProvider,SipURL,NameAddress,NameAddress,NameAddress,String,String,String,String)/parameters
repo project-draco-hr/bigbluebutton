@@ -1,0 +1,9 @@
+SipProvider sip_provider
+SipURL recipient
+NameAddress to
+NameAddress from
+NameAddress contact
+String event
+String id
+String content_type
+String body

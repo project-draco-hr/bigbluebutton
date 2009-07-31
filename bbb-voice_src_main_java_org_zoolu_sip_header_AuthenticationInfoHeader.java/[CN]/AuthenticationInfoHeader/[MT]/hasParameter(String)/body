@@ -1,0 +1,11 @@
+{
+  char[] name_separators={'=',' ','\t','\r','\n'};
+  SipParser par=new SipParser(value);
+  par.skipWSPCRLF();
+  while (par.hasMore()) {
+    String name=par.getWord(name_separators);
+    if (name.equals(param_name))     return true;
+    par.goToCommaHeaderSeparator().skipChar().skipWSPCRLF();
+  }
+  return false;
+}

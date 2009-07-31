@@ -1,0 +1,26 @@
+{
+  SdpParser par=new SdpParser(sdp);
+  v=par.parseSdpField('v');
+  if (v == null)   v=new SdpField('v',"0");
+  o=par.parseOriginField();
+  if (o == null)   o=new OriginField("unknown");
+  s=par.parseSessionNameField();
+  if (s == null)   s=new SessionNameField();
+  c=par.parseConnectionField();
+  if (c == null)   c=new ConnectionField("IP4","0.0.0.0");
+  t=par.parseTimeField();
+  if (t == null)   t=new TimeField();
+  while (par.hasMore() && (!par.startsWith("a=") && !par.startsWith("m="))) {
+    par.goToNextLine();
+  }
+  av=new Vector();
+  while (par.hasMore() && par.startsWith("a=")) {
+    AttributeField attribute=par.parseAttributeField();
+    av.addElement(attribute);
+  }
+  media=new Vector();
+  MediaDescriptor md;
+  while ((md=par.parseMediaDescriptor()) != null) {
+    addMediaDescriptor(md);
+  }
+}

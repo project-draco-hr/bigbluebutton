@@ -1,0 +1,5 @@
+{
+  SdpField sf=parseSdpField('o');
+  if (sf != null)   return new OriginField(sf);
+ else   return null;
+}

@@ -1,0 +1,5 @@
+{
+  if (address == null)   address="127.0.0.1";
+  if (owner == null)   owner="user@" + address;
+  init(new OriginField(owner,"0","0",address),new SessionNameField("Session SIP/SDP"),new ConnectionField("IP4",address),new TimeField());
+}

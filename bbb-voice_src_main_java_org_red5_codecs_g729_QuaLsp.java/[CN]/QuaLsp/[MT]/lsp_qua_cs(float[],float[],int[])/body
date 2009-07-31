@@ -1,0 +1,6 @@
+{
+  float wegt[]=new float[LD8KConstants.M];
+  get_wegt(flsp_in,wegt);
+  relspwed(flsp_in,wegt,lspq_out,TabLD8k.lspcb1,TabLD8k.lspcb2,TabLD8k.fg,freq_prev,TabLD8k.fg_sum,TabLD8k.fg_sum_inv,code);
+  return;
+}

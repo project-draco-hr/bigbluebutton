@@ -1,0 +1,6 @@
+SipProvider sip_provider
+NameAddress recipient
+NameAddress from
+String subject
+String type
+String body

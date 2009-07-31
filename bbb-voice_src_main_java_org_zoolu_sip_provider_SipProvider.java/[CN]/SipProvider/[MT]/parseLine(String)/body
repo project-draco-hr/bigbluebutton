@@ -1,0 +1,57 @@
+{
+  String attribute;
+  Parser par;
+  int index=line.indexOf("=");
+  if (index > 0) {
+    attribute=line.substring(0,index).trim();
+    par=new Parser(line,index + 1);
+  }
+ else {
+    attribute=line;
+    par=new Parser("");
+  }
+  char[] delim={' ',','};
+  if (attribute.equals("via_addr")) {
+    via_addr=par.getString();
+    return;
+  }
+  if (attribute.equals("host_port")) {
+    host_port=par.getInt();
+    return;
+  }
+  if (attribute.equals("host_ifaddr")) {
+    host_ifaddr=par.getString();
+    return;
+  }
+  if (attribute.equals("transport_protocols")) {
+    transport_protocols=par.getWordArray(delim);
+    return;
+  }
+  if (attribute.equals("nmax_connections")) {
+    nmax_connections=par.getInt();
+    return;
+  }
+  if (attribute.equals("outbound_proxy")) {
+    String soaddr=par.getString();
+    if (soaddr == null || soaddr.length() == 0 || soaddr.equalsIgnoreCase(Configure.NONE) || soaddr.equalsIgnoreCase("NO-OUTBOUND"))     outbound_proxy=null;
+ else     outbound_proxy=new SocketAddress(soaddr);
+    return;
+  }
+  if (attribute.equals("log_all_packets")) {
+    log_all_packets=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("host_addr"))   System.err.println("WARNING: parameter 'host_addr' is no more supported; use 'via_addr' instead.");
+  if (attribute.equals("all_interfaces"))   System.err.println("WARNING: parameter 'all_interfaces' is no more supported; use 'host_iaddr' for setting a specific interface or let it undefined.");
+  if (attribute.equals("use_outbound"))   System.err.println("WARNING: parameter 'use_outbound' is no more supported; use 'outbound_proxy' for setting an outbound proxy or let it undefined.");
+  if (attribute.equals("outbound_addr")) {
+    System.err.println("WARNING: parameter 'outbound_addr' has been deprecated; use 'outbound_proxy=<host_addr>[:<host_port>]' instead.");
+    outbound_addr=par.getString();
+    return;
+  }
+  if (attribute.equals("outbound_port")) {
+    System.err.println("WARNING: parameter 'outbound_port' has been deprecated; use 'outbound_proxy=<host_addr>[:<host_port>]' instead.");
+    outbound_port=par.getInt();
+    return;
+  }
+}

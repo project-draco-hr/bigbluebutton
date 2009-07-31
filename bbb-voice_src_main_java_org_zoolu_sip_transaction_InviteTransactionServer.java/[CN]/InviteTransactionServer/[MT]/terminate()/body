@@ -1,0 +1,9 @@
+{
+  retransmission_to.halt();
+  clearing_to.halt();
+  end_to.halt();
+  if (statusIs(STATE_TRYING))   sip_provider.removeSipProviderListener(new TransactionIdentifier(SipMethods.INVITE));
+ else   sip_provider.removeSipProviderListener(transaction_id);
+  changeStatus(STATE_TERMINATED);
+  transaction_listener=null;
+}

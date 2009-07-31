@@ -1,0 +1,5 @@
+{
+  Header h=getHeader(SipHeaders.Event);
+  if (h == null)   return null;
+  return new EventHeader(h);
+}

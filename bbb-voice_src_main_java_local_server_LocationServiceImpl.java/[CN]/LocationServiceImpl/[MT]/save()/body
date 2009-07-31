@@ -1,0 +1,13 @@
+{
+  BufferedWriter out=null;
+  changed=false;
+  try {
+    out=new BufferedWriter(new FileWriter(filename));
+    out.write(this.toString());
+    out.close();
+  }
+ catch (  IOException e) {
+    System.err.println("WARNING: error trying to write on file \"" + filename + "\"");
+    return;
+  }
+}

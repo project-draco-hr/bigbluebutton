@@ -1,0 +1,4 @@
+{
+  this.output_stream=output_stream;
+  if (socket != null)   udp_socket=socket;
+}

@@ -1,0 +1,3 @@
+{
+  return "tcp:" + socket.getLocalAddress() + ":"+ socket.getLocalPort()+ "<->"+ socket.getAddress()+ ":"+ socket.getPort();
+}

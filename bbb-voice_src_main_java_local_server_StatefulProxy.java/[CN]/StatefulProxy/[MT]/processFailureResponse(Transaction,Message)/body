@@ -1,0 +1,16 @@
+{
+  printLog("inside processFailureResponse(t,resp)",LogLevel.MEDIUM);
+  TransactionServer ts=state.getServer(transaction);
+  state.removeClient(transaction);
+  if (ts == null)   return;
+  if (!state.hasServer(ts))   return;
+  state.setFinalResponse(ts,resp);
+  HashSet clients=state.getClients(ts);
+  if (clients.isEmpty()) {
+    printLog("only this tr_client remained: send the response",LogLevel.LOW);
+    resp=state.getFinalResponse(ts);
+    updateProxingResponse(resp);
+    if (resp.hasViaHeader())     ts.respondWith(resp);
+    state.removeServer(ts);
+  }
+}

@@ -1,0 +1,11 @@
+{
+  StringBuffer sb=new StringBuffer();
+  sb.append(msg.getToHeader().getTag());
+  sb.append(msg.getFromHeader().getTag());
+  sb.append(msg.getCallIdHeader().getCallId());
+  sb.append(msg.getRequestLine().getAddress().toString());
+  sb.append(msg.getCSeqHeader().getSequenceNumber());
+  MultipleHeader rr=msg.getRoutes();
+  if (rr != null)   sb.append(rr.size());
+  return (new SimpleDigest(7,sb.toString())).asHex();
+}

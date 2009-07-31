@@ -1,0 +1,7 @@
+{
+  NameAddress to_url=new NameAddress(recipient);
+  NameAddress from_url=new NameAddress(user_profile.from_url);
+  Message req=MessageFactory.createMessageRequest(sip_provider,to_url,from_url,subject,content_type,content);
+  TransactionClient t=new TransactionClient(sip_provider,req,this);
+  t.request();
+}

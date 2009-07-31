@@ -1,0 +1,21 @@
+{
+  this.listener=listener;
+  this.sipProvider=sipProvider;
+  this.target=new NameAddress(targetUrl);
+  this.contact=new NameAddress(contactUrl);
+  this.expireTime=600;
+  this.renewTime=600;
+  this.origRenewTime=this.renewTime;
+  this.isRunning=false;
+  this.keepAlive=null;
+  this.username=null;
+  this.realm=null;
+  this.passwd=null;
+  this.nextNonce=null;
+  this.qop=null;
+  this.attempts=0;
+  this.minRenewTime=20;
+  this.regFailRetryTime=5;
+  this.registerCallID=null;
+  this.registerCSeq=0;
+}

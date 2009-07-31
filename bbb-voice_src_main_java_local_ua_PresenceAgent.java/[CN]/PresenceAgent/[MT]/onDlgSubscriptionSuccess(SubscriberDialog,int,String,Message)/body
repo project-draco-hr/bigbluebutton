@@ -1,0 +1,4 @@
+{
+  printLog("onDlgSubscriptionSuccess()",LogLevel.MEDIUM);
+  listener.onPaSubscriptionSuccess(this,dialog.getRemoteName());
+}

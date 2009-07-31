@@ -1,0 +1,6 @@
+{
+  if (!stop && ostream != null) {
+    ostream.write(buff,offset,len);
+    ostream.flush();
+  }
+}

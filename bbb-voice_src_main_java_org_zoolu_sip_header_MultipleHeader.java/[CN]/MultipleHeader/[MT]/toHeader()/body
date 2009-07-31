@@ -1,0 +1,6 @@
+{
+  String str="";
+  for (int i=0; i < values.size() - 1; i++)   str+=values.elementAt(i) + ", ";
+  if (values.size() > 0)   str+=values.elementAt(values.size() - 1);
+  return new Header(name,str);
+}

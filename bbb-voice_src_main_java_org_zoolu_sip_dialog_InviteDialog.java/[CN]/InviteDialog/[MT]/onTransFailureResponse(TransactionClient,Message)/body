@@ -1,0 +1,27 @@
+{
+  printLog("inside onTransFailureResponse(" + tc.getTransactionId() + ",msg)",LogLevel.LOW);
+  if (tc.getTransactionMethod().equals(SipMethods.INVITE)) {
+    if (!verifyStatus(statusIs(D_INVITING) || statusIs(D_ReINVITING)))     return;
+    StatusLine statusline=msg.getStatusLine();
+    int code=statusline.getCode();
+    verifyThat(code >= 300 && code < 700,"error code was expected");
+    if (statusIs(D_ReINVITING)) {
+      changeStatus(D_CALL);
+      listener.onDlgReInviteFailureResponse(this,code,statusline.getReason(),msg);
+    }
+ else {
+      changeStatus(D_CLOSE);
+      if (code >= 300 && code < 400)       listener.onDlgInviteRedirectResponse(this,code,statusline.getReason(),msg.getContacts(),msg);
+ else       listener.onDlgInviteFailureResponse(this,code,statusline.getReason(),msg);
+      listener.onDlgClose(this);
+    }
+  }
+ else   if (tc.getTransactionMethod().equals(SipMethods.BYE)) {
+    if (!verifyStatus(statusIs(D_BYEING)))     return;
+    StatusLine statusline=msg.getStatusLine();
+    int code=statusline.getCode();
+    verifyThat(code >= 300 && code < 700,"error code was expected");
+    changeStatus(this.D_CALL);
+    listener.onDlgByeFailureResponse(this,code,statusline.getReason(),msg);
+  }
+}

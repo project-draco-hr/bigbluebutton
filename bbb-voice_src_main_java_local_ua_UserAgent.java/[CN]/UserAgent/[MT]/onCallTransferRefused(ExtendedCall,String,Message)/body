@@ -1,0 +1,8 @@
+{
+  printLog("onCallTransferRefused()",LogLevel.LOW);
+  if (call != this.call) {
+    printLog("NOT the current call",LogLevel.LOW);
+    return;
+  }
+  printLog("Transfer refused",LogLevel.HIGH);
+}

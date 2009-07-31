@@ -1,0 +1,11 @@
+{
+  invite_dates=new Hashtable();
+  accepted_dates=new Hashtable();
+  refused_dates=new Hashtable();
+  bye_dates=new Hashtable();
+  calls=new Vector();
+  callers=new Hashtable();
+  callees=new Hashtable();
+  call_log=new Log(filename,null,1,-1,true);
+  call_log.println("Date \tCall-Id \tStatus \tCaller \tCallee \tSetup Time \tCall Time");
+}

@@ -1,0 +1,7 @@
+{
+  if (!hasUser(user))   addUser(user);
+  UserBindingInfo ur=getUserBindingInfo(user);
+  ur.addContact(name_addresss,expire);
+  changed=true;
+  return this;
+}

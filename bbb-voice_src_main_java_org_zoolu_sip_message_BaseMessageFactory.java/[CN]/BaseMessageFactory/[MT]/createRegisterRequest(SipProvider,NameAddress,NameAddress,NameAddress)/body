@@ -1,0 +1,20 @@
+{
+  SipURL to_url=to.getAddress();
+  SipURL registrar=new SipURL(to_url.getHost(),to_url.getPort());
+  String via_addr=sip_provider.getViaAddress();
+  int host_port=sip_provider.getPort();
+  boolean rport=sip_provider.isRportSet();
+  String proto;
+  if (to_url.hasTransport())   proto=to_url.getTransport();
+ else   proto=sip_provider.getDefaultTransport();
+  String call_id=sip_provider.pickCallId();
+  int cseq=SipProvider.pickInitialCSeq();
+  String local_tag=SipProvider.pickTag();
+  Message req=createRequest(SipMethods.REGISTER,registrar,to,from,contact,proto,via_addr,host_port,rport,call_id,cseq,local_tag,null,null,null);
+  if (contact == null) {
+    ContactHeader star=new ContactHeader();
+    req.setContactHeader(star);
+    req.setExpiresHeader(new ExpiresHeader(String.valueOf(SipStack.default_expires)));
+  }
+  return req;
+}

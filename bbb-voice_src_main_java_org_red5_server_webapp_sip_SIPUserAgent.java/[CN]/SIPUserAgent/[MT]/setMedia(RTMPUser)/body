@@ -1,0 +1,4 @@
+{
+  printLog("setMedia","Init...");
+  this.rtmpUser=rtmpUser;
+}

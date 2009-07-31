@@ -1,0 +1,8 @@
+{
+  int max=0;
+  for (Enumeration e=input_lines.elements(); e.hasMoreElements(); ) {
+    int n=((InputStream)e.nextElement()).available();
+    if (n > max)     max=n;
+  }
+  return max;
+}

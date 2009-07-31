@@ -1,0 +1,4 @@
+int ptype
+int seqn
+long timestamp
+long sscr

@@ -1,0 +1,38 @@
+{
+  int pcmBufferOffset=0;
+  int copySize=0;
+  boolean pcmBufferProcessed=false;
+  do {
+    if ((tempBuffer.length - tempBufferOffset) <= (pcmBuffer.length - pcmBufferOffset)) {
+      copySize=tempBuffer.length - tempBufferOffset;
+    }
+ else {
+      copySize=pcmBuffer.length - pcmBufferOffset;
+    }
+    BufferUtils.floatBufferIndexedCopy(tempBuffer,tempBufferOffset,pcmBuffer,pcmBufferOffset,copySize);
+    tempBufferOffset+=copySize;
+    pcmBufferOffset+=copySize;
+    if (tempBufferOffset == NELLYMOSER_DECODED_PACKET_SIZE) {
+      ByteStream encodedStream=new ByteStream(NELLYMOSER_ENCODED_PACKET_SIZE);
+      try {
+        if (true) {
+          encoderMap=CodecImpl.encode(encoderMap,tempBuffer,encodedStream.bytes);
+          rtmpUser.pushAudio(NELLYMOSER_ENCODED_PACKET_SIZE,encodedStream.bytes,timeStamp,82);
+        }
+ else {
+          byte[] aux=ResampleUtils.resample((float)(8.0 / 11.025),tempBuffer);
+          rtmpUser.pushAudio(aux.length,aux,timeStamp,6);
+        }
+      }
+ catch (      Exception exception) {
+        println("forwardAudioToFlashPlayer","asao Encoder Error.");
+      }
+      timeStamp=timeStamp + NELLYMOSER_ENCODED_PACKET_SIZE;
+      tempBufferOffset=0;
+    }
+    if (pcmBufferOffset == pcmBuffer.length) {
+      pcmBufferProcessed=true;
+    }
+  }
+ while (!pcmBufferProcessed);
+}

@@ -1,0 +1,20 @@
+{
+  final int len=half_len << 1;
+  int j=1;
+  for (int i=1; i < len; i+=2) {
+    if (i < j) {
+      final float tmp1=data[data_off + i];
+      data[data_off + i]=data[data_off + j];
+      data[data_off + j]=tmp1;
+      final float tmp2=data[data_off + i - 1];
+      data[data_off + i - 1]=data[data_off + j - 1];
+      data[data_off + j - 1]=tmp2;
+    }
+    int x=half_len;
+    while (x > 1 && x < j) {
+      j-=x;
+      x>>=1;
+    }
+    j+=x;
+  }
+}

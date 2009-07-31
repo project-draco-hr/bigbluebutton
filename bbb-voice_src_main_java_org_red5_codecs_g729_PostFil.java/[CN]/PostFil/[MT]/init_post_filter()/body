@@ -1,0 +1,11 @@
+{
+  int i;
+  for (i=0; i < LD8KConstants.MEM_RES2; i++)   res2[i]=(float)0.0;
+  res2_ptr=0 + LD8KConstants.MEM_RES2;
+  for (i=0; i < LD8KConstants.M; i++)   mem_stp[i]=(float)0.0;
+  ptr_mem_stp=0 + LD8KConstants.M - 1;
+  for (i=LD8KConstants.MP1; i < LD8KConstants.LONG_H_ST; i++)   apond2[i]=(float)0.0;
+  for (i=0; i < LD8KConstants.M; i++)   mem_zero[i]=(float)0.0;
+  gain_prec.value=(float)1.;
+  return;
+}

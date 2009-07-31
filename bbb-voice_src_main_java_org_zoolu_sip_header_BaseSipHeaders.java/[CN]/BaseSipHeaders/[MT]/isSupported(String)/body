@@ -1,0 +1,3 @@
+{
+  return same(str,Supported) || same(str,Supported_short);
+}

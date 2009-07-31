@@ -1,0 +1,24 @@
+{
+  int i, zone1, zone2, n;
+  float worst, temp;
+  worst=(float)-1.;
+  n=t0 - LD8KConstants.L_SUBFR;
+  if (n < 0) {
+    temp=(float)1. + gain_pit * exc_err[0];
+    if (temp > worst)     worst=temp;
+    temp=(float)1. + gain_pit * temp;
+    if (temp > worst)     worst=temp;
+  }
+ else {
+    zone1=(int)((float)n * LD8KConstants.INV_L_SUBFR);
+    i=t0 - 1;
+    zone2=(int)((float)i * LD8KConstants.INV_L_SUBFR);
+    for (i=zone1; i <= zone2; i++) {
+      temp=(float)1. + gain_pit * exc_err[i];
+      if (temp > worst)       worst=temp;
+    }
+  }
+  for (i=3; i >= 1; i--)   exc_err[i]=exc_err[i - 1];
+  exc_err[0]=worst;
+  return;
+}

@@ -1,0 +1,4 @@
+{
+  c=connection;
+  return this;
+}

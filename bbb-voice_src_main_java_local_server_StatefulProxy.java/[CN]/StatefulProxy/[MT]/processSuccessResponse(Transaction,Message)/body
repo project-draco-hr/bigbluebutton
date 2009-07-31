@@ -1,0 +1,20 @@
+{
+  printLog("inside processSuccessResponse(t,resp)",LogLevel.MEDIUM);
+  TransactionServer ts=state.getServer(transaction);
+  state.removeClient(transaction);
+  if (ts == null)   return;
+  updateProxingResponse(resp);
+  if (resp.hasViaHeader()) {
+    ts.respondWith(resp);
+    if (!state.hasServer(ts))     return;
+    HashSet clients=state.getClients(ts);
+    printLog("Cancelling " + clients.size() + " pending clients",LogLevel.LOW);
+    for (Iterator i=clients.iterator(); i.hasNext(); ) {
+      Transaction tc=(Transaction)i.next();
+      Message cancel=MessageFactory.createCancelRequest(tc.getRequestMessage());
+      TransactionClient tr_cancel=new TransactionClient(sip_provider_server,cancel,null);
+      tr_cancel.request();
+    }
+    state.removeServer(ts);
+  }
+}

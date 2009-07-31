@@ -1,0 +1,3 @@
+{
+  return (isUpAlpha(c) || isLowAlpha(c));
+}

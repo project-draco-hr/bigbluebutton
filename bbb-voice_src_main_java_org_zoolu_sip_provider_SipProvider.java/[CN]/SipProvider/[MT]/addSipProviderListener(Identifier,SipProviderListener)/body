@@ -1,0 +1,19 @@
+{
+  printLog("adding SipProviderListener: " + id,LogLevel.MEDIUM);
+  boolean ret;
+  Identifier key=id;
+  if (listeners.containsKey(key)) {
+    printWarning("trying to add a SipProviderListener with a id that is already in use.",LogLevel.HIGH);
+    ret=false;
+  }
+ else {
+    listeners.put(key,listener);
+    ret=true;
+  }
+  if (listeners != null) {
+    String list="";
+    for (Enumeration e=listeners.keys(); e.hasMoreElements(); )     list+=e.nextElement() + ", ";
+    printLog(listeners.size() + " listeners: " + list,LogLevel.LOW);
+  }
+  return ret;
+}

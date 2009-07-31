@@ -1,0 +1,4 @@
+{
+  s=session;
+  return this;
+}

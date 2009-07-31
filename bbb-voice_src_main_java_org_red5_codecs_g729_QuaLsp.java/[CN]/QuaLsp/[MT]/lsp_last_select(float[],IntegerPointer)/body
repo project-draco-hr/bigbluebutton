@@ -1,0 +1,5 @@
+{
+  mode_index.value=0;
+  if (tdist[1] < tdist[0])   mode_index.value=1;
+  return;
+}

@@ -1,0 +1,50 @@
+{
+  log=logger;
+  frame_rate=sample_rate / frame_size;
+  try {
+    socket=new DatagramSocket(local_port);
+    dir=direction;
+    if (dir >= 0 && audiofile_in != null && audiofile_in.equals(JAudioLauncher.TONE)) {
+      printLog("new audio sender to " + remote_addr + ":"+ remote_port,LogLevel.MEDIUM);
+      printLog("Tone generator: " + tone_freq + " Hz");
+      tone=new ToneInputStream(tone_freq,tone_amp,sample_rate,sample_size,ToneInputStream.PCM_LINEAR_UNSIGNED,big_endian);
+      sender=new RtpStreamSender(tone,true,payload_type,frame_rate,frame_size,socket,remote_addr,remote_port);
+    }
+ else     if (dir >= 0 && audiofile_in != null) {
+      printLog("new audio sender to " + remote_addr + ":"+ remote_port,LogLevel.MEDIUM);
+      File file=new File(audiofile_in);
+      if (audiofile_in.indexOf(".wav") > 0) {
+        AudioFileFormat format=AudioSystem.getAudioFileFormat(file);
+        printLog("File audio format: " + format);
+        AudioInputStream input_stream=AudioSystem.getAudioInputStream(file);
+        sender=new RtpStreamSender(input_stream,true,payload_type,frame_rate,frame_size,socket,remote_addr,remote_port);
+      }
+ else {
+        FileInputStream input_stream=new FileInputStream(file);
+        sender=new RtpStreamSender(input_stream,true,payload_type,frame_rate,frame_size,socket,remote_addr,remote_port);
+      }
+    }
+ else     if (dir >= 0) {
+      printLog("new audio sender to " + remote_addr + ":"+ remote_port,LogLevel.MEDIUM);
+      AudioFormat format=new AudioFormat(codec,sample_rate,8 * sample_size,1,sample_size,sample_rate,big_endian);
+      audio_input=new AudioInput(format);
+      sender=new RtpStreamSender(audio_input.getInputStream(),true,payload_type,frame_rate,frame_size,socket,remote_addr,remote_port);
+      sender.setSyncAdj(2);
+    }
+    if (dir <= 0 && audiofile_out != null) {
+      printLog("new audio receiver on " + local_port,LogLevel.MEDIUM);
+      File file=new File(audiofile_out);
+      FileOutputStream output_stream=new FileOutputStream(file);
+      receiver=new RtpStreamReceiver(output_stream,socket);
+    }
+ else     if (dir <= 0) {
+      printLog("new audio receiver on " + local_port,LogLevel.MEDIUM);
+      AudioFormat format=new AudioFormat(codec,sample_rate,8 * sample_size,1,sample_size,sample_rate,big_endian);
+      audio_output=new AudioOutput(format);
+      receiver=new RtpStreamReceiver(audio_output.getOuputStream(),socket);
+    }
+  }
+ catch (  Exception e) {
+    printException(e,LogLevel.HIGH);
+  }
+}

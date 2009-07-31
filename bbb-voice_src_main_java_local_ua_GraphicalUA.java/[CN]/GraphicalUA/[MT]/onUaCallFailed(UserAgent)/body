@@ -1,0 +1,4 @@
+{
+  display.setText("FAILED");
+  ua.listen();
+}

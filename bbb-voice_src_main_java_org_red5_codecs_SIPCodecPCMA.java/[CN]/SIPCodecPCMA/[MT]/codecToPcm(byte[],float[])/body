@@ -1,0 +1,11 @@
+{
+  if (bufferIn.length > 0) {
+    for (int i=0; i < bufferIn.length; i++) {
+      bufferOut[i]=(float)G711.alaw2linear((int)bufferIn[i]);
+    }
+    return bufferOut.length;
+  }
+ else {
+    return 0;
+  }
+}

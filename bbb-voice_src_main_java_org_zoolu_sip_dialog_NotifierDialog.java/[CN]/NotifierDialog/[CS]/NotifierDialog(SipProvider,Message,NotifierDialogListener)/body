@@ -1,0 +1,13 @@
+{
+  super(sip_provider);
+  init(listener);
+  changeStatus(D_SUBSCRIBED);
+  subscribe_req=subscribe;
+  subscribe_transaction=new TransactionServer(sip_provider,subscribe,null);
+  update(Dialog.UAS,subscribe);
+  EventHeader eh=subscribe.getEventHeader();
+  if (eh != null) {
+    event=eh.getEvent();
+    id=eh.getId();
+  }
+}

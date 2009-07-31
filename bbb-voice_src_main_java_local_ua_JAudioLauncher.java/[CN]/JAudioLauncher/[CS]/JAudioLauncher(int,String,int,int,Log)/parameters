@@ -1,0 +1,5 @@
+int local_port
+String remote_addr
+int remote_port
+int direction
+Log logger

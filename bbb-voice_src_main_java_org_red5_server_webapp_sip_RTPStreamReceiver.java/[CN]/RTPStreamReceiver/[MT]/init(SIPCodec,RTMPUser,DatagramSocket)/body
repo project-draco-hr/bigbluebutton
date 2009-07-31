@@ -1,0 +1,7 @@
+{
+  this.sipCodec=sipCodec;
+  this.rtmpUser=rtmpUser;
+  if (socket != null) {
+    rtpSocket=new RtpSocket(socket);
+  }
+}

@@ -1,0 +1,27 @@
+{
+  String name=(String)comboBoxEditor1.getItem();
+  if (name.indexOf("\"") >= 0 || name.indexOf("<") >= 0) {
+    NameAddress nameaddr=(new SipParser(name)).getNameAddress();
+    if (nameaddr != null)     name=nameaddr.toString();
+ else     name=null;
+  }
+ else {
+    SipURL url=new SipURL(name);
+    if (url != null)     name=url.toString();
+ else     name=null;
+  }
+  if (name == null) {
+    System.out.println("DEBUG: No sip url recognized in: " + (String)comboBoxEditor1.getItem());
+    return;
+  }
+  if (!contact_list.contains(name)) {
+    jComboBox1.insertItemAt(name,0);
+    jComboBox1.setSelectedIndex(0);
+    while (contact_list.getElements().size() > NMAX_CONTACTS)     jComboBox1.removeItemAt(NMAX_CONTACTS);
+    contact_list.save();
+  }
+ else {
+    int index=contact_list.indexOf(name);
+    jComboBox1.setSelectedIndex(index);
+  }
+}

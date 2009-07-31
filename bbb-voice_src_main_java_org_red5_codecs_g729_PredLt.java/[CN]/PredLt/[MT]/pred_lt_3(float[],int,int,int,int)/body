@@ -1,0 +1,21 @@
+{
+  int i, j, k;
+  float s;
+  int x0, x1, x2, c1, c2;
+  x0=-t0;
+  frac=-frac;
+  if (frac < 0) {
+    frac+=LD8KConstants.UP_SAMP;
+    x0--;
+  }
+  for (j=0; j < l_subfr; j++) {
+    x1=x0++;
+    x2=x0;
+    c1=frac;
+    c2=LD8KConstants.UP_SAMP - frac;
+    s=(float)0.0;
+    for (i=0, k=0; i < LD8KConstants.L_INTER10; i++, k+=LD8KConstants.UP_SAMP)     s+=exc[excs + x1 - i] * TabLD8k.inter_3l[c1 + k] + exc[excs + x2 + i] * TabLD8k.inter_3l[c2 + k];
+    exc[excs + j]=s;
+  }
+  return;
+}

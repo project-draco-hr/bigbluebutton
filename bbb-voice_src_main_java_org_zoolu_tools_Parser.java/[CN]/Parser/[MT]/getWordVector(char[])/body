@@ -1,0 +1,8 @@
+{
+  Vector list=new Vector();
+  do {
+    list.addElement(getWord(separators));
+  }
+ while (hasMore());
+  return list;
+}

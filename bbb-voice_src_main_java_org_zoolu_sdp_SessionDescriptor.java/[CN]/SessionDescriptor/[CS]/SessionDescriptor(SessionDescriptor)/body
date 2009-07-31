@@ -1,0 +1,4 @@
+{
+  init(new OriginField(sd.o),new SessionNameField(sd.s),new ConnectionField(sd.c),new TimeField(sd.t));
+  for (int i=0; i < sd.media.size(); i++)   media.addElement(new MediaDescriptor((MediaDescriptor)sd.media.elementAt(i)));
+}

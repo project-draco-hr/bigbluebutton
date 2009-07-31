@@ -1,0 +1,9 @@
+{
+  printLog("inside method listen()",LogLevel.MEDIUM);
+  if (!statusIs(D_INIT)) {
+    printLog("first subscription already received",LogLevel.MEDIUM);
+    return;
+  }
+  changeStatus(D_WAITING);
+  sip_provider.addSipProviderListener(new MethodIdentifier(SipMethods.SUBSCRIBE),this);
+}

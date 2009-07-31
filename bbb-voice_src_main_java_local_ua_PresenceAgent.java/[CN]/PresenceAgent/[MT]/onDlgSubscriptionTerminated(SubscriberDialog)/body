@@ -1,0 +1,4 @@
+{
+  printLog("onDlgSubscriptionTerminated()",LogLevel.MEDIUM);
+  listener.onPaSubscriptionTerminated(this,dialog.getRemoteName(),"Terminated");
+}

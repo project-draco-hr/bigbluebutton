@@ -1,0 +1,21 @@
+{
+  if (log_all_packets || msg.getLength() > MIN_MESSAGE_LENGTH)   printLog("Sending message through conn " + conn_id,LogLevel.HIGH);
+  printLog("message:\r\n" + msg.toString(),LogLevel.LOWER);
+  if (conn_id != null && connections.containsKey(conn_id)) {
+    printLog("active connection found matching " + conn_id,LogLevel.MEDIUM);
+    ConnectedTransport conn=(ConnectedTransport)connections.get(conn_id);
+    try {
+      conn.sendMessage(msg);
+      String proto=conn.getProtocol();
+      String dest_addr=conn.getRemoteAddress().toString();
+      int dest_port=conn.getRemotePort();
+      printMessageLog(proto,dest_addr,dest_port,msg.getLength(),msg,"sent");
+      return conn_id;
+    }
+ catch (    Exception e) {
+      printException(e,LogLevel.HIGH);
+    }
+  }
+  printLog("no active connection found matching " + conn_id,LogLevel.MEDIUM);
+  return sendMessage(msg);
+}

@@ -1,0 +1,4 @@
+{
+  if (time == 0)   expire=0;
+ else   expire=System.currentTimeMillis() + time;
+}

@@ -1,0 +1,4 @@
+{
+  if (!hasUser(user))   return null;
+  return getUserBindingInfo(user).getNameAddress(url);
+}

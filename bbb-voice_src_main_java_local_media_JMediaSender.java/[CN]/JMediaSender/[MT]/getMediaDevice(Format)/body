@@ -1,0 +1,17 @@
+{
+  if (format != null)   System.out.println("Selected format: " + format.toString());
+ else   System.out.println("Selected format: any");
+  Vector deviceList=CaptureDeviceManager.getDeviceList(format);
+  System.out.println("List of devices: " + deviceList.size());
+  if (deviceList.size() == 0) {
+    System.out.println("No device found");
+    return null;
+  }
+  for (int i=0; i < deviceList.size(); i++) {
+    CaptureDeviceInfo di=(CaptureDeviceInfo)deviceList.elementAt(i);
+    System.out.println("device " + i + ":"+ di.getName());
+  }
+  CaptureDeviceInfo di=(CaptureDeviceInfo)deviceList.elementAt(deviceList.size() - 1);
+  MediaLocator media_locator=di.getLocator();
+  return media_locator;
+}

@@ -1,0 +1,4 @@
+MessageAgent ma
+NameAddress recipient
+String subject
+String result

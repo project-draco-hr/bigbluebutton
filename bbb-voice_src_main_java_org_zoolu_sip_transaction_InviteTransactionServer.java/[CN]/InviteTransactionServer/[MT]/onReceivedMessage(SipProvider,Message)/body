@@ -1,0 +1,33 @@
+{
+  if (msg.isRequest()) {
+    String req_method=msg.getRequestLine().getMethod();
+    if (req_method.equals(SipMethods.INVITE)) {
+      if (statusIs(STATE_WAITING)) {
+        request=new Message(msg);
+        connection_id=request.getConnectionId();
+        transaction_id=request.getTransactionId();
+        sip_provider.addSipProviderListener(transaction_id,this);
+        sip_provider.removeSipProviderListener(new TransactionIdentifier(SipMethods.INVITE));
+        changeStatus(STATE_TRYING);
+        if (auto_trying) {
+          Message trying100=MessageFactory.createResponse(request,100,SipResponses.reasonOf(100),null);
+          respondWith(trying100);
+        }
+        if (transaction_listener != null)         transaction_listener.onTransRequest(this,msg);
+        return;
+      }
+      if (statusIs(STATE_PROCEEDING) || statusIs(STATE_COMPLETED)) {
+        sip_provider.sendMessage(response,connection_id);
+        return;
+      }
+    }
+    if (req_method.equals(SipMethods.ACK) && statusIs(STATE_COMPLETED)) {
+      retransmission_to.halt();
+      end_to.halt();
+      changeStatus(STATE_CONFIRMED);
+      if (transaction_listener != null)       transaction_listener.onTransFailureAck(this,msg);
+      clearing_to.start();
+      return;
+    }
+  }
+}

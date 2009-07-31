@@ -1,0 +1,10 @@
+{
+  try {
+    FileInputStream inputstream=new FileInputStream(new File(filename));
+    AudioInputStream audio_inputstream=AudioSystem.getAudioInputStream(inputstream);
+    init(audio_inputstream,listener);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

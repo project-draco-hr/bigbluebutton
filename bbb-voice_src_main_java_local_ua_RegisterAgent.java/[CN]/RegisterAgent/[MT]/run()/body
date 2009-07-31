@@ -1,0 +1,13 @@
+{
+  is_running=true;
+  try {
+    while (loop) {
+      register();
+      Thread.sleep(renew_time * 1000);
+    }
+  }
+ catch (  Exception e) {
+    printException(e,LogLevel.HIGH);
+  }
+  is_running=false;
+}

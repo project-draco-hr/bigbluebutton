@@ -1,0 +1,6 @@
+{
+  String port=(new Parser(value)).skipString().getString();
+  int i=port.indexOf('/');
+  if (i < 0)   return Integer.parseInt(port);
+ else   return Integer.parseInt(port.substring(0,i));
+}

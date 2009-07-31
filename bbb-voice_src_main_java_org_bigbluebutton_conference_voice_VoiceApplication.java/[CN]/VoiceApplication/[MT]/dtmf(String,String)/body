@@ -1,0 +1,8 @@
+{
+  loginfo("Red5SIP DTMF " + digits);
+  SIPUser sipUser=sipManager.getSIPUser(uid);
+  if (sipUser != null) {
+    loginfo("Red5SIP DTMF found user " + uid + " sending dtmf digits "+ digits);
+    sipUser.dtmf(digits);
+  }
+}

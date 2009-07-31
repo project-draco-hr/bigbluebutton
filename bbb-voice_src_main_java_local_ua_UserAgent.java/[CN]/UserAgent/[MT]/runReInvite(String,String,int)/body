@@ -1,0 +1,13 @@
+{
+  try {
+    if (delay_time > 0)     Thread.sleep(delay_time * 1000);
+    printLog("RE-INVITING/MODIFING");
+    if (call != null && call.isOnCall()) {
+      printLog("REFER/TRANSFER");
+      call.modify(contact,body);
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

@@ -1,0 +1,64 @@
+{
+  float var_8d8[]=new float[256];
+  float var_2e8[]=new float[23];
+  float var_268[]=new float[23];
+  float var_4d8[]=new float[124];
+  float var_208[]=new float[124];
+  final BitStream bs=new BitStream();
+  fTransfm(state,in,0,7,var_8d8,0);
+  fTransfm(state,in,128,7,var_8d8,128);
+  for (int i=0; i < 23; ++i) {
+    int bound=bandBound[i];
+    final int next_bound=bandBound[i + 1];
+    double acc=0.0;
+    for (; bound < next_bound; ++bound) {
+      final double a=var_8d8[bound];
+      final double b=var_8d8[bound + 128];
+      acc+=a * a + b * b;
+    }
+    final double tmp=Math.max(1.0,acc / (table0[i] << 1));
+    var_2e8[i]=Math.round(Math.log(tmp) * (1.44269502 * 1024.0));
+  }
+  ;
+  int idx=findClosest(var_2e8[0],table1,0,64);
+  var_268[0]=table1[idx];
+  bs.push(idx,gainBit[0],out);
+  for (int i=1; i < 23; ++i) {
+    idx=findClosest(var_2e8[i] - var_268[i - 1],table2,0,32);
+    var_268[i]=var_268[i - 1] + table2[idx];
+    bs.push(idx,gainBit[i],out);
+  }
+  for (int i=0; i < 23; ++i) {
+    var_2e8[i]=(float)(1.0 / Math.pow(2.0,var_268[i] * (0.5 * 0.0009765625)));
+  }
+  for (int i=0; i < 23; ++i) {
+    int bound=bandBound[i];
+    final int next_bound=bandBound[i + 1];
+    for (; bound < next_bound; ++bound) {
+      var_4d8[bound]=var_268[i];
+      var_208[bound]=var_2e8[i];
+    }
+  }
+  int packed_byte_sizes[]=new int[124];
+  final int leftover=wc(var_4d8,124,198,packed_byte_sizes);
+  for (int off=0; off < 256; off+=128) {
+    for (int i=0; i < 124; ++i) {
+      final int packedSize=packed_byte_sizes[i];
+      if (packedSize > 0) {
+        final int pow2=1 << packedSize;
+        idx=findClosestOrdered(var_208[i] * var_8d8[off + i],table3,pow2 - 1,(pow2 << 1) - 1);
+        bs.push(idx,packedSize,out);
+      }
+    }
+    for (int i=leftover; i > 0; i-=8) {
+      if (i > 8) {
+        bs.push(0,8,out);
+      }
+ else {
+        bs.push(0,i,out);
+        break;
+      }
+    }
+  }
+  return state;
+}

@@ -1,0 +1,6 @@
+{
+  init(sip_provider,target_url,contact_url,listener);
+  this.username=username;
+  this.realm=realm;
+  this.passwd=passwd;
+}

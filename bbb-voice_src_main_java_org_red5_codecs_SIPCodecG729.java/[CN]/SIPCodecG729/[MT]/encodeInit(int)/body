@@ -1,0 +1,5 @@
+{
+  if (this.outgoingPacketization == 0) {
+    this.outgoingPacketization=defaultEncodePacketization;
+  }
+}

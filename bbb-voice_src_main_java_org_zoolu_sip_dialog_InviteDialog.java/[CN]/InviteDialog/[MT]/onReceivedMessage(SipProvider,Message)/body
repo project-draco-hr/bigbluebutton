@@ -1,0 +1,54 @@
+{
+  printLog("inside onReceivedMessage(sip_provider,message)",LogLevel.MEDIUM);
+  if (msg.isRequest() && !(msg.isAck() || msg.isCancel()) && msg.getCSeqHeader().getSequenceNumber() <= getRemoteCSeq()) {
+    printLog("Request message is too late (CSeq too small): Message discarded",LogLevel.HIGH);
+    return;
+  }
+  if (msg.isRequest() && msg.isInvite()) {
+    verifyStatus(statusIs(D_INIT) || statusIs(D_CALL));
+    if (statusIs(D_INIT))     changeStatus(D_INVITED);
+ else     changeStatus(D_ReINVITED);
+    invite_req=msg;
+    invite_ts=new InviteTransactionServer(sip_provider,invite_req,this);
+    update(Dialog.UAS,invite_req);
+    if (statusIs(D_INVITED))     listener.onDlgInvite(this,invite_req.getToHeader().getNameAddress(),invite_req.getFromHeader().getNameAddress(),invite_req.getBody(),invite_req);
+ else     listener.onDlgReInvite(this,invite_req.getBody(),invite_req);
+  }
+ else   if (msg.isRequest() && msg.isAck()) {
+    if (!verifyStatus(statusIs(D_ACCEPTED) || statusIs(D_ReACCEPTED)))     return;
+    changeStatus(D_CALL);
+    ack_ts.terminate();
+    listener.onDlgAck(this,msg.getBody(),msg);
+    listener.onDlgCall(this);
+  }
+ else   if (msg.isResponse()) {
+    if (!verifyStatus(statusIs(D_CALL)))     return;
+    int code=msg.getStatusLine().getCode();
+    verifyThat(code >= 200 && code < 300,"code 2xx was expected");
+    if (ack_req != null) {
+      AckTransactionClient ack_tc=new AckTransactionClient(sip_provider,ack_req,null);
+      ack_tc.request();
+    }
+  }
+ else   if (msg.isRequest() && msg.isBye()) {
+    changeStatus(D_BYED);
+    bye_ts=new TransactionServer(sip_provider,msg,this);
+    Message resp=MessageFactory.createResponse(msg,200,SipResponses.reasonOf(200),null);
+    respond(resp);
+    listener.onDlgBye(this,msg);
+    changeStatus(D_CLOSE);
+    listener.onDlgClose(this);
+  }
+ else   if (msg.isRequest() && msg.isCancel()) {
+    if (!verifyStatus(statusIs(D_INVITED) || statusIs(D_ReINVITED)))     return;
+    TransactionServer ts=new TransactionServer(sip_provider,msg,null);
+    ts.respondWith(MessageFactory.createResponse(msg,200,SipResponses.reasonOf(200),null));
+    Message resp=MessageFactory.createResponse(invite_req,487,SipResponses.reasonOf(487),null);
+    respond(resp);
+    listener.onDlgCancel(this,msg);
+  }
+ else   if (msg.isRequest()) {
+    TransactionServer ts=new TransactionServer(sip_provider,msg,null);
+    ts.respondWith(MessageFactory.createResponse(msg,405,SipResponses.reasonOf(405),null));
+  }
+}

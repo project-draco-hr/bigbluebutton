@@ -1,0 +1,40 @@
+{
+  printLog("makeSdpNegotiation","Init...");
+  try {
+    if (newSdp.getMediaDescriptors().size() == 0) {
+      printLog("completeSdpNegotiation","Error! No media descriptors after \"makeMediaPayloadsNegotiation\".");
+      return;
+    }
+    Vector remoteDescriptors=remoteSdp.getMediaDescriptors();
+    for (Enumeration descriptorsEnum=remoteDescriptors.elements(); descriptorsEnum.hasMoreElements(); ) {
+      MediaDescriptor remoteDescriptor=(MediaDescriptor)descriptorsEnum.nextElement();
+      MediaDescriptor localDescriptor=localSdp.getMediaDescriptor(remoteDescriptor.getMedia().getMedia());
+      if (localDescriptor != null) {
+        Vector remoteAttributes=remoteDescriptor.getAttributes();
+        for (Enumeration atributesEnum=remoteAttributes.elements(); atributesEnum.hasMoreElements(); ) {
+          AttributeField remoteAttribute=(AttributeField)atributesEnum.nextElement();
+          makeAttributeNegotiation(newSdp,localDescriptor,remoteAttribute);
+        }
+        Vector localAttributes=localDescriptor.getAttributes();
+        for (Enumeration atributesEnum=localAttributes.elements(); atributesEnum.hasMoreElements(); ) {
+          AttributeField localAttribute=(AttributeField)atributesEnum.nextElement();
+          MediaDescriptor newLocalDescriptor=newSdp.getMediaDescriptor(localDescriptor.getMedia().getMedia());
+          if (isPayloadRelatedAttribute(localAttribute)) {
+            String payloadId=getPayloadIdFromAttribute(localAttribute);
+            if (findAttributeByPayloadId(localAttribute.getAttributeName(),payloadId,newLocalDescriptor) == null) {
+              newLocalDescriptor.addAttribute(localAttribute);
+            }
+          }
+ else           if (newLocalDescriptor.getAttribute(localAttribute.getAttributeName()) == null) {
+            newLocalDescriptor.addAttribute(localAttribute);
+          }
+        }
+      }
+    }
+  }
+ catch (  Exception exception) {
+    printLog("completeSdpNegotiation","Failure creating initial SDP: ");
+    exception.printStackTrace();
+  }
+  printLog("completeSdpNegotiation","End...");
+}

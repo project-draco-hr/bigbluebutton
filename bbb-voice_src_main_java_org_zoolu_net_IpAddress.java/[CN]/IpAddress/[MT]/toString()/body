@@ -1,0 +1,4 @@
+{
+  if (address == null && inet_address != null)   address=inet_address.getHostAddress();
+  return address;
+}

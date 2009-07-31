@@ -1,0 +1,4 @@
+RegisterAgent ra
+NameAddress target
+NameAddress contact
+String result

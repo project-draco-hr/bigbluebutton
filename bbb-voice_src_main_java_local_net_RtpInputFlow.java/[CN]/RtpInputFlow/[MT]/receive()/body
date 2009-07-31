@@ -1,0 +1,14 @@
+{
+  socket.receive(packet);
+  padding=packet.hasPadding();
+  extension=packet.hasExtension();
+  csrc_count=packet.getCscrCount();
+  marker=packet.hasMarker();
+  payload_type=packet.getPayloadType();
+  sequence_number=packet.getSequenceNumber();
+  timestamp=packet.getTimestamp();
+  ssrc=packet.getSscr();
+  csrc_list=packet.getCscrList();
+  initialized=true;
+  return packet.getPayload();
+}

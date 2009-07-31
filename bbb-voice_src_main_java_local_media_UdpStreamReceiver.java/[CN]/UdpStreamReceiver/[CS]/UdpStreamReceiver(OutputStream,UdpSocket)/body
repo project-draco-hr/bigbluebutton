@@ -1,0 +1,3 @@
+{
+  init(output_stream,socket);
+}

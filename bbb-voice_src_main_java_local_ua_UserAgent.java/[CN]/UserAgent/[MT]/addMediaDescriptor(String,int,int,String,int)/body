@@ -1,0 +1,8 @@
+{
+  if (local_session == null)   initSessionDescriptor();
+  SessionDescriptor sdp=new SessionDescriptor(local_session);
+  String attr_param=String.valueOf(avp);
+  if (codec != null)   attr_param+=" " + codec + "/"+ rate;
+  sdp.addMedia(new MediaField(media,port,0,"RTP/AVP",String.valueOf(avp)),new AttributeField("rtpmap",attr_param));
+  local_session=sdp.toString();
+}

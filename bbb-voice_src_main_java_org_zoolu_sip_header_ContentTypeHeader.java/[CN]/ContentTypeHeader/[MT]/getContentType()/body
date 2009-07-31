@@ -1,0 +1,7 @@
+{
+  String str;
+  int end=(new SipParser(value)).indexOf(';');
+  if (end < 0)   str=value;
+ else   str=value.substring(0,end);
+  return (new SipParser(str)).getString();
+}

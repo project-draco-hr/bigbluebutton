@@ -1,0 +1,6 @@
+{
+  String str;
+  if (hasDisplayName())   str="\"" + name + "\" <"+ url+ ">";
+ else   str="<" + url + ">";
+  return str;
+}

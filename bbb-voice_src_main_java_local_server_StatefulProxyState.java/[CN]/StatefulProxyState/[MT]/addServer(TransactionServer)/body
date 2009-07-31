@@ -1,0 +1,8 @@
+{
+  if (hasServer(ts))   return;
+  TransactionIdentifier sid=ts.getTransactionId();
+  s_clients.put(sid,new HashSet());
+  Message request=new Message(ts.getRequestMessage());
+  Message resp=MessageFactory.createResponse(request,408,SipResponses.reasonOf(408),null);
+  s_response.put(sid,resp);
+}

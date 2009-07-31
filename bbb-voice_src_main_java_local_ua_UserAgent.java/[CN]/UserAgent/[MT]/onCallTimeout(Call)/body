@@ -1,0 +1,17 @@
+{
+  printLog("onCallTimeout()",LogLevel.LOW);
+  if (call != this.call) {
+    printLog("NOT the current call",LogLevel.LOW);
+    return;
+  }
+  printLog("NOT FOUND/TIMEOUT",LogLevel.HIGH);
+  changeStatus(UA_IDLE);
+  if (call == call_transfer) {
+    int code=408;
+    String reason="Request Timeout";
+    this.call.notify(code,reason);
+    call_transfer=null;
+  }
+  if (clip_off != null)   clip_off.replay();
+  if (listener != null)   listener.onUaCallFailed(this);
+}

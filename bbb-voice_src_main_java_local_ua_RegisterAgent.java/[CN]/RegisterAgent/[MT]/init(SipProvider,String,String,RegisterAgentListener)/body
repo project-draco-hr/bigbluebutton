@@ -1,0 +1,17 @@
+{
+  this.listener=listener;
+  this.sip_provider=sip_provider;
+  this.log=sip_provider.getLog();
+  this.target=new NameAddress(target_url);
+  this.contact=new NameAddress(contact_url);
+  this.expire_time=SipStack.default_expires;
+  this.renew_time=0;
+  this.is_running=false;
+  this.keep_alive=null;
+  this.username=null;
+  this.realm=null;
+  this.passwd=null;
+  this.next_nonce=null;
+  this.qop=null;
+  this.attempts=0;
+}

@@ -1,0 +1,15 @@
+String method
+SipURL request_uri
+NameAddress to
+NameAddress from
+NameAddress contact
+String proto
+String via_addr
+int host_port
+boolean rport
+String call_id
+long cseq
+String local_tag
+String remote_tag
+String branch
+String body

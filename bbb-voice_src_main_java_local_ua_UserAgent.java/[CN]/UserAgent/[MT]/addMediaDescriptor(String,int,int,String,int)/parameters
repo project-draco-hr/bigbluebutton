@@ -1,0 +1,5 @@
+String media
+int port
+int avp
+String codec
+int rate

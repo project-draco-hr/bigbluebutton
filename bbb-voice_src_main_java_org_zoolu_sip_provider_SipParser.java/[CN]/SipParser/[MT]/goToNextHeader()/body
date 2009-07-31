@@ -1,0 +1,5 @@
+{
+  index=indexOfEOH();
+  goToNextLine();
+  return this;
+}

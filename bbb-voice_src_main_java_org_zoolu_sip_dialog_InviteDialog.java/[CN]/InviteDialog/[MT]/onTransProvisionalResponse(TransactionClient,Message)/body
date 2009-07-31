@@ -1,0 +1,7 @@
+{
+  printLog("inside onTransProvisionalResponse(tc,mdg)",LogLevel.LOW);
+  if (tc.getTransactionMethod().equals(SipMethods.INVITE)) {
+    StatusLine statusline=msg.getStatusLine();
+    listener.onDlgInviteProvisionalResponse(this,statusline.getCode(),statusline.getReason(),msg.getBody(),msg);
+  }
+}

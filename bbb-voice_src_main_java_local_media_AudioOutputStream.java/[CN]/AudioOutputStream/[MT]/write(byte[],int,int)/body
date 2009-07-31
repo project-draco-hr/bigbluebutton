@@ -1,0 +1,10 @@
+{
+  if (output_stream != null) {
+    output_stream.write(b,off,len);
+    len=input_stream.read(buff,0,buff.length);
+    source_line.write(buff,0,len);
+  }
+ else {
+    source_line.write(b,off,len);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  p("SIPUser streamStatus " + status);
+  if ("stop".equals(status)) {
+  }
+}

@@ -1,0 +1,14 @@
+{
+  String version=getString(4);
+  if (!version.equalsIgnoreCase("SIP/")) {
+    index=str.length();
+    return null;
+  }
+  skipString().skipWSP();
+  int code=getInt();
+  int begin=getPos();
+  int end=indexOfEOH();
+  String reason=getString(end - begin).trim();
+  goToNextLine();
+  return new StatusLine(code,reason);
+}

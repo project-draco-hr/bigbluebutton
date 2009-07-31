@@ -1,0 +1,5 @@
+{
+  SdpField sf=parseSdpField('m');
+  if (sf != null)   return new MediaField(sf);
+ else   return null;
+}

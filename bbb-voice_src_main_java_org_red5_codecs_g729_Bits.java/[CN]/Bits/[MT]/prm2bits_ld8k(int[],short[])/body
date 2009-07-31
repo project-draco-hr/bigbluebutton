@@ -1,0 +1,12 @@
+{
+  int prmp=0;
+  int bitsp=0;
+  short i;
+  bits[bitsp++]=LD8KConstants.SYNC_WORD;
+  bits[bitsp++]=LD8KConstants.SIZE_WORD;
+  for (i=0; i < LD8KConstants.PRM_SIZE; i++) {
+    int2bin(prm[i],TabLD8k.bitsno[i],bits,bitsp);
+    bitsp+=TabLD8k.bitsno[i];
+  }
+  return;
+}

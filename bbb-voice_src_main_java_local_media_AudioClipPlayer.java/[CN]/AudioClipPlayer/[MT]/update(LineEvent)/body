@@ -1,0 +1,5 @@
+{
+  if (event.getType().equals(LineEvent.Type.STOP)) {
+    if (p_listener != null)     p_listener.onAudioClipStop(this);
+  }
+}

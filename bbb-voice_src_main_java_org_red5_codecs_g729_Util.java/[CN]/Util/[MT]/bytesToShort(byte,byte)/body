@@ -1,0 +1,3 @@
+{
+  return (short)(0xffff & ((0xff & byte1) | ((0xff & byte2) << 8)));
+}

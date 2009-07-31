@@ -1,0 +1,7 @@
+{
+  file_name=f_name;
+  num_rotations=n_rotations;
+  time_scale=t_scale;
+  time_value=t_value;
+  updateNextRotationTime();
+}

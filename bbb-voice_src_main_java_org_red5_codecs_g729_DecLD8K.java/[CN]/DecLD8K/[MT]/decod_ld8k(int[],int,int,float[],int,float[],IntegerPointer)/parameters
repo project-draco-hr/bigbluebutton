@@ -1,0 +1,7 @@
+int parm[]
+int parms
+int voicing
+float synth[]
+int ss
+float A_t[]
+IntegerPointer t0_first

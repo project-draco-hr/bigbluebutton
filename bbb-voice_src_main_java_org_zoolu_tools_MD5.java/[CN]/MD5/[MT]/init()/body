@@ -1,0 +1,11 @@
+{
+  count=0;
+  block=new byte[64];
+  block_offset=0;
+  state=new int[4];
+  state[0]=0x67452301;
+  state[1]=0xefcdab89;
+  state[2]=0x98badcfe;
+  state[3]=0x10325476;
+  message_digest=null;
+}

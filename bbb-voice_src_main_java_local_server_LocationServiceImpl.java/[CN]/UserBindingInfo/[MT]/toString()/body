@@ -1,0 +1,8 @@
+{
+  String str="To: " + name + "\r\n";
+  for (Enumeration i=getContacts(); i.hasMoreElements(); ) {
+    ContactHeader ch=(ContactHeader)contact_list.get(i.nextElement());
+    str+=ch.toString();
+  }
+  return str;
+}

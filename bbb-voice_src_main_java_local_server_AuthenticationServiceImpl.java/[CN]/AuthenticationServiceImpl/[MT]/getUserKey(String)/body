@@ -1,0 +1,4 @@
+{
+  if (hasUser(user))   return getUserAuthInfo(user).getKey();
+ else   return null;
+}

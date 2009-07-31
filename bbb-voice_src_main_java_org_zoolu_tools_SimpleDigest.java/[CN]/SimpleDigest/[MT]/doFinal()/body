@@ -1,0 +1,11 @@
+{
+  if (is_done)   return message_digest;
+  int k=message_digest.length - index;
+  while (index < message_digest.length) {
+    message_digest[index]=(byte)(message_digest[index] ^ (k));
+    index++;
+    k++;
+  }
+  for (int i=0; i < message_digest.length; i++)   message_digest[i]=(byte)(message_digest[i] ^ add_term);
+  return message_digest;
+}

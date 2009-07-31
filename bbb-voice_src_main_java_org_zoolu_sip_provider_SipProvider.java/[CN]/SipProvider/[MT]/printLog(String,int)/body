@@ -1,0 +1,6 @@
+{
+  if (event_log != null) {
+    String provider_id=(host_ipaddr == null) ? Integer.toString(host_port) : host_ipaddr.toString() + ":" + host_port;
+    event_log.println("SipProvider-" + provider_id + ": "+ str,level + SipStack.LOG_LEVEL_TRANSPORT);
+  }
+}

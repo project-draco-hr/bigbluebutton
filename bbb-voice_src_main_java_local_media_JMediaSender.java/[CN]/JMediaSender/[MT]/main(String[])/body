@@ -1,0 +1,40 @@
+{
+  if (args.length < 3) {
+    System.out.println("usage:\n  java JMediaSender audio|video [<media>] <dest_addr> <dest_port>");
+    System.out.println("\n    with: <media> = \"file://filename\"");
+  }
+ else {
+    String type=args[0];
+    String media=null;
+    String addr;
+    int port;
+    if (args.length >= 4) {
+      media=args[1];
+      addr=args[2];
+      port=Integer.parseInt(args[3]);
+    }
+ else {
+      addr=args[1];
+      port=Integer.parseInt(args[2]);
+    }
+    JMediaSender sender=new JMediaSender(type,media,addr,port);
+    String result;
+    result=sender.start();
+    if (result != null) {
+      System.out.println("ERROR: " + result);
+      System.exit(0);
+    }
+    System.out.println("Press 'Return' to stop");
+    try {
+      System.in.read();
+    }
+ catch (    IOException e) {
+      e.printStackTrace();
+    }
+    result=sender.stop();
+    if (result != null) {
+      System.out.println("ERROR: " + result);
+      System.exit(0);
+    }
+  }
+}

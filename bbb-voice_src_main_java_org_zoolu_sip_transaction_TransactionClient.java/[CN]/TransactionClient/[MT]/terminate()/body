@@ -1,0 +1,10 @@
+{
+  if (!statusIs(STATE_TERMINATED)) {
+    retransmission_to.halt();
+    transaction_to.halt();
+    clearing_to.halt();
+    sip_provider.removeSipProviderListener(transaction_id);
+    changeStatus(STATE_TERMINATED);
+    transaction_listener=null;
+  }
+}

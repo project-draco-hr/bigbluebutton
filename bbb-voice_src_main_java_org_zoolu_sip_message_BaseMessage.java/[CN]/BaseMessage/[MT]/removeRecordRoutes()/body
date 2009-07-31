@@ -1,0 +1,3 @@
+{
+  removeAllHeaders(SipHeaders.Record_Route);
+}

@@ -1,0 +1,44 @@
+{
+  if (msg.isResponse()) {
+    int code=msg.getStatusLine().getCode();
+    if (code >= 100 && code < 200 && (statusIs(STATE_TRYING) || statusIs(STATE_PROCEEDING))) {
+      if (statusIs(STATE_TRYING)) {
+        retransmission_to.halt();
+        transaction_to.halt();
+        changeStatus(STATE_PROCEEDING);
+      }
+      if (transaction_listener != null)       transaction_listener.onTransProvisionalResponse(this,msg);
+      return;
+    }
+    if (code >= 300 && code < 700 && (statusIs(STATE_TRYING) || statusIs(STATE_PROCEEDING) || statusIs(STATE_COMPLETED))) {
+      if (statusIs(STATE_TRYING) || statusIs(STATE_PROCEEDING)) {
+        retransmission_to.halt();
+        transaction_to.halt();
+        ack=MessageFactory.createNon2xxAckRequest(sip_provider,request,msg);
+        changeStatus(STATE_COMPLETED);
+        if (transaction_listener != null)         transaction_listener.onTransFailureResponse(this,msg);
+        transaction_listener=null;
+        connection_id=sip_provider.sendMessage(ack);
+        if (connection_id == null)         end_to.start();
+ else {
+          printLog("end_to=0 for reliable transport",LogLevel.LOW);
+          onTimeout(end_to);
+        }
+      }
+ else {
+        if (connection_id == null)         sip_provider.sendMessage(ack);
+      }
+      return;
+    }
+    if (code >= 200 && code < 300 && (statusIs(STATE_TRYING) || statusIs(STATE_PROCEEDING))) {
+      retransmission_to.halt();
+      transaction_to.halt();
+      end_to.halt();
+      changeStatus(STATE_TERMINATED);
+      sip_provider.removeSipProviderListener(transaction_id);
+      if (transaction_listener != null)       transaction_listener.onTransSuccessResponse(this,msg);
+      transaction_listener=null;
+      return;
+    }
+  }
+}

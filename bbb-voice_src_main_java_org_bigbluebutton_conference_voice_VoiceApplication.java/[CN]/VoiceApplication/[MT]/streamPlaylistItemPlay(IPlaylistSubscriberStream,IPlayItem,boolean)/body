@@ -1,0 +1,3 @@
+{
+  loginfo("Red5SIP Stream play: " + item.getName());
+}

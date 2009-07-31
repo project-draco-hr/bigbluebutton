@@ -1,0 +1,4 @@
+String sessionID
+IConnection service
+int sipPort
+int rtpPort

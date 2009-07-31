@@ -1,0 +1,5 @@
+{
+  int begin=index;
+  while (begin < str.length() && !isSeparator(str.charAt(begin)))   begin++;
+  return begin;
+}

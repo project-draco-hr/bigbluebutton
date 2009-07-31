@@ -1,0 +1,8 @@
+{
+  printLog("inside bye(bye)",LogLevel.MEDIUM);
+  if (statusIs(D_CALL)) {
+    changeStatus(D_BYEING);
+    TransactionClient tc=new TransactionClient(sip_provider,bye,this);
+    tc.request();
+  }
+}

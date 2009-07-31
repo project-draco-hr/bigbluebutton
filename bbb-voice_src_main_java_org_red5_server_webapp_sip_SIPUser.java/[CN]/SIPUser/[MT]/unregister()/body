@@ -1,0 +1,14 @@
+{
+  p("SIPUser unregister");
+  if (ra != null) {
+    if (ra.isRegistering()) {
+      ra.halt();
+    }
+    ra.unregister();
+    ra=null;
+  }
+  if (ua != null) {
+    ua.hangup();
+  }
+  ua=null;
+}

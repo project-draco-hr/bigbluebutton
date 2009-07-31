@@ -1,0 +1,32 @@
+{
+  printLog("onCallAccepted","Init...");
+  if (call != this.call && call != callTransfer) {
+    printLog("onCallAccepted","NOT the current call.");
+    return;
+  }
+  printLog("onCallAccepted","ACCEPTED/CALL.");
+  changeStatus(UA_ONCALL);
+  SessionDescriptor remoteSdp=new SessionDescriptor(sdp);
+  SessionDescriptor localSdp=new SessionDescriptor(localSession);
+  printLog("onCallAccepted","localSdp = " + localSdp.toString() + ".");
+  printLog("onCallAccepted","remoteSdp = " + remoteSdp.toString() + ".");
+  SessionDescriptor newSdp=SdpUtils.makeMediaPayloadsNegotiation(localSdp,remoteSdp);
+  sipCodec=SdpUtils.getNegotiatedAudioCodec(newSdp);
+  SdpUtils.completeSdpNegotiation(newSdp,localSdp,remoteSdp);
+  localSession=newSdp.toString();
+  printLog("onCallAccepted","newSdp = " + localSession + ".");
+  SIPCodecUtils.initSipAudioCodec(sipCodec,userProfile.audioDefaultPacketization,userProfile.audioDefaultPacketization,newSdp,remoteSdp);
+  if (userProfile.noOffer) {
+    call.ackWithAnswer(localSession);
+  }
+  launchMediaApplication();
+  if (call == callTransfer) {
+    StatusLine statusLine=resp.getStatusLine();
+    int code=statusLine.getCode();
+    String reason=statusLine.getReason();
+    this.call.notify(code,reason);
+  }
+  if (listener != null) {
+    listener.onUaCallAccepted(this);
+  }
+}

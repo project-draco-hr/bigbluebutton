@@ -1,0 +1,32 @@
+{
+  try {
+    UdpSocket socket=new UdpSocket(local_port);
+    byte[] buf=new byte[2000];
+    socket.setSoTimeout(socket_to);
+    while (!stop) {
+      UdpPacket packet=new UdpPacket(buf,buf.length);
+      try {
+        socket.receive(packet);
+      }
+ catch (      InterruptedIOException ie) {
+        continue;
+      }
+      for (int i=0; i < dest_sockets.size(); i++) {
+        try {
+          SocketAddress dest=(SocketAddress)dest_sockets.elementAt(i);
+          if (no_relay_dest_socket == null || !dest.equals(no_relay_dest_socket)) {
+            packet.setIpAddress(dest.getAddress());
+            packet.setPort(dest.getPort());
+            socket.send(packet);
+          }
+        }
+ catch (        ArrayIndexOutOfBoundsException e) {
+        }
+      }
+    }
+    socket.close();
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

@@ -1,0 +1,5 @@
+{
+  if (hasRequestLine())   removeRequestLine();
+  String value=rl.toString();
+  message=value + message;
+}

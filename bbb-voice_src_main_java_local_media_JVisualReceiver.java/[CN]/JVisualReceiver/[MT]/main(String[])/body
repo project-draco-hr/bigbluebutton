@@ -1,0 +1,12 @@
+{
+  if (args.length >= 2)   try {
+    int port=Integer.parseInt(args[1]);
+    JVisualReceiver tv=new JVisualReceiver(args[0],port);
+    tv.start();
+    return;
+  }
+ catch (  Exception e) {
+    System.out.println("Error creating the receiver");
+  }
+  System.out.println("usage:\n  java JVisualReceiver audio|video <local_port>");
+}

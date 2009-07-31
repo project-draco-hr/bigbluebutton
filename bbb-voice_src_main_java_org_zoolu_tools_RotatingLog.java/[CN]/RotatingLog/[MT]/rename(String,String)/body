@@ -1,0 +1,8 @@
+{
+  File src=new File(src_file);
+  if (src.exists()) {
+    File dst=new File(dst_file);
+    if (dst.exists())     dst.delete();
+    src.renameTo(dst);
+  }
+}

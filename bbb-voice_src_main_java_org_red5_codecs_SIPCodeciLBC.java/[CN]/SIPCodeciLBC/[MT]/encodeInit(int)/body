@@ -1,0 +1,3 @@
+{
+  ilbcEncoder=new ilbc_encoder(outgoingPacketization);
+}

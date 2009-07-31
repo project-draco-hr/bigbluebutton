@@ -1,0 +1,19 @@
+{
+  int index;
+  if (pit_flag == 0) {
+    if (T0 <= 85)     index=T0 * 3 - 58 + T0_frac;
+ else     index=T0 + 112;
+    T0_min.value=T0 - 5;
+    if (T0_min.value < pit_min)     T0_min.value=pit_min;
+    T0_max.value=T0_min.value + 9;
+    if (T0_max.value > pit_max) {
+      T0_max.value=pit_max;
+      T0_min.value=T0_max.value - 9;
+    }
+  }
+ else {
+    index=T0 - T0_min.value;
+    index=index * 3 + 2 + T0_frac;
+  }
+  return index;
+}

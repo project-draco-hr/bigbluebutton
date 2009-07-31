@@ -1,0 +1,42 @@
+{
+  IntegerPointer ltpdel=new IntegerPointer(0), phase=new IntegerPointer(0);
+  FloatPointer num_gltp=new FloatPointer((float)0), den_gltp=new FloatPointer((float)0);
+  FloatPointer num2_gltp=new FloatPointer((float)0), den2_gltp=new FloatPointer((float)0);
+  float gain_plt;
+  float y_up[]=new float[LD8KConstants.SIZ_Y_UP];
+  int ptr_y_up;
+  float[] ptr_y_up_array;
+  IntegerPointer off_yup=new IntegerPointer();
+  search_del(t0,ptr_sig_in,ins,ltpdel,phase,num_gltp,den_gltp,y_up,off_yup);
+  vo.value=ltpdel.value;
+  if (num_gltp.value == (float)0.) {
+    Util.copy(ptr_sig_in,ins,ptr_sig_pst0,psts,LD8KConstants.L_SUBFR);
+  }
+ else {
+    if (phase.value == 0) {
+      ptr_y_up=ins - ltpdel.value;
+      ptr_y_up_array=ptr_sig_in;
+    }
+ else {
+      compute_ltp_l(ptr_sig_in,ins,ltpdel.value,phase.value,ptr_sig_pst0,psts,num2_gltp,den2_gltp);
+      if (select_ltp(num_gltp.value,den_gltp.value,num2_gltp.value,den2_gltp.value) == 1) {
+        ptr_y_up=0 + ((phase.value - 1) * LD8KConstants.L_SUBFRP1 + off_yup.value);
+        ptr_y_up_array=y_up;
+      }
+ else {
+        num_gltp=num2_gltp;
+        den_gltp=den2_gltp;
+        ptr_y_up=psts;
+        ptr_y_up_array=ptr_sig_pst0;
+      }
+    }
+    if (num_gltp.value > den_gltp.value) {
+      gain_plt=LD8KConstants.MIN_GPLT;
+    }
+ else {
+      gain_plt=den_gltp.value / (den_gltp.value + LD8KConstants.GAMMA_G * num_gltp.value);
+    }
+    filt_plt(ptr_sig_in,ins,ptr_y_up_array,ptr_y_up,ptr_sig_pst0,psts,gain_plt);
+  }
+  return;
+}

@@ -1,0 +1,9 @@
+{
+  this.listener=listener;
+  this.subscribe_transaction=null;
+  this.notify_transaction=null;
+  this.subscribe_req=null;
+  this.event=null;
+  this.id=null;
+  changeStatus(D_INIT);
+}

@@ -1,0 +1,12 @@
+{
+  this.local_name=null;
+  this.remote_name=null;
+  this.local_contact=null;
+  this.remote_contact=null;
+  this.call_id=null;
+  this.local_tag=null;
+  this.remote_tag=null;
+  this.local_cseq=-1;
+  this.remote_cseq=-1;
+  this.route=null;
+}

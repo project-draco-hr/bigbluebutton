@@ -1,0 +1,6 @@
+{
+  String str="";
+  str+="user= " + name + "\r\n";
+  str+="key= " + Base64.encode(key) + "\r\n";
+  return str;
+}

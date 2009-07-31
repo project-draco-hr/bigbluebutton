@@ -1,0 +1,4 @@
+{
+  init();
+  message=new String(str);
+}

@@ -1,0 +1,59 @@
+{
+  try {
+    if (user_profile.re_invite_time > 0) {
+      ua.reInvite(user_profile.contact_url,user_profile.re_invite_time);
+    }
+    if (user_profile.transfer_to != null && user_profile.transfer_time > 0) {
+      ua.callTransfer(user_profile.transfer_to,user_profile.transfer_time);
+    }
+    if (user_profile.do_unregister_all) {
+      ua.printLog("UNREGISTER ALL contact URLs");
+      unregisterall();
+    }
+    if (user_profile.do_unregister) {
+      ua.printLog("UNREGISTER the contact URL");
+      unregister();
+    }
+    if (user_profile.do_register) {
+      ua.printLog("REGISTRATION");
+      loopRegister(user_profile.expires,user_profile.expires / 2,user_profile.keepalive_time);
+    }
+    if (user_profile.call_to != null) {
+      call(user_profile.call_to);
+      printOut("press 'enter' to hangup");
+      readLine();
+      ua.hangup();
+      exit();
+    }
+ else {
+      if (user_profile.accept_time >= 0)       ua.printLog("UAS: AUTO ACCEPT MODE");
+      listen();
+      while (stdin != null) {
+        String line=readLine();
+        if (ua.statusIs(UserAgent.UA_INCOMING_CALL)) {
+          if (line.toLowerCase().startsWith("n")) {
+            ua.hangup();
+          }
+ else {
+            ua.accept();
+          }
+        }
+ else         if (ua.statusIs(UserAgent.UA_IDLE)) {
+          if (line != null && line.length() > 0) {
+            call(line);
+          }
+ else {
+            exit();
+          }
+        }
+ else         if (ua.statusIs(UserAgent.UA_ONCALL)) {
+          ua.hangup();
+        }
+      }
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    System.exit(0);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return (Message)s_response.get(ts.getTransactionId());
+}

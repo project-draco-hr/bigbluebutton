@@ -1,0 +1,11 @@
+{
+  try {
+    SdpField sf=(SdpField)obj;
+    if (type != sf.type)     return false;
+    if (value != sf.value)     return false;
+    return true;
+  }
+ catch (  Exception e) {
+    return false;
+  }
+}

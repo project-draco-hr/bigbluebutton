@@ -1,0 +1,10 @@
+{
+  Vector formatlist=new Vector();
+  Parser par=new Parser(value);
+  par.skipString().skipString().skipString();
+  while (par.hasMore()) {
+    String fmt=par.getString();
+    if (fmt != null && fmt.length() > 0)     formatlist.addElement(fmt);
+  }
+  return formatlist;
+}

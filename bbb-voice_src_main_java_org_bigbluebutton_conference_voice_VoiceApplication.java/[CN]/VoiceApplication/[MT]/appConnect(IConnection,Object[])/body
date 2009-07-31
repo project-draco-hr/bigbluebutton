@@ -1,0 +1,5 @@
+{
+  IServiceCapableConnection service=(IServiceCapableConnection)conn;
+  loginfo("Red5SIP Client connected " + conn.getClient().getId() + " service "+ service);
+  return true;
+}

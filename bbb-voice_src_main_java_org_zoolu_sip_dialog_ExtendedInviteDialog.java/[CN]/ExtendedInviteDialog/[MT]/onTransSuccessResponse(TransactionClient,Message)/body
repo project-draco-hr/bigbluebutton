@@ -1,0 +1,20 @@
+{
+  printLog("inside onTransSuccessResponse(" + t.getTransactionId() + ",msg)",LogLevel.LOW);
+  attempts=0;
+  String method=t.getTransactionMethod();
+  StatusLine status_line=msg.getStatusLine();
+  int code=status_line.getCode();
+  String reason=status_line.getReason();
+  if (method.equals(SipMethods.INVITE) || method.equals(SipMethods.CANCEL) || method.equals(SipMethods.BYE)) {
+    super.onTransSuccessResponse(t,msg);
+  }
+ else   if (t.getTransactionMethod().equals(SipMethods.REFER)) {
+    transactions.remove(t.getTransactionId());
+    dialog_listener.onDlgReferResponse(this,code,reason,msg);
+  }
+ else {
+    String body=msg.getBody();
+    transactions.remove(t.getTransactionId());
+    dialog_listener.onDlgAltResponse(this,method,code,reason,body,msg);
+  }
+}

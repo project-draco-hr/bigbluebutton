@@ -1,0 +1,6 @@
+{
+  if (!statusIs(D_INIT))   return;
+  changeStatus(D_WAITING);
+  invite_ts=new InviteTransactionServer(sip_provider,this);
+  invite_ts.listen();
+}

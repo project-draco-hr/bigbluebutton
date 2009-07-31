@@ -1,0 +1,4 @@
+{
+  local_sdp=sdp;
+  if (dialog != null)   dialog.accept(contact_url,local_sdp);
+}

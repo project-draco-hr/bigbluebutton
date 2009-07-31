@@ -1,0 +1,7 @@
+{
+  int len=w.length;
+  int w1=w[len - 1];
+  for (int i=len - 1; i > 1; i--)   w[i]=w[i - 1];
+  w[0]=w1;
+  return w;
+}

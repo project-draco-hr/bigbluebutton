@@ -1,0 +1,7 @@
+{
+  if (tcp_conn != null) {
+    last_time=System.currentTimeMillis();
+    byte[] data=msg.toString().getBytes();
+    tcp_conn.send(data);
+  }
+}

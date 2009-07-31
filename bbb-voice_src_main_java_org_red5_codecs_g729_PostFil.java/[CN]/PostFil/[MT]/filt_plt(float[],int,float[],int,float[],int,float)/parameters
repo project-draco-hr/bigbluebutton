@@ -1,0 +1,7 @@
+float[] s_in
+int ins
+float[] s_ltp
+int ltps
+float[] s_out
+int outs
+float gain_plt

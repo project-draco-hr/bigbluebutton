@@ -1,0 +1,10 @@
+{
+  printLog("inside cancel(cancel)",LogLevel.MEDIUM);
+  if (statusIs(D_INVITING) || statusIs(D_ReINVITING)) {
+    TransactionClient tc=new TransactionClient(sip_provider,cancel,null);
+    tc.request();
+  }
+ else   if (statusIs(D_WAITING) || statusIs(D_ReWAITING)) {
+    invite_ts.terminate();
+  }
+}

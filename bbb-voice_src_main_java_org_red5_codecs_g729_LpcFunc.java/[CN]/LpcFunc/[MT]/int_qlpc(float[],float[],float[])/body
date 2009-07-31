@@ -1,0 +1,8 @@
+{
+  int i;
+  float lsp[]=new float[LD8KConstants.M];
+  for (i=0; i < LD8KConstants.M; i++)   lsp[i]=lsp_old[i] * (float)0.5 + lsp_new[i] * (float)0.5;
+  lsp_az(lsp,0,az,0);
+  lsp_az(lsp_new,0,az,LD8KConstants.M + 1);
+  return;
+}

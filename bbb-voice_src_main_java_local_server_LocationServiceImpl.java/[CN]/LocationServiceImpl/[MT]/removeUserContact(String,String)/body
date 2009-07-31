@@ -1,0 +1,7 @@
+{
+  if (!hasUser(user))   return this;
+  UserBindingInfo ur=getUserBindingInfo(user);
+  ur.removeContact(url);
+  changed=true;
+  return this;
+}

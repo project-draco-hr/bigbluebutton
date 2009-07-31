@@ -1,0 +1,9 @@
+{
+  printLog("onCallRedirection()",LogLevel.LOW);
+  if (call != this.call) {
+    printLog("NOT the current call",LogLevel.LOW);
+    return;
+  }
+  printLog("REDIRECTION (" + reason + ")",LogLevel.HIGH);
+  call.call(((String)contact_list.elementAt(0)));
+}

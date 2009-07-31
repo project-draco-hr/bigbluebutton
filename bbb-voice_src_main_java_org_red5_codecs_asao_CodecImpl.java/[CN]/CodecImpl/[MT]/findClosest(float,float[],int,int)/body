@@ -1,0 +1,12 @@
+{
+  int min_idx=0;
+  float min_distance=Math.abs(target - values[from]);
+  for (int i=from; i < to; ++i) {
+    final float distance=Math.abs(target - values[i]);
+    if (distance < min_distance) {
+      min_distance=distance;
+      min_idx=i - from;
+    }
+  }
+  return min_idx;
+}

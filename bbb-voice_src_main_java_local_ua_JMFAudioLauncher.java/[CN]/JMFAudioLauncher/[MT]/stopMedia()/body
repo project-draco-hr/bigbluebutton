@@ -1,0 +1,8 @@
+{
+  String err1=null, err2=null;
+  if (sender != null)   err1=sender.stop();
+  if (err1 != null)   printLog("Error stopping audio sender: " + err1);
+  if (receiver != null)   err2=receiver.stop();
+  if (err2 != null)   printLog("Error stopping audio receiver: " + err2);
+  return (err1 == null && err2 == null);
+}

@@ -1,0 +1,17 @@
+{
+  String secret=HEX(MD5(A1()));
+  StringBuffer sb=new StringBuffer();
+  if (nonce != null)   sb.append(nonce);
+  sb.append(":");
+  if (qop != null) {
+    if (nc != null)     sb.append(nc);
+    sb.append(":");
+    if (cnonce != null)     sb.append(cnonce);
+    sb.append(":");
+    sb.append(qop);
+    sb.append(":");
+  }
+  sb.append(HEX(MD5(A2())));
+  String data=sb.toString();
+  return HEX(KD(secret,data));
+}

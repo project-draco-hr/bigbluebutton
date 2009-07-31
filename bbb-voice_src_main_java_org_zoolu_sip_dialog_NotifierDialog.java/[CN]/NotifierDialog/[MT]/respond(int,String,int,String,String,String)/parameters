@@ -1,0 +1,6 @@
+int code
+String reason
+int expires
+String contact
+String content_type
+String body

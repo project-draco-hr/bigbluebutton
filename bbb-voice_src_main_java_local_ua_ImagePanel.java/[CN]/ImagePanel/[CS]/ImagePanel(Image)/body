@@ -1,0 +1,9 @@
+{
+  this.image=image;
+  try {
+    jbInit();
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

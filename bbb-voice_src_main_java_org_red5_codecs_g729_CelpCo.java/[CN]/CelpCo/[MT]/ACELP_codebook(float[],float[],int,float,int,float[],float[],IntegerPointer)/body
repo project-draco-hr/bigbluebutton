@@ -1,0 +1,11 @@
+{
+  int i, index;
+  float dn[]=new float[LD8KConstants.L_SUBFR];
+  float rr[]=new float[LD8KConstants.DIM_RR];
+  if (t0 < LD8KConstants.L_SUBFR)   for (i=t0; i < LD8KConstants.L_SUBFR; i++)   h[i]+=pitch_sharp * h[i - t0];
+  cor_h(h,rr);
+  CorFunc.cor_h_x(h,x,dn);
+  index=d4i40_17(dn,rr,h,code,y,sign,i_subfr);
+  if (t0 < LD8KConstants.L_SUBFR)   for (i=t0; i < LD8KConstants.L_SUBFR; i++)   code[i]+=pitch_sharp * code[i - t0];
+  return index;
+}

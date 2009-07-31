@@ -1,0 +1,7 @@
+{
+  if (e1 == null) {
+    e1=new NellyEncoderMap(this);
+  }
+  Utility.byte2float(abyte0,j,512,((NellyEncoderMap)e1).b,0,flag);
+  return encode(e1,((NellyEncoderMap)e1).b,0,abyte1,k);
+}

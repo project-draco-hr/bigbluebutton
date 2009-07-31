@@ -1,0 +1,5 @@
+Message msg
+String proto
+String dest_addr
+int dest_port
+int ttl

@@ -1,0 +1,3 @@
+{
+  return same(str,Content_Length) || same(str,Content_Length_short);
+}

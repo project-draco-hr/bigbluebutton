@@ -1,0 +1,28 @@
+{
+  printLog("onCallAccepted()",LogLevel.LOW);
+  if (call != this.call && call != call_transfer) {
+    printLog("NOT the current call",LogLevel.LOW);
+    return;
+  }
+  printLog("ACCEPTED/CALL",LogLevel.HIGH);
+  changeStatus(UA_ONCALL);
+  if (user_profile.no_offer) {
+    SessionDescriptor remote_sdp=new SessionDescriptor(sdp);
+    SessionDescriptor local_sdp=new SessionDescriptor(local_session);
+    SessionDescriptor new_sdp=new SessionDescriptor(remote_sdp.getOrigin(),remote_sdp.getSessionName(),local_sdp.getConnection(),local_sdp.getTime());
+    new_sdp.addMediaDescriptors(local_sdp.getMediaDescriptors());
+    new_sdp=SdpTools.sdpMediaProduct(new_sdp,remote_sdp.getMediaDescriptors());
+    new_sdp=SdpTools.sdpAttirbuteSelection(new_sdp,"rtpmap");
+    local_session=new_sdp.toString();
+    call.ackWithAnswer(local_session);
+  }
+  if (clip_on != null)   clip_on.replay();
+  if (listener != null)   listener.onUaCallAccepted(this);
+  launchMediaApplication();
+  if (call == call_transfer) {
+    StatusLine status_line=resp.getStatusLine();
+    int code=status_line.getCode();
+    String reason=status_line.getReason();
+    this.call.notify(code,reason);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  init(input_stream,do_sync,payload_type,frame_rate,frame_size,null,dest_addr,dest_port);
+}

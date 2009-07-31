@@ -1,0 +1,4 @@
+{
+  super(hname,url);
+  if (tag != null)   setParameter("tag",tag);
+}

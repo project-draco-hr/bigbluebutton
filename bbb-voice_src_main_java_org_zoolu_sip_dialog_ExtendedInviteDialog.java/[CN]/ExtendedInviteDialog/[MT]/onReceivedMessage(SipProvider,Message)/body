@@ -1,0 +1,30 @@
+{
+  printLog("Message received: " + msg.getFirstLine().substring(0,msg.toString().indexOf('\r')),LogLevel.LOW);
+  if (msg.isResponse()) {
+    super.onReceivedMessage(provider,msg);
+  }
+ else   if (msg.isInvite() || msg.isAck() || msg.isCancel()|| msg.isBye()) {
+    super.onReceivedMessage(provider,msg);
+  }
+ else {
+    TransactionServer t=new TransactionServer(sip_provider,msg,this);
+    transactions.put(t.getTransactionId(),t);
+    if (msg.isRefer()) {
+      NameAddress refer_to=msg.getReferToHeader().getNameAddress();
+      NameAddress referred_by=null;
+      if (msg.hasReferredByHeader())       referred_by=msg.getReferredByHeader().getNameAddress();
+      dialog_listener.onDlgRefer(this,refer_to,referred_by,msg);
+    }
+ else     if (msg.isNotify()) {
+      Message resp=MessageFactory.createResponse(msg,200,SipResponses.reasonOf(200),null);
+      respond(resp);
+      String event=msg.getEventHeader().getValue();
+      String sipfragment=msg.getBody();
+      dialog_listener.onDlgNotify(this,event,sipfragment,msg);
+    }
+ else {
+      printLog("Received alternative request " + msg.getRequestLine().getMethod(),LogLevel.MEDIUM);
+      dialog_listener.onDlgAltRequest(this,msg.getRequestLine().getMethod(),msg.getBody(),msg);
+    }
+  }
+}

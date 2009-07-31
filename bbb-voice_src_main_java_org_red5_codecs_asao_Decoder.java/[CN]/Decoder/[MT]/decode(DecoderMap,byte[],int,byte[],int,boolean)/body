@@ -1,0 +1,8 @@
+{
+  if (d1 == null) {
+    d1=new NellyDecoderMap(this);
+  }
+  d1=decode(d1,abyte0,i,((NellyDecoderMap)d1).b,0);
+  Utility.float2byte(((NellyDecoderMap)d1).b,0,256,abyte1,j,flag);
+  return d1;
+}

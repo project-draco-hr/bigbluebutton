@@ -1,0 +1,6 @@
+{
+  int begin=4;
+  int end=url.indexOf('@',begin);
+  if (end < 0)   return null;
+ else   return url.substring(begin,end);
+}

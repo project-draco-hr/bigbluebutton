@@ -1,0 +1,10 @@
+{
+  printLog("inside onTransRequest(ts,msg)",LogLevel.LOW);
+  if (ts.getTransactionMethod().equals(SipMethods.INVITE)) {
+    if (!verifyStatus(statusIs(D_WAITING)))     return;
+    changeStatus(D_INVITED);
+    invite_req=req;
+    update(Dialog.UAS,invite_req);
+    listener.onDlgInvite(this,invite_req.getToHeader().getNameAddress(),invite_req.getFromHeader().getNameAddress(),invite_req.getBody(),invite_req);
+  }
+}

@@ -1,0 +1,31 @@
+{
+  printLog("inside validateRequest(msg)",LogLevel.LOW);
+  int err_code=0;
+  if (err_code == 0) {
+    MaxForwardsHeader mfh=msg.getMaxForwardsHeader();
+    if (mfh != null && mfh.getNumber() == 0)     err_code=483;
+  }
+  if (err_code == 0 && server_profile.loop_detection) {
+    String loop_tag=pickLoopTag(msg);
+    msg.setHeader(new Header(Loop_Tag,loop_tag));
+    if (!msg.hasRouteHeader()) {
+      Vector v=msg.getVias().getHeaders();
+      for (int i=0; i < v.size(); i++) {
+        ViaHeader vh=new ViaHeader((Header)v.elementAt(i));
+        if (sip_provider.getViaAddress().equals(vh.getHost()) && sip_provider.getPort() == vh.getPort()) {
+          if (!vh.hasBranch())           err_code=482;
+ else {
+            String branch=vh.getBranch();
+            if (branch.indexOf(loop_tag,branch.length() - loop_tag.length()) >= 0)             err_code=482;
+          }
+        }
+      }
+    }
+  }
+  if (err_code > 0) {
+    String reason=SipResponses.reasonOf(err_code);
+    printLog("Message validation failed (" + reason + "), message discarded",LogLevel.HIGH);
+    return MessageFactory.createResponse(msg,err_code,reason,null);
+  }
+ else   return null;
+}

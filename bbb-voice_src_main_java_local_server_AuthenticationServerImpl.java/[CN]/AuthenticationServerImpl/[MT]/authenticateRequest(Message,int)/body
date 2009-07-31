@@ -1,0 +1,51 @@
+{
+  Message err_resp=null;
+  AuthorizationHeader ah;
+  if (type == SERVER_AUTHENTICATION)   ah=msg.getAuthorizationHeader();
+ else   ah=msg.getProxyAuthorizationHeader();
+  if (ah != null && ah.getNonceParam().equals(HEX(rand))) {
+    String realm=ah.getRealmParam();
+    String nonce=ah.getNonceParam();
+    String username=ah.getUsernameParam();
+    String scheme=ah.getAuthScheme();
+    String user=username + "@" + realm;
+    if (authentication_service.hasUser(user)) {
+      if (authentication_scheme.equalsIgnoreCase(scheme)) {
+        DigestAuthentication auth=new DigestAuthentication(msg.getRequestLine().getMethod(),ah,null,keyToPasswd(authentication_service.getUserKey(user)));
+        boolean is_authorized=auth.checkResponse();
+        rand=pickRandBytes();
+        if (!is_authorized) {
+          int result=403;
+          err_resp=MessageFactory.createResponse(msg,result,SipResponses.reasonOf(result),null);
+          printLog("LOGIN ERROR: Authentication of '" + user + "' failed",LogLevel.HIGH);
+        }
+ else {
+          printLog("Authentication of '" + user + "' successed",LogLevel.HIGH);
+        }
+      }
+ else {
+        int result=400;
+        err_resp=MessageFactory.createResponse(msg,result,SipResponses.reasonOf(result),null);
+        printLog("Authentication method '" + scheme + "' not supported.",LogLevel.HIGH);
+      }
+    }
+ else {
+      int result=404;
+      err_resp=MessageFactory.createResponse(msg,result,SipResponses.reasonOf(result),null);
+    }
+  }
+ else {
+    int result;
+    if (type == SERVER_AUTHENTICATION)     result=401;
+ else     result=407;
+    err_resp=MessageFactory.createResponse(msg,result,SipResponses.reasonOf(result),null);
+    WwwAuthenticateHeader wah;
+    if (type == SERVER_AUTHENTICATION)     wah=new WwwAuthenticateHeader("Digest");
+ else     wah=new ProxyAuthenticateHeader("Digest");
+    wah.addRealmParam(realm);
+    wah.addQopOptionsParam(qop_options);
+    wah.addNonceParam(HEX(rand));
+    err_resp.setWwwAuthenticateHeader(wah);
+  }
+  return err_resp;
+}

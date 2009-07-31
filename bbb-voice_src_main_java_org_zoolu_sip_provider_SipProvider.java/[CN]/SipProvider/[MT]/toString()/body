@@ -1,0 +1,4 @@
+{
+  if (host_ipaddr == null)   return host_port + "/" + transportProtocolsToString();
+ else   return host_ipaddr.toString() + ":" + host_port+ "/"+ transportProtocolsToString();
+}

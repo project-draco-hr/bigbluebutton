@@ -1,0 +1,3 @@
+{
+  return digest(buffer,0,buffer.length);
+}

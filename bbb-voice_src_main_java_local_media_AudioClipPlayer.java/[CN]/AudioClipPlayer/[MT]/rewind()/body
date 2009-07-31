@@ -1,0 +1,3 @@
+{
+  if (clip != null)   clip.setMicrosecondPosition(0);
+}

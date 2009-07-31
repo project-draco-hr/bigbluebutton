@@ -1,0 +1,5 @@
+{
+  index+=n;
+  if (index > str.length())   index=str.length();
+  return this;
+}

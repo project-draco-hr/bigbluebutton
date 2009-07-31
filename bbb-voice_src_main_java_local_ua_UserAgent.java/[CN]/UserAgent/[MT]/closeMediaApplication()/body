@@ -1,0 +1,10 @@
+{
+  if (audio_app != null) {
+    audio_app.stopMedia();
+    audio_app=null;
+  }
+  if (video_app != null) {
+    video_app.stopMedia();
+    video_app=null;
+  }
+}

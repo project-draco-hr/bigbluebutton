@@ -1,0 +1,4 @@
+{
+  if (status_line != null)   return true;
+ else   return false;
+}

@@ -1,0 +1,6 @@
+{
+  printLog("inside updateProxingResponse(resp)",LogLevel.MEDIUM);
+  ViaHeader vh=new ViaHeader((Header)resp.getVias().getHeaders().elementAt(0));
+  if (vh.getHost().equals(sip_provider.getViaAddress()))   resp.removeViaHeader();
+  return resp;
+}

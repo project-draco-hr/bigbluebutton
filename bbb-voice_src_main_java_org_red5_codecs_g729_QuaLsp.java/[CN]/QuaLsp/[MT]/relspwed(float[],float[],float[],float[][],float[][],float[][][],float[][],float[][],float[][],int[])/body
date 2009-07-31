@@ -1,0 +1,32 @@
+{
+  int mode, j;
+  IntegerPointer index=new IntegerPointer();
+  IntegerPointer mode_index=new IntegerPointer(), cand_cur=new IntegerPointer();
+  int cand[]=new int[LD8KConstants.MODE];
+  int tindex1[]=new int[LD8KConstants.MODE], tindex2[]=new int[LD8KConstants.MODE];
+  float tdist[]=new float[LD8KConstants.MODE];
+  float rbuf[]=new float[LD8KConstants.M];
+  float buf[]=new float[LD8KConstants.M];
+  for (mode=0; mode < LD8KConstants.MODE; mode++) {
+    LspGetq.lsp_prev_extract(lsp,rbuf,fg[mode],freq_prev,fg_sum_inv[mode]);
+    lsp_pre_select(rbuf,lspcb1,cand_cur);
+    cand[mode]=cand_cur.value;
+    lsp_select_1(rbuf,lspcb1[cand_cur.value],wegt,lspcb2,index);
+    tindex1[mode]=index.value;
+    for (j=0; j < LD8KConstants.NC; j++)     buf[j]=lspcb1[cand_cur.value][j] + lspcb2[index.value][j];
+    LspGetq.lsp_expand_1(buf,LD8KConstants.GAP1);
+    lsp_select_2(rbuf,lspcb1[cand_cur.value],wegt,lspcb2,index);
+    tindex2[mode]=index.value;
+    for (j=LD8KConstants.NC; j < LD8KConstants.M; j++)     buf[j]=lspcb1[cand_cur.value][j] + lspcb2[index.value][j];
+    LspGetq.lsp_expand_2(buf,LD8KConstants.GAP1);
+    LspGetq.lsp_expand_1_2(buf,LD8KConstants.GAP2);
+    FloatPointer tmp=new FloatPointer(tdist[mode]);
+    lsp_get_tdist(wegt,buf,tmp,rbuf,fg_sum[mode]);
+    tdist[mode]=tmp.value;
+  }
+  lsp_last_select(tdist,mode_index);
+  code_ana[0]=(mode_index.value << LD8KConstants.NC0_B) | cand[mode_index.value];
+  code_ana[1]=(tindex1[mode_index.value] << LD8KConstants.NC1_B) | tindex2[mode_index.value];
+  LspGetq.lsp_get_quant(lspcb1,lspcb2,cand[mode_index.value],tindex1[mode_index.value],tindex2[mode_index.value],fg[mode_index.value],freq_prev,lspq,fg_sum[mode_index.value]);
+  return;
+}

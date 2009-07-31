@@ -1,0 +1,43 @@
+{
+  int i, frac;
+  int lag, t_min, t_max;
+  float max;
+  float corr_int;
+  float corr_v[]=new float[10 + 2 * LD8KConstants.L_INTER4];
+  int corr;
+  t_min=t0_min - LD8KConstants.L_INTER4;
+  t_max=t0_max + LD8KConstants.L_INTER4;
+  corr=-t_min;
+  norm_corr(exc,excs,xn,xns,h,hs,l_subfr,t_min,t_max,corr_v,corr);
+  max=corr_v[corr + t0_min];
+  lag=t0_min;
+  for (i=t0_min + 1; i <= t0_max; i++) {
+    if (corr_v[corr + i] >= max) {
+      max=corr_v[corr + i];
+      lag=i;
+    }
+  }
+  if ((i_subfr == 0) && (lag > 84)) {
+    pit_frac.value=0;
+    return (lag);
+  }
+  max=interpol_3(corr_v,corr + lag,-2);
+  frac=-2;
+  for (i=-1; i <= 2; i++) {
+    corr_int=interpol_3(corr_v,corr + lag,i);
+    if (corr_int > max) {
+      max=corr_int;
+      frac=i;
+    }
+  }
+  if (frac == -2) {
+    frac=1;
+    lag-=1;
+  }
+  if (frac == 2) {
+    frac=-1;
+    lag+=1;
+  }
+  pit_frac.value=frac;
+  return lag;
+}

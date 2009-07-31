@@ -1,0 +1,4 @@
+{
+  if (packet_len >= 12)   return packet_len - getHeaderLength();
+ else   return 0;
+}

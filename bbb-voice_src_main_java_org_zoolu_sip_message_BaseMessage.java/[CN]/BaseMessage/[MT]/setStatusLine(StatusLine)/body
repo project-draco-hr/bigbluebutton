@@ -1,0 +1,4 @@
+{
+  if (hasStatusLine())   removeStatusLine();
+  message=sl.toString() + message;
+}

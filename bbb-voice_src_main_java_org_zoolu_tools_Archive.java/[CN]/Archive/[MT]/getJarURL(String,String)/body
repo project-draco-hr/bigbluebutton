@@ -1,0 +1,11 @@
+{
+  if (jar_archive == null || file_name == null)   return null;
+  String url="jar:file:" + BASE_PATH + "/"+ jar_archive+ "!/"+ file_name;
+  try {
+    return new URL(url);
+  }
+ catch (  java.net.MalformedURLException e) {
+    System.err.println("ERROR: malformed url " + url);
+    return null;
+  }
+}

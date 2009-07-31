@@ -1,0 +1,6 @@
+{
+  Message msg=createRequest(dialog,SipMethods.BYE,null);
+  msg.removeExpiresHeader();
+  msg.removeContacts();
+  return msg;
+}

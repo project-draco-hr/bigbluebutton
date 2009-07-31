@@ -1,0 +1,147 @@
+{
+  float max_input=0;
+  for (int i=0; i < len; ++i) {
+    if (in[i] > max_input) {
+      max_input=in[i];
+    }
+  }
+  int max_input_scale=0;
+{
+    NormalizedInt32 normalized=new NormalizedInt32((int)max_input);
+    max_input_scale=normalized.scale - 16;
+  }
+  short scaled_input[]=new short[124];
+  if (max_input_scale < 0) {
+    for (int i=0; i < len; ++i) {
+      scaled_input[i]=(short)((int)in[i] >> -max_input_scale);
+    }
+  }
+ else {
+    for (int i=0; i < len; ++i) {
+      scaled_input[i]=(short)((int)in[i] << max_input_scale);
+    }
+  }
+  final Factor factor=new Factor(len);
+  for (int i=0; i < len; ++i) {
+    scaled_input[i]=(short)(((int)scaled_input[i] * 3) >> 2);
+  }
+  int scaled_input_sum=0;
+  for (int i=0; i < len; ++i) {
+    scaled_input_sum+=scaled_input[i];
+  }
+  max_input_scale+=11;
+  scaled_input_sum-=total_bits << max_input_scale;
+  int scaled_input_base=0;
+{
+    final int val=scaled_input_sum - (total_bits << max_input_scale);
+    final NormalizedInt32 normalized=new NormalizedInt32(val);
+    scaled_input_base=((val >> 16) * factor.value) >> 15;
+    final int shift=31 - factor.shift - normalized.scale;
+    if (shift >= 0) {
+      scaled_input_base<<=shift;
+    }
+ else {
+      scaled_input_base>>=-shift;
+    }
+  }
+  int bits_used=getD(scaled_input,max_input_scale,len,6,scaled_input_base);
+  if (bits_used != total_bits) {
+    int diff=bits_used - total_bits;
+    int diff_scale=0;
+    if (diff <= 0) {
+      for (; diff >= -16384; diff<<=1) {
+        ++diff_scale;
+      }
+    }
+ else {
+      for (; diff < 16384; diff<<=1) {
+        ++diff_scale;
+      }
+    }
+    int base_delta=(diff * factor.value) >> 15;
+    diff_scale=max_input_scale - (factor.shift + diff_scale - 15);
+    if (diff_scale >= 0) {
+      base_delta<<=diff_scale;
+    }
+ else {
+      base_delta>>=-diff_scale;
+    }
+    int num_revisions=1;
+    int last_bits_used;
+    int last_scaled_input_base;
+    for (; ; ) {
+      last_bits_used=bits_used;
+      last_scaled_input_base=scaled_input_base;
+      scaled_input_base+=base_delta;
+      bits_used=getD(scaled_input,max_input_scale,len,6,scaled_input_base);
+      if (++num_revisions > 19) {
+        break;
+      }
+      if ((bits_used - total_bits) * (last_bits_used - total_bits) <= 0) {
+        break;
+      }
+    }
+    if (bits_used != total_bits) {
+      int scaled_input_base_1;
+      int bits_used_1;
+      int bits_used_2;
+      if (bits_used > total_bits) {
+        scaled_input_base_1=scaled_input_base;
+        scaled_input_base=last_scaled_input_base;
+        bits_used_1=bits_used;
+        bits_used_2=last_bits_used;
+      }
+ else {
+        scaled_input_base_1=last_scaled_input_base;
+        bits_used_1=last_bits_used;
+        bits_used_2=bits_used;
+      }
+      while (bits_used != total_bits && num_revisions < 20) {
+        final int avg=(scaled_input_base + scaled_input_base_1) >> 1;
+        bits_used=getD(scaled_input,max_input_scale,len,6,avg);
+        ++num_revisions;
+        if (bits_used > total_bits) {
+          scaled_input_base_1=avg;
+          bits_used_1=bits_used;
+        }
+ else {
+          scaled_input_base=avg;
+          bits_used_2=bits_used;
+        }
+      }
+      final int dev_1=Math.abs(bits_used_1 - total_bits);
+      final int dev_2=Math.abs(bits_used_2 - total_bits);
+      if (dev_1 < dev_2) {
+        scaled_input_base=scaled_input_base_1;
+        bits_used=bits_used_1;
+      }
+ else {
+        bits_used=bits_used_2;
+      }
+    }
+  }
+  for (int i=0; i < len; ++i) {
+    int tmp=(int)scaled_input[i] - scaled_input_base;
+    if (tmp >= 0) {
+      tmp=(tmp + (1 << (max_input_scale - 1))) >> max_input_scale;
+    }
+ else {
+      tmp=0;
+    }
+    packed_sizes[i]=Math.min(tmp,6);
+  }
+  if (bits_used > total_bits) {
+    int i=0;
+    int bit_count=0;
+    for (; bit_count < total_bits; ++i) {
+      bit_count+=packed_sizes[i];
+    }
+    bit_count-=packed_sizes[i - 1];
+    packed_sizes[i - 1]=total_bits - bit_count;
+    bits_used=total_bits;
+    for (; i < len; ++i) {
+      packed_sizes[i]=0;
+    }
+  }
+  return total_bits - bits_used;
+}

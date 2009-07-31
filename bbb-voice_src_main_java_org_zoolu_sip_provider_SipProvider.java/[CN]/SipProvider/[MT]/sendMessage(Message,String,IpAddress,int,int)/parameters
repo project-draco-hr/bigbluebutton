@@ -1,0 +1,5 @@
+Message msg
+String proto
+IpAddress dest_ipaddr
+int dest_port
+int ttl

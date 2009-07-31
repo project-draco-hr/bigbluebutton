@@ -1,0 +1,13 @@
+{
+  try {
+    if (delay_time > 0)     Thread.sleep(delay_time * 1000);
+    if (call != null && call.isOnCall()) {
+      printLog("AUTOMATIC-HANGUP");
+      hangup();
+      listen();
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

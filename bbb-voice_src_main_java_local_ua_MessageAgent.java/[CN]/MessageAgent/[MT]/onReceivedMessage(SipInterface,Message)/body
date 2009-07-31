@@ -1,0 +1,12 @@
+{
+  if (msg.isRequest()) {
+    (new TransactionServer(sip_provider,msg,null)).respondWith(MessageFactory.createResponse(msg,200,SipResponses.reasonOf(200),null));
+    NameAddress sender=msg.getFromHeader().getNameAddress();
+    NameAddress recipient=msg.getToHeader().getNameAddress();
+    String subject=null;
+    if (msg.hasSubjectHeader())     subject=msg.getSubjectHeader().getSubject();
+    String content_type=msg.getContentTypeHeader().getContentType();
+    String content=msg.getBody();
+    if (listener != null)     listener.onMaReceivedMessage(this,sender,recipient,subject,content_type,content);
+  }
+}

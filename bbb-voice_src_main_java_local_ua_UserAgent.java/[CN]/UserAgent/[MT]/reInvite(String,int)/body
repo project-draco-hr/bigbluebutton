@@ -1,0 +1,11 @@
+{
+  SessionDescriptor sdp=new SessionDescriptor(local_session);
+  final SessionDescriptor new_sdp=new SessionDescriptor(sdp.getOrigin(),sdp.getSessionName(),new ConnectionField("IP4","0.0.0.0"),new TimeField());
+  new_sdp.addMediaDescriptors(sdp.getMediaDescriptors());
+  (new Thread(){
+    public void run(){
+      runReInvite(contact_url,new_sdp.toString(),delay_time);
+    }
+  }
+).start();
+}

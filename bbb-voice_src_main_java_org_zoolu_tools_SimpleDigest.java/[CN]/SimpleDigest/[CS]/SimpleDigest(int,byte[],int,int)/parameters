@@ -1,0 +1,4 @@
+int size
+byte[] buffer
+int offset
+int len

@@ -1,0 +1,9 @@
+{
+  boolean inside_quoted_string=false;
+  for (int i=index; i < str.length(); i++) {
+    char c=str.charAt(i);
+    if (c == '"')     inside_quoted_string=!inside_quoted_string;
+    if (!inside_quoted_string && c == ',')     return i;
+  }
+  return -1;
+}

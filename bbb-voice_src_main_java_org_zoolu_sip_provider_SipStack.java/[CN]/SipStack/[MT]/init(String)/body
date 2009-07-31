@@ -1,0 +1,24 @@
+{
+  (new SipStack()).loadFile(file);
+  if (ua_info != null && (ua_info.length() == 0 || ua_info.equalsIgnoreCase(Configure.NONE) || ua_info.equalsIgnoreCase("NO-UA-INFO")))   ua_info=null;
+  if (server_info != null && (server_info.length() == 0 || server_info.equalsIgnoreCase(Configure.NONE) || server_info.equalsIgnoreCase("NO-SERVER-INFO")))   server_info=null;
+  Timer.SINGLE_THREAD=single_timer;
+  if (debug_level > 0) {
+    if (log_rotation_time != null) {
+      SipParser par=new SipParser(log_rotation_time);
+      rotation_time=par.getInt();
+      String scale=par.getString();
+      if (scale == null)       scale="null";
+      if (scale.toUpperCase().startsWith("MONTH"))       rotation_scale=RotatingLog.MONTH;
+ else       if (scale.toUpperCase().startsWith("DAY"))       rotation_scale=RotatingLog.DAY;
+ else       if (scale.toUpperCase().startsWith("HOUR"))       rotation_scale=RotatingLog.HOUR;
+ else       if (scale.toUpperCase().startsWith("MINUTE"))       rotation_scale=RotatingLog.MINUTE;
+ else {
+        rotation_time=7;
+        rotation_scale=RotatingLog.DAY;
+        printLog("Error with the log rotation time. Logs will rotate every week.");
+      }
+    }
+  }
+  is_init=true;
+}

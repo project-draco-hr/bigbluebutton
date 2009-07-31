@@ -1,0 +1,23 @@
+{
+  if (transaction.getTransactionMethod().equals(SipMethods.REGISTER)) {
+    StatusLine status=resp.getStatusLine();
+    int code=status.getCode();
+    if (code == 401 && attempts < MAX_ATTEMPTS && resp.hasWwwAuthenticateHeader() && resp.getWwwAuthenticateHeader().getRealmParam().equalsIgnoreCase(realm)) {
+      attempts++;
+      Message req=transaction.getRequestMessage();
+      req.setCSeqHeader(req.getCSeqHeader().incSequenceNumber());
+      WwwAuthenticateHeader wah=resp.getWwwAuthenticateHeader();
+      String qop_options=wah.getQopOptionsParam();
+      qop=(qop_options != null) ? "auth" : null;
+      AuthorizationHeader ah=(new DigestAuthentication(SipMethods.REGISTER,req.getRequestLine().getAddress().toString(),wah,qop,null,username,passwd)).getAuthorizationHeader();
+      req.setAuthorizationHeader(ah);
+      TransactionClient t=new TransactionClient(sip_provider,req,this);
+      t.request();
+    }
+ else {
+      String result=code + " " + status.getReason();
+      printLog("Registration failure: " + result,LogLevel.HIGH);
+      if (listener != null)       listener.onUaRegistrationFailure(this,target,contact,result);
+    }
+  }
+}

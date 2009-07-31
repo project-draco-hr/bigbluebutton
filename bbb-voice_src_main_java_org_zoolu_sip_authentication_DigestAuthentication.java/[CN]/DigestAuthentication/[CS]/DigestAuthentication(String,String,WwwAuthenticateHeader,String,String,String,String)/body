@@ -1,0 +1,6 @@
+{
+  init(method,ah,body,passwd);
+  this.uri=uri;
+  this.qop=qop;
+  this.username=username;
+}

@@ -1,0 +1,10 @@
+{
+  printLog("inside onTransTimeout(" + t.getTransactionId() + ",msg)",LogLevel.LOW);
+  String method=t.getTransactionMethod();
+  if (method.equals(SipMethods.INVITE) || method.equals(SipMethods.BYE)) {
+    super.onTransTimeout(t);
+  }
+ else {
+    transactions.remove(t.getTransactionId());
+  }
+}

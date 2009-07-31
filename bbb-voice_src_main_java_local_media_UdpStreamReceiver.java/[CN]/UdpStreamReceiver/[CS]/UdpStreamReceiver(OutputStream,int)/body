@@ -1,0 +1,10 @@
+{
+  try {
+    UdpSocket socket=new UdpSocket(local_port);
+    socket_is_local=true;
+    init(output_stream,socket);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

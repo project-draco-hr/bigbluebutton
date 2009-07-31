@@ -1,0 +1,4 @@
+{
+  av.addElement(new AttributeField(attribute));
+  return this;
+}

@@ -1,0 +1,18 @@
+{
+  this.listener=listener;
+  this.socket=socket;
+  this.socket_timeout=DEFAULT_SOCKET_TIMEOUT;
+  this.alive_time=alive_time;
+  this.stop=false;
+  this.is_running=true;
+  this.istream=null;
+  this.ostream=null;
+  this.error=null;
+  try {
+    istream=new BufferedInputStream(socket.getInputStream());
+    ostream=new BufferedOutputStream(socket.getOutputStream());
+  }
+ catch (  Exception e) {
+    error=e;
+  }
+}

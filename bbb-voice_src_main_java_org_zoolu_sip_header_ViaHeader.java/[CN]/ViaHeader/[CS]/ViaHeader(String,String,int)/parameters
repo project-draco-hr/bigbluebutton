@@ -1,0 +1,3 @@
+String proto
+String host
+int port

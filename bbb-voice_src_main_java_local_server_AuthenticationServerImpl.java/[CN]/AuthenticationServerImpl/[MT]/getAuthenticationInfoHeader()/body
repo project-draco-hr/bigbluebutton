@@ -1,0 +1,7 @@
+{
+  AuthenticationInfoHeader aih=new AuthenticationInfoHeader();
+  aih.addRealmParam(realm);
+  aih.addQopOptionsParam(qop_options);
+  aih.addNextnonceParam(HEX(rand));
+  return aih;
+}

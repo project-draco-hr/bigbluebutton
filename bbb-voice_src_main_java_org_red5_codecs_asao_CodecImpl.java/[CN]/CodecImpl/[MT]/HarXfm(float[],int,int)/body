@@ -1,0 +1,65 @@
+{
+  final int half_len=1 << half_len_log2;
+  HarXfmHelper(data,data_off,half_len);
+  int j=0;
+  for (int i=half_len >> 1; i > 0; --i, j+=4) {
+    final float j0=data[data_off + j];
+    final float j1=data[data_off + j + 1];
+    final float j2=data[data_off + j + 2];
+    final float j3=data[data_off + j + 3];
+    data[data_off + j]=j0 + j2;
+    data[data_off + j + 1]=j1 + j3;
+    data[data_off + j + 2]=j0 - j2;
+    data[data_off + j + 3]=j1 - j3;
+  }
+  j=0;
+  for (int i=half_len >> 2; i > 0; --i, j+=8) {
+    final float j0=data[data_off + j];
+    final float j1=data[data_off + j + 1];
+    final float j2=data[data_off + j + 2];
+    final float j3=data[data_off + j + 3];
+    final float j4=data[data_off + j + 4];
+    final float j5=data[data_off + j + 5];
+    final float j6=data[data_off + j + 6];
+    final float j7=data[data_off + j + 7];
+    data[data_off + j]=j0 + j4;
+    data[data_off + j + 1]=j1 + j5;
+    data[data_off + j + 2]=j2 + j7;
+    data[data_off + j + 3]=j3 - j6;
+    data[data_off + j + 4]=j0 - j4;
+    data[data_off + j + 5]=j1 - j5;
+    data[data_off + j + 6]=j2 - j7;
+    data[data_off + j + 7]=j3 + j6;
+  }
+  int i=0;
+  int x=half_len >> 3;
+  int y=64;
+  int z=4;
+  for (int idx1=half_len_log2 - 2; idx1 > 0; --idx1, z<<=1, y>>=1, x>>=1) {
+    j=0;
+    for (int idx2=x; idx2 != 0; --idx2, j+=z << 1) {
+      for (int idx3=z >> 1; idx3 > 0; --idx3, j+=2, i+=y) {
+        final int k=j + (z << 1);
+        final double j0=data[data_off + j];
+        final double j1=data[data_off + j + 1];
+        final double k0=data[data_off + k];
+        final double k1=data[data_off + k + 1];
+        data[data_off + k]=(float)(j0 - (k0 * table10[128 - i] + k1 * table10[i]));
+        data[data_off + j]=(float)(j0 + (k0 * table10[128 - i] + k1 * table10[i]));
+        data[data_off + k + 1]=(float)(j1 + (k0 * table10[i] - k1 * table10[128 - i]));
+        data[data_off + j + 1]=(float)(j1 - (k0 * table10[i] - k1 * table10[128 - i]));
+      }
+      for (int idx4=z >> 1; idx4 > 0; --idx4, j+=2, i-=y) {
+        final int k=j + (z << 1);
+        final double j0=data[data_off + j];
+        final double j1=data[data_off + j + 1];
+        final double k0=data[data_off + k];
+        final double k1=data[data_off + k + 1];
+        data[data_off + k]=(float)(j0 + (k0 * table10[128 - i] - k1 * table10[i]));
+        data[data_off + j]=(float)(j0 - (k0 * table10[128 - i] - k1 * table10[i]));
+        data[data_off + k + 1]=(float)(j1 + (k1 * table10[128 - i] + k0 * table10[i]));
+        data[data_off + j + 1]=(float)(j1 - (k1 * table10[128 - i] + k0 * table10[i]));
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  status=newstatus;
+  printLog("changed transaction state: " + getStatus(),LogLevel.MEDIUM);
+}

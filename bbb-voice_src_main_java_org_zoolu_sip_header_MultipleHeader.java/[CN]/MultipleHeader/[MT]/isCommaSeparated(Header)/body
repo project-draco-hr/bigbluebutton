@@ -1,0 +1,4 @@
+{
+  SipParser par=new SipParser(hd.getValue());
+  return par.indexOfCommaHeaderSeparator() >= 0;
+}

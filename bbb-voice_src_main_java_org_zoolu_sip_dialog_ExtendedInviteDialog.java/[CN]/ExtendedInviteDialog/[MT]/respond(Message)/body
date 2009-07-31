@@ -1,0 +1,17 @@
+{
+  printLog("inside respond(resp)",LogLevel.MEDIUM);
+  String method=resp.getCSeqHeader().getMethod();
+  if (method.equals(SipMethods.INVITE) || method.equals(SipMethods.CANCEL) || method.equals(SipMethods.BYE)) {
+    super.respond(resp);
+  }
+ else {
+    TransactionIdentifier transaction_id=resp.getTransactionId();
+    printLog("transaction-id=" + transaction_id,LogLevel.MEDIUM);
+    if (transactions.containsKey(transaction_id)) {
+      printLog("responding",LogLevel.LOW);
+      TransactionServer t=(TransactionServer)transactions.get(transaction_id);
+      t.respondWith(resp);
+    }
+ else     printLog("transaction server not found; message discarded",LogLevel.MEDIUM);
+  }
+}

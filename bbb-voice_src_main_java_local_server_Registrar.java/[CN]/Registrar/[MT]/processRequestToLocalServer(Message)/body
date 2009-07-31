@@ -1,0 +1,24 @@
+{
+  printLog("inside processRequestToLocalServer(msg)",LogLevel.MEDIUM);
+  if (server_profile.is_registrar && msg.isRegister()) {
+    TransactionServer t=new TransactionServer(sip_provider,msg,null);
+    if (server_profile.do_authentication) {
+      Message err_resp=as.authenticateRequest(msg);
+      if (err_resp != null) {
+        t.respondWith(err_resp);
+        return;
+      }
+    }
+    Message resp=updateRegistration(msg);
+    if (resp == null)     return;
+    if (server_profile.do_authentication) {
+      resp.setAuthenticationInfoHeader(as.getAuthenticationInfoHeader());
+    }
+    t.respondWith(resp);
+  }
+ else   if (!msg.isAck()) {
+    int result=501;
+    Message resp=MessageFactory.createResponse(msg,result,SipResponses.reasonOf(result),null);
+    sip_provider.sendMessage(resp);
+  }
+}

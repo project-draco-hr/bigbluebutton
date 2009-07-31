@@ -1,0 +1,7 @@
+{
+  message=msg.message;
+  remote_addr=msg.remote_addr;
+  remote_port=msg.remote_port;
+  transport_proto=msg.transport_proto;
+  connection_id=msg.connection_id;
+}

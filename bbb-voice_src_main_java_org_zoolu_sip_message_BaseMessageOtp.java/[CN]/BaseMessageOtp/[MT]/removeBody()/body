@@ -1,0 +1,5 @@
+{
+  removeContentLengthHeader();
+  removeContentTypeHeader();
+  this.body=null;
+}

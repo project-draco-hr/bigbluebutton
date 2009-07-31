@@ -1,0 +1,5 @@
+{
+  if (isRequest())   return getRequestLine().toString();
+  if (isResponse())   return getStatusLine().toString();
+  return null;
+}

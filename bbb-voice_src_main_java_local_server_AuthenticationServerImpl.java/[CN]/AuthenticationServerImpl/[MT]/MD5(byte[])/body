@@ -1,0 +1,3 @@
+{
+  return MD5.digest(bb);
+}

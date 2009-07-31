@@ -1,0 +1,7 @@
+{
+  p("SIP Call Connected");
+  sipReady=true;
+  if (service != null) {
+    ((IServiceCapableConnection)service).invoke("connected",new Object[]{playName,publishName});
+  }
+}

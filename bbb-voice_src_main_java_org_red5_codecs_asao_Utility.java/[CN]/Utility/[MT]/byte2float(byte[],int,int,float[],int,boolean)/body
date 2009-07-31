@@ -1,0 +1,14 @@
+{
+  if (flag) {
+    int l=0;
+    for (int j1=j >> 1; l < j1; l++) {
+      af[k + l]=(abyte0[i + l * 2 + 0] << 8) + (abyte0[i + l * 2 + 1] << 0);
+    }
+  }
+ else {
+    int i1=0;
+    for (int k1=j >> 1; i1 < k1; i1++) {
+      af[k + i1]=(abyte0[i + i1 * 2 + 0] << 0) + (abyte0[i + i1 * 2 + 1] << 8);
+    }
+  }
+}

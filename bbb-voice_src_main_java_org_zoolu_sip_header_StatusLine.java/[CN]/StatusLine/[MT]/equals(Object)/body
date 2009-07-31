@@ -1,0 +1,10 @@
+{
+  try {
+    StatusLine r=(StatusLine)obj;
+    if (r.getCode() == (this.getCode()) && r.getReason().equals(this.getReason()))     return true;
+ else     return false;
+  }
+ catch (  Exception e) {
+    return false;
+  }
+}

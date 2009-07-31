@@ -1,0 +1,4 @@
+{
+  super(filename,logname,loglevel,logsize);
+  rInit(filename,n_rotations,t_scale,t_value);
+}

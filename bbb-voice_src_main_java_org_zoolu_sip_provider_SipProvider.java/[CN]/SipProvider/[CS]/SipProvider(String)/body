@@ -1,0 +1,7 @@
+{
+  if (!SipStack.isInit())   SipStack.init(file);
+  new Configure(this,file);
+  init(via_addr,host_port,transport_protocols,host_ifaddr);
+  initlog();
+  startTrasport();
+}

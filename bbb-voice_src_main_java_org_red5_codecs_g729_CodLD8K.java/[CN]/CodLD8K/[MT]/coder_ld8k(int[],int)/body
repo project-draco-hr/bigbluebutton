@@ -1,0 +1,117 @@
+{
+  float[] r=new float[LD8KConstants.MP1];
+  float[] A_t=new float[(LD8KConstants.MP1) * 2];
+  float[] Aq_t=new float[(LD8KConstants.MP1) * 2];
+  float[] Ap1=new float[LD8KConstants.MP1];
+  float[] Ap2=new float[LD8KConstants.MP1];
+  int A, Aq;
+  float[] lsp_new=new float[LD8KConstants.M];
+  float[] lsp_new_q=new float[LD8KConstants.M];
+  float[] lsf_int=new float[LD8KConstants.M];
+  float[] lsf_new=new float[LD8KConstants.M];
+  float[] rc=new float[LD8KConstants.M];
+  float[] gamma1=new float[2];
+  float[] gamma2=new float[2];
+  float[] synth=new float[LD8KConstants.L_FRAME];
+  float[] h1=new float[LD8KConstants.L_SUBFR];
+  float[] xn=new float[LD8KConstants.L_SUBFR];
+  float[] xn2=new float[LD8KConstants.L_SUBFR];
+  float[] code=new float[LD8KConstants.L_SUBFR];
+  float[] y1=new float[LD8KConstants.L_SUBFR];
+  float[] y2=new float[LD8KConstants.L_SUBFR];
+  float[] g_coeff=new float[5];
+  int i, j, i_gamma, i_subfr;
+  int T_op, t0;
+  IntegerPointer t0_frac=new IntegerPointer();
+  IntegerPointer t0_min=new IntegerPointer();
+  IntegerPointer t0_max=new IntegerPointer();
+  int index, taming;
+  float gain_pit, gain_code=0;
+  lpc.autocorr(ArrayUtils.subArray(old_speech_array,p_window),LD8KConstants.M,r);
+  lpc.lag_window(LD8KConstants.M,r);
+  float[] tmp=ArrayUtils.subArray(A_t,LD8KConstants.MP1);
+  lpc.levinson(r,tmp,rc);
+  ArrayUtils.replace(A_t,LD8KConstants.MP1,tmp);
+  lpc.az_lsp(tmp,lsp_new,lsp_old);
+  ArrayUtils.replace(A_t,LD8KConstants.MP1,tmp);
+  quaLsp.qua_lsp(lsp_new,lsp_new_q,ana_array);
+  ana+=2;
+  LpcFunc.int_lpc(lsp_old,lsp_new,lsf_int,lsf_new,A_t);
+  LpcFunc.int_qlpc(lsp_old_q,lsp_new_q,Aq_t);
+  for (i=0; i < LD8KConstants.M; i++) {
+    lsp_old[i]=lsp_new[i];
+    lsp_old_q[i]=lsp_new_q[i];
+  }
+  pwf.perc_var(gamma1,gamma2,lsf_int,lsf_new,rc);
+  LpcFunc.weight_az(A_t,0,gamma1[0],LD8KConstants.M,Ap1,0);
+  LpcFunc.weight_az(A_t,0,gamma2[0],LD8KConstants.M,Ap2,0);
+  Filter.residu(Ap1,0,old_speech_array,speech,old_wsp_array,wsp,LD8KConstants.L_SUBFR);
+  Filter.syn_filt(Ap2,0,old_wsp_array,wsp,old_wsp_array,wsp,LD8KConstants.L_SUBFR,mem_w,0,1);
+  LpcFunc.weight_az(A_t,LD8KConstants.MP1,gamma1[1],LD8KConstants.M,Ap1,0);
+  LpcFunc.weight_az(A_t,LD8KConstants.MP1,gamma2[1],LD8KConstants.M,Ap2,0);
+  Filter.residu(Ap1,0,old_speech_array,speech + LD8KConstants.L_SUBFR,old_wsp_array,wsp + LD8KConstants.L_SUBFR,LD8KConstants.L_SUBFR);
+  Filter.syn_filt(Ap2,0,old_wsp_array,wsp + LD8KConstants.L_SUBFR,old_wsp_array,wsp + LD8KConstants.L_SUBFR,LD8KConstants.L_SUBFR,mem_w,0,1);
+  T_op=Pitch.pitch_ol(old_wsp_array,wsp,LD8KConstants.PIT_MIN,LD8KConstants.PIT_MAX,LD8KConstants.L_FRAME);
+  t0_min.value=T_op - 3;
+  if (t0_min.value < LD8KConstants.PIT_MIN)   t0_min.value=(int)LD8KConstants.PIT_MIN;
+  t0_max.value=t0_min.value + 6;
+  if (t0_max.value > LD8KConstants.PIT_MAX) {
+    t0_max.value=(int)LD8KConstants.PIT_MAX;
+    t0_min.value=t0_max.value - 6;
+  }
+  A=0;
+  Aq=0;
+  i_gamma=0;
+  for (i_subfr=0; i_subfr < LD8KConstants.L_FRAME; i_subfr+=LD8KConstants.L_SUBFR) {
+    LpcFunc.weight_az(A_t,A,gamma1[i_gamma],LD8KConstants.M,Ap1,0);
+    LpcFunc.weight_az(A_t,A,gamma2[i_gamma],LD8KConstants.M,Ap2,0);
+    i_gamma++;
+    for (i=0; i <= LD8KConstants.M; i++)     ai_zero_array[ai_zero + i]=Ap1[i];
+    Filter.syn_filt(Aq_t,Aq,ai_zero_array,ai_zero,h1,0,LD8KConstants.L_SUBFR,ai_zero_array,zero,0);
+    Filter.syn_filt(Ap2,0,h1,0,h1,0,LD8KConstants.L_SUBFR,ai_zero_array,zero,0);
+    Filter.residu(Aq_t,Aq,old_speech_array,speech + i_subfr,old_exc_array,exc + i_subfr,LD8KConstants.L_SUBFR);
+    Filter.syn_filt(Aq_t,Aq,old_exc_array,exc + i_subfr,mem_err_array,error,LD8KConstants.L_SUBFR,mem_err_array,mem_err,0);
+    Filter.residu(Ap1,0,mem_err_array,error,xn,0,LD8KConstants.L_SUBFR);
+    Filter.syn_filt(Ap2,0,xn,0,xn,0,LD8KConstants.L_SUBFR,mem_w0,0,0);
+    t0=Pitch.pitch_fr3(old_exc_array,exc + i_subfr,xn,0,h1,0,LD8KConstants.L_SUBFR,t0_min.value,t0_max.value,i_subfr,t0_frac);
+    index=Pitch.enc_lag3(t0,t0_frac.value,t0_min,t0_max,LD8KConstants.PIT_MIN,LD8KConstants.PIT_MAX,i_subfr);
+    ana_array[ana++]=index;
+    if (i_subfr == 0)     ana_array[ana++]=PParity.parity_pitch(index);
+    PredLt.pred_lt_3(old_exc_array,exc + i_subfr,t0,t0_frac.value,LD8KConstants.L_SUBFR);
+    Filter.convolve(old_exc_array,exc + i_subfr,h1,0,y1,0,LD8KConstants.L_SUBFR);
+    gain_pit=Pitch.g_pitch(xn,0,y1,0,g_coeff,0,LD8KConstants.L_SUBFR);
+    taming=tamingFunc.test_err(t0,t0_frac.value);
+    if (taming == 1) {
+      if (gain_pit > LD8KConstants.GPCLIP) {
+        gain_pit=LD8KConstants.GPCLIP;
+      }
+    }
+    for (i=0; i < LD8KConstants.L_SUBFR; i++)     xn2[i]=xn[i] - y1[i] * gain_pit;
+    IntegerPointer tmpi=new IntegerPointer(i);
+    index=acelp.ACELP_codebook(xn2,h1,t0,sharp,i_subfr,code,y2,tmpi);
+    i=tmpi.value;
+    ana_array[ana++]=index;
+    ana_array[ana++]=i;
+    CorFunc.corr_xy2(xn,y1,y2,g_coeff);
+    FloatPointer tmpgain_pit=new FloatPointer(gain_pit), tmpgain_code=new FloatPointer(gain_code);
+    ana_array[ana++]=quaGain.qua_gain(code,g_coeff,LD8KConstants.L_SUBFR,tmpgain_pit,tmpgain_code,taming);
+    gain_pit=tmpgain_pit.value;
+    gain_code=tmpgain_code.value;
+    sharp=gain_pit;
+    if (sharp > LD8KConstants.SHARPMAX)     sharp=LD8KConstants.SHARPMAX;
+    if (sharp < LD8KConstants.SHARPMIN)     sharp=LD8KConstants.SHARPMIN;
+    for (i=0; i < LD8KConstants.L_SUBFR; i++)     old_exc_array[exc + i + i_subfr]=gain_pit * old_exc_array[exc + i + i_subfr] + gain_code * code[i];
+    tamingFunc.update_exc_err(gain_pit,t0);
+    Filter.syn_filt(Aq_t,Aq,old_exc_array,exc + i_subfr,synth,i_subfr,LD8KConstants.L_SUBFR,mem_syn,0,1);
+    for (i=LD8KConstants.L_SUBFR - LD8KConstants.M, j=0; i < LD8KConstants.L_SUBFR; i++, j++) {
+      mem_err_array[mem_err + j]=old_speech_array[speech + i_subfr + i] - synth[i_subfr + i];
+      mem_w0[j]=xn[i] - gain_pit * y1[i] - gain_code * y2[i];
+    }
+    A+=LD8KConstants.MP1;
+    Aq+=LD8KConstants.MP1;
+  }
+  Util.copy(old_speech_array,old_speech + LD8KConstants.L_FRAME,old_speech_array,old_speech,LD8KConstants.L_TOTAL - LD8KConstants.L_FRAME);
+  Util.copy(old_wsp_array,old_wsp + LD8KConstants.L_FRAME,old_wsp_array,old_wsp,LD8KConstants.PIT_MAX);
+  Util.copy(old_exc_array,old_exc + LD8KConstants.L_FRAME,old_exc_array,old_exc,LD8KConstants.PIT_MAX + LD8KConstants.L_INTERPOL);
+  return;
+}

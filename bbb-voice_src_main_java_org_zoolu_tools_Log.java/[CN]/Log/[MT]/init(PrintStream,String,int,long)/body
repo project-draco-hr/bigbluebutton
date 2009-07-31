@@ -1,0 +1,10 @@
+{
+  this.out_stream=out_stream;
+  this.log_tag=log_tag;
+  this.verbose_level=verbose_level;
+  this.max_size=max_size;
+  if (log_tag != null)   tag_size=log_tag.length() + 2;
+ else   tag_size=0;
+  do_log=true;
+  counter=0;
+}

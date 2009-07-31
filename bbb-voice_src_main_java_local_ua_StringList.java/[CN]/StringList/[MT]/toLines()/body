@@ -1,0 +1,8 @@
+{
+  String str="";
+  for (int i=0; i < list.size(); i++) {
+    String elem=(String)list.elementAt(i);
+    str+=elem + "\n";
+  }
+  return str;
+}

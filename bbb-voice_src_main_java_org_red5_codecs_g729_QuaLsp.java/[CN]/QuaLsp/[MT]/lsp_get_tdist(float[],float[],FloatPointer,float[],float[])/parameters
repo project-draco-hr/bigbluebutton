@@ -1,0 +1,5 @@
+float wegt[]
+float buf[]
+FloatPointer tdist
+float rbuf[]
+float fg_sum[]

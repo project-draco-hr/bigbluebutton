@@ -1,0 +1,4 @@
+{
+  this.splitter_id=splitter_id;
+  this.output_lines=output_lines;
+}

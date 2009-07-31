@@ -1,0 +1,4 @@
+{
+  if (log != null)   log.println("JMFVideoLauncher: " + str,SipStack.LOG_LEVEL_UA + LogLevel.HIGH);
+  System.out.println("JMFVideoLauncher: " + str);
+}

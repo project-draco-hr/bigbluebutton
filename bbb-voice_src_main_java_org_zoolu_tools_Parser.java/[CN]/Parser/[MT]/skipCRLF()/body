@@ -1,0 +1,4 @@
+{
+  while (index < str.length() && isCRLF(str.charAt(index)))   index++;
+  return this;
+}

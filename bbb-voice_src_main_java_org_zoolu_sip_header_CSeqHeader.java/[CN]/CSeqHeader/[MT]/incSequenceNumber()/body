@@ -1,0 +1,4 @@
+{
+  value=String.valueOf(getSequenceNumber() + 1) + " " + getMethod();
+  return this;
+}

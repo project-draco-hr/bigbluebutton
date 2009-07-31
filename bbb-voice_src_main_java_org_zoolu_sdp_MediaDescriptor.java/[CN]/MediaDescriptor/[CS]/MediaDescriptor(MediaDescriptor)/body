@@ -1,0 +1,7 @@
+{
+  m=new MediaField(md.m);
+  if (md.c != null)   c=new ConnectionField(md.c);
+ else   c=null;
+  av=new Vector();
+  for (int i=0; i < md.av.size(); i++)   av.addElement(new AttributeField((AttributeField)md.av.elementAt(i)));
+}

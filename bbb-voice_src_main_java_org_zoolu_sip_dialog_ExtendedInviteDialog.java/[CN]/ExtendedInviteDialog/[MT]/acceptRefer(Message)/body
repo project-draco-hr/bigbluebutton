@@ -1,0 +1,5 @@
+{
+  printLog("inside acceptRefer(refer)",LogLevel.MEDIUM);
+  Message resp=MessageFactory.createResponse(req,202,SipResponses.reasonOf(200),null);
+  respond(resp);
+}

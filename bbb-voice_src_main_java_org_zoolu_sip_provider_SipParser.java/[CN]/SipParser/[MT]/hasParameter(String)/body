@@ -1,0 +1,8 @@
+{
+  while (hasMore()) {
+    if (getWord(param_separators).equals(name))     return true;
+    goToSkippingQuoted(';');
+    if (hasMore())     skipChar();
+  }
+  return false;
+}

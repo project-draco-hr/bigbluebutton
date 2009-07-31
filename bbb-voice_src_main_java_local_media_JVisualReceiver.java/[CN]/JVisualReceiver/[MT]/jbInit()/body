@@ -1,0 +1,21 @@
+{
+  this.setTitle("Zoolu Player");
+  this.setIconImage(icon);
+  this.addWindowListener(new java.awt.event.WindowAdapter(){
+    public void windowClosing(    WindowEvent e){
+      this_windowClosing();
+    }
+  }
+);
+  visualComp=new ImagePanel(image);
+  panel.setLayout(new BorderLayout());
+  panel.add(visualComp,BorderLayout.CENTER);
+  this.add(panel);
+  this.setSize(new Dimension(150,150));
+  Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
+  Dimension frameSize=this.getSize();
+  if (frameSize.height > screenSize.height)   frameSize.height=screenSize.height;
+  if (frameSize.width > screenSize.width)   frameSize.width=screenSize.width;
+  this.setLocation((screenSize.width - frameSize.width) / 2,(screenSize.height - frameSize.height) / 2);
+  this.setVisible(true);
+}

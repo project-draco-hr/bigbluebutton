@@ -1,0 +1,12 @@
+{
+  printLog("startMedia","Starting sip audio...");
+  if (sender != null) {
+    printLog("startMedia","Start sending.");
+    sender.start();
+  }
+  if (receiver != null) {
+    printLog("startMedia","Start receiving.");
+    receiver.start();
+  }
+  return true;
+}

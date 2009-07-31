@@ -1,0 +1,27 @@
+{
+  int i, j;
+  int p=0, p1;
+  float max, t0;
+  int p_max=0;
+  max=LD8KConstants.FLT_MIN_G729;
+  for (i=lagmax; i >= lagmin; i--) {
+    p=0;
+    p1=-i;
+    t0=(float)0.0;
+    for (j=0; j < l_frame; j++) {
+      t0+=signal[signals + p++] * signal[signals + p1++];
+    }
+    if (t0 >= max) {
+      max=t0;
+      p_max=i;
+    }
+  }
+  t0=(float)0.01;
+  p=-p_max;
+  for (i=0; i < l_frame; i++, p++) {
+    t0+=signal[signals + p] * signal[signals + p];
+  }
+  t0=inv_sqrt(t0);
+  cor_max.value=max * t0;
+  return (p_max);
+}

@@ -1,0 +1,14 @@
+{
+  this.f0=frequence;
+  this.fs=sample_rate;
+  this.size=sample_size;
+  this.big_endian=big_endian;
+  B=(2 * Math.PI * f0) / fs;
+  long range=((long)1) << ((sample_size * 8) - 1);
+  A=ampliture * range;
+  if (codec == PCM_LINEAR_SIGNED)   zero=0.0F;
+ else   zero=range / 2;
+  k=0;
+  s_index=0;
+  s_buff=new byte[size];
+}

@@ -1,0 +1,9 @@
+{
+  logger.debug("RTMPUser stopStream");
+  try {
+    disconnect();
+  }
+ catch (  Exception e) {
+    logger.error("RTMPUser stopStream exception " + e);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  super(SipHeaders.Expires,(String)null);
+  value=String.valueOf(seconds);
+}

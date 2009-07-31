@@ -1,0 +1,10 @@
+{
+  int i, j;
+  float s;
+  for (i=0; i < LD8KConstants.L_SUBFR; i++) {
+    s=(float)0.0;
+    for (j=i; j < LD8KConstants.L_SUBFR; j++)     s+=x[j] * h[j - i];
+    d[i]=s;
+  }
+  return;
+}

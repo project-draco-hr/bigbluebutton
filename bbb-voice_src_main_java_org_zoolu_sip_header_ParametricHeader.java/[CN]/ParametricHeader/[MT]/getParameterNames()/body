@@ -1,0 +1,5 @@
+{
+  int index=indexOfFirstSemi();
+  if (index < 0)   return new Vector();
+  return (new SipParser((new Parser(getValue(),index)).skipChar().skipWSP())).getParameters();
+}

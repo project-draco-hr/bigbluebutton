@@ -1,0 +1,61 @@
+{
+  StateTable j2=new StateTable(abyte0,i1);
+  int k1=j2.state(g[0]);
+  abyte1[0]=(byte)k1;
+  af2[0]=i_nelly_init_table[k1];
+  for (int k2=1; k2 < 23; k2++) {
+    int l1=j2.state(g[k2]);
+    abyte1[k2]=(byte)l1;
+    af2[k2]=af2[k2 - 1] + j_nelly_delta_table[l1];
+  }
+  for (int l2=0; l2 < 23; l2++) {
+    float f1=(float)Math.pow(2D,(double)af2[l2] * 0.00048828125D);
+    int k3=f[l2];
+    for (int k4=f[l2 + 1]; k3 < k4; k3++) {
+      af4[k3]=af2[l2];
+      af3[k3]=f1;
+    }
+  }
+  int i3=process(af4,124,198,ai);
+  for (int j3=0; j3 < 256; j3+=128) {
+    for (int l3=0; l3 < 124; l3++) {
+      int l4=ai[l3];
+      float f2=af3[l3];
+      if (l4 > 0) {
+        int i5=1 << l4;
+        int i2=j2.state(l4);
+        abyte1[l3]=(byte)i2;
+        f2*=k__nelly_dequantization_table[(i5 - 1) + i2];
+      }
+ else {
+        double d1=Math.random() * 4294967296D;
+        if (d1 < 1073758208D) {
+          f2=(float)((double)f2 * -0.70709997400000002D);
+        }
+ else {
+          f2=(float)((double)f2 * 0.70709997400000002D);
+        }
+      }
+      af2[l3]=f2;
+    }
+    for (int i4=124; i4 < 128; i4++) {
+      af2[i4]=0.0F;
+    }
+    int j4=i3;
+    do {
+      if (j4 <= 0) {
+        break;
+      }
+      if (j4 > 8) {
+        j2.state(8);
+      }
+ else {
+        j2.state(j4);
+        break;
+      }
+      j4-=8;
+    }
+ while (true);
+    process(af,af2,af1,j3,7);
+  }
+}

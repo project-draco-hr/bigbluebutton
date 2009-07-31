@@ -1,0 +1,5 @@
+InviteDialog d
+int code
+String reason
+String sdp
+Message msg

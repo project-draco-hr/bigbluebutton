@@ -1,0 +1,4 @@
+{
+  if (request_line != null && request_line.getMethod().equalsIgnoreCase(method))   return true;
+ else   return false;
+}

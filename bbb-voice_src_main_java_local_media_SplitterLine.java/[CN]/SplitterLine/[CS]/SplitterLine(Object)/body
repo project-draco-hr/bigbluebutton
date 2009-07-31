@@ -1,0 +1,4 @@
+{
+  this.splitter_id=splitter_id;
+  output_lines=new Hashtable();
+}

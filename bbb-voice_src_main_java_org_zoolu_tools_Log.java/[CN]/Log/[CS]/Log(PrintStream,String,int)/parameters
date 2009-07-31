@@ -1,0 +1,3 @@
+PrintStream out_stream
+String log_tag
+int verbose_level

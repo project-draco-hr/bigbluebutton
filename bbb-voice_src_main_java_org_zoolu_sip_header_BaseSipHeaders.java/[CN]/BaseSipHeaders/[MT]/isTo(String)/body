@@ -1,0 +1,3 @@
+{
+  return same(str,To) || same(str,To_short);
+}

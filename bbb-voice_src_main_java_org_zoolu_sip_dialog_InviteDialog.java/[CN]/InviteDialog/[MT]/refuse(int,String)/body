@@ -1,0 +1,4 @@
+{
+  printLog("inside refuse(" + code + ","+ reason+ ")",LogLevel.MEDIUM);
+  respond(code,reason,null,null);
+}

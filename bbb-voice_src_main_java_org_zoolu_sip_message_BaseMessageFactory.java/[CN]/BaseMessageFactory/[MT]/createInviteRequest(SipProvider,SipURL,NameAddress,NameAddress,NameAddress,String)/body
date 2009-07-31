@@ -1,0 +1,7 @@
+{
+  String call_id=sip_provider.pickCallId();
+  int cseq=SipProvider.pickInitialCSeq();
+  String local_tag=SipProvider.pickTag();
+  if (contact == null)   contact=from;
+  return createRequest(sip_provider,SipMethods.INVITE,request_uri,to,from,contact,call_id,cseq,local_tag,null,null,body);
+}

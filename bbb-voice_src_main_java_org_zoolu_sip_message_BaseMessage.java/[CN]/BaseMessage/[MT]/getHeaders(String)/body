@@ -1,0 +1,9 @@
+{
+  Vector v=new Vector();
+  SipParser par=new SipParser(message);
+  Header h;
+  while ((h=par.getHeader(hname)) != null) {
+    v.addElement(h);
+  }
+  return v;
+}

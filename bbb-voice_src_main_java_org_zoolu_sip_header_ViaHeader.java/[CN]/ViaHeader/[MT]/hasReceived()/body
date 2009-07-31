@@ -1,0 +1,3 @@
+{
+  return hasParameter(received_param);
+}

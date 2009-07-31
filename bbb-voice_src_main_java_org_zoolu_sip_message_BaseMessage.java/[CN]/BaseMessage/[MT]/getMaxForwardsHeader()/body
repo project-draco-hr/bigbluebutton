@@ -1,0 +1,5 @@
+{
+  Header h=getHeader(SipHeaders.Max_Forwards);
+  if (h == null)   return null;
+ else   return new MaxForwardsHeader(h);
+}

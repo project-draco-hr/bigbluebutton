@@ -1,0 +1,5 @@
+{
+  init(via_addr,port,null,null);
+  initlog();
+  startTrasport();
+}

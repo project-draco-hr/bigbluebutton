@@ -1,0 +1,84 @@
+{
+  int Az;
+  float lsp_new[]=new float[LD8KConstants.M];
+  float code[]=new float[LD8KConstants.L_SUBFR];
+  int i, i_subfr;
+  int index;
+  IntegerPointer t0=new IntegerPointer(), t0_frac=new IntegerPointer();
+  int bfi;
+  int bad_pitch;
+  bfi=parm[parms++];
+  lspDec.d_lsp(parm,parms,lsp_new,bfi);
+  parms+=2;
+  LpcFunc.int_qlpc(lsp_old,lsp_new,A_t);
+  Util.copy(lsp_new,lsp_old,LD8KConstants.M);
+  Az=0;
+  for (i_subfr=0; i_subfr < LD8KConstants.L_FRAME; i_subfr+=LD8KConstants.L_SUBFR) {
+    index=parm[parms++];
+    if (i_subfr == 0) {
+      i=parm[parms++];
+      bad_pitch=bfi + i;
+      if (bad_pitch == 0) {
+        DecLag.dec_lag3(index,LD8KConstants.PIT_MIN,LD8KConstants.PIT_MAX,i_subfr,t0,t0_frac);
+        old_t0=t0.value;
+      }
+ else {
+        t0.value=old_t0;
+        t0_frac.value=0;
+        old_t0++;
+        if (old_t0 > LD8KConstants.PIT_MAX) {
+          old_t0=LD8KConstants.PIT_MAX;
+        }
+      }
+      t0_first.value=t0.value;
+    }
+ else {
+      if (bfi == 0) {
+        DecLag.dec_lag3(index,LD8KConstants.PIT_MIN,LD8KConstants.PIT_MAX,i_subfr,t0,t0_frac);
+        old_t0=t0.value;
+      }
+ else {
+        t0.value=old_t0;
+        t0_frac.value=0;
+        old_t0++;
+        if (old_t0 > LD8KConstants.PIT_MAX) {
+          old_t0=LD8KConstants.PIT_MAX;
+        }
+      }
+    }
+    PredLt.pred_lt_3(old_exc_array,exc + i_subfr,t0.value,t0_frac.value,LD8KConstants.L_SUBFR);
+    if (bfi != 0) {
+      parm[parms + 0]=(int)(Util.random_g729() & 0x1fff);
+      parm[parms + 1]=(int)(Util.random_g729() & 0x000f);
+    }
+    DecAcelp.decod_ACELP(parm[parms + 1],parm[parms + 0],code);
+    parms+=2;
+    for (i=t0.value; i < LD8KConstants.L_SUBFR; i++)     code[i]+=sharp * code[i - t0.value];
+    index=parm[parms++];
+    decGain.dec_gain(index,code,LD8KConstants.L_SUBFR,bfi,gain_pitch,gain_code);
+    sharp=gain_pitch.value;
+    if (sharp > LD8KConstants.SHARPMAX)     sharp=LD8KConstants.SHARPMAX;
+    if (sharp < LD8KConstants.SHARPMIN)     sharp=LD8KConstants.SHARPMIN;
+    if (bfi != 0) {
+      if (voicing == 0) {
+        for (i=0; i < LD8KConstants.L_SUBFR; i++) {
+          old_exc_array[exc + i + i_subfr]=gain_code.value * code[i];
+        }
+      }
+ else {
+        for (i=0; i < LD8KConstants.L_SUBFR; i++) {
+          old_exc_array[exc + i + i_subfr]=gain_pitch.value * old_exc_array[exc + i + i_subfr];
+        }
+      }
+    }
+ else {
+      for (i=0; i < LD8KConstants.L_SUBFR; i++) {
+        old_exc_array[exc + i + i_subfr]=gain_pitch.value * old_exc_array[exc + i + i_subfr] + gain_code.value * code[i];
+      }
+    }
+    Filter.syn_filt(A_t,Az,old_exc_array,exc + i_subfr,synth,ss + i_subfr,LD8KConstants.L_SUBFR,mem_syn,0,1);
+    Az+=LD8KConstants.MP1;
+  }
+  Util.copy(old_exc_array,LD8KConstants.L_FRAME,old_exc_array,0,LD8KConstants.PIT_MAX + LD8KConstants.L_INTERPOL);
+  return;
+}

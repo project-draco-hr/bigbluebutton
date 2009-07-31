@@ -1,0 +1,20 @@
+{
+  int index=indexOfFirstSemi();
+  if (index < 0)   return;
+  String header=getValue();
+  Parser par=new Parser(header,index);
+  while (par.hasMore()) {
+    int begin_param=par.getPos();
+    par.skipChar();
+    if (par.getWord(SipParser.param_separators).equals(name)) {
+      String top=header.substring(0,begin_param);
+      par.goToSkippingQuoted(';');
+      String bottom="";
+      if (par.hasMore())       bottom=header.substring(par.getPos());
+      header=top.concat(bottom);
+      setValue(header);
+      return;
+    }
+    par.goTo(';');
+  }
+}

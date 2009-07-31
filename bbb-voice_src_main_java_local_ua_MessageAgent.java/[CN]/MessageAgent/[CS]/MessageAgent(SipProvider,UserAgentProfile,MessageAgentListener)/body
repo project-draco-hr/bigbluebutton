@@ -1,0 +1,8 @@
+{
+  this.sip_provider=sip_provider;
+  this.log=sip_provider.getLog();
+  this.sip_interface=null;
+  this.listener=listener;
+  this.user_profile=user_profile;
+  user_profile.initContactAddress(sip_provider);
+}

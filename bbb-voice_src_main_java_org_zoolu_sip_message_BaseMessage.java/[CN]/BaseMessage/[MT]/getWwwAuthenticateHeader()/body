@@ -1,0 +1,5 @@
+{
+  Header h=getHeader(SipHeaders.WWW_Authenticate);
+  if (h == null)   return null;
+ else   return new WwwAuthenticateHeader(h);
+}

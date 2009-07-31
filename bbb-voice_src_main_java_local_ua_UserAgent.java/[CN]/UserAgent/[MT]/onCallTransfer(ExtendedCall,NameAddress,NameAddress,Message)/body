@@ -1,0 +1,11 @@
+{
+  printLog("onCallTransfer()",LogLevel.LOW);
+  if (call != this.call) {
+    printLog("NOT the current call",LogLevel.LOW);
+    return;
+  }
+  printLog("Transfer to " + refer_to.toString(),LogLevel.HIGH);
+  call.acceptTransfer();
+  call_transfer=new ExtendedCall(sip_provider,user_profile.from_url,user_profile.contact_url,this);
+  call_transfer.call(refer_to.toString(),local_session);
+}

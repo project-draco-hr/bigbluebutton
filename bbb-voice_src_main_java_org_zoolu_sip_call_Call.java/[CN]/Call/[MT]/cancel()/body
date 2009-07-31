@@ -1,0 +1,3 @@
+{
+  if (dialog != null)   dialog.cancel();
+}

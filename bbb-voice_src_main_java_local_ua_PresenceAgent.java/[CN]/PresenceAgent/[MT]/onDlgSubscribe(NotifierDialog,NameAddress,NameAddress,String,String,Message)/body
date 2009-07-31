@@ -1,0 +1,5 @@
+{
+  printLog("onDlgSubscribe()",LogLevel.MEDIUM);
+  notifier_dialog.pending();
+  listener.onPaSubscriptionRequest(this,target,subscriber);
+}

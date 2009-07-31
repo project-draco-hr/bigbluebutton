@@ -1,0 +1,11 @@
+{
+  int end=index;
+  while (end < str.length() && !isCRLF(str.charAt(end)))   end++;
+  String line=str.substring(index,end);
+  index=end;
+  if (index < str.length()) {
+    if (str.startsWith("\r\n",index))     index+=2;
+ else     index++;
+  }
+  return line;
+}

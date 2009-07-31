@@ -1,0 +1,15 @@
+{
+  if (file_name == null)   return null;
+  Toolkit toolkit=Toolkit.getDefaultToolkit();
+  Image image=null;
+  file_name=BASE_PATH + "/" + file_name;
+  if ((new File(file_name)).canRead()) {
+    image=toolkit.getImage(file_name);
+    for (int i=0; i < 4 && image.getWidth(null) < 0; i++)     try {
+      Thread.sleep(80);
+    }
+ catch (    Exception e) {
+    }
+  }
+  return image;
+}

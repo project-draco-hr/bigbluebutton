@@ -1,0 +1,5 @@
+{
+  users.remove(user);
+  changed=true;
+  return this;
+}

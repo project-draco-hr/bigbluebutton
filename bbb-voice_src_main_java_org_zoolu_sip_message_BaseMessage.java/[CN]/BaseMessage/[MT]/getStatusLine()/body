@@ -1,0 +1,12 @@
+{
+  if (!isResponse()) {
+    return null;
+  }
+  SipParser par=new SipParser(message);
+  par.skipString().skipWSP();
+  int code=par.getInt();
+  int begin=par.getPos();
+  int end=par.indexOfEOH();
+  String reason=message.substring(begin,end).trim();
+  return new StatusLine(code,reason);
+}

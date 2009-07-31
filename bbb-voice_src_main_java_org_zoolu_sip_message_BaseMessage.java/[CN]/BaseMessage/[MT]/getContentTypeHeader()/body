@@ -1,0 +1,5 @@
+{
+  Header h=getHeader(SipHeaders.Content_Type);
+  if (h == null)   return null;
+ else   return new ContentTypeHeader(h);
+}

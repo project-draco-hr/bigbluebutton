@@ -1,0 +1,17 @@
+{
+  int begin=index;
+  while (begin >= 0 && begin < str.length() - 1 && str.charAt(begin + 1) != '=')   begin=str.indexOf("\n",begin);
+  if (begin < 0)   return null;
+  char type=str.charAt(begin);
+  begin+=2;
+  int end=str.length();
+  int CR=str.indexOf('\r',begin);
+  if (CR > 0 && CR < end)   end=CR;
+  int LF=str.indexOf('\n',begin);
+  if (LF > 0 && LF < end)   end=LF;
+  String value=str.substring(begin,end).trim();
+  if (value == null)   return null;
+  setPos(end);
+  goToNextLine();
+  return new SdpField(type,value);
+}

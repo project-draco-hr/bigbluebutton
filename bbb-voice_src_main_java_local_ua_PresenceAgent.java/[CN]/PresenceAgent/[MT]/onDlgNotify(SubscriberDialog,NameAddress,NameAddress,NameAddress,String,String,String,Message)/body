@@ -1,0 +1,4 @@
+{
+  printLog("onDlgNotify()",LogLevel.MEDIUM);
+  listener.onPaNotificationRequest(this,target,notifier,state,content_type,body);
+}

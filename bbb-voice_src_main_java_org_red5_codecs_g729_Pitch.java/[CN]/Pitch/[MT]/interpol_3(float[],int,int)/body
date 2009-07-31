@@ -1,0 +1,16 @@
+{
+  int i;
+  float s;
+  int x1, x2, c1, c2;
+  if (frac < 0) {
+    frac+=LD8KConstants.UP_SAMP;
+    xs--;
+  }
+  x1=0;
+  x2=1;
+  c1=frac;
+  c2=LD8KConstants.UP_SAMP - frac;
+  s=(float)0.0;
+  for (i=0; i < LD8KConstants.L_INTER4; i++, c1+=LD8KConstants.UP_SAMP, c2+=LD8KConstants.UP_SAMP)   s+=(x[xs + x1--]) * (TabLD8k.inter_3[c1]) + (x[xs + x2++]) * (TabLD8k.inter_3[c2]);
+  return s;
+}

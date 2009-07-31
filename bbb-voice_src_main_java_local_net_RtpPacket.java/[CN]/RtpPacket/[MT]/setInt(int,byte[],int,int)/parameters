@@ -1,0 +1,4 @@
+int n
+byte[] data
+int begin
+int end

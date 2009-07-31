@@ -1,0 +1,6 @@
+{
+  Message req=createRequest(dialog,SipMethods.SUBSCRIBE,null);
+  req.setEventHeader(new EventHeader(event,id));
+  req.setBody(content_type,body);
+  return req;
+}

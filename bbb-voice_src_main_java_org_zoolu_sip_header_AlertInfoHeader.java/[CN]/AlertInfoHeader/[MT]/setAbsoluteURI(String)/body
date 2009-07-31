@@ -1,0 +1,6 @@
+{
+  absolute_uri=absolute_uri.trim();
+  if (absolute_uri.indexOf("<") < 0)   absolute_uri="<" + absolute_uri;
+  if (absolute_uri.indexOf(">") < 0)   absolute_uri=absolute_uri + ">";
+  value=absolute_uri;
+}

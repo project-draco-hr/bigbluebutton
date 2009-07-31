@@ -1,0 +1,4 @@
+{
+  preProc.init_pre_process();
+  encoder.init_coder_ld8k();
+}

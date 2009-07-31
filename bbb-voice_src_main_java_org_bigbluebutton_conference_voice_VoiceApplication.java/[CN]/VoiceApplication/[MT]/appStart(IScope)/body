@@ -1,0 +1,7 @@
+{
+  loginfo("Red5SIP starting in scope " + scope.getName() + " "+ System.getProperty("user.dir"));
+  sipManager=SIPManager.getInstance();
+  sipPort=startSIPPort;
+  rtpPort=startRTPPort;
+  return true;
+}

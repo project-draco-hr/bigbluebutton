@@ -1,0 +1,6 @@
+MessageAgent ma
+NameAddress sender
+NameAddress recipient
+String subject
+String content_type
+String content

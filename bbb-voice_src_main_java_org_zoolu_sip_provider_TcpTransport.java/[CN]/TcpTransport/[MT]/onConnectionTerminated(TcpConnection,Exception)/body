@@ -1,0 +1,11 @@
+{
+  if (listener != null)   listener.onTransportTerminated(this,error);
+  TcpSocket socket=tcp_conn.getSocket();
+  if (socket != null)   try {
+    socket.close();
+  }
+ catch (  Exception e) {
+  }
+  this.tcp_conn=null;
+  this.listener=null;
+}

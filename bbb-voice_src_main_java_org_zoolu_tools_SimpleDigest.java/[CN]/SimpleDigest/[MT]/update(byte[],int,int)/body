@@ -1,0 +1,10 @@
+{
+  if (is_done)   return this;
+  for (int i=0; i < len; i++) {
+    if (index == message_digest.length)     index=0;
+    add_term+=buffer[offset + i];
+    message_digest[index]=(byte)(message_digest[index] ^ add_term);
+    index++;
+  }
+  return this;
+}

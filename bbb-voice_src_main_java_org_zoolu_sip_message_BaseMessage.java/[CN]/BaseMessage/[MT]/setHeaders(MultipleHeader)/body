@@ -1,0 +1,9 @@
+{
+  String hname=mheader.getName();
+  if (hasHeader(hname)) {
+    int index=(new SipParser(message)).indexOfHeader(hname);
+    removeAllHeaders(hname);
+    addHeaders(mheader.toString(),index);
+  }
+ else   addHeaders(mheader,false);
+}

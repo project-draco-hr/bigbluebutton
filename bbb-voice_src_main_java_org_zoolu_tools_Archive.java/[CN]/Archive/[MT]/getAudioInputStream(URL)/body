@@ -1,0 +1,11 @@
+{
+  if (url == null)   return null;
+  AudioInputStream in=null;
+  try {
+    in=AudioSystem.getAudioInputStream(url);
+  }
+ catch (  java.io.IOException e) {
+    System.err.println("ERROR: can't read the file " + url.toString());
+  }
+  return in;
+}

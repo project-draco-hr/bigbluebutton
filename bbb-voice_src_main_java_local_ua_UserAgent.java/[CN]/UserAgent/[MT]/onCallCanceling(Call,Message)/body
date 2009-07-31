@@ -1,0 +1,12 @@
+{
+  printLog("onCallCanceling()",LogLevel.LOW);
+  if (call != this.call) {
+    printLog("NOT the current call",LogLevel.LOW);
+    return;
+  }
+  printLog("CANCEL",LogLevel.HIGH);
+  changeStatus(UA_IDLE);
+  if (clip_ring != null)   clip_ring.stop();
+  if (clip_off != null)   clip_off.replay();
+  if (listener != null)   listener.onUaCallCancelled(this);
+}

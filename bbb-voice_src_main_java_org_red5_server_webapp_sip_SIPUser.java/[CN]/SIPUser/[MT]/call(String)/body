@@ -1,0 +1,21 @@
+{
+  p("SIPUser Calling " + destination);
+  try {
+    publishName="microphone_" + System.currentTimeMillis();
+    playName="speaker_" + System.currentTimeMillis();
+    rtmpUser.startStream("localhost","sip",1935,publishName,playName);
+    sipReady=false;
+    ua.setMedia(rtmpUser);
+    ua.hangup();
+    if (destination.indexOf("@") == -1) {
+      destination=destination + "@" + proxy;
+    }
+    if (destination.indexOf("sip:") > -1) {
+      destination=destination.substring(4);
+    }
+    ua.call(destination);
+  }
+ catch (  Exception e) {
+    p("call: Exception:>\n" + e);
+  }
+}

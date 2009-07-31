@@ -1,0 +1,4 @@
+{
+  if (index > message.length())   index=message.length();
+  message=message.substring(0,index) + str + message.substring(index);
+}

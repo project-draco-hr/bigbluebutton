@@ -1,0 +1,20 @@
+{
+  if (udp != null) {
+    printLog("udp is going down",LogLevel.LOWER);
+    udp.halt();
+    udp=null;
+  }
+  if (tcp_server != null) {
+    printLog("tcp is going down",LogLevel.LOWER);
+    tcp_server.halt();
+    tcp_server=null;
+  }
+  if (connections != null) {
+    printLog("connections are going down",LogLevel.LOWER);
+    for (Enumeration e=connections.elements(); e.hasMoreElements(); ) {
+      ConnectedTransport c=(ConnectedTransport)e.nextElement();
+      c.halt();
+    }
+    connections=null;
+  }
+}

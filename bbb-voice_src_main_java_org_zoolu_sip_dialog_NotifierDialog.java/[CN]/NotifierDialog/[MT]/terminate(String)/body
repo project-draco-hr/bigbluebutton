@@ -1,0 +1,7 @@
+{
+  Message req=MessageFactory.createNotifyRequest(this,event,id,null,null);
+  SubscriptionStateHeader sh=new SubscriptionStateHeader(TERMINATED);
+  if (reason != null)   sh.setReason(reason);
+  req.setSubscriptionStateHeader(sh);
+  notify(req);
+}

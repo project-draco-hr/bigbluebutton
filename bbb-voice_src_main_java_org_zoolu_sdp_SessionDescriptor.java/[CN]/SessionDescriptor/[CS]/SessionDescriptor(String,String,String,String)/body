@@ -1,0 +1,3 @@
+{
+  init(new OriginField(origin),new SessionNameField(session),new ConnectionField(connection),new TimeField(time));
+}

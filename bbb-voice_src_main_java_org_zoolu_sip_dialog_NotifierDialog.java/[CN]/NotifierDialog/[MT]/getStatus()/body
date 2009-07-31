@@ -1,0 +1,18 @@
+{
+switch (status) {
+case D_INIT:
+    return "D_INIT";
+case D_WAITING:
+  return "D_WAITING";
+case D_SUBSCRIBED:
+return "D_SUBSCRIBED";
+case D_PENDING:
+return "D_PENDING";
+case D_ACTIVE:
+return "D_ACTIVE";
+case D_TERMINATED:
+return "D_TERMINATED";
+default :
+return null;
+}
+}

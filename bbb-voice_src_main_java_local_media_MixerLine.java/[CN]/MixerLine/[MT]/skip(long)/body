@@ -1,0 +1,6 @@
+{
+  for (Enumeration e=input_lines.elements(); e.hasMoreElements(); ) {
+    ((InputStream)e.nextElement()).skip(n);
+  }
+  return n;
+}

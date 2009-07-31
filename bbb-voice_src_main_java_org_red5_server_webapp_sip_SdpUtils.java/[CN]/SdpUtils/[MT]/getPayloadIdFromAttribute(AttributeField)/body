@@ -1,0 +1,11 @@
+{
+  String payloadId="";
+  printLog("getPayloadIdFromAttribute","Init...");
+  printLog("getPayloadIdFromAttribute","AttributeName = [" + attribute.getAttributeName() + "], AttributeValue = ["+ attribute.getAttributeValue()+ "].");
+  if (isPayloadRelatedAttribute(attribute)) {
+    payloadId=attribute.getAttributeValue().substring(0,attribute.getAttributeValue().indexOf(" "));
+  }
+  printLog("getPayloadIdFromAttribute","payloadId = " + payloadId);
+  printLog("getPayloadIdFromAttribute","End...");
+  return payloadId;
+}

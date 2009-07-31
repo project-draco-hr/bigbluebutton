@@ -1,0 +1,19 @@
+{
+  this.input_stream=input_stream;
+  this.frame_rate=frame_rate;
+  this.frame_size=frame_size;
+  this.do_sync=do_sync;
+  try {
+    if (src_socket == null) {
+      udp_socket=new UdpSocket();
+      socket_is_local=true;
+    }
+ else {
+      udp_socket=src_socket;
+      socket_is_local=false;
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

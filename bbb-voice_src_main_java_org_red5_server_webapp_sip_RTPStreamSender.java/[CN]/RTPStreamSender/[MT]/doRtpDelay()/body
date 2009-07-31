@@ -1,0 +1,7 @@
+{
+  try {
+    Thread.sleep(sipCodec.getOutgoingPacketization() - 2);
+  }
+ catch (  Exception e) {
+  }
+}

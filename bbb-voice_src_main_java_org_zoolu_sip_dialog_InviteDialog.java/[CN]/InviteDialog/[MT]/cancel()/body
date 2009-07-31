@@ -1,0 +1,10 @@
+{
+  printLog("inside cancel()",LogLevel.MEDIUM);
+  if (statusIs(D_INVITING) || statusIs(D_ReINVITING)) {
+    Message cancel=MessageFactory.createCancelRequest(invite_req);
+    cancel(cancel);
+  }
+ else   if (statusIs(D_WAITING) || statusIs(D_ReWAITING)) {
+    invite_ts.terminate();
+  }
+}

@@ -1,0 +1,11 @@
+{
+  try {
+    SocketAddress saddr=(SocketAddress)obj;
+    if (port != saddr.port)     return false;
+    if (!ipaddr.equals(saddr.ipaddr))     return false;
+    return true;
+  }
+ catch (  Exception e) {
+    return false;
+  }
+}

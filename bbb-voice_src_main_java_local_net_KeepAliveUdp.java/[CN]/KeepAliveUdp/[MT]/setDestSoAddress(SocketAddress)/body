@@ -1,0 +1,7 @@
+{
+  target=soaddr;
+  if (udp_packet != null && target != null) {
+    udp_packet.setIpAddress(target.getAddress());
+    udp_packet.setPort(target.getPort());
+  }
+}

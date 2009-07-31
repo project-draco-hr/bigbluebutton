@@ -1,0 +1,3 @@
+{
+  if (event_log != null)   event_log.printException(e,level + SipStack.LOG_LEVEL_TRANSPORT);
+}

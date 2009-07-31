@@ -1,0 +1,20 @@
+{
+  int j, k1;
+  float buf[]=new float[LD8KConstants.M];
+  float dist, dmin, tmp;
+  for (j=0; j < LD8KConstants.NC; j++)   buf[j]=rbuf[j] - lspcb1[j];
+  index.value=0;
+  dmin=LD8KConstants.FLT_MAX_G729;
+  for (k1=0; k1 < LD8KConstants.NC1; k1++) {
+    dist=(float)0.;
+    for (j=0; j < LD8KConstants.NC; j++) {
+      tmp=buf[j] - lspcb2[k1][j];
+      dist+=wegt[j] * tmp * tmp;
+    }
+    if (dist < dmin) {
+      dmin=dist;
+      index.value=k1;
+    }
+  }
+  return;
+}

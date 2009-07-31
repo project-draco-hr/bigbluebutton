@@ -1,0 +1,5 @@
+{
+  int i;
+  for (i=0; i < L; i++)   x[i]=(float)0.0;
+  return;
+}

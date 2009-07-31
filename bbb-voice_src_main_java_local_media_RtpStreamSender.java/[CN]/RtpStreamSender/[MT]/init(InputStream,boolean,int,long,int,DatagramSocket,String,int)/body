@@ -1,0 +1,17 @@
+{
+  this.input_stream=input_stream;
+  this.p_type=payload_type;
+  this.frame_rate=frame_rate;
+  this.frame_size=frame_size;
+  this.do_sync=do_sync;
+  try {
+    if (src_socket == null) {
+      src_socket=new DatagramSocket();
+      socket_is_local=true;
+    }
+    rtp_socket=new RtpSocket(src_socket,InetAddress.getByName(dest_addr),dest_port);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

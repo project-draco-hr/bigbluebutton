@@ -1,0 +1,5 @@
+float[] destBuffer
+int startDestBuffer
+float[] origBuffer
+int startOrigBuffer
+int copySize

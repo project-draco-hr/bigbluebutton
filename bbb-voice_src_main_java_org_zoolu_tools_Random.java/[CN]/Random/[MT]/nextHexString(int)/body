@@ -1,0 +1,8 @@
+{
+  byte[] buff=new byte[len];
+  for (int i=0; i < len; i++) {
+    int n=nextInt(16);
+    buff[i]=(byte)((n < 10) ? 48 + n : 87 + n);
+  }
+  return new String(buff);
+}

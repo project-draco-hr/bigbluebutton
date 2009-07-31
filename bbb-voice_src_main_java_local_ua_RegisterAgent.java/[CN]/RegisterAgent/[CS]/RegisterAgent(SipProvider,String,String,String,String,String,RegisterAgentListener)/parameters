@@ -1,0 +1,7 @@
+SipProvider sip_provider
+String target_url
+String contact_url
+String username
+String realm
+String passwd
+RegisterAgentListener listener

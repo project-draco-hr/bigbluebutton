@@ -1,0 +1,4 @@
+{
+  file_name=BASE_PATH + "/" + file_name;
+  return new ImageIcon(file_name);
+}

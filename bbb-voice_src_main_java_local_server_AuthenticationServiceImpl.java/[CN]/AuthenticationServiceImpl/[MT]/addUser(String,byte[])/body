@@ -1,0 +1,7 @@
+{
+  if (hasUser(user))   return this;
+  UserAuthInfo ur=new UserAuthInfo(user,key);
+  users.put(user,ur);
+  changed=true;
+  return this;
+}

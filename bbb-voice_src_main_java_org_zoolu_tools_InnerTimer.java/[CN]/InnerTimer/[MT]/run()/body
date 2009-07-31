@@ -1,0 +1,12 @@
+{
+  if (listener != null) {
+    try {
+      Thread.sleep(timeout);
+      listener.onInnerTimeout();
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+    }
+    listener=null;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  StringBuffer sb=new StringBuffer();
+  if (username != null)   sb.append(username);
+  sb.append(":");
+  if (realm != null)   sb.append(realm);
+  sb.append(":");
+  if (passwd != null)   sb.append(passwd);
+  if (algorithm == null || !algorithm.equalsIgnoreCase("MD5-sess")) {
+    return sb.toString().getBytes();
+  }
+ else {
+    StringBuffer sb2=new StringBuffer();
+    sb2.append(":");
+    if (nonce != null)     sb2.append(nonce);
+    sb2.append(":");
+    if (cnonce != null)     sb2.append(cnonce);
+    return cat(MD5(sb.toString()),sb2.toString().getBytes());
+  }
+}

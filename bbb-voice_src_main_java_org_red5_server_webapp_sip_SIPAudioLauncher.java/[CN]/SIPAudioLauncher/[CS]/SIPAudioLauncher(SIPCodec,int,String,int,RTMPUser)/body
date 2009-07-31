@@ -1,0 +1,14 @@
+{
+  try {
+    socket=new DatagramSocket(localPort);
+    printLog("SIPAudioLauncher","New audio sender to " + remoteAddr + ":"+ remotePort+ ".");
+    printLog("SIPAudioLauncher","sender configs: payloadType = [" + sipCodec.getCodecId() + "], payloadName = ["+ sipCodec.getCodecName()+ "].");
+    sender=new RTPStreamSender(rtmpUser,false,sipCodec,socket,remoteAddr,remotePort);
+    printLog("SIPAudioLauncher","New audio receiver on " + localPort + ".");
+    receiver=new RTPStreamReceiver(sipCodec,rtmpUser,socket);
+  }
+ catch (  Exception e) {
+    printLog("SIPAudioLauncher","Exception " + e);
+    e.printStackTrace();
+  }
+}

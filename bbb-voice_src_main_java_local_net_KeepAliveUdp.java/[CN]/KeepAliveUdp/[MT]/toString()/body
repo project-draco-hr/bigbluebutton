@@ -1,0 +1,7 @@
+{
+  String str=null;
+  if (udp_socket != null) {
+    str="udp:" + udp_socket.getLocalAddress() + ":"+ udp_socket.getLocalPort()+ "-->"+ target.toString();
+  }
+  return str + " (" + delta_time+ "ms)";
+}

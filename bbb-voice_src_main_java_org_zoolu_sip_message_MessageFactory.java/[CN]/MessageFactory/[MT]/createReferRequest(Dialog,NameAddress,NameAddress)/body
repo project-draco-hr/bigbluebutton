@@ -1,0 +1,7 @@
+{
+  Message req=createRequest(dialog,SipMethods.REFER,null);
+  req.setReferToHeader(new ReferToHeader(refer_to));
+  if (referred_by != null)   req.setReferredByHeader(new ReferredByHeader(referred_by));
+ else   req.setReferredByHeader(new ReferredByHeader(dialog.getLocalName()));
+  return req;
+}

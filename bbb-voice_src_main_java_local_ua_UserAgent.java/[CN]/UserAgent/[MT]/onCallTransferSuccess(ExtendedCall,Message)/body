@@ -1,0 +1,10 @@
+{
+  printLog("onCallTransferSuccess()",LogLevel.LOW);
+  if (call != this.call) {
+    printLog("NOT the current call",LogLevel.LOW);
+    return;
+  }
+  printLog("Transfer successed",LogLevel.HIGH);
+  call.hangup();
+  if (listener != null)   listener.onUaCallTrasferred(this);
+}

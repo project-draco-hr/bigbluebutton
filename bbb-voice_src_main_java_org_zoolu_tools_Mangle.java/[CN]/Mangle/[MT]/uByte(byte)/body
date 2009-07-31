@@ -1,0 +1,3 @@
+{
+  return (short)(((short)b + 256) % 256);
+}

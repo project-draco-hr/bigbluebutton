@@ -1,0 +1,12 @@
+{
+  try {
+    Date d=DateFormat.parseEEEddMMM(str,index);
+    index=str.indexOf("GMT",index) + 3;
+    return d;
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    index=str.length();
+    return null;
+  }
+}

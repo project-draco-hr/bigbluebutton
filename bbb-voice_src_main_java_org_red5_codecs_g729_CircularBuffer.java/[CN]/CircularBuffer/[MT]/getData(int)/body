@@ -1,0 +1,10 @@
+{
+  if (availableData < size)   return null;
+  byte[] data=new byte[size];
+  for (int q=0; q < data.length; q++) {
+    data[q]=buffer[(cursor + q) % buffer.length];
+  }
+  cursor=(cursor + data.length) % buffer.length;
+  availableData-=size;
+  return data;
+}

@@ -1,0 +1,23 @@
+{
+  log=logger;
+  try {
+    socket=new DatagramSocket(local_port);
+    dir=direction;
+    if (dir >= 0) {
+      printLog("new audio sender to " + remote_addr + ":"+ remote_port,LogLevel.MEDIUM);
+      AudioFormat format=new AudioFormat(codec,sample_rate,8 * sample_size,1,sample_size,sample_rate,big_endian);
+      audio_input=new AudioInput(format);
+      sender=new RtpStreamSender(audio_input.getInputStream(),true,payload_type,frame_rate,frame_size,socket,remote_addr,remote_port);
+      sender.setSyncAdj(2);
+    }
+    if (dir <= 0) {
+      printLog("new audio receiver on " + local_port,LogLevel.MEDIUM);
+      AudioFormat format=new AudioFormat(codec,sample_rate,8 * sample_size,1,sample_size,sample_rate,big_endian);
+      audio_output=new AudioOutput(format);
+      receiver=new RtpStreamReceiver(audio_output.getOuputStream(),socket);
+    }
+  }
+ catch (  Exception e) {
+    printException(e,LogLevel.HIGH);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  for (int i=0; i < mhd.size(); i++)   values.addElement(mhd.getValue(i));
+}

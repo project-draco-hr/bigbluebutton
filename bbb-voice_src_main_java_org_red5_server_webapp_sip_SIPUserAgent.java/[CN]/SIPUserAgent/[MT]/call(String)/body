@@ -1,0 +1,12 @@
+{
+  printLog("call","Init...");
+  changeStatus(UA_OUTGOING_CALL);
+  call=new ExtendedCall(sipProvider,userProfile.fromUrl,userProfile.contactUrl,userProfile.username,userProfile.realm,userProfile.passwd,this);
+  target_url=sipProvider.completeNameAddress(target_url).toString();
+  if (userProfile.noOffer) {
+    call.call(target_url);
+  }
+ else {
+    call.call(target_url,localSession);
+  }
+}

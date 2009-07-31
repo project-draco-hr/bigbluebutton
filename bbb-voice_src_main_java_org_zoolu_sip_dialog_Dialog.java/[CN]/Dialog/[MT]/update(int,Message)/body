@@ -1,0 +1,70 @@
+{
+  if (isTerminated()) {
+    printWarning("trying to update a terminated dialog: do nothing.",LogLevel.HIGH);
+    return;
+  }
+  if (call_id == null)   call_id=msg.getCallIdHeader().getCallId();
+  if (side == UAC) {
+    if (remote_name == null || remote_tag == null) {
+      ToHeader to=msg.getToHeader();
+      if (remote_name == null)       remote_name=to.getNameAddress();
+      if (remote_tag == null)       remote_tag=to.getTag();
+    }
+    if (local_name == null || local_tag == null) {
+      FromHeader from=msg.getFromHeader();
+      if (local_name == null)       local_name=from.getNameAddress();
+      if (local_tag == null)       local_tag=from.getTag();
+    }
+    local_cseq=msg.getCSeqHeader().getSequenceNumber();
+  }
+ else {
+    if (local_name == null || local_tag == null) {
+      ToHeader to=msg.getToHeader();
+      if (local_name == null)       local_name=to.getNameAddress();
+      if (local_tag == null)       local_tag=to.getTag();
+    }
+    if (remote_name == null || remote_tag == null) {
+      FromHeader from=msg.getFromHeader();
+      if (remote_name == null)       remote_name=from.getNameAddress();
+      if (remote_tag == null)       remote_tag=from.getTag();
+    }
+    remote_cseq=msg.getCSeqHeader().getSequenceNumber();
+    if (local_cseq == -1)     local_cseq=SipProvider.pickInitialCSeq() - 1;
+  }
+  if (msg.hasContactHeader()) {
+    if ((side == UAC && msg.isRequest()) || (side == UAS && msg.isResponse()))     local_contact=msg.getContactHeader().getNameAddress();
+ else     remote_contact=msg.getContactHeader().getNameAddress();
+  }
+  if (side == UAC) {
+    if (msg.isRequest() && msg.hasRouteHeader() && route == null) {
+      route=msg.getRoutes().getValues();
+    }
+    if (side == UAC && msg.isResponse() && msg.hasRecordRouteHeader()) {
+      Vector rr=msg.getRecordRoutes().getHeaders();
+      int size=rr.size();
+      route=new Vector(size);
+      for (int i=0; i < size; i++)       route.insertElementAt((new RecordRouteHeader((Header)rr.elementAt(size - 1 - i))).getNameAddress(),i);
+    }
+  }
+ else {
+    if (msg.isRequest() && msg.hasRouteHeader() && route == null) {
+      Vector reverse_route=msg.getRoutes().getValues();
+      int size=reverse_route.size();
+      route=new Vector(size);
+      for (int i=0; i < size; i++)       route.insertElementAt(reverse_route.elementAt(size - 1 - i),i);
+    }
+    if (msg.isRequest() && msg.hasRecordRouteHeader()) {
+      Vector rr=msg.getRecordRoutes().getHeaders();
+      int size=rr.size();
+      route=new Vector(size);
+      for (int i=0; i < size; i++)       route.insertElementAt((new RecordRouteHeader((Header)rr.elementAt(i))).getNameAddress(),i);
+    }
+  }
+  DialogIdentifier new_id=new DialogIdentifier(call_id,local_tag,remote_tag);
+  if (dialog_id == null || !dialog_id.equals(new_id)) {
+    if (dialog_id != null && sip_provider != null && sip_provider.getListeners().containsKey(dialog_id))     sip_provider.removeSipProviderListener(dialog_id);
+    dialog_id=new_id;
+    printLog("new dialog id: " + dialog_id,LogLevel.HIGH);
+    if (sip_provider != null)     sip_provider.addSipProviderListener(dialog_id,this);
+  }
+}

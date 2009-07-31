@@ -1,0 +1,12 @@
+SipProvider sip_provider
+String method
+SipURL request_uri
+NameAddress to
+NameAddress from
+NameAddress contact
+String call_id
+long cseq
+String local_tag
+String remote_tag
+String branch
+String body

@@ -1,0 +1,5 @@
+{
+  byte[] buff=new byte[len];
+  for (int i=0; i < len; i++)   buff[i]=(byte)nextInt(256);
+  return buff;
+}

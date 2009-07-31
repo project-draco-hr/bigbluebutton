@@ -1,0 +1,6 @@
+{
+  m=media;
+  c=connection;
+  av=new Vector();
+  if (attribute != null)   av.addElement(attribute);
+}

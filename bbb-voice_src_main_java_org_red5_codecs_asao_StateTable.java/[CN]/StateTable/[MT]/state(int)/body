@@ -1,0 +1,12 @@
+{
+  int k=8 - d;
+  int l=(a[b + c] & 0xff) >> d;
+  if (i >= k) {
+    c++;
+    if (i > k) {
+      l|=a[b + c] << k;
+    }
+  }
+  d=d + i & 7;
+  return l & (1 << i) - 1;
+}

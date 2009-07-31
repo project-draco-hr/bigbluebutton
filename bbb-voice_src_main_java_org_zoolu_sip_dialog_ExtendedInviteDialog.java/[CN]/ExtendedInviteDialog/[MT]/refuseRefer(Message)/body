@@ -1,0 +1,5 @@
+{
+  printLog("inside refuseRefer(refer)",LogLevel.MEDIUM);
+  Message resp=MessageFactory.createResponse(req,603,SipResponses.reasonOf(603),null);
+  respond(resp);
+}

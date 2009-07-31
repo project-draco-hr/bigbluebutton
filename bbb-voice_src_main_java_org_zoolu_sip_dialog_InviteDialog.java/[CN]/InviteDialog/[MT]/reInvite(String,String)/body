@@ -1,0 +1,12 @@
+{
+  printLog("inside reInvite(contact,sdp)",LogLevel.MEDIUM);
+  if (!statusIs(D_CALL))   return;
+  Message invite=MessageFactory.createInviteRequest(this,session_descriptor);
+  if (contact != null) {
+    NameAddress contact_url;
+    if (contact.indexOf("sip:") >= 0)     contact_url=new NameAddress(contact);
+ else     contact_url=new NameAddress(new SipURL(contact,sip_provider.getViaAddress(),sip_provider.getPort()));
+    invite.setContactHeader(new ContactHeader(contact_url));
+  }
+  reInvite(invite);
+}

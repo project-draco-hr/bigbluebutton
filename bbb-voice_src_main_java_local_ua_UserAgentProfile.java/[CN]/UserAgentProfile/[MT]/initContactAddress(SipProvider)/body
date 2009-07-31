@@ -1,0 +1,8 @@
+{
+  if (contact_url == null) {
+    contact_url="sip:" + username + "@"+ sip_provider.getViaAddress();
+    if (sip_provider.getPort() != SipStack.default_port)     contact_url+=":" + sip_provider.getPort();
+    if (!sip_provider.getDefaultTransport().equals(SipProvider.PROTO_UDP))     contact_url+=";transport=" + sip_provider.getDefaultTransport();
+  }
+  if (from_url == null)   from_url=contact_url;
+}

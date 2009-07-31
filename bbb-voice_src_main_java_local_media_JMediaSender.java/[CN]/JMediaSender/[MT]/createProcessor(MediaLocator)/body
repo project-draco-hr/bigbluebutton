@@ -1,0 +1,23 @@
+{
+  DataSource datasrc;
+  if (locator == null)   return "MediaLocator is null";
+  try {
+    datasrc=Manager.createDataSource(locator);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    return "Couldn't create DataSource";
+  }
+  try {
+    processor=Manager.createProcessor(datasrc);
+  }
+ catch (  NoProcessorException npe) {
+    npe.printStackTrace();
+    return "Couldn't create processor";
+  }
+catch (  IOException ioe) {
+    ioe.printStackTrace();
+    return "IOException creating processor";
+  }
+  return null;
+}

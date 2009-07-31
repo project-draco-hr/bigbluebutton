@@ -1,0 +1,4 @@
+{
+  method=request;
+  url=new SipURL(sipUrl);
+}

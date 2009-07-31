@@ -1,0 +1,6 @@
+{
+  p("SIP Registration failure " + result);
+  if (service != null) {
+    ((IServiceCapableConnection)service).invoke("registrationFailure",new Object[]{result});
+  }
+}

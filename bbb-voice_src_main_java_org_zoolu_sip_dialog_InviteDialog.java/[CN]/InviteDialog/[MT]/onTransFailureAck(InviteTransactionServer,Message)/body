@@ -1,0 +1,11 @@
+{
+  printLog("inside onTransFailureAck(ts,msg)",LogLevel.LOW);
+  if (!verifyStatus(statusIs(D_REFUSED) || statusIs(D_ReREFUSED)))   return;
+  if (statusIs(D_ReREFUSED)) {
+    changeStatus(D_CALL);
+  }
+ else {
+    changeStatus(D_CLOSE);
+    listener.onDlgClose(this);
+  }
+}
