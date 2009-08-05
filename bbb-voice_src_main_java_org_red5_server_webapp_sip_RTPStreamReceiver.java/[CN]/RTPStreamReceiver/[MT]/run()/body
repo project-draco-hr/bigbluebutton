@@ -1,4 +1,7 @@
 {
+  int packetLength=0;
+  int headerOffset=0;
+  int payloadLength=0;
   if (rtpSocket == null) {
     println("run","RTP socket is null.");
     return;
@@ -6,15 +9,11 @@
   encoder=new Encoder();
   encoderMap=new float[64];
   tempBuffer=new float[NELLYMOSER_DECODED_PACKET_SIZE];
-  byte[] codedBuffer=new byte[sipCodec.getIncomingEncodedFrameSize()];
   byte[] internalBuffer=new byte[sipCodec.getIncomingEncodedFrameSize() + RTP_HEADER_SIZE];
   RtpPacket rtpPacket=new RtpPacket(internalBuffer,0);
   running=true;
   try {
     rtpSocket.getDatagramSocket().setSoTimeout(SO_TIMEOUT);
-    float[] decodingBuffer=new float[sipCodec.getIncomingDecodedFrameSize()];
-    int packetCount=0;
-    println("run","internalBuffer.length = " + internalBuffer.length + ", codedBuffer.length = "+ codedBuffer.length+ ", decodingBuffer.length = "+ decodingBuffer.length+ ".");
     while (running) {
       try {
         rtpSocket.receive(rtpPacket);
@@ -23,7 +22,12 @@
           byte[] packetBuffer=rtpPacket.getPacket();
           int offset=rtpPacket.getHeaderLength();
           int length=rtpPacket.getPayloadLength();
-          BufferUtils.byteBufferIndexedCopy(codedBuffer,0,packetBuffer,offset,sipCodec.getIncomingEncodedFrameSize());
+          packetLength=packetBuffer.length;
+          headerOffset=offset;
+          payloadLength=length;
+          float[] decodingBuffer=new float[length];
+          byte[] codedBuffer=new byte[length];
+          BufferUtils.byteBufferIndexedCopy(codedBuffer,0,packetBuffer,offset,length);
           int decodedBytes=sipCodec.codecToPcm(codedBuffer,decodingBuffer);
           if (decodedBytes == sipCodec.getIncomingDecodedFrameSize()) {
             forwardAudioToFlashPlayer(decodingBuffer);
@@ -39,6 +43,9 @@
   }
  catch (  Exception e) {
     running=false;
+    println("run",sipCodec.getCodecName());
+    println("run","pkt.length = " + packetLength + ", offset = "+ headerOffset+ ", length = "+ payloadLength+ ".");
+    println("Exception - ",e.toString());
     e.printStackTrace();
   }
   DatagramSocket socket=rtpSocket.getDatagramSocket();

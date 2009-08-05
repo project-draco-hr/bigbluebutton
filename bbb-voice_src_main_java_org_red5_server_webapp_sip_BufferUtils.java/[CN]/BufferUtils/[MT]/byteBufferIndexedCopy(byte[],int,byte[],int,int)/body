@@ -2,7 +2,6 @@
   int destBufferIndex=startDestBuffer;
   int origBufferIndex=startOrigBuffer;
   int counter=0;
-  println("byteBufferIndexedCopy","destBuffer.length = " + destBuffer.length + ", startDestBuffer = "+ startDestBuffer+ ", origBuffer.length = "+ origBuffer.length+ ", startOrigBuffer = "+ startOrigBuffer+ ", copySize = "+ copySize+ ".");
   if (destBuffer.length < (startDestBuffer + copySize)) {
     println("byteBufferIndexedCopy","size copy problem.");
     return -1;
