@@ -1,4 +1,2 @@
 {
-  log.debug("RtpStreamReceiver - " + method + " -> "+ message);
-  System.out.println("RtpStreamReceiver - " + method + " -> "+ message);
 }
