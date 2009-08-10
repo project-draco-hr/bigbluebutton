@@ -1,0 +1,7 @@
+{
+  if (message.isOption()) {
+    log.debug("Received message: " + message.toString());
+    Message response=MessageFactory.createResponse(message,200,"OK",message.getFromHeader().getNameAddress());
+    sip_provider.sendMessage(response);
+  }
+}

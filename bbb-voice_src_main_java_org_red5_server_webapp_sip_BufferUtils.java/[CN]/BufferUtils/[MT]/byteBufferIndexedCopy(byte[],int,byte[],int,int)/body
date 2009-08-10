@@ -11,6 +11,5 @@
     destBufferIndex++;
     origBufferIndex++;
   }
-  println("byteBufferIndexedCopy",counter + " bytes copied.");
   return counter;
 }
