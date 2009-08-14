@@ -1,0 +1,8 @@
+{
+  checksum=new Adler32();
+  version=0;
+  dirty=true;
+  this.width=width;
+  this.height=height;
+  this.position=position;
+}

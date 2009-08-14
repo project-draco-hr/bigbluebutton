@@ -1,0 +1,7 @@
+{
+  this.screen=screen;
+  this.tile=tile;
+  numColumns=computeNumberOfColumnTiles();
+  numRows=computeNumberOfRowTiles();
+  tiles=new Tile[numRows + numColumns];
+}

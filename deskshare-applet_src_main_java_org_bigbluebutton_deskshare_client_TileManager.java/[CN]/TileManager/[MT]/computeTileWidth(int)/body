@@ -1,0 +1,8 @@
+{
+  if (isLastColumnTile(position)) {
+    if (hasPartialColumnTile()) {
+      return screen.getWidth() % tile.getWidth();
+    }
+  }
+  return tile.getWidth();
+}

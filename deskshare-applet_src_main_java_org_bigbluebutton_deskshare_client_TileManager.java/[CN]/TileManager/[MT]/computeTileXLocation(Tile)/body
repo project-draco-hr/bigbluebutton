@@ -1,0 +1,11 @@
+{
+  int position=tile.getTilePosition();
+  if (isLastColumnTile(position)) {
+    System.out.println("Last column tile " + screen.getWidth() + " "+ tile.getWidth());
+    return screen.getWidth() - tile.getWidth();
+  }
+ else {
+    int columnLocation=position % numColumns;
+    return tile.getWidth() * (columnLocation - 1);
+  }
+}

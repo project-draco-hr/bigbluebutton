@@ -1,0 +1,10 @@
+{
+  int tileWidth=computeTileWidth(position);
+  int tileHeight=computeTileHeight(position);
+  Tile newTile=new Tile(tileWidth,tileHeight,position);
+  newTile.setLastColumnTile(isLastColumnTile(position));
+  newTile.setTopRowTile(isTopRowTile(position));
+  newTile.setX(computeTileXLocation(newTile));
+  newTile.setY(computeTileYLocation(newTile));
+  return newTile;
+}

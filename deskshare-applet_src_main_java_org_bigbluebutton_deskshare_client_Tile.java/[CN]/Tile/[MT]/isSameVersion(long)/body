@@ -1,0 +1,8 @@
+{
+  if (ver != version) {
+    return false;
+  }
+ else {
+    return true;
+  }
+}

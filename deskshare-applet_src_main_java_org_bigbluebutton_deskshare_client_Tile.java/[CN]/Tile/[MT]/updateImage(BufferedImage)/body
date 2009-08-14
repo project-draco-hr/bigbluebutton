@@ -1,0 +1,13 @@
+{
+  long oldsum;
+  oldsum=checksum.getValue();
+  calcChecksum(image);
+  if (oldsum != checksum.getValue()) {
+    this.image=image;
+    version++;
+    dirty=true;
+  }
+ else {
+    dirty=false;
+  }
+}

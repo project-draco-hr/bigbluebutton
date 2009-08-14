@@ -1,0 +1,7 @@
+{
+  int columns=screen.getWidth() / tile.getWidth();
+  if (hasPartialColumnTile()) {
+    columns+=1;
+  }
+  return columns;
+}

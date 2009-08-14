@@ -1,0 +1,10 @@
+{
+  int position=tile.getTilePosition();
+  if (isTopRowTile(position)) {
+    return 0;
+  }
+ else {
+    int rowLocation=position % numRows;
+    return -1;
+  }
+}

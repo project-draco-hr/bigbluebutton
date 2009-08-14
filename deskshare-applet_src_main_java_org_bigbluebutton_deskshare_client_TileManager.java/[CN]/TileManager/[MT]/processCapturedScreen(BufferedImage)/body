@@ -1,0 +1,12 @@
+{
+  BufferedImage subimage;
+  int subw, subh;
+  boolean changed;
+  for (int i=0; i < numRows + numColumns; i++) {
+    if (tiles[i] == null) {
+      int w=computeTileWidth(i);
+      int h=computeTileHeight(i);
+      tiles[i]=new Tile(w,h,i);
+    }
+  }
+}
