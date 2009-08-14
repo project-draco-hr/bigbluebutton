@@ -1,0 +1,8 @@
+{
+  if (isLastColumnTile(col)) {
+    if (hasPartialColumnTile()) {
+      return partialTileWidth();
+    }
+  }
+  return tileDim.getWidth();
+}

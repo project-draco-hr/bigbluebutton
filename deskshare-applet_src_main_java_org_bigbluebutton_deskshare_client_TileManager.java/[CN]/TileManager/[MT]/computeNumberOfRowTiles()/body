@@ -1,7 +1,0 @@
-{
-  int rows=screen.getHeight() / tile.getHeight();
-  if (hasPartialRowTile()) {
-    rows+=1;
-  }
-  return rows;
-}

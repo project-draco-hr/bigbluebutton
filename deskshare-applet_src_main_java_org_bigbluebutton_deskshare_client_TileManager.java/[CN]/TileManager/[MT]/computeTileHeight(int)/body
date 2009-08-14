@@ -1,8 +1,0 @@
-{
-  if (isTopRowTile(position)) {
-    if (hasPartialRowTile()) {
-      return screen.getHeight() % tile.getHeight();
-    }
-  }
-  return tile.getWidth();
-}

@@ -1,0 +1,4 @@
+{
+  Assert.assertEquals(tm.getRowCount(),3);
+  Assert.assertEquals(tm.getColumnCount(),4);
+}

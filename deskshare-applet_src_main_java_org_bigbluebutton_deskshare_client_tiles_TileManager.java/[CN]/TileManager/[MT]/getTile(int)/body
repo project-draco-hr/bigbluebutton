@@ -1,0 +1,3 @@
+{
+  return tiles[computeRow(position)][computeColumn(position)];
+}
