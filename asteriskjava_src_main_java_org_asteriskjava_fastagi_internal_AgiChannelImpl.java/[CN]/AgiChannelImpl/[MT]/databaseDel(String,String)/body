@@ -1,0 +1,3 @@
+{
+  sendCommand(new DatabaseDelCommand(family,key));
+}

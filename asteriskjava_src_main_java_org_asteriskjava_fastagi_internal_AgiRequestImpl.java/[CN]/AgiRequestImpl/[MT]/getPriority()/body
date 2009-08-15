@@ -1,0 +1,6 @@
+{
+  if (request.get("priority") != null) {
+    return Integer.valueOf(request.get("priority"));
+  }
+  return null;
+}

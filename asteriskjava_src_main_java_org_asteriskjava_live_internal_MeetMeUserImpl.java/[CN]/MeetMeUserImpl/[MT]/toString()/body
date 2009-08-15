@@ -1,0 +1,21 @@
+{
+  StringBuffer sb;
+  int systemHashcode;
+  sb=new StringBuffer("MeetMeUser[");
+synchronized (this) {
+    sb.append("dateJoined='").append(getDateJoined()).append("',");
+    sb.append("dateLeft='").append(getDateLeft()).append("',");
+    sb.append("talking=").append(isTalking()).append(",");
+    sb.append("muted=").append(isMuted()).append(",");
+    sb.append("room=").append(room).append(",");
+    systemHashcode=System.identityHashCode(this);
+  }
+  sb.append("channel=AsteriskChannel[");
+synchronized (channel) {
+    sb.append("id='").append(channel.getId()).append("',");
+    sb.append("name='").append(channel.getName()).append("'],");
+  }
+  sb.append("systemHashcode=").append(systemHashcode);
+  sb.append("]");
+  return sb.toString();
+}

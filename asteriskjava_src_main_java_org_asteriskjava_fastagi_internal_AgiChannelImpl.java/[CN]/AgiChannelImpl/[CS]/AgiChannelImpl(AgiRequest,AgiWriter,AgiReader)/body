@@ -1,0 +1,6 @@
+{
+  this.request=request;
+  this.agiWriter=agiWriter;
+  this.agiReader=agiReader;
+  this.lastReply=null;
+}

@@ -1,0 +1,5 @@
+{
+  DefaultAgiServer defaultAgiServer;
+  defaultAgiServer=new DefaultAgiServer("test1-fastagi");
+  assertEquals("Port property not recognized",1234,defaultAgiServer.getPort());
+}

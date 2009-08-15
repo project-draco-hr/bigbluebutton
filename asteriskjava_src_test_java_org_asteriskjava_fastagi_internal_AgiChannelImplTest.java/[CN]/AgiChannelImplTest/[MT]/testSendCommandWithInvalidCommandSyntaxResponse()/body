@@ -1,0 +1,25 @@
+{
+  SimpleAgiReply reply;
+  NoopCommand command;
+  reply=new SimpleAgiReply();
+  reply.setStatus(AgiReply.SC_INVALID_COMMAND_SYNTAX);
+  reply.setSynopsis("NOOP Synopsis");
+  reply.setUsage("NOOP Usage");
+  reply.setResult("0");
+  command=new NoopCommand();
+  agiWriter.sendCommand(command);
+  expect(agiReader.readReply()).andReturn(reply);
+  replay(agiWriter);
+  replay(agiReader);
+  try {
+    agiChannel.sendCommand(command);
+    fail("must throw InvalidCommandSyntaxException");
+  }
+ catch (  InvalidCommandSyntaxException e) {
+    assertEquals("Incorrect message","Invalid command syntax: NOOP Synopsis",e.getMessage());
+    assertEquals("Incorrect sysnopsis","NOOP Synopsis",e.getSynopsis());
+    assertEquals("Incorrect usage","NOOP Usage",e.getUsage());
+  }
+  verify(agiWriter);
+  verify(agiReader);
+}

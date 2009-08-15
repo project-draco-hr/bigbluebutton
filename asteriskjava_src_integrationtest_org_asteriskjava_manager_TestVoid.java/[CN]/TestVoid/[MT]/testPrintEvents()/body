@@ -1,0 +1,13 @@
+{
+  DefaultManagerConnection dmc;
+  dmc=getDefaultManagerConnection();
+  dmc.login();
+  dmc.addEventListener(new ManagerEventListener(){
+    public void onManagerEvent(    ManagerEvent event){
+      System.out.println("Got event: " + event);
+    }
+  }
+);
+  Thread.sleep(30000);
+  dmc.logoff();
+}

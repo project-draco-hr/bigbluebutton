@@ -1,0 +1,13 @@
+{
+  AgiReplyImpl reply;
+  lines.add("520-Invalid command syntax.  Proper usage follows:");
+  lines.add(" Usage: DATABASE DEL <family> <key>");
+  lines.add("        Deletes an entry in the Asterisk database for a");
+  lines.add(" given family and key.");
+  lines.add(" Returns 1 if succesful, 0 otherwise");
+  lines.add("520 End of proper usage.");
+  reply=new AgiReplyImpl(lines);
+  assertEquals("Incorrect status",AgiReplyImpl.SC_INVALID_COMMAND_SYNTAX,reply.getStatus());
+  assertEquals("Incorrect synopsis","DATABASE DEL <family> <key>",reply.getSynopsis());
+  assertEquals("Incorrect usage","Deletes an entry in the Asterisk database for a given family and key. Returns 1 if succesful, 0 otherwise",reply.getUsage());
+}

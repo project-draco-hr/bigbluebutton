@@ -1,0 +1,12 @@
+{
+  position--;
+  AsteriskQueueEntryImpl foundEntry=null;
+synchronized (entries) {
+    try {
+      foundEntry=entries.get(position);
+    }
+ catch (    IndexOutOfBoundsException e) {
+    }
+  }
+  return foundEntry;
+}

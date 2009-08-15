@@ -1,0 +1,5 @@
+{
+  assertTrue("null must be null",AstUtil.isNull(null));
+  assertTrue("unknown must be null",AstUtil.isNull("unknown"));
+  assertTrue("<unknown> must be null",AstUtil.isNull("<unknown>"));
+}

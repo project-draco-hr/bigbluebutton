@@ -1,0 +1,3 @@
+{
+  this.connectionHandlers=new HashMap<Integer,AsyncAgiConnectionHandler>();
+}

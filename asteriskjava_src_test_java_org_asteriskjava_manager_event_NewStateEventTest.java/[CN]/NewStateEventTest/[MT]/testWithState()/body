@@ -1,0 +1,5 @@
+{
+  newStateEvent.setState("Ring");
+  assertEquals(new Integer(4),newStateEvent.getChannelState());
+  assertEquals("Ring",newStateEvent.getChannelStateDesc());
+}

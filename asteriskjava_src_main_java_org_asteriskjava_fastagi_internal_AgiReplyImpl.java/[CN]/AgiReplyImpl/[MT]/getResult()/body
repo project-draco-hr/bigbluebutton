@@ -1,0 +1,11 @@
+{
+  if (result != null) {
+    return result;
+  }
+  final Matcher matcher=RESULT_PATTERN.matcher(firstLine);
+  if (matcher.find()) {
+    result=matcher.group(1);
+  }
+ else   result="";
+  return result;
+}

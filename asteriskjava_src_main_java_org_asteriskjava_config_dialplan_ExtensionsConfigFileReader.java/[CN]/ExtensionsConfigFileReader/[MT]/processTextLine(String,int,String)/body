@@ -1,0 +1,17 @@
+{
+  ConfigElement configElement;
+  if ((line.trim().startsWith("exten") || line.trim().startsWith("include")) && currentCategory != null && (currentCategory.getName().equals("general") || currentCategory.getName().equals("globals")))   throw new ConfigParseException(configfile,lineno,"cannot have 'exten' or 'include' in global or general sections");
+  if (line.trim().startsWith("exten")) {
+    configElement=parseExtension(configfile,lineno,line);
+    currentCategory.addElement(configElement);
+    return configElement;
+  }
+ else   if (line.trim().startsWith("include")) {
+    ConfigVariable configvar=parseVariable(configfile,lineno,line);
+    configElement=new ConfigInclude(configfile,lineno,configvar.getValue());
+    currentCategory.addElement(configElement);
+    return configElement;
+  }
+  configElement=super.processTextLine(configfile,lineno,line);
+  return configElement;
+}

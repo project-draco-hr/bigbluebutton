@@ -1,0 +1,5 @@
+{
+  this.server=server;
+  this.channelManager=channelManager;
+  this.queues=new HashMap<String,AsteriskQueueImpl>();
+}

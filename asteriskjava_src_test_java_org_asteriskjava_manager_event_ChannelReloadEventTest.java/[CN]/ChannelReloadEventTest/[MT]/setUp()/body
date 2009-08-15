@@ -1,0 +1,4 @@
+{
+  super.setUp();
+  this.event=new ChannelReloadEvent(this);
+}

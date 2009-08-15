@@ -1,0 +1,23 @@
+{
+  for (int i=0; i < NUM_LOOPS; i++) {
+    int id=total.getAndIncrement();
+    String actionId="A_" + id;
+    try {
+      ResponseEvents responseEvents;
+      StatusAction a=new StatusAction();
+      a.setActionId(actionId);
+      responseEvents=dmc.sendEventGeneratingAction(a);
+      if (responseEvents.getEvents().size() == 2) {
+        succeeded.getAndIncrement();
+      }
+ else {
+        failed.getAndIncrement();
+      }
+    }
+ catch (    Exception e) {
+      failed.getAndIncrement();
+      System.err.println("Error for " + actionId);
+      e.printStackTrace();
+    }
+  }
+}

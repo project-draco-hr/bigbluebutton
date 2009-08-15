@@ -1,0 +1,4 @@
+{
+  response.setQualifyFreq("6000 ms");
+  assertEquals("Incorrect qualifyFreq",6000,(int)response.getQualifyFreq());
+}

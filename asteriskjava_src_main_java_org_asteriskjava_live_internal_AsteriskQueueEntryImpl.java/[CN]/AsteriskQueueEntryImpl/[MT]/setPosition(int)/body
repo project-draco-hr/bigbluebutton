@@ -1,0 +1,5 @@
+{
+  int oldPosition=this.position;
+  this.position=position;
+  firePropertyChange(PROPERTY_POSITION,oldPosition,position);
+}

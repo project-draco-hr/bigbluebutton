@@ -1,0 +1,4 @@
+{
+  getDataCommand=new GetDataCommand("VAR1");
+  assertEquals("GET DATA \"VAR1\"",getDataCommand.buildCommand());
+}

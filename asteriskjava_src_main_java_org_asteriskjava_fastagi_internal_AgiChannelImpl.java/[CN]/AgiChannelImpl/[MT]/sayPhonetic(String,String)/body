@@ -1,0 +1,4 @@
+{
+  sendCommand(new SayPhoneticCommand(text,escapeDigits));
+  return lastReply.getResultCodeAsChar();
+}

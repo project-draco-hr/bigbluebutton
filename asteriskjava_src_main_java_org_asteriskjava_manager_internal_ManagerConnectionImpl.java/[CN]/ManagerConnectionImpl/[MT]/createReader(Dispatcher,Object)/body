@@ -1,0 +1,3 @@
+{
+  return new ManagerReaderImpl(dispatcher,source);
+}

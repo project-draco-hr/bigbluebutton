@@ -1,0 +1,7 @@
+{
+  final String digit=agiReply.getAttribute("digit");
+  if (digit == null || digit.length() == 0) {
+    return 0x0;
+  }
+  return digit.charAt(0);
+}

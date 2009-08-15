@@ -1,0 +1,4 @@
+{
+  final String score0=agiReply.getAttribute("score0");
+  return score0 == null ? 0 : Integer.valueOf(score0);
+}

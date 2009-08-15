@@ -1,0 +1,15 @@
+{
+  String singularKey;
+  if (key.endsWith("s")) {
+    singularKey=key.substring(0,key.length() - 1);
+  }
+ else {
+    singularKey=key;
+  }
+  if (targetVersion.isAtLeast(AsteriskVersion.ASTERISK_1_2)) {
+    appendMap12(sb,singularKey,values);
+  }
+ else {
+    appendMap10(sb,singularKey,values);
+  }
+}

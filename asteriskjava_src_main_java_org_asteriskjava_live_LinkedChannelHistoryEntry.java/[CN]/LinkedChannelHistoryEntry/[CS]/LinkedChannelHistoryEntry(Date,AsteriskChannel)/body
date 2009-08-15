@@ -1,0 +1,4 @@
+{
+  this.dateLinked=dateLinked;
+  this.channel=channel;
+}

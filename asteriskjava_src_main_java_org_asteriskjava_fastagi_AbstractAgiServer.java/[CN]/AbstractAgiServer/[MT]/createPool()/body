@@ -1,0 +1,3 @@
+{
+  return new ThreadPoolExecutor(poolSize,(maximumPoolSize < poolSize) ? poolSize : maximumPoolSize,50000L,TimeUnit.MILLISECONDS,new SynchronousQueue<Runnable>(),new DaemonThreadFactory());
+}

@@ -1,0 +1,9 @@
+{
+  final String actionString;
+  if (socket == null) {
+    throw new IllegalStateException("Unable to send action: socket is null");
+  }
+  actionString=actionBuilder.buildAction(action,internalActionId);
+  socket.write(actionString);
+  socket.flush();
+}

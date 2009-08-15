@@ -1,0 +1,5 @@
+{
+  super();
+  this.time=time;
+  this.escapeDigits=escapeDigits;
+}

@@ -1,0 +1,12 @@
+{
+  for (  Map.Entry entry : values.entrySet()) {
+    sb.append(singularKey);
+    sb.append(": ");
+    sb.append(entry.getKey());
+    sb.append("=");
+    if (entry.getValue() != null) {
+      sb.append(entry.getValue());
+    }
+    sb.append(LINE_SEPARATOR);
+  }
+}

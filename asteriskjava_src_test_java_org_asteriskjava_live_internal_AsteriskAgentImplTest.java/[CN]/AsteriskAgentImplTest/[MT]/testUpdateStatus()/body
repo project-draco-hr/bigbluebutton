@@ -1,0 +1,15 @@
+{
+  assertEquals(AgentState.AGENT_IDLE,agent.getState());
+  agent.addPropertyChangeListener(new PropertyChangeListener(){
+    public void propertyChange(    PropertyChangeEvent evt){
+      assertEquals("wrong propertyName","state",evt.getPropertyName());
+      assertEquals("wrong oldValue",AgentState.AGENT_IDLE,evt.getOldValue());
+      assertEquals("wrong newValue",AgentState.AGENT_RINGING,evt.getNewValue());
+      assertEquals("wrong queue",agent,evt.getSource());
+      numberOfChanges++;
+    }
+  }
+);
+  agent.updateState(AgentState.AGENT_RINGING);
+  assertEquals("wrong number of propagated changes",1,numberOfChanges);
+}

@@ -1,0 +1,13 @@
+{
+  final String port;
+  if (addressWithPort == null || addressWithPort.length() == 0) {
+    return null;
+  }
+  if (addressWithPort.lastIndexOf(':') > 0) {
+    port=addressWithPort.substring(addressWithPort.lastIndexOf(':') + 1);
+  }
+ else {
+    return null;
+  }
+  return Integer.parseInt(port);
+}

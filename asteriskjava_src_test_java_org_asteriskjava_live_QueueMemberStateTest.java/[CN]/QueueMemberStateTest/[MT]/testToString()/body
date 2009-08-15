@@ -1,0 +1,3 @@
+{
+  assertEquals("DEVICE_INUSE",QueueMemberState.DEVICE_INUSE.toString());
+}

@@ -1,0 +1,8 @@
+{
+  final DefaultAgiServer server;
+  server=new DefaultAgiServer();
+  if (port != null) {
+    server.setPort(port);
+  }
+  server.startup();
+}

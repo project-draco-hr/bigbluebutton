@@ -1,0 +1,19 @@
+{
+  Integer state;
+  if (str == null) {
+    return null;
+  }
+  state=inverseStateMap.get(str);
+  if (state == null) {
+    Matcher matcher=UNKNOWN_STATE_PATTERN.matcher(str);
+    if (matcher.matches()) {
+      try {
+        state=Integer.valueOf(matcher.group(1));
+      }
+ catch (      NumberFormatException e) {
+        throw new IllegalArgumentException("Unable to convert state '" + str + "' to integer representation",e);
+      }
+    }
+  }
+  return state;
+}

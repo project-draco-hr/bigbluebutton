@@ -1,0 +1,4 @@
+{
+  this.events=new ArrayList<ResponseEvent>();
+  this.complete=false;
+}

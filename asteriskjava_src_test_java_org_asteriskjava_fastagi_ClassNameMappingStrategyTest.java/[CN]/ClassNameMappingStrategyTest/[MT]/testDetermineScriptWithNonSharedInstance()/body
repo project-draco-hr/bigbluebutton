@@ -1,0 +1,16 @@
+{
+  AgiScript scriptFirstPass;
+  AgiScript scriptSecondPass;
+  AgiRequest request;
+  mappingStrategy.setShareInstances(false);
+  request=new SimpleAgiRequest(){
+    @Override public String getScript(){
+      return "org.asteriskjava.fastagi.HelloAgiScript";
+    }
+  }
+;
+  scriptFirstPass=mappingStrategy.determineScript(request);
+  scriptSecondPass=mappingStrategy.determineScript(request);
+  assertEquals("incorrect script determined",scriptFirstPass.getClass(),HelloAgiScript.class);
+  assertTrue("returned a shared instance",scriptFirstPass != scriptSecondPass);
+}

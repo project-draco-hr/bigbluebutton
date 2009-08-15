@@ -1,0 +1,11 @@
+{
+  if (request.get("callingani2") == null) {
+    return null;
+  }
+  try {
+    return Integer.valueOf(request.get("callingani2"));
+  }
+ catch (  NumberFormatException e) {
+    return null;
+  }
+}

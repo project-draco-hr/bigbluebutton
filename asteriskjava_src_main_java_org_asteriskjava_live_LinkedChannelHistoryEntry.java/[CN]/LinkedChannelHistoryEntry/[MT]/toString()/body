@@ -1,0 +1,9 @@
+{
+  final StringBuilder sb;
+  sb=new StringBuilder(100);
+  sb.append("LinkedChannelHistoryEntry[");
+  sb.append("dateLinked=").append(dateLinked).append(",");
+  sb.append("dateUnlinked=").append(dateUnlinked).append(",");
+  sb.append("channel=").append(channel).append("]");
+  return sb.toString();
+}

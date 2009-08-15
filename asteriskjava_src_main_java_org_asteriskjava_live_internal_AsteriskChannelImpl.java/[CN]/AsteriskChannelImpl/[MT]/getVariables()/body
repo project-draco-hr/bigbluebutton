@@ -1,0 +1,5 @@
+{
+synchronized (variables) {
+    return new HashMap<String,String>(variables);
+  }
+}

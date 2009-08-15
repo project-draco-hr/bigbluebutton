@@ -1,0 +1,12 @@
+{
+  assertEquals("1234",AstUtil.parseCallerId("\"Hans Wurst\"<1234>")[1]);
+  assertEquals("1234",AstUtil.parseCallerId("\"Hans Wurst\" <1234>")[1]);
+  assertEquals("1234",AstUtil.parseCallerId("Hans Wurst <  1234 >   ")[1]);
+  assertEquals(null,AstUtil.parseCallerId("\"Hans Wurst\"")[1]);
+  assertEquals(null,AstUtil.parseCallerId("Hans Wurst")[1]);
+  assertEquals(null,AstUtil.parseCallerId("Hans Wurst <>")[1]);
+  assertEquals(null,AstUtil.parseCallerId("Hans Wurst <  > ")[1]);
+  assertEquals(null,AstUtil.parseCallerId(null)[1]);
+  assertEquals(null,AstUtil.parseCallerId("")[1]);
+  assertEquals(null,AstUtil.parseCallerId(" ")[1]);
+}

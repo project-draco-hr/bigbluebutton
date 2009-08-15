@@ -1,0 +1,15 @@
+{
+  if (state != INITIAL && state != DISCONNECTED) {
+    throw new IllegalStateException("Login may only be perfomed when in state " + "INITIAL or DISCONNECTED, but connection is in state " + state);
+  }
+  state=CONNECTING;
+  this.eventMask=eventMask;
+  try {
+    doLogin(defaultResponseTimeout,eventMask);
+  }
+  finally {
+    if (state != CONNECTED) {
+      state=DISCONNECTED;
+    }
+  }
+}

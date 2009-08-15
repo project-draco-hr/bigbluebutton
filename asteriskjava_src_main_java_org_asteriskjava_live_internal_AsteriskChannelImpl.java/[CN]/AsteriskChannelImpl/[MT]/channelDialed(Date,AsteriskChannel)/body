@@ -1,0 +1,10 @@
+{
+  final AsteriskChannel oldDialedChannel=this.dialedChannel;
+  final DialedChannelHistoryEntry historyEntry;
+  historyEntry=new DialedChannelHistoryEntry(date,dialedChannel);
+synchronized (dialedChannelHistory) {
+    dialedChannelHistory.add(historyEntry);
+  }
+  this.dialedChannel=dialedChannel;
+  firePropertyChange(PROPERTY_DIALED_CHANNEL,oldDialedChannel,dialedChannel);
+}

@@ -1,0 +1,14 @@
+{
+  channel.addPropertyChangeListener(new PropertyChangeListener(){
+    public void propertyChange(    PropertyChangeEvent evt){
+      assertEquals("wrong propertyName","state",evt.getPropertyName());
+      assertEquals("wrong oldValue",ChannelState.DOWN,evt.getOldValue());
+      assertEquals("wrong newValue",ChannelState.DIALING,evt.getNewValue());
+      assertEquals("wrong source",channel,evt.getSource());
+      numberOfChanges++;
+    }
+  }
+);
+  channel.stateChanged(DateUtil.getDate(),ChannelState.DIALING);
+  assertEquals("wrong number of propagated changes",1,numberOfChanges);
+}

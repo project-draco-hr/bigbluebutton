@@ -1,0 +1,16 @@
+{
+  if (state != CONNECTED && state != RECONNECTING) {
+    throw new IllegalStateException("Logoff may only be perfomed when in state " + "CONNECTED or RECONNECTING, but connection is in state " + state);
+  }
+  state=DISCONNECTING;
+  if (socket != null) {
+    try {
+      sendAction(new LogoffAction());
+    }
+ catch (    Exception e) {
+      logger.warn("Unable to send LogOff action",e);
+    }
+  }
+  cleanup();
+  state=DISCONNECTED;
+}

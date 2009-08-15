@@ -1,0 +1,9 @@
+{
+  OriginateAction originate;
+  originate=new OriginateAction();
+  originate.setChannel("Local/1310");
+  originate.setContext("default");
+  originate.setExten("1340");
+  originate.setPriority(1);
+  Thread.sleep(10000);
+}

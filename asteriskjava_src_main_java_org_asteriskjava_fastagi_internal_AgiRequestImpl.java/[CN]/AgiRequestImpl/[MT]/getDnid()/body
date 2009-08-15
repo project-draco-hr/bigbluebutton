@@ -1,0 +1,8 @@
+{
+  String dnid;
+  dnid=request.get("dnid");
+  if (dnid == null || "unknown".equals(dnid)) {
+    return null;
+  }
+  return dnid;
+}

@@ -1,0 +1,6 @@
+{
+  sendCommand(new SpeechLoadGrammarCommand(name,path));
+  if (lastReply.getResultCode() != 1) {
+    throw new AgiSpeechException("Grammar '" + name + "' cannot be loaded from '"+ path+ "'");
+  }
+}

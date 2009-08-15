@@ -1,0 +1,3 @@
+{
+  newStateEvent=new NewStateEvent(this);
+}

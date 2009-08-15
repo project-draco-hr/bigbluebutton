@@ -1,0 +1,7 @@
+{
+  now=new Date();
+  DateUtil.overrideCurrentDate(now);
+  dispatcher=new MockedDispatcher();
+  managerReader=new ManagerReaderImpl(dispatcher,this);
+  socketConnectionFacade=createMock(SocketConnectionFacade.class);
+}

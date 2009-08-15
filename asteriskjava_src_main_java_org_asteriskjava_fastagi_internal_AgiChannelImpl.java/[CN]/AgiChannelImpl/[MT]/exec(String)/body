@@ -1,0 +1,4 @@
+{
+  sendCommand(new ExecCommand(application));
+  return lastReply.getResultCode();
+}

@@ -1,0 +1,24 @@
+{
+  logger.info("Connecting to " + hostname + ":"+ port);
+  if (reader == null) {
+    logger.debug("Creating reader for " + hostname + ":"+ port);
+    reader=createReader(this,this);
+  }
+  if (writer == null) {
+    logger.debug("Creating writer");
+    writer=createWriter();
+  }
+  logger.debug("Creating socket");
+  socket=createSocket();
+  logger.debug("Passing socket to reader");
+  reader.setSocket(socket);
+  if (readerThread == null || !readerThread.isAlive() || reader.isDead()) {
+    logger.debug("Creating and starting reader thread");
+    readerThread=new Thread(reader);
+    readerThread.setName("Asterisk-Java ManagerConnection-" + id + "-Reader-"+ readerThreadCounter.getAndIncrement());
+    readerThread.setDaemon(true);
+    readerThread.start();
+  }
+  logger.debug("Passing socket to writer");
+  writer.setSocket(socket);
+}

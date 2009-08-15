@@ -1,0 +1,11 @@
+{
+synchronized (events) {
+    events.setRepsonse(response);
+    if (response instanceof ManagerError) {
+      events.setComplete(true);
+    }
+    if (events.isComplete()) {
+      events.notifyAll();
+    }
+  }
+}

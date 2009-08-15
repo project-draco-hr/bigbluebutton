@@ -1,0 +1,8 @@
+{
+  int resultCode;
+  resultCode=getResultCode();
+  if (resultCode < 0) {
+    return 0x0;
+  }
+  return (char)resultCode;
+}

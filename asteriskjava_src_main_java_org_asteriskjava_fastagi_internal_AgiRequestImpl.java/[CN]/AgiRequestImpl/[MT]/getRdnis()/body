@@ -1,0 +1,8 @@
+{
+  String rdnis;
+  rdnis=request.get("rdnis");
+  if (rdnis == null || "unknown".equals(rdnis)) {
+    return null;
+  }
+  return rdnis;
+}

@@ -1,0 +1,7 @@
+{
+  if (!callerIdCreated) {
+    rawCallerId=request.get("callerid");
+    callerIdCreated=true;
+  }
+  return AstUtil.parseCallerId(rawCallerId)[0];
+}

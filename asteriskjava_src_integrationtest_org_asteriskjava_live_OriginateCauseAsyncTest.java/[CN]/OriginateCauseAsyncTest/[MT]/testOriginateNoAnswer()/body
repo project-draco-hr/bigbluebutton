@@ -1,0 +1,8 @@
+{
+synchronized (status) {
+    server.originateToExtensionAsync("Local/noanswer@aj-test","aj-test","answer",1,timeout,cb);
+    status.wait();
+    status.print();
+    assertNotNull(status.noAnswerChannel);
+  }
+}

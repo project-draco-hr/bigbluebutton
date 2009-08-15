@@ -1,0 +1,10 @@
+{
+  if (preComment != null && preComment.length() != 0) {
+    sb.append(preComment);
+  }
+  rawFormat(sb);
+  if (samelineComment != null && samelineComment.length() != 0) {
+    sb.append(" ; ").append(samelineComment);
+  }
+  return sb;
+}

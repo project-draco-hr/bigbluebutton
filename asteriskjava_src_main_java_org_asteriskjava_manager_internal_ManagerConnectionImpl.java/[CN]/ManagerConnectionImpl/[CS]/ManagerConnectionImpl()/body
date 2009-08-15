@@ -1,0 +1,7 @@
+{
+  this.id=idCounter.getAndIncrement();
+  this.responseListeners=new HashMap<String,SendActionCallback>();
+  this.responseEventListeners=new HashMap<String,ManagerEventListener>();
+  this.eventListeners=new ArrayList<ManagerEventListener>();
+  this.protocolIdentifier=new ProtocolIdentifierWrapper();
+}

@@ -1,0 +1,29 @@
+{
+  SocketConnectionFacade socket;
+  AgiConnectionHandler connectionHandler;
+  try {
+    serverSocket=createServerSocket();
+  }
+ catch (  IOException e) {
+    logger.error("Unable start AgiServer: cannot to bind to *:" + port + ".",e);
+    throw e;
+  }
+  logger.info("Listening on *:" + port + ".");
+  while (true) {
+    try {
+      socket=serverSocket.accept();
+      logger.info("Received connection from " + socket.getRemoteAddress());
+      connectionHandler=new FastAgiConnectionHandler(getMappingStrategy(),socket);
+      execute(connectionHandler);
+    }
+ catch (    IOException e) {
+      if (isDie()) {
+        break;
+      }
+ else {
+        logger.error("IOException while waiting for connections.",e);
+      }
+    }
+  }
+  logger.info("AgiServer shut down.");
+}

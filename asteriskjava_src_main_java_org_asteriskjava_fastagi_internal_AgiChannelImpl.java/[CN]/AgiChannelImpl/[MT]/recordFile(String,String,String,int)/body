@@ -1,0 +1,4 @@
+{
+  sendCommand(new RecordFileCommand(file,format,escapeDigits,timeout));
+  return lastReply.getResultCodeAsChar();
+}

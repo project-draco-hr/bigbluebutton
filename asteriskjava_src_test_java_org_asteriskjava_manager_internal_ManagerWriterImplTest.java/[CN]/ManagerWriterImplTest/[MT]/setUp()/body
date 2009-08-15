@@ -1,0 +1,3 @@
+{
+  managerWriter=new ManagerWriterImpl();
+}

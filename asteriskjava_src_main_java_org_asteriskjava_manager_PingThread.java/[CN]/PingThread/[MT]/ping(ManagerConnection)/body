@@ -1,0 +1,15 @@
+{
+  try {
+    if (timeout <= 0) {
+      c.sendAction(new PingAction(),null);
+    }
+ else {
+      final ManagerResponse response;
+      response=c.sendAction(new PingAction(),timeout);
+      logger.debug("Ping response '" + response + "' for "+ c.toString());
+    }
+  }
+ catch (  Exception e) {
+    logger.warn("Exception on sending Ping to " + c.toString(),e);
+  }
+}

@@ -1,0 +1,12 @@
+{
+  DefaultManagerConnection dmc;
+  dmc=getDefaultManagerConnection();
+  dmc.login();
+  ResponseEvents events=dmc.sendEventGeneratingAction(new VoicemailUsersListAction());
+  System.out.println(events.getResponse());
+  for (  ManagerEvent event : events.getEvents()) {
+    System.out.println(event);
+  }
+  Thread.sleep(3000);
+  dmc.logoff();
+}

@@ -1,0 +1,4 @@
+{
+  this.channelName=channelName;
+  writer.updateChannelName(channelName);
+}

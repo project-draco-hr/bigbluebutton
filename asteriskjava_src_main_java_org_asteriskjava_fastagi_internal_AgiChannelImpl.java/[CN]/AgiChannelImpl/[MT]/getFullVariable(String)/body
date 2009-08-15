@@ -1,0 +1,7 @@
+{
+  sendCommand(new GetFullVariableCommand(name));
+  if (lastReply.getResultCode() != 1) {
+    return null;
+  }
+  return lastReply.getExtra();
+}

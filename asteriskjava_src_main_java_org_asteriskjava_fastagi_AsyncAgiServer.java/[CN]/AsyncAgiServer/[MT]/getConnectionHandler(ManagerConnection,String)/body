@@ -1,0 +1,5 @@
+{
+synchronized (connectionHandlers) {
+    return connectionHandlers.get(calculateHashKey(connection,channelName));
+  }
+}

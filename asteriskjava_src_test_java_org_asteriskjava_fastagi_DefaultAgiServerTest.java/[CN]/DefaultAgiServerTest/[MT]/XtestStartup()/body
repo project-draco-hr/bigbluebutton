@@ -1,0 +1,22 @@
+{
+  socket=createMock(SocketConnectionFacade.class);
+  expect(socket.readLine()).andReturn(null);
+  expect(socket.getLocalAddress()).andReturn(null);
+  expect(socket.getLocalPort()).andReturn(1);
+  expect(socket.getRemoteAddress()).andReturn(null);
+  expect(socket.getRemotePort()).andReturn(2);
+  socket.write("VERBOSE \"No script configured for null\" 1\n");
+  socket.flush();
+  expect(socket.readLine()).andReturn(null);
+  socket.close();
+  replay(socket);
+  try {
+    server.startup();
+  }
+ catch (  IOException e) {
+  }
+  Thread.sleep(500);
+  assertEquals("serverSocket.accept() not called 2 times",2,serverSocket.acceptCalls);
+  assertEquals("serverSocket.close() not called",1,serverSocket.closeCalls);
+  verify(socket);
+}

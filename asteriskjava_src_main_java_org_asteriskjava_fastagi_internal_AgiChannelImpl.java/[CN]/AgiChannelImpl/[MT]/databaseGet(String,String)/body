@@ -1,0 +1,7 @@
+{
+  sendCommand(new DatabaseGetCommand(family,key));
+  if (lastReply.getResultCode() != 1) {
+    return null;
+  }
+  return lastReply.getExtra();
+}

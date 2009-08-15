@@ -1,0 +1,22 @@
+{
+  if (defaultClassLoader == null) {
+    final ClassLoader parentClassLoader=Thread.currentThread().getContextClassLoader();
+    final List<URL> dirUrls=new ArrayList<URL>();
+    for (    String scriptPathEntry : DEFAULT_SCRIPT_PATH) {
+      final File scriptDir=new File(scriptPathEntry);
+      if (!scriptDir.isDirectory()) {
+        continue;
+      }
+      try {
+        dirUrls.add(scriptDir.toURI().toURL());
+      }
+ catch (      MalformedURLException e) {
+      }
+    }
+    if (dirUrls.size() == 0) {
+      return parentClassLoader;
+    }
+    defaultClassLoader=new URLClassLoader(dirUrls.toArray(new URL[dirUrls.size()]),parentClassLoader);
+  }
+  return defaultClassLoader;
+}

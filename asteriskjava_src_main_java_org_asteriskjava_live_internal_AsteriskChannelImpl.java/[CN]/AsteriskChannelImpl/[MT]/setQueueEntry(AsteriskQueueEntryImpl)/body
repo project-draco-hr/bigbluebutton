@@ -1,0 +1,5 @@
+{
+  final AsteriskQueueEntry oldQueueEntry=this.queueEntryImpl;
+  this.queueEntryImpl=queueEntry;
+  firePropertyChange(PROPERTY_QUEUE_ENTRY,oldQueueEntry,queueEntry);
+}

@@ -1,0 +1,18 @@
+{
+  final StringBuilder sb;
+  sb=new StringBuilder();
+  if (name != null) {
+    sb.append("\"");
+    sb.append(name);
+    sb.append("\"");
+    if (number != null) {
+      sb.append(" ");
+    }
+  }
+  if (number != null) {
+    sb.append("<");
+    sb.append(number);
+    sb.append(">");
+  }
+  return sb.toString();
+}

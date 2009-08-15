@@ -1,0 +1,3 @@
+{
+  impl.originateAsync(originateAction,cb);
+}

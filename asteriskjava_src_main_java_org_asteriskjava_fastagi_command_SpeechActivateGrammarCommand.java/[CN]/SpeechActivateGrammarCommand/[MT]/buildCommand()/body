@@ -1,0 +1,3 @@
+{
+  return "SPEECH ACTIVATE GRAMMAR " + escapeAndQuote(name);
+}

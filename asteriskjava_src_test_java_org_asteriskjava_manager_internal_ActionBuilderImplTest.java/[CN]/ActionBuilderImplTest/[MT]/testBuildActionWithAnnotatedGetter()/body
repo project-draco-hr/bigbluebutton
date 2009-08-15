@@ -1,0 +1,5 @@
+{
+  AnnotatedAction action=new AnnotatedAction("value1","value2","value3");
+  String actual=actionBuilder.buildAction(action);
+  assertTrue("Incorrect mapping of property with annotated getter",actual.indexOf("property-1: value1\r\n") >= 0);
+}

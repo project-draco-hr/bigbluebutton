@@ -1,0 +1,31 @@
+{
+  final ResourceBundle resourceBundle;
+  try {
+    resourceBundle=ResourceBundle.getBundle(configResourceBundleName);
+  }
+ catch (  MissingResourceException e) {
+    return;
+  }
+  try {
+    String portString;
+    try {
+      portString=resourceBundle.getString("port");
+    }
+ catch (    MissingResourceException e) {
+      portString=resourceBundle.getString("bindPort");
+    }
+    port=Integer.parseInt(portString);
+  }
+ catch (  Exception e) {
+  }
+  try {
+    setPoolSize(Integer.parseInt(resourceBundle.getString("poolSize")));
+  }
+ catch (  Exception e) {
+  }
+  try {
+    setMaximumPoolSize(Integer.parseInt(resourceBundle.getString("maximumPoolSize")));
+  }
+ catch (  Exception e) {
+  }
+}

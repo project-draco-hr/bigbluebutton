@@ -1,0 +1,12 @@
+{
+synchronized (listeners) {
+    for (    AsteriskServerListener listener : listeners) {
+      try {
+        listener.onNewAgent(agent);
+      }
+ catch (      Exception e) {
+        logger.warn("Exception in onNewAgent()",e);
+      }
+    }
+  }
+}

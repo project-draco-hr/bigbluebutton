@@ -1,0 +1,5 @@
+{
+  super();
+  this.digits=digits;
+  this.escapeDigits=escapeDigits;
+}

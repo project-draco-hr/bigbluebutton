@@ -1,0 +1,9 @@
+{
+  StringBuffer sb;
+  sb=new StringBuffer("ManagerConnection[");
+  sb.append("id='").append(id).append("',");
+  sb.append("hostname='").append(hostname).append("',");
+  sb.append("port=").append(port).append(",");
+  sb.append("systemHashcode=").append(System.identityHashCode(this)).append("]");
+  return sb.toString();
+}

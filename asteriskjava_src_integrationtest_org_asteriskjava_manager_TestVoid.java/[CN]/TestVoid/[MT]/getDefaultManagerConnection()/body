@@ -1,0 +1,9 @@
+{
+  DefaultManagerConnection dmc;
+  dmc=new DefaultManagerConnection();
+  dmc.setUsername("manager");
+  dmc.setPassword("obelisk");
+  dmc.setHostname("pbx0.cologne.reucon.net");
+  dmc.setPort(5038);
+  return dmc;
+}

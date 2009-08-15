@@ -1,0 +1,7 @@
+{
+  ManagerResponse response;
+  response=server.sendAction(new PauseMonitorAction(name));
+  if (response instanceof ManagerError) {
+    throw new NoSuchChannelException("Channel '" + name + "' is not available: "+ response.getMessage());
+  }
+}

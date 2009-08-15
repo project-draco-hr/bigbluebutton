@@ -1,0 +1,4 @@
+{
+  myCommand=new MyCommand("Caller is:\nJohn Doe");
+  assertEquals("MY \"Caller is:John Doe\"",myCommand.buildCommand());
+}

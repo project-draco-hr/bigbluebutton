@@ -1,0 +1,8 @@
+{
+  if (actionId == null) {
+    return internalActionId + INTERNAL_ACTION_ID_DELIMITER;
+  }
+ else {
+    return internalActionId + INTERNAL_ACTION_ID_DELIMITER + actionId;
+  }
+}

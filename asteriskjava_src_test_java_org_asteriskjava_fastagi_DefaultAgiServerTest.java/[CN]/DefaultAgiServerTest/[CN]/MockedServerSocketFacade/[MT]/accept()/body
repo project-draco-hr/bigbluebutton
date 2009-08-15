@@ -1,0 +1,14 @@
+{
+  acceptCalls++;
+  try {
+    Thread.sleep(100);
+  }
+ catch (  InterruptedException e) {
+  }
+  if (acceptCalls == 1) {
+    return socket;
+  }
+ else {
+    throw new IOException("Provoked IOException");
+  }
+}

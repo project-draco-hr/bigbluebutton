@@ -1,0 +1,9 @@
+{
+  this.socket=socket;
+  InputStream inputStream=socket.getInputStream();
+  OutputStream outputStream=socket.getOutputStream();
+  BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream));
+  this.scanner=new Scanner(reader);
+  this.scanner.useDelimiter(pattern);
+  this.writer=new BufferedWriter(new OutputStreamWriter(outputStream));
+}

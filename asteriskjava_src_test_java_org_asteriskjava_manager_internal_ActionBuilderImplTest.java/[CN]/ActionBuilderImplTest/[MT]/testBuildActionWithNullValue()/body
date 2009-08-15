@@ -1,0 +1,11 @@
+{
+  MyAction myAction;
+  String actual;
+  myAction=new MyAction();
+  myAction.setFirstProperty("first value");
+  actual=actionBuilder.buildAction(myAction);
+  assertTrue("Action name missing",actual.indexOf("action: My\r\n") >= 0);
+  assertTrue("First property missing",actual.indexOf("firstproperty: first value\r\n") >= 0);
+  assertTrue("Missing trailing CRNL CRNL",actual.endsWith("\r\n\r\n"));
+  assertEquals("Incorrect length",42,actual.length());
+}

@@ -1,0 +1,18 @@
+{
+  DisconnectEvent disconnectEvent;
+  replay(mockSocket);
+  disconnectEvent=new DisconnectEvent(this);
+  mc.setState(ManagerConnectionState.CONNECTED);
+  mc.setUsername("username");
+  mc.setPassword("password");
+  mc.dispatchEvent(disconnectEvent);
+  Thread.sleep(1000);
+  assertEquals("createSocket not called 1 time",1,mc.createSocketCalls);
+  assertEquals("createWriter not called 1 time",1,mc.createWriterCalls);
+  assertEquals("createReader not called 1 time",1,mc.createReaderCalls);
+  assertEquals("challenge action not sent 1 time",1,mockWriter.challengeActionsSent);
+  assertEquals("login action not sent 1 time",1,mockWriter.loginActionsSent);
+  assertEquals("unexpected other actions sent",0,mockWriter.otherActionsSent);
+  assertEquals("state is not CONNECTED",ManagerConnectionState.CONNECTED,mc.getState());
+  verify(mockSocket);
+}

@@ -1,0 +1,26 @@
+{
+  AsteriskQueueImpl queue;
+  final String name;
+  final Integer max;
+  final String strategy;
+  final Integer serviceLevel;
+  final Integer weight;
+  name=event.getQueue();
+  max=event.getMax();
+  strategy=event.getStrategy();
+  serviceLevel=event.getServiceLevel();
+  weight=event.getWeight();
+  queue=queues.get(name);
+  if (queue == null) {
+    queue=new AsteriskQueueImpl(server,name,max,strategy,serviceLevel,weight);
+    logger.info("Adding new queue " + queue);
+    addQueue(queue);
+  }
+ else {
+synchronized (queue) {
+      queue.setMax(max);
+      queue.setServiceLevel(serviceLevel);
+      queue.setWeight(weight);
+    }
+  }
+}

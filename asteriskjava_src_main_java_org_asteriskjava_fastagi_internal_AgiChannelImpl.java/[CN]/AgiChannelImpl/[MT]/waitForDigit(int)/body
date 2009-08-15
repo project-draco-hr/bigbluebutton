@@ -1,0 +1,4 @@
+{
+  sendCommand(new WaitForDigitCommand(timeout));
+  return lastReply.getResultCodeAsChar();
+}

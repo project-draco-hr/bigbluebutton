@@ -1,0 +1,3 @@
+{
+  server=new DefaultAsteriskServer("pbx0","manager","obelisk");
+}

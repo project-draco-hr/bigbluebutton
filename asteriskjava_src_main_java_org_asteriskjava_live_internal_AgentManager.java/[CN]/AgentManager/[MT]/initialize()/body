@@ -1,0 +1,10 @@
+{
+  ResponseEvents re;
+  re=server.sendEventGeneratingAction(new AgentsAction());
+  for (  ManagerEvent event : re.getEvents()) {
+    if (event instanceof AgentsEvent) {
+      System.out.println(event);
+      handleAgentsEvent((AgentsEvent)event);
+    }
+  }
+}

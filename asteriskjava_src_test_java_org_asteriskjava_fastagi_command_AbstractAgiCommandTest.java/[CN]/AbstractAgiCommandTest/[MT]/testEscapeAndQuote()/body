@@ -1,0 +1,4 @@
+{
+  myCommand=new MyCommand("just a string");
+  assertEquals("MY \"just a string\"",myCommand.buildCommand());
+}

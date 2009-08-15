@@ -1,0 +1,15 @@
+{
+  ManagerConnection connection;
+  ManagerResponse response;
+  connection=get();
+  try {
+    response=connection.sendAction(action);
+  }
+ catch (  Exception e) {
+    throw ManagerCommunicationExceptionMapper.mapSendActionException(action.getAction(),e);
+  }
+ finally {
+    put(connection);
+  }
+  return response;
+}

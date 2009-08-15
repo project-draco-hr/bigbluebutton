@@ -1,0 +1,10 @@
+{
+  expect(socketConnectionFacade.readLine()).andThrow(new IOException("Something happened to the network..."));
+  replay(socketConnectionFacade);
+  managerReader.setSocket(socketConnectionFacade);
+  managerReader.run();
+  verify(socketConnectionFacade);
+  assertEquals("must not dispatch a response",0,dispatcher.dispatchedResponses.size());
+  assertEquals("not exactly one events dispatched",1,dispatcher.dispatchedEvents.size());
+  assertEquals("first event must be a DisconnectEvent",DisconnectEvent.class,dispatcher.dispatchedEvents.get(0).getClass());
+}

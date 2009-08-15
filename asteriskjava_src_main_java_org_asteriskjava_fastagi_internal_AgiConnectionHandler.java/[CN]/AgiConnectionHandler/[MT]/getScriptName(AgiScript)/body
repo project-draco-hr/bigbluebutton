@@ -1,0 +1,9 @@
+{
+  if (script == null) {
+    return null;
+  }
+  if (script instanceof NamedAgiScript) {
+    return ((NamedAgiScript)script).getName();
+  }
+  return script.getClass().getName();
+}

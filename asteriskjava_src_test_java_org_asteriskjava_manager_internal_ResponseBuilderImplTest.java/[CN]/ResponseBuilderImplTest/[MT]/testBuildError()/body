@@ -1,0 +1,8 @@
+{
+  ManagerResponse response;
+  attributes.put("response","Error");
+  attributes.put("message","Missing action in request");
+  response=responseBuilder.buildResponse(ManagerResponse.class,attributes);
+  assertEquals("Response of wrong type",ManagerError.class,response.getClass());
+  assertEquals("Message not set correctly","Missing action in request",response.getMessage());
+}

@@ -1,0 +1,3 @@
+{
+  assertEquals("Valid enum for cause code 18",HangupCause.AST_CAUSE_NO_USER_RESPONSE,HangupCause.getByCode(18));
+}

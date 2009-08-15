@@ -1,0 +1,7 @@
+{
+  ManagerResponse response;
+  attributes.put("response","Success");
+  response=responseBuilder.buildResponse(null,attributes);
+  assertEquals("Response of wrong type",ManagerResponse.class,response.getClass());
+  assertEquals("Response not set correctly","Success",response.getResponse());
+}

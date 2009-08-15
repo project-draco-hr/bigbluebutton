@@ -1,0 +1,11 @@
+{
+  if (request.get("enhanced") != null) {
+    if ("1.0".equals(request.get("enhanced"))) {
+      return Boolean.TRUE;
+    }
+ else {
+      return Boolean.FALSE;
+    }
+  }
+  return null;
+}

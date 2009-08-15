@@ -1,0 +1,6 @@
+{
+  super();
+  this.file=file;
+  this.escapeDigits=escapeDigits;
+  this.timeout=-1;
+}

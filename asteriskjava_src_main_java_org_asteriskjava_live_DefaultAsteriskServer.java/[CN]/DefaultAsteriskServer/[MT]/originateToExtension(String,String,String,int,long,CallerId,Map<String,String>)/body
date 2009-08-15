@@ -1,0 +1,3 @@
+{
+  return impl.originateToExtension(channel,context,exten,priority,timeout,callerId,variables);
+}

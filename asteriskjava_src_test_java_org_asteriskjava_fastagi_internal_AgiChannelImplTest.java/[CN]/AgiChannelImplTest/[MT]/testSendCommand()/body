@@ -1,0 +1,15 @@
+{
+  SimpleAgiReply reply;
+  NoopCommand command;
+  reply=new SimpleAgiReply();
+  reply.setStatus(AgiReply.SC_SUCCESS);
+  reply.setResult("0");
+  command=new NoopCommand();
+  agiWriter.sendCommand(command);
+  expect(agiReader.readReply()).andReturn(reply);
+  replay(agiWriter);
+  replay(agiReader);
+  assertEquals(reply,agiChannel.sendCommand(command));
+  verify(agiWriter);
+  verify(agiReader);
+}

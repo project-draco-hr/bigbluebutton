@@ -1,0 +1,4 @@
+{
+  TimeZone tz=TimeZone.getTimeZone("GMT+2");
+  assertEquals(1148032488000L,cdrEvent.getStartTimeAsDate(tz).getTime());
+}

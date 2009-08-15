@@ -1,0 +1,24 @@
+{
+  final Map<String,String> variables;
+  final String traceId;
+  traceId=ACTION_ID_PREFIX_ORIGINATE + idCounter.getAndIncrement();
+  if (originateAction.getVariables() == null) {
+    variables=new HashMap<String,String>();
+  }
+ else {
+    variables=new HashMap<String,String>(originateAction.getVariables());
+  }
+  variables.put("__" + Constants.VARIABLE_TRACE_ID,traceId);
+  originateAction.setVariables(variables);
+  originateAction.setAsync(Boolean.TRUE);
+  originateAction.setActionId(traceId);
+  if (cb != null) {
+    final OriginateCallbackData callbackData;
+    callbackData=new OriginateCallbackData(originateAction,DateUtil.getDate(),cb);
+synchronized (originateCallbacks) {
+      originateCallbacks.put(traceId,callbackData);
+    }
+  }
+  initializeIfNeeded();
+  sendActionOnEventConnection(originateAction);
+}

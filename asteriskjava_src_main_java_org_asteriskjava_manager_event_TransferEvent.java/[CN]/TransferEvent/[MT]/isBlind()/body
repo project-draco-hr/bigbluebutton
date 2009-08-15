@@ -1,0 +1,3 @@
+{
+  return TRANSFER_TYPE_BLIND.equals(transferType);
+}

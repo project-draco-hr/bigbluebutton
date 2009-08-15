@@ -1,0 +1,6 @@
+{
+  if (scriptEngineManager == null) {
+    this.scriptEngineManager=new ScriptEngineManager(getClassLoader());
+  }
+  return scriptEngineManager;
+}

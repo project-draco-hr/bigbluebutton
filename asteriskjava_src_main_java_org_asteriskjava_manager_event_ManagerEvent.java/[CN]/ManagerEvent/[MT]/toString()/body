@@ -1,0 +1,26 @@
+{
+  StringBuffer sb;
+  Map<String,Method> getters;
+  sb=new StringBuffer(getClass().getName() + "[");
+  sb.append("dateReceived=").append(getDateReceived()).append(",");
+  if (getPrivilege() != null) {
+    sb.append("privilege='").append(getPrivilege()).append("',");
+  }
+  getters=ReflectionUtil.getGetters(getClass());
+  for (  Map.Entry<String,Method> entry : getters.entrySet()) {
+    final String attribute=entry.getKey();
+    if ("class".equals(attribute) || "datereceived".equals(attribute) || "privilege".equals(attribute)|| "source".equals(attribute)) {
+      continue;
+    }
+    try {
+      final Object value;
+      value=entry.getValue().invoke(this);
+      sb.append(attribute).append("='").append(value).append("',");
+    }
+ catch (    Exception e) {
+    }
+  }
+  sb.append("systemHashcode=").append(System.identityHashCode(this));
+  sb.append("]");
+  return sb.toString();
+}

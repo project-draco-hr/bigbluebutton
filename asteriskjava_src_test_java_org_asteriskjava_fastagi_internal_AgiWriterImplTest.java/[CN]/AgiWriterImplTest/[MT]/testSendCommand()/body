@@ -1,0 +1,9 @@
+{
+  StreamFileCommand command;
+  command=new StreamFileCommand("welcome");
+  socket.write("STREAM FILE \"welcome\" \"\"\n");
+  socket.flush();
+  replay(socket);
+  agiWriter.sendCommand(command);
+  verify(socket);
+}

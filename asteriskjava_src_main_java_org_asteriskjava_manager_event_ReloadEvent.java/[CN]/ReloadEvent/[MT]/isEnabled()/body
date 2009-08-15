@@ -1,0 +1,3 @@
+{
+  return status != null && STATUS_ENABLED.equalsIgnoreCase(status);
+}

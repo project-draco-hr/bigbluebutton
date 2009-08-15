@@ -1,0 +1,6 @@
+{
+  CallerId callerId=new CallerId("Hans Wurst","1234");
+  assertEquals(callerId,CallerId.valueOf("\"Hans Wurst\" <1234>"));
+  assertEquals(callerId,CallerId.valueOf("Hans Wurst <1234>"));
+  assertEquals(callerId,CallerId.valueOf(callerId.toString()));
+}

@@ -1,0 +1,7 @@
+{
+  createSocketCalls++;
+  if (throwIOExceptionOnFirstSocketCreate && createSocketCalls == 1) {
+    throw new IOException();
+  }
+  return mockSocket;
+}

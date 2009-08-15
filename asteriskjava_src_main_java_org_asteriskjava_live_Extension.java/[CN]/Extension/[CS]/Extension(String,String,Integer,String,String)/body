@@ -1,0 +1,7 @@
+{
+  this.context=context;
+  this.extension=extension;
+  this.priority=priority;
+  this.application=application;
+  this.appData=appData;
+}

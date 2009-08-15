@@ -1,0 +1,9 @@
+{
+  CdrEvent event;
+  properties.put("event","Cdr");
+  properties.put("channel","<none>");
+  event=(CdrEvent)eventBuilder.buildEvent(this,properties);
+  assertNotNull(event);
+  assertEquals("Returned event is of wrong type",CdrEvent.class,event.getClass());
+  assertNull("Property with value \"<none>\" is not null",event.getChannel());
+}

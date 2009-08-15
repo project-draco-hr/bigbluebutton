@@ -1,0 +1,8 @@
+{
+  ManagerResponse response;
+  initializeIfNeeded();
+  response=sendAction(new SetVarAction(variable,value));
+  if (response instanceof ManagerError) {
+    logger.error("Unable to set global variable '" + variable + "' to '"+ value+ "':"+ response.getMessage());
+  }
+}

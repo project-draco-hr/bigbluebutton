@@ -1,0 +1,10 @@
+{
+  SocketConnectionFacade socketConnectionFacade;
+  socketConnectionFacade=createMock(SocketConnectionFacade.class);
+  socketConnectionFacade.write("action: Status\r\n\r\n");
+  socketConnectionFacade.flush();
+  replay(socketConnectionFacade);
+  managerWriter.setSocket(socketConnectionFacade);
+  managerWriter.sendAction(new StatusAction(),null);
+  verify(socketConnectionFacade);
+}

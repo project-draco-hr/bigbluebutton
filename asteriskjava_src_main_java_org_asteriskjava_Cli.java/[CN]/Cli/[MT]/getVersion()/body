@@ -1,0 +1,18 @@
+{
+  String version="<unknown>";
+  final InputStream is;
+  final Properties properties;
+  is=getClass().getResourceAsStream("/META-INF/maven/org.asteriskjava/asterisk-java/pom.properties");
+  if (is == null) {
+    return version;
+  }
+  properties=new Properties();
+  try {
+    properties.load(is);
+  }
+ catch (  IOException e) {
+    return version;
+  }
+  version=properties.getProperty("version",version);
+  return version;
+}

@@ -1,0 +1,6 @@
+{
+  configFileReader.readFile("/etc/asterisk/sip2.conf");
+  for (  Category category : configFileReader.getCategories()) {
+    System.out.println(category.format());
+  }
+}

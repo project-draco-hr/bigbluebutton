@@ -1,0 +1,17 @@
+{
+  final ManagerResponse showVersionResponse;
+  try {
+    showVersionResponse=sendAction(new CommandAction("show version"),defaultResponseTimeout * 2);
+  }
+ catch (  Exception e) {
+    return null;
+  }
+  if (showVersionResponse instanceof CommandResponse) {
+    final List<String> showVersionResult;
+    showVersionResult=((CommandResponse)showVersionResponse).getResult();
+    if (showVersionResult != null && showVersionResult.size() > 0) {
+      return showVersionResult.get(0);
+    }
+  }
+  return null;
+}

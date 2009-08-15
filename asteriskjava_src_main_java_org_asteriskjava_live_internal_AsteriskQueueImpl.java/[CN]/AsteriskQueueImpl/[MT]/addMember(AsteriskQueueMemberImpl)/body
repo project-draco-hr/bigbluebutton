@@ -1,0 +1,10 @@
+{
+synchronized (members) {
+    if (members.containsValue(member)) {
+      return;
+    }
+    logger.info("Adding new member to the queue " + getName() + ": "+ member.toString());
+    members.put(member.getLocation(),member);
+  }
+  fireMemberAdded(member);
+}

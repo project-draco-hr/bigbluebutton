@@ -1,0 +1,3 @@
+{
+  return getChannel().controlStreamFile(file,escapeDigits);
+}

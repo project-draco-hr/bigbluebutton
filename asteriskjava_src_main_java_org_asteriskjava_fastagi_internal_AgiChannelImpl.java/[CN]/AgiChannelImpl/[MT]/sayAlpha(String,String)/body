@@ -1,0 +1,4 @@
+{
+  sendCommand(new SayAlphaCommand(text,escapeDigits));
+  return lastReply.getResultCodeAsChar();
+}

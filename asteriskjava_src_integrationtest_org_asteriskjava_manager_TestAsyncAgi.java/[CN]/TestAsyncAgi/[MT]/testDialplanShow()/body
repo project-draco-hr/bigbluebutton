@@ -1,0 +1,12 @@
+{
+  DefaultManagerConnection managerConnection;
+  managerConnection=getDefaultManagerConnection();
+  managerConnection.login();
+  CommandAction commandAction=new CommandAction("sip show peers");
+  ManagerResponse response=managerConnection.sendAction(commandAction);
+  if (response instanceof CommandResponse) {
+    for (    String item : ((CommandResponse)response).getResult()) {
+      System.out.println(item);
+    }
+  }
+}

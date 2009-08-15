@@ -1,0 +1,3 @@
+{
+  sendMeetMeCommand(LOCK_COMMAND);
+}

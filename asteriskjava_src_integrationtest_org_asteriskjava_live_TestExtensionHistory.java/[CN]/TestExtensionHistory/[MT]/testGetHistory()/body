@@ -1,0 +1,18 @@
+{
+  Collection<AsteriskChannel> channels;
+  try {
+    Thread.sleep(5000);
+  }
+ catch (  InterruptedException e) {
+  }
+  channels=server.getChannels();
+  System.out.println("# of active channels: " + channels.size());
+  for (  AsteriskChannel channel : channels) {
+    System.out.println(channel);
+    System.out.println("  first extension: " + channel.getFirstExtension());
+    System.out.println("  current extension: " + channel.getCurrentExtension());
+    for (    ExtensionHistoryEntry extensionHistoryEntry : channel.getExtensionHistory()) {
+      System.out.println("  " + extensionHistoryEntry);
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (event instanceof AsyncAgiEvent) {
+    handleAsyncAgiEvent((AsyncAgiEvent)event);
+  }
+ else   if (event instanceof RenameEvent) {
+    handleRenameEvent((RenameEvent)event);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  impl.setManagerConnection(eventConnection);
+}

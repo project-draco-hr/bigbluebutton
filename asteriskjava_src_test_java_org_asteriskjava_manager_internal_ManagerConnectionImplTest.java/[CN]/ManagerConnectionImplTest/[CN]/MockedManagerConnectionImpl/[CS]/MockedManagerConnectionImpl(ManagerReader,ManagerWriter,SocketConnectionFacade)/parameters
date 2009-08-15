@@ -1,0 +1,3 @@
+ManagerReader mockReader
+ManagerWriter mockWriter
+SocketConnectionFacade mockSocket

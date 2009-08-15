@@ -1,0 +1,16 @@
+{
+  try {
+    BeanInfo beanInfo=Introspector.getBeanInfo(obj.getClass());
+    for (    PropertyDescriptor propertyDescriptor : beanInfo.getPropertyDescriptors()) {
+      if (!propertyDescriptor.getName().equals(property)) {
+        continue;
+      }
+      return propertyDescriptor.getReadMethod().invoke(obj).toString();
+    }
+  }
+ catch (  Exception e) {
+    System.err.println("Unable to read property '" + property + "' from object "+ obj+ ": "+ e.getMessage());
+    return null;
+  }
+  return null;
+}

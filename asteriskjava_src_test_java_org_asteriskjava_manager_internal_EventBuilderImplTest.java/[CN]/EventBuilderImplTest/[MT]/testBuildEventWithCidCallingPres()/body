@@ -1,0 +1,9 @@
+{
+  ManagerEvent event;
+  properties.put("event","Newcallerid");
+  properties.put("cid-callingpres","123 (nice description)");
+  event=eventBuilder.buildEvent(this,properties);
+  assertNotNull(event);
+  assertEquals("CidCallingPres property not set correctly",Integer.valueOf(123),((NewCallerIdEvent)event).getCidCallingPres());
+  assertEquals("CidCallingPresTxt property not set correctly","nice description",((NewCallerIdEvent)event).getCidCallingPresTxt());
+}

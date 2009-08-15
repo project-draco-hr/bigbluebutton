@@ -1,0 +1,14 @@
+{
+  if (accessorName.startsWith("get")) {
+    return lcFirst(accessorName.substring(3));
+  }
+ else   if (accessorName.startsWith("is")) {
+    return lcFirst(accessorName.substring(2));
+  }
+ else   if (accessorName.startsWith("set")) {
+    return lcFirst(accessorName.substring(3));
+  }
+ else {
+    throw new IllegalArgumentException("Accessor '" + accessorName + "' doesn't start with either 'get', 'is' or 'set'");
+  }
+}

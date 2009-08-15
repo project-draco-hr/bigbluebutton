@@ -1,0 +1,7 @@
+{
+  getDataCommand=new GetDataCommand("VAR1");
+  getDataCommand.setTimeout(10000);
+  assertEquals(10000,getDataCommand.getTimeout());
+  assertEquals(1024,getDataCommand.getMaxDigits());
+  assertEquals("GET DATA \"VAR1\" 10000",getDataCommand.buildCommand());
+}

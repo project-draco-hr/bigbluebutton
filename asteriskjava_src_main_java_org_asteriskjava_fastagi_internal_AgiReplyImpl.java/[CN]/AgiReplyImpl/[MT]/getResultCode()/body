@@ -1,0 +1,13 @@
+{
+  String result;
+  result=getResult();
+  if (result == null) {
+    return -1;
+  }
+  try {
+    return Integer.parseInt(result);
+  }
+ catch (  NumberFormatException e) {
+    return -1;
+  }
+}

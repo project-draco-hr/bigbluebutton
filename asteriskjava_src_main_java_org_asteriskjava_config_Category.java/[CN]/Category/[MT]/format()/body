@@ -1,0 +1,9 @@
+{
+  StringBuilder sb=new StringBuilder();
+  format(sb);
+  for (  ConfigElement e : elements) {
+    sb.append("\n");
+    e.format(sb);
+  }
+  return sb.toString();
+}

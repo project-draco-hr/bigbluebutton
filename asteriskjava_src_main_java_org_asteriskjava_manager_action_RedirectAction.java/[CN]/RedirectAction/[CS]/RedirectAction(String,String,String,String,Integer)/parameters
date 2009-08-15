@@ -1,0 +1,5 @@
+String channel
+String extraChannel
+String context
+String exten
+Integer priority

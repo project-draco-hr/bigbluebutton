@@ -1,0 +1,13 @@
+{
+  if (priorityString == null) {
+    this.priority=null;
+    return;
+  }
+  if (PRIORITY_HINT.equals(priorityString)) {
+    hint=true;
+    this.priority=null;
+  }
+ else {
+    this.priority=Integer.parseInt(priorityString);
+  }
+}

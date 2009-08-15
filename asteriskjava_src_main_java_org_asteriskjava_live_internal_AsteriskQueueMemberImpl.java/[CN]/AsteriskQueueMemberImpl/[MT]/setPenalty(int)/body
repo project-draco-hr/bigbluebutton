@@ -1,0 +1,9 @@
+{
+  if (penalty < 0) {
+    throw new IllegalArgumentException("Penalty must not be negative");
+  }
+  final ManagerResponse response=server.sendAction(new QueuePenaltyAction(location,penalty,queue.getName()));
+  if (response instanceof ManagerError) {
+    throw new InvalidPenaltyException("Unable to set penalty for '" + location + "' on '"+ queue.getName()+ "': "+ response.getMessage());
+  }
+}

@@ -1,0 +1,13 @@
+{
+  final AsteriskQueueImpl queue=queues.get(event.getQueue());
+  if (queue == null) {
+    logger.error("Ignored QueueMemberRemovedEvent for unknown queue " + event.getQueue());
+    return;
+  }
+  final AsteriskQueueMemberImpl member=queue.getMember(event.getLocation());
+  if (member == null) {
+    logger.error("Ignored QueueMemberRemovedEvent for unknown agent name: " + event.getMemberName() + " location: "+ event.getLocation()+ " queue: "+ event.getQueue());
+    return;
+  }
+  queue.removeMember(member);
+}

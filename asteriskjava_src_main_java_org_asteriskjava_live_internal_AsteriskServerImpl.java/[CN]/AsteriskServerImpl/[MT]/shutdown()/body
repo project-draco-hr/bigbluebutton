@@ -1,0 +1,10 @@
+{
+  if (eventConnection != null && (eventConnection.getState() == ManagerConnectionState.CONNECTED || eventConnection.getState() == ManagerConnectionState.RECONNECTING)) {
+    eventConnection.logoff();
+  }
+  if (managerEventListenerProxy != null) {
+    managerEventListenerProxy.shutdown();
+  }
+  managerEventListenerProxy=null;
+  eventListener=null;
+}

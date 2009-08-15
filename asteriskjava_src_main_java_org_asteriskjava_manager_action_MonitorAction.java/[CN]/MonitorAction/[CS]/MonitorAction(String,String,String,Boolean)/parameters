@@ -1,0 +1,4 @@
+String channel
+String file
+String format
+Boolean mix

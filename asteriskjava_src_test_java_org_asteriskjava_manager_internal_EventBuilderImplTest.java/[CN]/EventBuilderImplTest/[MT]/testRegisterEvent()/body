@@ -1,0 +1,3 @@
+{
+  eventBuilder.registerEventClass(NewChannelEvent.class);
+}

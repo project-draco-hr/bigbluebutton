@@ -1,0 +1,7 @@
+{
+  ManagerResponse response;
+  response=new ManagerResponse();
+  response.setActionId(null);
+  response.setResponse("Success");
+  mc.dispatchResponse(response);
+}

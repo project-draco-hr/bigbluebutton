@@ -1,0 +1,3 @@
+String iface
+String queue
+Boolean paused

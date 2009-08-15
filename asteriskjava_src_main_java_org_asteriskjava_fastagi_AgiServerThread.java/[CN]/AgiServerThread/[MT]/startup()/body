@@ -1,0 +1,10 @@
+{
+  if (agiServer == null) {
+    throw new IllegalStateException("Mandatory property agiServer is not set.");
+  }
+  if (thread != null) {
+    throw new IllegalStateException("AgiServer is already started");
+  }
+  thread=createThread();
+  thread.start();
+}

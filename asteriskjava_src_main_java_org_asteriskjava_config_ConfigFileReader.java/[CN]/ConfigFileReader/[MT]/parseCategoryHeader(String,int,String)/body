@@ -1,0 +1,44 @@
+{
+  final Category category;
+  final String name;
+  final int nameEndPos;
+  nameEndPos=line.indexOf(']');
+  if (nameEndPos == -1) {
+    throw new ConfigParseException(configfile,lineno,"parse error: no closing ']', line %d of %s",lineno,configfile);
+  }
+  name=line.substring(1,nameEndPos);
+  category=new Category(configfile,lineno,name);
+  if (line.length() > nameEndPos + 1 && line.charAt(nameEndPos + 1) == '(') {
+    final String[] options;
+    final String optionsString;
+    final int optionsEndPos;
+    optionsString=line.substring(nameEndPos + 1);
+    optionsEndPos=optionsString.indexOf(')');
+    if (optionsEndPos == -1) {
+      throw new ConfigParseException(configfile,lineno,"parse error: no closing ')', line %d of %s",lineno,configfile);
+    }
+    options=optionsString.substring(1,optionsEndPos).split(",");
+    for (    String cur : options) {
+      if ("!".equals(cur)) {
+        category.markAsTemplate();
+      }
+ else       if ("+".equals(cur)) {
+        final Category categoryToAddTo;
+        categoryToAddTo=categories.get(name);
+        if (categoryToAddTo == null) {
+          throw new ConfigParseException(configfile,lineno,"Category addition requested, but category '%s' does not exist, line %d of %s",name,lineno,configfile);
+        }
+      }
+ else {
+        final Category baseCategory;
+        baseCategory=categories.get(cur);
+        if (baseCategory == null) {
+          throw new ConfigParseException(configfile,lineno,"Inheritance requested, but category '%s' does not exist, line %d of %s",cur,lineno,configfile);
+        }
+        inheritCategory(category,baseCategory);
+      }
+    }
+  }
+  appendCategory(category);
+  return category;
+}

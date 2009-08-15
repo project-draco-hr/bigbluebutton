@@ -1,0 +1,3 @@
+AsteriskChannelImpl channel
+AsteriskChannelImpl destinationChannel
+CdrEvent cdrEvent

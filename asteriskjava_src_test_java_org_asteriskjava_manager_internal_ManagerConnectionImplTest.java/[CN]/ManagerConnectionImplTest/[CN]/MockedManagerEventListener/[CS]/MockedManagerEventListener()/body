@@ -1,0 +1,3 @@
+{
+  this.eventsHandled=new ArrayList<ManagerEvent>();
+}

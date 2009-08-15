@@ -1,0 +1,43 @@
+{
+  ConfigDirective directive;
+  final StringBuilder nameBuilder;
+  final StringBuilder paramBuilder;
+  String name=null;
+  String param;
+  nameBuilder=new StringBuilder();
+  paramBuilder=new StringBuilder();
+  for (int i=1; i < line.length(); i++) {
+    final char c;
+    c=line.charAt(i);
+    if (name == null) {
+      nameBuilder.append(c);
+      if (Character.isWhitespace(c) || i + 1 == line.length()) {
+        name=nameBuilder.toString().trim();
+      }
+    }
+ else {
+      paramBuilder.append(c);
+    }
+  }
+  param=paramBuilder.toString().trim();
+  if (param.length() != 0 && (param.charAt(0) == '"' || param.charAt(0) == '<' || param.charAt(0) == '>')) {
+    param=param.substring(1);
+  }
+  int endPos=param.length() - 1;
+  if (param.length() != 0 && (param.charAt(endPos) == '"' || param.charAt(endPos) == '<' || param.charAt(endPos) == '>')) {
+    param=param.substring(0,endPos);
+  }
+  if ("exec".equalsIgnoreCase(name)) {
+    directive=new ExecDirective(configfile,lineno,param);
+  }
+ else   if ("include".equalsIgnoreCase(name)) {
+    directive=new IncludeDirective(configfile,lineno,param);
+  }
+ else {
+    throw new UnknownDirectiveException(configfile,lineno,"Unknown directive '%s' at line %d of %s",name,lineno,configfile);
+  }
+  if (param.length() == 0) {
+    throw new MissingDirectiveParameterException(configfile,lineno,"Directive '#%s' needs an argument (%s) at line %d of %s",name.toLowerCase(Locale.US),"include".equalsIgnoreCase(name) ? "filename" : "/path/to/executable",lineno,configfile);
+  }
+  return directive;
+}

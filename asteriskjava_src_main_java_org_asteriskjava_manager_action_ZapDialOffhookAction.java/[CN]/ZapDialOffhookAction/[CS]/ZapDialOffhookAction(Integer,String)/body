@@ -1,0 +1,4 @@
+{
+  this.zapChannel=zapChannel;
+  this.number=number;
+}

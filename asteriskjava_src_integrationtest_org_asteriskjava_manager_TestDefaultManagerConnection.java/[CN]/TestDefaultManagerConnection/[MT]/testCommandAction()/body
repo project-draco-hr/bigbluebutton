@@ -1,0 +1,9 @@
+{
+  DefaultManagerConnection dmc;
+  CommandResponse response;
+  dmc=getDefaultManagerConnection();
+  dmc.login();
+  response=(CommandResponse)dmc.sendAction(new CommandAction("show voicemail users"));
+  System.out.println("Got response: " + response.getResult());
+  dmc.logoff();
+}

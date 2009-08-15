@@ -1,0 +1,3 @@
+{
+  return wasInState(ChannelState.BUSY) || hangupCause == HangupCause.AST_CAUSE_BUSY || hangupCause == HangupCause.AST_CAUSE_USER_BUSY;
+}

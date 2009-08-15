@@ -1,0 +1,3 @@
+{
+  strategy=new CompositeMappingStrategy(new ResourceBundleMappingStrategy("test-mapping"),new ClassNameMappingStrategy());
+}

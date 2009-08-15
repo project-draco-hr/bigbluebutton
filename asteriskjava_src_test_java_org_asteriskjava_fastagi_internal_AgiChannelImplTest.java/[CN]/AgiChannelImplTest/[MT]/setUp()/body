@@ -1,0 +1,6 @@
+{
+  super.setUp();
+  this.agiWriter=createMock(AgiWriter.class);
+  this.agiReader=createMock(AgiReader.class);
+  this.agiChannel=new AgiChannelImpl(null,agiWriter,agiReader);
+}

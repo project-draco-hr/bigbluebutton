@@ -1,0 +1,11 @@
+{
+  int currentPos=1;
+synchronized (entries) {
+    for (    AsteriskQueueEntryImpl qe : entries) {
+      if (qe.getPosition() != currentPos) {
+        qe.setPosition(currentPos);
+      }
+      currentPos++;
+    }
+  }
+}

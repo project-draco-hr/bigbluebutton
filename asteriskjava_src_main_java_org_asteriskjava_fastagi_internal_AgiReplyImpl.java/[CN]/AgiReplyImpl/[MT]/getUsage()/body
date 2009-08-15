@@ -1,0 +1,17 @@
+{
+  if (usage == null) {
+    StringBuilder usageSB;
+    usageSB=new StringBuilder();
+    for (int i=2; i < lines.size(); i++) {
+      String line;
+      line=lines.get(i);
+      if (END_OF_PROPER_USAGE.equals(line)) {
+        break;
+      }
+      usageSB.append(line.trim());
+      usageSB.append(" ");
+    }
+    usage=usageSB.toString().trim();
+  }
+  return usage;
+}

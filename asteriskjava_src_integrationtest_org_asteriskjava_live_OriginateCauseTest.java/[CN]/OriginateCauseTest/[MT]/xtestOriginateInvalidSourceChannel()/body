@@ -1,0 +1,8 @@
+{
+  try {
+    server.originateToExtension("Local/none@aj-test","aj-test","answer",1,timeout);
+    fail("Originating from an invalid source channel must throw a NoSuchChannelException");
+  }
+ catch (  NoSuchChannelException e) {
+  }
+}

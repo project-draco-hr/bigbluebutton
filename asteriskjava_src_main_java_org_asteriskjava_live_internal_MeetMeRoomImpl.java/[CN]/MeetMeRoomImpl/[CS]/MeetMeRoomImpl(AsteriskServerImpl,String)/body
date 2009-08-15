@@ -1,0 +1,5 @@
+{
+  super(server);
+  this.roomNumber=roomNumber;
+  this.users=new HashMap<Integer,MeetMeUserImpl>(20);
+}

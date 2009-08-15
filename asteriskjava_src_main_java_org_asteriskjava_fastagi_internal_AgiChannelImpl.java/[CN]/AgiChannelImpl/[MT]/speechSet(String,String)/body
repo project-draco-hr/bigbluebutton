@@ -1,0 +1,6 @@
+{
+  sendCommand(new SpeechSetCommand(name,value));
+  if (lastReply.getResultCode() != 1) {
+    throw new AgiSpeechException("Setting '" + name + "' cannot be set to '"+ value+ "'");
+  }
+}

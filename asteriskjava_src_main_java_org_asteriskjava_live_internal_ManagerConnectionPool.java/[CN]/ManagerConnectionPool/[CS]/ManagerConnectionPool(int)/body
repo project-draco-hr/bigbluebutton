@@ -1,0 +1,3 @@
+{
+  this.connections=new ArrayBlockingQueue<ManagerConnection>(size);
+}

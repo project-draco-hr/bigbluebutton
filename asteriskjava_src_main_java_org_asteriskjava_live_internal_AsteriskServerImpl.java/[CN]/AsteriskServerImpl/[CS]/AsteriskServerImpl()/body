@@ -1,0 +1,10 @@
+{
+  connectionPool=new ManagerConnectionPool(1);
+  idCounter=new AtomicLong();
+  listeners=new ArrayList<AsteriskServerListener>();
+  originateCallbacks=new HashMap<String,OriginateCallbackData>();
+  channelManager=new ChannelManager(this);
+  agentManager=new AgentManager(this);
+  meetMeManager=new MeetMeManager(this,channelManager);
+  queueManager=new QueueManager(this,channelManager);
+}

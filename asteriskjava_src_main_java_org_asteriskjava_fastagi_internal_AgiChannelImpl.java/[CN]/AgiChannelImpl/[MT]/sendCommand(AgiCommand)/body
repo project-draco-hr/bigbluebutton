@@ -1,0 +1,14 @@
+{
+  agiWriter.sendCommand(command);
+  lastReply=agiReader.readReply();
+  if (lastReply.getStatus() == AgiReply.SC_INVALID_OR_UNKNOWN_COMMAND) {
+    throw new InvalidOrUnknownCommandException(command.buildCommand());
+  }
+  if (lastReply.getStatus() == AgiReply.SC_DEAD_CHANNEL) {
+    throw new AgiHangupException();
+  }
+  if (lastReply.getStatus() == AgiReply.SC_INVALID_COMMAND_SYNTAX) {
+    throw new InvalidCommandSyntaxException(lastReply.getSynopsis(),lastReply.getUsage());
+  }
+  return lastReply;
+}

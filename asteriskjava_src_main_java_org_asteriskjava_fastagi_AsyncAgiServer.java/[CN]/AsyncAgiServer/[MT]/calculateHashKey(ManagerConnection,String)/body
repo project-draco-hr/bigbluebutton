@@ -1,0 +1,3 @@
+{
+  return connection.hashCode() * 31 + channelName.hashCode();
+}

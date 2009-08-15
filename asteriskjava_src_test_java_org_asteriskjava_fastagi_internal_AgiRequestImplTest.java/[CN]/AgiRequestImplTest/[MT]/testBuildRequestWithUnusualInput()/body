@@ -1,0 +1,11 @@
+{
+  List<String> lines;
+  AgiRequest request;
+  lines=new ArrayList<String>();
+  lines.add("var without agi prefix: a value");
+  lines.add("agi_without_colon another value");
+  lines.add("agi_without_space_after_colon:");
+  lines.add("agi_channel: SIP/1234-a892");
+  request=new AgiRequestImpl(lines);
+  assertEquals("incorrect channel","SIP/1234-a892",request.getChannel());
+}

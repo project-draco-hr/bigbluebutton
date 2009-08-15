@@ -1,0 +1,6 @@
+{
+  if (regContact.startsWith(": ")) {
+    regContact=regContact.substring(2);
+  }
+  this.regContact=regContact;
+}

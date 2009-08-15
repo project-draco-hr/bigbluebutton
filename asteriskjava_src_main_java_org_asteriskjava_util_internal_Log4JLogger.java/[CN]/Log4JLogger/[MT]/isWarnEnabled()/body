@@ -1,0 +1,8 @@
+{
+  if (IS12) {
+    return getLogger().isEnabledFor((Priority)Level.WARN);
+  }
+ else {
+    return getLogger().isEnabledFor(Level.WARN);
+  }
+}

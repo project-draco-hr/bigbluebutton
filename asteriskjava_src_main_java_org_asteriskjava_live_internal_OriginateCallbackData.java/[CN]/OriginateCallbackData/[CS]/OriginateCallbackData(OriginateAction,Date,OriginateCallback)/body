@@ -1,0 +1,6 @@
+{
+  super();
+  this.originateAction=originateAction;
+  this.dateSent=dateSent;
+  this.callback=callback;
+}

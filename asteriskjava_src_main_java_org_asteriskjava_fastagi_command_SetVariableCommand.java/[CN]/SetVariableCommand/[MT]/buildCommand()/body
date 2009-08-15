@@ -1,0 +1,3 @@
+{
+  return "SET VARIABLE " + escapeAndQuote(variable) + " "+ escapeAndQuote(value);
+}

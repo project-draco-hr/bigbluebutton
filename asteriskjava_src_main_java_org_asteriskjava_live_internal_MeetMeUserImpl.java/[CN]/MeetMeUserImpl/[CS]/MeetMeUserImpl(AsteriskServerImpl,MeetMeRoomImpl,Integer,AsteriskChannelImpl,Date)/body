@@ -1,0 +1,8 @@
+{
+  super(server);
+  this.room=room;
+  this.userNumber=userNumber;
+  this.channel=channel;
+  this.dateJoined=dateJoined;
+  this.state=MeetMeUserState.JOINED;
+}

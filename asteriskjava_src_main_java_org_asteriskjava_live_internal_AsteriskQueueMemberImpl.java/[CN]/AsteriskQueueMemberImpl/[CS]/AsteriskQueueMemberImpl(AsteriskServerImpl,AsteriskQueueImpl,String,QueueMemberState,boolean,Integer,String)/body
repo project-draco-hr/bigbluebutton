@@ -1,0 +1,9 @@
+{
+  super(server);
+  this.queue=queue;
+  this.location=location;
+  this.state=state;
+  this.penalty=penalty;
+  this.paused=paused;
+  this.membership=membership;
+}

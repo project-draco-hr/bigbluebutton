@@ -1,0 +1,8 @@
+{
+  List<String> lines;
+  AgiRequest request;
+  lines=new ArrayList<String>();
+  lines.add("agi_dnid: unknown");
+  request=new AgiRequestImpl(lines);
+  assertNull("dnid must not be set if \"unknown\"",request.getDnid());
+}

@@ -1,0 +1,5 @@
+{
+synchronized (variables) {
+    variables.put(name,value);
+  }
+}

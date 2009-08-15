@@ -1,0 +1,11 @@
+{
+  if (request.get("callingtns") == null) {
+    return null;
+  }
+  try {
+    return Integer.valueOf(request.get("callingtns"));
+  }
+ catch (  NumberFormatException e) {
+    return null;
+  }
+}

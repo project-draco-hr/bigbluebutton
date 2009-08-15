@@ -1,0 +1,9 @@
+{
+  ArrayList<AsteriskQueueMember> listOfMembers=new ArrayList<AsteriskQueueMember>(members.size());
+synchronized (members) {
+    for (    AsteriskQueueMemberImpl asteriskQueueMember : members.values()) {
+      listOfMembers.add(asteriskQueueMember);
+    }
+  }
+  return listOfMembers;
+}

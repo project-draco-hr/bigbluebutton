@@ -1,0 +1,4 @@
+{
+  disconnect();
+  this.readerThread=null;
+}

@@ -1,0 +1,64 @@
+{
+  if (action instanceof ChallengeAction) {
+    ChallengeAction challengeAction=(ChallengeAction)action;
+    String authType=challengeAction.getAuthType();
+    if (!authType.equals("MD5")) {
+      throw new RuntimeException("Expected authType 'MD5' got '" + authType + "'");
+    }
+    challengeActionsSent++;
+    if (sendResponse) {
+      ChallengeResponse challengeResponse;
+      challengeResponse=new ChallengeResponse();
+      challengeResponse.setActionId(ManagerUtil.addInternalActionId(action.getActionId(),internalActionId));
+      challengeResponse.setChallenge(CHALLENGE);
+      dispatchLater(challengeResponse);
+    }
+  }
+ else   if (action instanceof LoginAction) {
+    LoginAction loginAction=(LoginAction)action;
+    String username=loginAction.getUsername();
+    String key=loginAction.getKey();
+    String authType=loginAction.getAuthType();
+    if (!"MD5".equals(authType)) {
+      throw new RuntimeException("Expected authType 'MD5' got '" + authType + "'");
+    }
+    if (!expectedUsername.equals(username)) {
+      throw new RuntimeException("Expected username '" + expectedUsername + "' got '"+ username+ "'");
+    }
+    loginActionsSent++;
+    if (sendResponse) {
+      ManagerResponse loginResponse;
+      if (key.equals(expectedKey) || loginActionsSent > 2) {
+        loginResponse=new ManagerResponse();
+        loginResponse.setResponse("Success");
+      }
+ else {
+        loginResponse=new ManagerError();
+        loginResponse.setResponse("Error");
+        loginResponse.setMessage("Authentication failed");
+      }
+      loginResponse.setActionId(ManagerUtil.addInternalActionId(action.getActionId(),internalActionId));
+      dispatchLater(loginResponse);
+    }
+  }
+ else   if (action instanceof LogoffAction) {
+    logoffActionsSent++;
+    if (sendResponse) {
+      ManagerResponse response;
+      response=new ManagerResponse();
+      response.setActionId(ManagerUtil.addInternalActionId(action.getActionId(),internalActionId));
+      response.setResponse("Success");
+      dispatchLater(response);
+    }
+  }
+ else {
+    otherActionsSent++;
+    if (sendResponse) {
+      ManagerResponse response;
+      response=new ManagerResponse();
+      response.setActionId(ManagerUtil.addInternalActionId(action.getActionId(),internalActionId));
+      response.setResponse("Success");
+      dispatchLater(response);
+    }
+  }
+}

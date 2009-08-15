@@ -1,0 +1,4 @@
+{
+  sendCommand(new SayTimeCommand(time,escapeDigits));
+  return lastReply.getResultCodeAsChar();
+}

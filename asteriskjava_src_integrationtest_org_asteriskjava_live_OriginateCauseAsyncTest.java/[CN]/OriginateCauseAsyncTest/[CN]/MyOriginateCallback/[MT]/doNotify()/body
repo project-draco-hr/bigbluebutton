@@ -1,0 +1,9 @@
+{
+  if (sealed) {
+    System.err.println("!!! Modifying sealed status !!!");
+  }
+  sealed=true;
+synchronized (status) {
+    status.notify();
+  }
+}

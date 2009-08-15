@@ -1,0 +1,6 @@
+{
+  this.hostname=hostname;
+  this.port=DEFAULT_PORT;
+  this.username=username;
+  this.password=password;
+}

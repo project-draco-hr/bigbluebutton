@@ -1,0 +1,10 @@
+{
+  StringBuffer sb;
+  sb=new StringBuffer("GET FULL VARIABLE ");
+  sb.append(escapeAndQuote(variable));
+  if (channel != null) {
+    sb.append(" ");
+    sb.append(escapeAndQuote(channel));
+  }
+  return sb.toString();
+}

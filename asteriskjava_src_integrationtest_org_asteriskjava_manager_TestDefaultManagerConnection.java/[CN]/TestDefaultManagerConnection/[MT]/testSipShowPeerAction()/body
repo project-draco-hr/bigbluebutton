@@ -1,0 +1,9 @@
+{
+  DefaultManagerConnection dmc;
+  SipShowPeerResponse response;
+  dmc=getDefaultManagerConnection();
+  dmc.login();
+  response=(SipShowPeerResponse)dmc.sendAction(new SipShowPeerAction("phone-02"));
+  System.out.println("Got response: " + response);
+  dmc.logoff();
+}

@@ -1,0 +1,8 @@
+{
+  ResponseEvents responseEvents=sendEventGeneratingAction(new DbGetAction(family,key),2000);
+  DbGetResponseEvent dbgre=null;
+  for (  ResponseEvent re : responseEvents.getEvents()) {
+    dbgre=(DbGetResponseEvent)re;
+  }
+  return dbgre;
+}

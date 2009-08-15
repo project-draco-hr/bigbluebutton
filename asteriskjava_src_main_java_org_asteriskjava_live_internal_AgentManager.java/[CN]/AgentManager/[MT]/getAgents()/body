@@ -1,0 +1,7 @@
+{
+  Collection<AsteriskAgent> copy;
+synchronized (agents) {
+    copy=new ArrayList<AsteriskAgent>(agents.values());
+  }
+  return copy;
+}

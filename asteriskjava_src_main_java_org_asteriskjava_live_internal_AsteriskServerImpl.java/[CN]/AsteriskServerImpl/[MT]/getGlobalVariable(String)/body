@@ -1,0 +1,14 @@
+{
+  ManagerResponse response;
+  String value;
+  initializeIfNeeded();
+  response=sendAction(new GetVarAction(variable));
+  if (response instanceof ManagerError) {
+    return null;
+  }
+  value=response.getAttribute("Value");
+  if (value == null) {
+    value=response.getAttribute(variable);
+  }
+  return value;
+}

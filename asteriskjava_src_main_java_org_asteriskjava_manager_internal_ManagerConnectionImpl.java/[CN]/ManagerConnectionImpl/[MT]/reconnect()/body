@@ -1,0 +1,40 @@
+{
+  int numTries;
+  numTries=0;
+  while (state == RECONNECTING) {
+    try {
+      if (numTries < 10) {
+        Thread.sleep(RECONNECTION_INTERVAL_1);
+      }
+ else {
+        Thread.sleep(RECONNECTION_INTERVAL_2);
+      }
+    }
+ catch (    InterruptedException e1) {
+    }
+    try {
+      connect();
+      try {
+        doLogin(defaultResponseTimeout,eventMask);
+        logger.info("Successfully reconnected.");
+        break;
+      }
+ catch (      AuthenticationFailedException e1) {
+        if (keepAliveAfterAuthenticationFailure) {
+          logger.error("Unable to log in after reconnect: " + e1.getMessage());
+        }
+ else {
+          logger.error("Unable to log in after reconnect: " + e1.getMessage() + ". Giving up.");
+          state=DISCONNECTED;
+        }
+      }
+catch (      TimeoutException e1) {
+        logger.error("TimeoutException while trying to log in " + "after reconnect.");
+      }
+    }
+ catch (    IOException e) {
+      logger.warn("Exception while trying to reconnect: " + e.getMessage());
+    }
+    numTries++;
+  }
+}

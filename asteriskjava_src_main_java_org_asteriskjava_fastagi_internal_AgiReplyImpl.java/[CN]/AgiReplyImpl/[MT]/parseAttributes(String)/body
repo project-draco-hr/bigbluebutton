@@ -1,0 +1,43 @@
+{
+  StringBuilder keyBuilder=new StringBuilder();
+  StringBuilder valueBuilder=new StringBuilder();
+  Map<String,String> map=new HashMap<String,String>();
+  boolean inKey=true;
+  boolean inQuotes=false;
+  char previousChar=0x0;
+  for (int i=0; i < s.length(); i++) {
+    char c=s.charAt(i);
+    if (c == '=' && inKey) {
+      inKey=false;
+      inQuotes=false;
+    }
+ else     if ((c == ' ' && !inKey && !inQuotes)) {
+      map.put(keyBuilder.toString().toLowerCase(Locale.ENGLISH),valueBuilder.toString());
+      keyBuilder.delete(0,keyBuilder.length());
+      valueBuilder.delete(0,valueBuilder.length());
+      inKey=true;
+    }
+ else     if (c == '"' && !inKey) {
+      if (previousChar == '\\') {
+        valueBuilder.deleteCharAt(valueBuilder.length() - 1);
+        valueBuilder.append(c);
+      }
+ else {
+        inQuotes=!inQuotes;
+      }
+    }
+ else {
+      if (inKey) {
+        keyBuilder.append(c);
+      }
+ else {
+        valueBuilder.append(c);
+      }
+    }
+    previousChar=c;
+  }
+  if (keyBuilder.length() > 0) {
+    map.put(keyBuilder.toString().toLowerCase(Locale.ENGLISH),valueBuilder.toString());
+  }
+  return map;
+}

@@ -1,0 +1,7 @@
+{
+  StringBuffer sb;
+  sb=new StringBuffer(getClass().getName()).append("[");
+  sb.append("command='").append(buildCommand()).append("', ");
+  sb.append("systemHashcode=").append(System.identityHashCode(this)).append("]");
+  return sb.toString();
+}

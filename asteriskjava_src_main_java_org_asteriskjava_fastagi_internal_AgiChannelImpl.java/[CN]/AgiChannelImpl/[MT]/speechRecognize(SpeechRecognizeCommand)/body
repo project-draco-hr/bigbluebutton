@@ -1,0 +1,11 @@
+{
+  sendCommand(command);
+  if (lastReply.getResultCode() != 1) {
+    throw new AgiSpeechException("Cannot recognize speech");
+  }
+  if ("hangup".equals(lastReply.getExtra())) {
+    throw new AgiHangupException();
+  }
+  final AgiReply speechRecognizeReply=lastReply;
+  return new SpeechRecognitionResult(speechRecognizeReply);
+}

@@ -1,0 +1,16 @@
+{
+  final List<String> result=new ArrayList<String>();
+  if (s == null) {
+    return result;
+  }
+  try {
+    for (    String line : s.split("\n")) {
+      final String decodedLine=URLDecoder.decode(line,"ISO-8859-1");
+      result.add(decodedLine);
+    }
+  }
+ catch (  UnsupportedEncodingException e) {
+    throw new RuntimeException("This JDK does not support ISO-8859-1 encoding",e);
+  }
+  return result;
+}

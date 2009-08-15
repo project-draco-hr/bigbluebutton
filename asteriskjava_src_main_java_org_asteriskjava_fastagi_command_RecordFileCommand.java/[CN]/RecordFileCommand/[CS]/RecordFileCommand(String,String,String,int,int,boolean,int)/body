@@ -1,0 +1,10 @@
+{
+  super();
+  this.file=file;
+  this.format=format;
+  this.escapeDigits=escapeDigits;
+  this.timeout=timeout;
+  this.offset=offset;
+  this.beep=beep;
+  this.maxSilence=maxSilence;
+}

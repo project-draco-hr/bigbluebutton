@@ -1,0 +1,3 @@
+String srcFilename
+String dstFilename
+boolean reload

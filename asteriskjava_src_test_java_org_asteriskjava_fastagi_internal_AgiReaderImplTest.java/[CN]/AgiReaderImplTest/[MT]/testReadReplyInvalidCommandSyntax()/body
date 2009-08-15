@@ -1,0 +1,14 @@
+{
+  AgiReply reply;
+  expect(socket.readLine()).andReturn("520-Invalid command syntax.  Proper usage follows:");
+  expect(socket.readLine()).andReturn(" Usage: DATABASE DEL <family> <key>");
+  expect(socket.readLine()).andReturn("        Deletes an entry in the Asterisk database for a");
+  expect(socket.readLine()).andReturn(" given family and key.");
+  expect(socket.readLine()).andReturn(" Returns 1 if succesful, 0 otherwise");
+  expect(socket.readLine()).andReturn("520 End of proper usage.");
+  replay(socket);
+  reply=agiReader.readReply();
+  assertEquals("Incorrect status",AgiReply.SC_INVALID_COMMAND_SYNTAX,reply.getStatus());
+  assertEquals("Incorrect synopsis","DATABASE DEL <family> <key>",reply.getSynopsis());
+  verify(socket);
+}

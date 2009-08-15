@@ -1,0 +1,6 @@
+{
+  AgiRequest request=new SimpleAgiRequest("org.asteriskjava.fastagi.HelloAgiScript");
+  AgiScript script=strategy.determineScript(request);
+  assertNotNull("no script determined",script);
+  assertEquals("incorrect script determined",script.getClass(),HelloAgiScript.class);
+}

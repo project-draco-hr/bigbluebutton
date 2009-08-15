@@ -1,0 +1,5 @@
+{
+  int oldPosition=this.reportedPosition;
+  this.reportedPosition=reportedPosition;
+  firePropertyChange(PROPERTY_REPORTED_POSITION,oldPosition,reportedPosition);
+}

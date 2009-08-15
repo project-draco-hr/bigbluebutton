@@ -1,0 +1,11 @@
+{
+  List<String> lines;
+  AgiRequest request;
+  lines=new ArrayList<String>();
+  lines.add("agi_callerid: 1234");
+  lines.add("agi_calleridname: John Doe");
+  request=new AgiRequestImpl(lines);
+  assertEquals("incorrect callerId","1234",request.getCallerId());
+  assertEquals("incorrect callerIdNumber","1234",request.getCallerIdNumber());
+  assertEquals("incorrect callerIdName","John Doe",request.getCallerIdName());
+}

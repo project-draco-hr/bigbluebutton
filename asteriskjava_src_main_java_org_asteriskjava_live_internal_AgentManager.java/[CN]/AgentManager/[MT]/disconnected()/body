@@ -1,0 +1,5 @@
+{
+synchronized (agents) {
+    agents.clear();
+  }
+}

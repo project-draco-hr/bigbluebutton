@@ -1,0 +1,10 @@
+{
+  SipNotifyAction action;
+  String actual;
+  action=new SipNotifyAction("peer");
+  action.setVariable("var1","value1");
+  action.setVariable("var2","value2");
+  actionBuilder.setTargetVersion(AsteriskVersion.ASTERISK_1_6);
+  actual=actionBuilder.buildAction(action);
+  assertTrue("Incorrect mapping of variable property",actual.indexOf("variable: var1=value1\r\nvariable: var2=value2\r\n") >= 0);
+}

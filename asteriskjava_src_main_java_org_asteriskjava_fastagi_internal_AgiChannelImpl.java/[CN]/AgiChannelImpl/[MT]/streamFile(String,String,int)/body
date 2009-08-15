@@ -1,0 +1,4 @@
+{
+  sendCommand(new StreamFileCommand(file,escapeDigits,offset));
+  return lastReply.getResultCodeAsChar();
+}

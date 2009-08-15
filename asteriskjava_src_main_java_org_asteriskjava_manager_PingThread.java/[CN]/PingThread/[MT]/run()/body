@@ -1,0 +1,20 @@
+{
+  while (!die) {
+    try {
+      sleep(interval);
+    }
+ catch (    InterruptedException e) {
+    }
+    if (die) {
+      break;
+    }
+synchronized (connections) {
+      for (      ManagerConnection c : connections) {
+        if (c.getState() != ManagerConnectionState.CONNECTED) {
+          continue;
+        }
+        ping(c);
+      }
+    }
+  }
+}

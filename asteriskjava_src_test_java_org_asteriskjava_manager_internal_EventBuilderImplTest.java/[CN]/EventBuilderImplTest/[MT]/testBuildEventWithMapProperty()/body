@@ -1,0 +1,11 @@
+{
+  AgentCalledEvent event;
+  properties.put("event","AgentCalled");
+  properties.put("variable",Arrays.asList("var1=val1","var2=val2"));
+  event=(AgentCalledEvent)eventBuilder.buildEvent(this,properties);
+  assertNotNull(event);
+  assertEquals("Returned event is of wrong type",AgentCalledEvent.class,event.getClass());
+  assertEquals("Property variables[var1] is not set correctly","val1",event.getVariables().get("var1"));
+  assertEquals("Property variables[var2] is not set correctly","val2",event.getVariables().get("var2"));
+  assertEquals("Invalid size of variables property",2,event.getVariables().size());
+}

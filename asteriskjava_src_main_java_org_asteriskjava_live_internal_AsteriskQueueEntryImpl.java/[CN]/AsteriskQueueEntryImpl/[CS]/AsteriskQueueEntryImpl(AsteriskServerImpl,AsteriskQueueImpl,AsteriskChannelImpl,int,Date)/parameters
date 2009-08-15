@@ -1,0 +1,5 @@
+AsteriskServerImpl server
+AsteriskQueueImpl queue
+AsteriskChannelImpl channel
+int reportedPosition
+Date dateJoined

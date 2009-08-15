@@ -1,0 +1,4 @@
+{
+  newStateEvent.setState("Unknown (4)");
+  assertEquals(new Integer(4),newStateEvent.getChannelState());
+}

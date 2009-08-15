@@ -1,0 +1,5 @@
+{
+  super.setUp();
+  status=new MyStatus();
+  cb=new MyOriginateCallback();
+}

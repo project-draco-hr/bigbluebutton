@@ -1,0 +1,21 @@
+{
+  sb.append("[").append(name).append("]");
+  if (isTemplate() || !getBaseCategories().isEmpty()) {
+    sb.append("(");
+    if (isTemplate()) {
+      sb.append("!");
+      if (!getBaseCategories().isEmpty()) {
+        sb.append(",");
+      }
+    }
+    Iterator<Category> inheritsFromIterator=getBaseCategories().iterator();
+    while (inheritsFromIterator.hasNext()) {
+      sb.append(inheritsFromIterator.next().getName());
+      if (inheritsFromIterator.hasNext()) {
+        sb.append(",");
+      }
+    }
+    sb.append(")");
+  }
+  return sb;
+}

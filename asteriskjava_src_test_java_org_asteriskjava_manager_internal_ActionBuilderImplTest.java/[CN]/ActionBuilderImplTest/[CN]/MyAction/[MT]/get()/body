@@ -1,0 +1,3 @@
+{
+  return "This method must not be considered a getter";
+}

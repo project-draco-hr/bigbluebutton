@@ -1,0 +1,15 @@
+{
+synchronized (events) {
+    if (event instanceof ResponseEvent) {
+      ResponseEvent responseEvent;
+      responseEvent=(ResponseEvent)event;
+      events.addEvent(responseEvent);
+    }
+    if (actionCompleteEventClass.isAssignableFrom(event.getClass())) {
+      events.setComplete(true);
+      if (events.getResponse() != null) {
+        events.notifyAll();
+      }
+    }
+  }
+}

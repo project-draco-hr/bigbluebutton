@@ -1,0 +1,5 @@
+{
+  this.forwardDigit=forwardDigit;
+  this.rewindDigit=rewindDigit;
+  this.pauseDigit=pauseDigit;
+}

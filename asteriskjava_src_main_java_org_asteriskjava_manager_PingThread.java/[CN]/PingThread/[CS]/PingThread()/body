@@ -1,0 +1,8 @@
+{
+  super();
+  this.connections=new HashSet<ManagerConnection>();
+  this.die=false;
+  long id=idCounter.getAndIncrement();
+  setName("Asterisk-Java Ping-" + id);
+  setDaemon(true);
+}

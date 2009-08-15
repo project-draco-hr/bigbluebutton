@@ -1,0 +1,5 @@
+{
+  this.mailbox=mailbox;
+  this.context=context;
+  this.user=user;
+}

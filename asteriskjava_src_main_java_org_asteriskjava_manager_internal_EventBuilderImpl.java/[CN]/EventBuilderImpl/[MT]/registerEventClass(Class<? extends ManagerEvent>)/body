@@ -1,0 +1,13 @@
+{
+  String className;
+  String eventType;
+  className=clazz.getName();
+  eventType=className.substring(className.lastIndexOf('.') + 1).toLowerCase(Locale.ENGLISH);
+  if (eventType.endsWith("event")) {
+    eventType=eventType.substring(0,eventType.length() - "event".length());
+  }
+  if (UserEvent.class.isAssignableFrom(clazz) && !eventType.startsWith("userevent")) {
+    eventType="userevent" + eventType;
+  }
+  registerEventClass(eventType,clazz);
+}

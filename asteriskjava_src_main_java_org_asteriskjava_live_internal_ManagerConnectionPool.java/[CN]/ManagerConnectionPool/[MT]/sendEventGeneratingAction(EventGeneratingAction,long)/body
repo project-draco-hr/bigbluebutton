@@ -1,0 +1,20 @@
+{
+  ManagerConnection connection;
+  ResponseEvents responseEvents;
+  connection=get();
+  try {
+    if (timeout > 0) {
+      responseEvents=connection.sendEventGeneratingAction(action,timeout);
+    }
+ else {
+      responseEvents=connection.sendEventGeneratingAction(action);
+    }
+  }
+ catch (  Exception e) {
+    throw ManagerCommunicationExceptionMapper.mapSendActionException(action.getAction(),e);
+  }
+ finally {
+    put(connection);
+  }
+  return responseEvents;
+}

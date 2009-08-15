@@ -1,0 +1,12 @@
+{
+  if (ptString == null || ptString.length() == 0) {
+    this.pt=null;
+    return;
+  }
+  if (ptString.indexOf('(') > 0) {
+    this.pt=Long.parseLong(ptString.substring(0,ptString.indexOf('(')));
+  }
+ else {
+    this.pt=Long.parseLong(ptString);
+  }
+}

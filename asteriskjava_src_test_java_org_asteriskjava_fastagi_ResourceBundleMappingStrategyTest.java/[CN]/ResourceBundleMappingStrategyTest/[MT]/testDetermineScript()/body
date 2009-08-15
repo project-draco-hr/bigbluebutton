@@ -1,0 +1,11 @@
+{
+  AgiScript scriptFirstPass;
+  AgiScript scriptSecondPass;
+  AgiRequest request;
+  request=new SimpleAgiRequest();
+  scriptFirstPass=mappingStrategy.determineScript(request);
+  scriptSecondPass=mappingStrategy.determineScript(request);
+  assertNotNull("no script determined",scriptFirstPass);
+  assertEquals("incorrect script determined",scriptFirstPass.getClass(),HelloAgiScript.class);
+  assertTrue("script instances are not cached",scriptFirstPass == scriptSecondPass);
+}

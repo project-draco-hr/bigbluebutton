@@ -1,0 +1,14 @@
+{
+  List<String> lines;
+  AgiRequest request;
+  lines=new ArrayList<String>();
+  lines.add("agi_network_script: myscript.agi");
+  lines.add("agi_request: agi://host/myscript.agi");
+  lines.add("agi_arg_1: value1");
+  lines.add("agi_arg_2: value2");
+  request=new AgiRequestImpl(lines);
+  assertEquals("incorrect requestURL","agi://host/myscript.agi",request.getRequestURL());
+  assertEquals("invalid number of arguments",2,request.getArguments().length);
+  assertEquals("incorrect value for first argument","value1",request.getArguments()[0]);
+  assertEquals("incorrect value for second argument","value2",request.getArguments()[1]);
+}

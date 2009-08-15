@@ -1,0 +1,7 @@
+{
+synchronized (rooms) {
+    for (    MeetMeRoomImpl room : rooms.values()) {
+      populateRoom(room);
+    }
+  }
+}

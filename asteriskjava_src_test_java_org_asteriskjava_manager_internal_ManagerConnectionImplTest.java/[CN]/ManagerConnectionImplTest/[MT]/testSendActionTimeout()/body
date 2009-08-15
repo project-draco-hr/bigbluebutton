@@ -1,0 +1,16 @@
+{
+  StatusAction statusAction;
+  statusAction=new StatusAction();
+  statusAction.setActionId("123");
+  mc.setDefaultResponseTimeout(200);
+  mc.connect();
+  mc.setState(ManagerConnectionState.CONNECTED);
+  mockWriter.setSendResponse(false);
+  try {
+    mc.sendAction(statusAction);
+    fail("No TimeoutException thrown");
+  }
+ catch (  TimeoutException e) {
+  }
+  assertEquals("other actions not sent 1 time",1,mockWriter.otherActionsSent);
+}

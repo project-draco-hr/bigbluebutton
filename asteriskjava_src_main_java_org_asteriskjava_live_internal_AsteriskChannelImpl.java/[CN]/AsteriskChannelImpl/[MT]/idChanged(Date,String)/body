@@ -1,0 +1,8 @@
+{
+  final String oldId=this.id;
+  if (oldId != null && oldId.equals(id)) {
+    return;
+  }
+  this.id=id;
+  firePropertyChange(PROPERTY_ID,oldId,id);
+}

@@ -1,0 +1,36 @@
+{
+  final String[] result=new String[2];
+  final int lbPosition;
+  final int rbPosition;
+  String name;
+  String number;
+  if (s == null) {
+    return result;
+  }
+  lbPosition=s.lastIndexOf('<');
+  rbPosition=s.lastIndexOf('>');
+  if (lbPosition < 0 || rbPosition < 0) {
+    name=s.trim();
+    if (name.length() == 0) {
+      name=null;
+    }
+    result[0]=name;
+    return result;
+  }
+ else {
+    number=s.substring(lbPosition + 1,rbPosition).trim();
+    if (number.length() == 0) {
+      number=null;
+    }
+  }
+  name=s.substring(0,lbPosition).trim();
+  if (name.startsWith("\"") && name.endsWith("\"") && name.length() > 1) {
+    name=name.substring(1,name.length() - 1).trim();
+  }
+  if (name.length() == 0) {
+    name=null;
+  }
+  result[0]=name;
+  result[1]=number;
+  return result;
+}

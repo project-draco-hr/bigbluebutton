@@ -1,0 +1,7 @@
+{
+  final StringBuilder sb=new StringBuilder("[");
+  sb.append("score=").append(score).append(",");
+  sb.append("text='").append(text).append("',");
+  sb.append("grammar='").append(grammar).append("']");
+  return sb.toString();
+}

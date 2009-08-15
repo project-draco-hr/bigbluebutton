@@ -1,0 +1,8 @@
+{
+  super(server);
+  this.queue=queue;
+  this.channel=channel;
+  this.dateJoined=dateJoined;
+  this.state=QueueEntryState.JOINED;
+  this.reportedPosition=reportedPosition;
+}

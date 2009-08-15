@@ -1,0 +1,4 @@
+{
+  rtcpReceivedEvent.setDlSr("1.2345 (sec)");
+  assertEquals(1.2345,rtcpReceivedEvent.getDlSr());
+}

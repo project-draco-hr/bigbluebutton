@@ -1,0 +1,3 @@
+{
+  return agiReply.getAttribute("grammar0");
+}

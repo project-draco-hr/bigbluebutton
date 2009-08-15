@@ -1,0 +1,5 @@
+{
+  final AsteriskChannel oldDialingChannel=this.dialingChannel;
+  this.dialingChannel=dialingChannel;
+  firePropertyChange(PROPERTY_DIALING_CHANNEL,oldDialingChannel,dialingChannel);
+}

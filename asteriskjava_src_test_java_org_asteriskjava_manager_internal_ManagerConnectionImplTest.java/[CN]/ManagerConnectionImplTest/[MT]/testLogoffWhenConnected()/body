@@ -1,0 +1,9 @@
+{
+  mockSocket.close();
+  replay(mockSocket);
+  mc.connect();
+  mc.setState(ManagerConnectionState.CONNECTED);
+  mc.logoff();
+  assertEquals("logoff action not sent 1 time",1,mockWriter.logoffActionsSent);
+  verify(mockSocket);
+}

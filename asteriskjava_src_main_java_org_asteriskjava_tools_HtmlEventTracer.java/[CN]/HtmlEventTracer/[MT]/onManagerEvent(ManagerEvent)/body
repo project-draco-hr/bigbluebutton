@@ -1,0 +1,11 @@
+{
+  events.add(event);
+  System.out.println("> " + event);
+  for (  String property : new String[]{"uniqueId","uniqueId1","uniqueId2","srcUniqueId","destUniqueId"}) {
+    String uniqueId;
+    uniqueId=getProperty(event,property);
+    if (uniqueId != null && !uniqueIds.contains(uniqueId)) {
+      uniqueIds.add(uniqueId);
+    }
+  }
+}

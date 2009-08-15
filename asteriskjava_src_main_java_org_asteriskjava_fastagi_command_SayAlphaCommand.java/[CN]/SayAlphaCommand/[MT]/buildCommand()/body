@@ -1,0 +1,3 @@
+{
+  return "SAY ALPHA " + escapeAndQuote(text) + " "+ escapeAndQuote(escapeDigits);
+}

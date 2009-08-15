@@ -1,0 +1,17 @@
+{
+  MeetMeRoomImpl room;
+  boolean created=false;
+synchronized (rooms) {
+    room=rooms.get(roomNumber);
+    if (room == null) {
+      room=new MeetMeRoomImpl(server,roomNumber);
+      populateRoom(room);
+      rooms.put(roomNumber,room);
+      created=true;
+    }
+  }
+  if (created) {
+    logger.debug("Created MeetMeRoom " + roomNumber);
+  }
+  return room;
+}

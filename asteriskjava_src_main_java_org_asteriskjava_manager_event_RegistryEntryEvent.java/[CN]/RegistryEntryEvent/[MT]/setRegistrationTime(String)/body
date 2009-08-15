@@ -1,0 +1,3 @@
+{
+  this.registrationTime=Long.valueOf(registrationTime);
+}

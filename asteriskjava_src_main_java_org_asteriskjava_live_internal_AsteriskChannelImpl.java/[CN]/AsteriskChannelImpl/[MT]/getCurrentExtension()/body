@@ -1,0 +1,12 @@
+{
+  final Extension extension;
+synchronized (extensionHistory) {
+    if (extensionHistory.isEmpty()) {
+      extension=null;
+    }
+ else {
+      extension=extensionHistory.get(extensionHistory.size() - 1).getExtension();
+    }
+  }
+  return extension;
+}

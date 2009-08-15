@@ -1,0 +1,11 @@
+{
+  super.shutdown();
+  if (serverSocket != null) {
+    try {
+      serverSocket.close();
+    }
+ catch (    IOException e) {
+      logger.warn("IOException while closing server socket.",e);
+    }
+  }
+}

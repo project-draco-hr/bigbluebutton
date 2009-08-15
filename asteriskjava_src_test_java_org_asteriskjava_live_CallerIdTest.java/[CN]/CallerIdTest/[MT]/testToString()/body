@@ -1,0 +1,5 @@
+{
+  assertEquals("\"Hans Wurst\" <1234>",new CallerId("Hans Wurst","1234").toString());
+  assertEquals("<1234>",new CallerId(null,"1234").toString());
+  assertEquals("\"Hans Wurst\"",new CallerId("Hans Wurst",null).toString());
+}

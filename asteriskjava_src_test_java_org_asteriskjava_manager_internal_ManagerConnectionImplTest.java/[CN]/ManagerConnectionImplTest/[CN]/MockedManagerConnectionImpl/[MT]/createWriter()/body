@@ -1,0 +1,4 @@
+{
+  createWriterCalls++;
+  return mockWriter;
+}

@@ -1,0 +1,9 @@
+{
+  QueueEntryState oldState;
+synchronized (this) {
+    oldState=this.state;
+    this.dateLeft=dateLeft;
+    this.state=QueueEntryState.LEFT;
+  }
+  firePropertyChange(PROPERTY_STATE,oldState,state);
+}

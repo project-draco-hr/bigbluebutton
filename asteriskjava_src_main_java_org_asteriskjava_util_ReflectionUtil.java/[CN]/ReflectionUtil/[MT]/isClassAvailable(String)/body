@@ -1,0 +1,10 @@
+{
+  final ClassLoader classLoader=Thread.currentThread().getContextClassLoader();
+  try {
+    classLoader.loadClass(s);
+    return true;
+  }
+ catch (  ClassNotFoundException e) {
+    return false;
+  }
+}

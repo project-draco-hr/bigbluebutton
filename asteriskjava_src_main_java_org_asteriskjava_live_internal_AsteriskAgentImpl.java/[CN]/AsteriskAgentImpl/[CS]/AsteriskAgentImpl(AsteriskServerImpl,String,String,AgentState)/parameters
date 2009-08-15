@@ -1,0 +1,4 @@
+AsteriskServerImpl server
+String name
+String agentId
+AgentState state

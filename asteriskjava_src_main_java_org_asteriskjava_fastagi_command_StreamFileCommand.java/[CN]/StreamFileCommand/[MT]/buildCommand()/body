@@ -1,0 +1,3 @@
+{
+  return "STREAM FILE " + escapeAndQuote(file) + " "+ escapeAndQuote(escapeDigits)+ (offset < 0 ? "" : " " + offset);
+}

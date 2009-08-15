@@ -1,0 +1,4 @@
+{
+  super(source);
+  setBridgeState(BRIDGE_STATE_LINK);
+}

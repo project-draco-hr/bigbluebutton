@@ -1,0 +1,10 @@
+{
+  if (target != null) {
+    executor.execute(new Runnable(){
+      public void run(){
+        target.onManagerEvent(event);
+      }
+    }
+);
+  }
+}

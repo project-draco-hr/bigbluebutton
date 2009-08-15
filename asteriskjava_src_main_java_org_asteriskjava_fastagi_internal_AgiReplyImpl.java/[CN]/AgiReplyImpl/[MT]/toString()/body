@@ -1,0 +1,16 @@
+{
+  StringBuilder sb;
+  sb=new StringBuilder("AgiReply[");
+  sb.append("status=").append(getStatus()).append(",");
+  if (status == SC_SUCCESS) {
+    sb.append("result='").append(getResult()).append("',");
+    sb.append("extra='").append(getExtra()).append("',");
+    sb.append("attributes=").append(getAttributes()).append(",");
+  }
+  if (status == SC_INVALID_COMMAND_SYNTAX) {
+    sb.append("synopsis='").append(getSynopsis()).append("',");
+  }
+  sb.append("systemHashcode=").append(System.identityHashCode(this));
+  sb.append("]");
+  return sb.toString();
+}

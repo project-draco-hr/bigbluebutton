@@ -1,0 +1,10 @@
+{
+  ResponseEvents re;
+  disconnected();
+  re=server.sendEventGeneratingAction(new StatusAction());
+  for (  ManagerEvent event : re.getEvents()) {
+    if (event instanceof StatusEvent) {
+      handleStatusEvent((StatusEvent)event);
+    }
+  }
+}

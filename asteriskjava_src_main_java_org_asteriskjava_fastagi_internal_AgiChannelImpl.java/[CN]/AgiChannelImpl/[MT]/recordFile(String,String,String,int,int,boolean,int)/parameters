@@ -1,0 +1,7 @@
+String file
+String format
+String escapeDigits
+int timeout
+int offset
+boolean beep
+int maxSilence

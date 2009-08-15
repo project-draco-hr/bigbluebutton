@@ -1,0 +1,4 @@
+{
+  this.scriptPath=scriptPath;
+  this.libPath=libPath;
+}

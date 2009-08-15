@@ -1,0 +1,3 @@
+{
+  return originateToExtension(channel,context,exten,priority,timeout,null,null);
+}

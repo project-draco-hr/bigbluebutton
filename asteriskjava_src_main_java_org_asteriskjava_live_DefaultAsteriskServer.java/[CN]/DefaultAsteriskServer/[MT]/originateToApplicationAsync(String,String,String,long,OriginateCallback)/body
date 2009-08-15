@@ -1,0 +1,3 @@
+{
+  impl.originateToApplicationAsync(channel,application,data,timeout,cb);
+}

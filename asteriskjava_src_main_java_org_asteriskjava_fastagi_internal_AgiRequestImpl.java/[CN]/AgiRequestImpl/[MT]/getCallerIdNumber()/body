@@ -1,0 +1,15 @@
+{
+  String callerIdName;
+  String callerId;
+  callerIdName=request.get("calleridname");
+  callerId=request.get("callerid");
+  if (callerIdName != null) {
+    if (callerId == null || "unknown".equals(callerId)) {
+      return null;
+    }
+    return callerId;
+  }
+ else {
+    return getCallerId10();
+  }
+}

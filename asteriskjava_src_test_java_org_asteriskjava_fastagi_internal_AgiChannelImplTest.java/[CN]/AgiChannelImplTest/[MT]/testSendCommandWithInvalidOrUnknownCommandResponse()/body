@@ -1,0 +1,21 @@
+{
+  SimpleAgiReply reply;
+  NoopCommand command;
+  reply=new SimpleAgiReply();
+  reply.setStatus(AgiReply.SC_INVALID_OR_UNKNOWN_COMMAND);
+  reply.setResult("0");
+  command=new NoopCommand();
+  agiWriter.sendCommand(command);
+  expect(agiReader.readReply()).andReturn(reply);
+  replay(agiWriter);
+  replay(agiReader);
+  try {
+    agiChannel.sendCommand(command);
+    fail("must throw InvalidOrUnknownCommandException");
+  }
+ catch (  InvalidOrUnknownCommandException e) {
+    assertEquals("Incorrect message","Invalid or unknown command: NOOP",e.getMessage());
+  }
+  verify(agiWriter);
+  verify(agiReader);
+}

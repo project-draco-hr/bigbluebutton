@@ -1,0 +1,11 @@
+{
+  if (getterName.startsWith("get")) {
+    return "set" + getterName.substring(3);
+  }
+ else   if (getterName.startsWith("is")) {
+    return "set" + getterName.substring(2);
+  }
+ else {
+    throw new IllegalArgumentException("Getter '" + getterName + "' doesn't start with either 'get' or 'is'");
+  }
+}

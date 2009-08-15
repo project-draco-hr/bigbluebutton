@@ -1,0 +1,19 @@
+{
+  final StringTokenizer st;
+  if (variable == null) {
+    this.variables=null;
+    return;
+  }
+  st=new StringTokenizer(variable,"|");
+  variables=new LinkedHashMap<String,String>();
+  while (st.hasMoreTokens()) {
+    String[] keyValue;
+    keyValue=st.nextToken().split("=",2);
+    if (keyValue.length < 2) {
+      variables.put(keyValue[0],null);
+    }
+ else {
+      variables.put(keyValue[0],keyValue[1]);
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  super();
+  this.channel=channel;
+  this.file=file;
+  this.format=format;
+}

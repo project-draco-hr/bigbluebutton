@@ -1,0 +1,3 @@
+{
+  this.regExpire=stringToLong(regExpire,"seconds");
+}

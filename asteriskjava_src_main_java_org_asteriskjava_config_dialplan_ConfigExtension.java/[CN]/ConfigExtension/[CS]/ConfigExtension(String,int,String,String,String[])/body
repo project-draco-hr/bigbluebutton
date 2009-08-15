@@ -1,0 +1,6 @@
+{
+  super(filename,lineno);
+  this.name=name;
+  this.priority=priority;
+  this.application=application;
+}

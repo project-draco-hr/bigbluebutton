@@ -1,0 +1,10 @@
+{
+  AsteriskAgentImpl agent=getAgentByAgentId("Agent/" + event.getAgent());
+  if (agent == null) {
+synchronized (agents) {
+      logger.error("Ignored AgentCallbackLoginEvent for unknown agent " + event.getAgent() + ". Agents: "+ agents.values().toString());
+    }
+    return;
+  }
+  agent.updateState(AgentState.AGENT_IDLE);
+}

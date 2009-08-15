@@ -1,0 +1,6 @@
+{
+  super();
+  this.file=file;
+  this.timeout=DEFAULT_TIMEOUT;
+  this.maxDigits=DEFAULT_MAX_DIGITS;
+}

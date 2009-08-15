@@ -1,0 +1,9 @@
+{
+  TransferEvent event;
+  properties.put("event","Transfer");
+  properties.put("sip-callid","12345");
+  event=(TransferEvent)eventBuilder.buildEvent(this,properties);
+  assertNotNull(event);
+  assertEquals("Returned event is of wrong type",TransferEvent.class,event.getClass());
+  assertEquals("Property SIP-Callid is not set correctly","12345",event.getSipCallId());
+}

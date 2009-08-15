@@ -1,0 +1,12 @@
+{
+  if (codecs == null || codecs.isEmpty()) {
+    this.codecs=null;
+    return;
+  }
+  Iterator<String> iter=codecs.iterator();
+  StringBuffer buffer=new StringBuffer(iter.next());
+  while (iter.hasNext()) {
+    buffer.append(",").append(iter.next());
+  }
+  this.codecs=buffer.toString();
+}

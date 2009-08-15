@@ -1,0 +1,3 @@
+AsteriskChannelImpl channel
+int reportedPosition
+Date dateReceived

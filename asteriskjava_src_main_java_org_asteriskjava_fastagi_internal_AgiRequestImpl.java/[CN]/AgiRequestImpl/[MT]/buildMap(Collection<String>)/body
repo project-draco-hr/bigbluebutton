@@ -1,0 +1,28 @@
+{
+  final Map<String,String> map;
+  if (lines == null) {
+    throw new IllegalArgumentException("Environment must not be null.");
+  }
+  map=new HashMap<String,String>();
+  for (  String line : lines) {
+    int colonPosition;
+    String key;
+    String value;
+    colonPosition=line.indexOf(':');
+    if (colonPosition < 0) {
+      continue;
+    }
+    if (!line.startsWith("agi_") && !line.startsWith("ogi_")) {
+      continue;
+    }
+    if (line.length() < colonPosition + 2) {
+      continue;
+    }
+    key=line.substring(4,colonPosition).toLowerCase(Locale.ENGLISH);
+    value=line.substring(colonPosition + 2);
+    if (value.length() != 0) {
+      map.put(key,value);
+    }
+  }
+  return map;
+}

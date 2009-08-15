@@ -1,0 +1,5 @@
+{
+  this.score=score;
+  this.text=text;
+  this.grammar=grammar;
+}

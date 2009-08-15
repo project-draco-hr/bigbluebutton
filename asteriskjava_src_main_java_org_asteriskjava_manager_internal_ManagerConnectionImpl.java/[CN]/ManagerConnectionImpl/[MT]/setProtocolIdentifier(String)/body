@@ -1,0 +1,10 @@
+{
+  logger.info("Connected via " + identifier);
+  if (!"Asterisk Call Manager/1.0".equals(identifier) && !"Asterisk Call Manager/1.1".equals(identifier) && !"Asterisk Call Manager/1.2".equals(identifier)&& !"OpenPBX Call Manager/1.0".equals(identifier)&& !"CallWeaver Call Manager/1.0".equals(identifier)&& !(identifier != null && identifier.startsWith("Asterisk Call Manager Proxy/"))) {
+    logger.warn("Unsupported protocol version '" + identifier + "'. Use at your own risk.");
+  }
+synchronized (protocolIdentifier) {
+    protocolIdentifier.value=identifier;
+    protocolIdentifier.notifyAll();
+  }
+}

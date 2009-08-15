@@ -1,0 +1,19 @@
+{
+  int spaceIdx;
+  if (s == null) {
+    return;
+  }
+  spaceIdx=s.indexOf(' ');
+  if (spaceIdx <= 0) {
+    spaceIdx=s.length();
+  }
+  try {
+    this.cidCallingPres=Integer.valueOf(s.substring(0,spaceIdx));
+  }
+ catch (  NumberFormatException e) {
+    return;
+  }
+  if (s.length() > spaceIdx + 3) {
+    this.cidCallingPresTxt=s.substring(spaceIdx + 2,s.length() - 1);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  AgiReplyImpl reply;
+  lines.add("200 result=1 ((hello)(world))");
+  reply=new AgiReplyImpl(lines);
+  assertEquals("Incorrect status",AgiReplyImpl.SC_SUCCESS,reply.getStatus());
+  assertEquals("Incorrect result",1,reply.getResultCode());
+  assertEquals("Incorrect parenthesis","(hello)(world)",reply.getExtra());
+}

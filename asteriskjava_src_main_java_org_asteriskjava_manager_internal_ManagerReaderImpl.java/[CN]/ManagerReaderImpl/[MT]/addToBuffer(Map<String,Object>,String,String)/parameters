@@ -1,0 +1,3 @@
+Map<String,Object> buffer
+String name
+String value

@@ -1,0 +1,3 @@
+{
+  return "DATABASE PUT " + escapeAndQuote(family) + " "+ escapeAndQuote(key)+ " "+ escapeAndQuote(value);
+}

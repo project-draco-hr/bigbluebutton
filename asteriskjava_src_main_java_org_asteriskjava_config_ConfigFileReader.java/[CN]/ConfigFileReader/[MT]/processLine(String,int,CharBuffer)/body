@@ -1,0 +1,88 @@
+{
+  char c;
+  final StringBuilder processLineBuilder;
+  final StringBuilder lineCommentBuilder;
+  processLineBuilder=new StringBuilder(MAX_LINE_LENGTH);
+  lineCommentBuilder=new StringBuilder(MAX_LINE_LENGTH);
+  buffer.mark();
+  while (buffer.hasRemaining()) {
+    final int position;
+    position=buffer.position();
+    c=buffer.get();
+    if (c == COMMENT_META) {
+      if (position >= 1 && buffer.get(position - 1) == '\\') {
+      }
+ else       if (buffer.remaining() >= 3 && buffer.get(position + 1) == COMMENT_TAG && buffer.get(position + 2) == COMMENT_TAG && buffer.get(position + 3) != COMMENT_TAG) {
+        currentCommentLevel++;
+        if (!inComment()) {
+          commentBlock.append(";--");
+          buffer.position(position + 3);
+          buffer.mark();
+          continue;
+        }
+      }
+ else       if (inComment() && position >= 2 && buffer.get(position - 1) == COMMENT_TAG && buffer.get(position - 2) == COMMENT_TAG) {
+        currentCommentLevel--;
+        if (!inComment()) {
+          buffer.reset();
+          commentBlock.append(c);
+          buffer.position(position + 1);
+          buffer.compact();
+          buffer.flip();
+          continue;
+        }
+      }
+ else {
+        if (!inComment()) {
+          while (buffer.hasRemaining()) {
+            lineCommentBuilder.append(buffer.get());
+          }
+          break;
+        }
+ else {
+        }
+      }
+    }
+    if (inComment()) {
+      commentBlock.append(c);
+    }
+ else {
+      processLineBuilder.append(c);
+    }
+  }
+  String processLineString;
+  String lineCommentString;
+  ConfigElement configElement;
+  processLineString=processLineBuilder.toString().trim();
+  lineCommentString=lineCommentBuilder.toString().trim();
+  if (processLineString.length() == 0) {
+    if (lineCommentString.length() != 0) {
+      commentBlock.append(";");
+      commentBlock.append(lineCommentString);
+    }
+    if (!inComment()) {
+      commentBlock.append("\n");
+    }
+    return null;
+  }
+  try {
+    configElement=processTextLine(configfile,lineno,processLineString);
+  }
+ catch (  ConfigParseException e) {
+    if (WARNING_CLASSES.contains(e.getClass())) {
+      warnings.add(e);
+      return null;
+    }
+ else {
+      throw e;
+    }
+  }
+  if (lineCommentString.length() != 0) {
+    configElement.setComment(lineCommentString);
+  }
+  if (commentBlock.length() != 0) {
+    configElement.setPreComment(commentBlock.toString());
+    commentBlock.delete(0,commentBlock.length());
+  }
+  return configElement;
+}

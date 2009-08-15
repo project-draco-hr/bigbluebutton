@@ -1,0 +1,9 @@
+{
+  final StringBuilder sb;
+  sb=new StringBuilder(b.length * 2);
+  for (  byte aB : b) {
+    sb.append(hexChar[(aB & 0xf0) >>> 4]);
+    sb.append(hexChar[aB & 0x0f]);
+  }
+  return sb.toString();
+}

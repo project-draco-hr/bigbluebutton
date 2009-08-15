@@ -1,0 +1,7 @@
+{
+  final String extension=getExtension(file.getName());
+  if (extension == null) {
+    return null;
+  }
+  return getScriptEngineManager().getEngineByExtension(extension);
+}

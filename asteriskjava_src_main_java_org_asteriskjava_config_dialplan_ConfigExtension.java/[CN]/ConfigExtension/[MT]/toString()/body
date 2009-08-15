@@ -1,0 +1,3 @@
+{
+  return "exten => " + name + ","+ priority+ ","+ Arrays.asList(application);
+}

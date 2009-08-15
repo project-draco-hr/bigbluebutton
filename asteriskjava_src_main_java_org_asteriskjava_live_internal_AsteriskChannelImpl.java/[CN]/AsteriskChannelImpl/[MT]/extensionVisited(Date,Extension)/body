@@ -1,0 +1,9 @@
+{
+  final Extension oldCurrentExtension=getCurrentExtension();
+  final ExtensionHistoryEntry historyEntry;
+  historyEntry=new ExtensionHistoryEntry(date,extension);
+synchronized (extensionHistory) {
+    extensionHistory.add(historyEntry);
+  }
+  firePropertyChange(PROPERTY_CURRENT_EXTENSION,oldCurrentExtension,extension);
+}

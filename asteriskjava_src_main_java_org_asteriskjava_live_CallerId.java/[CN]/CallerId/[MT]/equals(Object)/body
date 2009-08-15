@@ -1,0 +1,16 @@
+{
+  if (this == o) {
+    return true;
+  }
+  if (o == null || getClass() != o.getClass()) {
+    return false;
+  }
+  CallerId callerId=(CallerId)o;
+  if (name != null ? !name.equals(callerId.name) : callerId.name != null) {
+    return false;
+  }
+  if (number != null ? !number.equals(callerId.number) : callerId.number != null) {
+    return false;
+  }
+  return true;
+}

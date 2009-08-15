@@ -1,0 +1,3 @@
+{
+  configFileReader=new ConfigFileReader();
+}

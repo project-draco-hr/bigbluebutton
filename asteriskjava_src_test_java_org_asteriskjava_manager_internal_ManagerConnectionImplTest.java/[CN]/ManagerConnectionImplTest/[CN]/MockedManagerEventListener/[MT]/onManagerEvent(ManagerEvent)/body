@@ -1,0 +1,3 @@
+{
+  eventsHandled.add(event);
+}

@@ -1,0 +1,3 @@
+{
+  sendMeetMeUserCommand(MUTE_COMMAND);
+}

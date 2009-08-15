@@ -1,0 +1,9 @@
+{
+  super(server);
+  if (server == null || name == null || agentId == null) {
+    throw new IllegalArgumentException("Parameters passed to AsteriskAgentImpl() must not be null.");
+  }
+  this.name=name;
+  this.agentId=agentId;
+  this.state=state;
+}

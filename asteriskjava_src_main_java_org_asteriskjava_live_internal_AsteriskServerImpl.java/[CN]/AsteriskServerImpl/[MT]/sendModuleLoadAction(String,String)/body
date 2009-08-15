@@ -1,0 +1,8 @@
+{
+  final ManagerResponse response;
+  response=sendAction(new ModuleLoadAction(module,loadType));
+  if (response instanceof ManagerError) {
+    final ManagerError error=(ManagerError)response;
+    throw new ManagerCommunicationException(error.getMessage(),null);
+  }
+}

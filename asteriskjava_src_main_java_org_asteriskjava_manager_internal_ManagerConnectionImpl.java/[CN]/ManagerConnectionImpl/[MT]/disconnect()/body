@@ -1,0 +1,13 @@
+{
+  if (socket != null) {
+    logger.info("Closing socket.");
+    try {
+      socket.close();
+    }
+ catch (    IOException ex) {
+      logger.warn("Unable to close socket: " + ex.getMessage());
+    }
+    socket=null;
+  }
+  protocolIdentifier.value=null;
+}

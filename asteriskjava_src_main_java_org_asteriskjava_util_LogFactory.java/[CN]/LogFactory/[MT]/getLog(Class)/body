@@ -1,0 +1,31 @@
+{
+  if (log4jLoggingAvailable == null) {
+    try {
+      Class.forName("org.apache.log4j.Logger");
+      log4jLoggingAvailable=Boolean.TRUE;
+    }
+ catch (    Exception e) {
+      log4jLoggingAvailable=Boolean.FALSE;
+    }
+  }
+  if (log4jLoggingAvailable) {
+    return new Log4JLogger(clazz);
+  }
+ else {
+    if (javaLoggingAvailable == null) {
+      try {
+        Class.forName("java.util.logging.Logger");
+        javaLoggingAvailable=Boolean.TRUE;
+      }
+ catch (      Exception e) {
+        javaLoggingAvailable=Boolean.FALSE;
+      }
+    }
+    if (javaLoggingAvailable) {
+      return new JavaLoggingLog(clazz);
+    }
+ else {
+      return new NullLog();
+    }
+  }
+}

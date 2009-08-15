@@ -1,0 +1,4 @@
+{
+  this.registeredEventClasses=new HashMap<String,Class>();
+  registerBuiltinEventClasses();
+}

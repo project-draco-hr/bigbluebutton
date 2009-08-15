@@ -1,0 +1,17 @@
+{
+  assertEquals("txt",getExtension("hello.txt"));
+  assertEquals("txt",getExtension("/some/path/hello.txt"));
+  assertEquals("txt",getExtension("C:\\some\\path\\hello.txt"));
+  assertEquals("txt",getExtension("C:\\some\\path\\hel.lo.txt"));
+  assertEquals("txt",getExtension("C:\\some\\pa.th\\hel.lo.txt"));
+  assertEquals("txt",getExtension(".txt"));
+  assertEquals(null,getExtension(null));
+  assertEquals(null,getExtension(""));
+  assertEquals(null,getExtension("hello"));
+  assertEquals(null,getExtension("/some/path/hello"));
+  assertEquals(null,getExtension("/some/pa.th/hello"));
+  assertEquals(null,getExtension("C:\\some\\path\\hello"));
+  assertEquals(null,getExtension("C:\\some\\pa.th\\hello"));
+  assertEquals(null,getExtension("/some/pa.th\\hello"));
+  assertEquals(null,getExtension("C:\\some\\pa.th/hello"));
+}

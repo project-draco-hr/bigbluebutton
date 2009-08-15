@@ -1,0 +1,5 @@
+{
+synchronized (originateCallbacks) {
+    return originateCallbacks.get(traceId);
+  }
+}

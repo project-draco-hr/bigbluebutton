@@ -1,0 +1,16 @@
+{
+  DateFormat df;
+  if (s == null) {
+    return null;
+  }
+  df=new SimpleDateFormat(DATE_TIME_PATTERN);
+  if (tz != null) {
+    df.setTimeZone(tz);
+  }
+  try {
+    return df.parse(s);
+  }
+ catch (  ParseException e) {
+    return null;
+  }
+}

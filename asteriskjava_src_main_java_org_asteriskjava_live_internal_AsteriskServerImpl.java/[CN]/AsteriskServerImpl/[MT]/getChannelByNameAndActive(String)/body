@@ -1,0 +1,4 @@
+{
+  initializeIfNeeded();
+  return channelManager.getChannelImplByNameAndActive(name);
+}

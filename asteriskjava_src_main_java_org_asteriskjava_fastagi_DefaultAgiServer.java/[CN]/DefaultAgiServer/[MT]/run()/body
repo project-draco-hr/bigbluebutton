@@ -1,0 +1,7 @@
+{
+  try {
+    startup();
+  }
+ catch (  IOException e) {
+  }
+}

@@ -1,0 +1,10 @@
+{
+  String traceId;
+  try {
+    traceId=channel.getVariable(Constants.VARIABLE_TRACE_ID);
+  }
+ catch (  Exception e) {
+    traceId=null;
+  }
+  return traceId;
+}

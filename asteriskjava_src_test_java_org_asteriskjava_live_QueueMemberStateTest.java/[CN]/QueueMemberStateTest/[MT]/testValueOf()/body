@@ -1,0 +1,4 @@
+{
+  assertEquals(QueueMemberState.DEVICE_INUSE,QueueMemberState.valueOf("DEVICE_INUSE"));
+  assertEquals(QueueMemberState.DEVICE_INUSE,QueueMemberState.valueOf(2));
+}

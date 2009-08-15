@@ -1,0 +1,5 @@
+{
+  event.setReloadReason("CLIRELOAD (Channel module reload by CLI command)");
+  assertEquals("CLIRELOAD",event.getReloadReasonCode());
+  assertEquals(ChannelReloadEvent.REASON_CLI_RELOAD,event.getReloadReasonCode());
+}

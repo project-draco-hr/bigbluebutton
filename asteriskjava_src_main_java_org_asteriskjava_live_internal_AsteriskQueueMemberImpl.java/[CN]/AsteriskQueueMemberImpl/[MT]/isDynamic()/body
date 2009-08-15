@@ -1,0 +1,3 @@
+{
+  return membership != null && "dynamic".equals(membership);
+}

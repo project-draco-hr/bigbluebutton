@@ -1,0 +1,10 @@
+{
+  if (channel == null) {
+    return;
+  }
+  try {
+    channel.sendCommand(new VerboseCommand(message,1));
+  }
+ catch (  Exception e) {
+  }
+}

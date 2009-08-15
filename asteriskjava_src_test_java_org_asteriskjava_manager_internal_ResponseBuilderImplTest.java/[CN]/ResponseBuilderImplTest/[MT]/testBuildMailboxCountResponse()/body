@@ -1,0 +1,14 @@
+{
+  ManagerResponse response;
+  attributes.put("response","Success");
+  attributes.put("message","Mailbox Message Count");
+  attributes.put("mailbox","123@myctx");
+  attributes.put("newmessages","2");
+  attributes.put("oldmessages","5");
+  response=responseBuilder.buildResponse(MailboxCountResponse.class,attributes);
+  assertEquals("Response of wrong type",MailboxCountResponse.class,response.getClass());
+  MailboxCountResponse mailboxCountResponse=(MailboxCountResponse)response;
+  assertEquals("Mailbox not set correctly","123@myctx",mailboxCountResponse.getMailbox());
+  assertEquals("New messages not set correctly",Integer.valueOf(2),mailboxCountResponse.getNewMessages());
+  assertEquals("Old messages set correctly",Integer.valueOf(5),mailboxCountResponse.getOldMessages());
+}

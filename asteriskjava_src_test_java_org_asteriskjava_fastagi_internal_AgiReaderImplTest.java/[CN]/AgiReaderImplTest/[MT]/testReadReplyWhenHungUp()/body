@@ -1,0 +1,11 @@
+{
+  expect(socket.readLine()).andReturn(null);
+  replay(socket);
+  try {
+    agiReader.readReply();
+    fail("Must throw AgiHangupException");
+  }
+ catch (  AgiHangupException e) {
+  }
+  verify(socket);
+}

@@ -1,0 +1,6 @@
+{
+  this.username=username;
+  this.authType=authType;
+  this.key=key;
+  this.events=events;
+}

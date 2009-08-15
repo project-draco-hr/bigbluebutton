@@ -1,0 +1,3 @@
+{
+  return coreRealtimeEnabled != null && coreRealtimeEnabled;
+}

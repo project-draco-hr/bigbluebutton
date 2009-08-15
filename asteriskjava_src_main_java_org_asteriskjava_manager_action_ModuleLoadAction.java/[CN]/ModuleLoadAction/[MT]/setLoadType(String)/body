@@ -1,0 +1,3 @@
+{
+  this.loadType=loadType;
+}

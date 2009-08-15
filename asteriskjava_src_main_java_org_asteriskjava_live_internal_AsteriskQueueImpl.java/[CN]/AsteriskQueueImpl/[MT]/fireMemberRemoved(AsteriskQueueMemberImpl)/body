@@ -1,0 +1,12 @@
+{
+synchronized (listeners) {
+    for (    AsteriskQueueListener listener : listeners) {
+      try {
+        listener.onMemberRemoved(member);
+      }
+ catch (      Exception e) {
+        logger.warn("Exception in onMemberRemoved()",e);
+      }
+    }
+  }
+}

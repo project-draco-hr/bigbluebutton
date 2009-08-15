@@ -1,0 +1,9 @@
+{
+  AgiReply reply;
+  expect(socket.readLine()).andReturn("200 result=49 endpos=2240");
+  replay(socket);
+  reply=agiReader.readReply();
+  assertEquals("Incorrect status",AgiReply.SC_SUCCESS,reply.getStatus());
+  assertEquals("Incorrect result",49,reply.getResultCode());
+  verify(socket);
+}

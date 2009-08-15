@@ -1,0 +1,4 @@
+{
+  sendCommand(new ChannelStatusCommand());
+  return lastReply.getResultCode();
+}

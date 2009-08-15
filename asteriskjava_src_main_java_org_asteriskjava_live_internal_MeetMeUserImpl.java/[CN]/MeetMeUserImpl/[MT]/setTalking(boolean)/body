@@ -1,0 +1,5 @@
+{
+  boolean oldTalking=this.talking;
+  this.talking=talking;
+  firePropertyChange(PROPERTY_TALKING,oldTalking,talking);
+}

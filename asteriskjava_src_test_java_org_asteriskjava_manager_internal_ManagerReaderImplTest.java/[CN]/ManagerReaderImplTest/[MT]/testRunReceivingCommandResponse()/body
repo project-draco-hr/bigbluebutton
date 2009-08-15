@@ -1,0 +1,22 @@
+{
+  List<String> result=new ArrayList<String>();
+  expect(socketConnectionFacade.readLine()).andReturn("Response: Follows");
+  expect(socketConnectionFacade.readLine()).andReturn("ActionID: 678#12345");
+  expect(socketConnectionFacade.readLine()).andReturn("Line1\nLine2\n--END COMMAND--");
+  expect(socketConnectionFacade.readLine()).andReturn("");
+  expect(socketConnectionFacade.readLine()).andReturn(null);
+  result.add("Line1");
+  result.add("Line2");
+  replay(socketConnectionFacade);
+  managerReader.setSocket(socketConnectionFacade);
+  managerReader.expectResponseClass("678",CommandResponse.class);
+  managerReader.run();
+  verify(socketConnectionFacade);
+  assertEquals("not exactly one response dispatched",1,dispatcher.dispatchedResponses.size());
+  assertEquals("first response must be a CommandResponse",CommandResponse.class,dispatcher.dispatchedResponses.get(0).getClass());
+  assertEquals("CommandResponse contains incorrect response","Follows",dispatcher.dispatchedResponses.get(0).getResponse());
+  assertEquals("CommandResponse contains incorrect actionId","678#12345",dispatcher.dispatchedResponses.get(0).getActionId());
+  assertEquals("CommandResponse contains incorrect actionId (via getAttribute)","678#12345",dispatcher.dispatchedResponses.get(0).getAttribute("actionId"));
+  assertEquals("CommandResponse contains incorrect result",result,((CommandResponse)dispatcher.dispatchedResponses.get(0)).getResult());
+  assertEquals("CommandResponse contains incorrect dateReceived",now,dispatcher.dispatchedResponses.get(0).getDateReceived());
+}

@@ -1,0 +1,13 @@
+{
+  AgiScript script=null;
+  if (strategies == null) {
+    return null;
+  }
+  for (  MappingStrategy strategy : strategies) {
+    script=strategy.determineScript(request);
+    if (script != null) {
+      break;
+    }
+  }
+  return script;
+}

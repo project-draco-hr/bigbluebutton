@@ -1,0 +1,9 @@
+{
+  ManagerEvent event;
+  properties.put("event","LogChannel");
+  properties.put("reason","123 - a reason");
+  event=eventBuilder.buildEvent(this,properties);
+  assertNotNull(event);
+  assertEquals("Reason property not set correctly",Integer.valueOf(123),((LogChannelEvent)event).getReason());
+  assertEquals("ReasonTxt property not set correctly","a reason",((LogChannelEvent)event).getReasonTxt());
+}

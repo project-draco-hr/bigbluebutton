@@ -1,0 +1,8 @@
+{
+  if (IS12) {
+    getLogger().log(FQCN,(Priority)Level.INFO,message,null);
+  }
+ else {
+    getLogger().log(FQCN,Level.INFO,message,null);
+  }
+}

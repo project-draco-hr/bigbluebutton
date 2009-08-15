@@ -1,0 +1,12 @@
+{
+synchronized (eventListeners) {
+    for (    ManagerEventListener listener : eventListeners) {
+      try {
+        listener.onManagerEvent(event);
+      }
+ catch (      RuntimeException e) {
+        logger.warn("Unexpected exception in eventHandler " + listener.getClass().getName(),e);
+      }
+    }
+  }
+}

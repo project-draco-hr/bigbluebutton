@@ -1,0 +1,25 @@
+{
+  final ManagerResponse response;
+  final String command;
+  initializeIfNeeded();
+  if (version == null) {
+    if (eventConnection.getVersion().isAtLeast(AsteriskVersion.ASTERISK_1_6)) {
+      command=SHOW_VERSION_1_6_COMMAND;
+    }
+ else {
+      command=SHOW_VERSION_COMMAND;
+    }
+    response=sendAction(new CommandAction(command));
+    if (response instanceof CommandResponse) {
+      final List result;
+      result=((CommandResponse)response).getResult();
+      if (result.size() > 0) {
+        version=(String)result.get(0);
+      }
+    }
+ else {
+      logger.error("Response to CommandAction(\"" + command + "\") was not a CommandResponse but "+ response);
+    }
+  }
+  return version;
+}

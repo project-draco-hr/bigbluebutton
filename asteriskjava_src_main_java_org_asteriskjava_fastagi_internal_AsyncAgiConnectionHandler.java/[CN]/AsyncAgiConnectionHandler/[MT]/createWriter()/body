@@ -1,0 +1,4 @@
+{
+  writer=new AsyncAgiWriter(connection,channelName);
+  return writer;
+}

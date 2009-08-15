@@ -1,0 +1,5 @@
+{
+  DefaultAgiServer defaultAgiServer;
+  defaultAgiServer=new DefaultAgiServer("test2-fastagi");
+  assertEquals("BindPort property not recognized",2345,defaultAgiServer.getPort());
+}

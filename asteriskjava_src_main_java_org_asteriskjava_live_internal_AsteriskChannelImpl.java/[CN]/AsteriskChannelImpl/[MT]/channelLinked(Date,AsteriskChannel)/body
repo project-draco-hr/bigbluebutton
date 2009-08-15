@@ -1,0 +1,11 @@
+{
+  final AsteriskChannel oldLinkedChannel=this.linkedChannel;
+  final LinkedChannelHistoryEntry historyEntry;
+  historyEntry=new LinkedChannelHistoryEntry(date,linkedChannel);
+synchronized (linkedChannelHistory) {
+    linkedChannelHistory.add(historyEntry);
+  }
+  this.linkedChannel=linkedChannel;
+  this.wasLinked=true;
+  firePropertyChange(PROPERTY_LINKED_CHANNEL,oldLinkedChannel,linkedChannel);
+}

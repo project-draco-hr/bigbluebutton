@@ -1,0 +1,5 @@
+{
+  super(message);
+  this.filename=filename;
+  this.lineno=lineno;
+}

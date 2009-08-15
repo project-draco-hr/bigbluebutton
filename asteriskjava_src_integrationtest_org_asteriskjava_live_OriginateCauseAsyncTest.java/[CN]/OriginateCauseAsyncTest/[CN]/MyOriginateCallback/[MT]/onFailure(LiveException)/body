@@ -1,0 +1,4 @@
+{
+  status.failureException=cause;
+  doNotify();
+}

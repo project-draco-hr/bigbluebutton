@@ -1,0 +1,18 @@
+{
+  Thread t;
+  t=new Thread(new Runnable(){
+    public void run(){
+      try {
+        agiServer.startup();
+      }
+ catch (      Throwable e) {
+        throw new RuntimeException("Exception running AgiServer.",e);
+      }
+    }
+  }
+);
+  t.setName("Asterisk-Java AgiServer-" + idCounter.getAndIncrement());
+  t.setDaemon(daemon);
+  t.setUncaughtExceptionHandler(new AgiThreadUncaughtExceptionHanlder());
+  return t;
+}

@@ -1,0 +1,14 @@
+{
+  String line;
+  int lineno=0;
+  CharBuffer buffer=CharBuffer.allocate(MAX_LINE_LENGTH);
+  reset();
+  while ((line=reader.readLine()) != null) {
+    lineno++;
+    buffer.clear();
+    buffer.put(line);
+    buffer.put("\n");
+    buffer.flip();
+    processLine(configfile,lineno,buffer);
+  }
+}

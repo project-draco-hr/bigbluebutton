@@ -1,0 +1,8 @@
+{
+  ManagerResponse response;
+  attributes.put("response","Error");
+  attributes.put("actionid","1234");
+  attributes.put("message","Missing action in request");
+  response=responseBuilder.buildResponse(ManagerResponse.class,attributes);
+  assertEquals("ActionId not set correctly","1234",response.getActionId());
+}

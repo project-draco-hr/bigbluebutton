@@ -1,0 +1,5 @@
+{
+  TimeZone.setDefault(TimeZone.getTimeZone("Europe/Monaco"));
+  cdrEvent.setStartTime("2006-05-29 13:17:21");
+  assertEquals("Mon May 29 13:17:21 CEST 2006",cdrEvent.getStartTimeAsDate().toString());
+}

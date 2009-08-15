@@ -1,0 +1,4 @@
+{
+  super();
+  this.strategies=new ArrayList<MappingStrategy>(Arrays.asList(strategies));
+}

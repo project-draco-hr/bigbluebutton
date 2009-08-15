@@ -1,0 +1,10 @@
+{
+  super.finalize();
+  if (serverSocket != null) {
+    try {
+      serverSocket.close();
+    }
+ catch (    IOException e) {
+    }
+  }
+}

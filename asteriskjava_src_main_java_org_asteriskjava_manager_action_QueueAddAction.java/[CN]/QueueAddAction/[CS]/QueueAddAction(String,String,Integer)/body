@@ -1,0 +1,5 @@
+{
+  this.queue=queue;
+  this.iface=iface;
+  this.penalty=penalty;
+}

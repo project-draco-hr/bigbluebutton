@@ -1,0 +1,8 @@
+{
+  try {
+    return new AgiReplyImpl(asyncAgiEvents.take().decodeResult());
+  }
+ catch (  InterruptedException e) {
+    throw new AgiException("Interrupted while waiting for AsyncAgiEvent",e);
+  }
+}

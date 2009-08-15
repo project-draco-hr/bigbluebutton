@@ -1,0 +1,3 @@
+{
+  return this.subEvent != null && this.subEvent.equalsIgnoreCase(subEvent);
+}

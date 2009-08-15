@@ -1,0 +1,5 @@
+{
+  DefaultAgiServer defaultAgiServer;
+  defaultAgiServer=new DefaultAgiServer();
+  assertEquals("Invalid default port",4573,defaultAgiServer.getPort());
+}

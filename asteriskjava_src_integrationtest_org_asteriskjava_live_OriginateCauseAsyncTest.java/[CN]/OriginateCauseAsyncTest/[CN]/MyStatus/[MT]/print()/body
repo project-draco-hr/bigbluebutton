@@ -1,0 +1,7 @@
+{
+  System.out.println("dialing  = " + dialingChannel);
+  System.out.println("busy     = " + busyChannel);
+  System.out.println("noAnswer = " + noAnswerChannel);
+  System.out.println("success  = " + successChannel);
+  System.out.println("failure  = " + failureException);
+}

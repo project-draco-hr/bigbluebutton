@@ -1,0 +1,6 @@
+{
+  this();
+  impl.setHostname(hostname);
+  impl.setUsername(username);
+  impl.setPassword(password);
+}

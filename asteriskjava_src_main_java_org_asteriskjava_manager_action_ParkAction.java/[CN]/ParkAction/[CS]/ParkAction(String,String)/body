@@ -1,0 +1,5 @@
+{
+  super();
+  this.channel=channel;
+  this.channel2=channel2;
+}

@@ -1,0 +1,19 @@
+{
+  int spaceIdx;
+  if (s == null) {
+    return;
+  }
+  spaceIdx=s.indexOf(' ');
+  if (spaceIdx <= 0) {
+    spaceIdx=s.length();
+  }
+  try {
+    this.reason=Integer.valueOf(s.substring(0,spaceIdx));
+  }
+ catch (  NumberFormatException e) {
+    return;
+  }
+  if (s.length() > spaceIdx + 3) {
+    this.reasonTxt=s.substring(spaceIdx + 3,s.length());
+  }
+}

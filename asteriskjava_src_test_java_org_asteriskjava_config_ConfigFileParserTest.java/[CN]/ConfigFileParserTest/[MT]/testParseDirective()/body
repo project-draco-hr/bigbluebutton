@@ -1,0 +1,27 @@
+{
+  ConfigDirective configDirective;
+  configDirective=configFileReader.parseDirective("abc.conf",20,"#include \"/etc/asterisk/inc.conf\"");
+  assertEquals("Incorrect type of configDirective",IncludeDirective.class,configDirective.getClass());
+  assertEquals("Incorrect include file","/etc/asterisk/inc.conf",((IncludeDirective)configDirective).getIncludeFile());
+  assertEquals("Incorrect line number",20,configDirective.getLineNumber());
+  assertEquals("Incorrect file name","abc.conf",configDirective.getFileName());
+  configDirective=configFileReader.parseDirective("abc.conf",20,"#exec   </usr/local/test.sh>   ");
+  assertEquals("Incorrect type of configDirective",ExecDirective.class,configDirective.getClass());
+  assertEquals("Incorrect exec file","/usr/local/test.sh",((ExecDirective)configDirective).getExecFile());
+  assertEquals("Incorrect line number",20,configDirective.getLineNumber());
+  assertEquals("Incorrect file name","abc.conf",configDirective.getFileName());
+  try {
+    configFileReader.parseDirective("abc.conf",20,"#foo");
+    fail("Expected exception when parsing a line with an unknown directive");
+  }
+ catch (  UnknownDirectiveException e) {
+    assertEquals("Unknown directive 'foo' at line 20 of abc.conf",e.getMessage());
+  }
+  try {
+    configFileReader.parseDirective("/etc/asterisk/sip.conf",805,"#include   ");
+    fail("Expected exception when parsing a line with a directive but no parameter");
+  }
+ catch (  MissingDirectiveParameterException e) {
+    assertEquals("Directive '#include' needs an argument (filename) at line 805 of /etc/asterisk/sip.conf",e.getMessage());
+  }
+}

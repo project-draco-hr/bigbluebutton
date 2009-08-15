@@ -1,0 +1,6 @@
+{
+  DefaultManagerConnection dmc;
+  dmc=new DefaultManagerConnection(hostname,port,username,password);
+  dmc.setSsl(true);
+  return dmc;
+}

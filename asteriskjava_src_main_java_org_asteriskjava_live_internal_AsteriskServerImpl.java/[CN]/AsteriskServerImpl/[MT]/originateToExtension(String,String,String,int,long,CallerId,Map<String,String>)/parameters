@@ -1,0 +1,7 @@
+String channel
+String context
+String exten
+int priority
+long timeout
+CallerId callerId
+Map<String,String> variables

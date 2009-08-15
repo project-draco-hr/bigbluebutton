@@ -1,0 +1,7 @@
+{
+  final List<LinkedChannelHistoryEntry> copy;
+synchronized (linkedChannelHistory) {
+    copy=new ArrayList<LinkedChannelHistoryEntry>(linkedChannelHistory);
+  }
+  return copy;
+}

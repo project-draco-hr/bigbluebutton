@@ -1,0 +1,47 @@
+{
+  final ResponseEventsImpl responseEvents;
+  final ResponseEventHandler responseEventHandler;
+  final String internalActionId;
+  if (action == null) {
+    throw new IllegalArgumentException("Unable to send action: action is null.");
+  }
+ else   if (action.getActionCompleteEventClass() == null) {
+    throw new IllegalArgumentException("Unable to send action: actionCompleteEventClass for " + action.getClass().getName() + " is null.");
+  }
+ else   if (!ResponseEvent.class.isAssignableFrom(action.getActionCompleteEventClass())) {
+    throw new IllegalArgumentException("Unable to send action: actionCompleteEventClass (" + action.getActionCompleteEventClass().getName() + ") for "+ action.getClass().getName()+ " is not a ResponseEvent.");
+  }
+  if (state != CONNECTED) {
+    throw new IllegalStateException("Actions may only be sent when in state " + "CONNECTED but connection is in state " + state);
+  }
+  responseEvents=new ResponseEventsImpl();
+  responseEventHandler=new ResponseEventHandler(responseEvents,action.getActionCompleteEventClass());
+  internalActionId=createInternalActionId();
+synchronized (this.responseListeners) {
+    this.responseListeners.put(internalActionId,responseEventHandler);
+  }
+synchronized (this.responseEventListeners) {
+    this.responseEventListeners.put(internalActionId,responseEventHandler);
+  }
+synchronized (responseEvents) {
+    writer.sendAction(action,internalActionId);
+    if ((responseEvents.getResponse() == null || !responseEvents.isComplete())) {
+      try {
+        responseEvents.wait(timeout);
+      }
+ catch (      InterruptedException e) {
+        logger.warn("Interrupted while waiting for response events.");
+      }
+    }
+  }
+  if ((responseEvents.getResponse() == null || !responseEvents.isComplete())) {
+synchronized (this.responseEventListeners) {
+      this.responseEventListeners.remove(internalActionId);
+    }
+    throw new EventTimeoutException("Timeout waiting for response or response events to " + action.getAction() + (action.getActionId() == null ? "" : " (actionId: " + action.getActionId() + ")"),responseEvents);
+  }
+synchronized (this.responseEventListeners) {
+    this.responseEventListeners.remove(internalActionId);
+  }
+  return responseEvents;
+}

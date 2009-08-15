@@ -1,0 +1,18 @@
+{
+  AsteriskQueueEntryImpl qe=new AsteriskQueueEntryImpl(server,this,channel,reportedPosition,dateReceived);
+  long delay=serviceLevel * 1000L;
+  if (delay > 0) {
+    ServiceLevelTimerTask timerTask=new ServiceLevelTimerTask(qe);
+    timer.schedule(timerTask,delay);
+synchronized (serviceLevelTimerTasks) {
+      serviceLevelTimerTasks.put(qe,timerTask);
+    }
+  }
+synchronized (entries) {
+    entries.add(qe);
+    shift();
+  }
+  channel.setQueueEntry(qe);
+  fireNewEntry(qe);
+  server.fireNewQueueEntry(qe);
+}

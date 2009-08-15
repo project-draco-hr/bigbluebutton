@@ -1,0 +1,3 @@
+{
+  sendPauseAction(new QueuePauseAction(location,queue.getName(),paused));
+}

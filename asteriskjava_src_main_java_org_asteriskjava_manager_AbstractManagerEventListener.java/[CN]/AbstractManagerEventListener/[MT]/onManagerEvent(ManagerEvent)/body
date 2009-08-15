@@ -1,0 +1,200 @@
+{
+  if (event instanceof AgentCallbackLoginEvent) {
+    handleEvent((AgentCallbackLoginEvent)event);
+  }
+ else   if (event instanceof AgentCallbackLogoffEvent) {
+    handleEvent((AgentCallbackLogoffEvent)event);
+  }
+ else   if (event instanceof AgentCalledEvent) {
+    handleEvent((AgentCalledEvent)event);
+  }
+ else   if (event instanceof AgentLoginEvent) {
+    handleEvent((AgentLoginEvent)event);
+  }
+ else   if (event instanceof AgentLogoffEvent) {
+    handleEvent((AgentLogoffEvent)event);
+  }
+ else   if (event instanceof AlarmClearEvent) {
+    handleEvent((AlarmClearEvent)event);
+  }
+ else   if (event instanceof AlarmEvent) {
+    handleEvent((AlarmEvent)event);
+  }
+ else   if (event instanceof CdrEvent) {
+    handleEvent((CdrEvent)event);
+  }
+ else   if (event instanceof ConnectEvent) {
+    handleEvent((ConnectEvent)event);
+  }
+ else   if (event instanceof DialEvent) {
+    handleEvent((DialEvent)event);
+  }
+ else   if (event instanceof DisconnectEvent) {
+    handleEvent((DisconnectEvent)event);
+  }
+ else   if (event instanceof DndStateEvent) {
+    handleEvent((DndStateEvent)event);
+  }
+ else   if (event instanceof ExtensionStatusEvent) {
+    handleEvent((ExtensionStatusEvent)event);
+  }
+ else   if (event instanceof HoldedCallEvent) {
+    handleEvent((HoldedCallEvent)event);
+  }
+ else   if (event instanceof HoldEvent) {
+    handleEvent((HoldEvent)event);
+  }
+ else   if (event instanceof LogChannelEvent) {
+    handleEvent((LogChannelEvent)event);
+  }
+ else   if (event instanceof MessageWaitingEvent) {
+    handleEvent((MessageWaitingEvent)event);
+  }
+ else   if (event instanceof NewExtenEvent) {
+    handleEvent((NewExtenEvent)event);
+  }
+ else   if (event instanceof PeerStatusEvent) {
+    handleEvent((PeerStatusEvent)event);
+  }
+ else   if (event instanceof ProtocolIdentifierReceivedEvent) {
+    handleEvent((ProtocolIdentifierReceivedEvent)event);
+  }
+ else   if (event instanceof QueueEvent) {
+    handleEvent((QueueEvent)event);
+  }
+ else   if (event instanceof RegistrationsCompleteEvent) {
+    handleEvent((RegistrationsCompleteEvent)event);
+  }
+ else   if (event instanceof RegistryEntryEvent) {
+    handleEvent((RegistryEntryEvent)event);
+  }
+ else   if (event instanceof RegistryEvent) {
+    handleEvent((RegistryEvent)event);
+  }
+ else   if (event instanceof ReloadEvent) {
+    handleEvent((ReloadEvent)event);
+  }
+ else   if (event instanceof RenameEvent) {
+    handleEvent((RenameEvent)event);
+  }
+ else   if (event instanceof ShutdownEvent) {
+    handleEvent((ShutdownEvent)event);
+  }
+ else   if (event instanceof UserEvent) {
+    handleEvent((UserEvent)event);
+  }
+ else   if (event instanceof AgentCompleteEvent) {
+    handleEvent((AgentCompleteEvent)event);
+  }
+ else   if (event instanceof AgentConnectEvent) {
+    handleEvent((AgentConnectEvent)event);
+  }
+ else   if (event instanceof AgentDumpEvent) {
+    handleEvent((AgentDumpEvent)event);
+  }
+ else   if (event instanceof FaxReceivedEvent) {
+    handleEvent((FaxReceivedEvent)event);
+  }
+ else   if (event instanceof NewCallerIdEvent) {
+    handleEvent((NewCallerIdEvent)event);
+  }
+ else   if (event instanceof HangupEvent) {
+    handleEvent((HangupEvent)event);
+  }
+ else   if (event instanceof NewChannelEvent) {
+    handleEvent((NewChannelEvent)event);
+  }
+ else   if (event instanceof NewStateEvent) {
+    handleEvent((NewStateEvent)event);
+  }
+ else   if (event instanceof MeetMeJoinEvent) {
+    handleEvent((MeetMeJoinEvent)event);
+  }
+ else   if (event instanceof MeetMeLeaveEvent) {
+    handleEvent((MeetMeLeaveEvent)event);
+  }
+ else   if (event instanceof MeetMeMuteEvent) {
+    handleEvent((MeetMeMuteEvent)event);
+  }
+ else   if (event instanceof MeetMeTalkingEvent) {
+    handleEvent((MeetMeTalkingEvent)event);
+  }
+ else   if (event instanceof ParkedCallGiveUpEvent) {
+    handleEvent((ParkedCallGiveUpEvent)event);
+  }
+ else   if (event instanceof ParkedCallTimeOutEvent) {
+    handleEvent((ParkedCallTimeOutEvent)event);
+  }
+ else   if (event instanceof UnparkedCallEvent) {
+    handleEvent((UnparkedCallEvent)event);
+  }
+ else   if (event instanceof QueueMemberAddedEvent) {
+    handleEvent((QueueMemberAddedEvent)event);
+  }
+ else   if (event instanceof QueueMemberPausedEvent) {
+    handleEvent((QueueMemberPausedEvent)event);
+  }
+ else   if (event instanceof QueueMemberRemovedEvent) {
+    handleEvent((QueueMemberRemovedEvent)event);
+  }
+ else   if (event instanceof AgentsCompleteEvent) {
+    handleEvent((AgentsCompleteEvent)event);
+  }
+ else   if (event instanceof AgentsEvent) {
+    handleEvent((AgentsEvent)event);
+  }
+ else   if (event instanceof DbGetResponseEvent) {
+    handleEvent((DbGetResponseEvent)event);
+  }
+ else   if (event instanceof JoinEvent) {
+    handleEvent((JoinEvent)event);
+  }
+ else   if (event instanceof LeaveEvent) {
+    handleEvent((LeaveEvent)event);
+  }
+ else   if (event instanceof BridgeEvent) {
+    handleEvent((BridgeEvent)event);
+  }
+ else   if (event instanceof OriginateResponseEvent) {
+    handleEvent((OriginateResponseEvent)event);
+  }
+ else   if (event instanceof ParkedCallEvent) {
+    handleEvent((ParkedCallEvent)event);
+  }
+ else   if (event instanceof ParkedCallsCompleteEvent) {
+    handleEvent((ParkedCallsCompleteEvent)event);
+  }
+ else   if (event instanceof PeerEntryEvent) {
+    handleEvent((PeerEntryEvent)event);
+  }
+ else   if (event instanceof PeerlistCompleteEvent) {
+    handleEvent((PeerlistCompleteEvent)event);
+  }
+ else   if (event instanceof QueueEntryEvent) {
+    handleEvent((QueueEntryEvent)event);
+  }
+ else   if (event instanceof QueueMemberEvent) {
+    handleEvent((QueueMemberEvent)event);
+  }
+ else   if (event instanceof QueueMemberStatusEvent) {
+    handleEvent((QueueMemberStatusEvent)event);
+  }
+ else   if (event instanceof QueueParamsEvent) {
+    handleEvent((QueueParamsEvent)event);
+  }
+ else   if (event instanceof QueueStatusCompleteEvent) {
+    handleEvent((QueueStatusCompleteEvent)event);
+  }
+ else   if (event instanceof StatusCompleteEvent) {
+    handleEvent((StatusCompleteEvent)event);
+  }
+ else   if (event instanceof StatusEvent) {
+    handleEvent((StatusEvent)event);
+  }
+ else   if (event instanceof ZapShowChannelsCompleteEvent) {
+    handleEvent((ZapShowChannelsCompleteEvent)event);
+  }
+ else   if (event instanceof ZapShowChannelsEvent) {
+    handleEvent((ZapShowChannelsEvent)event);
+  }
+}

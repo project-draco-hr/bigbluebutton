@@ -1,0 +1,9 @@
+{
+  StackTraceElement ste=getInvokerSTE();
+  if (ste != null) {
+    log.logp(Level.FINE,ste.getClassName(),ste.getMethodName(),obj.toString());
+  }
+ else {
+    log.fine(obj.toString());
+  }
+}

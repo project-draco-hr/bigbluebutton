@@ -1,0 +1,3 @@
+{
+  sendModuleLoadAction(null,ModuleLoadAction.LOAD_TYPE_RELOAD);
+}

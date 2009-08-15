@@ -1,0 +1,7 @@
+{
+  ManagerEvent event;
+  eventBuilder.registerEventClass(A.class);
+  properties.put("event","UserEventA");
+  event=eventBuilder.buildEvent(this,properties);
+  assertTrue("Wrong type",event instanceof A);
+}

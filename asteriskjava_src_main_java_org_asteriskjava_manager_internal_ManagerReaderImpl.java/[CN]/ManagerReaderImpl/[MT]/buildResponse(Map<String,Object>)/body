@@ -1,0 +1,16 @@
+{
+  Class<? extends ManagerResponse> responseClass=null;
+  final String actionId=(String)buffer.get("actionid");
+  final String internalActionId=ManagerUtil.getInternalActionId(actionId);
+  if (internalActionId != null) {
+    responseClass=expectedResponseClasses.get(internalActionId);
+    if (responseClass != null) {
+      expectedResponseClasses.remove(internalActionId);
+    }
+  }
+  final ManagerResponse response=responseBuilder.buildResponse(responseClass,buffer);
+  if (response != null) {
+    response.setDateReceived(DateUtil.getDate());
+  }
+  return response;
+}

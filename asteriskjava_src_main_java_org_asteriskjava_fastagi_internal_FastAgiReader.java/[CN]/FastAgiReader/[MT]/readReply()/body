@@ -1,0 +1,39 @@
+{
+  AgiReply reply;
+  List<String> lines;
+  String line;
+  lines=new ArrayList<String>();
+  try {
+    line=socket.readLine();
+  }
+ catch (  IOException e) {
+    throw new AgiHangupException();
+  }
+  if (line == null) {
+    throw new AgiHangupException();
+  }
+  if (line.startsWith("HANGUP")) {
+    if (line.length() > 6) {
+      line=line.substring(6);
+    }
+ else {
+      return readReply();
+    }
+  }
+  lines.add(line);
+  if (line.startsWith(Integer.toString(AgiReply.SC_INVALID_COMMAND_SYNTAX))) {
+    try {
+      while ((line=socket.readLine()) != null) {
+        lines.add(line);
+        if (line.startsWith(Integer.toString(AgiReply.SC_INVALID_COMMAND_SYNTAX))) {
+          break;
+        }
+      }
+    }
+ catch (    IOException e) {
+      throw new AgiNetworkException("Unable to read reply from Asterisk: " + e.getMessage(),e);
+    }
+  }
+  reply=new AgiReplyImpl(lines);
+  return reply;
+}

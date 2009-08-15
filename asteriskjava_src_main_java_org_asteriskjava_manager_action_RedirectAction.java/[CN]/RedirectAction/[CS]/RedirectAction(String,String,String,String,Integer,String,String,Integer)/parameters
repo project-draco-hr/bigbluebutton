@@ -1,0 +1,8 @@
+String channel
+String extraChannel
+String context
+String exten
+Integer priority
+String extraContext
+String extraExten
+Integer extraPriority

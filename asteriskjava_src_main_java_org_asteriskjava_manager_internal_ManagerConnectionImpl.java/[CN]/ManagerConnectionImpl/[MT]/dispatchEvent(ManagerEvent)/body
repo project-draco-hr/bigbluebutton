@@ -1,0 +1,56 @@
+{
+  if (event == null) {
+    logger.error("Unable to dispatch null event. This should never happen. Please file a bug.");
+    return;
+  }
+  logger.debug("Dispatching event:\n" + event.toString());
+  if (event instanceof ResponseEvent) {
+    ResponseEvent responseEvent;
+    String internalActionId;
+    responseEvent=(ResponseEvent)event;
+    internalActionId=responseEvent.getInternalActionId();
+    if (internalActionId != null) {
+synchronized (responseEventListeners) {
+        ManagerEventListener listener;
+        listener=responseEventListeners.get(internalActionId);
+        if (listener != null) {
+          try {
+            listener.onManagerEvent(event);
+          }
+ catch (          Exception e) {
+            logger.warn("Unexpected exception in response event listener " + listener.getClass().getName(),e);
+          }
+        }
+      }
+    }
+ else {
+    }
+  }
+  if (event instanceof DisconnectEvent) {
+    if (state == CONNECTED) {
+      state=RECONNECTING;
+      cleanup();
+      Thread reconnectThread=new Thread(new Runnable(){
+        public void run(){
+          reconnect();
+        }
+      }
+);
+      reconnectThread.setName("Asterisk-Java ManagerConnection-" + id + "-Reconnect-"+ reconnectThreadCounter.getAndIncrement());
+      reconnectThread.setDaemon(true);
+      reconnectThread.start();
+    }
+ else {
+      return;
+    }
+  }
+  if (event instanceof ProtocolIdentifierReceivedEvent) {
+    ProtocolIdentifierReceivedEvent protocolIdentifierReceivedEvent;
+    String protocolIdentifier;
+    protocolIdentifierReceivedEvent=(ProtocolIdentifierReceivedEvent)event;
+    protocolIdentifier=protocolIdentifierReceivedEvent.getProtocolIdentifier();
+    setProtocolIdentifier(protocolIdentifier);
+    return;
+  }
+  fireEvent(event);
+}

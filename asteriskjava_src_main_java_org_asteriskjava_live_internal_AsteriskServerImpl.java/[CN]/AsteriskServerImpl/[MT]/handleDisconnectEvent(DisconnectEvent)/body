@@ -1,0 +1,9 @@
+{
+  version=null;
+  versions=null;
+  channelManager.disconnected();
+  agentManager.disconnected();
+  meetMeManager.disconnected();
+  queueManager.disconnected();
+  initialized=false;
+}

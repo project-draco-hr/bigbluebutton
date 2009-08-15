@@ -1,0 +1,13 @@
+{
+  String channel="SIP/1234";
+  Integer priority=1;
+  NewExtenEvent event;
+  properties.put("event","newexten");
+  properties.put("channel",channel);
+  properties.put("priority",priority.toString());
+  event=(NewExtenEvent)eventBuilder.buildEvent(this,properties);
+  assertNotNull(event);
+  assertEquals("Returned event is of wrong type",NewExtenEvent.class,event.getClass());
+  assertEquals("String property not set correctly",channel,event.getChannel());
+  assertEquals("Integer property not set correctly",priority,event.getPriority());
+}

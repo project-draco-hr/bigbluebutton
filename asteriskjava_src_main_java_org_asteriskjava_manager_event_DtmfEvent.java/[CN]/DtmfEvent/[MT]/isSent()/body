@@ -1,0 +1,3 @@
+{
+  return direction != null && DIRECTION_SENT.equalsIgnoreCase(direction);
+}

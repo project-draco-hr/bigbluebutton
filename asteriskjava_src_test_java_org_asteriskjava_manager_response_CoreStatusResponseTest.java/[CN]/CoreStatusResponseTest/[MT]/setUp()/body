@@ -1,0 +1,5 @@
+{
+  this.response=new CoreStatusResponse();
+  defaultTimeZone=TimeZone.getDefault();
+  TimeZone.setDefault(tz);
+}

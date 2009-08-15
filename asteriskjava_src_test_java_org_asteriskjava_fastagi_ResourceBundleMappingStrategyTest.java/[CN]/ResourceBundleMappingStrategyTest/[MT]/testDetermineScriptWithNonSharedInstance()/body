@@ -1,0 +1,11 @@
+{
+  AgiScript scriptFirstPass;
+  AgiScript scriptSecondPass;
+  AgiRequest request;
+  mappingStrategy.setShareInstances(false);
+  request=new SimpleAgiRequest();
+  scriptFirstPass=mappingStrategy.determineScript(request);
+  scriptSecondPass=mappingStrategy.determineScript(request);
+  assertEquals("incorrect script determined",scriptFirstPass.getClass(),HelloAgiScript.class);
+  assertTrue("returned a shared instance",scriptFirstPass != scriptSecondPass);
+}

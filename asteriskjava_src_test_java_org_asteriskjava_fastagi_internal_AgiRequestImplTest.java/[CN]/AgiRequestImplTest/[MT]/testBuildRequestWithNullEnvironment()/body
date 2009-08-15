@@ -1,0 +1,8 @@
+{
+  try {
+    new AgiRequestImpl(null);
+    fail("No IllegalArgumentException thrown.");
+  }
+ catch (  IllegalArgumentException e) {
+  }
+}

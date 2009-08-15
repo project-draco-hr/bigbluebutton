@@ -1,0 +1,5 @@
+{
+  this.channel=channel;
+  this.command=command;
+  this.commandId=commandId;
+}

@@ -1,0 +1,16 @@
+{
+  final Bindings bindings=scriptEngine.createBindings();
+  bindings.put(ScriptEngine.FILENAME,file.getPath());
+  bindings.put(REQUEST,request);
+  bindings.put(CHANNEL,channel);
+  populateBindings(file,request,channel,bindings);
+  try {
+    scriptEngine.eval(getReader(file),bindings);
+  }
+ catch (  ScriptException e) {
+    throw new AgiException("Execution of script '" + file.getPath() + "' with ScriptEngine failed",e);
+  }
+catch (  FileNotFoundException e) {
+    throw new AgiException("Script '" + file.getPath() + "' not found",e);
+  }
+}

@@ -1,0 +1,37 @@
+{
+  List<String> lines;
+  AgiRequest request;
+  lines=new ArrayList<String>();
+  lines.add("agi_network: yes");
+  lines.add("agi_network_script: myscript.agi");
+  lines.add("agi_request: agi://host/myscript.agi");
+  lines.add("agi_channel: SIP/1234-d715");
+  lines.add("agi_language: en");
+  lines.add("agi_type: SIP");
+  lines.add("agi_uniqueid: 1110023416.6");
+  lines.add("agi_callerid: John Doe<1234>");
+  lines.add("agi_dnid: 8870");
+  lines.add("agi_rdnis: 9876");
+  lines.add("agi_context: local");
+  lines.add("agi_extension: 8870");
+  lines.add("agi_priority: 1");
+  lines.add("agi_enhanced: 0.0");
+  lines.add("agi_accountcode: ");
+  request=new AgiRequestImpl(lines);
+  assertEquals("incorrect script","myscript.agi",request.getScript());
+  assertEquals("incorrect requestURL","agi://host/myscript.agi",request.getRequestURL());
+  assertEquals("incorrect channel","SIP/1234-d715",request.getChannel());
+  assertEquals("incorrect uniqueId","SIP/1234-d715",request.getChannel());
+  assertEquals("incorrect type","SIP",request.getType());
+  assertEquals("incorrect uniqueId","1110023416.6",request.getUniqueId());
+  assertEquals("incorrect language","en",request.getLanguage());
+  assertEquals("incorrect callerId","1234",request.getCallerId());
+  assertEquals("incorrect callerIdName","John Doe",request.getCallerIdName());
+  assertEquals("incorrect dnid","8870",request.getDnid());
+  assertEquals("incorrect rdnis","9876",request.getRdnis());
+  assertEquals("incorrect context","local",request.getContext());
+  assertEquals("incorrect extension","8870",request.getExtension());
+  assertEquals("incorrect priority",new Integer(1),request.getPriority());
+  assertEquals("incorrect enhanced",Boolean.FALSE,request.getEnhanced());
+  assertNull("incorrect accountCode must not be set",request.getAccountCode());
+}

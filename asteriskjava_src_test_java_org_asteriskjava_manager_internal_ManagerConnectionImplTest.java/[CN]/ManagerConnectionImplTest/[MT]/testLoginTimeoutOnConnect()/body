@@ -1,0 +1,24 @@
+{
+  mc.setDefaultResponseTimeout(50);
+  mockSocket.close();
+  replay(mockSocket);
+  mockWriter.setSendProtocolIdentifierReceivedEvent(false);
+  try {
+    mc.login();
+    fail("No TimeoutException on login()");
+  }
+ catch (  TimeoutException e) {
+    assertEquals("Timeout waiting for protocol identifier",e.getMessage());
+  }
+  assertEquals("createSocket not called 1 time",1,mc.createSocketCalls);
+  assertEquals("createWriter not called 1 time",1,mc.createWriterCalls);
+  assertEquals("createReader not called 1 time",1,mc.createReaderCalls);
+  assertEquals("unexpected challenge action sent",0,mockWriter.challengeActionsSent);
+  assertEquals("unexpected login action sent",0,mockWriter.loginActionsSent);
+  assertEquals("unexpected other actions sent",0,mockWriter.otherActionsSent);
+  assertEquals("setSocket() not called 1 time",1,mockReader.setSocketCalls);
+  Thread.sleep(10);
+  assertEquals("run() not called 1 time",1,mockReader.runCalls);
+  assertEquals("unexpected call to die()",0,mockReader.dieCalls);
+  verify(mockSocket);
+}

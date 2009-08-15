@@ -1,0 +1,5 @@
+{
+  setContext(context);
+  setExtension(extension);
+  setPriority(priority);
+}

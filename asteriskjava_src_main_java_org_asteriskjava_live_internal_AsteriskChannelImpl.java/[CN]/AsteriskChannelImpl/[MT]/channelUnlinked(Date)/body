@@ -1,0 +1,17 @@
+{
+  final AsteriskChannel oldLinkedChannel=this.linkedChannel;
+  final LinkedChannelHistoryEntry historyEntry;
+synchronized (linkedChannelHistory) {
+    if (linkedChannelHistory.isEmpty()) {
+      historyEntry=null;
+    }
+ else {
+      historyEntry=linkedChannelHistory.get(linkedChannelHistory.size() - 1);
+    }
+  }
+  if (historyEntry != null) {
+    historyEntry.setDateUnlinked(date);
+  }
+  this.linkedChannel=null;
+  firePropertyChange(PROPERTY_LINKED_CHANNEL,oldLinkedChannel,null);
+}

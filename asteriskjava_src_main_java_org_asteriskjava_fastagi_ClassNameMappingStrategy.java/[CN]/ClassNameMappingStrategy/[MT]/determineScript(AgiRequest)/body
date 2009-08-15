@@ -1,0 +1,17 @@
+{
+  AgiScript script;
+  if (shareInstances) {
+    script=instances.get(request.getScript());
+    if (script != null) {
+      return script;
+    }
+  }
+  script=createAgiScriptInstance(request.getScript());
+  if (script == null) {
+    return null;
+  }
+  if (shareInstances) {
+    instances.put(request.getScript(),script);
+  }
+  return script;
+}

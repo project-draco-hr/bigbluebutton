@@ -1,0 +1,10 @@
+{
+  if (channel == null) {
+    return;
+  }
+  try {
+    channel.setVariable(AJ_AGISTATUS_VARIABLE,value);
+  }
+ catch (  Exception e) {
+  }
+}

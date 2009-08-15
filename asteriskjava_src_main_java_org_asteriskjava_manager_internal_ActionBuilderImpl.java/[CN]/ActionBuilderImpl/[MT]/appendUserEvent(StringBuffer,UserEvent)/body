@@ -1,0 +1,9 @@
+{
+  Class clazz=event.getClass();
+  String className=clazz.getName();
+  String eventType=className.substring(className.lastIndexOf('.') + 1).toLowerCase(Locale.ENGLISH);
+  if (eventType.endsWith("event")) {
+    eventType=eventType.substring(0,eventType.length() - "event".length());
+  }
+  appendString(sb,"UserEvent",eventType);
+}

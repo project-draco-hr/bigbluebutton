@@ -1,0 +1,10 @@
+{
+  ManagerResponse response;
+  if (digit == null) {
+    throw new IllegalArgumentException("DTMF digit to send must not be null");
+  }
+  response=server.sendAction(new PlayDtmfAction(name,digit));
+  if (response instanceof ManagerError) {
+    throw new NoSuchChannelException("Channel '" + name + "' is not available: "+ response.getMessage());
+  }
+}

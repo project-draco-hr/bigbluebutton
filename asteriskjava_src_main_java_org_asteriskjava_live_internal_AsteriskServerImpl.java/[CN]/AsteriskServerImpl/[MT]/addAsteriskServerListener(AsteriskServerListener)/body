@@ -1,0 +1,6 @@
+{
+  initializeIfNeeded();
+synchronized (listeners) {
+    listeners.add(listener);
+  }
+}

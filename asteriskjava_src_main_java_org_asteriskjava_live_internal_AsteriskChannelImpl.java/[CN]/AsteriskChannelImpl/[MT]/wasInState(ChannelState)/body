@@ -1,0 +1,10 @@
+{
+synchronized (stateHistory) {
+    for (    ChannelStateHistoryEntry historyEntry : stateHistory) {
+      if (historyEntry.getState() == state) {
+        return true;
+      }
+    }
+  }
+  return false;
+}

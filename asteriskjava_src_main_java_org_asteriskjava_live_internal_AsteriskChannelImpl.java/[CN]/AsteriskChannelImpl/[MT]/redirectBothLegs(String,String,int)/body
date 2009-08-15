@@ -1,0 +1,12 @@
+{
+  ManagerResponse response;
+  if (linkedChannel == null) {
+    response=server.sendAction(new RedirectAction(name,context,exten,priority));
+  }
+ else {
+    response=server.sendAction(new RedirectAction(name,linkedChannel.getName(),context,exten,priority,context,exten,priority));
+  }
+  if (response instanceof ManagerError) {
+    throw new NoSuchChannelException("Channel '" + name + "' is not available: "+ response.getMessage());
+  }
+}

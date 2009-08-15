@@ -1,0 +1,3 @@
+{
+  return MODULE_SELECTION_PRELOAD.equals(moduleSelection);
+}

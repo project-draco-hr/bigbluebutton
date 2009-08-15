@@ -1,0 +1,10 @@
+{
+  StatusAction statusAction;
+  statusAction=new StatusAction();
+  try {
+    mc.sendAction(statusAction);
+    fail("No IllegalStateException thrown");
+  }
+ catch (  IllegalStateException e) {
+  }
+}

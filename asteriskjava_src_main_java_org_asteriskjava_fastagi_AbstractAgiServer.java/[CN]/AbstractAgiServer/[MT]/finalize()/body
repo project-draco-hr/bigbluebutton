@@ -1,0 +1,7 @@
+{
+  super.finalize();
+  this.die=true;
+  if (pool != null) {
+    pool.shutdown();
+  }
+}

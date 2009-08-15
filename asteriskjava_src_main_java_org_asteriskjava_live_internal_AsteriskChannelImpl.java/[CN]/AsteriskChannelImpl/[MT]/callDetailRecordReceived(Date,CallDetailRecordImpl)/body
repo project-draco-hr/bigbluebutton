@@ -1,0 +1,5 @@
+{
+  final CallDetailRecordImpl oldCallDetailRecord=this.callDetailRecord;
+  this.callDetailRecord=callDetailRecord;
+  firePropertyChange(PROPERTY_CALL_DETAIL_RECORD,oldCallDetailRecord,callDetailRecord);
+}

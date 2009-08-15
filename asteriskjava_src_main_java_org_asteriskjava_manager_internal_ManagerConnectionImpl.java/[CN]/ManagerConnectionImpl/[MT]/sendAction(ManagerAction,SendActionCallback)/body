@@ -1,0 +1,27 @@
+{
+  final String internalActionId;
+  if (action == null) {
+    throw new IllegalArgumentException("Unable to send action: action is null.");
+  }
+  if ((state == CONNECTING || state == RECONNECTING) && (action instanceof ChallengeAction || action instanceof LoginAction)) {
+  }
+ else   if (state == DISCONNECTING && action instanceof LogoffAction) {
+  }
+ else   if (state != CONNECTED) {
+    throw new IllegalStateException("Actions may only be sent when in state " + "CONNECTED, but connection is in state " + state);
+  }
+  if (socket == null) {
+    throw new IllegalStateException("Unable to send " + action.getAction() + " action: socket not connected.");
+  }
+  internalActionId=createInternalActionId();
+  if (callback != null) {
+synchronized (this.responseListeners) {
+      this.responseListeners.put(internalActionId,callback);
+    }
+  }
+  Class<? extends ManagerResponse> responseClass=getExpectedResponseClass(action.getClass());
+  if (responseClass != null) {
+    reader.expectResponseClass(internalActionId,responseClass);
+  }
+  writer.sendAction(action,internalActionId);
+}

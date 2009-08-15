@@ -1,0 +1,6 @@
+{
+  sendCommand(new SpeechDestroyCommand());
+  if (lastReply.getResultCode() != 1) {
+    throw new AgiSpeechException("Speech object cannot be destroyed");
+  }
+}

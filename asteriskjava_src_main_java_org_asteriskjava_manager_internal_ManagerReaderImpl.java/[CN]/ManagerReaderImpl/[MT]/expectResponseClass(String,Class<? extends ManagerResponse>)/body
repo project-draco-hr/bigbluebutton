@@ -1,0 +1,3 @@
+{
+  expectedResponseClasses.put(internalActionId,responseClass);
+}

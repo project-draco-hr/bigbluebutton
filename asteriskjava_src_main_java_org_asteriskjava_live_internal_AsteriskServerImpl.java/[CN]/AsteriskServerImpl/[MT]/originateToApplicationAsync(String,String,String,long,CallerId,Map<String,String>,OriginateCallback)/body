@@ -1,0 +1,13 @@
+{
+  final OriginateAction originateAction;
+  originateAction=new OriginateAction();
+  originateAction.setChannel(channel);
+  originateAction.setApplication(application);
+  originateAction.setData(data);
+  originateAction.setTimeout(timeout);
+  if (callerId != null) {
+    originateAction.setCallerId(callerId.toString());
+  }
+  originateAction.setVariables(variables);
+  originateAsync(originateAction,cb);
+}

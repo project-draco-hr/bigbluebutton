@@ -1,0 +1,11 @@
+{
+  if (mappings == null || (shareInstances && instances == null)) {
+    loadResourceBundle();
+  }
+  if (shareInstances) {
+    return instances.get(request.getScript());
+  }
+ else {
+    return createAgiScriptInstance(mappings.get(request.getScript()));
+  }
+}

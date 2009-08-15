@@ -1,0 +1,3 @@
+{
+  return "TDD MODE " + escapeAndQuote(mode);
+}

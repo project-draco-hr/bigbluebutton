@@ -1,0 +1,5 @@
+String channel
+String application
+String data
+long timeout
+OriginateCallback cb

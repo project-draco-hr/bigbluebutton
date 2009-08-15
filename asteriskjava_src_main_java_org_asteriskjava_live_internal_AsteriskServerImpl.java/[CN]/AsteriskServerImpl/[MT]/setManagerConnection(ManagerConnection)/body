@@ -1,0 +1,8 @@
+{
+  if (this.eventConnection != null) {
+    throw new IllegalStateException("ManagerConnection already set.");
+  }
+  this.eventConnection=eventConnection;
+  this.connectionPool.clear();
+  this.connectionPool.add(eventConnection);
+}

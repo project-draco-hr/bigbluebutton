@@ -1,0 +1,10 @@
+{
+  String tmp;
+  if (s == null) {
+    return "\"\"";
+  }
+  tmp=s;
+  tmp=tmp.replaceAll("\\\"","\\\\\"");
+  tmp=tmp.replaceAll("\\\n","");
+  return "\"" + tmp + "\"";
+}

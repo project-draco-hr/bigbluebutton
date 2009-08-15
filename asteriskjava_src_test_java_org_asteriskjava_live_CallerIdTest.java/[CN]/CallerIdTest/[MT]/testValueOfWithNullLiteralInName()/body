@@ -1,0 +1,7 @@
+{
+  CallerId callerId=new CallerId(null,"1234");
+  assertEquals(callerId,CallerId.valueOf("\"\" <1234>"));
+  assertEquals(callerId,CallerId.valueOf("\"<Unknown>\" <1234>"));
+  assertEquals(callerId,CallerId.valueOf("<1234>"));
+  assertEquals(callerId,CallerId.valueOf(callerId.toString()));
+}

@@ -1,0 +1,5 @@
+{
+  super();
+  this.meetMe=meetMe;
+  this.userNum=userNum;
+}

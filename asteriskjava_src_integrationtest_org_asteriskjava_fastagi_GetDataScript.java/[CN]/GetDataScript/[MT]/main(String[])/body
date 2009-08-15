@@ -1,0 +1,11 @@
+{
+  ManagerConnection connection;
+  AsyncAgiServer agiServer;
+  connection=new DefaultManagerConnection("localhost","manager","obelisk");
+  agiServer=new AsyncAgiServer(new GetDataScript());
+  connection.addEventListener(agiServer);
+  connection.login();
+  while (true) {
+    Thread.sleep(1000L);
+  }
+}

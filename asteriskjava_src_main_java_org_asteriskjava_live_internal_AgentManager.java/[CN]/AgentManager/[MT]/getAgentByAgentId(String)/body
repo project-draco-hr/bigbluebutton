@@ -1,0 +1,5 @@
+{
+synchronized (agents) {
+    return agents.get(agentId);
+  }
+}

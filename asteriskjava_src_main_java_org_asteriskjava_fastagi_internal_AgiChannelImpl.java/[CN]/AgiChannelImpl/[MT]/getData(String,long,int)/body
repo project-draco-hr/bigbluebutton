@@ -1,0 +1,4 @@
+{
+  sendCommand(new GetDataCommand(file,timeout,maxDigits));
+  return lastReply.getResult();
+}

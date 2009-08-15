@@ -1,0 +1,17 @@
+{
+  final AgiAction agiAction;
+  final ManagerResponse response;
+  agiAction=new AgiAction(channelName,command.buildCommand());
+  try {
+    response=connection.sendAction(agiAction);
+  }
+ catch (  IOException e) {
+    throw new AgiException("Unable to send AsyncAGI command to " + connection.getHostname() + " for channel "+ channelName,e);
+  }
+catch (  TimeoutException e) {
+    throw new AgiException("Timeout while sending AsyncAGI command to " + connection.getHostname() + " for channel "+ channelName,e);
+  }
+  if (response instanceof ManagerError) {
+    throw new AgiException("Unable to send AsyncAGI command to " + connection.getHostname() + " for channel "+ channelName+ ": "+ response.getMessage());
+  }
+}

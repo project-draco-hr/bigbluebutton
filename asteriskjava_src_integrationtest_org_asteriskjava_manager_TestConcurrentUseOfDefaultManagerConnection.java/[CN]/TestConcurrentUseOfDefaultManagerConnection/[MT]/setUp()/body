@@ -1,0 +1,10 @@
+{
+  dmc=new DefaultManagerConnection();
+  dmc.setUsername("manager");
+  dmc.setPassword("obelisk");
+  dmc.setHostname("pbx0");
+  succeeded=new AtomicInteger(0);
+  failed=new AtomicInteger(0);
+  total=new AtomicInteger(0);
+  dmc.login();
+}

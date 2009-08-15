@@ -1,0 +1,13 @@
+{
+  final int delimiterIndex;
+  if (actionId == null) {
+    return null;
+  }
+  delimiterIndex=actionId.indexOf(INTERNAL_ACTION_ID_DELIMITER);
+  if (delimiterIndex > 0) {
+    return actionId.substring(0,delimiterIndex);
+  }
+ else {
+    return null;
+  }
+}

@@ -1,0 +1,12 @@
+{
+synchronized (listeners) {
+    for (    AsteriskQueueListener listener : listeners) {
+      try {
+        listener.onMemberAdded(member);
+      }
+ catch (      Exception e) {
+        logger.warn("Exception in onMemberAdded()",e);
+      }
+    }
+  }
+}

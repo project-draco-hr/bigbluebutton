@@ -1,0 +1,5 @@
+{
+synchronized (connections) {
+    connections.remove(connection);
+  }
+}

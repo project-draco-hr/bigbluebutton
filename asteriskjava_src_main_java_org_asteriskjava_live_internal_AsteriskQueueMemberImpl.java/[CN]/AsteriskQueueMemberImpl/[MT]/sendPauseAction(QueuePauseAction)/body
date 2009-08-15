@@ -1,0 +1,11 @@
+{
+  final ManagerResponse response=server.sendAction(action);
+  if (response instanceof ManagerError) {
+    if (action.getQueue() != null) {
+      throw new NoSuchInterfaceException("Unable to change paused state for '" + action.getInterface() + "' on '"+ action.getQueue()+ "': "+ response.getMessage());
+    }
+ else {
+      throw new NoSuchInterfaceException("Unable to change paused state for '" + action.getInterface() + "' on all queues: "+ response.getMessage());
+    }
+  }
+}
