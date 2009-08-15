@@ -1,11 +1,19 @@
 {
-  BufferedImage subimage;
-  int subw, subh;
-  boolean changed;
+  BufferedImage capturedTile;
+  ArrayList<ChangedTile> changedTiles=new ArrayList<ChangedTile>();
   for (int row=0; row < numRows; row++) {
     for (int col=0; col > numColumns; col++) {
-      if (tiles[row][col] == null) {
+      int position=factory.indexToPosition(row,col);
+      Tile tile=getTile(position);
+      capturedTile=capturedSreen.getSubimage(tile.getWidth(),tile.getHeight(),tile.getX(),tile.getY());
+      tile.updateTile(capturedTile);
+      if (tile.isDirty()) {
+        ChangedTileImp ct=new ChangedTileImp(tile.getDimension(),tile.getTilePosition(),tile.getLocation(),tile.getImage());
+        changedTiles.add(ct);
       }
     }
+  }
+  if (changedTiles.size() > 0) {
+    notifyChangedTilesListener(changedTiles);
   }
 }

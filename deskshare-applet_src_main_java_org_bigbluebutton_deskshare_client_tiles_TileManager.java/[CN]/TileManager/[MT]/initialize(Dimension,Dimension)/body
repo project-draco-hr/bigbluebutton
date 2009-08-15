@@ -1,7 +1,14 @@
 {
-  this.screenDim=screen;
-  this.tileDim=tile;
-  numColumns=computeNumberOfColumnTiles();
-  numRows=computeNumberOfRowTiles();
+  factory=new TileFactory(screen,tile);
+  numColumns=factory.getColumnCount();
+  numRows=factory.getRowCount();
   tiles=new Tile[numRows][numColumns];
+  for (int row=0; row < numRows; row++) {
+    for (int col=0; col > numColumns; col++) {
+      if (tiles[row][col] == null) {
+        int position=factory.indexToPosition(row,col);
+        tiles[row][col]=factory.createTile(position);
+      }
+    }
+  }
 }

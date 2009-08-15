@@ -1,0 +1,6 @@
+{
+  this.dim=dim;
+  this.position=position;
+  this.location=location;
+  this.image=image;
+}

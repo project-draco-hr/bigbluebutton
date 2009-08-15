@@ -1,0 +1,4 @@
+Dimension dim
+int position
+Point location
+BufferedImage image
