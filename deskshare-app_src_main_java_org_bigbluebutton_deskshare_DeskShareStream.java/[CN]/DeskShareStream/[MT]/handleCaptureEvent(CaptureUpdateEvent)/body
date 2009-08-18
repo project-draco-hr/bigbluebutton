@@ -1,6 +1,5 @@
 {
   BufferedImage image=event.getScreen();
-  if (imageProcessor == null)   imageProcessor=new ImageProcessor(image);
- else   imageProcessor.appendTile(image,event.getX(),event.getY());
+  imageProcessor.appendTile(image,event.getX(),event.getY());
   imageReceived(imageProcessor.getImage());
 }
