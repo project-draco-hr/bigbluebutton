@@ -1,0 +1,12 @@
+{
+  if (!session.containsAttribute(ROOM)) {
+    return decodeRoom(session,in);
+  }
+ else {
+    if (decodeVideoInfo(session,in)) {
+      sendCaptureStartMessage(session,out);
+      return true;
+    }
+  }
+  return false;
+}

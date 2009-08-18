@@ -1,0 +1,3 @@
+{
+  return CaptureMessage.CAPTURE_END;
+}

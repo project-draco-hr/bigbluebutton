@@ -1,28 +1,21 @@
 {
-  if (!session.containsAttribute(ROOM)) {
-    return decodeRoom(session,in);
-  }
- else   if (!session.containsAttribute(VIDEO_INFO)) {
-    return decodeRoom(session,in);
-  }
+  if (session.containsAttribute(MESSAGE_TYPE)) {
+    Integer messageType=(Integer)session.getAttribute(MESSAGE_TYPE);
+switch (messageType.intValue()) {
+case CAPTURE_START:
+      return decodeCaptureStart(session,in,out);
+case CAPTURE_UPDATE:
+    return decodeCaptureUpdate(session,in,out);
+case CAPTURE_END:
+  break;
+}
+}
  else {
-    if (canDecodeCapturedScreen(session,in)) {
-      byte[] bytes=new byte[getLength(in)];
-      log.debug("Reading image with length {}",bytes.length);
-      in.get(bytes);
-      ByteArrayInputStream bais=new ByteArrayInputStream(bytes);
-      try {
-        BufferedImage image=ImageIO.read(bais);
-        ;
-        session.setAttribute(CAPTURED_SCREEN,image);
-        sendDecodedMessage(session,out);
-      }
- catch (      IOException e) {
-        log.error("Failed to get captured screen for room {}",(String)session.getAttribute(ROOM));
-      }
-      reset(session);
-      return true;
-    }
-  }
-  return false;
+if (in.remaining() < 20) return false;
+int message=in.getInt();
+log.debug("Got message " + message);
+session.setAttribute(MESSAGE_TYPE,new Integer(message));
+return true;
+}
+return false;
 }

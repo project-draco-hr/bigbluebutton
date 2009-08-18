@@ -1,5 +1,5 @@
 {
-  session.removeAttribute(ROOM);
-  session.removeAttribute(VIDEO_INFO);
-  session.removeAttribute(CAPTURED_SCREEN);
+  session.removeAttribute(TILE_INFO);
+  session.removeAttribute(TILE_IMAGE);
+  clearMessage(session);
 }

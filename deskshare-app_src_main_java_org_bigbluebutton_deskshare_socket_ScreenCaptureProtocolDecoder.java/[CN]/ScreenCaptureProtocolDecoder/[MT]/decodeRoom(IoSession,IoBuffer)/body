@@ -1,3 +1,10 @@
 {
-  return getCrLfTerminatedString(session,in);
+  if (in.remaining() < 200)   return false;
+  int len=in.getInt();
+  String room=decodeString(len,in);
+  if (room != "") {
+    session.setAttribute(ROOM,room);
+    return true;
+  }
+  return false;
 }

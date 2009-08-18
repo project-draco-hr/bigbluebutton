@@ -7,7 +7,7 @@
     public void run(){
       while (handleEvent) {
         try {
-          CaptureEvent event=queue.take();
+          CaptureUpdateEvent event=queue.take();
           handleCaptureEvent(event);
         }
  catch (        InterruptedException e) {

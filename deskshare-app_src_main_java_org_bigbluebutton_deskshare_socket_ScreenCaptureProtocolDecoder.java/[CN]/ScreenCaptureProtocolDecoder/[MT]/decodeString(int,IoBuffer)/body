@@ -1,0 +1,11 @@
+{
+  try {
+    if (in.remaining() >= length) {
+      return in.getString(length,Charset.forName("UTF-8").newDecoder());
+    }
+  }
+ catch (  CharacterCodingException e) {
+    e.printStackTrace();
+  }
+  return "";
+}
