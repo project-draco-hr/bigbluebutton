@@ -1,0 +1,3 @@
+BufferedImage tile
+int x
+int y
