@@ -13,7 +13,6 @@ case CAPTURE_END:
  else {
 if (in.remaining() < 20) return false;
 int message=in.getInt();
-log.debug("Got message " + message);
 session.setAttribute(MESSAGE_TYPE,new Integer(message));
 return true;
 }

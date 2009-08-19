@@ -4,12 +4,10 @@
   int tileLength=in.getInt();
   if (in.remaining() >= tileLength) {
     byte[] bytes=new byte[tileLength];
-    log.debug("Reading image with length {}",bytes.length);
     in.get(bytes);
     ByteArrayInputStream bais=new ByteArrayInputStream(bytes);
     try {
       BufferedImage image=ImageIO.read(bais);
-      ;
       session.setAttribute(TILE_IMAGE,image);
     }
  catch (    IOException e) {
@@ -17,7 +15,6 @@
     }
     return true;
   }
-  log.debug("Can't process image yet . " + tileLength);
   in.position(start);
   return false;
 }

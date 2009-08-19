@@ -1,8 +1,3 @@
 {
-  try {
-    queue.put(event);
-  }
- catch (  InterruptedException e) {
-    log.warn("InterruptedException while putting event into queue.");
-  }
+  changedTileProcessor.accept(event);
 }

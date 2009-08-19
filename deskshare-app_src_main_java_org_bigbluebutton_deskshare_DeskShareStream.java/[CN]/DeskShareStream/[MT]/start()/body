@@ -1,21 +1,15 @@
 {
   startPublishing(scope);
   setupStreams();
-  handleEvent=true;
+  sendCapturedScreen=true;
   log.debug("Starting stream {}",outStreamName);
-  eventHandler=new Runnable(){
+  capturedScreenSender=new Runnable(){
     public void run(){
-      while (handleEvent) {
-        try {
-          CaptureUpdateEvent event=queue.take();
-          handleCaptureEvent(event);
-        }
- catch (        InterruptedException e) {
-          log.warn("InterruptedExeption while taking event.");
-        }
+      while (sendCapturedScreen) {
+        sendCapturedScreen();
       }
     }
   }
 ;
-  exec.execute(eventHandler);
+  exec.execute(capturedScreenSender);
 }

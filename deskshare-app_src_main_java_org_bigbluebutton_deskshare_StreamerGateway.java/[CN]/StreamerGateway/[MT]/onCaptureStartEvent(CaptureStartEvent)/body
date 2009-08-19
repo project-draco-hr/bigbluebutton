@@ -1,4 +1,5 @@
 {
+  log.debug("Creating stream " + event.getRoom());
   DeskShareStream stream=streamFactory.createStream(event);
   streamsMap.put(event.getRoom(),stream);
   stream.start();

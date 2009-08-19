@@ -1,10 +1,8 @@
 {
-  if (in.remaining() < 200)   return false;
+  if (in.remaining() < 200)   return;
   int len=in.getInt();
   String room=decodeString(len,in);
   if (room != "") {
     session.setAttribute(ROOM,room);
-    return true;
   }
-  return false;
 }

@@ -4,10 +4,7 @@
   }
  else {
     if (decodeTile(session,in)) {
-      String tileInfo=(String)session.getAttribute(TILE_INFO);
-      log.debug("TILE INFO " + tileInfo);
-      out.write("CAPTURE UPDATE");
-      reset(session);
+      sendCaptureUpdateMessage(session,out);
       return true;
     }
   }

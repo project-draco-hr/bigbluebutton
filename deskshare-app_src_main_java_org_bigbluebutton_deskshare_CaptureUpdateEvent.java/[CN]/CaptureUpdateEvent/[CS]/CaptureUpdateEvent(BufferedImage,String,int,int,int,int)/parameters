@@ -1,6 +1,0 @@
-BufferedImage screen
-String room
-int width
-int height
-int x
-int y

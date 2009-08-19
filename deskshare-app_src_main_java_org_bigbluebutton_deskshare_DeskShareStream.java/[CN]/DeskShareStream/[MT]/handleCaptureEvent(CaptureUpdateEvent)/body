@@ -1,5 +1,0 @@
-{
-  BufferedImage image=event.getScreen();
-  imageProcessor.appendTile(image,event.getX(),event.getY());
-  imageReceived(imageProcessor.getImage());
-}
