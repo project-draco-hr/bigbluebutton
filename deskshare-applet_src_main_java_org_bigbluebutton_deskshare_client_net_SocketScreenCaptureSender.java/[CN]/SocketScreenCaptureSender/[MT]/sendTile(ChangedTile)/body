@@ -1,13 +1,10 @@
 {
-  sendRoom(room);
-  sendScreenCaptureInfo(videoWidth,videoHeight,frameRate);
   try {
     ByteArrayOutputStream byteConvert=new ByteArrayOutputStream();
-    ImageIO.write(screenCapture,"jpeg",byteConvert);
+    ImageIO.write(tile.getImage(),"jpeg",byteConvert);
     byte[] imageData=byteConvert.toByteArray();
     outStream.writeInt(imageData.length);
     outStream.write(imageData);
-    System.out.println("Sent: " + imageData.length);
     outStream.flush();
   }
  catch (  IOException e) {

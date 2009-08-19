@@ -1,2 +1,5 @@
 {
+  for (  ChangedTilesListener ctl : listeners) {
+    ctl.onChangedTiles(changedTiles);
+  }
 }

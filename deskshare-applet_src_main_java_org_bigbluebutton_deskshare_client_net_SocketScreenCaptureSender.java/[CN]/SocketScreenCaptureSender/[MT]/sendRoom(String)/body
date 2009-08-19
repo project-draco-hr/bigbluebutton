@@ -1,3 +1,4 @@
 {
-  out.println(room);
+  outStream.writeInt(room.length());
+  outStream.writeBytes(room);
 }

@@ -1,0 +1,3 @@
+{
+  outStream.writeInt(CAPTURE_UPDATE);
+}

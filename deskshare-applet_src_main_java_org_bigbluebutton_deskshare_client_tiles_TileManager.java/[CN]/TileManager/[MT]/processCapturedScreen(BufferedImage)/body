@@ -1,11 +1,12 @@
 {
+  System.out.println("Processing captured screen.");
   BufferedImage capturedTile;
   ArrayList<ChangedTile> changedTiles=new ArrayList<ChangedTile>();
   for (int row=0; row < numRows; row++) {
-    for (int col=0; col > numColumns; col++) {
+    for (int col=0; col < numColumns; col++) {
       int position=factory.indexToPosition(row,col);
       Tile tile=getTile(position);
-      capturedTile=capturedSreen.getSubimage(tile.getWidth(),tile.getHeight(),tile.getX(),tile.getY());
+      capturedTile=capturedSreen.getSubimage(tile.getX(),tile.getY(),tile.getWidth(),tile.getHeight());
       tile.updateTile(capturedTile);
       if (tile.isDirty()) {
         ChangedTileImp ct=new ChangedTileImp(tile.getDimension(),tile.getTilePosition(),tile.getLocation(),tile.getImage());

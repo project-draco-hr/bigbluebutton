@@ -5,8 +5,8 @@
   this.frameRate=frameRate;
   try {
     socket=new Socket(host,PORT);
-    out=new PrintWriter(socket.getOutputStream(),true);
     outStream=new DataOutputStream(socket.getOutputStream());
+    sendCaptureStartMessage();
     sendRoom(room);
     sendScreenCaptureInfo(videoWidth,videoHeight,frameRate);
   }
