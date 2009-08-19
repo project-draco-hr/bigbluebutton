@@ -6,8 +6,8 @@
   outInfo.setURL(outputURL);
   outInfo.setHasVideo(true);
   outInfo.setHasAudio(false);
-  outInfo.setVideoWidth(width);
-  outInfo.setVideoHeight(height);
+  outInfo.setVideoWidth(encodingWidth);
+  outInfo.setVideoHeight(encodingHeight);
   outInfo.setVideoBitRate(DeskShareConstants.BIT_RATE);
   outInfo.setVideoPixelFormat(IPixelFormat.Type.YUV420P);
   outInfo.setVideoNumPicturesInGroupOfPictures(DeskShareConstants.NUM_PICTURES_IN_GROUP);
@@ -30,8 +30,8 @@
   outStreamCoder.setBitRate(DeskShareConstants.BIT_RATE);
   outStreamCoder.setBitRateTolerance(DeskShareConstants.BIT_RATE_TOLERANCE);
   outStreamCoder.setPixelType(IPixelFormat.Type.YUV420P);
-  outStreamCoder.setHeight(height);
-  outStreamCoder.setWidth(width);
+  outStreamCoder.setHeight(encodingHeight);
+  outStreamCoder.setWidth(encodingWidth);
   outStreamCoder.setFlag(IStreamCoder.Flags.FLAG_QSCALE,true);
   outStreamCoder.setGlobalQuality(0);
   IRational frameRate=IRational.make(this.frameRate,1);

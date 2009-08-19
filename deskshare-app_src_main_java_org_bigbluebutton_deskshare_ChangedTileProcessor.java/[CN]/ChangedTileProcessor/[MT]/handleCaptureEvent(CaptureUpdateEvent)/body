@@ -1,5 +1,10 @@
 {
-  log.debug("Handling captured event " + event.getPosition());
   BufferedImage image=event.getTile();
   appendTile(image,event.getX(),event.getY());
+  long now=System.currentTimeMillis();
+  if ((now - lastUpdate) > 1000) {
+    log.debug("Creating new screen");
+    notifyNewScreenListener(getNewScreen());
+    lastUpdate=now;
+  }
 }

@@ -1,0 +1,5 @@
+IPixelFormat.Type pictureType
+int pictureWidth
+int pictureHeight
+int imageWidth
+int imageHeight

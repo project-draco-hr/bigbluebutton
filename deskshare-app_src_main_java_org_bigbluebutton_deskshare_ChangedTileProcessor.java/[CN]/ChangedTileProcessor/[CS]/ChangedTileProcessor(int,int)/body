@@ -1,4 +1,5 @@
 {
   this.image=new BufferedImage(width,height,BufferedImage.TYPE_3BYTE_BGR);
   this.graphics=this.image.createGraphics();
+  lastUpdate=System.currentTimeMillis();
 }
