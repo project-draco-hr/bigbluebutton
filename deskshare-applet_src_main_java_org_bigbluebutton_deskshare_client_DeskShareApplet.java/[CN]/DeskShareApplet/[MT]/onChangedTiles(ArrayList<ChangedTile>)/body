@@ -1,4 +1,0 @@
-{
-  System.out.println("On ChangedTiles " + changedTiles.size());
-  captureSender.send(changedTiles);
-}

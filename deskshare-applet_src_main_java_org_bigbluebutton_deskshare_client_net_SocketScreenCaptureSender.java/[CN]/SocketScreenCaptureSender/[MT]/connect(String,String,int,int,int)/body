@@ -7,8 +7,8 @@
     socket=new Socket(host,PORT);
     outStream=new DataOutputStream(socket.getOutputStream());
     sendCaptureStartMessage();
-    sendRoom(room);
-    sendScreenCaptureInfo(videoWidth,videoHeight,frameRate);
+    sendRoom(this.room);
+    sendScreenCaptureInfo(this.videoWidth,this.videoHeight,this.frameRate);
   }
  catch (  UnknownHostException e) {
     System.out.println("Unknow host: " + host);

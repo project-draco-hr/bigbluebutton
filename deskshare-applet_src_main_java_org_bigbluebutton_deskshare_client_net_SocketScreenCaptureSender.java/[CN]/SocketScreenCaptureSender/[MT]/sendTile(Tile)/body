@@ -1,7 +1,7 @@
 {
   try {
     ByteArrayOutputStream byteConvert=new ByteArrayOutputStream();
-    ImageIO.write(tile.getImage(),"jpeg",byteConvert);
+    ImageIO.write(tile.getImage(),"png",byteConvert);
     byte[] imageData=byteConvert.toByteArray();
     outStream.writeInt(imageData.length);
     outStream.write(imageData);
@@ -9,5 +9,8 @@
   }
  catch (  IOException e) {
     System.out.println("IOException while sending screen capture.");
+  }
+ finally {
+    tile.imageSent();
   }
 }

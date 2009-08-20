@@ -1,4 +1,4 @@
 {
-  final JApplet applet=new DeskShareApplet();
+  final Applet applet=new DeskShareApplet();
   applet.start();
 }
