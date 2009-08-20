@@ -1,11 +1,5 @@
 {
-  log.debug("Sending screen captured");
-  try {
-    ImageIO.write(screen,"jpg",new File("/tmp/partil.jpg"));
-  }
- catch (  IOException e1) {
-    e1.printStackTrace();
-  }
+  log.debug("Sending screen captured - built aug 20 12:39PM");
   IPacket packet=IPacket.make();
   IConverter converter=null;
   IVideoResampler resampler=IVideoResampler.make(encodingWidth,encodingHeight,IPixelFormat.Type.YUV420P,width,height,IPixelFormat.Type.BGR24);
