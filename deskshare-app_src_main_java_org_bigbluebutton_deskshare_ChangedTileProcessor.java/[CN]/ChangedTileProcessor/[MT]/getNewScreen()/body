@@ -1,3 +1,5 @@
 {
-  return image.getSubimage(0,0,image.getWidth(),image.getHeight());
+  WritableRaster raster=image.copyData(null);
+  BufferedImage copy=new BufferedImage(image.getColorModel(),raster,image.isAlphaPremultiplied(),null);
+  return copy;
 }
