@@ -1,4 +1,9 @@
 {
+  if (width < LARGER_DIMENSION && height < LARGER_DIMENSION) {
+    encodingHeight=height;
+    encodingWidth=width;
+    return;
+  }
   int biggerDimension, smallerDimension;
   double ratio;
   if (width > height) {
@@ -19,5 +24,4 @@
     encodingHeight=LARGER_DIMENSION;
     encodingWidth=(int)Math.round(LARGER_DIMENSION / ratio);
   }
-  System.out.println("widht: " + encodingWidth + " ,height: "+ encodingHeight);
 }
