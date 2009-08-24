@@ -1,3 +1,0 @@
-{
-  streamerGateway.onCaptureEndEvent(new CaptureEndEvent(room));
-}

@@ -1,5 +1,0 @@
-{
-  session.removeAttribute(TILE_INFO);
-  session.removeAttribute(TILE_IMAGE);
-  clearMessage(session);
-}

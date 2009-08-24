@@ -1,3 +1,0 @@
-{
-  super(pictureType,IPixelFormat.Type.BGR24,BufferedImage.TYPE_3BYTE_BGR,pictureWidth,pictureHeight,imageWidth,imageHeight);
-}
