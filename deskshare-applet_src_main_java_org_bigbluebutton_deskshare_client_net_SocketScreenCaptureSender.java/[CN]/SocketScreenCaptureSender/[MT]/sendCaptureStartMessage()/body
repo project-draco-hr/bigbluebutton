@@ -1,3 +1,0 @@
-{
-  outStream.writeInt(CAPTURE_START);
-}

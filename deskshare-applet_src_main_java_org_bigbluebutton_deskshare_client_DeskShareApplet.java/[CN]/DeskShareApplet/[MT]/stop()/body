@@ -1,6 +1,0 @@
-{
-  captureTaker.setCapture(false);
-  if (!httpTunnel) {
-    captureSender.disconnect();
-  }
-}

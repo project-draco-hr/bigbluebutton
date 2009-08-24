@@ -1,3 +1,0 @@
-{
-  return robot.createScreenCapture(this.screenBounds);
-}

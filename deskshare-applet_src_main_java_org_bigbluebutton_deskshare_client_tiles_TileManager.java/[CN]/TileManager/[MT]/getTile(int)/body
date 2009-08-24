@@ -1,4 +1,0 @@
-{
-  Point coord=factory.positionToIndex(position);
-  return tiles[coord.x][coord.y];
-}

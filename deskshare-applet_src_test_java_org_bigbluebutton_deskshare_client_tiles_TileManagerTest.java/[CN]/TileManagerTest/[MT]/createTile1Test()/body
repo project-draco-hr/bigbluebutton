@@ -1,9 +1,0 @@
-{
-  tm.createTile(1);
-  Tile tile1=tm.getTile(1);
-  Assert.assertEquals(tile1.getTilePosition(),1);
-  Assert.assertEquals(tile1.getHeight(),32);
-  Assert.assertEquals(tile1.getWidth(),32);
-  Assert.assertEquals(tile1.getX(),0);
-  Assert.assertEquals(tile1.getY(),48);
-}

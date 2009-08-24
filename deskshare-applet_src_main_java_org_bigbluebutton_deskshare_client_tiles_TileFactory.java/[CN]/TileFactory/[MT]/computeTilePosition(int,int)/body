@@ -1,3 +1,0 @@
-{
-  return (((numRows - (row + 1)) * numColumns) + (col + 1));
-}

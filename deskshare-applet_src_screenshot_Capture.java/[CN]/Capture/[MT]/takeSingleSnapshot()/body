@@ -1,4 +1,0 @@
-{
-  if (needScale)   return getScaledImage(robot.createScreenCapture(this.screenBounds));
- else   return robot.createScreenCapture(this.screenBounds);
-}

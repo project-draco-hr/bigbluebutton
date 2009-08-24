@@ -1,3 +1,0 @@
-{
-  setParameter(name,file.getPath(),new FileInputStream(file));
-}

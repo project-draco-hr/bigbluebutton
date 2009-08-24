@@ -1,8 +1,0 @@
-{
-  if (isTopRowTile(row)) {
-    if (hasPartialRowTile()) {
-      return partialTileHeight();
-    }
-  }
-  return tileDim.getWidth();
-}

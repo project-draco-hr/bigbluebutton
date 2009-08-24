@@ -1,6 +1,0 @@
-{
-  sendChangedTileInfo(changedTile);
-  sendTile(changedTile);
-  System.out.println("NULLing changedTiles");
-  changedTile=null;
-}

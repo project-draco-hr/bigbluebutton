@@ -1,5 +1,0 @@
-String host
-String room
-int videoWidth
-int videoHeight
-int frameRate

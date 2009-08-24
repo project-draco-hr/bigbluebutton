@@ -1,3 +1,0 @@
-{
-  return computeTilePosition(row,col);
-}
