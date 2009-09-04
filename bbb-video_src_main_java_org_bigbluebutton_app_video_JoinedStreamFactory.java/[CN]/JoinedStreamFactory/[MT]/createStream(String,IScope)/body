@@ -1,0 +1,3 @@
+{
+  return new JoinedStream(scope,room,VideoAppConstants.JOINED_WIDTH,VideoAppConstants.JOINED_HEIGHT,VideoAppConstants.JOINED_FRAME_RATE);
+}

@@ -1,0 +1,4 @@
+{
+  boolean ret=super.roomStart(room);
+  return ret;
+}

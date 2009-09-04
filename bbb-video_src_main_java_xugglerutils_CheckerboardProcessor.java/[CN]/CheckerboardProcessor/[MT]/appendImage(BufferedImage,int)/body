@@ -1,0 +1,41 @@
+{
+  int x=0;
+  int y=0;
+  if (position == 0) {
+    x=0;
+    y=0;
+  }
+ else   if (position == 1) {
+    x=VideoAppConstants.TILE_WIDTH;
+    y=0;
+  }
+ else   if (position == 2) {
+    x=VideoAppConstants.TILE_WIDTH * 2;
+    y=0;
+  }
+ else   if (position == 3) {
+    x=0;
+    y=VideoAppConstants.TILE_HEIGHT;
+  }
+ else   if (position == 4) {
+    x=VideoAppConstants.TILE_WIDTH;
+    y=VideoAppConstants.TILE_HEIGHT;
+  }
+ else   if (position == 5) {
+    x=VideoAppConstants.TILE_WIDTH * 2;
+    y=VideoAppConstants.TILE_HEIGHT;
+  }
+ else   if (position == 6) {
+    x=0;
+    y=VideoAppConstants.TILE_HEIGHT * 2;
+  }
+ else   if (position == 7) {
+    x=VideoAppConstants.TILE_WIDTH;
+    y=VideoAppConstants.TILE_HEIGHT * 2;
+  }
+ else   if (position == 8) {
+    y=VideoAppConstants.TILE_HEIGHT * 2;
+    x=VideoAppConstants.TILE_WIDTH * 2;
+  }
+  graphics.drawImage(image,x,y,null);
+}

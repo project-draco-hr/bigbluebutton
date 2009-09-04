@@ -1,0 +1,26 @@
+{
+  try {
+    String threadName="Transcoder[" + inputStream.getPublishedName() + "]";
+    log.debug("Changing thread name: {}; to {};",Thread.currentThread().getName(),threadName);
+    Thread.currentThread().setName(threadName);
+    int retval=-1;
+{
+      log.debug("Adding packet listener to stream: {}",inputStream.getPublishedName());
+      inputStream.addStreamListener(inputListener);
+      inputURL=Red5HandlerFactory.DEFAULT_PROTOCOL + ":" + inputStream.getName();
+      ISimpleMediaFile inputInfo=new SimpleMediaFile();
+      inputInfo.setURL(inputURL);
+      red5Factory.registerStream(inputQueue,inputInfo);
+      inContainer=IContainer.make();
+      log.debug("About to open input url: {}",inputURL);
+      IContainerFormat inFormat=IContainerFormat.make();
+      inFormat.setInputFormat("flv");
+      retval=inContainer.open(inputURL,IContainer.Type.READ,inFormat,true,false);
+      if (retval < 0) {
+        throw new RuntimeException("Could not open input: " + inputURL);
+      }
+    }
+  }
+  finally {
+  }
+}

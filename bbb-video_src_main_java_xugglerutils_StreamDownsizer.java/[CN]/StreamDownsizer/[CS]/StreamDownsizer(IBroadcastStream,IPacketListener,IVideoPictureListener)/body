@@ -1,0 +1,54 @@
+{
+  this.inputStream=inputStream;
+  this.packetListener=packetListener;
+  this.pictureListener=pictureListener;
+  this.inputQueue=new Red5StreamingQueue();
+  this.videoStreamId=-1;
+  inputListener=new IStreamListener(){
+    public void packetReceived(    IBroadcastStream aStream,    IStreamPacket aPacket){
+      try {
+        IoBuffer buf=aPacket.getData();
+        if (buf != null)         buf.rewind();
+        if (buf == null || buf.remaining() == 0) {
+          log.debug("skipping empty packet with no data");
+          return;
+        }
+        if (aPacket instanceof VideoData) {
+          Red5Message.Type type=Red5Message.Type.INTERFRAME;
+          VideoData dataPacket=(VideoData)aPacket;
+switch (dataPacket.getFrameType()) {
+case DISPOSABLE_INTERFRAME:
+            type=Red5Message.Type.DISPOSABLE_INTERFRAME;
+          break;
+case INTERFRAME:
+        type=Red5Message.Type.INTERFRAME;
+      break;
+case KEYFRAME:
+case UNKNOWN:
+    type=Red5Message.Type.KEY_FRAME;
+  break;
+}
+if (type != Red5Message.Type.DISPOSABLE_INTERFRAME) {
+log.debug("  adding packet type: {}; ts: {}; on stream: {}",new Object[]{dataPacket.getFrameType(),aPacket.getTimestamp(),aStream.getPublishedName()});
+inputQueue.put(new Red5Message(type,dataPacket));
+}
+}
+ else if (aPacket instanceof IRTMPEvent) {
+log.debug("  adding packet type: {}; ts: {}; on stream: {}",new Object[]{"OTHER",aPacket.getTimestamp(),aStream.getPublishedName()});
+Red5Message.Type type=Red5Message.Type.OTHER;
+IRTMPEvent dataPacket=(IRTMPEvent)aPacket;
+inputQueue.put(new Red5Message(type,dataPacket));
+}
+ else {
+log.debug("dropping packet type: {}; ts: {}; on stream: {}",new Object[]{"UNKNOWN",aPacket.getTimestamp(),aStream.getPublishedName()});
+}
+}
+ catch (InterruptedException ex) {
+log.error("exception: {}",ex);
+}
+ finally {
+}
+}
+}
+;
+}

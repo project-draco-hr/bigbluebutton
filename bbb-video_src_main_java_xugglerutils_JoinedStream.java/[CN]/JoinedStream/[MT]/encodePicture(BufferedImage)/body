@@ -1,0 +1,27 @@
+{
+  IPacket packet=IPacket.make();
+  IConverter converter=null;
+  IVideoResampler resampler=IVideoResampler.make(encodingWidth,encodingHeight,IPixelFormat.Type.YUV420P,width,height,IPixelFormat.Type.BGR24);
+  try {
+    converter=ConverterFactory.createConverter(screen,IPixelFormat.Type.BGR24);
+  }
+ catch (  UnsupportedOperationException e) {
+    log.error("could not create converter");
+  }
+  IVideoPicture inFrame=converter.toPicture(screen,timestamp);
+  IVideoPicture outFrame=IVideoPicture.make(IPixelFormat.Type.YUV420P,encodingWidth,encodingHeight);
+  resampler.resample(outFrame,inFrame);
+  log.debug(outFrame.getPixelType().toString());
+  timestamp+=timestampBase;
+  frameNumber++;
+  outFrame.setQuality(0);
+  int retval=outStreamCoder.encodeVideo(packet,outFrame,0);
+  if (retval < 0)   throw new RuntimeException("could not encode video");
+  if (packet.isComplete()) {
+    retval=outContainer.writePacket(packet,false);
+    if (retval < 0)     throw new RuntimeException("could not save packet to container");
+  }
+  outFrame.delete();
+  outFrame=null;
+  converter=null;
+}
