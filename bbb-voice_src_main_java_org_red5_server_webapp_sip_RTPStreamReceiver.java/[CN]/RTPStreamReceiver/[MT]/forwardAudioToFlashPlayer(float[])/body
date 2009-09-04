@@ -9,7 +9,7 @@
  else {
       copySize=pcmBuffer.length - pcmBufferOffset;
     }
-    BufferUtils.floatBufferIndexedCopy(tempBuffer,tempBufferOffset,pcmBuffer,pcmBufferOffset,copySize);
+    System.arraycopy(pcmBuffer,pcmBufferOffset,tempBuffer,tempBufferOffset,copySize);
     tempBufferOffset+=copySize;
     pcmBufferOffset+=copySize;
     if (tempBufferOffset == NELLYMOSER_DECODED_PACKET_SIZE) {
@@ -25,7 +25,6 @@
         }
       }
  catch (      Exception exception) {
-        println("forwardAudioToFlashPlayer","asao Encoder Error.");
       }
       timeStamp=timeStamp + NELLYMOSER_ENCODED_PACKET_SIZE;
       tempBufferOffset=0;

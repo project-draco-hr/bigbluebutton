@@ -5,7 +5,9 @@
   }
   buffer.clear();
   buffer.put((byte)codec);
-  buffer.put(audio);
+  byte[] copy=new byte[audio.length];
+  System.arraycopy(audio,0,copy,0,audio.length);
+  buffer.put(copy);
   buffer.flip();
   AudioData audioData=new AudioData(buffer);
   audioData.setTimestamp((int)ts);

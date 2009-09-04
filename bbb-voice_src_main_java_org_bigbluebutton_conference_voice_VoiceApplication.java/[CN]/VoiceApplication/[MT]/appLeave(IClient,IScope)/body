@@ -1,8 +1,8 @@
 {
   IConnection conn=Red5.getConnectionLocal();
-  loginfo("Red5SIP Client leaving app " + client.getId());
+  log.debug("Red5SIP Client leaving app " + client.getId());
   if (userNames.containsKey(client.getId())) {
-    loginfo("Red5SIP Client closing client " + userNames.get(client.getId()));
+    log.debug("Red5SIP Client closing client " + userNames.get(client.getId()));
     sipManager.closeSIPUser(userNames.get(client.getId()));
     userNames.remove(client.getId());
   }

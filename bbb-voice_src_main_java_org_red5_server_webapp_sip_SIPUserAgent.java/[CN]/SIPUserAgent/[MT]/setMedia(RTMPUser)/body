@@ -1,4 +1,4 @@
 {
-  printLog("setMedia","Init...");
+  log.debug("setMedia","Init...");
   this.rtmpUser=rtmpUser;
 }

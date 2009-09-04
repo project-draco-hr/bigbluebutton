@@ -1,5 +1,5 @@
 {
-  printLog("closeMediaApplication","Init...");
+  log.debug("closeMediaApplication","Init...");
   if (audioApp != null) {
     audioApp.stopMedia();
     audioApp=null;

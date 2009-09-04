@@ -1,5 +1,0 @@
-{
-  loginfo("Red5SIP open");
-  login(uid,phone,username,password,realm,proxy);
-  register(uid);
-}

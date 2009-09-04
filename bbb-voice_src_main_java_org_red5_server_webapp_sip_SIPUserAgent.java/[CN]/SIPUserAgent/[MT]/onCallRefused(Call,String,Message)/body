@@ -1,10 +1,10 @@
 {
-  printLog("onCallRefused","Init...");
+  log.debug("onCallRefused","Init...");
   if (call != this.call) {
-    printLog("onCallRefused","NOT the current call.");
+    log.debug("onCallRefused","NOT the current call.");
     return;
   }
-  printLog("onCallRefused","REFUSED (" + reason + ").");
+  log.debug("onCallRefused","REFUSED (" + reason + ").");
   changeStatus(UA_IDLE);
   if (call == callTransfer) {
     StatusLine status_line=resp.getStatusLine();

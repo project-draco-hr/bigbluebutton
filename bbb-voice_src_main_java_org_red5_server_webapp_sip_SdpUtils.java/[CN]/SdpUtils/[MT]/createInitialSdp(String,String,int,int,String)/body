@@ -1,17 +1,13 @@
 {
   SessionDescriptor initialDescriptor=null;
-  printLog("createInitialSdp","Init...");
   try {
-    printLog("createInitialSdp","userName = [" + userName + "], viaAddress = ["+ viaAddress+ "], audioPort = ["+ audioPort+ "], videoPort = ["+ videoPort+ "], audioCodecsPrecedence = ["+ audioCodecsPrecedence+ "].");
     int audioCodecsNumber=SIPCodecFactory.getInstance().getAvailableAudioCodecsCount();
     int videoCodecsNumber=SIPCodecFactory.getInstance().getAvailableVideoCodecsCount();
     if ((audioCodecsNumber == 0) && (videoCodecsNumber == 0)) {
-      printLog("createInitialSdp","audioCodecsNumber = [" + audioCodecsNumber + "], videoCodecsNumber = ["+ videoCodecsNumber+ "].");
       return null;
     }
     initialDescriptor=new SessionDescriptor(userName,viaAddress);
     if (initialDescriptor == null) {
-      printLog("createInitialSdp","Error instantiating the initialDescriptor!");
       return null;
     }
     if (audioCodecsNumber > 0) {
@@ -28,13 +24,10 @@
         String rtpmapParamValue=payloadId;
         rtpmapParamValue+=" " + audioCodecs[audioIndex].getCodecName();
         rtpmapParamValue+="/" + audioCodecs[audioIndex].getSampleRate() + "/1";
-        printLog("createInitialSdp","Adding rtpmap for payload [" + payloadId + "] with value = ["+ rtpmapParamValue+ "].");
         audioAttributes.add(new AttributeField(SIPCodec.ATTRIBUTE_RTPMAP,rtpmapParamValue));
         String[] codecMediaAttributes=audioCodecs[audioIndex].getCodecMediaAttributes();
         if (codecMediaAttributes != null) {
-          printLog("createInitialSdp","Adding " + codecMediaAttributes.length + " audio codec media attributes.");
           for (int attribIndex=0; attribIndex < codecMediaAttributes.length; attribIndex++) {
-            printLog("createInitialSdp","Adding audio media attribute [" + codecMediaAttributes[attribIndex] + "].");
             AttributeField newAttribute=parseAttributeField(codecMediaAttributes[attribIndex]);
             if (newAttribute != null) {
               audioAttributes.add(newAttribute);
@@ -42,26 +35,21 @@
           }
         }
  else {
-          printLog("createInitialSdp","Audio codec has no especific media attributes.");
         }
       }
       String formatList=getFormatList(audioAttributes);
       for (Enumeration attributesEnum=audioAttributes.elements(); attributesEnum.hasMoreElements(); ) {
         AttributeField audioAttribute=(AttributeField)attributesEnum.nextElement();
         if (initialDescriptor.getMediaDescriptor(SIPCodec.MEDIA_TYPE_AUDIO) == null) {
-          printLog("createInitialSdp","Creating audio media descriptor.");
           initialDescriptor.addMedia(new MediaField(SIPCodec.MEDIA_TYPE_AUDIO,audioPort,0,"RTP/AVP",formatList),audioAttribute);
         }
  else {
-          printLog("createInitialSdp","Just adding attribute.");
           initialDescriptor.getMediaDescriptor(SIPCodec.MEDIA_TYPE_AUDIO).addAttribute(audioAttribute);
         }
       }
       String[] commonAudioMediaAttributes=SIPCodecFactory.getInstance().getCommonAudioMediaAttributes();
       if (commonAudioMediaAttributes != null) {
-        printLog("createInitialSdp","Adding " + commonAudioMediaAttributes.length + " common audio media attributes.");
         for (int attribIndex=0; attribIndex < commonAudioMediaAttributes.length; attribIndex++) {
-          printLog("createInitialSdp","Adding common audio media attribute [" + commonAudioMediaAttributes[attribIndex] + "].");
           AttributeField newAttribute=parseAttributeField(commonAudioMediaAttributes[attribIndex]);
           if (newAttribute != null) {
             initialDescriptor.getMediaDescriptor(SIPCodec.MEDIA_TYPE_AUDIO).addAttribute(newAttribute);
@@ -69,7 +57,6 @@
         }
       }
  else {
-        printLog("createInitialSdp","No common audio media attributes.");
       }
     }
     if (videoCodecsNumber > 0) {
@@ -80,11 +67,9 @@
         String rtpmapParamValue=payloadId;
         rtpmapParamValue+=" " + videoCodecs[videoIndex].getCodecName();
         rtpmapParamValue+="/" + videoCodecs[videoIndex].getSampleRate() + "/1";
-        printLog("createInitialSdp","Adding rtpmap for payload [" + payloadId + "] with value = ["+ rtpmapParamValue+ "].");
         videoAttributes.add(new AttributeField(SIPCodec.ATTRIBUTE_RTPMAP,rtpmapParamValue));
         String[] codecMediaAttributes=videoCodecs[videoIndex].getCodecMediaAttributes();
         if (codecMediaAttributes != null) {
-          printLog("createInitialSdp","Adding " + codecMediaAttributes.length + " video codec media attributes.");
           for (int attribIndex=0; attribIndex < codecMediaAttributes.length; attribIndex++) {
             printLog("createInitialSdp","Adding video media attribute [" + codecMediaAttributes[attribIndex] + "].");
             AttributeField newAttribute=parseAttributeField(codecMediaAttributes[attribIndex]);

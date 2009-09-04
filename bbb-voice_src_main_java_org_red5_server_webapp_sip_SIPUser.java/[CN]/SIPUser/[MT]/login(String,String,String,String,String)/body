@@ -1,5 +1,5 @@
 {
-  p("SIPUser login");
+  log.debug("SIPUser login");
   this.username=username;
   this.password=password;
   this.proxy=proxy;
@@ -31,6 +31,6 @@
     ua.listen();
   }
  catch (  Exception e) {
-    p("login: Exception:>\n" + e);
+    log.error("login: Exception:>\n" + e);
   }
 }

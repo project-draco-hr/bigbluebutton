@@ -1,6 +1,6 @@
 {
-  printLog("initSessionDescriptor","Init...");
+  log.debug("initSessionDescriptor","Init...");
   SessionDescriptor newSdp=SdpUtils.createInitialSdp(userProfile.username,sipProvider.getViaAddress(),userProfile.audioPort,userProfile.videoPort,userProfile.audioCodecsPrecedence);
   localSession=newSdp.toString();
-  printLog("initSessionDescriptor","localSession = " + localSession);
+  log.debug("initSessionDescriptor","localSession = " + localSession);
 }

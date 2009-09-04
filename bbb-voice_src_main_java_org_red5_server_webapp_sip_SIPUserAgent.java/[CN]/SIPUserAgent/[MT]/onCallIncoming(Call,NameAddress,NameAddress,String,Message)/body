@@ -1,23 +1,23 @@
 {
-  printLog("onCallIncoming","Init...");
+  log.debug("onCallIncoming","Init...");
   if (call != this.call) {
-    printLog("onCallIncoming","NOT the current call.");
+    log.debug("onCallIncoming","NOT the current call.");
     return;
   }
-  printLog("onCallIncoming","INCOMING.");
-  printLog("onCallIncoming","Inside SIPUserAgent.onCallIncoming(): sdp=\n" + sdp);
+  log.debug("onCallIncoming","INCOMING.");
+  log.debug("onCallIncoming","Inside SIPUserAgent.onCallIncoming(): sdp=\n" + sdp);
   changeStatus(UA_INCOMING_CALL);
   call.ring();
   if (sdp != null) {
     SessionDescriptor remoteSdp=new SessionDescriptor(sdp);
     SessionDescriptor localSdp=new SessionDescriptor(localSession);
-    printLog("onCallIncoming","localSdp = " + localSdp.toString() + ".");
-    printLog("onCallIncoming","remoteSdp = " + remoteSdp.toString() + ".");
+    log.debug("onCallIncoming","localSdp = " + localSdp.toString() + ".");
+    log.debug("onCallIncoming","remoteSdp = " + remoteSdp.toString() + ".");
     SessionDescriptor newSdp=SdpUtils.makeMediaPayloadsNegotiation(localSdp,remoteSdp);
     sipCodec=SdpUtils.getNegotiatedAudioCodec(newSdp);
     SdpUtils.completeSdpNegotiation(newSdp,localSdp,remoteSdp);
     localSession=newSdp.toString();
-    printLog("onCallIncoming","newSdp = " + localSession + ".");
+    log.debug("onCallIncoming","newSdp = " + localSession + ".");
     SIPCodecUtils.initSipAudioCodec(sipCodec,userProfile.audioDefaultPacketization,userProfile.audioDefaultPacketization,newSdp,remoteSdp);
   }
   if (listener != null) {

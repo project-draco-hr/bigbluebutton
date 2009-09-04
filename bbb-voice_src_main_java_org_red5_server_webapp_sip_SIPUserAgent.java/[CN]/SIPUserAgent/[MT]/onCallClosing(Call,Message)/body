@@ -1,16 +1,16 @@
 {
-  printLog("onCallClosing","Init...");
+  log.debug("onCallClosing","Init...");
   if (call != this.call && call != callTransfer) {
-    printLog("onCallClosing","NOT the current call.");
+    log.debug("onCallClosing","NOT the current call.");
     return;
   }
   if (call != callTransfer && callTransfer != null) {
-    printLog("onCallClosing","CLOSE PREVIOUS CALL.");
+    log.debug("onCallClosing","CLOSE PREVIOUS CALL.");
     this.call=callTransfer;
     callTransfer=null;
     return;
   }
-  printLog("onCallClosing","CLOSE.");
+  log.debug("onCallClosing","CLOSE.");
   closeMediaApplication();
   if (clip_off != null) {
     clip_off.replay();

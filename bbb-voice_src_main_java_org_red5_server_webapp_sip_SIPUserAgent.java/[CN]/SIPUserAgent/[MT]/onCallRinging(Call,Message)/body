@@ -1,10 +1,10 @@
 {
-  printLog("onCallRinging","Init...");
+  log.debug("onCallRinging","Init...");
   if (call != this.call && call != callTransfer) {
-    printLog("onCallRinging","NOT the current call.");
+    log.debug("onCallRinging","NOT the current call.");
     return;
   }
-  printLog("onCallRinging","RINGING.");
+  log.debug("onCallRinging","RINGING.");
   if (listener != null) {
     listener.onUaCallRinging(this);
   }

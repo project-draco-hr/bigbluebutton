@@ -1,5 +1,5 @@
 {
-  p("SIPUser register");
+  log.debug("SIPUser register");
   try {
     if (sipProvider != null) {
       ra=new SIPRegisterAgent(sipProvider,userProfile.fromUrl,userProfile.contactUrl,username,userProfile.realm,password,this);
@@ -7,6 +7,6 @@
     }
   }
  catch (  Exception e) {
-    p("register: Exception:>\n" + e);
+    log.error("register: Exception:>\n" + e);
   }
 }

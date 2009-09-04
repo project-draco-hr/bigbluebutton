@@ -1,6 +1,6 @@
 {
   if (audioApp != null || videoApp != null) {
-    printLog("launchMediaApplication","Media application is already running.");
+    log.debug("launchMediaApplication","Media application is already running.");
     return;
   }
   if (listener != null) {
@@ -18,7 +18,7 @@
       localVideoPort=media.getPort();
     }
   }
-  printLog("launchMediaApplication","localAudioPort = " + localAudioPort + ", localVideoPort = "+ localVideoPort+ ".");
+  log.debug("launchMediaApplication","localAudioPort = " + localAudioPort + ", localVideoPort = "+ localVideoPort+ ".");
   SessionDescriptor remoteSdp=new SessionDescriptor(call.getRemoteSessionDescriptor());
   String remoteMediaAddress=(new Parser(remoteSdp.getConnection().toString())).skipString().skipString().getString();
   int remoteAudioPort=0;
@@ -33,7 +33,7 @@
       remoteVideoPort=media.getPort();
     }
   }
-  printLog("launchMediaApplication","remoteAudioPort = " + remoteAudioPort + ", remoteVideoPort = "+ remoteVideoPort+ ".");
+  log.debug("launchMediaApplication","remoteAudioPort = " + remoteAudioPort + ", remoteVideoPort = "+ remoteVideoPort+ ".");
   int dir=0;
   if (userProfile.recvOnly) {
     dir=-1;
@@ -41,14 +41,14 @@
  else   if (userProfile.sendOnly) {
     dir=1;
   }
-  printLog("launchMediaApplication","user_profile.audio = " + userProfile.audio + ", user_profile.video = "+ userProfile.video+ ", audio_app = "+ audioApp+ ", video_app = "+ videoApp+ ".");
+  log.debug("launchMediaApplication","user_profile.audio = " + userProfile.audio + ", user_profile.video = "+ userProfile.video+ ", audio_app = "+ audioApp+ ", video_app = "+ videoApp+ ".");
   if (userProfile.audio && localAudioPort != 0 && remoteAudioPort != 0) {
     if (audioApp == null) {
       if (sipCodec != null) {
         audioApp=new SIPAudioLauncher(sipCodec,localAudioPort,remoteMediaAddress,remoteAudioPort,rtmpUser);
       }
  else {
-        printLog("launchMediaApplication","SipCodec not initialized.");
+        log.debug("launchMediaApplication","SipCodec not initialized.");
       }
     }
     if (audioApp != null) {
@@ -57,7 +57,7 @@
   }
   if (userProfile.video && localVideoPort != 0 && remoteVideoPort != 0) {
     if (videoApp == null) {
-      printLog("launchMediaApplication","No external video application nor JMF has been provided: Video not started.");
+      log.debug("launchMediaApplication","No external video application nor JMF has been provided: Video not started.");
       return;
     }
     videoApp.startMedia();

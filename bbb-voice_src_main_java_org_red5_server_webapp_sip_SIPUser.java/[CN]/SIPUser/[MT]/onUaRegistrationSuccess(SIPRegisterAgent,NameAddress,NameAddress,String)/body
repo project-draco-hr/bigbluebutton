@@ -1,5 +1,5 @@
 {
-  p("SIP Registration success " + result);
+  log.debug("SIP Registration success " + result);
   if (service != null) {
     ((IServiceCapableConnection)service).invoke("registrationSucess",new Object[]{result});
   }

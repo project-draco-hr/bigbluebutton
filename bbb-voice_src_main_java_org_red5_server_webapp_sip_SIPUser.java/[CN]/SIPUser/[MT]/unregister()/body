@@ -1,5 +1,5 @@
 {
-  p("SIPUser unregister");
+  log.debug("SIPUser unregister");
   if (ra != null) {
     if (ra.isRegistering()) {
       ra.halt();

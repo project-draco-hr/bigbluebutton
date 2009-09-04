@@ -1,20 +1,20 @@
 {
-  printLog("onCallAccepted","Init...");
+  log.debug("onCallAccepted","Init...");
   if (call != this.call && call != callTransfer) {
-    printLog("onCallAccepted","NOT the current call.");
+    log.debug("onCallAccepted","NOT the current call.");
     return;
   }
-  printLog("onCallAccepted","ACCEPTED/CALL.");
+  log.debug("onCallAccepted","ACCEPTED/CALL.");
   changeStatus(UA_ONCALL);
   SessionDescriptor remoteSdp=new SessionDescriptor(sdp);
   SessionDescriptor localSdp=new SessionDescriptor(localSession);
-  printLog("onCallAccepted","localSdp = " + localSdp.toString() + ".");
-  printLog("onCallAccepted","remoteSdp = " + remoteSdp.toString() + ".");
+  log.debug("onCallAccepted","localSdp = " + localSdp.toString() + ".");
+  log.debug("onCallAccepted","remoteSdp = " + remoteSdp.toString() + ".");
   SessionDescriptor newSdp=SdpUtils.makeMediaPayloadsNegotiation(localSdp,remoteSdp);
   sipCodec=SdpUtils.getNegotiatedAudioCodec(newSdp);
   SdpUtils.completeSdpNegotiation(newSdp,localSdp,remoteSdp);
   localSession=newSdp.toString();
-  printLog("onCallAccepted","newSdp = " + localSession + ".");
+  log.debug("onCallAccepted","newSdp = " + localSession + ".");
   SIPCodecUtils.initSipAudioCodec(sipCodec,userProfile.audioDefaultPacketization,userProfile.audioDefaultPacketization,newSdp,remoteSdp);
   if (userProfile.noOffer) {
     call.ackWithAnswer(localSession);

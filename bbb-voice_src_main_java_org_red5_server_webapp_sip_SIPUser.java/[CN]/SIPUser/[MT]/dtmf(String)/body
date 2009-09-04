@@ -1,11 +1,11 @@
 {
-  p("SIPUser dtmf " + digits);
+  log.debug("SIPUser dtmf " + digits);
   try {
     if (ua != null && ua.audioApp != null && ua.audioApp.sender != null) {
       ua.audioApp.sender.queueSipDtmfDigits(digits);
     }
   }
  catch (  Exception e) {
-    p("dtmf: Exception:>\n" + e);
+    log.error("dtmf: Exception:>\n" + e);
   }
 }

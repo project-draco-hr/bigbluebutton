@@ -1,5 +1,5 @@
 {
-  p("SIPUser Calling " + destination);
+  log.debug("SIPUser Calling " + destination);
   try {
     publishName="microphone_" + System.currentTimeMillis();
     playName="speaker_" + System.currentTimeMillis();
@@ -16,6 +16,6 @@
     ua.call(destination);
   }
  catch (  Exception e) {
-    p("call: Exception:>\n" + e);
+    log.error("call: Exception:>\n" + e);
   }
 }

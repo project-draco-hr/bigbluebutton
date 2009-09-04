@@ -1,8 +1,8 @@
 {
-  printLog("onCallReInviteAccepted","Init...");
+  log.debug("onCallReInviteAccepted","Init...");
   if (call != this.call) {
-    printLog("onCallReInviteAccepted","NOT the current call.");
+    log.debug("onCallReInviteAccepted","NOT the current call.");
     return;
   }
-  printLog("onCallReInviteAccepted","RE-INVITE-ACCEPTED/CALL.");
+  log.debug("onCallReInviteAccepted","RE-INVITE-ACCEPTED/CALL.");
 }

@@ -1,10 +1,10 @@
 {
-  printLog("onCallTransfer","Init...");
+  log.debug("onCallTransfer","Init...");
   if (call != this.call) {
-    printLog("onCallTransfer","NOT the current call.");
+    log.debug("onCallTransfer","NOT the current call.");
     return;
   }
-  printLog("onCallTransfer","Transfer to " + refer_to.toString() + ".");
+  log.debug("onCallTransfer","Transfer to " + refer_to.toString() + ".");
   call.acceptTransfer();
   callTransfer=new ExtendedCall(sipProvider,userProfile.fromUrl,userProfile.contactUrl,this);
   callTransfer.call(refer_to.toString(),localSession);

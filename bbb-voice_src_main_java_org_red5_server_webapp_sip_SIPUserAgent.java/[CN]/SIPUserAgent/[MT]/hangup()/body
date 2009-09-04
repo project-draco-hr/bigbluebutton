@@ -1,5 +1,5 @@
 {
-  printLog("hangup","Init...");
+  log.debug("hangup","Init...");
   if (clip_ring != null) {
     clip_ring.stop();
   }

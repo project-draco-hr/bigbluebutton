@@ -9,13 +9,13 @@
   encoder=new Encoder();
   encoderMap=new float[64];
   tempBuffer=new float[NELLYMOSER_DECODED_PACKET_SIZE];
-  byte[] internalBuffer=new byte[sipCodec.getIncomingEncodedFrameSize() + RTP_HEADER_SIZE];
-  RtpPacket rtpPacket=new RtpPacket(internalBuffer,0);
   running=true;
   try {
     rtpSocket.getDatagramSocket().setSoTimeout(SO_TIMEOUT);
     while (running) {
       try {
+        byte[] internalBuffer=new byte[sipCodec.getIncomingEncodedFrameSize() + RTP_HEADER_SIZE];
+        RtpPacket rtpPacket=new RtpPacket(internalBuffer,0);
         rtpSocket.receive(rtpPacket);
         frameCounter++;
         if (running) {
@@ -27,8 +27,10 @@
           payloadLength=length;
           float[] decodingBuffer=new float[length];
           byte[] codedBuffer=new byte[length];
-          BufferUtils.byteBufferIndexedCopy(codedBuffer,0,packetBuffer,offset,length);
+          println("run","pkt.length = " + packetBuffer.length + ", offset = "+ offset+ ", length = "+ length+ ".");
+          System.arraycopy(packetBuffer,offset,codedBuffer,0,length);
           int decodedBytes=sipCodec.codecToPcm(codedBuffer,decodingBuffer);
+          println("run","encodedBytes = " + decodedBytes + ", incomingDecodedFrameSize = "+ sipCodec.getIncomingDecodedFrameSize()+ ".");
           if (decodedBytes == sipCodec.getIncomingDecodedFrameSize()) {
             forwardAudioToFlashPlayer(decodingBuffer);
           }

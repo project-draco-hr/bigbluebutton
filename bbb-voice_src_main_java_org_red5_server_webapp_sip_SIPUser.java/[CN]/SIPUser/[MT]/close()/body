@@ -1,18 +1,18 @@
 {
-  p("SIPUser close1");
+  log.debug("SIPUser close1");
   try {
     hangup();
     unregister();
-    new Thread().sleep(3000);
   }
  catch (  Exception e) {
-    p("close: Exception:>\n" + e);
+    log.error("close: Exception:>\n" + e);
   }
   try {
-    p("SIPUser provider.halt");
+    log.debug("SIPUser provider.halt");
     sipProvider.halt();
   }
  catch (  Exception e) {
-    p("close: Exception:>\n" + e);
+    log.error("close: Exception:>\n" + e);
   }
+  service=null;
 }

@@ -2,20 +2,14 @@
   int payloadId;
   String rtpmap;
   SIPCodec sipCodec=null;
-  printLog("getNegotiatedAudioCodec","Init...");
   rtpmap=negotiatedSDP.getMediaDescriptor(SIPCodec.MEDIA_TYPE_AUDIO).getAttribute(SIPCodec.ATTRIBUTE_RTPMAP).getAttributeValue();
-  printLog("getNegotiatedAudioCodec","rtpmap = [" + rtpmap + "].");
   if (!rtpmap.isEmpty()) {
     payloadId=Integer.parseInt(rtpmap.substring(0,rtpmap.indexOf(" ")));
-    printLog("getNegotiatedAudioCodec","payloadId = [" + payloadId + "].");
     sipCodec=SIPCodecFactory.getInstance().getSIPAudioCodec(payloadId);
     if (sipCodec == null) {
-      printLog("getNegotiatedAudioCodec","Error... codec not found.");
     }
  else {
-      printLog("getNegotiatedAudioCodec","payloadType = " + sipCodec.getCodecId() + ", payloadName = "+ sipCodec.getCodecName()+ ".");
     }
   }
-  printLog("getNegotiatedAudioCodec","End...");
   return sipCodec;
 }

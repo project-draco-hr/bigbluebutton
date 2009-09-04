@@ -1,3 +1,0 @@
-{
-  loginfo("Red5SIP Stream broadcast close: " + stream.getPublishedName());
-}

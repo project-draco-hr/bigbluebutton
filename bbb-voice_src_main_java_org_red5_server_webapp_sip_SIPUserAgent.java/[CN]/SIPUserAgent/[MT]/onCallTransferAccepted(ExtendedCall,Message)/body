@@ -1,8 +1,8 @@
 {
-  printLog("onCallTransferAccepted","Init...");
+  log.debug("onCallTransferAccepted","Init...");
   if (call != this.call) {
-    printLog("onCallTransferAccepted","NOT the current call.");
+    log.debug("onCallTransferAccepted","NOT the current call.");
     return;
   }
-  printLog("onCallTransferAccepted","Transfer accepted.");
+  log.debug("onCallTransferAccepted","Transfer accepted.");
 }

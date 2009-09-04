@@ -1,5 +1,5 @@
 {
-  printLog("accept","Init...");
+  log.debug("accept","Init...");
   if (clip_ring != null) {
     clip_ring.stop();
   }

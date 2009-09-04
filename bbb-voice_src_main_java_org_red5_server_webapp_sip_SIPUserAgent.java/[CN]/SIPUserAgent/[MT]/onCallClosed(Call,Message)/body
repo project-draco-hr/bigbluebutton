@@ -1,10 +1,10 @@
 {
-  printLog("onCallClosed","Init...");
+  log.debug("onCallClosed","Init...");
   if (call != this.call) {
-    printLog("onCallClosed","NOT the current call.");
+    log.debug("onCallClosed","NOT the current call.");
     return;
   }
-  printLog("onCallClosed","CLOSE/OK.");
+  log.debug("onCallClosed","CLOSE/OK.");
   if (listener != null) {
     listener.onUaCallClosed(this);
   }

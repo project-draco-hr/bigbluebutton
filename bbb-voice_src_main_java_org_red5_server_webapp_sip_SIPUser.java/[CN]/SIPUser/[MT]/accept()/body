@@ -1,5 +1,5 @@
 {
-  p("SIPUser accept");
+  log.debug("SIPUser accept");
   if (ua != null) {
     try {
       publishName="microphone_" + System.currentTimeMillis();
@@ -10,7 +10,7 @@
       ua.accept();
     }
  catch (    Exception e) {
-      p("SIPUser: accept - Exception:>\n" + e);
+      log.error("SIPUser: accept - Exception:>\n" + e);
     }
   }
 }

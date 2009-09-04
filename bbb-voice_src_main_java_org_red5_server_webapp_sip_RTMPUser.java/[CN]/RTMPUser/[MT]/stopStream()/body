@@ -1,6 +1,7 @@
 {
   logger.debug("RTMPUser stopStream");
   try {
+    unpublish(publishStreamId);
     disconnect();
   }
  catch (  Exception e) {

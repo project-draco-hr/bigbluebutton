@@ -1,8 +1,8 @@
 {
-  printLog("onCallTransferRefused","Init...");
+  log.debug("onCallTransferRefused","Init...");
   if (call != this.call) {
-    printLog("onCallTransferRefused","NOT the current call.");
+    log.debug("onCallTransferRefused","NOT the current call.");
     return;
   }
-  printLog("onCallTransferRefused","Transfer refused.");
+  log.debug("onCallTransferRefused","Transfer refused.");
 }

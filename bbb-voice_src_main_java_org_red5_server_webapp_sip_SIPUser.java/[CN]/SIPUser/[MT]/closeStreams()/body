@@ -1,8 +1,8 @@
 {
-  p("SIPUser closeStreams");
+  log.debug("SIPUser closeStreams");
   try {
   }
  catch (  Exception e) {
-    p("closeStreams: Exception:>\n" + e);
+    log.error("closeStreams: Exception:>\n" + e);
   }
 }
