@@ -1,7 +1,7 @@
 {
   super.appStart(app);
-  log.info("oflaDemo appStart");
-  System.out.println("oflaDemo appStart");
+  log.info("video appStart");
+  joinedStreams=new ArrayList<JoinedStream>();
   appScope=app;
   return true;
 }

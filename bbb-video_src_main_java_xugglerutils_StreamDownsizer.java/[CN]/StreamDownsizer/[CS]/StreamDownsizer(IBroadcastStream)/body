@@ -1,7 +1,5 @@
 {
   this.inputStream=inputStream;
-  this.packetListener=packetListener;
-  this.pictureListener=pictureListener;
   this.inputQueue=new Red5StreamingQueue();
   this.videoStreamId=-1;
   inputListener=new IStreamListener(){

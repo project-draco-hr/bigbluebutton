@@ -1,0 +1,6 @@
+{
+  startPublishing(scope);
+  while (keepStreaming) {
+    encodePicture(imageProcessor.getImage());
+  }
+}

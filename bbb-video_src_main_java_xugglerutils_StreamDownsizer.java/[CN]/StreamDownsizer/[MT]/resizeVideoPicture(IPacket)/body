@@ -1,0 +1,7 @@
+{
+  IVideoPicture videoPicture=IVideoPicture.make(inCoder.getPixelType(),inCoder.getWidth(),inCoder.getHeight());
+  IVideoPicture resampledPicture=IVideoPicture.make(inCoder.getPixelType(),VideoAppConstants.TILE_WIDTH,VideoAppConstants.TILE_HEIGHT);
+  IVideoResampler resampler=IVideoResampler.make(VideoAppConstants.TILE_WIDTH,VideoAppConstants.TILE_HEIGHT,inCoder.getPixelType(),inCoder.getWidth(),inCoder.getHeight(),inCoder.getPixelType());
+  resampler.resample(resampledPicture,videoPicture);
+  return videoPicture;
+}

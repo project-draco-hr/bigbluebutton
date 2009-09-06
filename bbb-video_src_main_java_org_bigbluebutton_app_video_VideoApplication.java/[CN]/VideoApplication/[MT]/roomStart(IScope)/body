@@ -1,4 +1,8 @@
 {
   boolean ret=super.roomStart(room);
+  JoinedStream videoStream=new JoinedStream(room,room.getName(),VideoAppConstants.JOINED_WIDTH,VideoAppConstants.JOINED_HEIGHT,VideoAppConstants.JOINED_FRAME_RATE);
+  joinedStreams.add(videoStream);
+  Thread videoThread=new Thread(videoStream,room.getName());
+  videoThread.start();
   return ret;
 }
