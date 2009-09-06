@@ -1,4 +1,5 @@
 {
+  log.debug("streamPublishStart: {}; {}",stream,stream.getPublishedName());
   super.streamPublishStart(stream);
-  StreamDownsizer smallStream=new StreamDownsizer(stream);
+  videoTranscoder.startTranscodingStream(stream,Red5.getConnectionLocal().getScope());
 }

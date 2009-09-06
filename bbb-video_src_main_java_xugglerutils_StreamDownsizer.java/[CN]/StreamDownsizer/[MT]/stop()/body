@@ -1,9 +1,0 @@
-{
-  try {
-    inputQueue.put(new Red5Message(Red5Message.Type.END_STREAM,null));
-  }
- catch (  InterruptedException e) {
-    log.error("exception: {}",e);
-  }
-  keepRunning=false;
-}

@@ -1,5 +1,0 @@
-{
-  imageProviders=new ArrayList<IImageProvider>();
-  this.image=new BufferedImage(VideoAppConstants.JOINED_WIDTH,VideoAppConstants.JOINED_HEIGHT,BufferedImage.TYPE_3BYTE_BGR);
-  this.graphics=this.image.createGraphics();
-}

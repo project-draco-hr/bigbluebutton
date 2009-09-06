@@ -1,0 +1,5 @@
+{
+  log.debug("streamBroadcastClose: {}; {}",stream,stream.getPublishedName());
+  videoTranscoder.stopTranscodingStream(stream,Red5.getConnectionLocal().getScope());
+  super.streamBroadcastClose(stream);
+}

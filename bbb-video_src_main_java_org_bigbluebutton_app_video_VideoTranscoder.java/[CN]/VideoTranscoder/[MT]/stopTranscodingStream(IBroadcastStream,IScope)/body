@@ -1,0 +1,12 @@
+{
+  log.debug("stopTranscodingStream({},{})",aStream.getPublishedName(),aScope.getName());
+  String inputName=aStream.getPublishedName();
+  Transcoder transcoder=mTranscoders.get(inputName);
+  if (transcoder != null) {
+    transcoder.stop();
+  }
+  BroadcastStream outputStream=mOutputStreams.get(inputName);
+  if (outputStream != null) {
+    outputStream.stop();
+  }
+}

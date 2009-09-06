@@ -1,7 +1,6 @@
 {
   super.appStart(app);
   log.info("video appStart");
-  joinedStreams=new ArrayList<JoinedStream>();
   appScope=app;
   return true;
 }
