@@ -1,5 +1,5 @@
 {
-  log.info("oflaDemo appConnect");
+  log.info("bbb-video appConnect");
   measureBandwidth(conn);
   if (conn instanceof IStreamCapableConnection) {
     IStreamCapableConnection streamConn=(IStreamCapableConnection)conn;
