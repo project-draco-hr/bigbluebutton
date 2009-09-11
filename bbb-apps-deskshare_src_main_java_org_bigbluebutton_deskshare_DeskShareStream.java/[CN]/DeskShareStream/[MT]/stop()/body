@@ -1,0 +1,5 @@
+{
+  sendCapturedScreen=false;
+  streamEnded();
+  changedTileProcessor.stop();
+}

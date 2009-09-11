@@ -1,0 +1,3 @@
+{
+  streamerGateway.onCaptureStartEvent(event);
+}

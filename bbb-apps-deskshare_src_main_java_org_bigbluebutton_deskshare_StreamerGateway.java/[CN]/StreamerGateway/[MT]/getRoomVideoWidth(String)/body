@@ -1,0 +1,7 @@
+{
+  DeskShareStream ds=streamsMap.get(room);
+  if (ds != null) {
+    return ds.getWidth();
+  }
+  return 0;
+}

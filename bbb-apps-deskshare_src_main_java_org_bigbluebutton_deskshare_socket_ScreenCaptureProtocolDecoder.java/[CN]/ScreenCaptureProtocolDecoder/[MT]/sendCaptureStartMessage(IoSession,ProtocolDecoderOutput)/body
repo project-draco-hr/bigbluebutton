@@ -1,0 +1,12 @@
+{
+  String room=(String)session.getAttribute(ROOM);
+  String videoInfo=(String)session.getAttribute(VIDEO_INFO);
+  log.debug("Room " + room + " videoInfo "+ videoInfo);
+  String[] screenDimensions=videoInfo.split("x");
+  int width=Integer.parseInt(screenDimensions[0]);
+  int height=Integer.parseInt(screenDimensions[1]);
+  int frameRate=Integer.parseInt(screenDimensions[2]);
+  CaptureStartEvent cse=new CaptureStartEvent(room,width,height,frameRate);
+  out.write(cse);
+  clearMessage(session);
+}

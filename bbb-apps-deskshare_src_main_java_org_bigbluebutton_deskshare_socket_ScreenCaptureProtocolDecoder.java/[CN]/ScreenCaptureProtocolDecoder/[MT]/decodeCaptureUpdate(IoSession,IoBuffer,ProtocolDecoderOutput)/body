@@ -1,0 +1,12 @@
+{
+  if (!session.containsAttribute(TILE_INFO)) {
+    return decodeTileInfo(session,in);
+  }
+ else {
+    if (decodeTile(session,in)) {
+      sendCaptureUpdateMessage(session,out);
+      return true;
+    }
+  }
+  return false;
+}

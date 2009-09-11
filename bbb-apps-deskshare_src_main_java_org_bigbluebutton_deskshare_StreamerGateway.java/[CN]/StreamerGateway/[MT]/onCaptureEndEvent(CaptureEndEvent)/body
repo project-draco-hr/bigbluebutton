@@ -1,0 +1,7 @@
+{
+  DeskShareStream ds=streamsMap.remove(event.getRoom());
+  if (ds != null) {
+    ds.stop();
+    ds=null;
+  }
+}

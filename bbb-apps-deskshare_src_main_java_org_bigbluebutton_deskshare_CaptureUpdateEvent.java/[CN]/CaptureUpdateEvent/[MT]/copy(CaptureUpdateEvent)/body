@@ -1,0 +1,3 @@
+{
+  return new CaptureUpdateEvent(event.getTile(),event.getRoom(),event.getWidth(),event.getHeight(),event.getX(),event.getY(),event.getPosition());
+}

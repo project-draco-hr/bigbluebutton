@@ -1,0 +1,11 @@
+{
+  ServletContext ctx=getServletContext();
+  log.info("Got the servlet context: {}",ctx);
+  ApplicationContext appCtx=(ApplicationContext)ctx.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+  log.info("Got the application context: {}",appCtx);
+  StreamerGateway streamerGateway=(StreamerGateway)appCtx.getBean("streamerGateway");
+  if (streamerGateway != null) {
+    log.info("Got the streamerGateway context: {}",appCtx);
+  }
+  return streamerGateway;
+}

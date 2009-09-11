@@ -1,0 +1,8 @@
+{
+  DeskShareServer server=new DeskShareServer();
+  server.setScreenCaptureHandler(new DebugScreenCaptureMessageHandler());
+  server.start();
+  System.out.println("Server starting");
+  while (true) {
+  }
+}

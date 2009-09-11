@@ -1,0 +1,9 @@
+{
+  String room=event.getRoom();
+  int width=event.getWidth();
+  int height=event.getHeight();
+  int frameRate=event.getFrameRate();
+  IScope scope=app.getAppScope().getScope(room);
+  log.debug("Created stream {}",scope.getName());
+  return new DeskShareStream(scope,room,width,height,frameRate);
+}

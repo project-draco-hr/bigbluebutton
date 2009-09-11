@@ -1,0 +1,20 @@
+{
+  if (session.containsAttribute(MESSAGE_TYPE)) {
+    Integer messageType=(Integer)session.getAttribute(MESSAGE_TYPE);
+switch (messageType.intValue()) {
+case CAPTURE_START:
+      return decodeCaptureStart(session,in,out);
+case CAPTURE_UPDATE:
+    return decodeCaptureUpdate(session,in,out);
+case CAPTURE_END:
+  break;
+}
+}
+ else {
+if (in.remaining() < 20) return false;
+int message=in.getInt();
+session.setAttribute(MESSAGE_TYPE,new Integer(message));
+return true;
+}
+return false;
+}

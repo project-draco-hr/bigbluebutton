@@ -1,0 +1,31 @@
+{
+  this.scope=scope;
+  scope.setName(streamName);
+  this.outStreamName=streamName;
+  this.width=width;
+  this.height=height;
+  this.frameRate=frameRate;
+  this.timestampBase=1000000 / this.frameRate;
+  this.changedTileProcessor=new ChangedTileProcessor(width,height);
+  calculateEncodingDimensions();
+  changedTileProcessor.addNewScreenListener(this);
+  changedTileProcessor.start();
+  outputHandler=new IRTMPEventIOHandler(){
+    public Red5Message read() throws InterruptedException {
+      return null;
+    }
+    public void write(    Red5Message message) throws InterruptedException {
+      log.debug("Handler writing message to stream " + outStreamName);
+      try {
+        IRTMPEvent event=message.getData();
+        if (event != null) {
+          broadcastStream.dispatchEvent(event);
+          event.release();
+        }
+      }
+  finally {
+      }
+    }
+  }
+;
+}

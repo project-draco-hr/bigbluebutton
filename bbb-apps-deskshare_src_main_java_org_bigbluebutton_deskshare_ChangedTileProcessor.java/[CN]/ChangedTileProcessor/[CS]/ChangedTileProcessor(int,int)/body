@@ -1,0 +1,5 @@
+{
+  this.capturedScreen=new BufferedImage(width,height,BufferedImage.TYPE_3BYTE_BGR);
+  this.graphics=this.capturedScreen.createGraphics();
+  lastUpdate=System.currentTimeMillis();
+}
