@@ -7,7 +7,8 @@
   this.frameRate=frameRate;
   this.timestampBase=1000000 / this.frameRate;
   this.changedTileProcessor=new ChangedTileProcessor(width,height);
-  calculateEncodingDimensions();
+  encodingHeight=height;
+  encodingWidth=width;
   changedTileProcessor.addNewScreenListener(this);
   changedTileProcessor.start();
   outputHandler=new IRTMPEventIOHandler(){
