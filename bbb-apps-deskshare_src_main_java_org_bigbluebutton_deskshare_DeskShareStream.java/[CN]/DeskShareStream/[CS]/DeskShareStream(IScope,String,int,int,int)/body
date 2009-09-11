@@ -9,6 +9,7 @@
   this.changedTileProcessor=new ChangedTileProcessor(width,height);
   encodingHeight=height;
   encodingWidth=width;
+  calculateEncodingDimensions();
   changedTileProcessor.addNewScreenListener(this);
   changedTileProcessor.start();
   outputHandler=new IRTMPEventIOHandler(){
