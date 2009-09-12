@@ -2,6 +2,7 @@
   if (width < LARGER_DIMENSION && height < LARGER_DIMENSION) {
     encodingHeight=height;
     encodingWidth=width;
+    System.out.println("widht: " + encodingWidth + " ,height: "+ encodingHeight);
     return;
   }
   int biggerDimension, smallerDimension;
@@ -15,7 +16,7 @@
     smallerDimension=width;
   }
   ratio=(double)biggerDimension / (double)smallerDimension;
-  System.out.println("ration = " + ratio);
+  System.out.println("ratio = " + ratio);
   if (width > height) {
     encodingWidth=LARGER_DIMENSION;
     encodingHeight=(int)Math.round(LARGER_DIMENSION / ratio);
@@ -24,4 +25,5 @@
     encodingHeight=LARGER_DIMENSION;
     encodingWidth=(int)Math.round(LARGER_DIMENSION / ratio);
   }
+  System.out.println("widht: " + encodingWidth + " ,height: "+ encodingHeight);
 }
