@@ -1,4 +1,7 @@
 {
-  log.info("bbb-video appDisconnect");
+  log.info("oflaDemo appDisconnect");
+  if (appScope == conn.getScope() && serverStream != null) {
+    serverStream.close();
+  }
   super.appDisconnect(conn);
 }
