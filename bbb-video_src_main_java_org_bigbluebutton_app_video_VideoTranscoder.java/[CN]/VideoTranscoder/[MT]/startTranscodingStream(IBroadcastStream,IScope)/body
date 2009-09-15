@@ -22,10 +22,14 @@
   mOutputStreams.put(aStream.getPublishedName(),outputStream);
   outputStream.start();
   ISimpleMediaFile outputStreamInfo=new SimpleMediaFile();
-  outputStreamInfo.setHasAudio(false);
+  outputStreamInfo.setHasAudio(true);
+  outputStreamInfo.setAudioBitRate(32000);
+  outputStreamInfo.setAudioChannels(1);
+  outputStreamInfo.setAudioSampleRate(22050);
+  outputStreamInfo.setAudioCodec(ICodec.ID.CODEC_ID_MP3);
   outputStreamInfo.setHasVideo(true);
-  outputStreamInfo.setVideoWidth(VideoAppConstants.TILE_WIDTH);
-  outputStreamInfo.setVideoHeight(VideoAppConstants.TILE_HEIGHT);
+  outputStreamInfo.setVideoWidth(320);
+  outputStreamInfo.setVideoHeight(240);
   outputStreamInfo.setVideoBitRate(320000);
   outputStreamInfo.setVideoCodec(ICodec.ID.CODEC_ID_FLV1);
   outputStreamInfo.setVideoGlobalQuality(0);
