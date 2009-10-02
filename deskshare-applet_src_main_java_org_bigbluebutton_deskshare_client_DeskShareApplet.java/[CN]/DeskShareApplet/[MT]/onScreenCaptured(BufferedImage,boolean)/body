@@ -1,0 +1,3 @@
+{
+  tileManager.processCapturedScreen(screen,isKeyFrame);
+}

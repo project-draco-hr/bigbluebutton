@@ -1,0 +1,15 @@
+{
+  for (int i=0; i < 1000; i++) {
+    BufferedImage image=capture.takeSingleSnapshot();
+    notifyListeners(image);
+    try {
+      Thread.sleep(1000);
+    }
+ catch (    Exception e) {
+      System.out.println("Exception sleeping.");
+      System.exit(0);
+    }
+  }
+  System.out.println("Stopping screen capture.");
+  listeners.screenCaptureStopped();
+}

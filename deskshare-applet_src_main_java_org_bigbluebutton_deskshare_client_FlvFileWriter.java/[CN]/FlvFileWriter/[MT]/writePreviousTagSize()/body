@@ -1,0 +1,10 @@
+{
+  int byte1=(int)previousTagSize >> 24;
+  int byte2=(int)previousTagSize >> 16;
+  int byte3=(int)previousTagSize >> 8;
+  int byte4=(int)previousTagSize & 0xff;
+  fo.write(byte1);
+  fo.write(byte2);
+  fo.write(byte3);
+  fo.write(byte4);
+}

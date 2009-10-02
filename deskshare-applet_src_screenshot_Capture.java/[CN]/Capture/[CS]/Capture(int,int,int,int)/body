@@ -1,0 +1,13 @@
+{
+  this.width=screenWidth;
+  this.height=screenHeight;
+  try {
+    robot=new Robot();
+  }
+ catch (  AWTException e) {
+    System.out.println(e.getMessage());
+  }
+  this.toolkit=Toolkit.getDefaultToolkit();
+  this.screenBounds=new Rectangle(x,y,this.width,this.height);
+  this.needScale=areDimensionsScaled(this.width,this.height);
+}

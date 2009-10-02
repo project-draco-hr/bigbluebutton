@@ -1,0 +1,23 @@
+{
+  int w=image.getWidth();
+  int h=image.getHeight();
+  int pixels[]=new int[w * h];
+  PixelGrabber pg=new PixelGrabber(image,0,0,w,h,pixels,0,w);
+  checksum.reset();
+  try {
+    pg.grabPixels(1);
+  }
+ catch (  InterruptedException e) {
+    System.err.println("interrupted waiting for pixels!");
+    return;
+  }
+  if ((pg.getStatus() & ImageObserver.ABORT) != 0) {
+    System.err.println("image fetch aborted or errored");
+    return;
+  }
+  for (int j=0; j < h; j++) {
+    for (int i=0; i < w; i++) {
+      if ((j * w + i) % 13 == 0)       checksum.update(pixels[j * w + i]);
+    }
+  }
+}

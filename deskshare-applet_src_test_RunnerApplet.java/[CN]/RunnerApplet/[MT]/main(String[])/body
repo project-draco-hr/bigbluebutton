@@ -1,0 +1,4 @@
+{
+  final JApplet applet=new RunnerApplet();
+  applet.start();
+}

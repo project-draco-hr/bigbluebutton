@@ -1,0 +1,4 @@
+int blockWidth
+int imageWidth
+int blockHeight
+int imageHeight

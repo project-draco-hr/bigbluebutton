@@ -1,0 +1,5 @@
+{
+  int byte1=((length & 0xFF00) >> 8);
+  int byte2=(length & 0x0FFF);
+  return new byte[]{(byte)byte1,(byte)(byte2 & 0xFFF)};
+}

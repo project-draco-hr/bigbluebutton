@@ -1,0 +1,9 @@
+{
+  int byte1=(size >> 16);
+  int byte2=(size >> 8);
+  int byte3=(size & 0x0ff);
+  fo.write(byte1);
+  fo.write(byte2);
+  fo.write(byte3);
+  previousTagSize=FLV_TAG_HEADER_SIZE + size;
+}

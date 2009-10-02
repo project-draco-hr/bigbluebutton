@@ -1,0 +1,11 @@
+{
+  int size=videoData.size();
+  byte[] blockData=videoData.toByteArray();
+  try {
+    writePreviousTagSize();
+    writeFlvTag(blockData,size);
+  }
+ catch (  Exception e) {
+    System.out.println("exception: " + e.getMessage());
+  }
+}

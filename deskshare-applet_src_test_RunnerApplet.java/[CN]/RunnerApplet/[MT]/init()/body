@@ -1,0 +1,8 @@
+{
+  screenWidth=Integer.parseInt(getParameter("CAPTURE_WIDTH"));
+  screenHeight=Integer.parseInt(getParameter("CAPTURE_HEIGHT"));
+  x=Integer.parseInt(getParameter("X"));
+  y=Integer.parseInt(getParameter("Y"));
+  roomNumber=getParameter("ROOM");
+  IP=getParameter("IP");
+}

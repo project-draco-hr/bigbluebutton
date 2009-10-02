@@ -1,0 +1,10 @@
+{
+  int screenHeight=toolkit.getScreenSize().height;
+  if (height > screenHeight) {
+    this.height=screenHeight;
+  }
+ else {
+    this.height=height;
+  }
+  updateBounds();
+}

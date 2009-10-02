@@ -1,0 +1,22 @@
+{
+  byte[] encodedData;
+  try {
+    int pixels[]=ScreenVideoEncoder.getPixels(capturedScreen,getX(),getY(),getWidth(),getHeight());
+    long oldsum;
+    oldsum=checksum.getValue();
+    calcChecksum(pixels);
+    System.out.println("Checksum = " + checksum.getValue() + " "+ oldsum+ " keyframe "+ isKeyFrame);
+    if ((oldsum == checksum.getValue()) && !isKeyFrame) {
+      System.out.println("Encoding unchanged block");
+      encodedData=ScreenVideoEncoder.encodeBlockUnchanged();
+    }
+ else {
+      encodedData=ScreenVideoEncoder.encodePixels(pixels,getWidth(),getHeight());
+    }
+  }
+ catch (  PixelExtractException e) {
+    System.out.println(e.toString());
+    encodedData=ScreenVideoEncoder.encodeBlockUnchanged();
+  }
+  return encodedData;
+}

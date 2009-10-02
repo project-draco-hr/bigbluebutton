@@ -1,0 +1,13 @@
+{
+  ClientHttpRequest chr=new ClientHttpRequest(conn);
+  chr.setParameter("room",room);
+  String tileInfo=Integer.toString(changedTile.getWidth()) + "x" + Integer.toString(changedTile.getHeight())+ "x"+ Integer.toString(changedTile.getX())+ "x"+ Integer.toString(changedTile.getY())+ "x"+ Integer.toString(changedTile.getTilePosition());
+  chr.setParameter("tileInfo",tileInfo);
+  chr.setParameter("event",CaptureEvents.CAPTURE_UPDATE.getEvent());
+  ByteArrayOutputStream byteConvert=new ByteArrayOutputStream();
+  byte[] imageData=byteConvert.toByteArray();
+  ByteArrayInputStream cap=new ByteArrayInputStream(imageData);
+  chr.setParameter("tile","screen",cap);
+  System.out.println("Image length = " + imageData.length);
+  chr.post();
+}

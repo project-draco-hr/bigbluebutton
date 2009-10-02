@@ -1,0 +1,23 @@
+{
+  encodedPixelStream.reset();
+  byte[] encodedDim=ScreenVideoEncoder.encodeBlockDimensionsAndGridSize(blockDim.getWidth(),screenDim.getWidth(),blockDim.getHeight(),screenDim.getHeight());
+  byte videoDataHeader=ScreenVideoEncoder.encodeFlvVideoDataHeader(isKeyFrame);
+  try {
+    encodedPixelStream.write(videoDataHeader);
+    encodedPixelStream.write(encodedDim);
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+  System.out.println("Processing captured screen.");
+  for (int row=numRows - 1; row >= 0; row--) {
+    for (int col=0; col < numColumns; col++) {
+      int position=factory.indexToPosition(row,col);
+      Tile tile=getTile(position);
+      byte[] data=tile.updateTile(capturedScreen,isKeyFrame);
+      encodedPixelStream.write(data,0,data.length);
+    }
+  }
+  System.out.println("Update size = " + encodedPixelStream.size());
+  notifyChangedTilesListener(encodedPixelStream,isKeyFrame);
+}

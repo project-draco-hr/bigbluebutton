@@ -1,0 +1,10 @@
+{
+  if (openConnection()) {
+    try {
+      sendCaptureEndEvent();
+    }
+ catch (    IOException e) {
+      e.printStackTrace();
+    }
+  }
+}

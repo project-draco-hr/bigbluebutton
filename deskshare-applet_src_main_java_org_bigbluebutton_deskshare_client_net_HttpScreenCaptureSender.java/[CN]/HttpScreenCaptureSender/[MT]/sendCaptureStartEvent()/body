@@ -1,0 +1,8 @@
+{
+  ClientHttpRequest chr=new ClientHttpRequest(conn);
+  chr.setParameter("room",room);
+  videoInfo=Integer.toString(videoWidth) + "x" + Integer.toString(videoHeight)+ "x"+ Integer.toString(frameRate);
+  chr.setParameter("videoInfo",videoInfo);
+  chr.setParameter("event",CaptureEvents.CAPTURE_START.getEvent());
+  chr.post();
+}

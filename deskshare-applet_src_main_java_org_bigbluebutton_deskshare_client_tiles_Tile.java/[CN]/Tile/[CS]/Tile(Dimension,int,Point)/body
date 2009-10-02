@@ -1,0 +1,6 @@
+{
+  checksum=new Adler32();
+  this.dim=dim;
+  this.position=position;
+  this.location=location;
+}

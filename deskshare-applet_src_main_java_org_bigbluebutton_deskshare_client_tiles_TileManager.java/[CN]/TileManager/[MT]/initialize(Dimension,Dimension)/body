@@ -1,0 +1,17 @@
+{
+  screenDim=screen;
+  blockDim=tile;
+  factory=new TileFactory(screen,tile);
+  numColumns=factory.getColumnCount();
+  numRows=factory.getRowCount();
+  tiles=new Tile[numRows][numColumns];
+  System.out.println("Setting tiles " + numRows + " "+ numColumns+ " for "+ screenDim.getWidth()+ ","+ screenDim.getHeight());
+  for (int row=numRows - 1; row >= 0; row--) {
+    for (int col=0; col < numColumns; col++) {
+      if (tiles[row][col] == null) {
+        int position=factory.indexToPosition(row,col);
+        tiles[row][col]=factory.createTile(position);
+      }
+    }
+  }
+}

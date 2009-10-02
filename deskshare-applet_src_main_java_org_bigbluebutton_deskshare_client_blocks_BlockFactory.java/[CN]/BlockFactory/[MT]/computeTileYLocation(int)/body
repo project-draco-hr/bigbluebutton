@@ -1,0 +1,4 @@
+{
+  if (isTopRowTile(row))   return 0;
+  return screenDim.getHeight() - ((numRows - row) * tileDim.getHeight());
+}

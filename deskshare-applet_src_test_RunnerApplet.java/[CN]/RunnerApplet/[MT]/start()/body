@@ -1,0 +1,7 @@
+{
+  System.out.println("RunnerApplet start()");
+  Capture capture=new Capture(x,y,screenWidth,screenHeight);
+  capThread=new CaptureThread(capture,IP,roomNumber);
+  Thread thread=new Thread(capThread);
+  thread.start();
+}

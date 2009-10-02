@@ -1,0 +1,14 @@
+{
+  try {
+    url=new URL("http://" + host + SCREEN_CAPTURE__URL);
+    conn=url.openConnection();
+    return true;
+  }
+ catch (  MalformedURLException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+  }
+  return false;
+}

@@ -1,0 +1,10 @@
+{
+  System.out.println("Closing connection.");
+  try {
+    sendHeaderEventAndRoom(CAPTURE_END_EVENT);
+    socket.close();
+  }
+ catch (  IOException e) {
+    e.printStackTrace(System.out);
+  }
+}

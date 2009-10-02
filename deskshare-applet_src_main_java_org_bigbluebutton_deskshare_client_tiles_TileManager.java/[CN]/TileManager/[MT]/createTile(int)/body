@@ -1,0 +1,4 @@
+{
+  Point coord=factory.positionToIndex(position);
+  tiles[coord.x][coord.y]=factory.createTile(position);
+}

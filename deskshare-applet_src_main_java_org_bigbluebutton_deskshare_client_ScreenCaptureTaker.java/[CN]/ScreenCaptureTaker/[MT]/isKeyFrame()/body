@@ -1,0 +1,17 @@
+{
+  if (frameCount == 0) {
+    System.out.println("Is Key Frame " + frameCount);
+    frameCount++;
+    return true;
+  }
+ else {
+    System.out.println("Is Not Key Frame " + frameCount);
+    if (frameCount < 10) {
+      frameCount++;
+    }
+ else {
+      frameCount=0;
+    }
+    return false;
+  }
+}
