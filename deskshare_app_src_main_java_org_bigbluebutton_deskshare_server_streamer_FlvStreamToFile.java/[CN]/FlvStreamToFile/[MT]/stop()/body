@@ -1,0 +1,9 @@
+{
+  try {
+    System.out.println("Closing stream");
+    fo.close();
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+}

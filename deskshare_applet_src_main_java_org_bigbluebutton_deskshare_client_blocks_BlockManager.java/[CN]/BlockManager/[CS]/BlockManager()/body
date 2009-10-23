@@ -1,0 +1,4 @@
+{
+  blocksMap=new HashMap<Integer,Block>();
+  unmodifiableBlocksMap=Collections.unmodifiableMap(blocksMap);
+}

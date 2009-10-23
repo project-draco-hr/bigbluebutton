@@ -1,0 +1,14 @@
+{
+  System.out.println("Disconnecting http stream");
+  ClientHttpRequest chr;
+  try {
+    chr=new ClientHttpRequest(conn);
+    chr.setParameter("room",room);
+    chr.setParameter("event",CaptureEvents.CAPTURE_END.getEvent());
+    chr.post();
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+    throw new ConnectionException("IOException while sending capture end event.");
+  }
+}

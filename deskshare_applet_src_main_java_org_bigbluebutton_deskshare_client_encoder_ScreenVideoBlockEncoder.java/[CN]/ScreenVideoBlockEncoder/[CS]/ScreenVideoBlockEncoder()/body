@@ -1,0 +1,6 @@
+{
+  int numThreads=Runtime.getRuntime().availableProcessors();
+  System.out.println("Starting up " + numThreads + " threads.");
+  executor=Executors.newFixedThreadPool(numThreads);
+  completionService=new ExecutorCompletionService<Block>(executor);
+}

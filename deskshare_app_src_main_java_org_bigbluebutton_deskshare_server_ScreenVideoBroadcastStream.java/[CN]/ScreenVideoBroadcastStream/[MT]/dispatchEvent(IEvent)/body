@@ -1,0 +1,36 @@
+{
+  try {
+    log.trace("dispatchEvent(event:{})",event);
+    if (event instanceof IRTMPEvent) {
+      IRTMPEvent rtmpEvent=(IRTMPEvent)event;
+      if (livePipe != null) {
+        RTMPMessage msg=new RTMPMessage();
+        msg.setBody(rtmpEvent);
+        if (mCreationTime == null)         mCreationTime=(long)rtmpEvent.getTimestamp();
+        try {
+          IVideoStreamCodec videoStreamCodec=new ScreenVideo();
+          streamCodecInfo.setHasVideo(true);
+          streamCodecInfo.setVideoCodec(videoStreamCodec);
+          videoStreamCodec.reset();
+          videoStreamCodec.addData(((VideoData)rtmpEvent).getData());
+          livePipe.pushMessage(msg);
+          if (rtmpEvent instanceof IStreamPacket) {
+            for (            IStreamListener listener : getStreamListeners()) {
+              try {
+                listener.packetReceived(this,(IStreamPacket)rtmpEvent);
+              }
+ catch (              Exception e) {
+                log.error("Error while notifying listener " + listener,e);
+              }
+            }
+          }
+        }
+ catch (        IOException ex) {
+          log.error("Got exception: {}",ex);
+        }
+      }
+    }
+  }
+  finally {
+  }
+}

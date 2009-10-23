@@ -1,0 +1,3 @@
+int row
+Dimension screenDim
+Dimension blockDim

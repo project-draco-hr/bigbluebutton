@@ -1,0 +1,11 @@
+{
+  long now=System.currentTimeMillis();
+  boolean update=((now - lastChanged) > nextForceUpdate);
+  if (update) {
+synchronized (this) {
+      nextUpdate();
+      lastChanged=now;
+    }
+  }
+  return update;
+}

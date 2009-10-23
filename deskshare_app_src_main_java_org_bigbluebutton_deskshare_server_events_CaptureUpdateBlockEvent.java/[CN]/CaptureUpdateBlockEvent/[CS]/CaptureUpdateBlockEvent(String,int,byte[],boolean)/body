@@ -1,0 +1,6 @@
+{
+  this.room=room;
+  this.position=position;
+  this.videoData=videoData;
+  this.isKeyFrame=isKeyFrame;
+}

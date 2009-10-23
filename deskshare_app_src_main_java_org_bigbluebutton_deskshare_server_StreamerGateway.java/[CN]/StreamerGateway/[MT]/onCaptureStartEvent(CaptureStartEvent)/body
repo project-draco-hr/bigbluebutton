@@ -1,0 +1,8 @@
+{
+  log.debug("Creating stream " + event.getRoom());
+  IDeskShareStream stream=streamFactory.createStream(event);
+  streamsMap.put(event.getRoom(),stream);
+  stream.start();
+  ISharedObject deskSO=deskShareApp.getSharedObject(stream.getScope(),"deskSO");
+  deskSO.sendMessage("appletStarted",new ArrayList<Object>());
+}

@@ -1,0 +1,10 @@
+{
+  flvDataStream.reset();
+  flvDataStream.write(videoTagType);
+  flvDataStream.write(encodeDataSize(videoData.length));
+  flvDataStream.write(encodeTimestamp());
+  flvDataStream.write(streamId);
+  flvDataStream.write(videoData);
+  flvDataStream.write(encodePreviousTagSize(FLV_TAG_HEADER_SIZE + videoData.length));
+  return flvDataStream.toByteArray();
+}

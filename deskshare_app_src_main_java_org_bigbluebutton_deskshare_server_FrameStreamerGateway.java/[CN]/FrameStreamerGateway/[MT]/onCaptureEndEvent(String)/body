@@ -1,0 +1,7 @@
+{
+  IDeskShareStream ds=streamsMap.remove(room);
+  if (ds != null) {
+    ds.stop();
+    ds=null;
+  }
+}

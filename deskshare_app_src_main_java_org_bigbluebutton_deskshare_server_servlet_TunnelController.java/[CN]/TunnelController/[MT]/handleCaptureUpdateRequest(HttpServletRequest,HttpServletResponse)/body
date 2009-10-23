@@ -1,0 +1,22 @@
+{
+  MultipartHttpServletRequest multipartRequest=(MultipartHttpServletRequest)request;
+  MultipartFile multipartFile=multipartRequest.getFile("videodata");
+  long startRx=System.currentTimeMillis();
+  byte[] videoData=multipartFile.getBytes();
+  IoBuffer buffer=IoBuffer.allocate(videoData.length,false);
+  buffer.put(videoData);
+  buffer.rewind();
+  String room=request.getParameterValues("room")[0];
+  log.debug("Received image from room {}",room);
+  String keyframe=request.getParameterValues("keyframe")[0];
+  log.debug("Received keyframe {}",keyframe);
+  System.out.println("Room " + room + " keyFrame "+ Boolean.parseBoolean(keyframe)+ " data size "+ videoData.length+ " buffer size "+ buffer.remaining());
+  CaptureUpdateEvent cse=new CaptureUpdateEvent(room,buffer);
+  if (!hasGateway) {
+    streamerGateway=getStreamerGateway();
+    hasGateway=true;
+  }
+  streamerGateway.onCaptureEvent(cse);
+  long completeRx=System.currentTimeMillis();
+  System.out.println("Http receive and send took " + (completeRx - startRx) + "ms.");
+}

@@ -1,0 +1,6 @@
+{
+  long start=System.currentTimeMillis();
+  int[] pixels=image.getRGB(x,y,width,height,null,0,width);
+  long end=System.currentTimeMillis();
+  return pixels;
+}

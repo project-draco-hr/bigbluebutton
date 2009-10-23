@@ -1,0 +1,7 @@
+{
+  byte[] prevTagSize=encodePreviousTagSize(0);
+  byte[] header=new byte[flvHeader.length + prevTagSize.length];
+  System.arraycopy(flvHeader,0,header,0,flvHeader.length);
+  System.arraycopy(prevTagSize,0,header,flvHeader.length,prevTagSize.length);
+  return header;
+}

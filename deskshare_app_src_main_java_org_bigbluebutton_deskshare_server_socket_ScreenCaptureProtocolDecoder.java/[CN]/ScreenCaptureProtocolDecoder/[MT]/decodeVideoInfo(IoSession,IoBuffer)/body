@@ -1,0 +1,11 @@
+{
+  if (in.remaining() < 200)   return false;
+  int len=in.getInt();
+  String videoInfo=decodeString(len,in);
+  if (videoInfo != "") {
+    System.out.println("Decoded VIDEO_INFO " + videoInfo);
+    session.setAttribute(VIDEO_INFO,videoInfo);
+    return true;
+  }
+  return false;
+}

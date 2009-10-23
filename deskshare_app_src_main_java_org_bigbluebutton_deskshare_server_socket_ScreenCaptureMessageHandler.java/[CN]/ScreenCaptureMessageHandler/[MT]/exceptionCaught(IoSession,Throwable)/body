@@ -1,0 +1,4 @@
+{
+  log.warn(cause.toString() + " \n " + cause.getMessage());
+  cause.printStackTrace();
+}

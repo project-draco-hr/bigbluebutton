@@ -1,0 +1,10 @@
+{
+  if (!this.canHandleData(data)) {
+    log.warn("Cannot handle data");
+    return false;
+  }
+  this.data=data;
+  log.debug("Adding data " + data.remaining());
+  this.data.rewind();
+  return true;
+}

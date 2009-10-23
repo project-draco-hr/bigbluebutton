@@ -1,0 +1,14 @@
+{
+  try {
+    url=new URL("http://" + host + SCREEN_CAPTURE__URL);
+    conn=url.openConnection();
+  }
+ catch (  MalformedURLException e) {
+    e.printStackTrace();
+    throw new ConnectionException("MalformedURLException " + url.toString());
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+    throw new ConnectionException("IOException while connecting to " + url.toString());
+  }
+}

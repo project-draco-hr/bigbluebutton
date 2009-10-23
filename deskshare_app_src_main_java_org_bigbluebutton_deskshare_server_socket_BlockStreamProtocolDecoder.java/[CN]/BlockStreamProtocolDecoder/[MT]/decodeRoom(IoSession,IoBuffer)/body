@@ -1,0 +1,12 @@
+{
+  int roomLength=in.get();
+  String room="";
+  try {
+    room=in.getString(roomLength,Charset.forName("UTF-8").newDecoder());
+    session.setAttribute(ROOM,room);
+  }
+ catch (  CharacterCodingException e) {
+    e.printStackTrace();
+  }
+  return room;
+}

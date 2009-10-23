@@ -1,0 +1,13 @@
+{
+  if (!sessions.containsKey(room)) {
+    System.out.println("Created session " + room);
+    frameStreamer.createNewStream(room,screen.getWidth(),screen.getHeight());
+    Session session=new Session(room,screen,block,frameStreamer);
+    if (sessions.putIfAbsent(room,session) == null) {
+      session.initialize();
+    }
+  }
+ else {
+    System.out.println("Session already exist for " + room);
+  }
+}

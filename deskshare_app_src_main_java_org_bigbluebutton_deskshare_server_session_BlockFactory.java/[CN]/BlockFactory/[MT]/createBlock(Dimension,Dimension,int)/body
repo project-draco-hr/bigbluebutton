@@ -1,0 +1,10 @@
+{
+  int numRows=getNumberOfRows(screenDim,blockDim);
+  int numColumns=getNumberOfColumns(screenDim,blockDim);
+  int col=computeColumn(position,numColumns);
+  int row=computeRow(position,numRows,numColumns);
+  int w=computeTileWidth(col,screenDim,blockDim);
+  int h=computeTileHeight(row,screenDim,blockDim);
+  Block t=new Block(new Dimension(w,h),position);
+  return t;
+}

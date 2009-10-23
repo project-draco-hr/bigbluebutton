@@ -1,0 +1,9 @@
+{
+  String room=decodeRoom(session,in);
+  Dimension blockDim=decodeDimension(in);
+  Dimension screenDim=decodeDimension(in);
+  System.out.println("Block dim [" + blockDim.getWidth() + ","+ blockDim.getHeight()+ "]");
+  System.out.println("Screen dim [" + screenDim.getWidth() + ","+ screenDim.getHeight()+ "]");
+  CaptureStartBlockEvent event=new CaptureStartBlockEvent(room,screenDim,blockDim);
+  out.write(event);
+}

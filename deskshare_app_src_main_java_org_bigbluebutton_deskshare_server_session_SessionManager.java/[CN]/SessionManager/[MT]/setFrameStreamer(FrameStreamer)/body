@@ -1,0 +1,5 @@
+{
+  System.out.println("Setting FrameStreamer");
+  frameStreamer=streamer;
+  frameStreamer.start();
+}

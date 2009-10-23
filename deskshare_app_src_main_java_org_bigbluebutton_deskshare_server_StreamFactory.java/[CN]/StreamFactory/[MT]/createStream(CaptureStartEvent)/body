@@ -1,0 +1,7 @@
+{
+  String room=event.getRoom();
+  int width=event.getWidth();
+  int height=event.getHeight();
+  IScope scope=app.getAppScope().getScope(room);
+  return new DeskShareStream(scope,room,width,height);
+}

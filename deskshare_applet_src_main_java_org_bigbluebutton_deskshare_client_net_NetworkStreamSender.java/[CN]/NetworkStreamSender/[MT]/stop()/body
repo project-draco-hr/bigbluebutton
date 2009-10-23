@@ -1,0 +1,12 @@
+{
+  System.out.println("Stopping network sender");
+  if (tunneling) {
+    httpSender.disconnect();
+  }
+ else {
+    for (int i=0; i < numRunningThreads; i++) {
+      senders[i].disconnect();
+    }
+  }
+  executor.shutdownNow();
+}

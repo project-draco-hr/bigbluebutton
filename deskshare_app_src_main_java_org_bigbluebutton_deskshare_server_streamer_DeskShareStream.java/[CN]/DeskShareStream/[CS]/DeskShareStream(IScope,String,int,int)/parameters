@@ -1,0 +1,4 @@
+IScope scope
+String streamName
+int width
+int height

@@ -1,0 +1,9 @@
+{
+  int numColumns=getNumberOfColumns(screenDim,blockDim);
+  if (isLastColumnTile(col,numColumns)) {
+    if (hasPartialColumnBlock(screenDim,blockDim)) {
+      return partialTileWidth(screenDim,blockDim);
+    }
+  }
+  return blockDim.getWidth();
+}

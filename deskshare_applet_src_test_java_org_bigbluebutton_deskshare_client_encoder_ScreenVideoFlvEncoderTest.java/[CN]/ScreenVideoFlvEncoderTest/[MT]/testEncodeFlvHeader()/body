@@ -1,0 +1,6 @@
+{
+  final byte[] flvHeaderPlusPrevTagSize={'F','L','V',0x01,0x01,0x00,0x00,0x00,0x09,0,0,0,0};
+  ScreenVideoFlvEncoder svf=new ScreenVideoFlvEncoder();
+  byte[] header=svf.encodeHeader();
+  Assert.assertEquals(header,flvHeaderPlusPrevTagSize);
+}

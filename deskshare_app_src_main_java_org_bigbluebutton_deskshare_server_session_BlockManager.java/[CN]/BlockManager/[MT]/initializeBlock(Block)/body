@@ -1,0 +1,11 @@
+{
+  Dimension dim=block.getDimension();
+  int width=dim.getWidth();
+  int height=dim.getHeight();
+  int[] blankPixels=new int[width * height];
+  for (int i=0; i < blankPixels.length; i++) {
+    blankPixels[i]=0xFFFF;
+  }
+  byte[] encodedPixels=ScreenVideoEncoder.encodePixels(blankPixels,width,height,false,true);
+  block.update(encodedPixels,true);
+}

@@ -1,0 +1,4 @@
+int position
+boolean hasChanged
+byte[] videoData
+boolean keyFrame

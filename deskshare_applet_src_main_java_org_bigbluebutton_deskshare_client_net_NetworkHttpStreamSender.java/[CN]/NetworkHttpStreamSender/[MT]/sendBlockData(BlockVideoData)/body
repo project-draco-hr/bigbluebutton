@@ -1,0 +1,20 @@
+{
+  ClientHttpRequest chr;
+  try {
+    openConnection();
+    chr=new ClientHttpRequest(conn);
+    chr.setParameter("room",blockData.getRoom());
+    chr.setParameter("position",blockData.getPosition());
+    chr.setParameter("keyframe",blockData.isKeyFrame());
+    chr.setParameter("event",CaptureEvents.CAPTURE_UPDATE.getEvent());
+    ByteArrayInputStream block=new ByteArrayInputStream(blockData.getVideoData());
+    chr.setParameter("blockdata","block",block);
+    chr.post();
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+catch (  ConnectionException e) {
+    e.printStackTrace();
+  }
+}

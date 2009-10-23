@@ -1,0 +1,10 @@
+{
+  screenDim=screen;
+  blockDim=block;
+  this.room=room;
+  blocksMap=new ConcurrentHashMap<Integer,Block>();
+  numberOfRows=BlockFactory.getNumberOfRows(screen,block);
+  numberOfColumns=BlockFactory.getNumberOfColumns(screen,block);
+  screenVideoFrame=new ByteArrayOutputStream();
+  this.streamer=streamer;
+}

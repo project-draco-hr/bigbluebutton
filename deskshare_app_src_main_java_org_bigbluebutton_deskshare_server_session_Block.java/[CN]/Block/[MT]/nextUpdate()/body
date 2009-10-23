@@ -1,0 +1,5 @@
+{
+  long range=(long)MAX_DURATION - (long)MIN_DURATION + 1;
+  long fraction=(long)(range * random.nextDouble());
+  nextForceUpdate=(int)(fraction + 5000);
+}

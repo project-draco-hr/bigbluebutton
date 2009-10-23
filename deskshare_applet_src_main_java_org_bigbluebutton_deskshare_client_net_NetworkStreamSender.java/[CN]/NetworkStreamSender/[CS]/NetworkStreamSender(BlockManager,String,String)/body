@@ -1,0 +1,9 @@
+{
+  this.blockManager=blockManager;
+  blocksMap=blockManager.getBlocks();
+  this.host=host;
+  this.room=room;
+  numThreads=Runtime.getRuntime().availableProcessors();
+  System.out.println("Starting up " + numThreads + " sender threads.");
+  executor=Executors.newFixedThreadPool(numThreads);
+}

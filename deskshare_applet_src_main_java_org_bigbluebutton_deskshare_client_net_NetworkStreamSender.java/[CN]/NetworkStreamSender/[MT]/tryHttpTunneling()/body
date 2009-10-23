@@ -1,0 +1,11 @@
+{
+  httpSender=new NetworkHttpStreamSender(this);
+  try {
+    httpSender.connect(host);
+    return true;
+  }
+ catch (  ConnectionException e) {
+    System.out.println("Problem connecting to " + host);
+  }
+  return false;
+}

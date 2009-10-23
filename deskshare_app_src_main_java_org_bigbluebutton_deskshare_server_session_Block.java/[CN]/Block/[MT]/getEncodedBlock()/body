@@ -1,0 +1,4 @@
+{
+  hasChanged=false;
+  return encodedBlock;
+}

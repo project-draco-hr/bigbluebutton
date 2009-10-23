@@ -1,0 +1,4 @@
+{
+  sendCapturedScreen=false;
+  streamEnded();
+}

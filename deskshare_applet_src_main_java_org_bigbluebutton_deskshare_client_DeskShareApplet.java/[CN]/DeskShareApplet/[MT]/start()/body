@@ -1,0 +1,18 @@
+{
+  System.out.println("RunnerApplet start()");
+  capture=new ScreenCapture(x,y,screenWidth,screenHeight);
+  captureTaker=new ScreenCaptureTaker(capture);
+  Dimension screenDim=new Dimension(screenWidth,screenHeight);
+  Dimension tileDim=new Dimension(blockWidth,blockHeight);
+  blockManager=new BlockManager();
+  blockManager.addListener(this);
+  blockManager.initialize(screenDim,tileDim);
+  sender=new NetworkStreamSender(blockManager,host,room);
+  connected=sender.connect();
+  if (connected) {
+    captureTaker.addListener(this);
+    captureTaker.setCapture(true);
+    captureTakerThread=new Thread(captureTaker,"ScreenCaptureTaker");
+    captureTakerThread.start();
+  }
+}

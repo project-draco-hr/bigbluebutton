@@ -1,0 +1,11 @@
+{
+  processBlocks=true;
+  while (processBlocks) {
+    Block block=retriever.fetchNextBlockToSend();
+    EncodedBlockData ebd=block.encode();
+    if (ebd.hasChanged()) {
+      BlockVideoData bv=new BlockVideoData(room,ebd.getPosition(),ebd.getVideoData(),ebd.isKeyFrame());
+      sendBlock(bv);
+    }
+  }
+}

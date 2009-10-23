@@ -1,0 +1,13 @@
+{
+  try {
+    fo.write(svf.encodeFlvData(videoData));
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+    throw new ConnectionException("Fail to write to file.");
+  }
+catch (  FlvEncodeException e) {
+    e.printStackTrace();
+    throw new ConnectionException("Fail to encode FLV.");
+  }
+}

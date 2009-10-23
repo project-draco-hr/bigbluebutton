@@ -1,0 +1,12 @@
+{
+  System.out.println("Closing connection.");
+  sendCapturedScreen=false;
+  try {
+    sendHeaderEventAndRoom(CaptureEvents.CAPTURE_END.getEvent());
+    socket.close();
+  }
+ catch (  IOException e) {
+    e.printStackTrace(System.out);
+    throw new ConnectionException("IOException while disconnecting from server.");
+  }
+}

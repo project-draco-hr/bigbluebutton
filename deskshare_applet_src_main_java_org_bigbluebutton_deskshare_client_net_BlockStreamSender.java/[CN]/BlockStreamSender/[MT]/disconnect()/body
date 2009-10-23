@@ -1,0 +1,14 @@
+{
+  System.out.println("Closing connection.");
+  sendCapturedScreen=false;
+  dataToSend.reset();
+  try {
+    dataToSend.write(CAPTURE_END_EVENT);
+    dataToSend.write(room.length());
+    dataToSend.write(room.getBytes());
+    sendToStream(dataToSend);
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+}

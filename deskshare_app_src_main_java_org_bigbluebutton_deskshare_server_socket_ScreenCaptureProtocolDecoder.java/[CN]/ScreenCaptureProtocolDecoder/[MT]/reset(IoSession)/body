@@ -1,0 +1,6 @@
+{
+  session.removeAttribute(EVENT_TYPE);
+  session.removeAttribute(ROOM);
+  session.removeAttribute(IS_KEY_FRAME);
+  session.removeAttribute(ENCODED_DATA);
+}

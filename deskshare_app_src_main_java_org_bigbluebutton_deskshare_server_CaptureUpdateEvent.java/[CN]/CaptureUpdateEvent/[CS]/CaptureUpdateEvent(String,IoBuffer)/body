@@ -1,0 +1,5 @@
+{
+  this.data=data;
+  this.room=room;
+  timestamp=System.currentTimeMillis();
+}

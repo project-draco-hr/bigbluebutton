@@ -1,0 +1,7 @@
+{
+  byte[] data=(byte[])encodedData.toByteArray();
+  IoBuffer buffer=IoBuffer.allocate(data.length,false);
+  buffer.put(data);
+  buffer.rewind();
+  return buffer;
+}

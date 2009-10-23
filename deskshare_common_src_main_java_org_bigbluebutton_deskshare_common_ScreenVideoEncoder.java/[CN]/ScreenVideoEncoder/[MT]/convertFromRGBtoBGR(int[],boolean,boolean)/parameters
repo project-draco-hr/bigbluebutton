@@ -1,0 +1,3 @@
+int[] pixels
+boolean isRedTile
+boolean isKeyFrame

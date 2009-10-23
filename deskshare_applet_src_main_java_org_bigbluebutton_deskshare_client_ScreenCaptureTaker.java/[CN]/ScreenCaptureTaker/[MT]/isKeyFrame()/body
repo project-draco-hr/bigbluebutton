@@ -1,0 +1,15 @@
+{
+  if (frameCount == 0) {
+    frameCount++;
+    return true;
+  }
+ else {
+    if (frameCount < 20) {
+      frameCount++;
+    }
+ else {
+      frameCount=0;
+    }
+    return false;
+  }
+}

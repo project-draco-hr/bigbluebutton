@@ -1,0 +1,4 @@
+{
+  setParameter(name1,value1);
+  return post(name2,value2);
+}

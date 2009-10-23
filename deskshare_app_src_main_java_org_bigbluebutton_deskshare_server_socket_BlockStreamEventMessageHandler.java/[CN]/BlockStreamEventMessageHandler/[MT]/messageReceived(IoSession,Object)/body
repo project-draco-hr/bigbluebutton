@@ -1,0 +1,15 @@
+{
+  if (message instanceof CaptureStartBlockEvent) {
+    System.out.println("Got CaptureStartBlockEvent");
+    CaptureStartBlockEvent event=(CaptureStartBlockEvent)message;
+    sessionManager.createSession(event.getRoom(),event.getScreenDimension(),event.getBlockDimension());
+  }
+ else   if (message instanceof CaptureUpdateBlockEvent) {
+    CaptureUpdateBlockEvent event=(CaptureUpdateBlockEvent)message;
+    sessionManager.updateBlock(event.getRoom(),event.getPosition(),event.getVideoData(),event.isKeyFrame());
+  }
+ else   if (message instanceof CaptureEndBlockEvent) {
+    CaptureEndBlockEvent event=(CaptureEndBlockEvent)message;
+    sessionManager.removeSession(event.getRoom());
+  }
+}

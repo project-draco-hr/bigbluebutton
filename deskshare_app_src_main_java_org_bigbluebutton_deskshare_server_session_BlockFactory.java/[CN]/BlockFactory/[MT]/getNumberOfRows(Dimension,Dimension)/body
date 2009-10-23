@@ -1,0 +1,7 @@
+{
+  int rows=screenDim.getHeight() / blockDim.getHeight();
+  if (hasPartialRowBlock(screenDim,blockDim)) {
+    rows+=1;
+  }
+  return rows;
+}

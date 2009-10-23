@@ -1,0 +1,12 @@
+{
+  System.out.println("Stopping applet");
+  captureTaker.setCapture(false);
+  if (connected) {
+    try {
+      if (senderStarted)       sender.stop();
+    }
+ catch (    ConnectionException e) {
+      e.printStackTrace();
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  this.videoData=videoData;
+  this.isKeyFrame=isKeyFrame;
+}

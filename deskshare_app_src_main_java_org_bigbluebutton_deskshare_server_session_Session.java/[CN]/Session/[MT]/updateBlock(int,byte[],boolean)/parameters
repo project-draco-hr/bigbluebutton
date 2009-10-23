@@ -1,0 +1,3 @@
+int position
+byte[] videoData
+boolean keyFrame

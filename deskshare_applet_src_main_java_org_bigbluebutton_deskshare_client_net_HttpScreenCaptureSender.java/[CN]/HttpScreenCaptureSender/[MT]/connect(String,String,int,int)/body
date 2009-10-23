@@ -1,0 +1,8 @@
+{
+  this.host=host;
+  this.room=room;
+  this.videoWidth=videoWidth;
+  this.videoHeight=videoHeight;
+  openConnection();
+  sendCaptureStartEvent();
+}

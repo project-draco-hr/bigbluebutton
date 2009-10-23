@@ -1,0 +1,6 @@
+{
+  this.screenDim=screen;
+  this.tileDim=tile;
+  numColumns=computeNumberOfColumnTiles();
+  numRows=computeNumberOfRowTiles();
+}

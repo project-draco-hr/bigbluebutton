@@ -1,0 +1,7 @@
+{
+  this.room=room;
+  this.position=position;
+  this.videoData=videoData;
+  this.keyFrame=keyFrame;
+  timestamp=System.currentTimeMillis();
+}

@@ -1,0 +1,27 @@
+{
+  long start=System.currentTimeMillis();
+  byte[] rgbPixels=new byte[pixels.length * 3];
+  int position=0;
+  for (int i=0; i < pixels.length; i++) {
+    byte red=(byte)((pixels[i] >> 16) & 0xff);
+    byte green=(byte)((pixels[i] >> 8) & 0xff);
+    byte blue=(byte)(pixels[i] & 0xff);
+    if (isRedTile && !isKeyFrame) {
+      rgbPixels[position++]=0;
+      rgbPixels[position++]=0;
+      rgbPixels[position++]=(byte)0xff;
+    }
+ else     if (isRedTile && isKeyFrame) {
+      rgbPixels[position++]=(byte)0xff;
+      rgbPixels[position++]=0;
+      rgbPixels[position++]=0;
+    }
+ else {
+      rgbPixels[position++]=blue;
+      rgbPixels[position++]=green;
+      rgbPixels[position++]=red;
+    }
+  }
+  long end=System.currentTimeMillis();
+  return rgbPixels;
+}

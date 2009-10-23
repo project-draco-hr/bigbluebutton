@@ -1,0 +1,9 @@
+{
+  String room=request.getParameterValues("room")[0];
+  if (!hasSessionManager) {
+    sessionManager=getSessionManager();
+    hasSessionManager=true;
+  }
+  System.out.println("HttpTunnel: Received Capture Enfd Event.");
+  sessionManager.removeSession(room);
+}

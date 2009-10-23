@@ -1,0 +1,15 @@
+{
+  this.room=room;
+  screenDim=screen;
+  blockDim=block;
+  try {
+    ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
+    dataToSend.reset();
+    BlockStreamProtocolEncoder.encodeStartStreamMessage(room,screenDim,blockDim,dataToSend);
+    sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
+    sendToStream(dataToSend);
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+}

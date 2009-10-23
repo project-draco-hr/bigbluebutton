@@ -1,0 +1,12 @@
+{
+  if (session.containsAttribute(ROOM)) {
+    if (decodeScreenVideoData(session,in)) {
+      sendCaptureUpdateEvent(session,out);
+      return true;
+    }
+  }
+ else {
+    decodeRoom(session,in);
+  }
+  return false;
+}

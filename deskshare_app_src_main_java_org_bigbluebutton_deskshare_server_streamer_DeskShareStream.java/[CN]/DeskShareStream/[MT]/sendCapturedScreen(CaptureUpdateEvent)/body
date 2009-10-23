@@ -1,0 +1,12 @@
+{
+  long now=System.currentTimeMillis();
+  if ((now - event.getTimestamp()) > 3000) {
+    System.out.println("Discarding stale update event");
+    return;
+  }
+  long startRx=System.currentTimeMillis();
+  VideoData data=new VideoData(event.getData());
+  broadcastStream.dispatchEvent(data);
+  data.release();
+  long completeRx=System.currentTimeMillis();
+}

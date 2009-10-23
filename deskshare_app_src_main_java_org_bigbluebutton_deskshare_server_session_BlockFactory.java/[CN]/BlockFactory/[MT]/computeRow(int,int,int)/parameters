@@ -1,0 +1,3 @@
+int position
+int numRows
+int numColumns

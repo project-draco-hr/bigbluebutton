@@ -1,0 +1,18 @@
+{
+  try {
+    long snapshotTime=System.currentTimeMillis();
+    ByteArrayOutputStream videoData=video.getVideoData();
+    sendHeaderEventAndRoom(CaptureEvents.CAPTURE_UPDATE.getEvent());
+    sendKeyFrame(video.isKeyFrame());
+    System.out.println("Sending videoData [length=" + videoData.size() + ", keyframe="+ video.isKeyFrame()+ "]");
+    sendDataLength(videoData.size());
+    sendData(videoData);
+    outStream.flush();
+    long completeTime=System.currentTimeMillis();
+    System.out.println("Sending took " + (completeTime - snapshotTime) + "ms.");
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+    throw new ConnectionException("IOException while sending video data.");
+  }
+}

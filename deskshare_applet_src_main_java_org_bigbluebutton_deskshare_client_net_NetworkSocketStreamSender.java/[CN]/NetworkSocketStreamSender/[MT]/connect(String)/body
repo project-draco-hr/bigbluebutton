@@ -1,0 +1,15 @@
+{
+  System.out.println("Starting NetworkSocketStreamSender ");
+  try {
+    socket=new Socket(host,PORT);
+    outstream=new DataOutputStream(socket.getOutputStream());
+  }
+ catch (  UnknownHostException e) {
+    e.printStackTrace();
+    throw new ConnectionException("UnknownHostException: " + host);
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+    throw new ConnectionException("IOException: " + host + ":"+ PORT);
+  }
+}

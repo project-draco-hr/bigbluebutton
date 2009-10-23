@@ -1,0 +1,17 @@
+{
+  ClientHttpRequest chr;
+  try {
+    chr=new ClientHttpRequest(conn);
+    chr.setParameter("room",room);
+    String screenInfo=Integer.toString(screen.getWidth()) + "x" + Integer.toString(screen.getHeight());
+    chr.setParameter("screenInfo",screenInfo);
+    String blockInfo=Integer.toString(block.getWidth()) + "x" + Integer.toString(block.getHeight());
+    chr.setParameter("blockInfo",blockInfo);
+    chr.setParameter("event",CaptureEvents.CAPTURE_START.getEvent());
+    chr.post();
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+    throw new ConnectionException("IOException while sending capture start event.");
+  }
+}

@@ -1,0 +1,6 @@
+{
+  int totalBlocks=blockManager.getColumnCount() * blockManager.getRowCount();
+  for (int i=1; i <= totalBlocks; i++) {
+    Block block=blockManager.getBlock(i);
+  }
+}

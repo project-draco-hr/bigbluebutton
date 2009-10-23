@@ -1,0 +1,10 @@
+{
+  byte[] flvData;
+  try {
+    flvData=encodeFlvTag(screenVideoData);
+  }
+ catch (  IOException e) {
+    throw new FlvEncodeException("Failed to encode FLV data.");
+  }
+  return flvData;
+}

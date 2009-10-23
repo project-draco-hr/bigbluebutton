@@ -1,0 +1,15 @@
+{
+  String room=request.getParameterValues("room")[0];
+  log.warn("Got screenCaptureStart request for room {}",room);
+  String videoInfo=request.getParameterValues("videoInfo")[0];
+  log.warn("Received image from videoInfo {}",videoInfo);
+  String[] screenDimensions=videoInfo.split("x");
+  int width=Integer.parseInt(screenDimensions[0]);
+  int height=Integer.parseInt(screenDimensions[1]);
+  if (!hasGateway) {
+    streamerGateway=getStreamerGateway();
+    hasGateway=true;
+  }
+  CaptureStartEvent event=new CaptureStartEvent(room,width,height);
+  streamerGateway.onCaptureStartEvent(event);
+}

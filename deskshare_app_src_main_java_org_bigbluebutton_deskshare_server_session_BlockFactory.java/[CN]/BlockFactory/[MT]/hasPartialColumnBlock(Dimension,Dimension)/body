@@ -1,0 +1,3 @@
+{
+  return (screenDim.getWidth() % blockDim.getWidth()) != 0;
+}

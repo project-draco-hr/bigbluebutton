@@ -1,0 +1,10 @@
+{
+  String room=decodeRoom(session,in);
+  if (!room.isEmpty()) {
+    CaptureEndBlockEvent event=new CaptureEndBlockEvent(room);
+    out.write(event);
+  }
+ else {
+    System.out.println("Room is empty.");
+  }
+}

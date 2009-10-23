@@ -1,0 +1,16 @@
+{
+  dataToSend.reset();
+  try {
+    dataToSend.write(CAPTURE_START_EVENT);
+    dataToSend.write(room.length());
+    dataToSend.write(room.getBytes());
+    dataToSend.write(intToByte(block.getWidth()));
+    dataToSend.write(intToByte(block.getHeight()));
+    dataToSend.write(intToByte(screen.getWidth()));
+    dataToSend.write(intToByte(screen.getHeight()));
+    sendToStream(dataToSend);
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+}

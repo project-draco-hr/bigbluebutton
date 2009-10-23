@@ -1,0 +1,17 @@
+{
+  ClientHttpRequest chr;
+  try {
+    chr=new ClientHttpRequest(conn);
+    chr.setParameter("room",room);
+    chr.setParameter("event",CaptureEvents.CAPTURE_UPDATE.getEvent());
+    chr.setParameter("keyframe",isKeyFrame);
+    ByteArrayInputStream cap=new ByteArrayInputStream(videoData.toByteArray());
+    chr.setParameter("videodata","screen",cap);
+    System.out.println("Video data length = " + videoData.toByteArray().length);
+    chr.post();
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+    throw new ConnectionException("IOException while sending video data.");
+  }
+}

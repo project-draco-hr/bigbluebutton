@@ -1,0 +1,12 @@
+{
+  long start=System.currentTimeMillis();
+  byte[] output=new byte[pixels.length];
+  Deflater compresser=new Deflater(Deflater.BEST_COMPRESSION);
+  compresser.setInput(pixels);
+  compresser.finish();
+  int compressedDataLength=compresser.deflate(output);
+  byte[] zData=new byte[compressedDataLength];
+  System.arraycopy(output,0,zData,0,compressedDataLength);
+  long end=System.currentTimeMillis();
+  return zData;
+}

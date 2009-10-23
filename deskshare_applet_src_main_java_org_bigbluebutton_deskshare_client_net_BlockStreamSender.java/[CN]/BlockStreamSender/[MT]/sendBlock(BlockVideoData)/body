@@ -1,0 +1,26 @@
+{
+  long start=System.currentTimeMillis();
+  dataToSend.reset();
+  try {
+    dataToSend.write(CAPTURE_UPDATE_EVENT);
+    dataToSend.write(block.getRoom().length());
+    dataToSend.write(block.getRoom().getBytes());
+    byte[] position=new byte[2];
+    int pos=block.getPosition();
+    position[0]=(byte)((pos >> 8) & 0xff);
+    position[1]=(byte)(pos & 0xff);
+    dataToSend.write(position);
+    dataToSend.write(block.isKeyFrame() ? 1 : 0);
+    int length=block.getVideoData().length;
+    dataToSend.write(intToByte(length));
+    dataToSend.write(block.getVideoData());
+    sendToStream(dataToSend);
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+  long end=System.currentTimeMillis();
+  if ((end - start) > 200) {
+    System.out.println("Sending " + dataToSend.size() + " bytes took "+ (end - start)+ " ms.");
+  }
+}

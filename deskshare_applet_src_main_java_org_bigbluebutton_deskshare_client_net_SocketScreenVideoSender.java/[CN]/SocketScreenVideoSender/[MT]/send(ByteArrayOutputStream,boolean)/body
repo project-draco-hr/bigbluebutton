@@ -1,0 +1,9 @@
+{
+  ScreenVideo sv=new ScreenVideo(videoData,isKeyFrame);
+  try {
+    screenQ.put(sv);
+  }
+ catch (  InterruptedException e) {
+    e.printStackTrace();
+  }
+}

@@ -1,0 +1,15 @@
+{
+  ClientHttpRequest chr;
+  try {
+    chr=new ClientHttpRequest(conn);
+    chr.setParameter("room",room);
+    videoInfo=Integer.toString(videoWidth) + "x" + Integer.toString(videoHeight);
+    chr.setParameter("videoInfo",videoInfo);
+    chr.setParameter("event",CaptureEvents.CAPTURE_START.getEvent());
+    chr.post();
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+    throw new ConnectionException("IOException while sending capture start event.");
+  }
+}

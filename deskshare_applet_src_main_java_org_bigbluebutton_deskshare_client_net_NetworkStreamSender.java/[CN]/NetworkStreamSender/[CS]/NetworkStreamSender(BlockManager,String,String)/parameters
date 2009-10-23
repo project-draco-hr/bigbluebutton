@@ -1,0 +1,3 @@
+BlockManager blockManager
+String host
+String room

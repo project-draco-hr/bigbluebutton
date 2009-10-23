@@ -1,0 +1,9 @@
+{
+  this.app=app;
+  if (app == null) {
+    log.error("DeskShareApplication is NULL!!!");
+  }
+ else {
+    log.debug("DeskShareApplication is NOT NULL!!!");
+  }
+}

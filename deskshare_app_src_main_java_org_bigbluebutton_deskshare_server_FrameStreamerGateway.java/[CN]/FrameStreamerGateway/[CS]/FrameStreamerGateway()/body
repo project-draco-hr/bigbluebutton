@@ -1,0 +1,3 @@
+{
+  streamsMap=new ConcurrentHashMap<String,IDeskShareStream>();
+}

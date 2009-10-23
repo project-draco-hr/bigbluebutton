@@ -1,0 +1,12 @@
+{
+  if (tunneling) {
+    httpSender.sendStartStreamMessage(room,blockManager.getScreenDim(),blockManager.getBlockDim());
+    executor.execute(httpSender);
+  }
+ else {
+    for (int i=0; i < numRunningThreads; i++) {
+      senders[i].sendStartStreamMessage(room,blockManager.getScreenDim(),blockManager.getBlockDim());
+      executor.execute(senders[i]);
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  long oldsum;
+  oldsum=checksum.getValue();
+  calcChecksum(pixels);
+  if ((oldsum == checksum.getValue()) && !isKeyFrame) {
+    encodedBlock=ScreenVideoEncoder.encodeBlockUnchanged();
+  }
+ else {
+    encodedBlock=ScreenVideoEncoder.encodePixels(pixels,getWidth(),getHeight(),false,isKeyFrame);
+  }
+  return encodedBlock;
+}

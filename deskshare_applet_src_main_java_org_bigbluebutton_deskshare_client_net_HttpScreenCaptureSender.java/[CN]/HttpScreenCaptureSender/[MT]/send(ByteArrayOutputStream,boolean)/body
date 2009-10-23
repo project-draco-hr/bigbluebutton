@@ -1,0 +1,7 @@
+{
+  long snapshotTime=System.currentTimeMillis();
+  openConnection();
+  sendVideoData(videoData,isKeyFrame);
+  long completeTime=System.currentTimeMillis();
+  System.out.println("Sending took " + (completeTime - snapshotTime) + "ms.");
+}

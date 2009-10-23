@@ -1,0 +1,5 @@
+{
+  outStream.write(HEADER);
+  outStream.writeInt(data.size());
+  data.writeTo(outStream);
+}

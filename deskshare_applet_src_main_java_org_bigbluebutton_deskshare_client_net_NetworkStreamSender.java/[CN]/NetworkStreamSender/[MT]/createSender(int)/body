@@ -1,0 +1,4 @@
+{
+  senders[i]=new NetworkSocketStreamSender(this);
+  senders[i].connect(host);
+}

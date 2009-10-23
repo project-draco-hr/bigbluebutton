@@ -1,0 +1,13 @@
+{
+  try {
+    openConnection();
+    sendCaptureEndEvent();
+  }
+ catch (  ConnectionException e) {
+    e.printStackTrace();
+    throw e;
+  }
+ finally {
+    processBlocks=false;
+  }
+}

@@ -1,0 +1,10 @@
+{
+  try {
+    fo=new FileOutputStream("D://temp/" + "ScreenVideo.flv");
+    fo.write(svf.encodeHeader());
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    throw new ConnectionException("Failed to open file.");
+  }
+}

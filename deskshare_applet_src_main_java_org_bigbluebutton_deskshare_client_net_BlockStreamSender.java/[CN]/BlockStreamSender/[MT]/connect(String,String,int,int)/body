@@ -1,0 +1,34 @@
+{
+  this.room=room;
+  System.out.println("Starting capturedScreenSender ");
+  try {
+    socket=new Socket(host,PORT);
+    outStream=new DataOutputStream(socket.getOutputStream());
+    sendStartStreamMessage(room,blockManager.getScreenDim(),blockManager.getBlockDim());
+    outStream.flush();
+  }
+ catch (  UnknownHostException e) {
+    e.printStackTrace();
+    throw new ConnectionException("UnknownHostException: " + host);
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+    throw new ConnectionException("IOException: " + host + ":"+ PORT);
+  }
+  sendCapturedScreen=true;
+  capturedScreenSender=new Runnable(){
+    public void run(){
+      while (sendCapturedScreen) {
+        try {
+          BlockVideoData block=screenQ.take();
+          sendBlock(block);
+        }
+ catch (        InterruptedException e) {
+          System.out.println("InterruptedExeption while taking event.");
+        }
+      }
+    }
+  }
+;
+  exec.execute(capturedScreenSender);
+}

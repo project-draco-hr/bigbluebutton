@@ -1,0 +1,3 @@
+{
+  listeners.onScreenCaptured(image,isKeyFrame());
+}

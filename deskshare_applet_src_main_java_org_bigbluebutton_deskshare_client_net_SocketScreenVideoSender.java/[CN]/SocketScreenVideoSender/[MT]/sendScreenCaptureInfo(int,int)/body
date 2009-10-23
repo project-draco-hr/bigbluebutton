@@ -1,0 +1,6 @@
+{
+  String videoInfo=Integer.toString(videoWidth) + "x" + Integer.toString(videoHeight);
+  System.out.println("Sending video info " + videoInfo);
+  outStream.writeInt(videoInfo.length());
+  outStream.writeBytes(videoInfo);
+}

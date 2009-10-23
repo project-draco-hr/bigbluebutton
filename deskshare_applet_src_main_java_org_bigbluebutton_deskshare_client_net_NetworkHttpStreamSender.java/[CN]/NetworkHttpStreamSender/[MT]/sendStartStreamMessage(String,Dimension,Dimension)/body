@@ -1,0 +1,10 @@
+{
+  this.room=room;
+  try {
+    openConnection();
+    sendCaptureStartEvent(screen,block);
+  }
+ catch (  ConnectionException e) {
+    e.printStackTrace();
+  }
+}
