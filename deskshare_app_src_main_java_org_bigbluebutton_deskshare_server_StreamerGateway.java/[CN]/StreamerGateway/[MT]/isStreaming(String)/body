@@ -1,7 +1,0 @@
-{
-  IDeskShareStream ds=streamsMap.get(room);
-  if (ds != null) {
-    return true;
-  }
-  return false;
-}

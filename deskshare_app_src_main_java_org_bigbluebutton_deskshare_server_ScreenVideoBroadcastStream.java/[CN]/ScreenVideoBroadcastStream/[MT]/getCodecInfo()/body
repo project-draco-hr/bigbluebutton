@@ -1,4 +1,3 @@
 {
-  log.trace("getCodecInfo()");
   return streamCodecInfo;
 }

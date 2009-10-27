@@ -1,6 +1,6 @@
 {
   try {
-    log.trace("dispatchEvent(event:{})",event);
+    System.out.println("dispatchEvent(event:screenVideo)");
     if (event instanceof IRTMPEvent) {
       IRTMPEvent rtmpEvent=(IRTMPEvent)event;
       if (livePipe != null) {

@@ -5,5 +5,6 @@
   streamsMap.put(room,stream);
   stream.start();
   ISharedObject deskSO=deskShareApp.getSharedObject(stream.getScope(),"deskSO");
+  System.out.println("Sending applet started");
   deskSO.sendMessage("appletStarted",new ArrayList<Object>());
 }
