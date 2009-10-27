@@ -1,7 +1,10 @@
 {
-  IDeskShareStream ds=streamsMap.remove(room);
-  if (ds != null) {
-    ds.stop();
-    ds=null;
+  IDeskShareStream stream=streamsMap.remove(room);
+  if (stream != null) {
+    ISharedObject deskSO=deskShareApp.getSharedObject(stream.getScope(),"deskSO");
+    System.out.println("Sending applet started");
+    deskSO.sendMessage("deskshareStreamStopped",new ArrayList<Object>());
+    stream.stop();
+    stream=null;
   }
 }
