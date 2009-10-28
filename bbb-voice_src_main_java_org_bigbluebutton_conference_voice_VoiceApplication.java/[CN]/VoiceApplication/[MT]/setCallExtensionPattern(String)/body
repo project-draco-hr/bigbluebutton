@@ -1,0 +1,3 @@
+{
+  this.callExtensionPattern=new MessageFormat(callExtensionPattern);
+}
