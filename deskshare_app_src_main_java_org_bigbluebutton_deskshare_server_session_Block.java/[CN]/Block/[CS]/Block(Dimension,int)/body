@@ -1,4 +1,3 @@
 {
   this.dim=dim;
-  this.position=position;
 }

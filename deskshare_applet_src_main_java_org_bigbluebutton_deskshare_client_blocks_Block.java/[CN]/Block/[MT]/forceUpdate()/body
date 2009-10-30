@@ -1,8 +1,9 @@
 {
   long now=System.currentTimeMillis();
-  boolean update=((now - lastChanged) > FORCE_UPDATE_DURATION);
+  boolean update=((now - lastChanged) > nextForceUpdate);
   if (update) {
 synchronized (this) {
+      nextUpdate();
       lastChanged=now;
     }
   }

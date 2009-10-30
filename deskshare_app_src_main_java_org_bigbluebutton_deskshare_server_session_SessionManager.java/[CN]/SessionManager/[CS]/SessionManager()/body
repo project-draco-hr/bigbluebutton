@@ -1,3 +1,29 @@
 {
   sessions=new ConcurrentHashMap<String,Session>();
+  unmodifiableMap=Collections.unmodifiableMap(sessions);
+  keepAliveAudit=true;
+  keepAliveAuditThread=new Runnable(){
+    public void run(){
+      while (keepAliveAudit) {
+        Session session;
+        String room;
+        for (Iterator<String> iter=unmodifiableMap.keySet().iterator(); iter.hasNext(); ) {
+          room=(String)iter.next();
+          session=unmodifiableMap.get(room);
+          System.out.println("Checking if we should terminate " + room);
+          if (!session.keepAlive()) {
+            removeSession(room);
+          }
+        }
+        try {
+          Thread.sleep(AUDIT_INTERVAL);
+        }
+ catch (        InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
+;
+  exec.execute(keepAliveAuditThread);
 }

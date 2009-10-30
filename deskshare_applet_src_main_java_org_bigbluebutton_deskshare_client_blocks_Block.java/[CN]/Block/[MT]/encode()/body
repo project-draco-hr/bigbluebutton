@@ -6,7 +6,7 @@ synchronized (this) {
   byte[] encodedBlock;
   boolean hasChanged=false;
   boolean forceUpdate=forceUpdate();
-  if (!checksumSame(pixelsCopy) || isKeyFrame) {
+  if (!checksumSame(pixelsCopy) || forceUpdate) {
     encodedBlock=ScreenVideoEncoder.encodePixels(pixelsCopy,getWidth(),getHeight(),false,isKeyFrame);
     hasChanged=true;
   }

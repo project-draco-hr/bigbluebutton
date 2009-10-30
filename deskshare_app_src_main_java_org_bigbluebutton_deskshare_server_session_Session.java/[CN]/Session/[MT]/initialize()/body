@@ -1,3 +1,6 @@
 {
   blockManager.initialize();
+synchronized (this) {
+    lastUpdate=System.currentTimeMillis();
+  }
 }
