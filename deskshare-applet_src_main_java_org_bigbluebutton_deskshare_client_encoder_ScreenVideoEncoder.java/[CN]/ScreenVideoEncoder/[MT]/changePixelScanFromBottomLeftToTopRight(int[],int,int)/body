@@ -1,9 +1,0 @@
-{
-  int[] swap=new int[pixels.length];
-  for (int i=0; i < height; i++) {
-    int sourcePos=i * width;
-    int destPos=(height - (i + 1)) * width;
-    System.arraycopy(pixels,sourcePos,swap,destPos,width);
-  }
-  System.arraycopy(swap,0,pixels,0,pixels.length);
-}

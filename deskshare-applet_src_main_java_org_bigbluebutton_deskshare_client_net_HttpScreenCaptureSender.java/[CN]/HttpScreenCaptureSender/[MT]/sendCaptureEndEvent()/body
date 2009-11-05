@@ -1,6 +1,0 @@
-{
-  ClientHttpRequest chr=new ClientHttpRequest(conn);
-  chr.setParameter("room",room);
-  chr.setParameter("event",CaptureEvents.CAPTURE_END.getEvent());
-  chr.post();
-}

@@ -1,5 +1,0 @@
-{
-  System.out.println("Stopping applet");
-  captureTaker.setCapture(false);
-  captureSender.disconnect();
-}

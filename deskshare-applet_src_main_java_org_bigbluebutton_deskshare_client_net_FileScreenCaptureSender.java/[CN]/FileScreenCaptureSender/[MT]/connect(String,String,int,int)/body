@@ -1,4 +1,0 @@
-{
-  fv=new FlvFileWriter();
-  fv.init();
-}

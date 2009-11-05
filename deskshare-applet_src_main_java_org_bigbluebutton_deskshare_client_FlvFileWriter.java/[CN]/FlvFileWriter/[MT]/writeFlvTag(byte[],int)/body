@@ -1,7 +1,0 @@
-{
-  writeTagType();
-  writeDataSize(size);
-  writeTimestamp();
-  writeStreamId();
-  writeVideoData(videoData);
-}

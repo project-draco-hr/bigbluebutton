@@ -1,6 +1,0 @@
-{
-  outStream.write(HEADER);
-  outStream.writeByte(event);
-  outStream.writeInt(room.length());
-  outStream.writeBytes(room);
-}

@@ -1,9 +1,0 @@
-{
-  try {
-    fo=new FileOutputStream("D://temp/" + "ApiDemo.flv");
-    fo.write(header);
-  }
- catch (  Exception e) {
-    e.printStackTrace();
-  }
-}

@@ -1,4 +1,0 @@
-{
-  int[] picpixels=((DataBufferInt)(image).getRaster().getDataBuffer()).getData();
-  return picpixels;
-}

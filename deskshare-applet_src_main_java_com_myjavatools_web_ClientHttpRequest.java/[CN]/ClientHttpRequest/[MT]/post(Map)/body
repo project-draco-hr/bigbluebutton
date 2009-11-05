@@ -1,4 +1,0 @@
-{
-  setParameters(parameters);
-  return post();
-}

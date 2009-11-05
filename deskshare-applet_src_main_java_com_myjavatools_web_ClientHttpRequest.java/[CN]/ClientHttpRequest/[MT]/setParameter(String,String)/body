@@ -1,7 +1,0 @@
-{
-  boundary();
-  writeName(name);
-  newline();
-  newline();
-  writeln(value);
-}

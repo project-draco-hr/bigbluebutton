@@ -1,3 +1,0 @@
-{
-  return screenDim.getHeight() % tileDim.getHeight();
-}

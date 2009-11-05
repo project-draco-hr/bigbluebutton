@@ -1,3 +1,0 @@
-{
-  return image.getSubimage(0,0,getWidth(),getHeight());
-}
