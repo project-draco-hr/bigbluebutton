@@ -1,9 +1,0 @@
-{
-  try {
-    CaptureUpdateEvent copy=CaptureUpdateEvent.copy(event);
-    queue.put(copy);
-  }
- catch (  InterruptedException e) {
-    log.warn("InterruptedException while putting event into queue.");
-  }
-}

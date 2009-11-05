@@ -1,3 +1,0 @@
-{
-  graphics.drawImage(tile,x,y,null);
-}

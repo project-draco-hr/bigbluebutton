@@ -1,3 +1,0 @@
-{
-  log.debug("Message Received " + (String)message);
-}

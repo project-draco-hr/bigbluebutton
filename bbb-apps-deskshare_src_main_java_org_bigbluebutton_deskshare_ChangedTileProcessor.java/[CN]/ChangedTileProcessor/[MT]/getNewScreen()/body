@@ -1,5 +1,0 @@
-{
-  WritableRaster raster=capturedScreen.copyData(null);
-  BufferedImage copy=new BufferedImage(capturedScreen.getColorModel(),raster,capturedScreen.isAlphaPremultiplied(),null);
-  return copy;
-}

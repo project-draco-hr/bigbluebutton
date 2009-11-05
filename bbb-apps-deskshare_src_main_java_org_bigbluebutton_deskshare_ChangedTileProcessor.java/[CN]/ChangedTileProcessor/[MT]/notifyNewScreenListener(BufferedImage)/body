@@ -1,5 +1,0 @@
-{
-  for (  NewScreenListener ctl : listeners) {
-    ctl.onNewScreen(newScreen);
-  }
-}

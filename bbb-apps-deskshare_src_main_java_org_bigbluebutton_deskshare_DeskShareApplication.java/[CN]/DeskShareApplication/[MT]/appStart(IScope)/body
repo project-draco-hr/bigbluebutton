@@ -1,7 +1,0 @@
-{
-  log.info("deskShare appStart");
-  System.out.println("deskShare appStart");
-  this.appScope=app;
-  deskShareServer.start();
-  return true;
-}

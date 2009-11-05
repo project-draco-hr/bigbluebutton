@@ -1,8 +1,0 @@
-{
-  try {
-    screenQueue.put(newScreen);
-  }
- catch (  InterruptedException e) {
-    e.printStackTrace();
-  }
-}
