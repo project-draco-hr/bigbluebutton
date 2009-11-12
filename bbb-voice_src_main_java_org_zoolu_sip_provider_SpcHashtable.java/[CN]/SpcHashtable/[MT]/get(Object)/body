@@ -1,0 +1,8 @@
+{
+  if (dupeKeysList.containsKey(key)) {
+    Hashtable vect=(Hashtable)super.get(key);
+    if (vect == null || vect.isEmpty())     return null;
+ else     return vect.get(vect.keys().nextElement());
+  }
+ else   return super.get(key);
+}

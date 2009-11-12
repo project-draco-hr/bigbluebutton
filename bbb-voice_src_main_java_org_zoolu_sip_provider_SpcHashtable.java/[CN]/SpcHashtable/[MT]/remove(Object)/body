@@ -1,0 +1,12 @@
+{
+  if (dupeKeysList.containsKey(key)) {
+    Hashtable vect=(Hashtable)super.get(key);
+    if (vect == null || vect.isEmpty())     return null;
+ else {
+      Object retVal=vect.remove(vect.keys().nextElement());
+      if (vect.size() == 0)       super.remove(key);
+      return retVal;
+    }
+  }
+ else   return super.remove(key);
+}

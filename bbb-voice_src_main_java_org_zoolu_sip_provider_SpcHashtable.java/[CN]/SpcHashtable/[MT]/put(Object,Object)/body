@@ -1,0 +1,15 @@
+{
+  if (dupeKeysList.containsKey(key)) {
+    Hashtable vect=null;
+    if (this.containsKey(key)) {
+      vect=(Hashtable)super.get(key);
+      vect.put(val.hashCode(),val);
+    }
+ else {
+      vect=new Hashtable();
+      vect.put(val.hashCode(),val);
+    }
+    return super.put(key,vect);
+  }
+ else   return super.put(key,val);
+}

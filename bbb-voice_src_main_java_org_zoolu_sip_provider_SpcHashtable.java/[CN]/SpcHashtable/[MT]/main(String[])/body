@@ -1,0 +1,42 @@
+{
+  Hashtable<Object,Object> dupeKeys=new Hashtable<Object,Object>();
+  StringBuffer dupeKey=new StringBuffer("DupeKey");
+  StringBuffer regKey=new StringBuffer("RegKey");
+  dupeKeys.put(dupeKey,"");
+  SpcHashtable myHash=new SpcHashtable(dupeKeys);
+  StringBuffer ps[]=new StringBuffer[5];
+  for (int o=0; o < 5; o++) {
+    ps[o]=new StringBuffer(o + ":dssfdfsd");
+  }
+  for (int o=0; o < ps.length; o++) {
+    myHash.put(dupeKey,ps[o]);
+  }
+  myHash.put(regKey,new StringBuffer("stuff"));
+  System.out.println(myHash.toString());
+  System.out.println("hashsize=" + myHash.size());
+  System.out.println("hasdupekey=" + myHash.containsKey(dupeKey));
+  System.out.println("hasregkey=" + myHash.containsKey(regKey));
+  System.out.println("");
+  StringBuffer gtps=(StringBuffer)myHash.get(dupeKey);
+  System.out.println("gtps=" + gtps);
+  System.out.println("");
+  System.out.println("getPair3=" + myHash.get(dupeKey,ps[3]));
+  System.out.println("removePair3=" + myHash.removePair(dupeKey,ps[3]));
+  System.out.println("getPair3=" + myHash.get(dupeKey,ps[3]));
+  System.out.println("");
+  myHash.remove(dupeKey);
+  System.out.println("removedAPair");
+  System.out.println(myHash.toString());
+  for (int o=0; o < ps.length; o++) {
+    System.out.println("---------------");
+    StringBuffer tps=(StringBuffer)myHash.get(dupeKey);
+    System.out.println("ps=" + tps);
+    System.out.println("removePair" + o + "="+ myHash.removePair(dupeKey,ps[o]));
+    System.out.println("hasdupekey=" + myHash.containsKey(dupeKey));
+  }
+  System.out.println("");
+  System.out.println(myHash.toString());
+  System.out.println("hashsize=" + myHash.size());
+  System.out.println("getRegKey=" + myHash.get(regKey).toString());
+  System.out.println("hasregkey=" + myHash.containsKey(regKey));
+}
