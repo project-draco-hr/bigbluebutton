@@ -3,7 +3,7 @@
   this.username=username;
   this.password=password;
   this.proxy=proxy;
-  this.opt_outbound_proxy=obproxy;
+  this.optOutboundProxy=obproxy;
   this.realm=realm;
   String fromURL="\"" + phone + "\" <sip:"+ phone+ "@"+ proxy+ ">";
   try {

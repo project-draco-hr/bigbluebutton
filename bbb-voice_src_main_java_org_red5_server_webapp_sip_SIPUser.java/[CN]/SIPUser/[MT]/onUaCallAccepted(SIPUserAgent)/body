@@ -1,5 +1,5 @@
 {
-  p("onUaCallAccepted");
+  log.debug("onUaCallAccepted");
   if (service != null) {
     ((IServiceCapableConnection)service).invoke("callState",new Object[]{"onUaCallAccepted"});
   }

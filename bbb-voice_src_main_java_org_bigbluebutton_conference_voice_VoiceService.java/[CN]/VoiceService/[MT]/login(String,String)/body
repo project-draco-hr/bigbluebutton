@@ -16,7 +16,7 @@
   String password="secret";
   String realm=asteriskHost;
   String proxy=realm;
-  sipUser.login(new Integer(rtpPort).toString(),username,password,realm,proxy);
+  sipUser.login(proxy,new Integer(rtpPort).toString(),username,password,realm,proxy);
   userNames.put(conn.getClient().getId(),uid);
   sipPort++;
   if (sipPort > stopSIPPort)   sipPort=startSIPPort;

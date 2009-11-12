@@ -1,5 +1,5 @@
 {
-  p("onUaCallCancelled");
+  log.debug("onUaCallCancelled");
   sipReady=false;
   closeStreams();
   if (service != null) {

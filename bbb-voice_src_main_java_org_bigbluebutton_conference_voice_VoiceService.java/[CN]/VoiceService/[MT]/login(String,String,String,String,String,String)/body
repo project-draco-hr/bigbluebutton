@@ -13,7 +13,7 @@
       log.error("open error " + e);
     }
   }
-  sipUser.login(phone,username,password,realm,proxy);
+  sipUser.login(proxy,phone,username,password,realm,proxy);
   userNames.put(conn.getClient().getId(),uid);
   sipPort++;
   if (sipPort > stopSIPPort)   sipPort=startSIPPort;
