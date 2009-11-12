@@ -1,6 +1,6 @@
 {
   printLog("halt: SipProvider is going down",LogLevel.MEDIUM);
   stopTrasport();
-  listeners=new Hashtable();
+  listeners=new SpcHashtable(null);
   exception_listeners=new HashSet();
 }

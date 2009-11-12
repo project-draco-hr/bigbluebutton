@@ -20,18 +20,20 @@
       String via_addr=vh.getHost();
       int via_port=vh.getPort();
       if (via_port <= 0)       via_port=SipStack.default_port;
-      if (!via_addr.equals(src_addr)) {
+      if (!via_addr.equals(src_addr) && this.useViaReceived) {
         vh.setReceived(src_addr);
         via_changed=true;
       }
-      if (vh.hasRport()) {
-        vh.setRport(src_port);
-        via_changed=true;
-      }
- else {
-        if (force_rport && via_port != src_port) {
+      if (this.useViaRport) {
+        if (vh.hasRport()) {
           vh.setRport(src_port);
           via_changed=true;
+        }
+ else {
+          if (force_rport && via_port != src_port) {
+            vh.setRport(src_port);
+            via_changed=true;
+          }
         }
       }
       if (via_changed) {
@@ -40,7 +42,7 @@
       }
     }
     if (listeners == null || listeners.size() == 0) {
-      printLog("no listener found: meesage discarded.",LogLevel.HIGH);
+      if (initComplete)       printLog("no listener found: meesage discarded.",LogLevel.HIGH);
       return;
     }
     if (listeners.containsKey(PROMISQUE)) {
@@ -49,6 +51,26 @@
     }
     if (!msg.isRequest() && !msg.isResponse()) {
       printLog("No valid SIP message: message discarded.",LogLevel.HIGH);
+      return;
+    }
+    if (msg.isRequest() && msg.isOption()) {
+      int optStat=486;
+      if (listeners.containsKey(INVITE)) {
+        if (this.optionHandler != null) {
+          String optBody=optionHandler.onOptionMsgReceived();
+          if (optBody != null) {
+            optStat=200;
+            printLog("OPTION Request - response status=" + optStat,LogLevel.HIGH);
+            TransactionServer ts=new TransactionServer(this,msg,null);
+            ts.respondWith(MessageFactory.createResponse(msg,optStat,SipResponses.reasonOf(optStat),null,null,"application/sdp",optBody));
+            return;
+          }
+        }
+ else         optStat=200;
+      }
+      printLog("OPTION Request - response status=" + optStat,LogLevel.MEDIUM);
+      TransactionServer ts=new TransactionServer(this,msg,null);
+      ts.respondWith(MessageFactory.createResponse(msg,optStat,SipResponses.reasonOf(optStat),null));
       return;
     }
     Identifier key=msg.getTransactionId();
@@ -66,14 +88,44 @@
       return;
     }
     key=msg.getMethodId();
-    if (listeners.containsKey(key)) {
-      printLog("message passed to uas: " + key,LogLevel.MEDIUM);
+    if (msg.isRequest() && msg.isInvite()) {
+synchronized (inviteLock) {
+        if (listeners.containsKey(key)) {
+          printLog("message passed to uas: " + key,LogLevel.MEDIUM);
+          ((SipProviderListener)listeners.get(key)).onReceivedMessage(this,msg);
+          return;
+        }
+      }
+    }
+ else     if (listeners.containsKey(key)) {
+      printLog("message passed to uas: " + key,LogLevel.LOW);
       ((SipProviderListener)listeners.get(key)).onReceivedMessage(this,msg);
       return;
     }
     if (listeners.containsKey(ANY)) {
       printLog("message passed to uas: " + ANY,LogLevel.MEDIUM);
       ((SipProviderListener)listeners.get(ANY)).onReceivedMessage(this,msg);
+      return;
+    }
+    if (msg.isRequest() && msg.isInvite()) {
+      if (sipBusyUrl != null) {
+        String targetId=msg.getToHeader().getNameAddress().toString().replaceAll("(?i).*sip:<?([^@<]+)@.*","$1");
+        String redirect_Url=sipBusyUrl.replaceAll("calleeid",targetId);
+        printLog("Incoming SIP Call - Channel busy - Redirect to: " + redirect_Url,LogLevel.LOW);
+        Message resp=MessageFactory.createResponse(msg,302,SipResponses.reasonOf(302),new NameAddress(redirect_Url));
+        InviteTransactionServer ts=new InviteTransactionServer(this,msg,null);
+        ts.respondWith(resp);
+        return;
+      }
+      printLog("Invite Request - Sending busy response (486)",LogLevel.MEDIUM);
+      InviteTransactionServer ts=new InviteTransactionServer(this,msg,null);
+      ts.respondWith(MessageFactory.createResponse(msg,486,SipResponses.reasonOf(486),null));
+      return;
+    }
+    if (msg.isRequest() && msg.isNotify()) {
+      printLog("Notify Request - Sending unsupported response (405)",LogLevel.MEDIUM);
+      TransactionServer ts=new TransactionServer(this,msg,null);
+      ts.respondWith(MessageFactory.createResponse(msg,405,SipResponses.reasonOf(405),null));
       return;
     }
     printLog("No SipListener found matching that message: message DISCARDED",LogLevel.HIGH);

@@ -1,0 +1,18 @@
+{
+  printLog("removing SipProviderListener Pair: " + key,LogLevel.HIGH);
+  boolean ret;
+  if (!listeners.containsPair(key,listener)) {
+    printLog("trying to remove a missed SipProviderListener Pair.",LogLevel.LOW);
+    ret=false;
+  }
+ else {
+    listeners.removePair(key,listener);
+    ret=true;
+  }
+  if (listeners != null) {
+    String list="";
+    for (Enumeration e=listeners.keys(); e.hasMoreElements(); )     list+=e.nextElement() + ", ";
+    printLog(listeners.size() + " listeners: " + list+ "\n"+ listeners.toString(),LogLevel.LOW);
+  }
+  return ret;
+}

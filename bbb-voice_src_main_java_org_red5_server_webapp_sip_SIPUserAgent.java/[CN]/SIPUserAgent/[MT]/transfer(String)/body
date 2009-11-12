@@ -1,0 +1,11 @@
+{
+  printLog("REFER/TRANSFER","Init...");
+  try {
+    if (call != null && call.isOnCall()) {
+      call.transfer(transfer_to);
+    }
+  }
+ catch (  Exception e) {
+    printLog("transfer: ",e.toString());
+  }
+}

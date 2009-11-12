@@ -14,7 +14,9 @@
         if (transaction_listener != null)         transaction_listener.onTransSuccessResponse(this,msg);
       }
  else {
-        if (transaction_listener != null)         transaction_listener.onTransFailureResponse(this,msg);
+        if (transaction_listener != null) {
+          transaction_listener.onTransFailureResponse(this,msg);
+        }
       }
       transaction_listener=null;
       if (connection_id == null)       clearing_to.start();

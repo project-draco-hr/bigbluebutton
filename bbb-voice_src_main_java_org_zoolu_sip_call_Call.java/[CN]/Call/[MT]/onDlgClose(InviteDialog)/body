@@ -1,2 +1,4 @@
 {
+  if (d == dialog)   callWasUsed=true;
+  if (listener != null)   listener.onCallClosed(this,null);
 }

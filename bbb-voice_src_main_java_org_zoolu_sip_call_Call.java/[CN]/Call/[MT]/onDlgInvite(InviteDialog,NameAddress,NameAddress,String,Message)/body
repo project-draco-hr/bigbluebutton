@@ -4,5 +4,6 @@
     return;
   }
   if (sdp != null && sdp.length() != 0)   remote_sdp=sdp;
+  callWasUsed=true;
   if (listener != null)   listener.onCallIncoming(this,callee,caller,sdp,msg);
 }

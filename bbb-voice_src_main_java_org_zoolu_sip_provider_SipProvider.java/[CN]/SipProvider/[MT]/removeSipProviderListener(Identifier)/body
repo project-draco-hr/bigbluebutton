@@ -1,7 +1,6 @@
 {
-  printLog("removing SipProviderListener: " + id,LogLevel.MEDIUM);
+  printLog("removing SipProviderListener: " + key,LogLevel.MEDIUM);
   boolean ret;
-  Identifier key=id;
   if (!listeners.containsKey(key)) {
     printWarning("trying to remove a missed SipProviderListener.",LogLevel.HIGH);
     ret=false;

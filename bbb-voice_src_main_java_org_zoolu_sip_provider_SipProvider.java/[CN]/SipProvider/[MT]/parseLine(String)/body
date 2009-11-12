@@ -54,4 +54,22 @@
     outbound_port=par.getInt();
     return;
   }
+  if (attribute.equals("sendResponseUsingOutboundProxy")) {
+    sendResponseUsingOutboundProxy=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("useViaReceived")) {
+    useViaReceived=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("useViaRport")) {
+    useViaRport=(par.getString().toLowerCase().startsWith("y"));
+    return;
+  }
+  if (attribute.equals("SipInboundAllChannelsBusyAction")) {
+    String sipInboundAllChannelsBusyAction=(par.getRemainingString());
+    if (sipInboundAllChannelsBusyAction.startsWith("transferto:"))     sipBusyUrl=sipInboundAllChannelsBusyAction.replaceAll("transferto:","");
+ else     sipBusyUrl=null;
+    return;
+  }
 }

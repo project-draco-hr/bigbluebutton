@@ -1,8 +1,7 @@
 {
-  printLog("adding SipProviderListener: " + id,LogLevel.MEDIUM);
+  printLog("adding SipProviderListener: " + key,LogLevel.MEDIUM);
   boolean ret;
-  Identifier key=id;
-  if (listeners.containsKey(key)) {
+  if (listeners.containsKey(key) && !key.toString().equals("INVITE")) {
     printWarning("trying to add a SipProviderListener with a id that is already in use.",LogLevel.HIGH);
     ret=false;
   }

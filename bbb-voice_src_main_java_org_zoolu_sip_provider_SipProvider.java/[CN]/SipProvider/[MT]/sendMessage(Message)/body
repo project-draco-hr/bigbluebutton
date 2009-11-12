@@ -33,11 +33,17 @@
     }
   }
  else {
-    SipURL url=via.getSipURL();
-    if (via.hasReceived())     dest_addr=via.getReceived();
- else     dest_addr=url.getHost();
-    if (via.hasRport())     dest_port=via.getRport();
-    if (dest_port <= 0)     dest_port=url.getPort();
+    if (outbound_proxy != null && this.sendResponseUsingOutboundProxy) {
+      dest_addr=outbound_proxy.getAddress().toString();
+      dest_port=outbound_proxy.getPort();
+    }
+ else {
+      SipURL url=via.getSipURL();
+      if (via.hasReceived())       dest_addr=via.getReceived();
+ else       dest_addr=url.getHost();
+      if (via.hasRport())       dest_port=via.getRport();
+      if (dest_port <= 0)       dest_port=url.getPort();
+    }
   }
   if (dest_port <= 0)   dest_port=SipStack.default_port;
   return sendMessage(msg,proto,dest_addr,dest_port,ttl);

@@ -1,5 +1,6 @@
 {
   dialog=new InviteDialog(sip_provider,this);
+  callWasUsed=true;
   local_sdp=invite.getBody();
   if (local_sdp != null)   dialog.invite(invite);
  else   dialog.inviteWithoutOffer(invite);

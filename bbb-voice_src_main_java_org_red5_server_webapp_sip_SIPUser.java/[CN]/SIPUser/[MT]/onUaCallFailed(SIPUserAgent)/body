@@ -1,4 +1,5 @@
 {
+  p("onUaCallFailed");
   sipReady=false;
   closeStreams();
   if (service != null) {

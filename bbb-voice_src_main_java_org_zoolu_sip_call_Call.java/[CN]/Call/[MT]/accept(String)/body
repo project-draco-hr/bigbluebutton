@@ -1,4 +1,5 @@
 {
   local_sdp=sdp;
+  callWasUsed=true;
   if (dialog != null)   dialog.accept(contact_url,local_sdp);
 }

@@ -1,0 +1,4 @@
+{
+  printLog("isWaiting - callState=" + status,LogLevel.MEDIUM);
+  return (status == D_WAITING);
+}

@@ -1,0 +1,12 @@
+{
+  p("Transfer To: " + transferTo);
+  try {
+    if (transferTo.indexOf("@") == -1) {
+      transferTo=transferTo + "@" + proxy;
+    }
+    ua.transfer(transferTo);
+  }
+ catch (  Exception e) {
+    p("call: Exception:>\n" + e);
+  }
+}

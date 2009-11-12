@@ -1,7 +1,3 @@
 {
-  if (dialog != null) {
-    dialog.refuse();
-    dialog.cancel();
-    dialog.bye();
-  }
+  hangup(403);
 }

@@ -1,0 +1,8 @@
+{
+  loginfo("Red5SIP transfer " + transferTo);
+  SIPUser sipUser=sipManager.getSIPUser(uid);
+  if (sipUser != null) {
+    loginfo("Red5SIP Call found user " + uid + " transfering call to "+ transferTo);
+    sipUser.transfer(transferTo);
+  }
+}

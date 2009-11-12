@@ -31,6 +31,8 @@
   rport=SipStack.use_rport;
   force_rport=SipStack.force_rport;
   exception_listeners=new HashSet();
-  listeners=new Hashtable();
+  Hashtable dupeKeys=new Hashtable();
+  dupeKeys.put(INVITE,"");
+  listeners=new SpcHashtable(dupeKeys);
   connections=new Hashtable();
 }

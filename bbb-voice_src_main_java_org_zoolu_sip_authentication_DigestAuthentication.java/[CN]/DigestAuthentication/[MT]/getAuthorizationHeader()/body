@@ -6,8 +6,15 @@
   ah.addUriParam(uri);
   if (algorithm != null)   ah.addAlgorithParam(algorithm);
   if (opaque != null)   ah.addOpaqueParam(opaque);
-  if (qop != null)   ah.addQopParam(qop);
-  if (nc != null)   ah.addNcParam(nc);
+  if (qop != null) {
+    ah.addQopParam(qop);
+    if (qop.equalsIgnoreCase("auth-int") || qop.equalsIgnoreCase("auth")) {
+      cnonce=HEX(MD5(Long.toString(System.currentTimeMillis())));
+      ah.addCnonceParam(cnonce);
+      nc="00000001";
+      ah.addNcParam(nc);
+    }
+  }
   String response=getResponse();
   ah.addResponseParam(response);
   return ah;

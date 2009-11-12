@@ -3,20 +3,20 @@
     printLog("NOT the current dialog",LogLevel.HIGH);
     return;
   }
-  printLog("onDlgNotify()",LogLevel.LOW);
-  if (event.equals("refer")) {
+  printLog("onDlgNotify(" + event.substring(0,5) + ")",LogLevel.LOW);
+  if (event.substring(0,5).equals("refer")) {
     Message fragment=new Message(sipfragment);
-    printLog("Notify: " + sipfragment,LogLevel.HIGH);
+    printLog("Notify: " + sipfragment,LogLevel.LOW);
     if (fragment.isResponse()) {
       StatusLine status_line=fragment.getStatusLine();
       int code=status_line.getCode();
       String reason=status_line.getReason();
-      if (code >= 200 && code < 300) {
-        printLog("Call successfully transferred",LogLevel.MEDIUM);
+      if (code >= 180 && code < 300) {
+        printLog("Call successfully transferred",LogLevel.LOW);
         if (xcall_listener != null)         xcall_listener.onCallTransferSuccess(this,msg);
       }
  else       if (code >= 300) {
-        printLog("Call NOT transferred",LogLevel.MEDIUM);
+        printLog("Call NOT transferred",LogLevel.LOW);
         if (xcall_listener != null)         xcall_listener.onCallTransferFailure(this,reason,msg);
       }
     }

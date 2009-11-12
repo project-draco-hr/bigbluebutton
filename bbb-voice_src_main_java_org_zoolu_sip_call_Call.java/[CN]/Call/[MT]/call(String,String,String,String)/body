@@ -1,5 +1,6 @@
 {
   printLog("calling " + callee,LogLevel.HIGH);
+  callWasUsed=true;
   if (from == null)   from=from_url;
   if (contact == null)   contact=contact_url;
   if (sdp != null)   local_sdp=sdp;

@@ -5,6 +5,9 @@
     StatusLine statusline=msg.getStatusLine();
     int code=statusline.getCode();
     verifyThat(code >= 300 && code < 700,"error code was expected");
+    Message ack=MessageFactory.createRequest(this,SipMethods.ACK,null);
+    AckTransactionClient ack_tc=new AckTransactionClient(sip_provider,ack,null);
+    ack_tc.request();
     if (statusIs(D_ReINVITING)) {
       changeStatus(D_CALL);
       listener.onDlgReInviteFailureResponse(this,code,statusline.getReason(),msg);
@@ -21,6 +24,9 @@
     StatusLine statusline=msg.getStatusLine();
     int code=statusline.getCode();
     verifyThat(code >= 300 && code < 700,"error code was expected");
+    Message ack=MessageFactory.createRequest(this,SipMethods.ACK,null);
+    AckTransactionClient ack_tc=new AckTransactionClient(sip_provider,ack,null);
+    ack_tc.request();
     changeStatus(this.D_CALL);
     listener.onDlgByeFailureResponse(this,code,statusline.getReason(),msg);
   }

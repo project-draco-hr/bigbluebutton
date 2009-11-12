@@ -1,4 +1,5 @@
 {
+  printLog("onTransFailureResponse 1",LogLevel.HIGH);
   printLog("inside onTransFailureResponse(" + tc.getTransactionId() + ",msg)",LogLevel.LOW);
   String method=tc.getTransactionMethod();
   StatusLine status_line=msg.getStatusLine();
@@ -7,10 +8,13 @@
   if ((code == 401 && attempts < MAX_ATTEMPTS && msg.hasWwwAuthenticateHeader() && msg.getWwwAuthenticateHeader().getRealmParam().equalsIgnoreCase(realm)) || (code == 407 && attempts < MAX_ATTEMPTS && msg.hasProxyAuthenticateHeader() && msg.getProxyAuthenticateHeader().getRealmParam().equalsIgnoreCase(realm))) {
     attempts++;
     Message ack=MessageFactory.createRequest(this,SipMethods.ACK,null);
-    TransactionClient acktc=new TransactionClient(sip_provider,ack,this);
-    transactions.put(acktc.getTransactionId(),acktc);
+    AckTransactionClient acktc=new AckTransactionClient(sip_provider,ack,null);
     acktc.request();
     Message req=tc.getRequestMessage();
+    ViaHeader via=req.getViaHeader();
+    req.removeViaHeader();
+    via.setBranch(SipProvider.pickBranch());
+    req.addViaHeader(via);
     req.setCSeqHeader(req.getCSeqHeader().incSequenceNumber());
     WwwAuthenticateHeader wah;
     if (code == 401)     wah=msg.getWwwAuthenticateHeader();
@@ -23,6 +27,7 @@
     if (code == 401)     ah=digest.getAuthorizationHeader();
  else     ah=digest.getProxyAuthorizationHeader();
     req.setAuthorizationHeader(ah);
+    if (req.isInvite())     this.invite_req=req;
     transactions.remove(tc.getTransactionId());
     tc=new TransactionClient(sip_provider,req,this);
     transactions.put(tc.getTransactionId(),tc);

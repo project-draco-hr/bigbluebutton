@@ -1,0 +1,8 @@
+{
+  if (dialog != null && !dialog.isWaiting() && !dialog.isTerminated()) {
+    callWasUsed=true;
+    dialog.refuse(status,SipResponses.reasonOf(status));
+    dialog.cancel();
+    dialog.bye();
+  }
+}

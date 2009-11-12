@@ -3,8 +3,9 @@
   this.username=username;
   this.password=password;
   this.proxy=proxy;
-  this.optOutboundProxy=proxy;
-  String fromURL="\"" + username + "\" <sip:"+ phone+ "@"+ proxy+ ">";
+  this.opt_outbound_proxy=obproxy;
+  this.realm=realm;
+  String fromURL="\"" + phone + "\" <sip:"+ phone+ "@"+ proxy+ ">";
   try {
     rtmpUser=new RTMPUser();
     SipStack.init();
