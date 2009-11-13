@@ -1,9 +1,0 @@
-{
-  log.debug("onUaCallCancelled");
-  sipReady=false;
-  closeStreams();
-  if (service != null) {
-    ((IServiceCapableConnection)service).invoke("callState",new Object[]{"onUaCallCancelled"});
-  }
-  ua.listen();
-}

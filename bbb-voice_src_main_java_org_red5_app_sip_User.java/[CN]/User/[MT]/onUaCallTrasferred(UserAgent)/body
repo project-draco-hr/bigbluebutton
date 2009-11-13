@@ -1,0 +1,6 @@
+{
+  log.debug("onUaCallTrasferred");
+  if (connectionService != null) {
+    ((IServiceCapableConnection)connectionService).invoke("callState",new Object[]{"onUaCallTrasferred"});
+  }
+}

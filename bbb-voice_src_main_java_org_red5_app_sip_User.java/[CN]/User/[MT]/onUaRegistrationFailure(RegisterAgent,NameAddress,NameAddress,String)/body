@@ -1,0 +1,6 @@
+{
+  log.debug("SIP Registration failure " + result);
+  if (connectionService != null) {
+    ((IServiceCapableConnection)connectionService).invoke("registrationFailure",new Object[]{result});
+  }
+}

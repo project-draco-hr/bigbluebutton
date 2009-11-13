@@ -1,0 +1,9 @@
+{
+  log.debug("onUaCallClosed");
+  sipReady=false;
+  closeStreams();
+  if (connectionService != null) {
+    ((IServiceCapableConnection)connectionService).invoke("callState",new Object[]{"onUaCallClosed"});
+  }
+  ua.listen();
+}

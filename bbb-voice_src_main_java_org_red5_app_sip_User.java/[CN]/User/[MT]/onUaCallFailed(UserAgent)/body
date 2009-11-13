@@ -1,0 +1,9 @@
+{
+  log.debug("onUaCallFailed");
+  sipReady=false;
+  closeStreams();
+  if (connectionService != null) {
+    ((IServiceCapableConnection)connectionService).invoke("callState",new Object[]{"onUaCallFailed"});
+  }
+  ua.listen();
+}

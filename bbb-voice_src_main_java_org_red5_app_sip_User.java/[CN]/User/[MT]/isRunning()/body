@@ -1,0 +1,10 @@
+{
+  boolean resp=false;
+  try {
+    resp=userAgent.audioApp.receiver.isRunning();
+  }
+ catch (  Exception e) {
+    resp=false;
+  }
+  return resp;
+}

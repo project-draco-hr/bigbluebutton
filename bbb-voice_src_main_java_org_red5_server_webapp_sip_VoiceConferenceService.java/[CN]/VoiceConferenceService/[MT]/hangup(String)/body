@@ -1,6 +1,6 @@
 {
   log.debug("Red5SIP Hangup");
-  SIPUser sipUser=sipManager.getSIPUser(uid);
+  User sipUser=sipManager.getSIPUser(uid);
   if (sipUser != null) {
     sipUser.hangup();
   }

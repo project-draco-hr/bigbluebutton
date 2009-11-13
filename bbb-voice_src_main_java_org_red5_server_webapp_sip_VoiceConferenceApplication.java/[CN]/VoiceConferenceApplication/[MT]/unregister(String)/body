@@ -1,6 +1,6 @@
 {
   log.debug("Red5SIP unregister");
-  SIPUser sipUser=sipManager.getSIPUser(uid);
+  User sipUser=sipManager.getSIPUser(uid);
   if (sipUser != null) {
     sipUser.unregister();
   }

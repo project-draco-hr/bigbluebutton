@@ -1,0 +1,4 @@
+SipProvider sipProvider
+String targetUrl
+String contactUrl
+RegisterAgentListener listener

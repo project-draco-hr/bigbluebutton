@@ -1,0 +1,7 @@
+{
+  publishedStreamName=name;
+  livePipe=null;
+  log.trace("name: {}",name);
+  streamCodecInfo=new StreamCodecInfo();
+  mCreationTime=null;
+}

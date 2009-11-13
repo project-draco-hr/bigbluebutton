@@ -2,11 +2,11 @@
   log.debug("Red5SIP login " + uid);
   IConnection conn=Red5.getConnectionLocal();
   IServiceCapableConnection service=(IServiceCapableConnection)conn;
-  SIPUser sipUser=sipManager.getSIPUser(uid);
+  User sipUser=sipManager.getSIPUser(uid);
   if (sipUser == null) {
     log.debug("Red5SIP open creating sipUser for " + username + " on sip port "+ sipPort+ " audio port "+ rtpPort+ " uid "+ uid);
     try {
-      sipUser=new SIPUser(conn.getClient().getId(),service,sipPort,rtpPort);
+      sipUser=new User(conn.getClient().getId(),service,sipPort,rtpPort);
       sipManager.addSIPUser(uid,sipUser);
     }
  catch (    Exception e) {

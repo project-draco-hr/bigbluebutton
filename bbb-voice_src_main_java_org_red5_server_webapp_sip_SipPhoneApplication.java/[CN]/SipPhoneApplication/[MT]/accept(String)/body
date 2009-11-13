@@ -1,6 +1,6 @@
 {
   loginfo("Red5SIP Accept");
-  SIPUser sipUser=sipManager.getSIPUser(uid);
+  User sipUser=sipManager.getSIPUser(uid);
   if (sipUser != null) {
     sipUser.accept();
   }

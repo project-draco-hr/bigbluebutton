@@ -1,0 +1,7 @@
+{
+  User sipUser=getSIPUser(sipID);
+  if (sipUser != null) {
+    sipUser.close();
+    removeSIPUser(sipID);
+  }
+}

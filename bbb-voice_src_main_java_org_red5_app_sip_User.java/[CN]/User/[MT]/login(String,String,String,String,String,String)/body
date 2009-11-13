@@ -1,0 +1,37 @@
+{
+  log.debug("SIPUser login");
+  this.username=username;
+  this.password=password;
+  this.proxy=proxy;
+  this.optOutboundProxy=obproxy;
+  this.realm=realm;
+  String fromURL="\"" + phone + "\" <sip:"+ phone+ "@"+ proxy+ ">";
+  try {
+    rtmpUser=new RTMPUser();
+    SipStack.init();
+    SipStack.debug_level=8;
+    SipStack.log_path="log";
+    sipProvider=new SipProvider(null,sipPort);
+    sipProvider.setOutboundProxy(new SocketAddress(optOutboundProxy));
+    sipProvider.addSipProviderListener(new OptionMethodListener());
+    userProfile=new UserAgentProfile();
+    userProfile.audioPort=rtpPort;
+    userProfile.username=username;
+    userProfile.passwd=password;
+    userProfile.realm=realm;
+    userProfile.fromUrl=fromURL;
+    userProfile.contactUrl="sip:" + phone + "@"+ sipProvider.getViaAddress();
+    if (sipProvider.getPort() != SipStack.default_port) {
+      userProfile.contactUrl+=":" + sipProvider.getPort();
+    }
+    userProfile.keepaliveTime=8000;
+    userProfile.acceptTime=0;
+    userProfile.hangupTime=20;
+    userAgent=new UserAgent(sipProvider,userProfile,this,rtmpUser);
+    sipReady=false;
+    userAgent.listen();
+  }
+ catch (  Exception e) {
+    log.error("login: Exception:>\n" + e);
+  }
+}

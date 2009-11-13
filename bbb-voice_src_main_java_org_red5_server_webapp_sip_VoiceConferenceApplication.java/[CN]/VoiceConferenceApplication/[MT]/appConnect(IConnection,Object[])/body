@@ -1,5 +1,5 @@
 {
   IServiceCapableConnection service=(IServiceCapableConnection)conn;
-  log.debug("Red5SIP Client connected " + conn.getClient().getId() + " service "+ service);
+  log.debug("VoiceConferenceApplication appConnect[" + conn.getClient().getId() + ","+ service+ "]");
   return true;
 }

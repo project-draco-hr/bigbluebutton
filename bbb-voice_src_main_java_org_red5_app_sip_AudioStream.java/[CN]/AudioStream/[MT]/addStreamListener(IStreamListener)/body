@@ -1,0 +1,4 @@
+{
+  log.trace("addStreamListener(listener: {})",listener);
+  streamListeners.add(listener);
+}
