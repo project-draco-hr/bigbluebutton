@@ -1,0 +1,25 @@
+{
+  Codec sipCodec;
+  printLog("getSIPAudioCodec","Init...");
+  printLog("getSIPAudioCodec","codecId = [" + codecId + "].");
+switch (codecId) {
+case audioCodecPCMU:
+    sipCodec=new PCMUCodec();
+  break;
+case audioCodecPCMA:
+sipCodec=new PCMACodec();
+break;
+case audioCodecG729:
+sipCodec=new G729Codec();
+break;
+case audioCodeciLBC:
+sipCodec=new ILBCCodec();
+break;
+default :
+sipCodec=null;
+}
+if (sipCodec != null) {
+printLog("getSIPAudioCodec","codecId = [" + sipCodec.getCodecId() + "], codecName =  ["+ sipCodec.getCodecName()+ "].");
+}
+return sipCodec;
+}

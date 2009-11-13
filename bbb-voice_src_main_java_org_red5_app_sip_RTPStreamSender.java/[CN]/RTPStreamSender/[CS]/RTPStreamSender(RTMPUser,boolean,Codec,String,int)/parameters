@@ -1,0 +1,5 @@
+RTMPUser rtmpUser
+boolean do_sync
+Codec sipCodec
+String dest_addr
+int dest_port

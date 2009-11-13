@@ -1,0 +1,5 @@
+Codec sipCodec
+int localPort
+String remoteAddr
+int remotePort
+RTMPUser rtmpUser

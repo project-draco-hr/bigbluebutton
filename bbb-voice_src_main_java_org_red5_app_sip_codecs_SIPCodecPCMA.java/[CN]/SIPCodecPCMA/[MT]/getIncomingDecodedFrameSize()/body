@@ -1,3 +1,0 @@
-{
-  return (defaultDecodedFrameSize / SIPCodec.DEFAULT_PACKETIZATION) * incomingPacketization;
-}

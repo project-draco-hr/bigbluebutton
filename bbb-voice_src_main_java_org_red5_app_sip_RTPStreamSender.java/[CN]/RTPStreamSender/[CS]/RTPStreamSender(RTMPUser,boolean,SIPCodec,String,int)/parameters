@@ -1,5 +1,0 @@
-RTMPUser rtmpUser
-boolean do_sync
-SIPCodec sipCodec
-String dest_addr
-int dest_port

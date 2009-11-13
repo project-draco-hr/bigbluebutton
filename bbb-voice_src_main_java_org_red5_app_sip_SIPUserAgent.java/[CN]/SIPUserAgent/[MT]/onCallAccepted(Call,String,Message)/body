@@ -15,7 +15,7 @@
   SdpUtils.completeSdpNegotiation(newSdp,localSdp,remoteSdp);
   localSession=newSdp.toString();
   log.debug("onCallAccepted","newSdp = " + localSession + ".");
-  SIPCodecUtils.initSipAudioCodec(sipCodec,userProfile.audioDefaultPacketization,userProfile.audioDefaultPacketization,newSdp,remoteSdp);
+  CodecUtils.initSipAudioCodec(sipCodec,userProfile.audioDefaultPacketization,userProfile.audioDefaultPacketization,newSdp,remoteSdp);
   if (userProfile.noOffer) {
     call.ackWithAnswer(localSession);
   }

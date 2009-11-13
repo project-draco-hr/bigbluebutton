@@ -2,7 +2,7 @@
   printLog("makeAttributeNegotiation","Init...");
   try {
     printLog("makeAttributeNegotiation","AttributeName = [" + remoteAttribute.getAttributeName() + "], AttributeValue = ["+ remoteAttribute.getAttributeValue()+ "].");
-    if (remoteAttribute.getAttributeName().equals(SIPCodec.ATTRIBUTE_RTPMAP)) {
+    if (remoteAttribute.getAttributeName().equals(Codec.ATTRIBUTE_RTPMAP)) {
       printLog("makeAttributeNegotiation","\"rtpmap\" attributes were already negotiated.");
     }
  else     if (!isPayloadRelatedAttribute(remoteAttribute)) {
@@ -13,10 +13,10 @@
       if ("".equals(payloadId)) {
         printLog("makeAttributeNegotiation","Error! Payload id not found on attribute: Name = [" + remoteAttribute.getAttributeName() + "], Value = ["+ remoteAttribute.getAttributeValue()+ "].");
       }
- else       if (findAttributeByPayloadId(SIPCodec.ATTRIBUTE_RTPMAP,payloadId,newSdp.getMediaDescriptor(localMedia.getMedia().getMedia())) != null) {
+ else       if (findAttributeByPayloadId(Codec.ATTRIBUTE_RTPMAP,payloadId,newSdp.getMediaDescriptor(localMedia.getMedia().getMedia())) != null) {
         printLog("makeAttributeNegotiation","Payload " + payloadId + " present on newSdp.");
         AttributeField localAttribute=findAttributeByPayloadId(remoteAttribute.getAttributeName(),payloadId,localMedia);
-        SIPCodec sipCodec=SIPCodecFactory.getInstance().getSIPAudioCodec(Integer.valueOf(payloadId));
+        Codec sipCodec=CodecFactory.getInstance().getSIPAudioCodec(Integer.valueOf(payloadId));
         if (sipCodec != null) {
           String localAttibuteValue="";
           if (localAttribute != null) {

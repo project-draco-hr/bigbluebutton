@@ -4,7 +4,7 @@
   printLog("getFormatList","Init...");
   for (Enumeration attributeEnum=mediaAttributes.elements(); attributeEnum.hasMoreElements(); ) {
     mediaAttribute=(AttributeField)attributeEnum.nextElement();
-    if (mediaAttribute.getAttributeName().equalsIgnoreCase(SIPCodec.ATTRIBUTE_RTPMAP)) {
+    if (mediaAttribute.getAttributeName().equalsIgnoreCase(Codec.ATTRIBUTE_RTPMAP)) {
       if (!formatList.isEmpty()) {
         formatList+=" ";
       }

@@ -1,0 +1,5 @@
+Codec audioCodec
+int defaultEncodePacketization
+int defaultDecodePacketization
+SessionDescriptor localSDP
+SessionDescriptor remoteSDP

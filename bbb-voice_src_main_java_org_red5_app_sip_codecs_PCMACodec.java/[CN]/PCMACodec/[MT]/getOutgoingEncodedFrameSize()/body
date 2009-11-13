@@ -1,0 +1,3 @@
+{
+  return (defaultEncodedFrameSize / Codec.DEFAULT_PACKETIZATION) * outgoingPacketization;
+}

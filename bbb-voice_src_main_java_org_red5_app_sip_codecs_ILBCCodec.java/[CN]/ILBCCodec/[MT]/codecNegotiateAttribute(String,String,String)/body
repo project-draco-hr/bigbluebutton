@@ -1,0 +1,28 @@
+{
+  Integer localMode=Codec.DEFAULT_PACKETIZATION;
+  Integer remoteMode=0;
+  String finalAttributeValue="";
+  printLog("codecNegotiateAttribute ","attributeName = [" + attributeName + "localAttributeValue = ["+ localAttributeValue+ "] remoteAttributeValue = ["+ remoteAttributeValue+ "].");
+  if (0 == attributeName.compareTo(Codec.ATTRIBUTE_FMTP)) {
+    if ((null == remoteAttributeValue) || (remoteAttributeValue.isEmpty())) {
+      finalAttributeValue="";
+    }
+ else {
+      remoteMode=extractModeFromFmtpValue(remoteAttributeValue);
+      if ((null != localAttributeValue) && (!localAttributeValue.isEmpty())) {
+        localMode=extractModeFromFmtpValue(localAttributeValue);
+      }
+      if (remoteMode > localMode) {
+        finalAttributeValue=remoteAttributeValue;
+        outgoingPacketization=remoteMode;
+        incomingPacketization=remoteMode;
+      }
+ else       if (null == localAttributeValue) {
+        finalAttributeValue=remoteAttributeValue.substring(0,remoteAttributeValue.indexOf(" mode=") + 6);
+        finalAttributeValue.concat(localMode.toString());
+      }
+    }
+  }
+  printLog("codecNegotiateAttribute ","finalAttributeValue = [" + finalAttributeValue + "].");
+  return finalAttributeValue;
+}

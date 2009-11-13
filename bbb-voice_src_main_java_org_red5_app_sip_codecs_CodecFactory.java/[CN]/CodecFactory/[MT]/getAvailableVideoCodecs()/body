@@ -1,0 +1,10 @@
+{
+  printLog("getAvailableVideoCodecs","Init...");
+  Codec[] availableCodecs=new Codec[availableVideoCodecsId.length];
+  for (int i=0; i < availableVideoCodecsId.length; i++) {
+    int codecId=availableVideoCodecsId[i];
+    Codec codec=getSIPAudioCodec(codecId);
+    availableCodecs[i]=codec;
+  }
+  return availableCodecs;
+}

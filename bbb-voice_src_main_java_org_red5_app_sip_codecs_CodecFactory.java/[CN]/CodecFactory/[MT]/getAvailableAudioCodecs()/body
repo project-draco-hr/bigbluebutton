@@ -1,0 +1,10 @@
+{
+  printLog("getAvailableAudioCodecs","Init...");
+  Codec[] availableCodecs=new Codec[availableAudioCodecsId.length];
+  for (int i=0; i < availableAudioCodecsId.length; i++) {
+    int codecId=availableAudioCodecsId[i];
+    Codec codec=getSIPAudioCodec(codecId);
+    availableCodecs[i]=codec;
+  }
+  return availableCodecs;
+}

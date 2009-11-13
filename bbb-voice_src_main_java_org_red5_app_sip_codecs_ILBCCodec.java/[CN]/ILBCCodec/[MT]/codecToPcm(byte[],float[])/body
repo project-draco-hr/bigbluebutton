@@ -1,0 +1,10 @@
+{
+  short[] encodedData=CodecUtils.byteToShortArray(bufferIn,0,bufferIn.length,false);
+  bitstream encodedBitStream=new bitstream(getOutgoingDecodedFrameSize() * 2);
+  for (int i=0; i < encodedData.length; i++) {
+    encodedBitStream.buffer[2 * i + 1]=(char)(encodedData[i] & 0xff);
+    encodedBitStream.buffer[2 * i]=(char)((encodedData[i] >> 8) & 0xff);
+  }
+  ilbcDecoder.iLBC_decode(bufferOut,encodedBitStream,1);
+  return getOutgoingDecodedFrameSize();
+}
