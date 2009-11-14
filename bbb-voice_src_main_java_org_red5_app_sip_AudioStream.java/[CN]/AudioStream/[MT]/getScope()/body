@@ -1,4 +1,4 @@
 {
-  log.trace("getScope(): {}",mScope);
-  return mScope;
+  log.trace("getScope(): {}",scope);
+  return scope;
 }

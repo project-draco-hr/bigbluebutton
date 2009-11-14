@@ -3,9 +3,12 @@
     socket=new DatagramSocket(localPort);
     printLog("SIPAudioLauncher","New audio sender to " + remoteAddr + ":"+ remotePort+ ".");
     printLog("SIPAudioLauncher","sender configs: payloadType = [" + sipCodec.getCodecId() + "], payloadName = ["+ sipCodec.getCodecName()+ "].");
-    sender=new RTPStreamSender(rtmpUser,false,sipCodec,socket,remoteAddr,remotePort);
+    NellyToPcmTranscoder pTranscoder=new NellyToPcmTranscoder(sipCodec);
+    rtpSender=new RtpSender(pTranscoder,false,socket,remoteAddr,remotePort);
+    rtmpUser.setRtpSender(rtpSender);
     printLog("SIPAudioLauncher","New audio receiver on " + localPort + ".");
-    receiver=new RTPStreamReceiver(sipCodec,rtmpUser,socket);
+    PcmToNellyTranscoder transcoder=new PcmToNellyTranscoder(sipCodec);
+    rtpReceiver=new RtpReceiver(rtmpUser,transcoder,socket);
   }
  catch (  Exception e) {
     printLog("SIPAudioLauncher","Exception " + e);

@@ -1,0 +1,47 @@
+{
+  int packetLength=0;
+  int headerOffset=0;
+  int payloadLength=0;
+  int frameCounter=0;
+  if (rtpSocket == null) {
+    log.error("run","RTP socket is null.");
+    return;
+  }
+  int internalBufferLength=transcoder.getIncomingEncodedFrameSize() + RTP_HEADER_SIZE;
+  running=true;
+  try {
+    rtpSocket.getDatagramSocket().setSoTimeout(SO_TIMEOUT);
+    while (running) {
+      try {
+        byte[] internalBuffer=new byte[internalBufferLength];
+        RtpPacket rtpPacket=new RtpPacket(internalBuffer,0);
+        rtpSocket.receive(rtpPacket);
+        frameCounter++;
+        byte[] packetBuffer=rtpPacket.getPacket();
+        headerOffset=rtpPacket.getHeaderLength();
+        payloadLength=rtpPacket.getPayloadLength();
+        packetLength=packetBuffer.length;
+        byte[] codedBuffer=new byte[payloadLength];
+        log.debug("pkt.length = " + packetBuffer.length + ", offset = "+ headerOffset+ ", length = "+ payloadLength+ ".");
+        System.arraycopy(packetBuffer,headerOffset,codedBuffer,0,payloadLength);
+        transcoder.transcode(codedBuffer,this);
+      }
+ catch (      java.io.InterruptedIOException e) {
+      }
+    }
+  }
+ catch (  Exception e) {
+    running=false;
+    log.error("pkt.length = " + packetLength + ", offset = "+ headerOffset+ ", length = "+ payloadLength+ ".");
+    log.error("Exception - " + e.toString());
+    e.printStackTrace();
+  }
+  DatagramSocket socket=rtpSocket.getDatagramSocket();
+  rtpSocket.close();
+  if (socketIsLocal && socket != null) {
+    socket.close();
+  }
+  rtpSocket=null;
+  log.debug("Terminated.");
+  log.debug("run","Frames = " + frameCounter + ".");
+}

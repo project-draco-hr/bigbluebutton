@@ -5,7 +5,7 @@
       if (livePipe != null) {
         RTMPMessage msg=new RTMPMessage();
         msg.setBody(rtmpEvent);
-        if (mCreationTime == null)         mCreationTime=(long)rtmpEvent.getTimestamp();
+        if (creationTime == null)         creationTime=(long)rtmpEvent.getTimestamp();
         try {
           livePipe.pushMessage(msg);
           if (rtmpEvent instanceof IStreamPacket) {

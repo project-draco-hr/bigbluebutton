@@ -1,12 +1,12 @@
 {
   printLog("startMedia","Starting sip audio...");
-  if (sender != null) {
+  if (rtpSender != null) {
     printLog("startMedia","Start sending.");
-    sender.start();
+    rtpSender.start();
   }
-  if (receiver != null) {
+  if (rtpReceiver != null) {
     printLog("startMedia","Start receiving.");
-    receiver.start();
+    rtpReceiver.start();
   }
   return true;
 }

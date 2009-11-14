@@ -1,8 +1,8 @@
 {
   log.debug("SIPUser dtmf " + digits);
   try {
-    if (userAgent != null && userAgent.audioApp != null && userAgent.audioApp.sender != null) {
-      userAgent.audioApp.sender.queueSipDtmfDigits(digits);
+    if (userAgent != null && userAgent.audioApp != null) {
+      userAgent.audioApp.queueSipDtmfDigits(digits);
     }
   }
  catch (  Exception e) {

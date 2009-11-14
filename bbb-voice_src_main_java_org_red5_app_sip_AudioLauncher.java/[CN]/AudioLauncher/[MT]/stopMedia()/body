@@ -1,13 +1,13 @@
 {
   printLog("stopMedia","Halting sip audio...");
-  if (sender != null) {
-    sender.halt();
-    sender=null;
+  if (rtpSender != null) {
+    rtpSender.halt();
+    rtpSender=null;
     printLog("stopMedia","Sender halted.");
   }
-  if (receiver != null) {
-    receiver.halt();
-    receiver=null;
+  if (rtpReceiver != null) {
+    rtpReceiver.halt();
+    rtpReceiver=null;
     printLog("stopMedia","Receiver halted.");
   }
   try {

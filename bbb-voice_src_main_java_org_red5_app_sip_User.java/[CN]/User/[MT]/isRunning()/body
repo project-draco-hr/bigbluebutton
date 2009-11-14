@@ -1,7 +1,7 @@
 {
   boolean resp=false;
   try {
-    resp=userAgent.audioApp.receiver.isRunning();
+    resp=userAgent.audioApp.isReceiverRunning();
   }
  catch (  Exception e) {
     resp=false;

@@ -1,0 +1,4 @@
+{
+  timestamp=timestamp + len;
+  rtmpUser.pushAudio(len,audio,timestamp,codec);
+}

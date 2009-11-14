@@ -1,0 +1,5 @@
+{
+  this.sipCodec=sipCodec;
+  decoder=new Decoder();
+  decoderMap=null;
+}
