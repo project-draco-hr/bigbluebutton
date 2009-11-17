@@ -1,0 +1,26 @@
+{
+  if (callStream != null) {
+    log.debug("launchMediaApplication","Media application is already running.");
+    return;
+  }
+  SessionDescriptor localSdp=new SessionDescriptor(call.getLocalSessionDescriptor());
+  SessionDescriptor remoteSdp=new SessionDescriptor(call.getRemoteSessionDescriptor());
+  String remoteMediaAddress=(new Parser(remoteSdp.getConnection().toString())).skipString().skipString().getString();
+  int remoteAudioPort=getRemoteAudioPort(remoteSdp);
+  int localAudioPort=getLocalAudioPort(localSdp);
+  log.debug("[localAudioPort=" + localAudioPort + ",remoteAudioPort="+ remoteAudioPort+ "]");
+  if (userProfile.audio && localAudioPort != 0 && remoteAudioPort != 0) {
+    if ((callStream == null) && (sipCodec != null)) {
+      SipConnectInfo connInfo=new SipConnectInfo(localAudioPort,remoteMediaAddress,remoteAudioPort);
+      try {
+        callStream=new CallStream(sipCodec,connInfo,scopeProvider);
+        if (listener != null) {
+          listener.onUaCallConnected(this,callStream.getListenStreamName(),callStream.getTalkStreamName());
+        }
+      }
+ catch (      Exception e) {
+        log.error("Failed to create Call Stream.");
+      }
+    }
+  }
+}

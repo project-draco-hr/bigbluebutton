@@ -1,0 +1,3 @@
+byte[] asaoBuffer
+int offset
+int num

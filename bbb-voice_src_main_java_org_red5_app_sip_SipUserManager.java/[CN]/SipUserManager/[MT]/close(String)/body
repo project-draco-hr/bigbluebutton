@@ -1,0 +1,7 @@
+{
+  SipUser sipUser=sessions.get(userid);
+  if (sipUser != null) {
+    sipUser.close();
+    remove(userid);
+  }
+}

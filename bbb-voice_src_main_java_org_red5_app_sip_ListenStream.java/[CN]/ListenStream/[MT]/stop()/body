@@ -1,0 +1,4 @@
+{
+  streamAudio=false;
+  streamEnded();
+}

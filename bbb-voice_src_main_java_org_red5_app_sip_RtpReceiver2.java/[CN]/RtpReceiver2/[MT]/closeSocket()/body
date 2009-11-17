@@ -1,0 +1,8 @@
+{
+  DatagramSocket socket=rtpSocket.getDatagramSocket();
+  rtpSocket.close();
+  if (socketIsLocal && socket != null) {
+    socket.close();
+  }
+  rtpSocket=null;
+}

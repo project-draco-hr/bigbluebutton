@@ -1,0 +1,7 @@
+{
+  log.debug("closeMediaApplication","Init...");
+  if (callStream != null) {
+    callStream.stopMedia();
+    callStream=null;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  try {
+    audioDataQ.put(audioData);
+  }
+ catch (  InterruptedException e) {
+    log.warn("InterruptedException while putting event into queue.");
+  }
+}

@@ -1,0 +1,6 @@
+{
+  log.debug("onUaCallCancelled");
+  closeStreams();
+  rtmpConnection.onUaCallCancelled();
+  ua.waitForIncomingCalls();
+}

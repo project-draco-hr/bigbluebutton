@@ -1,0 +1,29 @@
+{
+  int packetLength=0;
+  int headerOffset=0;
+  int payloadLength=0;
+  int packetReceivedCounter=0;
+  int internalBufferLength=transcoder.getIncomingEncodedFrameSize() + RTP_HEADER_SIZE;
+  while (receivePackets) {
+    try {
+      byte[] internalBuffer=new byte[internalBufferLength];
+      RtpPacket rtpPacket=new RtpPacket(internalBuffer,0);
+      rtpSocket.receive(rtpPacket);
+      packetReceivedCounter++;
+      byte[] packetBuffer=rtpPacket.getPacket();
+      headerOffset=rtpPacket.getHeaderLength();
+      payloadLength=rtpPacket.getPayloadLength();
+      packetLength=packetBuffer.length;
+      byte[] codedBuffer=new byte[payloadLength];
+      log.debug("pkt.length = " + packetLength + ", offset = "+ headerOffset+ ", length = "+ payloadLength+ ".");
+      System.arraycopy(packetBuffer,headerOffset,codedBuffer,0,payloadLength);
+      transcoder.transcode(codedBuffer);
+    }
+ catch (    IOException e) {
+      log.error("IOException while receiving rtp packets.");
+    }
+  }
+  closeSocket();
+  log.debug("Rtp Receiver stopped.");
+  log.debug("Packet Received = " + packetReceivedCounter + ".");
+}

@@ -1,0 +1,25 @@
+{
+  this.transcoder=transcoder;
+  this.rtpSender=rtpSender;
+  talkStreamName="microphone_" + System.currentTimeMillis();
+  mInputListener=new IStreamListener(){
+    public void packetReceived(    IBroadcastStream broadcastStream,    IStreamPacket packet){
+      IoBuffer buf=packet.getData();
+      if (buf != null)       buf.rewind();
+      if (buf == null || buf.remaining() == 0) {
+        log.debug("skipping empty packet with no data");
+        return;
+      }
+      if (packet instanceof AudioData) {
+        log.debug("adding packet type: {}; ts: {}; on stream: {}",new Object[]{"AUDIO",packet.getTimestamp(),broadcastStream.getPublishedName()});
+        try {
+          packets.put(packet);
+        }
+ catch (        InterruptedException e) {
+          log.info("Interrupted exception while queieing audio packet");
+        }
+      }
+    }
+  }
+;
+}

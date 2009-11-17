@@ -1,0 +1,7 @@
+{
+  log.debug("Red5SIP register");
+  User sipUser=sipManager.getSIPUser(uid);
+  if (sipUser != null) {
+    sipUser.register();
+  }
+}

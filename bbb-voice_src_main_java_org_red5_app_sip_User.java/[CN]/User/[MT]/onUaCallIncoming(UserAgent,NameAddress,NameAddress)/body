@@ -4,7 +4,7 @@
   String destination=callee.getAddress().toString();
   String destinationName=callee.hasDisplayName() ? callee.getDisplayName() : "";
   log.debug("onUaCallIncoming " + source + " "+ destination);
-  if (connectionService != null) {
-    ((IServiceCapableConnection)connectionService).invoke("incoming",new Object[]{source,sourceName,destination,destinationName});
+  if (connection != null) {
+    ((IServiceCapableConnection)connection).invoke("incoming",new Object[]{source,sourceName,destination,destinationName});
   }
 }

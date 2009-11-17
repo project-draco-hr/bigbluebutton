@@ -15,5 +15,5 @@
  catch (  Exception e) {
     log.error("close: Exception:>\n" + e);
   }
-  connectionService=null;
+  connection=null;
 }

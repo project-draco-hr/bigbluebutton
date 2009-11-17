@@ -1,0 +1,8 @@
+{
+  try {
+    rtpSocket.getDatagramSocket().setSoTimeout(SO_TIMEOUT);
+  }
+ catch (  SocketException e1) {
+    log.warn("SocketException while setting socket block time.");
+  }
+}

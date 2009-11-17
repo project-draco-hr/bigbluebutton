@@ -1,0 +1,5 @@
+{
+  log.debug("SIPUser streamStatus " + status);
+  if ("stop".equals(status)) {
+  }
+}

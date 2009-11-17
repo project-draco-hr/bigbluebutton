@@ -1,0 +1,24 @@
+{
+  asao_buffer_processed=false;
+  if (!hasInitilializedBuffers) {
+    tempBuffer=new float[NELLYMOSER_DECODED_PACKET_SIZE];
+    encodingBuffer=new float[sipCodec.getOutgoingDecodedFrameSize()];
+    hasInitilializedBuffers=true;
+  }
+  if (num > 0) {
+    do {
+      int encodedBytes=fillRtpPacketBuffer(asaoBuffer,transcodedData,dataOffset);
+      if (encodedBytes == 0) {
+        break;
+      }
+      if (encodingOffset == sipCodec.getOutgoingDecodedFrameSize()) {
+        rtpSender.sendTranscodedData();
+        encodingOffset=0;
+      }
+    }
+ while (!asao_buffer_processed);
+  }
+ else   if (num < 0) {
+    log.debug("Closing");
+  }
+}

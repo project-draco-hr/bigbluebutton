@@ -1,0 +1,7 @@
+{
+  log.debug("VoiceConferenceApplication appStart[" + scope.getName() + "]");
+  sipManager=UserManager.getInstance();
+  sipPort=startSIPPort;
+  rtpPort=startRTPPort;
+  return true;
+}

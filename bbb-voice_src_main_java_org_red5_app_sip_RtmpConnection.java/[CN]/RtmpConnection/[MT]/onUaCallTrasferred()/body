@@ -1,0 +1,4 @@
+{
+  log.debug("onUaCallTrasferred");
+  connection.invoke("callState",new Object[]{"onUaCallTrasferred"});
+}

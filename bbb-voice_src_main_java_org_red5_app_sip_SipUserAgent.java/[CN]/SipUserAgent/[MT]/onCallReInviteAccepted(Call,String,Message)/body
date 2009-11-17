@@ -1,0 +1,8 @@
+{
+  log.debug("onCallReInviteAccepted");
+  if (call != this.call) {
+    log.debug("NOT the current call.");
+    return;
+  }
+  log.debug("RE-INVITE-ACCEPTED/CALL.");
+}

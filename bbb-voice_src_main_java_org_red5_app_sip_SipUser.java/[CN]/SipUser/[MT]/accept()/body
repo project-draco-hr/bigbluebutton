@@ -1,0 +1,11 @@
+{
+  log.debug("SIPUser accept");
+  if (userAgent != null) {
+    try {
+      userAgent.accept();
+    }
+ catch (    Exception e) {
+      log.error("SIPUser: accept - Exception:>\n" + e);
+    }
+  }
+}

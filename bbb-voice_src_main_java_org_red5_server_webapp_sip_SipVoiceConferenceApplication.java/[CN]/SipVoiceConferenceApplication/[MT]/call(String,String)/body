@@ -1,0 +1,9 @@
+{
+  log.debug("Red5SIP Call " + destination);
+  User sipUser=sipManager.getSIPUser(uid);
+  if (sipUser != null) {
+    String extension=callExtensionPattern.format(new String[]{destination});
+    log.debug("Red5SIP Call found user " + uid + " making call to "+ extension+ " (dest was: "+ destination+ ")");
+    sipUser.call(extension);
+  }
+}

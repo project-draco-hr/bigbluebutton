@@ -1,0 +1,16 @@
+{
+  String fromURL="\"" + phone + "\" <sip:"+ phone+ "@"+ proxy+ ">";
+  userProfile=new SipUserAgentProfile();
+  userProfile.audioPort=rtpPort;
+  userProfile.username=username;
+  userProfile.passwd=password;
+  userProfile.realm=realm;
+  userProfile.fromUrl=fromURL;
+  userProfile.contactUrl="sip:" + phone + "@"+ sipProvider.getViaAddress();
+  if (sipProvider.getPort() != SipStack.default_port) {
+    userProfile.contactUrl+=":" + sipProvider.getPort();
+  }
+  userProfile.keepaliveTime=8000;
+  userProfile.acceptTime=0;
+  userProfile.hangupTime=20;
+}

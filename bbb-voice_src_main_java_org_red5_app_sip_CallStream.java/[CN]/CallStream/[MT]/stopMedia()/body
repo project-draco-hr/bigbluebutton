@@ -1,0 +1,12 @@
+{
+  printLog("stopMedia","Halting sip audio...");
+  talkStream.stopStream();
+  listenStream.stop();
+  try {
+    Thread.sleep(RTPStreamReceiver.SO_TIMEOUT);
+  }
+ catch (  Exception e) {
+  }
+  socket.close();
+  return true;
+}

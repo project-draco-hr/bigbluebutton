@@ -1,0 +1,6 @@
+{
+  log.debug("REFER/TRANSFER","Init...");
+  if (call != null && call.isOnCall()) {
+    call.transfer(transferTo);
+  }
+}

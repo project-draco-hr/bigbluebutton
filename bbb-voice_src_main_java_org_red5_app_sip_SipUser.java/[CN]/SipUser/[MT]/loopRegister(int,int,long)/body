@@ -1,0 +1,6 @@
+{
+  if (registerAgent.isRegistering()) {
+    registerAgent.halt();
+  }
+  registerAgent.loopRegister(expire_time,renew_time,keepalive_time);
+}

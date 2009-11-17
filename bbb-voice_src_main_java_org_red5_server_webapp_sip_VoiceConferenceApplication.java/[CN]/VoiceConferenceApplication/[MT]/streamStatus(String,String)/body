@@ -1,7 +1,5 @@
 {
   log.debug("Red5SIP streamStatus");
-  User sipUser=sipManager.getSIPUser(uid);
-  if (sipUser != null) {
-    sipUser.streamStatus(status);
-  }
+  String userid=getSipUserId();
+  sipManager.streamStatus(userid,status);
 }

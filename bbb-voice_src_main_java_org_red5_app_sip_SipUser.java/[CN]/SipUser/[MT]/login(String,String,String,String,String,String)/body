@@ -1,0 +1,13 @@
+{
+  log.debug("SIPUser login");
+  this.username=username;
+  this.password=password;
+  this.proxy=proxy;
+  this.optOutboundProxy=obproxy;
+  this.realm=realm;
+  rtmpUser=new RTMPUser();
+  initializeSipStack();
+  initializeSipProvider();
+  initializeUserProfile(phone);
+  initializeUserAgent();
+}

@@ -1,0 +1,5 @@
+{
+  SipStack.init();
+  SipStack.debug_level=8;
+  SipStack.log_path="log";
+}

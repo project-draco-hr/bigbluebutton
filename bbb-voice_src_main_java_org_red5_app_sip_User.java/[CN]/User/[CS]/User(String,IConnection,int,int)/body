@@ -2,7 +2,7 @@
   log.debug("SIPUser Constructor: sip port " + sipPort + " rtp port:"+ rtpPort);
   try {
     this.sessionID=sessionID;
-    this.connectionService=service;
+    this.connection=connection;
     this.sipPort=sipPort;
     this.rtpPort=rtpPort;
   }

@@ -1,0 +1,10 @@
+{
+  log.debug("onCallConfirmed");
+  if (call != this.call) {
+    log.debug("NOT the current call.");
+    return;
+  }
+  log.debug("CONFIRMED/CALL.");
+  changeStatus(UA_ONCALL);
+  launchMediaApplication();
+}

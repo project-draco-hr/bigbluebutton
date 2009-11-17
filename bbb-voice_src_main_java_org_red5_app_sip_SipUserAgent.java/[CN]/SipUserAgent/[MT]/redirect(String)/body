@@ -1,0 +1,6 @@
+{
+  log.debug("redirect","Init...");
+  if (call != null) {
+    call.redirect(redirection);
+  }
+}

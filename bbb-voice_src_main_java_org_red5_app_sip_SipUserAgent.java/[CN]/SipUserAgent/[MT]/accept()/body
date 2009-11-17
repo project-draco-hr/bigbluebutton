@@ -1,0 +1,6 @@
+{
+  log.debug("accept","Init...");
+  if (call != null) {
+    call.accept(localSession);
+  }
+}

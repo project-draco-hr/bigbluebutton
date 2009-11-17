@@ -1,0 +1,12 @@
+{
+  this.transcoder=transcoder;
+  if (srcSocket == null) {
+    try {
+      srcSocket=new DatagramSocket();
+    }
+ catch (    SocketException e) {
+      e.printStackTrace();
+    }
+    socketIsLocal=true;
+  }
+}

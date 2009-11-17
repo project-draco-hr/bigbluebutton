@@ -1,0 +1,6 @@
+{
+  log.debug("onUaCallFailed");
+  closeStreams();
+  rtmpConnection.onUaCallFailed();
+  ua.waitForIncomingCalls();
+}

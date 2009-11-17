@@ -1,0 +1,11 @@
+{
+  log.debug("SIPUser Calling " + destination);
+  userAgent.hangup();
+  if (destination.indexOf("@") == -1) {
+    destination=destination + "@" + proxy;
+  }
+  if (destination.indexOf("sip:") > -1) {
+    destination=destination.substring(4);
+  }
+  userAgent.call(destination);
+}

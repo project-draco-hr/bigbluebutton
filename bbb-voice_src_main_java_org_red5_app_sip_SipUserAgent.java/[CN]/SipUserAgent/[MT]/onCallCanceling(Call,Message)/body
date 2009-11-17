@@ -1,0 +1,12 @@
+{
+  log.debug("onCallCanceling");
+  if (call != this.call) {
+    log.debug("NOT the current call.");
+    return;
+  }
+  log.debug("CANCEL.");
+  changeStatus(UA_IDLE);
+  if (listener != null) {
+    listener.onUaCallCancelled(this);
+  }
+}

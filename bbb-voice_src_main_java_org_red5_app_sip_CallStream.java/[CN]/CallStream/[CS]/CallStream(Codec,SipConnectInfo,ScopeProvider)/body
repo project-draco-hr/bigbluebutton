@@ -1,0 +1,16 @@
+{
+  try {
+    socket=new DatagramSocket(connInfo.getLocalPort());
+  }
+ catch (  SocketException e) {
+    log.error("SocketException while initializing DatagramSocket");
+    throw new Exception("Exception while initializing CallStream");
+  }
+  NellyToPcmTranscoder2 pTranscoder=new NellyToPcmTranscoder2(sipCodec);
+  rtpSender=new RtpSender2(pTranscoder,socket,connInfo.getRemoteAddr(),connInfo.getRemotePort());
+  printLog("SIPAudioLauncher","New audio receiver on " + connInfo.getLocalPort() + ".");
+  talkStream=new TalkStream(pTranscoder,rtpSender);
+  listenStream=new ListenStream(scopeProvider.getScope());
+  PcmToNellyTranscoder2 transcoder=new PcmToNellyTranscoder2(sipCodec,listenStream);
+  rtpReceiver=new RtpReceiver2(transcoder,socket);
+}

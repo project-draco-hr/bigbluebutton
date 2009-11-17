@@ -1,0 +1,10 @@
+{
+  Collection sipUsers=getSIPUsers();
+  User sipUser;
+  for (Iterator iter=sipUsers.iterator(); iter.hasNext(); ) {
+    sipUser=(User)iter.next();
+    sipUser.close();
+    sipUser=null;
+  }
+  sessions=new HashMap<String,SipUser>();
+}

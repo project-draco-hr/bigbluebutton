@@ -1,0 +1,4 @@
+{
+  log.debug("SIP Registration success " + result);
+  connection.invoke("registrationSucess",new Object[]{result});
+}

@@ -1,0 +1,8 @@
+{
+  String source=caller.getAddress().toString();
+  String sourceName=caller.hasDisplayName() ? caller.getDisplayName() : "";
+  String destination=callee.getAddress().toString();
+  String destinationName=callee.hasDisplayName() ? callee.getDisplayName() : "";
+  log.debug("onUaCallIncoming " + source + " "+ destination);
+  rtmpConnection.onCallIncoming(source,sourceName,destination,destinationName);
+}

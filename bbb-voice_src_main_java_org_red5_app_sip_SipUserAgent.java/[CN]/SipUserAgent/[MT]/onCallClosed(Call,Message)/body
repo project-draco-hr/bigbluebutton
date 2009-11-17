@@ -1,0 +1,12 @@
+{
+  log.debug("onCallClosed");
+  if (call != this.call) {
+    log.debug("NOT the current call.");
+    return;
+  }
+  log.debug("CLOSE/OK.");
+  if (listener != null) {
+    listener.onUaCallClosed(this);
+  }
+  changeStatus(UA_IDLE);
+}

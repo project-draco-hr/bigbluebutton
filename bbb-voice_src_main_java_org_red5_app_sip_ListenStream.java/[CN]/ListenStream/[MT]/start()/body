@@ -1,0 +1,19 @@
+{
+  startPublishing(scope);
+  streamAudio=true;
+  audioStreamer=new Runnable(){
+    public void run(){
+      while (streamAudio) {
+        try {
+          AudioData audioData=audioDataQ.take();
+          streamAudioData(audioData);
+        }
+ catch (        InterruptedException e) {
+          log.warn("InterruptedExeption while taking event.");
+        }
+      }
+    }
+  }
+;
+  exec.execute(audioStreamer);
+}

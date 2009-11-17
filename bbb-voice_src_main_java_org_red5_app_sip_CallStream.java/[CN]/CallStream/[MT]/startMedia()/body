@@ -1,0 +1,8 @@
+{
+  printLog("startMedia","Starting sip audio...");
+  if (rtpReceiver != null) {
+    printLog("startMedia","Start receiving.");
+    rtpReceiver.start();
+  }
+  return true;
+}

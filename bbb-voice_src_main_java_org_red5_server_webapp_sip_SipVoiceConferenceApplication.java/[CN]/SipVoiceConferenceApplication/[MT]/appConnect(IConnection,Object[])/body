@@ -1,0 +1,5 @@
+{
+  IServiceCapableConnection service=(IServiceCapableConnection)conn;
+  log.debug("VoiceConferenceApplication appConnect[" + conn.getClient().getId() + ","+ service+ "]");
+  return true;
+}

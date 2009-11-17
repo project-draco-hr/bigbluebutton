@@ -2,8 +2,8 @@
   log.debug("onUaCallFailed");
   sipReady=false;
   closeStreams();
-  if (connectionService != null) {
-    ((IServiceCapableConnection)connectionService).invoke("callState",new Object[]{"onUaCallFailed"});
+  if (connection != null) {
+    ((IServiceCapableConnection)connection).invoke("callState",new Object[]{"onUaCallFailed"});
   }
-  ua.listen();
+  ua.waitForIncomingCalls();
 }

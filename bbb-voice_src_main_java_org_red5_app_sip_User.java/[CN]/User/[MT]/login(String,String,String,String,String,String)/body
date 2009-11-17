@@ -29,7 +29,7 @@
     userProfile.hangupTime=20;
     userAgent=new UserAgent(sipProvider,userProfile,this,rtmpUser);
     sipReady=false;
-    userAgent.listen();
+    userAgent.waitForIncomingCalls();
   }
  catch (  Exception e) {
     log.error("login: Exception:>\n" + e);

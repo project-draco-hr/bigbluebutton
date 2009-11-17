@@ -1,0 +1,26 @@
+{
+  int pcmBufferOffset=0;
+  int copySize=0;
+  boolean pcmBufferProcessed=false;
+  do {
+    if ((tempBuffer.length - tempBufferOffset) <= (pcmBuffer.length - pcmBufferOffset)) {
+      copySize=tempBuffer.length - tempBufferOffset;
+    }
+ else {
+      copySize=pcmBuffer.length - pcmBufferOffset;
+    }
+    System.arraycopy(pcmBuffer,pcmBufferOffset,tempBuffer,tempBufferOffset,copySize);
+    tempBufferOffset+=copySize;
+    pcmBufferOffset+=copySize;
+    if (tempBufferOffset == NELLYMOSER_DECODED_PACKET_SIZE) {
+      ByteStream encodedStream=new ByteStream(NELLYMOSER_ENCODED_PACKET_SIZE);
+      encoderMap=CodecImpl.encode(encoderMap,tempBuffer,encodedStream.bytes);
+      pushAudio(encodedStream.bytes);
+      tempBufferOffset=0;
+    }
+    if (pcmBufferOffset == pcmBuffer.length) {
+      pcmBufferProcessed=true;
+    }
+  }
+ while (!pcmBufferProcessed);
+}

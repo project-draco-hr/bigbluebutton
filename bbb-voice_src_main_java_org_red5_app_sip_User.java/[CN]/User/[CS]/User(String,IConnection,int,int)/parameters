@@ -1,4 +1,4 @@
 String sessionID
-IConnection service
+IConnection connection
 int sipPort
 int rtpPort

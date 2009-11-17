@@ -1,0 +1,3 @@
+{
+  transcoder.transcode(asaoBuffer,offset,num,packetBuffer,RTP_HEADER_SIZE,this);
+}

@@ -1,0 +1,4 @@
+{
+  SipUser sipUser=new SipUser(userid,connection,sipPort,rtpPort);
+  sessions.put(userid,sipUser);
+}

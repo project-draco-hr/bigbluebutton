@@ -18,7 +18,7 @@
       localVideoPort=media.getPort();
     }
   }
-  log.debug("launchMediaApplication","localAudioPort = " + localAudioPort + ", localVideoPort = "+ localVideoPort+ ".");
+  log.debug("localAudioPort = " + localAudioPort + ", localVideoPort = "+ localVideoPort+ ".");
   SessionDescriptor remoteSdp=new SessionDescriptor(call.getRemoteSessionDescriptor());
   String remoteMediaAddress=(new Parser(remoteSdp.getConnection().toString())).skipString().skipString().getString();
   int remoteAudioPort=0;
@@ -33,7 +33,7 @@
       remoteVideoPort=media.getPort();
     }
   }
-  log.debug("launchMediaApplication","remoteAudioPort = " + remoteAudioPort + ", remoteVideoPort = "+ remoteVideoPort+ ".");
+  log.debug("remoteAudioPort = " + remoteAudioPort + ", remoteVideoPort = "+ remoteVideoPort+ ".");
   int dir=0;
   if (userProfile.recvOnly) {
     dir=-1;
@@ -41,7 +41,7 @@
  else   if (userProfile.sendOnly) {
     dir=1;
   }
-  log.debug("launchMediaApplication","user_profile.audio = " + userProfile.audio + ", user_profile.video = "+ userProfile.video+ ", audio_app = "+ audioApp+ ", video_app = "+ videoApp+ ".");
+  log.debug("user_profile.audio = " + userProfile.audio + ", user_profile.video = "+ userProfile.video+ ", audio_app = "+ audioApp+ ", video_app = "+ videoApp+ ".");
   if (userProfile.audio && localAudioPort != 0 && remoteAudioPort != 0) {
     if (audioApp == null) {
       if (sipCodec != null) {
