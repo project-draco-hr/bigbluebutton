@@ -1,12 +1,7 @@
 {
-  log.debug("onCallTransferSuccess","Init...");
-  if (call != this.call) {
-    log.debug("onCallTransferSuccess","NOT the current call.");
-    return;
-  }
-  log.debug("onCallTransferSuccess","Transfer successed.");
+  log.debug("onCallTransferSuccess");
+  if (!isCurrentCall(call))   return;
+  log.debug("Transfer succeeded.");
   call.hangup();
-  if (listener != null) {
-    listener.onUaCallTrasferred(this);
-  }
+  notifyListenersOfOnCallTransferred();
 }

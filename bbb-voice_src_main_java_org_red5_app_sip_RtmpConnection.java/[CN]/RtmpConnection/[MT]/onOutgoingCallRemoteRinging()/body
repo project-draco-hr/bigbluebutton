@@ -1,0 +1,4 @@
+{
+  log.debug("onOutgoingCallRemoteRinging");
+  connection.invoke("callState",new Object[]{"onUaCallRinging"});
+}

@@ -14,9 +14,7 @@
       SipConnectInfo connInfo=new SipConnectInfo(localAudioPort,remoteMediaAddress,remoteAudioPort);
       try {
         callStream=new CallStream(sipCodec,connInfo,scopeProvider);
-        if (listener != null) {
-          listener.onUaCallConnected(this,callStream.getListenStreamName(),callStream.getTalkStreamName());
-        }
+        notifyListenersOnCallConnected(callStream.getListenStreamName(),callStream.getTalkStreamName());
       }
  catch (      Exception e) {
         log.error("Failed to create Call Stream.");

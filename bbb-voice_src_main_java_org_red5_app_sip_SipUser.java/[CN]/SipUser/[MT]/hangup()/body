@@ -1,11 +1,7 @@
 {
   log.debug("SIPUser hangup");
   if (userAgent != null) {
-    if (userAgent.call_state != UserAgent.UA_IDLE) {
-      userAgent.hangup();
-      userAgent.waitForIncomingCalls();
-    }
+    userAgent.hangup();
   }
   closeStreams();
-  rtmpUser.stopStream();
 }

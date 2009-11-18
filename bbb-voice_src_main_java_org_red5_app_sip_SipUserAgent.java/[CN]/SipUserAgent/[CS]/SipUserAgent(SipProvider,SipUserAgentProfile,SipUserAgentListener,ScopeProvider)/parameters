@@ -1,4 +1,0 @@
-SipProvider sipProvider
-SipUserAgentProfile userProfile
-SipUserAgentListener listener
-ScopeProvider scopeProvider

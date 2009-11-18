@@ -1,4 +1,0 @@
-{
-  log.debug("onUaCallRinging");
-  connection.invoke("callState",new Object[]{"onUaCallRinging"});
-}

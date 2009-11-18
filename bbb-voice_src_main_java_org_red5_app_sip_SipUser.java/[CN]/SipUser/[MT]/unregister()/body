@@ -1,9 +1,6 @@
 {
   log.debug("SIPUser unregister");
   if (registerAgent != null) {
-    if (registerAgent.isRegistering()) {
-      registerAgent.halt();
-    }
     registerAgent.unregister();
     registerAgent=null;
   }

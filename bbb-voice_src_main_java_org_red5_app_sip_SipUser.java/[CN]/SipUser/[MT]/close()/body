@@ -8,12 +8,6 @@
  catch (  Exception e) {
     log.error("close: Exception:>\n" + e);
   }
-  try {
-    log.debug("SIPUser provider.halt");
-    sipProvider.halt();
-  }
- catch (  Exception e) {
-    log.error("close: Exception:>\n" + e);
-  }
-  rtmpConnection=null;
+  log.debug("Stopping SipProvider");
+  sipProvider.halt();
 }

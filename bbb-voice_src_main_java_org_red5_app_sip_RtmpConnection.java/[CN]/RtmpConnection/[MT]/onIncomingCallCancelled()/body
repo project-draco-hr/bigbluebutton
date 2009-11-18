@@ -1,0 +1,4 @@
+{
+  log.debug("onIncomingCallCancelled");
+  connection.invoke("callState",new Object[]{"onUaCallCancelled"});
+}

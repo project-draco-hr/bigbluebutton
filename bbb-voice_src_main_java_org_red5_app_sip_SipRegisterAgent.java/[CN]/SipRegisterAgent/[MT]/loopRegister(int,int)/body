@@ -1,0 +1,13 @@
+{
+  this.expireTime=expireTime;
+  this.renewTime=renewTime;
+  if (!isPeriodicallyRegistering()) {
+    registerProcess=new Runnable(){
+      public void run(){
+        registerWithServer();
+      }
+    }
+;
+    exec.execute(registerProcess);
+  }
+}

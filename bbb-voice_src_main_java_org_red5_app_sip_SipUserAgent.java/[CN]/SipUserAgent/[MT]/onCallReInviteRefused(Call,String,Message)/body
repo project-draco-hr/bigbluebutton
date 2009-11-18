@@ -1,11 +1,7 @@
 {
   log.debug("onCallReInviteRefused");
-  if (call != this.call) {
-    log.debug("NOT the current call");
-    return;
-  }
+  if (!isCurrentCall(call))   return;
   log.debug("RE-INVITE-REFUSED (" + reason + ")/CALL.");
-  if (listener != null) {
-    listener.onUaCallFailed(this);
-  }
+  notifyListenersOnOutgoingCallFailed();
+  waitForIncomingCalls();
 }

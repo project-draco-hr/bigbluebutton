@@ -1,9 +1,6 @@
 {
   log.debug("onCallTransfer");
-  if (call != this.call) {
-    log.debug("NOT the current call.");
-    return;
-  }
+  if (!isCurrentCall(call))   return;
   log.debug("Transfer to " + refer_to.toString() + ".");
   call.acceptTransfer();
   callTransfer=new ExtendedCall(sipProvider,userProfile.fromUrl,userProfile.contactUrl,this);

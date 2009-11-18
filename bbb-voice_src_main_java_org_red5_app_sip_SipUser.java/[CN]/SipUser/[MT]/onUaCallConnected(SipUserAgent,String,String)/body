@@ -1,4 +1,0 @@
-{
-  log.debug("SIP Call Connected");
-  rtmpConnection.onUaCallConnected(playName,publishName);
-}

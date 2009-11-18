@@ -1,9 +1,6 @@
 {
   log.debug("onCallClosing");
-  if (call != this.call && call != callTransfer) {
-    log.debug("NOT the current call.");
-    return;
-  }
+  if (!isCurrentCallOrCallTransfer(call))   return;
   if (call != callTransfer && callTransfer != null) {
     log.debug("CLOSE PREVIOUS CALL.");
     this.call=callTransfer;
@@ -12,9 +9,8 @@
   }
   log.debug("CLOSE.");
   closeMediaApplication();
-  if (listener != null) {
-    listener.onUaCallClosed(this);
-  }
-  changeStatus(UA_IDLE);
+  notifyListenersOfOnCallClosed();
+  changeStatus(CallState.UA_IDLE);
   initSessionDescriptor();
+  waitForIncomingCalls();
 }

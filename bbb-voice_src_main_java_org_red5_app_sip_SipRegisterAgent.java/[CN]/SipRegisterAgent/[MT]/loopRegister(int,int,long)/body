@@ -1,0 +1,14 @@
+{
+  if (isPeriodicallyRegistering()) {
+    stopRegistering();
+  }
+  loopRegister(expireTime,renewTime);
+  if (keepaliveTime > 0) {
+    SipURL targetUrl=target.getAddress();
+    String targetHost=targetUrl.getHost();
+    int targePort=targetUrl.getPort();
+    if (targePort < 0)     targePort=SipStack.default_port;
+    SocketAddress socket=new SocketAddress(targetHost,targePort);
+    keepAlive=new KeepAliveSip(sipProvider,socket,null,keepaliveTime);
+  }
+}

@@ -1,4 +1,5 @@
 {
-  userAgent=new SipUserAgent(sipProvider,userProfile,this,rtmpConnection);
-  userAgent.waitForIncomingCalls();
+  userAgent=new SipUserAgent(sipProvider,userProfile,rtmpConnection);
+  userAgent.addListener(rtmpConnection);
+  userAgent.initialize();
 }

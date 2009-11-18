@@ -1,0 +1,8 @@
+{
+  String fromURL="\"" + phone + "\" <sip:"+ phone+ "@"+ proxy+ ">";
+  userProfile.username=username;
+  userProfile.passwd=password;
+  userProfile.realm=realm;
+  userProfile.fromUrl=fromURL;
+  userProfile.contactUrl="sip:" + phone + "@"+ sipProvider.getViaAddress();
+}

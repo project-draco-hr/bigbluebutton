@@ -1,0 +1,8 @@
+{
+  if (transaction.getTransactionMethod().equals(SipMethods.REGISTER)) {
+    lastRegFailed=true;
+    regInprocess=false;
+    printLog("Registration failure: No response from server.");
+    notifyListenersOfRegistrationFailure("Timeout");
+  }
+}

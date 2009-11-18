@@ -1,11 +1,6 @@
 {
   log.debug("onCallRinging");
-  if (call != this.call && call != callTransfer) {
-    log.debug("NOT the current call.");
-    return;
-  }
+  if (!isCurrentCallOrCallTransfer(call))   return;
   log.debug("RINGING.");
-  if (listener != null) {
-    listener.onUaCallRinging(this);
-  }
+  notifyListenersOfOnOutgoingCallRemoteRinging();
 }

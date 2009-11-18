@@ -1,0 +1,5 @@
+{
+  for (  SipRegisterAgentListener listener : listeners) {
+    listener.onRegistrationFailure(result);
+  }
+}

@@ -1,18 +1,14 @@
 {
   log.debug("onCallTimeout");
-  if (call != this.call) {
-    log.debug("NOT the current call.");
-    return;
-  }
+  if (!isCurrentCall(call))   return;
   log.debug("NOT FOUND/TIMEOUT.");
-  changeStatus(UA_IDLE);
+  changeStatus(CallState.UA_IDLE);
   if (call == callTransfer) {
     int code=408;
     String reason="Request Timeout";
     this.call.notify(code,reason);
     callTransfer=null;
   }
-  if (listener != null) {
-    listener.onUaCallFailed(this);
-  }
+  notifyListenersOnOutgoingCallFailed();
+  waitForIncomingCalls();
 }

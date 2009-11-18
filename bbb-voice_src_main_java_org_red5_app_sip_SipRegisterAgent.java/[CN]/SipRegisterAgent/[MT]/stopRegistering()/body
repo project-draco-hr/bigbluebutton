@@ -1,0 +1,4 @@
+{
+  continueRegistering=false;
+  if (keepAlive != null)   keepAlive.halt();
+}
