@@ -1,6 +1,6 @@
 {
   SipUser sipUser=sessions.get(userid);
   if (sipUser != null) {
-    sipUser.startTalkStream(callid);
+    sipUser.stopTalkStream(broadcastStream,scope);
   }
 }

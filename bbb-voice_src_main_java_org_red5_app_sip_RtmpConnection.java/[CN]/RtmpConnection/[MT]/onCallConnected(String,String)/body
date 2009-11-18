@@ -1,4 +1,4 @@
 {
   log.debug("SIP Call Connected");
-  connection.invoke("connected",new Object[]{playName,publishName});
+  connection.invoke("connected",new Object[]{publishName,playName});
 }

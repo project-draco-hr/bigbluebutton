@@ -13,4 +13,6 @@
   listenStream=new ListenStream(scopeProvider.getScope());
   PcmToNellyTranscoder2 transcoder=new PcmToNellyTranscoder2(sipCodec,listenStream);
   rtpReceiver=new RtpReceiver2(transcoder,socket);
+  listenStream.start();
+  rtpReceiver.start();
 }

@@ -2,4 +2,9 @@
   this.scope=scope;
   listenStreamName="speaker_" + System.currentTimeMillis();
   scope.setName(listenStreamName);
+  Iterator<String> it=scope.getScopeNames();
+  while (it.hasNext()) {
+    log.debug((String)it.next());
+    System.out.println((String)it.next());
+  }
 }

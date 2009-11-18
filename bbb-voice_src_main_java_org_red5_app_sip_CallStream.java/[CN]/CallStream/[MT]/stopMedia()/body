@@ -1,6 +1,6 @@
 {
   printLog("stopMedia","Halting sip audio...");
-  talkStream.stopStream();
+  talkStream.stop();
   listenStream.stop();
   try {
     Thread.sleep(RTPStreamReceiver.SO_TIMEOUT);

@@ -1,0 +1,6 @@
+{
+  log.debug("streamPublishStart: {}; {}",stream,stream.getPublishedName());
+  super.streamPublishStart(stream);
+  String userid=getSipUserId();
+  sipManager.startTalkStream(userid,stream,Red5.getConnectionLocal().getScope());
+}

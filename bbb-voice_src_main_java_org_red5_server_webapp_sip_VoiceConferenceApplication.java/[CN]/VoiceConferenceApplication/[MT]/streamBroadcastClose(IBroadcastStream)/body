@@ -1,0 +1,5 @@
+{
+  String userid=getSipUserId();
+  sipManager.stopTalkStream(userid,stream,Red5.getConnectionLocal().getScope());
+  super.streamBroadcastClose(stream);
+}
