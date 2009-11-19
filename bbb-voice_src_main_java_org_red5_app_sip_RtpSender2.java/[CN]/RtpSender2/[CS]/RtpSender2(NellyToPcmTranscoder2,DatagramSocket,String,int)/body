@@ -9,4 +9,5 @@
     }
     socketIsLocal=true;
   }
+  rtpSocket=new RtpSocket(srcSocket,InetAddress.getByName(destAddr),destPort);
 }

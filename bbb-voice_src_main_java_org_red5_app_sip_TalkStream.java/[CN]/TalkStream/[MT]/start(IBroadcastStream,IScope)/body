@@ -6,7 +6,7 @@
     public void run(){
       while (processAudio) {
         try {
-          IStreamPacket packet=packets.take();
+          RtmpAudioData packet=packets.take();
           processAudioPacket(packet);
         }
  catch (        InterruptedException e) {

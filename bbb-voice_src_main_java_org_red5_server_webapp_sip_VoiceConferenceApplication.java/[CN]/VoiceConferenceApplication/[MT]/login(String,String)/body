@@ -1,14 +1,8 @@
 {
-  log.debug("Red5SIP login " + uid);
-  IConnection conn=Red5.getConnectionLocal();
-  IServiceCapableConnection service=(IServiceCapableConnection)conn;
-  RtmpConnection rtmpConnection=new RtmpConnection(service,conn.getScope());
-  String userid=getSipUserId();
-  sipManager.createSipUser(userid,rtmpConnection,sipPort,rtpPort);
-  String password="secret";
+  log.debug("Red5SIP login " + userid);
   String realm=asteriskHost;
   String proxy=realm;
-  sipManager.login(userid,proxy,new Integer(rtpPort).toString(),username,password,realm,proxy);
+  login(proxy,userid,new Integer(rtpPort).toString(),username,password,realm,proxy);
   sipPort++;
   if (sipPort > stopSIPPort)   sipPort=startSIPPort;
   rtpPort++;

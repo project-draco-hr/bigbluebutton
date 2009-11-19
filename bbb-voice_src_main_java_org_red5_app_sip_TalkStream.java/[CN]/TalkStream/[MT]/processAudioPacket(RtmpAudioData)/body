@@ -1,0 +1,5 @@
+{
+  byte[] data=packet.getData();
+  System.out.println("Proccessing voice data");
+  rtpSender.send(data,1,data.length - 1);
+}

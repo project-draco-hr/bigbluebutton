@@ -12,7 +12,7 @@
     }
  else {
       if (tempBufferRemaining > 0) {
-        BufferUtils.floatBufferIndexedCopy(encodingBuffer,encodingOffset,tempBuffer,tempBuffer.length - tempBufferRemaining,tempBufferRemaining);
+        System.arraycopy(tempBuffer,tempBuffer.length - tempBufferRemaining,encodingBuffer,encodingOffset,tempBufferRemaining);
         encodingOffset+=tempBufferRemaining;
         finalCopySize+=tempBufferRemaining;
         tempBufferRemaining=0;
@@ -30,7 +30,7 @@
  else {
         copyingSize=tempBufferRemaining;
       }
-      BufferUtils.floatBufferIndexedCopy(encodingBuffer,encodingOffset,tempBuffer,0,copyingSize);
+      System.arraycopy(tempBuffer,0,encodingBuffer,encodingOffset,copyingSize);
       encodingOffset+=copyingSize;
       tempBufferRemaining-=copyingSize;
       finalCopySize+=copyingSize;
@@ -38,7 +38,7 @@
     if (encodingOffset == encodingBuffer.length) {
       int encodedBytes=sipCodec.pcmToCodec(encodingBuffer,codedBuffer);
       if (encodedBytes == sipCodec.getOutgoingEncodedFrameSize()) {
-        BufferUtils.byteBufferIndexedCopy(transcodedData,dataOffset,codedBuffer,0,codedBuffer.length);
+        System.arraycopy(codedBuffer,0,transcodedData,dataOffset,codedBuffer.length);
       }
  else {
       }

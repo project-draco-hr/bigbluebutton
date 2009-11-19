@@ -3,5 +3,4 @@
   if (socket != null) {
     rtpSocket=new RtpSocket(socket);
   }
-  initializeSocket();
 }

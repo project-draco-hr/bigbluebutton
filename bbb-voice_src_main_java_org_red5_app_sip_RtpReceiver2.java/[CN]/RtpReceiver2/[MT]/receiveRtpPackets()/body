@@ -21,6 +21,7 @@
     }
  catch (    IOException e) {
       log.error("IOException while receiving rtp packets.");
+      receivePackets=false;
     }
   }
   closeSocket();

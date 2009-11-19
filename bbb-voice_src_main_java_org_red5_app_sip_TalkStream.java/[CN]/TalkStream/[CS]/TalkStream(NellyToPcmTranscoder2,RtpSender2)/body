@@ -8,12 +8,15 @@
       if (buf != null)       buf.rewind();
       if (buf == null || buf.remaining() == 0) {
         log.debug("skipping empty packet with no data");
+        System.out.println("skipping empty packet with no data");
         return;
       }
       if (packet instanceof AudioData) {
-        log.debug("adding packet type: {}; ts: {}; on stream: {}",new Object[]{"AUDIO",packet.getTimestamp(),broadcastStream.getPublishedName()});
         try {
-          packets.put(packet);
+          byte[] data=SerializeUtils.ByteBufferToByteArray(buf);
+          RtmpAudioData audioData=new RtmpAudioData(data);
+          System.out.println("Adding data " + data.length);
+          packets.put(audioData);
         }
  catch (        InterruptedException e) {
           log.info("Interrupted exception while queieing audio packet");

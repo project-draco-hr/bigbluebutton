@@ -1,0 +1,4 @@
+{
+  this.audioData=new byte[data.length];
+  System.arraycopy(data,0,this.audioData,0,data.length);
+}
