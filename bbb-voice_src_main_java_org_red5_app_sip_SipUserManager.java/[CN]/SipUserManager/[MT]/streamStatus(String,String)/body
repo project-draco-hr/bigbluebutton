@@ -1,6 +1,0 @@
-{
-  SipUser sipUser=sessions.get(userid);
-  if (sipUser != null) {
-    sipUser.streamStatus(status);
-  }
-}

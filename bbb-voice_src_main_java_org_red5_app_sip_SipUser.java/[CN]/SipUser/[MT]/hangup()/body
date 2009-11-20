@@ -3,5 +3,4 @@
   if (userAgent != null) {
     userAgent.hangup();
   }
-  closeStreams();
 }

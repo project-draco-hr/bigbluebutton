@@ -3,6 +3,5 @@
   timestamp+=transcoder.getOutgoingEncodedFrameSize();
   rtpPacket.setTimestamp(timestamp);
   rtpPacket.setPayloadLength(transcoder.getOutgoingEncodedFrameSize());
-  System.out.println("Sending rtpPacket " + timestamp);
   rtpSocketSend(rtpPacket);
 }

@@ -15,7 +15,6 @@
         try {
           byte[] data=SerializeUtils.ByteBufferToByteArray(buf);
           RtmpAudioData audioData=new RtmpAudioData(data);
-          System.out.println("Adding data " + data.length);
           packets.put(audioData);
         }
  catch (        InterruptedException e) {

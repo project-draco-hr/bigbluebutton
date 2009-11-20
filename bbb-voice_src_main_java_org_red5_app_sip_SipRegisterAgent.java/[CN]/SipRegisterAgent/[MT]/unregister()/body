@@ -2,6 +2,5 @@
   if (isPeriodicallyRegistering()) {
     stopRegistering();
   }
-  register(0);
   sipProvider=null;
 }
