@@ -6,14 +6,20 @@
     log.error("SocketException while initializing DatagramSocket");
     throw new Exception("Exception while initializing CallStream");
   }
-  NellyToPcmTranscoder2 pTranscoder=new NellyToPcmTranscoder2(sipCodec);
-  rtpSender=new RtpSender2(pTranscoder,socket,connInfo.getRemoteAddr(),connInfo.getRemotePort());
-  printLog("SIPAudioLauncher","New audio receiver on " + connInfo.getLocalPort() + ".");
-  rtpSender.start();
-  talkStream=new TalkStream(pTranscoder,rtpSender);
   listenStream=new ListenStream(scopeProvider.getScope());
-  PcmToNellyTranscoder2 transcoder=new PcmToNellyTranscoder2(sipCodec,listenStream);
-  rtpReceiver=new RtpReceiver2(transcoder,socket);
+  Transcoder rtmpToRtpTranscoder, rtpToRtmpTranscoder;
+  if (sipCodec.getCodecId() == SpeexCodec.codecId) {
+    rtmpToRtpTranscoder=new SpeexToSpeexTranscoder(sipCodec);
+    rtpToRtmpTranscoder=new SpeexToSpeexTranscoder(sipCodec,listenStream);
+  }
+ else {
+    rtmpToRtpTranscoder=new NellyToPcmTranscoder2(sipCodec);
+    rtpToRtmpTranscoder=new PcmToNellyTranscoder2(sipCodec,listenStream);
+  }
+  rtpReceiver=new RtpReceiver2(rtpToRtmpTranscoder,socket);
+  rtpSender=new RtpSender2(rtmpToRtpTranscoder,socket,connInfo.getRemoteAddr(),connInfo.getRemotePort());
+  talkStream=new TalkStream(rtmpToRtpTranscoder,rtpSender);
+  rtpSender.start();
   listenStream.start();
   rtpReceiver.start();
 }

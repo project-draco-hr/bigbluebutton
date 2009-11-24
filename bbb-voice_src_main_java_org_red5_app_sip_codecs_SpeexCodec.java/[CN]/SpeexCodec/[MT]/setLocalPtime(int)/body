@@ -1,0 +1,5 @@
+{
+  if (this.incomingPacketization == 0) {
+    incomingPacketization=localPtime;
+  }
+}

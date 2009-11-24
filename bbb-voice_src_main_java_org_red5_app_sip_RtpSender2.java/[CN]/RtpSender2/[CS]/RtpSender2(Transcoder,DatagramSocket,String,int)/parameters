@@ -1,4 +1,4 @@
-NellyToPcmTranscoder2 transcoder
+Transcoder transcoder
 DatagramSocket srcSocket
 String destAddr
 int destPort

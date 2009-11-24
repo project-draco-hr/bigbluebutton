@@ -1,13 +1,16 @@
 {
   SessionDescriptor initialDescriptor=null;
   try {
+    printLog("createInitialSdp","userName = [" + userName + "], viaAddress = ["+ viaAddress+ "], audioPort = ["+ audioPort+ "], videoPort = ["+ videoPort+ "], audioCodecsPrecedence = ["+ audioCodecsPrecedence+ "].");
     int audioCodecsNumber=CodecFactory.getInstance().getAvailableAudioCodecsCount();
     int videoCodecsNumber=CodecFactory.getInstance().getAvailableVideoCodecsCount();
     if ((audioCodecsNumber == 0) && (videoCodecsNumber == 0)) {
+      printLog("createInitialSdp","audioCodecsNumber = [" + audioCodecsNumber + "], videoCodecsNumber = ["+ videoCodecsNumber+ "].");
       return null;
     }
     initialDescriptor=new SessionDescriptor(userName,viaAddress);
     if (initialDescriptor == null) {
+      printLog("createInitialSdp","Error instantiating the initialDescriptor!");
       return null;
     }
     if (audioCodecsNumber > 0) {

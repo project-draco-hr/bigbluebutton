@@ -13,7 +13,6 @@
   this.qop=null;
   this.attempts=0;
   this.minRenewTime=20;
-  this.regFailRetryTime=5;
   this.registerCallID=null;
   this.registerCSeq=0;
 }

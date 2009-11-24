@@ -12,6 +12,9 @@ break;
 case audioCodecG729:
 sipCodec=new G729Codec();
 break;
+case audioCodecSpeex:
+sipCodec=new SpeexCodec();
+break;
 case audioCodeciLBC:
 sipCodec=new ILBCCodec();
 break;

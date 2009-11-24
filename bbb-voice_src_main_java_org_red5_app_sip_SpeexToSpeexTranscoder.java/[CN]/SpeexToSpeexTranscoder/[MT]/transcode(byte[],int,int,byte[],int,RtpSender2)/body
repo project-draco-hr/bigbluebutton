@@ -1,0 +1,4 @@
+{
+  System.arraycopy(asaoBuffer,offset,transcodedData,dataOffset,num);
+  rtpSender.sendTranscodedData();
+}
