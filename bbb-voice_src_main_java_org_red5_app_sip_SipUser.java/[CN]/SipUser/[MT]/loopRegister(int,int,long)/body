@@ -1,3 +1,0 @@
-{
-  registerAgent.loopRegister(expire_time,renew_time,keepalive_time);
-}

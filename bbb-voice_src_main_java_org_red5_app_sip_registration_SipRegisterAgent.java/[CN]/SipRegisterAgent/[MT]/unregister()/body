@@ -1,0 +1,7 @@
+{
+  if (isPeriodicallyRegistering()) {
+    stopRegistering();
+  }
+  unregisterWithServer();
+  sipProvider=null;
+}

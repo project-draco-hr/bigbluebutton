@@ -1,4 +1,10 @@
 {
+  if (agentStatus == Status.REGISTERED) {
+    request=Request.RENEWING;
+  }
+ else {
+    request=Request.REGISTERING;
+  }
   attempts=0;
   lastRegFailed=false;
   regInprocess=true;

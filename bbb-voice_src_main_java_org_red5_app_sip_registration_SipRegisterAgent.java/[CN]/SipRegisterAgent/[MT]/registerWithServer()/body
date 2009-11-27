@@ -1,0 +1,22 @@
+{
+  continueRegistering=true;
+  try {
+    while (continueRegistering) {
+      register();
+      long waitCnt=0;
+      while (regInprocess) {
+        Thread.sleep(1000);
+        waitCnt+=1000;
+      }
+      if (lastRegFailed) {
+        printLog("Failed Registration stop try.");
+        stopRegistering();
+      }
+ else       Thread.sleep(renewTime * 1000 - waitCnt);
+    }
+  }
+ catch (  Exception e) {
+    printException(e);
+  }
+  continueRegistering=false;
+}

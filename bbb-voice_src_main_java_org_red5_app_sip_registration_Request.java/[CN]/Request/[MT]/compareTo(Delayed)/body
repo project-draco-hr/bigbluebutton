@@ -1,0 +1,6 @@
+{
+  Request request=(Request)delayed;
+  if (this.endOfDelay < request.endOfDelay)   return -1;
+  if (this.endOfDelay > request.endOfDelay)   return 1;
+  return this.requestTime.compareTo(request.requestTime);
+}

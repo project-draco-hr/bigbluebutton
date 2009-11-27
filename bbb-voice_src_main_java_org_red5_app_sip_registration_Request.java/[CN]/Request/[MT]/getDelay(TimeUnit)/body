@@ -1,0 +1,4 @@
+{
+  if (initialTransmission)   return 0;
+  return timeUnit.convert(endOfDelay - System.currentTimeMillis(),TimeUnit.MILLISECONDS);
+}

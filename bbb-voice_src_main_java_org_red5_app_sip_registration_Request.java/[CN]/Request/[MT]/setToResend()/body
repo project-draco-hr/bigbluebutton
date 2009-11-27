@@ -1,0 +1,4 @@
+{
+  initialTransmission=false;
+  endOfDelay=System.currentTimeMillis() + REDIAL_PERIOD_IN_SECONDS * 1000L;
+}
