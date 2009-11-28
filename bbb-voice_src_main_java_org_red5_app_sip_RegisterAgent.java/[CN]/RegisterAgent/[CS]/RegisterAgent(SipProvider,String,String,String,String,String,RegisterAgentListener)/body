@@ -1,6 +1,0 @@
-{
-  init(sipProvider,targetUrl,contactUrl,listener);
-  this.username=username;
-  this.realm=realm;
-  this.passwd=passwd;
-}

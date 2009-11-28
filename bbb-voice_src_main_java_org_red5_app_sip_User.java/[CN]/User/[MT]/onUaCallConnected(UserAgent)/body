@@ -1,7 +1,0 @@
-{
-  log.debug("SIP Call Connected");
-  sipReady=true;
-  if (connection != null) {
-    ((IServiceCapableConnection)connection).invoke("connected",new Object[]{playName,publishName});
-  }
-}

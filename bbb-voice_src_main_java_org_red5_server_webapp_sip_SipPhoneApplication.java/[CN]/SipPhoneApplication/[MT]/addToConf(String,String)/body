@@ -1,8 +1,3 @@
 {
   loginfo("Red5SIP addToConf " + conf);
-  User sipUser=sipManager.getSIPUser(uid);
-  if (sipUser != null) {
-    loginfo("Red5SIP addToConf found user " + uid + " adding to conf "+ conf);
-    sipUser.transfer("8" + conf);
-  }
 }

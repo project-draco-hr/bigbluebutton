@@ -1,9 +1,0 @@
-{
-  log.debug("onCallRedirection","Init...");
-  if (call != this.call) {
-    log.debug("onCallRedirection","NOT the current call.");
-    return;
-  }
-  log.debug("onCallRedirection","REDIRECTION (" + reason + ").");
-  call.call(((String)contact_list.elementAt(0)));
-}

@@ -1,5 +1,0 @@
-{
-  for (  SipRegisterAgentListener listener : listeners) {
-    listener.onRegistrationSuccess(result);
-  }
-}

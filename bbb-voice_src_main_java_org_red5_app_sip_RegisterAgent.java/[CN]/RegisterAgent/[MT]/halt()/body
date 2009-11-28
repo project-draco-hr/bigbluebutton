@@ -1,4 +1,0 @@
-{
-  if (isRunning)   loop=false;
-  if (keepAlive != null)   keepAlive.halt();
-}

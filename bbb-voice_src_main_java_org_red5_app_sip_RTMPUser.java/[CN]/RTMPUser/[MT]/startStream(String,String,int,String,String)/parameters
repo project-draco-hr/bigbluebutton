@@ -1,5 +1,0 @@
-String host
-String app
-int port
-String publishName
-String playName

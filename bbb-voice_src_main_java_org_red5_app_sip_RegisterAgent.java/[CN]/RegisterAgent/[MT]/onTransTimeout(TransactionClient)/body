@@ -1,9 +1,0 @@
-{
-  if (transaction.getTransactionMethod().equals(SipMethods.REGISTER)) {
-    if (listener == null)     printLog("Registration failure: No response from server.");
- else     printLog("Registration failure: No response from server.");
-    lastRegFailed=true;
-    regInprocess=false;
-    if (listener != null)     listener.onUaRegistrationFailure(this,target,contact,"Timeout");
-  }
-}

@@ -1,5 +1,0 @@
-{
-  this.audioCodec=audioCodec;
-  encoderMap=new float[64];
-  tempBuffer=new float[NELLYMOSER_DECODED_PACKET_SIZE];
-}

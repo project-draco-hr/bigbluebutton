@@ -1,3 +1,0 @@
-int expireTime
-int renewTime
-long keepaliveTime

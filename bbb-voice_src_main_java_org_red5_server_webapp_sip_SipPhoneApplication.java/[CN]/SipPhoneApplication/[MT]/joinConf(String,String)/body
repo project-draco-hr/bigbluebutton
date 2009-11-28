@@ -1,8 +1,3 @@
 {
   loginfo("Red5SIP joinConf " + conf);
-  User sipUser=sipManager.getSIPUser(uid);
-  if (sipUser != null) {
-    loginfo("Red5SIP joinConf found user " + uid + " joining conf "+ conf);
-    sipUser.call("8" + conf);
-  }
 }

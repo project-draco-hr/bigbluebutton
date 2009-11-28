@@ -1,4 +1,0 @@
-{
-  log.debug("RTPStreamSender - " + method + " -> "+ message);
-  System.out.println("RTPStreamSender - " + method + " -> "+ message);
-}

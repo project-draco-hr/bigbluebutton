@@ -1,5 +1,0 @@
-{
-  logger.debug("create play stream");
-  IPendingServiceCallback wrapper=new CreatePlayStreamCallBack(callback);
-  invoke("createStream",null,wrapper);
-}

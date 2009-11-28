@@ -1,3 +1,0 @@
-{
-  init(rtmpUser,do_sync,sipCodec,src_socket,dest_addr,dest_port);
-}

@@ -1,3 +1,0 @@
-{
-  sessions=Collections.synchronizedMap(new HashMap<String,User>());
-}

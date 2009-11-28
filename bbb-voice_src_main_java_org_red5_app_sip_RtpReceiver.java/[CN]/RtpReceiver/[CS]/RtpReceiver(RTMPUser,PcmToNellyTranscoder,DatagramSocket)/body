@@ -1,7 +1,0 @@
-{
-  this.transcoder=transcoder;
-  this.rtmpUser=rtmpUser;
-  if (socket != null) {
-    rtpSocket=new RtpSocket(socket);
-  }
-}

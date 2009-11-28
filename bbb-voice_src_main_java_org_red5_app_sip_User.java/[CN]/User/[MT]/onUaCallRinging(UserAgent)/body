@@ -1,6 +1,0 @@
-{
-  log.debug("onUaCallRinging");
-  if (connection != null) {
-    ((IServiceCapableConnection)connection).invoke("callState",new Object[]{"onUaCallRinging"});
-  }
-}

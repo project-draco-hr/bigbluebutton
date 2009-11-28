@@ -1,3 +1,0 @@
-{
-  if (rtpSender != null)   rtpSender.queueSipDtmfDigits(argDigits);
-}

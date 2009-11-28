@@ -1,6 +1,0 @@
-{
-  log.debug("listen","Init...");
-  changeStatus(UA_IDLE);
-  call=new ExtendedCall(sipProvider,userProfile.fromUrl,userProfile.contactUrl,userProfile.username,userProfile.realm,userProfile.passwd,this);
-  call.listen();
-}

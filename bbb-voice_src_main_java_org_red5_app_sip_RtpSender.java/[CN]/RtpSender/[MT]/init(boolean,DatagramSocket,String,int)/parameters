@@ -1,4 +1,0 @@
-boolean do_sync
-DatagramSocket src_socket
-String dest_addr
-int dest_port

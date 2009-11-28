@@ -1,8 +1,0 @@
-{
-  try {
-    rtpSocket.send(rtpPacket);
-    time+=rtpPacket.getPayloadLength();
-  }
- catch (  Exception e) {
-  }
-}

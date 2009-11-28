@@ -1,5 +1,0 @@
-{
-  register(0);
-  sipProvider=null;
-  listener=null;
-}

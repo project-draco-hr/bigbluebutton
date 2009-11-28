@@ -1,8 +1,0 @@
-{
-  log.debug("Red5SIP Call " + destination);
-  User sipUser=sipManager.getSIPUser(uid);
-  if (sipUser != null) {
-    log.debug("Red5SIP Call found user " + uid + " making call to "+ destination);
-    sipUser.call(destination);
-  }
-}

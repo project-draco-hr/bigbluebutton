@@ -1,4 +1,0 @@
-{
-  this.transcoder=transcoder;
-  init(do_sync,src_socket,dest_addr,dest_port);
-}

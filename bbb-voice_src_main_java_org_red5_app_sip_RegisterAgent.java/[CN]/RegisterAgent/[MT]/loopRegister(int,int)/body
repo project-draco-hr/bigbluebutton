@@ -1,6 +1,0 @@
-{
-  this.expireTime=expireTime;
-  this.renewTime=renewTime;
-  loop=true;
-  if (!isRunning)   (new Thread(this,this.getClass().getName())).start();
-}

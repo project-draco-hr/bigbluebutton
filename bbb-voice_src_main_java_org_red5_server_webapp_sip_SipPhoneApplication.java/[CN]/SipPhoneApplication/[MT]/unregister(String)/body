@@ -1,7 +1,3 @@
 {
   loginfo("Red5SIP unregister");
-  User sipUser=sipManager.getSIPUser(uid);
-  if (sipUser != null) {
-    sipUser.unregister();
-  }
 }

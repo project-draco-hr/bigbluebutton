@@ -1,9 +1,0 @@
-{
-  log.debug("onCallModifying","Init...");
-  if (call != this.call) {
-    log.debug("onCallModifying","NOT the current call.");
-    return;
-  }
-  log.debug("onCallModifying","RE-INVITE/MODIFY.");
-  super.onCallModifying(call,sdp,invite);
-}

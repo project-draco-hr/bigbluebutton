@@ -1,7 +1,0 @@
-{
-  log.debug("Red5SIP Accept");
-  User sipUser=sipManager.getSIPUser(uid);
-  if (sipUser != null) {
-    sipUser.accept();
-  }
-}

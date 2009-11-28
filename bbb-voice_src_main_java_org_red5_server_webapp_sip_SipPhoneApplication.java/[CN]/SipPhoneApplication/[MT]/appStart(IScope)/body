@@ -1,6 +1,6 @@
 {
   loginfo("Red5SIP starting in scope " + scope.getName() + " "+ System.getProperty("user.dir"));
-  sipManager=UserManager.getInstance();
+  sipManager=SipUserManager.getInstance();
   loginfo("Red5SIP using RTP port range " + startRTPPort + "-"+ stopRTPPort+ ", using SIP port range "+ startSIPPort+ "-"+ stopSIPPort);
   sipPort=startSIPPort;
   rtpPort=startRTPPort;

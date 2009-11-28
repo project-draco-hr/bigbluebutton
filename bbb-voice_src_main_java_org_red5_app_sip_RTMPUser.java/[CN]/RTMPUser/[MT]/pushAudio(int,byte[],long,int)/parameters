@@ -1,4 +1,0 @@
-int len
-byte[] audio
-long ts
-int codec
