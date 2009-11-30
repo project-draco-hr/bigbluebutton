@@ -1,0 +1,7 @@
+{
+  HelloEvents helloEvents;
+  helloEvents=new HelloEvents();
+  helloEvents.run();
+  while (true) {
+  }
+}

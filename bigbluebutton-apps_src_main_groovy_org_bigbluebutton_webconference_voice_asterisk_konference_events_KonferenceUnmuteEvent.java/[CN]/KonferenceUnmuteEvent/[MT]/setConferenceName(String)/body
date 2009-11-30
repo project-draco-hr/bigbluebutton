@@ -1,0 +1,3 @@
+{
+  this.conferenceName=conferenceName;
+}

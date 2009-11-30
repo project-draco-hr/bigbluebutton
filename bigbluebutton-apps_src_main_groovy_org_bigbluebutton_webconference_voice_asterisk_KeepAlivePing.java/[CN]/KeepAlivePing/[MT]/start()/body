@@ -1,0 +1,13 @@
+{
+  log.info("KeepAlivePing Starting");
+  if (!pinging) {
+    pinging=true;
+    pingProcess=new Runnable(){
+      public void run(){
+        pingAsteriskServer();
+      }
+    }
+;
+    exec.execute(pingProcess);
+  }
+}

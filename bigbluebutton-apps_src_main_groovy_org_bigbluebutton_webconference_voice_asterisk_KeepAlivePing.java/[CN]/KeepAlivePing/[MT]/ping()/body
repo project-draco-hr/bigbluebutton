@@ -1,0 +1,17 @@
+{
+  ManagerResponse response;
+  try {
+    if (timeout <= 0) {
+      log.debug("Sending Ping");
+      connection.sendAction(new PingAction(),null);
+    }
+ else {
+      log.debug("Sending ping response:");
+      response=connection.sendAction(new PingAction(),timeout);
+      log.debug("Got ping response:" + response);
+    }
+  }
+ catch (  Exception e) {
+    log.warn("Exception on sending Ping",e);
+  }
+}
