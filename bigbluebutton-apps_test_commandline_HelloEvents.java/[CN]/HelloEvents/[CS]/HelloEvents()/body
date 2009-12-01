@@ -1,4 +1,9 @@
 {
   ManagerConnectionFactory factory=new ManagerConnectionFactory("192.168.0.120","bbb","secret");
   this.managerConnection=factory.createManagerConnection();
+  managerConnection.registerUserEventClass(ConferenceJoinEvent.class);
+  managerConnection.registerUserEventClass(ConferenceLeaveEvent.class);
+  managerConnection.registerUserEventClass(ConferenceStateEvent.class);
+  managerConnection.registerUserEventClass(ConferenceMemberMuteEvent.class);
+  managerConnection.registerUserEventClass(ConferenceMemberUnmuteEvent.class);
 }
