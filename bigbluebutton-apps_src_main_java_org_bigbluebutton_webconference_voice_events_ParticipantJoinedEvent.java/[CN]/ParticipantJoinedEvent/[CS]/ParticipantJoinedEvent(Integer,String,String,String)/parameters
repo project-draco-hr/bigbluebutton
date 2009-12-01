@@ -1,0 +1,4 @@
+Integer participantId
+String room
+String callerIdNum
+String callerIdName

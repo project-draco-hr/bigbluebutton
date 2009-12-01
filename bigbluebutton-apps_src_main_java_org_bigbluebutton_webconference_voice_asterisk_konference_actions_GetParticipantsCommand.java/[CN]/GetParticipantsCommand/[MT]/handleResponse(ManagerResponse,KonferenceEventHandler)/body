@@ -1,0 +1,21 @@
+{
+  final List<String> lines;
+  Matcher matcher;
+  lines=((CommandResponse)response).getResult();
+  for (  String line : lines) {
+    matcher=KONFERENCE_LIST_PATTERN.matcher(line);
+    if (matcher.matches()) {
+      Integer memberId=Integer.valueOf(matcher.group(1).trim());
+      String callerIdName=matcher.group(2).trim();
+      String callerIdNum=matcher.group(3).trim();
+      boolean muted="Unmuted".equals(matcher.group(4).trim()) ? true : false;
+      String conferenceName=matcher.group(6).trim();
+      ConferenceJoinEvent cj=new ConferenceJoinEvent(memberId);
+      cj.setMember(memberId);
+      cj.setCallerID(callerIdNum);
+      cj.setCallerIDName(callerIdName);
+      cj.setConferenceName(conferenceName);
+      eventHandler.handlKonferenceEvent(cj);
+    }
+  }
+}
