@@ -1,0 +1,5 @@
+{
+  log.debug("setting manager connection");
+  this.managerConnection=connection;
+  log.debug("setting manager connection DONE");
+}

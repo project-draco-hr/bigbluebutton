@@ -1,0 +1,12 @@
+{
+  log.debug("Participant $name joining");
+  SharedObjectInfo soi=voiceRooms.get(room);
+  if (soi != null) {
+    List<String> list=new ArrayList<String>();
+    list.add(participant.toString());
+    list.add(name);
+    list.add(muted.toString());
+    list.add(talking.toString());
+    soi.getSharedObject().sendMessage("userJoin",list);
+  }
+}

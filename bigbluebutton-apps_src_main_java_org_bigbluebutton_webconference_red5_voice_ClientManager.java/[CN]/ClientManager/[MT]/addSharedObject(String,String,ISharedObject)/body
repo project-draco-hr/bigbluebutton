@@ -1,0 +1,5 @@
+{
+  SharedObjectInfo soi=new SharedObjectInfo(webRoom,voiceRoom,so);
+  voiceRooms.put(voiceRoom,soi);
+  webRooms.put(webRoom,soi);
+}

@@ -1,0 +1,9 @@
+{
+  log.debug("Participant $user leaving");
+  SharedObjectInfo soi=voiceRooms.get(room);
+  if (soi != null) {
+    List<String> list=new ArrayList<String>();
+    list.add(participant.toString());
+    soi.getSharedObject().sendMessage("userLeft",list);
+  }
+}

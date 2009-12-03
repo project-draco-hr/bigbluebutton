@@ -3,5 +3,4 @@
   managerConnection.login();
   managerConnection.sendAction(new StatusAction());
   Thread.sleep(10000);
-  populateRoom("85115");
 }

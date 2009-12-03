@@ -1,0 +1,4 @@
+{
+  roomsManager.addRoom(new VoiceRoom(name));
+  return true;
+}

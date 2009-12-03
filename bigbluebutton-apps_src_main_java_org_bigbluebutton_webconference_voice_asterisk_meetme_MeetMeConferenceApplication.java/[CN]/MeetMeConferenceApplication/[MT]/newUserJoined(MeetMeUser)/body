@@ -1,0 +1,8 @@
+{
+  String room=user.getRoom().getRoomNumber();
+  Integer userid=user.getUserNumber();
+  String username=user.getChannel().getCallerId().getName();
+  Boolean muted=user.isMuted();
+  Boolean talking=user.isTalking();
+  conferenceListener.joined(room,userid,username,muted,talking);
+}

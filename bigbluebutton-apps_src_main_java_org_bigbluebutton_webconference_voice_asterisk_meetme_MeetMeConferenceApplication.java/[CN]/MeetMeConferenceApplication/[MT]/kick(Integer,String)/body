@@ -1,0 +1,12 @@
+{
+  log.debug("Kick: $user $conference");
+  MeetMeRoom room=getMeetMeRoom(conference);
+  if (room == null)   return;
+  Collection<MeetMeUser> users=room.getUsers();
+  for (Iterator<MeetMeUser> it=users.iterator(); it.hasNext(); ) {
+    MeetMeUser muser=(MeetMeUser)it.next();
+    if (user == muser.getUserNumber()) {
+      muser.kick();
+    }
+  }
+}

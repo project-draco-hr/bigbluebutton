@@ -4,25 +4,25 @@
   try {
     response=manager.sendAction(cmd);
     if (response instanceof ManagerError) {
-      logger.error("Unable to send \"" + KONFERENCE_LIST_COMMAND + "\" command: "+ response.getMessage());
+      log.error("Unable to send command: ");
       return;
     }
     if (!(response instanceof CommandResponse)) {
-      logger.error("Response to \"" + KONFERENCE_LIST_COMMAND + "\" command is not a CommandResponse but "+ response.getClass());
+      log.error("Response to command is not a CommandResponse but " + response.getClass());
       return;
     }
     command.handleResponse(response,eventHandler);
   }
  catch (  TimeoutException e) {
-    System.out.println("Unable to send \"" + KONFERENCE_LIST_COMMAND + "\" command");
+    System.out.println("Unable to send command");
   }
 catch (  IllegalArgumentException e) {
-    logger.error("Unable to send \"" + KONFERENCE_LIST_COMMAND + "\" command: ");
+    log.error("Unable to send command: ");
   }
 catch (  IllegalStateException e) {
-    logger.error("Unable to send \"" + KONFERENCE_LIST_COMMAND + "\" command: ");
+    log.error("Unable to send command: ");
   }
 catch (  IOException e) {
-    logger.error("Unable to send \"" + KONFERENCE_LIST_COMMAND + "\" command: ");
+    log.error("Unable to send command: ");
   }
 }

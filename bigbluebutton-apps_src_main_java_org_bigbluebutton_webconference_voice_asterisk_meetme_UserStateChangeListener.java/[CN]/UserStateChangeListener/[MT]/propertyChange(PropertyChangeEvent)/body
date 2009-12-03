@@ -1,0 +1,15 @@
+{
+  MeetMeUser changedUser=(MeetMeUser)evt.getSource();
+  log.debug("Received property changed event for " + evt.getPropertyName() + " old = '"+ evt.getOldValue()+ "' new = '"+ evt.getNewValue()+ "' room = '"+ ((MeetMeUser)evt.getSource()).getRoom()+ "'");
+  if (evt.getPropertyName().equals("muted")) {
+    conferenceListener.muted(changedUser.getRoom().getRoomNumber(),changedUser.getUserNumber(),changedUser.isMuted());
+  }
+ else   if (evt.getPropertyName().equals("talking")) {
+    conferenceListener.talking(changedUser.getRoom().getRoomNumber(),changedUser.getUserNumber(),changedUser.isTalking());
+  }
+ else   if ("state".equals(evt.getPropertyName())) {
+    if (MeetMeUserState.LEFT == (MeetMeUserState)evt.getNewValue()) {
+      conferenceListener.left(changedUser.getRoom().getRoomNumber(),changedUser.getUserNumber());
+    }
+  }
+}

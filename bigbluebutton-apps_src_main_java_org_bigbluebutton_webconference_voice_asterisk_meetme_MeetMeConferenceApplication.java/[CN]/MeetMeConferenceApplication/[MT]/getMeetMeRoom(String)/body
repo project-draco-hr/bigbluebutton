@@ -1,0 +1,14 @@
+{
+  if (managerConnection.getState() != ManagerConnectionState.CONNECTED) {
+    log.error("No connection to the Asterisk server. Connection state is {}",managerConnection.getState().toString());
+    return null;
+  }
+  try {
+    MeetMeRoom mr=asteriskServer.getMeetMeRoom(room);
+    return mr;
+  }
+ catch (  ManagerCommunicationException e) {
+    log.error("Exception error when trying to get conference ${room}");
+  }
+  return null;
+}

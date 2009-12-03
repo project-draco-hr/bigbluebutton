@@ -1,0 +1,4 @@
+{
+  voiceRooms=new ConcurrentHashMap<String,SharedObjectInfo>();
+  webRooms=new ConcurrentHashMap<String,SharedObjectInfo>();
+}
