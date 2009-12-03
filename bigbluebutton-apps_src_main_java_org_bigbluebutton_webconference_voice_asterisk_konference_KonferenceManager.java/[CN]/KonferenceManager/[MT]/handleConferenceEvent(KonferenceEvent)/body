@@ -1,3 +1,3 @@
 {
-  eventHandler.handleKonferenceEvent(event);
+  transformer.transform(event);
 }

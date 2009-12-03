@@ -1,0 +1,26 @@
+{
+  log.debug("Processing event for room: " + event.getRoom());
+  RoomImp rm=rooms.get(event.getRoom());
+  if (rm == null) {
+    log.info("Processing event for non-existing room: " + event.getRoom());
+    return;
+  }
+  if (event instanceof ParticipantJoinedEvent) {
+    ParticipantJoinedEvent pje=(ParticipantJoinedEvent)event;
+    ParticipantImp p=new ParticipantImp(pje.getParticipantId(),pje.getCallerIdName());
+    rm.add(p);
+  }
+ else   if (event instanceof ParticipantLeftEvent) {
+    rm.remove(event.getParticipantId());
+  }
+ else   if (event instanceof ParticipantMutedEvent) {
+    ParticipantMutedEvent pme=(ParticipantMutedEvent)event;
+    ParticipantImp p=(ParticipantImp)rm.getParticipant(event.getParticipantId());
+    if (p != null)     p.setMuted(pme.isMuted());
+  }
+ else   if (event instanceof ParticipantTalkingEvent) {
+    ParticipantTalkingEvent pte=(ParticipantTalkingEvent)event;
+    ParticipantImp p=(ParticipantImp)rm.getParticipant(event.getParticipantId());
+    if (p != null)     p.setMuted(pte.isTalking());
+  }
+}

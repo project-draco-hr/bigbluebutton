@@ -1,0 +1,3 @@
+{
+  if (roomMgr.hasParticipant(room,participant))   ejectParticipant(room,participant);
+}

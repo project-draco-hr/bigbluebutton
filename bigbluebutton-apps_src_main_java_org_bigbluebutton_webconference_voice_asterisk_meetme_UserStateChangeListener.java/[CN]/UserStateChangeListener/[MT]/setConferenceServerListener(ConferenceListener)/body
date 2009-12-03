@@ -1,5 +1,0 @@
-{
-  log.debug("setting conference listener");
-  conferenceListener=l;
-  log.debug("setting conference listener DONE");
-}

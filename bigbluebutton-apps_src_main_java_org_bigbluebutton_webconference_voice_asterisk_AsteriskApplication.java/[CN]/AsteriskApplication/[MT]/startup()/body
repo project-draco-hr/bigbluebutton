@@ -1,0 +1,10 @@
+{
+  if (connection == null) {
+    log.error("Cannot start application as ManagerConnection has not been set.");
+    return;
+  }
+  if (login()) {
+    ping=new KeepAlivePing(connection);
+    ping.start();
+  }
+}

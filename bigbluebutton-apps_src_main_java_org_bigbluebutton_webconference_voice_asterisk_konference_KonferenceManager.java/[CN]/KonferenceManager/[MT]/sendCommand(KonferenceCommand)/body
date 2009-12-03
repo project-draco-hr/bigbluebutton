@@ -11,7 +11,7 @@
       log.error("Response to command is not a CommandResponse but " + response.getClass());
       return;
     }
-    command.handleResponse(response,eventHandler);
+    command.handleResponse(response,transformer);
   }
  catch (  TimeoutException e) {
     System.out.println("Unable to send command");

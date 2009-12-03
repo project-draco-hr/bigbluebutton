@@ -1,8 +1,0 @@
-{
-  this.manager=manager;
-  manager.registerUserEventClass(ConferenceJoinEvent.class);
-  manager.registerUserEventClass(ConferenceLeaveEvent.class);
-  manager.registerUserEventClass(ConferenceStateEvent.class);
-  manager.registerUserEventClass(ConferenceMemberMuteEvent.class);
-  manager.registerUserEventClass(ConferenceMemberUnmuteEvent.class);
-}

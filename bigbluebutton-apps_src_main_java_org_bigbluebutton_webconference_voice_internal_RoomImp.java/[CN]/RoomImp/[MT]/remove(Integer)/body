@@ -1,0 +1,4 @@
+{
+  Participant p=participants.remove(id);
+  if (p != null)   p=null;
+}

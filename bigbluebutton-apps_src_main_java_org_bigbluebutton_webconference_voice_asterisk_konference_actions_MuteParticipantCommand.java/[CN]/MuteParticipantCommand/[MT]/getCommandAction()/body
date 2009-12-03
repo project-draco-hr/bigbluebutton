@@ -1,0 +1,5 @@
+{
+  String action="unmute";
+  if (mute)   action="mute";
+  return new CommandAction("konference" + SPACE + action+ SPACE+ room+ SPACE+ participant);
+}

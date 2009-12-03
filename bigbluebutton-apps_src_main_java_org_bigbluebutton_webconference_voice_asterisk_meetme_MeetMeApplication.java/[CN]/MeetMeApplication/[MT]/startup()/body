@@ -1,0 +1,7 @@
+{
+  log.info("Staring meetme application");
+  asteriskServer=new DefaultAsteriskServer();
+  asteriskServer.setManagerConnection(managerConnection);
+  asteriskServer.addAsteriskServerListener(this);
+  asteriskServer.initialize();
+}

@@ -1,0 +1,4 @@
+{
+  this.name=name;
+  participants=new ConcurrentHashMap<Integer,Participant>();
+}

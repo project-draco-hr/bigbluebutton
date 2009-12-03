@@ -1,4 +1,4 @@
 {
-  SharedObjectInfo soi=webRooms.remove(webRoom);
+  RoomInfo soi=webRooms.remove(webRoom);
   if (soi != null)   voiceRooms.remove(soi.getVoiceRoom());
 }

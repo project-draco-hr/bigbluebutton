@@ -1,5 +1,0 @@
-{
-  log.info("New user joined meetme room: " + user.getRoom() + " "+ user.getChannel().getCallerId().getName());
-  user.addPropertyChangeListener(userStateListener);
-  newUserJoined(user);
-}

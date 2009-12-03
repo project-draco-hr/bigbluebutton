@@ -1,0 +1,4 @@
+{
+  roomMgr.createRoom(room);
+  confApp.populateRoom(room);
+}

@@ -1,6 +1,0 @@
-{
-  log.info("Staring AMI Asterisk service...");
-  ((DefaultAsteriskServer)asteriskServer).setManagerConnection(managerConnection);
-  asteriskServer.addAsteriskServerListener(this);
-  ((DefaultAsteriskServer)asteriskServer).initialize();
-}

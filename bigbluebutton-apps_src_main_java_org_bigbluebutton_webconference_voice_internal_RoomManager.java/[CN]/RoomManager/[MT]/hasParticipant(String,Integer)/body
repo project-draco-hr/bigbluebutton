@@ -1,0 +1,5 @@
+{
+  RoomImp rm=rooms.get(room);
+  if (rm == null)   return false;
+  return rm.hasParticipant(participant);
+}
