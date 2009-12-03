@@ -1,4 +1,0 @@
-{
-  log.debug("joined: $room $participant $name $muted $talking");
-  roomsManager.joined(room,participant,name,muted,talking);
-}
