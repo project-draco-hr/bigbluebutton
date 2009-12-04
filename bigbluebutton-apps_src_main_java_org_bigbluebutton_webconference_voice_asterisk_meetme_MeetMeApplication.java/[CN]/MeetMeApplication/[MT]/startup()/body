@@ -5,6 +5,7 @@
   try {
     asteriskServer.addAsteriskServerListener(this);
     asteriskServer.initialize();
+    managerConnection.addEventListener(this);
   }
  catch (  ManagerCommunicationException e) {
     log.error("ManagerCommunicationException while starting meetme application");

@@ -1,0 +1,5 @@
+{
+  if (event instanceof AbstractMeetMeEvent) {
+    log.debug("MeetMeApplication received event: " + event.getClass().getName());
+  }
+}

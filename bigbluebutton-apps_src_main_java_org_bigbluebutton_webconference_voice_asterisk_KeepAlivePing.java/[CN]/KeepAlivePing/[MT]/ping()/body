@@ -2,8 +2,13 @@
   ManagerResponse response;
   try {
     if (timeout <= 0) {
-      log.debug("Sending Ping");
+      if (pingCount == 5) {
+        log.debug("Sending Ping");
+        pingCount=0;
+      }
+      pingCount++;
       connection.sendAction(new PingAction(),null);
+      pingCount++;
     }
  else {
       log.debug("Sending ping response:");

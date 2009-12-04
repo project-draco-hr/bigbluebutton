@@ -1,15 +1,15 @@
 {
   MeetMeUser cu=(MeetMeUser)evt.getSource();
   log.debug("Received property changed event for " + evt.getPropertyName() + " old = '"+ evt.getOldValue()+ "' new = '"+ evt.getNewValue()+ "' room = '"+ ((MeetMeUser)evt.getSource()).getRoom()+ "'");
-  if (evt.getPropertyName().equals("muted")) {
+  if (evt.getPropertyName().equals(MeetMeUser.PROPERTY_MUTED)) {
     ParticipantMutedEvent pme=new ParticipantMutedEvent(cu.getUserNumber(),cu.getRoom().getRoomNumber(),cu.isMuted());
     conferenceEventListener.handleConferenceEvent(pme);
   }
- else   if (evt.getPropertyName().equals("talking")) {
+ else   if (evt.getPropertyName().equals(MeetMeUser.PROPERTY_TALKING)) {
     ParticipantTalkingEvent pte=new ParticipantTalkingEvent(cu.getUserNumber(),cu.getRoom().getRoomNumber(),cu.isTalking());
     conferenceEventListener.handleConferenceEvent(pte);
   }
- else   if ("state".equals(evt.getPropertyName())) {
+ else   if (MeetMeUser.PROPERTY_STATE.equals(evt.getPropertyName())) {
     if (MeetMeUserState.LEFT == (MeetMeUserState)evt.getNewValue()) {
       ParticipantLeftEvent ple=new ParticipantLeftEvent(cu.getUserNumber(),cu.getRoom().getRoomNumber());
       conferenceEventListener.handleConferenceEvent(ple);
