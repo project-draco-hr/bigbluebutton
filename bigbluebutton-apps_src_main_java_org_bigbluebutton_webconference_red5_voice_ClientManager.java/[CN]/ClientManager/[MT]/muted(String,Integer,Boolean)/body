@@ -1,9 +1,10 @@
 {
-  log.debug("Participant $user mute $muted");
+  log.debug("Participant " + participant + " "+ muted);
   RoomInfo soi=voiceRooms.get(room);
   if (soi != null) {
-    List<String> list=new ArrayList<String>();
-    list.add(participant.toString());
+    List<Object> list=new ArrayList<Object>();
+    list.add(participant);
+    list.add(muted);
     soi.getSharedObject().sendMessage("userMute",list);
   }
 }

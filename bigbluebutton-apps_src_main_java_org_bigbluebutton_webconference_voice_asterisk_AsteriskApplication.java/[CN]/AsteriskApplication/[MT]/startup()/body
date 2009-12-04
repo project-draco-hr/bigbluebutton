@@ -6,5 +6,6 @@
   if (login()) {
     ping=new KeepAlivePing(connection);
     ping.start();
+    appDelegate.startup();
   }
 }

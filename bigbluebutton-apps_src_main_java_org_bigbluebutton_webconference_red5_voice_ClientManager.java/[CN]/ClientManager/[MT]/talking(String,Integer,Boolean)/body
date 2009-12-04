@@ -1,9 +1,10 @@
 {
-  log.debug("Participant $user talk $talking");
+  log.debug("Participant " + participant + " "+ talking);
   RoomInfo soi=voiceRooms.get(room);
   if (soi != null) {
-    List<String> list=new ArrayList<String>();
-    list.add(participant.toString());
+    List<Object> list=new ArrayList<Object>();
+    list.add(participant);
+    list.add(talking);
     soi.getSharedObject().sendMessage("userTalk",list);
   }
 }

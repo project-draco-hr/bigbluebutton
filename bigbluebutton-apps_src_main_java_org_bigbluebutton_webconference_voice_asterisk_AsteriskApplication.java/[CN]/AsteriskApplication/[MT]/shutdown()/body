@@ -7,4 +7,5 @@
     log.info("Logging off fom [" + connection.getHostname() + ":"+ connection.getPort()+ "]");
     connection.logoff();
   }
+  appDelegate.shutdown();
 }

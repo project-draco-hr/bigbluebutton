@@ -1,3 +1,4 @@
 {
+  log.debug("Transforming event: " + event.getClass().getName());
   transformer.transform(event);
 }

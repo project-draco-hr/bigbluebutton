@@ -1,4 +1,5 @@
 {
+  if (roomMgr.hasRoom(room))   return;
   roomMgr.createRoom(room);
   confApp.populateRoom(room);
 }
