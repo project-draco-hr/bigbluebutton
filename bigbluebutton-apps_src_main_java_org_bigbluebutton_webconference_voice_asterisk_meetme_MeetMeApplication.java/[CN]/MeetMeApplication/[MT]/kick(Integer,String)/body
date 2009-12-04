@@ -1,12 +1,15 @@
 {
-  log.debug("Kick: $user $conference");
+  log.debug("Kick: [" + conference + ","+ user+ "]");
   MeetMeRoom room=getMeetMeRoom(conference);
-  if (room == null)   return;
+  if (room == null) {
+    log.warn("Cannot kick user from non-existing meetme room");
+    return;
+  }
   Collection<MeetMeUser> users=room.getUsers();
   for (Iterator<MeetMeUser> it=users.iterator(); it.hasNext(); ) {
     MeetMeUser muser=(MeetMeUser)it.next();
-    if (user == muser.getUserNumber()) {
-      muser.kick();
+    if (user.intValue() == muser.getUserNumber().intValue()) {
+      kickUser(muser);
     }
   }
 }
