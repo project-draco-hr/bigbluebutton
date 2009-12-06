@@ -1,4 +1,4 @@
 {
-  log.debug("Received ManagerEvent");
+  log.debug("Received ManagerEvent " + event.getClass().getName());
   if (event instanceof KonferenceEvent)   handleConferenceEvent((KonferenceEvent)event);
 }

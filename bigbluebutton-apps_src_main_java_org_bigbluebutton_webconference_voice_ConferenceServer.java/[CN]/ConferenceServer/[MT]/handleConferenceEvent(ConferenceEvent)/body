@@ -1,18 +1,3 @@
 {
   roomMgr.processConferenceEvent(event);
-  if (event instanceof ParticipantJoinedEvent) {
-    ParticipantJoinedEvent pje=(ParticipantJoinedEvent)event;
-    listener.joined(pje.getRoom(),pje.getParticipantId(),pje.getCallerIdName(),pje.getMuted(),pje.getSpeaking());
-  }
- else   if (event instanceof ParticipantLeftEvent) {
-    listener.left(event.getRoom(),event.getParticipantId());
-  }
- else   if (event instanceof ParticipantMutedEvent) {
-    ParticipantMutedEvent pme=(ParticipantMutedEvent)event;
-    listener.muted(pme.getRoom(),pme.getParticipantId(),pme.isMuted());
-  }
- else   if (event instanceof ParticipantTalkingEvent) {
-    ParticipantTalkingEvent pte=(ParticipantTalkingEvent)event;
-    listener.talking(pte.getRoom(),pte.getParticipantId(),pte.isTalking());
-  }
 }
