@@ -1,7 +1,7 @@
 {
   AttributeField mediaAttribute=null;
   String formatList="";
-  printLog("getFormatList","Init...");
+  log.debug("getting Format List");
   for (Enumeration attributeEnum=mediaAttributes.elements(); attributeEnum.hasMoreElements(); ) {
     mediaAttribute=(AttributeField)attributeEnum.nextElement();
     if (mediaAttribute.getAttributeName().equalsIgnoreCase(Codec.ATTRIBUTE_RTPMAP)) {
@@ -11,7 +11,6 @@
       formatList+=getPayloadIdFromAttribute(mediaAttribute);
     }
   }
-  printLog("getFormatList","formatList = [" + formatList + "].");
-  printLog("getFormatList","End...");
+  log.debug("formatList = [" + formatList + "].");
   return formatList;
 }

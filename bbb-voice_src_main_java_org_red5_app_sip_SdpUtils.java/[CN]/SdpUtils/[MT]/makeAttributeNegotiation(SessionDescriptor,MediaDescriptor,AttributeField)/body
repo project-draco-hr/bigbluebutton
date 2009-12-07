@@ -1,20 +1,19 @@
 {
-  printLog("makeAttributeNegotiation","Init...");
   try {
-    printLog("makeAttributeNegotiation","AttributeName = [" + remoteAttribute.getAttributeName() + "], AttributeValue = ["+ remoteAttribute.getAttributeValue()+ "].");
+    log.debug("AttributeName = [" + remoteAttribute.getAttributeName() + "], AttributeValue = ["+ remoteAttribute.getAttributeValue()+ "].");
     if (remoteAttribute.getAttributeName().equals(Codec.ATTRIBUTE_RTPMAP)) {
-      printLog("makeAttributeNegotiation","\"rtpmap\" attributes were already negotiated.");
+      log.info("\"rtpmap\" attributes were already negotiated.");
     }
  else     if (!isPayloadRelatedAttribute(remoteAttribute)) {
-      printLog("makeAttributeNegotiation","Attribute is not payload related. Do not negotiate it...");
+      log.info("Attribute is not payload related. Do not negotiate it...");
     }
  else {
       String payloadId=getPayloadIdFromAttribute(remoteAttribute);
       if ("".equals(payloadId)) {
-        printLog("makeAttributeNegotiation","Error! Payload id not found on attribute: Name = [" + remoteAttribute.getAttributeName() + "], Value = ["+ remoteAttribute.getAttributeValue()+ "].");
+        log.error("Payload id not found on attribute: Name = [" + remoteAttribute.getAttributeName() + "], Value = ["+ remoteAttribute.getAttributeValue()+ "].");
       }
  else       if (findAttributeByPayloadId(Codec.ATTRIBUTE_RTPMAP,payloadId,newSdp.getMediaDescriptor(localMedia.getMedia().getMedia())) != null) {
-        printLog("makeAttributeNegotiation","Payload " + payloadId + " present on newSdp.");
+        log.debug("Payload " + payloadId + " present on newSdp.");
         AttributeField localAttribute=findAttributeByPayloadId(remoteAttribute.getAttributeName(),payloadId,localMedia);
         Codec sipCodec=CodecFactory.getInstance().getSIPAudioCodec(Integer.valueOf(payloadId));
         if (sipCodec != null) {
@@ -23,22 +22,22 @@
             localAttibuteValue=localAttribute.getAttributeValue();
           }
  else {
-            printLog("makeAttributeNegotiation","Attribute not found on local media.");
+            log.info("Attribute not found on local media.");
           }
           String attributeValueResult=sipCodec.codecNegotiateAttribute(remoteAttribute.getAttributeName(),localAttibuteValue,remoteAttribute.getAttributeValue());
           if ((attributeValueResult != null) && (!"".equals(attributeValueResult))) {
-            newSdp.getMediaDescriptor(localMedia.getMedia().getMedia()).addAttribute(new AttributeField(remoteAttribute.getAttributeName(),attributeValueResult));
+            AttributeField af=new AttributeField(remoteAttribute.getAttributeName(),attributeValueResult);
+            MediaDescriptor md=newSdp.getMediaDescriptor(localMedia.getMedia().getMedia());
+            md.addAttribute(af);
           }
         }
  else {
-          printLog("makeAttributeNegotiation","Codec not found!");
+          log.warn("Codec not found!");
         }
       }
     }
   }
  catch (  Exception exception) {
-    printLog("makeAttributeNegotiation","Failure creating initial SDP: ");
-    exception.printStackTrace();
+    log.error("Failure creating initial SDP: " + exception.toString());
   }
-  printLog("makeAttributeNegotiation","End...");
 }

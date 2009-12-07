@@ -1,22 +1,19 @@
 {
-  printLog("findAttributeByPayloadId","Init...");
   AttributeField searchingMediaAttribute=null;
-  printLog("findAttributeByPayloadId","attributeName = [" + attributeName + "], payloadId = ["+ payloadId+ "].");
+  log.debug("attributeName = [" + attributeName + "], payloadId = ["+ payloadId+ "].");
   Vector mediaAttributes=mediaDescriptor.getAttributes(attributeName);
   for (Enumeration attributesEnum=mediaAttributes.elements(); attributesEnum.hasMoreElements(); ) {
     AttributeField mediaAttribute=(AttributeField)attributesEnum.nextElement();
-    printLog("findAttributeByPayloadId","Validating attribute with name = [" + mediaAttribute.getAttributeName() + "] and value = ["+ mediaAttribute.getAttributeValue()+ "].");
     if (getPayloadIdFromAttribute(mediaAttribute).equals(payloadId)) {
       searchingMediaAttribute=mediaAttribute;
       break;
     }
   }
   if (searchingMediaAttribute != null) {
-    printLog("findAttributeByPayloadId","Attribute found with name = [" + searchingMediaAttribute.getAttributeName() + "] and value = ["+ searchingMediaAttribute.getAttributeValue()+ "].");
+    log.debug("Attribute found with name = [" + searchingMediaAttribute.getAttributeName() + "] and value = ["+ searchingMediaAttribute.getAttributeValue()+ "].");
   }
  else {
-    printLog("findAttributeByPayloadId","Attribute with name [" + attributeName + "] and payloadId ["+ payloadId+ "] was not found.");
+    log.info("Attribute with name [" + attributeName + "] and payloadId ["+ payloadId+ "] was not found.");
   }
-  printLog("findAttributeByPayloadId","End...");
   return searchingMediaAttribute;
 }

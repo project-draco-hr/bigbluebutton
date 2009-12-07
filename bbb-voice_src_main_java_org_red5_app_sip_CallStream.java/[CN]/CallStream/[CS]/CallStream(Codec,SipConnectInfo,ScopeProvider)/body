@@ -20,6 +20,5 @@
   rtpSender=new RtpSender2(rtmpToRtpTranscoder,socket,connInfo.getRemoteAddr(),connInfo.getRemotePort());
   talkStream=new TalkStream(rtmpToRtpTranscoder,rtpSender);
   rtpSender.start();
-  listenStream.start();
   rtpReceiver.start();
 }

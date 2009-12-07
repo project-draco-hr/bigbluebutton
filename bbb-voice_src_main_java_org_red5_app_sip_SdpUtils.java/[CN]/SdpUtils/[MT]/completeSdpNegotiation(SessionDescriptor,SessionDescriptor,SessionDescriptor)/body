@@ -1,8 +1,7 @@
 {
-  printLog("makeSdpNegotiation","Init...");
   try {
     if (newSdp.getMediaDescriptors().size() == 0) {
-      printLog("completeSdpNegotiation","Error! No media descriptors after \"makeMediaPayloadsNegotiation\".");
+      log.error("No media descriptors after \"makeMediaPayloadsNegotiation\".");
       return;
     }
     Vector remoteDescriptors=remoteSdp.getMediaDescriptors();
@@ -33,8 +32,6 @@
     }
   }
  catch (  Exception exception) {
-    printLog("completeSdpNegotiation","Failure creating initial SDP: ");
-    exception.printStackTrace();
+    log.error("Failure creating initial SDP: " + exception.toString());
   }
-  printLog("completeSdpNegotiation","End...");
 }

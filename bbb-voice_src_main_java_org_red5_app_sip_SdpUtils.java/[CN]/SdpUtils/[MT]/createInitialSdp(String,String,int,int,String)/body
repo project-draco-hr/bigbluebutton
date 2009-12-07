@@ -1,16 +1,16 @@
 {
   SessionDescriptor initialDescriptor=null;
   try {
-    printLog("createInitialSdp","userName = [" + userName + "], viaAddress = ["+ viaAddress+ "], audioPort = ["+ audioPort+ "], videoPort = ["+ videoPort+ "], audioCodecsPrecedence = ["+ audioCodecsPrecedence+ "].");
+    log.debug("userName = [" + userName + "], viaAddress = ["+ viaAddress+ "], audioPort = ["+ audioPort+ "], videoPort = ["+ videoPort+ "], audioCodecsPrecedence = ["+ audioCodecsPrecedence+ "].");
     int audioCodecsNumber=CodecFactory.getInstance().getAvailableAudioCodecsCount();
     int videoCodecsNumber=CodecFactory.getInstance().getAvailableVideoCodecsCount();
     if ((audioCodecsNumber == 0) && (videoCodecsNumber == 0)) {
-      printLog("createInitialSdp","audioCodecsNumber = [" + audioCodecsNumber + "], videoCodecsNumber = ["+ videoCodecsNumber+ "].");
+      log.debug("audioCodecsNumber = [" + audioCodecsNumber + "], videoCodecsNumber = ["+ videoCodecsNumber+ "].");
       return null;
     }
     initialDescriptor=new SessionDescriptor(userName,viaAddress);
     if (initialDescriptor == null) {
-      printLog("createInitialSdp","Error instantiating the initialDescriptor!");
+      log.error("Error instantiating the initialDescriptor!");
       return null;
     }
     if (audioCodecsNumber > 0) {
@@ -38,20 +38,24 @@
           }
         }
  else {
+          log.warn("Audio codec has no especific media attributes.");
         }
       }
       String formatList=getFormatList(audioAttributes);
       for (Enumeration attributesEnum=audioAttributes.elements(); attributesEnum.hasMoreElements(); ) {
         AttributeField audioAttribute=(AttributeField)attributesEnum.nextElement();
         if (initialDescriptor.getMediaDescriptor(Codec.MEDIA_TYPE_AUDIO) == null) {
-          initialDescriptor.addMedia(new MediaField(Codec.MEDIA_TYPE_AUDIO,audioPort,0,"RTP/AVP",formatList),audioAttribute);
+          MediaField mf=new MediaField(Codec.MEDIA_TYPE_AUDIO,audioPort,0,"RTP/AVP",formatList);
+          initialDescriptor.addMedia(mf,audioAttribute);
         }
  else {
+          log.debug("Just adding attribute.");
           initialDescriptor.getMediaDescriptor(Codec.MEDIA_TYPE_AUDIO).addAttribute(audioAttribute);
         }
       }
       String[] commonAudioMediaAttributes=CodecFactory.getInstance().getCommonAudioMediaAttributes();
       if (commonAudioMediaAttributes != null) {
+        log.debug("Adding " + commonAudioMediaAttributes.length + " common audio media attributes.");
         for (int attribIndex=0; attribIndex < commonAudioMediaAttributes.length; attribIndex++) {
           AttributeField newAttribute=parseAttributeField(commonAudioMediaAttributes[attribIndex]);
           if (newAttribute != null) {
@@ -60,6 +64,7 @@
         }
       }
  else {
+        log.debug("No common audio media attributes.");
       }
     }
     if (videoCodecsNumber > 0) {
@@ -73,8 +78,9 @@
         videoAttributes.add(new AttributeField(Codec.ATTRIBUTE_RTPMAP,rtpmapParamValue));
         String[] codecMediaAttributes=videoCodecs[videoIndex].getCodecMediaAttributes();
         if (codecMediaAttributes != null) {
+          log.debug("Adding " + codecMediaAttributes.length + " video codec media attributes.");
           for (int attribIndex=0; attribIndex < codecMediaAttributes.length; attribIndex++) {
-            printLog("createInitialSdp","Adding video media attribute [" + codecMediaAttributes[attribIndex] + "].");
+            log.debug("Adding video media attribute [" + codecMediaAttributes[attribIndex] + "].");
             AttributeField newAttribute=parseAttributeField(codecMediaAttributes[attribIndex]);
             if (newAttribute != null) {
               videoAttributes.add(newAttribute);
@@ -82,14 +88,15 @@
           }
         }
  else {
-          printLog("createInitialSdp","Video codec has no especific media attributes.");
+          log.info("Video codec has no especific media attributes.");
         }
       }
       String formatList=getFormatList(videoAttributes);
       for (Enumeration attributesEnum=videoAttributes.elements(); attributesEnum.hasMoreElements(); ) {
         AttributeField videoAttribute=(AttributeField)attributesEnum.nextElement();
         if (initialDescriptor.getMediaDescriptor(Codec.MEDIA_TYPE_VIDEO) == null) {
-          initialDescriptor.addMedia(new MediaField(Codec.MEDIA_TYPE_VIDEO,audioPort,0,"RTP/AVP",formatList),videoAttribute);
+          MediaField mf=new MediaField(Codec.MEDIA_TYPE_VIDEO,audioPort,0,"RTP/AVP",formatList);
+          initialDescriptor.addMedia(mf,videoAttribute);
         }
  else {
           initialDescriptor.getMediaDescriptor(Codec.MEDIA_TYPE_VIDEO).addAttribute(videoAttribute);
@@ -97,9 +104,9 @@
       }
       String[] commonVideoMediaAttributes=CodecFactory.getInstance().getCommonAudioMediaAttributes();
       if (commonVideoMediaAttributes != null) {
-        printLog("createInitialSdp","Adding " + commonVideoMediaAttributes.length + " common video media attributes.");
+        log.debug("Adding " + commonVideoMediaAttributes.length + " common video media attributes.");
         for (int attribIndex=0; attribIndex < commonVideoMediaAttributes.length; attribIndex++) {
-          printLog("createInitialSdp","Adding common video media attribute [" + commonVideoMediaAttributes[attribIndex] + "].");
+          log.debug("Adding common video media attribute [" + commonVideoMediaAttributes[attribIndex] + "].");
           AttributeField newAttribute=parseAttributeField(commonVideoMediaAttributes[attribIndex]);
           if (newAttribute != null) {
             initialDescriptor.getMediaDescriptor(Codec.MEDIA_TYPE_VIDEO).addAttribute(newAttribute);
@@ -107,14 +114,13 @@
         }
       }
  else {
-        printLog("createInitialSdp","No common video media attributes.");
+        log.info("No common video media attributes.");
       }
     }
   }
  catch (  Exception exception) {
-    printLog("createInitialSdp","Failure creating initial SDP: ");
-    exception.printStackTrace();
+    log.error("Failure creating initial SDP: " + exception.toString());
   }
-  printLog("createInitialSdp","End...");
+  log.debug("Created initial SDP");
   return initialDescriptor;
 }

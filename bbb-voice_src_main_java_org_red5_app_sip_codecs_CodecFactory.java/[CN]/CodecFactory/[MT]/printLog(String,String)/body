@@ -1,4 +1,4 @@
 {
-  log.debug("SIPCodecFactory - " + method + " -> "+ message);
-  System.out.println("SIPCodecFactory - " + method + " -> "+ message);
+  log.debug("SCodecFactory - " + method + " -> "+ message);
+  System.out.println("CodecFactory - " + method + " -> "+ message);
 }

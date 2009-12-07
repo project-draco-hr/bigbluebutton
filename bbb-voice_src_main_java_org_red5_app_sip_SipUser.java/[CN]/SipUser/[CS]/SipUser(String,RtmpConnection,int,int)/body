@@ -2,7 +2,6 @@
   log.debug("SIPUser Constructor: sip port " + sipPort + " rtp port:"+ rtpPort);
   this.userid=userid;
   this.rtmpConnection=connection;
-  initializeSipStack();
   initializeSipProvider(sipPort);
   initializeUserProfile(rtpPort);
 }

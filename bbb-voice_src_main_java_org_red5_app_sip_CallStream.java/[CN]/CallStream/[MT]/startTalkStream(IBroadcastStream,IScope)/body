@@ -1,3 +1,4 @@
 {
   talkStream.start(broadcastStream,scope);
+  listenStream.start();
 }

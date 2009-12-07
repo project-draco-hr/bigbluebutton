@@ -1,6 +1,5 @@
 {
   Codec sipCodec;
-  printLog("getSIPAudioCodec","Init...");
   printLog("getSIPAudioCodec","codecId = [" + codecId + "].");
 switch (codecId) {
 case audioCodecPCMU:
