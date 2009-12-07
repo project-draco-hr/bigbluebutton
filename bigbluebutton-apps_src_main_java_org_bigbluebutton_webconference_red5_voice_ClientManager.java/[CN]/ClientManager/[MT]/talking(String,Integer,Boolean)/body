@@ -1,5 +1,5 @@
 {
-  log.debug("Participant " + participant + " "+ talking);
+  log.debug("Participant " + participant + " is talking = "+ talking);
   RoomInfo soi=voiceRooms.get(room);
   if (soi != null) {
     List<Object> list=new ArrayList<Object>();
