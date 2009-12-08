@@ -1,6 +1,5 @@
 {
   try {
-    log.debug("AttributeName = [" + remoteAttribute.getAttributeName() + "], AttributeValue = ["+ remoteAttribute.getAttributeValue()+ "].");
     if (remoteAttribute.getAttributeName().equals(Codec.ATTRIBUTE_RTPMAP)) {
       log.info("\"rtpmap\" attributes were already negotiated.");
     }
@@ -13,7 +12,6 @@
         log.error("Payload id not found on attribute: Name = [" + remoteAttribute.getAttributeName() + "], Value = ["+ remoteAttribute.getAttributeValue()+ "].");
       }
  else       if (findAttributeByPayloadId(Codec.ATTRIBUTE_RTPMAP,payloadId,newSdp.getMediaDescriptor(localMedia.getMedia().getMedia())) != null) {
-        log.debug("Payload " + payloadId + " present on newSdp.");
         AttributeField localAttribute=findAttributeByPayloadId(remoteAttribute.getAttributeName(),payloadId,localMedia);
         Codec sipCodec=CodecFactory.getInstance().getSIPAudioCodec(Integer.valueOf(payloadId));
         if (sipCodec != null) {

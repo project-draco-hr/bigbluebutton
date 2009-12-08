@@ -1,6 +1,5 @@
 {
   AttributeField searchingMediaAttribute=null;
-  log.debug("attributeName = [" + attributeName + "], payloadId = ["+ payloadId+ "].");
   Vector mediaAttributes=mediaDescriptor.getAttributes(attributeName);
   for (Enumeration attributesEnum=mediaAttributes.elements(); attributesEnum.hasMoreElements(); ) {
     AttributeField mediaAttribute=(AttributeField)attributesEnum.nextElement();
@@ -10,10 +9,8 @@
     }
   }
   if (searchingMediaAttribute != null) {
-    log.debug("Attribute found with name = [" + searchingMediaAttribute.getAttributeName() + "] and value = ["+ searchingMediaAttribute.getAttributeValue()+ "].");
   }
  else {
-    log.info("Attribute with name [" + attributeName + "] and payloadId ["+ payloadId+ "] was not found.");
   }
   return searchingMediaAttribute;
 }
