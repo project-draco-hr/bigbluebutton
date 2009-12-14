@@ -16,8 +16,8 @@
     rtmpToRtpTranscoder=new NellyToPcmTranscoder2(sipCodec);
     rtpToRtmpTranscoder=new PcmToNellyTranscoder2(sipCodec,listenStream);
   }
-  rtpReceiver=new RtpReceiver2(rtpToRtmpTranscoder,socket);
-  rtpSender=new RtpSender2(rtmpToRtpTranscoder,socket,connInfo.getRemoteAddr(),connInfo.getRemotePort());
+  rtpReceiver=new RtpStreamReceiver(rtpToRtmpTranscoder,socket);
+  rtpSender=new RtpStreamSender(rtmpToRtpTranscoder,socket,connInfo.getRemoteAddr(),connInfo.getRemotePort());
   talkStream=new TalkStream(rtmpToRtpTranscoder,rtpSender);
   rtpSender.start();
   rtpReceiver.start();

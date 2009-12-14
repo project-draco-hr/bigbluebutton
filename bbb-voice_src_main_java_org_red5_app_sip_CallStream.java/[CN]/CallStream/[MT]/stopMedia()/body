@@ -2,6 +2,5 @@
   printLog("stopMedia","Halting sip audio...");
   talkStream.stop();
   listenStream.stop();
-  socket.close();
   return true;
 }

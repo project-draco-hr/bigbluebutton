@@ -1,4 +1,0 @@
-String userid
-RtmpConnection connection
-int sipPort
-int rtpPort
