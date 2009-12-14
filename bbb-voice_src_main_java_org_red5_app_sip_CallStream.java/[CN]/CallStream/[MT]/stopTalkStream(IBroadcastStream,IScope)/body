@@ -1,4 +1,3 @@
 {
-  talkStream.stop();
-  listenStream.stop();
+  stopMedia();
 }

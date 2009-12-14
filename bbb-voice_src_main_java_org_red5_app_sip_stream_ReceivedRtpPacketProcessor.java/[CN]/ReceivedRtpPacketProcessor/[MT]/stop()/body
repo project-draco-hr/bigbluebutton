@@ -1,0 +1,5 @@
+{
+  System.out.println("processPacket stopped");
+  processPacket=false;
+  clearQueue();
+}

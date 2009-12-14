@@ -1,0 +1,18 @@
+{
+  processPacket=true;
+  packetProcessor=new Runnable(){
+    public void run(){
+      while (processPacket) {
+        try {
+          RtpPacket packet=packets.take();
+          processPacket(packet);
+        }
+ catch (        InterruptedException e) {
+          log.warn("InterruptedExeption while taking event.");
+        }
+      }
+    }
+  }
+;
+  exec.execute(packetProcessor);
+}

@@ -1,4 +1,3 @@
 {
-  streamAudio=false;
   streamEnded();
 }

@@ -2,5 +2,8 @@
   printLog("stopMedia","Halting sip audio...");
   talkStream.stop();
   listenStream.stop();
+  packetProcessor.stop();
+  rtpSender.stop();
+  rtpReceiver.stop();
   return true;
 }
