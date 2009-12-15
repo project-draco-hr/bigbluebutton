@@ -1,4 +1,0 @@
-{
-  confApp.shutdown();
-  roomMgr=null;
-}

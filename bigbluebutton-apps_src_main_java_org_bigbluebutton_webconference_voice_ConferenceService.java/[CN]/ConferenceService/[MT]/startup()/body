@@ -1,0 +1,4 @@
+{
+  roomMgr=new RoomManager();
+  confProvider.startup();
+}

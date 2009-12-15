@@ -1,4 +1,0 @@
-{
-  roomMgr=new RoomManager();
-  confApp.startup();
-}

@@ -1,4 +1,3 @@
 {
-  log.info("Shutting down meetme application");
-  asteriskServer.shutdown();
+  meetme.shutdown();
 }

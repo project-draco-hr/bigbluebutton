@@ -1,3 +1,0 @@
-{
-  confApp.mute(room,participant,mute);
-}

@@ -1,0 +1,4 @@
+{
+  confProvider.shutdown();
+  roomMgr=null;
+}
