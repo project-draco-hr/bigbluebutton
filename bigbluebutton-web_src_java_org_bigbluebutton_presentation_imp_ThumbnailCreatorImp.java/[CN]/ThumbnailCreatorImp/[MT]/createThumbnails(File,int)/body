@@ -1,0 +1,15 @@
+{
+  boolean success=false;
+  File thumbsDir=determineThumbnailDirectory(presentationFile);
+  if (!thumbsDir.exists())   thumbsDir.mkdir();
+  cleanDirectory(thumbsDir);
+  try {
+    success=generateThumbnails(thumbsDir,presentationFile);
+  }
+ catch (  InterruptedException e) {
+    success=false;
+  }
+  if (!success)   createBlankThumbnails(thumbsDir,pageCount);
+  renameThumbnails(thumbsDir);
+  return true;
+}

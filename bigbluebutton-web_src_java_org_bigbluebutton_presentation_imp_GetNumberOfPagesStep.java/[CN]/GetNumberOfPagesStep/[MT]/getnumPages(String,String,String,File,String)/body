@@ -1,0 +1,16 @@
+{
+  int numPages=0;
+  if (MULTI_PAGE_DOCS_LIST.contains(ext)) {
+    Pdf2SwfPageCounter pageCounter=new Pdf2SwfPageCounter();
+    pageCounter.setSwfToolsDir(swfToolsDir);
+    numPages=pageCounter.countNumberOfPages(presentationFile);
+    if (numPages > maxNumPages) {
+      return (0);
+    }
+ else     if (numPages > 0)     return (numPages);
+  }
+ else   if (SINGLE_PAGE_DOCS_LIST.contains(ext)) {
+    numPages=1;
+  }
+  return (0);
+}
