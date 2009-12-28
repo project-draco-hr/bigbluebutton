@@ -1,0 +1,15 @@
+{
+  log.debug("Generating slides");
+  System.out.println("Generating slides");
+  counterService.determineNumberOfPages(pres);
+  log.debug("Determined number of pages " + pres.getNumberOfPages());
+  System.out.println("Determined number of pages " + pres.getNumberOfPages());
+  if (pres.getNumberOfPages() > 0) {
+    convertPdfToSwf(pres);
+  }
+  log.debug("Creating thumbnails.");
+  System.out.println("Creating thumbnails.");
+  sendCreatingThumbnailsUpdateMessage(pres);
+  createThumbnails(pres);
+  sendConversionCompletedMessage(pres);
+}

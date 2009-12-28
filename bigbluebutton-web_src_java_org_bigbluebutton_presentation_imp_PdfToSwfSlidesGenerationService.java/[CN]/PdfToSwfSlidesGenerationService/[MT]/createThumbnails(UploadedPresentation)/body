@@ -1,0 +1,3 @@
+{
+  thumbnailCreator.createThumbnails(pres.getUploadedFile(),pres.getNumberOfPages());
+}

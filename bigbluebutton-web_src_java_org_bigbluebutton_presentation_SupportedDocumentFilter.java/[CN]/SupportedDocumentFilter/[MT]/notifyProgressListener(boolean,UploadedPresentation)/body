@@ -1,0 +1,17 @@
+{
+  Map<String,Object> msg=new HashMap<String,Object>();
+  msg.put("conference",pres.getConference());
+  msg.put("room",pres.getRoom());
+  msg.put("step","FILTER");
+  if (supported) {
+    msg.put("status","OK");
+    msg.put("message","Document is supported");
+    msg.put("messageKey","SUPPORTED_DOCUMENT");
+  }
+ else {
+    msg.put("status","FAILED");
+    msg.put("message","Document is not supported");
+    msg.put("messageKey","UNSUPPORTED_DOCUMENT");
+  }
+  if (notifier != null)   notifier.sendConversionProgress(msg);
+}

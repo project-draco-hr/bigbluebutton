@@ -1,0 +1,20 @@
+{
+  File presentationFile=pres.getUploadedFile();
+  slide=new File(presentationFile.getParent() + File.separatorChar + "slide-"+ page+ ".swf");
+  System.out.println("Creating slide " + slide.getAbsolutePath());
+  if (!pdfToSwfConverter.convert(presentationFile,slide,page)) {
+    imageConvertService.convertPageAsAnImage(presentationFile,slide,page);
+  }
+ else {
+    if (slideMayHaveTooManyObjects(slide)) {
+      log.info(slide.getAbsolutePath() + "[size= " + slide.length()+ "]");
+      imageConvertService.convertPageAsAnImage(presentationFile,slide,page);
+    }
+  }
+  if (!slide.exists()) {
+    log.warn("Creating blank slide for " + slide.getAbsolutePath());
+    generateBlankSlide();
+  }
+  done=true;
+  return this;
+}

@@ -1,0 +1,12 @@
+{
+  for (int i=0; i < slides.length; i++) {
+    System.out.println("generateSlides " + i);
+    final Slide slide=slides[i];
+    completionService.submit(new Callable<Slide>(){
+      public Slide call(){
+        return slide.createSlide();
+      }
+    }
+);
+  }
+}

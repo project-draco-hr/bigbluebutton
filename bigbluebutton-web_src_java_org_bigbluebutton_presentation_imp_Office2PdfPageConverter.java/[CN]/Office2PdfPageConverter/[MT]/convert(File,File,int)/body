@@ -21,7 +21,7 @@
     }
   }
  catch (  Exception e) {
-    e.printStackTrace();
+    log.error("Exception: Failed to convert " + output.getAbsolutePath());
     return false;
   }
 }

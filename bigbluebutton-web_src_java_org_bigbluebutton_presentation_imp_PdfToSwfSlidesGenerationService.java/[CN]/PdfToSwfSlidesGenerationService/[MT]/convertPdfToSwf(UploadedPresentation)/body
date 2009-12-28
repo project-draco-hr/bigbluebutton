@@ -1,0 +1,7 @@
+{
+  System.out.println("convertPdfToSwf");
+  int numPages=pres.getNumberOfPages();
+  Slide[] slides=setupSlides(pres,numPages);
+  generateSlides(slides);
+  handleSlideGenerationResult(pres,slides);
+}

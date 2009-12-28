@@ -1,0 +1,11 @@
+{
+  Slide[] slides=new Slide[numPages];
+  for (int page=1; page <= numPages; page++) {
+    Slide slide=new Slide(pres,page);
+    slide.setBlankSlide(BLANK_SLIDE);
+    slide.setPageConverter(pdfToSwfConverter);
+    slide.setPdfPageToImageConversionService(imageConvertService);
+    slides[page - 1]=slide;
+  }
+  return slides;
+}

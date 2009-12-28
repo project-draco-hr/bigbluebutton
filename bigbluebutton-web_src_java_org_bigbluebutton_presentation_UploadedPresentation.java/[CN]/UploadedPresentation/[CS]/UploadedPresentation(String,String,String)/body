@@ -1,0 +1,5 @@
+{
+  this.conference=conference;
+  this.room=room;
+  this.name=name;
+}

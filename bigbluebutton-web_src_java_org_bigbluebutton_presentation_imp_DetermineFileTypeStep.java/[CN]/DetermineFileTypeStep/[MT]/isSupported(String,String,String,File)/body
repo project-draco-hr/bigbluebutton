@@ -1,5 +1,0 @@
-{
-  int fileExtIndex=presentationFile.getName().lastIndexOf('.') + 1;
-  String ext=presentationFile.getName().toLowerCase().substring(fileExtIndex);
-  return SupportedFileTypes.isFileSupported(ext);
-}

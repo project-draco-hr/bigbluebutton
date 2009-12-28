@@ -1,0 +1,8 @@
+{
+  Map<String,Object> msg=new HashMap<String,Object>();
+  msg.put("conference",pres.getConference());
+  msg.put("room",pres.getRoom());
+  msg.put("returnCode","THUMBNAILS");
+  msg.put("presentationName",pres.getName());
+  notifyProgressListener(msg);
+}

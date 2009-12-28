@@ -1,5 +1,5 @@
 {
-  int numPages=-1;
+  int numPages=0;
   String COMMAND=SWFTOOLS_DIR + "/pdf2swf -I " + presentationFile.getAbsolutePath();
   try {
     Process p=Runtime.getRuntime().exec(COMMAND);

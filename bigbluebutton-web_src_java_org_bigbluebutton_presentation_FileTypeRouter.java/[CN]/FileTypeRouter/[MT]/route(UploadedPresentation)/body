@@ -1,0 +1,7 @@
+{
+  String fileType=pres.getFileType();
+  if (SupportedFileTypes.isOfficeFile(fileType))   return ChannelNameConstants.officeFileChannel;
+ else   if (SupportedFileTypes.isPdfFile(fileType))   return ChannelNameConstants.pdfFileChannel;
+ else   if (SupportedFileTypes.isImageFile(fileType))   return ChannelNameConstants.imageFileChannel;
+ else   return ChannelNameConstants.discardChannel;
+}
