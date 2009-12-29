@@ -6,6 +6,7 @@
     File pdfOutput=new File(filenameWithoutExt + ".pdf");
     boolean success=converter.convert(presentationFile,pdfOutput,0);
     if (success) {
+      log.info("Successfully converted office file to pdf.");
       return makePdfTheUploadedFileAndSendForProcessing(pres,pdfOutput);
     }
   }

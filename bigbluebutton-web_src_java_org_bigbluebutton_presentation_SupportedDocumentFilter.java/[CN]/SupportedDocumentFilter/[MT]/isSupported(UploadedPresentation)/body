@@ -5,6 +5,7 @@
   boolean supported=SupportedFileTypes.isFileSupported(ext);
   notifyProgressListener(supported,pres);
   if (supported) {
+    log.info("Received supported file " + pres.getUploadedFile().getAbsolutePath());
     pres.setFileType(ext);
   }
   return supported;

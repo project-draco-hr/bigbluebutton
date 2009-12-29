@@ -1,0 +1,5 @@
+{
+  this.presentationService=presentationService;
+  System.out.println("Setting PresentationService");
+  presentationService.setDocumentConversionServiceGateway(this);
+}

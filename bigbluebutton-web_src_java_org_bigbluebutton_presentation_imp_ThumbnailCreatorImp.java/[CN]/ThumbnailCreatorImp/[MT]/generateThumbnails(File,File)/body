@@ -1,7 +1,7 @@
 {
   String source=presentationFile.getAbsolutePath();
   String dest=thumbsDir.getAbsolutePath() + File.separator + TEMP_THUMB_NAME+ ".png";
-  String COMMAND=imageMagickDir + "/convert -thumbnail 150x150 " + source+ " "+ dest;
+  String COMMAND=IMAGEMAGICK_DIR + "/convert -thumbnail 150x150 " + source+ " "+ dest;
   Process p;
   try {
     p=Runtime.getRuntime().exec(COMMAND);

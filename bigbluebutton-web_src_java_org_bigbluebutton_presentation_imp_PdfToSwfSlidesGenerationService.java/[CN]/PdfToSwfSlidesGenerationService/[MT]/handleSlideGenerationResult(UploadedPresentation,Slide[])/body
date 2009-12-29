@@ -28,6 +28,6 @@ catch (    TimeoutException e) {
       }
     }
     slideGenerated++;
-    sendConversionUpdateMessage(slideGenerated++,pres);
+    sendConversionUpdateMessage(slideGenerated,pres);
   }
 }
