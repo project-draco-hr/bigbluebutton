@@ -1,0 +1,18 @@
+{
+  Map<String,Object> msg=new HashMap<String,Object>();
+  msg.put("conference",pres.getConference());
+  msg.put("room",pres.getRoom());
+  msg.put("returnCode","CONVERT");
+  msg.put("presentationName",pres.getName());
+  if (pres.isLastStepSuccessful()) {
+    log.info("Notifying of OFFICE_DOC_CONVERSION_SUCCESS for " + pres.getUploadedFile().getAbsolutePath());
+    msg.put("message","Office document successfully converted.");
+    msg.put("messageKey","OFFICE_DOC_CONVERSION_SUCCESS");
+  }
+ else {
+    log.info("Notifying of OFFICE_DOC_CONVERSION_FAILED for " + pres.getUploadedFile().getAbsolutePath());
+    msg.put("message","Failed to convert Office document.");
+    msg.put("messageKey","OFFICE_DOC_CONVERSION_FAILED");
+  }
+  sendNotification(msg);
+}

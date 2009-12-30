@@ -1,4 +1,0 @@
-{
-  pres.setUploadedFile(pdf);
-  return ChannelNameConstants.pdfFileChannel;
-}
