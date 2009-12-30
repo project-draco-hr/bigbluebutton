@@ -1,5 +1,5 @@
 {
   int numThreads=Runtime.getRuntime().availableProcessors();
   executor=Executors.newFixedThreadPool(numThreads);
-  completionService=new ExecutorCompletionService<PdfToSwfSlide>(executor);
+  completionService=new ExecutorCompletionService<ImageToSwfSlide>(executor);
 }

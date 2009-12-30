@@ -1,0 +1,12 @@
+{
+  for (int i=0; i < slides.length; i++) {
+    System.out.println("generateSlides " + i);
+    final ImageToSwfSlide slide=slides[i];
+    completionService.submit(new Callable<ImageToSwfSlide>(){
+      public ImageToSwfSlide call(){
+        return slide.createSlide();
+      }
+    }
+);
+  }
+}

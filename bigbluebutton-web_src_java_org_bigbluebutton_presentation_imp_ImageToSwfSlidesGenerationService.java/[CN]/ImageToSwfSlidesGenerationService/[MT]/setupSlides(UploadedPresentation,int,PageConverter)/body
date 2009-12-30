@@ -1,0 +1,10 @@
+{
+  ImageToSwfSlide[] slides=new ImageToSwfSlide[numPages];
+  for (int page=1; page <= numPages; page++) {
+    ImageToSwfSlide slide=new ImageToSwfSlide(pres,page);
+    slide.setBlankSlide(BLANK_SLIDE);
+    slide.setPageConverter(pageConverter);
+    slides[page - 1]=slide;
+  }
+  return slides;
+}

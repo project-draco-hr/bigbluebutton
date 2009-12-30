@@ -1,0 +1,32 @@
+{
+  long endTime=System.currentTimeMillis() + MAX_CONVERSION_TIME;
+  int slideGenerated=0;
+  for (int t=0; t < slides.length; t++) {
+    Future<ImageToSwfSlide> future=null;
+    ImageToSwfSlide slide=null;
+    try {
+      long timeLeft=endTime - System.currentTimeMillis();
+      future=completionService.take();
+      slide=future.get(timeLeft,TimeUnit.MILLISECONDS);
+      System.out.println("handleSlideGenerationResult " + slide.getPageNumber());
+    }
+ catch (    InterruptedException e) {
+      log.error("InterruptedException while creating slide " + pres.getName());
+    }
+catch (    ExecutionException e) {
+      log.error("ExecutionException while creating slide " + pres.getName());
+    }
+catch (    TimeoutException e) {
+      log.error("TimeoutException while converting " + pres.getName());
+    }
+ finally {
+      if ((slide != null) && (!slide.isDone())) {
+        log.warn("Creating blank slide for " + slide.getPageNumber());
+        future.cancel(true);
+        slide.generateBlankSlide();
+      }
+    }
+    slideGenerated++;
+    notifier.sendConversionUpdateMessage(slideGenerated,pres);
+  }
+}

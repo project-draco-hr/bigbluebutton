@@ -1,0 +1,8 @@
+{
+  if (notifier != null) {
+    notifier.sendConversionProgress(msg);
+  }
+ else {
+    log.warn("ConversionProgressNotifier has not been set");
+  }
+}

@@ -1,0 +1,3 @@
+UploadedPresentation pres
+int numPages
+PageConverter pageConverter

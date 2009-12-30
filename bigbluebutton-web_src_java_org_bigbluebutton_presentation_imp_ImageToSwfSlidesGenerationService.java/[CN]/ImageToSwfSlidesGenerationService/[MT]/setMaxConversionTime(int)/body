@@ -1,0 +1,3 @@
+{
+  MAX_CONVERSION_TIME=minutes * 60 * 1000;
+}

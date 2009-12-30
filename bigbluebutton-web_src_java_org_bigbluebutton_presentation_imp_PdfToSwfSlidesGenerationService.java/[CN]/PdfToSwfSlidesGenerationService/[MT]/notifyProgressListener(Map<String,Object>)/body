@@ -1,3 +1,0 @@
-{
-  if (notifier != null)   notifier.sendConversionProgress(msg);
-}

@@ -1,7 +1,7 @@
 {
-  Slide[] slides=new Slide[numPages];
+  PdfToSwfSlide[] slides=new PdfToSwfSlide[numPages];
   for (int page=1; page <= numPages; page++) {
-    Slide slide=new Slide(pres,page);
+    PdfToSwfSlide slide=new PdfToSwfSlide(pres,page);
     slide.setBlankSlide(BLANK_SLIDE);
     slide.setPageConverter(pdfToSwfConverter);
     slide.setPdfPageToImageConversionService(imageConvertService);

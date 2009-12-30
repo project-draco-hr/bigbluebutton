@@ -1,0 +1,12 @@
+{
+  File presentationFile=pres.getUploadedFile();
+  slide=new File(presentationFile.getParent() + File.separatorChar + "slide-"+ page+ ".swf");
+  log.debug("Creating slide " + slide.getAbsolutePath());
+  imageToSwfConverter.convert(presentationFile,slide,page);
+  if (!slide.exists()) {
+    log.warn("Creating blank slide for " + slide.getAbsolutePath());
+    generateBlankSlide();
+  }
+  done=true;
+  return this;
+}
