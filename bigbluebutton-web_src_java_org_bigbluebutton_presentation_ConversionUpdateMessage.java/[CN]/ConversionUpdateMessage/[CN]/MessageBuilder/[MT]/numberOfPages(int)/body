@@ -1,0 +1,4 @@
+{
+  message.put("numberOfPages",numberOfPages);
+  return this;
+}

@@ -1,13 +1,15 @@
 {
   int numberOfPages=0;
   if (SupportedFileTypes.isPdfFile(pres.getFileType())) {
-    System.out.println("Counting pages for " + pres.getFileType());
+    log.debug("Counting pages for " + pres.getFileType());
     numberOfPages=countPages(pres);
   }
  else   if (SupportedFileTypes.isImageFile(pres.getFileType())) {
-    System.out.println("Counting pages for " + pres.getFileType());
+    log.debug("Counting pages for " + pres.getFileType());
     numberOfPages=1;
   }
-  System.out.println("Counting pages for " + pres.getFileType() + " "+ numberOfPages);
-  pres.setNumberOfPages(numberOfPages);
+  if (isNumberOfPagesValid(numberOfPages)) {
+    log.debug("Counting pages for " + pres.getFileType() + " "+ numberOfPages);
+    pres.setNumberOfPages(numberOfPages);
+  }
 }

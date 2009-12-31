@@ -6,8 +6,6 @@
     PageConverter pageConverter=determinePageConverter(pres);
     convertImageToSwf(pres,pageConverter);
   }
-  log.debug("Creating thumbnails.");
-  notifier.sendCreatingThumbnailsUpdateMessage(pres);
   createThumbnails(pres);
   notifier.sendConversionCompletedMessage(pres);
 }

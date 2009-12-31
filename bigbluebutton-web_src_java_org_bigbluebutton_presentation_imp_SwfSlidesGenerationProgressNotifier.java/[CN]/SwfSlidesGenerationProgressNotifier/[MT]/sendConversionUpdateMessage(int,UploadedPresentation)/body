@@ -1,10 +1,7 @@
 {
-  Map<String,Object> msg=new HashMap<String,Object>();
-  msg.put("conference",pres.getConference());
-  msg.put("room",pres.getRoom());
-  msg.put("returnCode","CONVERT");
-  msg.put("presentationName",pres.getName());
-  msg.put("totalSlides",new Integer(pres.getNumberOfPages()));
-  msg.put("slidesCompleted",new Integer(slidesCompleted));
-  notifyProgressListener(msg);
+  MessageBuilder builder=new ConversionUpdateMessage.MessageBuilder(pres);
+  builder.messageKey(ConversionMessageConstants.GENERATED_SLIDE_KEY);
+  builder.numberOfPages(pres.getNumberOfPages());
+  builder.pagesCompleted(slidesCompleted);
+  notifyProgressListener(builder.build().getMessage());
 }

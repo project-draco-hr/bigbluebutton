@@ -4,11 +4,8 @@
     return;
   }
   String xml=generatedSlidesInfoHelper.generateUploadedPresentationInfo(pres);
-  Map<String,Object> msg=new HashMap<String,Object>();
-  msg.put("conference",pres.getConference());
-  msg.put("room",pres.getRoom());
-  msg.put("returnCode","SUCCESS");
-  msg.put("presentationName",pres.getName());
-  msg.put("message",xml);
-  notifyProgressListener(msg);
+  MessageBuilder builder=new ConversionUpdateMessage.MessageBuilder(pres);
+  builder.messageKey(ConversionMessageConstants.CONVERSION_COMPLETED_KEY);
+  builder.slidesInfo(xml);
+  notifyProgressListener(builder.build().getMessage());
 }
