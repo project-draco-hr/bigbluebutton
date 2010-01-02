@@ -1,6 +1,5 @@
 {
   for (int i=0; i < slides.length; i++) {
-    System.out.println("generateSlides " + i);
     final PdfToSwfSlide slide=slides[i];
     completionService.submit(new Callable<PdfToSwfSlide>(){
       public PdfToSwfSlide call(){

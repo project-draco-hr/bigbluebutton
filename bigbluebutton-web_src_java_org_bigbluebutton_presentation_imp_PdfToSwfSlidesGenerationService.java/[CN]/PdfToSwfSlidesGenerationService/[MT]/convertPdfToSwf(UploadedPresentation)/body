@@ -1,6 +1,11 @@
 {
   int numPages=pres.getNumberOfPages();
   PdfToSwfSlide[] slides=setupSlides(pres,numPages);
-  generateSlides(slides);
-  handleSlideGenerationResult(pres,slides);
+  ExecutorService executor;
+  CompletionService<PdfToSwfSlide> completionService;
+  int numThreads=Runtime.getRuntime().availableProcessors();
+  executor=Executors.newFixedThreadPool(numThreads);
+  completionService=new ExecutorCompletionService<PdfToSwfSlide>(executor);
+  generateSlides(slides,completionService);
+  handleSlideGenerationResult(pres,slides,completionService);
 }
