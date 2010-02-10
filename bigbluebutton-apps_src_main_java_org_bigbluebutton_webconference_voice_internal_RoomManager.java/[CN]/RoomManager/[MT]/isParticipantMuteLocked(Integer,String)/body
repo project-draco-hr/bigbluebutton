@@ -1,0 +1,8 @@
+{
+  RoomImp rm=rooms.get(room);
+  if (rm != null) {
+    Participant p=rm.getParticipant(participant);
+    return p.isMuteLocked();
+  }
+  return false;
+}

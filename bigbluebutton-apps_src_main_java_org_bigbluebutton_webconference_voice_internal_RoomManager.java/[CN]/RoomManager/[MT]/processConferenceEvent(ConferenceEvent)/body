@@ -13,6 +13,9 @@
     p.setTalking(pje.getSpeaking());
     log.debug("Joined [" + p.getId() + ","+ p.getName()+ ","+ p.isMuted()+ ","+ p.isTalking()+ "] to room "+ rm.getName());
     rm.add(p);
+    if (rm.isMuted() && !p.isMuted()) {
+      confService.mute(p.getId(),event.getRoom(),true);
+    }
   }
  else   if (event instanceof ParticipantLeftEvent) {
     log.debug("Processing ParticipantLeftEvent for room: " + event.getRoom());
@@ -29,6 +32,10 @@
     ParticipantTalkingEvent pte=(ParticipantTalkingEvent)event;
     ParticipantImp p=(ParticipantImp)rm.getParticipant(event.getParticipantId());
     if (p != null)     p.setTalking(pte.isTalking());
+  }
+ else   if (event instanceof ParticipantLockedEvent) {
+    ParticipantLockedEvent ple=(ParticipantLockedEvent)event;
+    lockParticipant(ple.getRoom(),ple.getParticipantId(),ple.isLocked());
   }
  else {
     log.debug("Processing UnknowEvent " + event.getClass().getName() + " for room: "+ event.getRoom());
