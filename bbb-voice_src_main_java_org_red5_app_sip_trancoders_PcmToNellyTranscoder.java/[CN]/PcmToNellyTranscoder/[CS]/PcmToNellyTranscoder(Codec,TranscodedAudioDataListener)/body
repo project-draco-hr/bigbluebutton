@@ -3,4 +3,5 @@
   this.listener=listener;
   encoderMap=new float[64];
   tempBuffer=new float[NELLYMOSER_DECODED_PACKET_SIZE];
+  start=System.currentTimeMillis();
 }

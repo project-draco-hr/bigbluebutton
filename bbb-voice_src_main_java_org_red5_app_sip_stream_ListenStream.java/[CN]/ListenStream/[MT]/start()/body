@@ -1,3 +1,4 @@
 {
+  System.out.println("**** Starting listen stream ****");
   startPublishing(scope);
 }

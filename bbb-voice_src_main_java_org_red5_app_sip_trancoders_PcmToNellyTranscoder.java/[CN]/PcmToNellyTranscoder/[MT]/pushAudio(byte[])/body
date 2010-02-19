@@ -1,5 +1,4 @@
 {
-  timestamp=timestamp + audio.length;
   IoBuffer buffer=IoBuffer.allocate(1024);
   buffer.setAutoExpand(true);
   buffer.clear();
@@ -9,6 +8,6 @@
   buffer.put(copy);
   buffer.flip();
   AudioData audioData=new AudioData(buffer);
-  audioData.setTimestamp((int)timestamp);
+  audioData.setTimestamp((int)(System.currentTimeMillis() - start));
   listener.handleTranscodedAudioData(audioData);
 }
