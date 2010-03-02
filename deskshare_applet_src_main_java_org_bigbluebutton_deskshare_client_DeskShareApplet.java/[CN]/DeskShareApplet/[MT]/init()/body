@@ -1,5 +1,5 @@
 {
-  System.out.println("Applet built oct 7, 2009 at 7:53PM");
+  System.out.println("(c) 2010 Blindside Networks. All Rights Reserved.");
   screenWidth=Integer.parseInt(getParameter("CAPTURE_WIDTH"));
   screenHeight=Integer.parseInt(getParameter("CAPTURE_HEIGHT"));
   x=Integer.parseInt(getParameter("X"));
