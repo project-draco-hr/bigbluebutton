@@ -1,7 +1,0 @@
-{
-  IDeskShareStream ds=streamsMap.get(room);
-  if (ds != null) {
-    return ds.getHeight();
-  }
-  return 0;
-}

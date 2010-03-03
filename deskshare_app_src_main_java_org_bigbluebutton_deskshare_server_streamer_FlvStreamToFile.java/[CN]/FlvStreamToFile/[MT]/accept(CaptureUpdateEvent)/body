@@ -1,9 +1,0 @@
-{
-  CaptureUpdateEvent copy=CaptureUpdateEvent.copy(event);
-  try {
-    screenQueue.put(copy);
-  }
- catch (  InterruptedException e) {
-    log.warn("InterruptedException while putting event into queue.");
-  }
-}

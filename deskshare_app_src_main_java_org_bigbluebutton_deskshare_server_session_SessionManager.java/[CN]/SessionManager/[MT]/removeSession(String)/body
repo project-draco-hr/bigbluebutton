@@ -1,5 +1,0 @@
-{
-  System.out.println("Removing session " + room);
-  sessions.remove(room);
-  frameStreamer.endStream(room);
-}

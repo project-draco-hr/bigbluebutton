@@ -1,7 +1,0 @@
-{
-  this.scope=scope;
-  scope.setName(streamName);
-  this.outStreamName=streamName;
-  this.width=width;
-  this.height=height;
-}

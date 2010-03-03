@@ -1,9 +1,0 @@
-{
-  Block block=blocksMap.get(new Integer(position));
-  block.update(videoData,keyFrame);
-  long now=System.currentTimeMillis();
-  if ((now - lastFrameTime) > 100) {
-    lastFrameTime=now;
-    generateFrame(false);
-  }
-}

@@ -1,5 +1,0 @@
-{
-  this.isKeyFrame=isKeyFrame;
-  encodedBlock=videoData;
-  hasChanged=true;
-}

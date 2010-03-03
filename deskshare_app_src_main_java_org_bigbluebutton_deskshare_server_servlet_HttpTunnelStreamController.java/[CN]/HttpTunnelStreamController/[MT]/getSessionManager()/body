@@ -3,7 +3,7 @@
   log.info("Got the servlet context: {}",ctx);
   ApplicationContext appCtx=(ApplicationContext)ctx.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
   log.info("Got the application context: {}",appCtx);
-  SessionManager manager=(SessionManager)appCtx.getBean("sessionManager");
+  ISessionManagerGateway manager=(ISessionManagerGateway)appCtx.getBean("sessionManagerGateway");
   if (manager != null) {
     log.info("Got the SessionManager context: {}",appCtx);
   }

@@ -1,4 +1,0 @@
-String room
-int position
-byte[] blockData
-boolean keyframe

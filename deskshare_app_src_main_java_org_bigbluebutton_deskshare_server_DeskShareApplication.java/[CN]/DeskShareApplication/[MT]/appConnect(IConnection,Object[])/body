@@ -1,5 +1,0 @@
-{
-  log.info("deskShare appConnect to scope " + conn.getScope().getContext().toString());
-  System.out.println("deskShare appConnect to scope " + conn.getScope().getContextPath());
-  return super.appConnect(conn,params);
-}

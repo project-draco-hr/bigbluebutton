@@ -1,4 +1,0 @@
-{
-  System.out.println("Stopping streamer");
-  gateway.onCaptureEndEvent(room);
-}

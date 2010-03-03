@@ -1,3 +1,0 @@
-{
-  return (System.currentTimeMillis() - lastUpdate) < KEEP_ALIVE_TIME;
-}

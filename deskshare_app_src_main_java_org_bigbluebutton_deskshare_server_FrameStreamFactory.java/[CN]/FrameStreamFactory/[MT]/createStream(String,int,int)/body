@@ -1,4 +1,0 @@
-{
-  IScope scope=app.getAppScope().getScope(room);
-  return new DeskShareStream(scope,room,screenWidth,screenHeight);
-}

@@ -1,8 +1,0 @@
-{
-  if (isTopRowTile(row)) {
-    if (hasPartialRowBlock(screenDim,blockDim)) {
-      return partialTileHeight(screenDim,blockDim);
-    }
-  }
-  return blockDim.getWidth();
-}

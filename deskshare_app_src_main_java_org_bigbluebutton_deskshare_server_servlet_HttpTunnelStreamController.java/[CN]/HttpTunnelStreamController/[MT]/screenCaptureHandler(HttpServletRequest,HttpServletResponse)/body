@@ -1,13 +1,13 @@
 {
   String event=request.getParameterValues("event")[0];
   int captureRequest=Integer.parseInt(event);
-  if (CaptureEvents.CAPTURE_START.getEvent() == captureRequest) {
+  if (0 == captureRequest) {
     handleCaptureStartRequest(request,response);
   }
- else   if (CaptureEvents.CAPTURE_UPDATE.getEvent() == captureRequest) {
+ else   if (1 == captureRequest) {
     handleCaptureUpdateRequest(request,response);
   }
- else   if (CaptureEvents.CAPTURE_END.getEvent() == captureRequest) {
+ else   if (2 == captureRequest) {
     handleCaptureEndRequest(request,response);
   }
  else {

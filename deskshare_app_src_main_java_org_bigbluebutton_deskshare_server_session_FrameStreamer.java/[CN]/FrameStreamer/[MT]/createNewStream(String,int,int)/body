@@ -1,4 +1,0 @@
-{
-  System.out.println("Creating new Stream " + room);
-  gateway.createNewStream(room,screenWidth,screenHeight);
-}

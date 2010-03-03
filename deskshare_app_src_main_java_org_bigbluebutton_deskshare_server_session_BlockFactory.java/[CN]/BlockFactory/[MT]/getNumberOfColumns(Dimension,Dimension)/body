@@ -1,7 +1,0 @@
-{
-  int columns=screenDim.getWidth() / blockDim.getWidth();
-  if (hasPartialColumnBlock(screenDim,blockDim)) {
-    columns+=1;
-  }
-  return columns;
-}

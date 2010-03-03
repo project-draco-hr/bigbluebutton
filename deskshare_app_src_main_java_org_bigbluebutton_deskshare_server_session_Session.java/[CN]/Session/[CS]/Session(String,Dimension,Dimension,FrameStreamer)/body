@@ -1,3 +1,0 @@
-{
-  blockManager=new BlockManager(room,screen,block,streamer);
-}

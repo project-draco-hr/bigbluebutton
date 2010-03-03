@@ -1,6 +1,0 @@
-{
-  blockManager.updateBlock(position,videoData,keyFrame);
-synchronized (this) {
-    lastUpdate=System.currentTimeMillis();
-  }
-}

@@ -1,4 +1,0 @@
-{
-  log.warn(cause.toString());
-  cause.printStackTrace();
-}
