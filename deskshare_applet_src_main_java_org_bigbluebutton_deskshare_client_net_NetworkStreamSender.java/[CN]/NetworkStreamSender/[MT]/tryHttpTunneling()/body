@@ -1,5 +1,5 @@
 {
-  httpSender=new NetworkHttpStreamSender(this);
+  NetworkHttpStreamSender httpSender=new NetworkHttpStreamSender(this,room,screenDim,blockDim);
   try {
     httpSender.connect(host);
     return true;

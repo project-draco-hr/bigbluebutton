@@ -1,5 +1,4 @@
 {
   System.out.println("Capture thread constructor.");
   this.capture=capture;
-  this.timeBase=1000 / capture.getProperFrameRate();
 }

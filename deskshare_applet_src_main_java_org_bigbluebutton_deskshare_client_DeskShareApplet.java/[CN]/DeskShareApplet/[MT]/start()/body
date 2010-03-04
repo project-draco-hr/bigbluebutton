@@ -1,4 +1,4 @@
 {
-  System.out.println("RunnerApplet start()");
+  System.out.println("Deskshare Applet start");
   startCapture();
 }

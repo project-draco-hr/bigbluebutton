@@ -1,0 +1,6 @@
+{
+  long oldsum;
+  oldsum=checksum.getValue();
+  calcChecksum();
+  return (oldsum == checksum.getValue());
+}

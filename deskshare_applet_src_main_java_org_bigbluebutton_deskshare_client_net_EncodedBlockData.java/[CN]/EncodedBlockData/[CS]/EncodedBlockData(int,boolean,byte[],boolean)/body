@@ -1,7 +1,0 @@
-{
-  this.position=position;
-  this.videoData=videoData;
-  this.keyFrame=keyFrame;
-  this.hasChanged=hasChanged;
-  timestamp=System.currentTimeMillis();
-}

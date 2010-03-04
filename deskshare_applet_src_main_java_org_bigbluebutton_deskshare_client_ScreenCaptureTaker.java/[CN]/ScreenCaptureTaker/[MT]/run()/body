@@ -1,13 +1,12 @@
 {
   while (startCapture) {
     System.out.println("----- Taking screen capture -----");
-    long snapshotTime=System.currentTimeMillis();
     BufferedImage image=capture.takeSingleSnapshot();
-    long snapshotEnd=System.currentTimeMillis();
     notifyListeners(image);
-    long completeTime=System.currentTimeMillis();
     try {
-      Thread.sleep(500);
+      System.out.println("Going to sleeeeeep.");
+      Thread.sleep(1000);
+      System.out.println("Just woke up.");
     }
  catch (    Exception e) {
       System.out.println("Exception sleeping.");

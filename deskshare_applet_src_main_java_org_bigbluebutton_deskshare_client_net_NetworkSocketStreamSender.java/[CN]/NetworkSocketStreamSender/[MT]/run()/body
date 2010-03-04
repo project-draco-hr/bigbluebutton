@@ -1,11 +1,15 @@
 {
   processBlocks=true;
   while (processBlocks) {
-    Block block=retriever.fetchNextBlockToSend();
-    EncodedBlockData ebd=block.encode();
-    if (ebd.hasChanged()) {
-      BlockVideoData bv=new BlockVideoData(room,ebd.getPosition(),ebd.getVideoData(),ebd.isKeyFrame());
+    EncodedBlockData block;
+    try {
+      block=retriever.fetchNextBlockToSend();
+      BlockVideoData bv=new BlockVideoData(room,block.getPosition(),block.getVideoData(),false);
+      System.out.println("Sending block " + block.getPosition());
       sendBlock(bv);
+    }
+ catch (    InterruptedException e) {
+      e.printStackTrace();
     }
   }
 }

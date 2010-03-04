@@ -1,18 +1,4 @@
 {
-  int[] pixelsCopy=new int[pixels.length];
-synchronized (this) {
-    System.arraycopy(pixels,0,pixelsCopy,0,pixels.length);
-  }
-  byte[] encodedBlock;
-  boolean hasChanged=false;
-  if (!checksumSame(pixelsCopy)) {
-    encodedBlock=ScreenVideoEncoder.encodePixels(pixelsCopy,getWidth(),getHeight(),false,isKeyFrame);
-    hasChanged=true;
-  }
- else {
-    encodedBlock=ScreenVideoEncoder.encodeBlockUnchanged();
-    hasChanged=false;
-  }
-  EncodedBlockData data=new EncodedBlockData(position,hasChanged,encodedBlock,isKeyFrame);
-  return data;
+  byte[] encodedBlock=ScreenVideoEncoder.encodePixels(pixels,getWidth(),getHeight());
+  return new EncodedBlockData(position,encodedBlock);
 }

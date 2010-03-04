@@ -6,6 +6,4 @@
   y=Integer.parseInt(getParameter("Y"));
   room=getParameter("ROOM");
   host=getParameter("IP");
-  String t=getParameter("TUNNEL");
-  System.out.println("Tunnel param " + t);
 }

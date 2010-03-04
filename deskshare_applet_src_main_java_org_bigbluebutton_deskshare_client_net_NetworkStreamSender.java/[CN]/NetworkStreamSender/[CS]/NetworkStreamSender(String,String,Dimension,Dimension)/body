@@ -1,0 +1,9 @@
+{
+  this.host=host;
+  this.room=room;
+  this.screenDim=screenDim;
+  this.blockDim=blockDim;
+  numThreads=Runtime.getRuntime().availableProcessors();
+  System.out.println("Starting up " + numThreads + " sender threads.");
+  executor=Executors.newFixedThreadPool(numThreads);
+}

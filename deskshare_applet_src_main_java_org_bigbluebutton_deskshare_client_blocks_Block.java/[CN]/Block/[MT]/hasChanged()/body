@@ -1,0 +1,7 @@
+{
+  if (firstTime) {
+    firstTime=false;
+    return true;
+  }
+  return !checksumSame();
+}

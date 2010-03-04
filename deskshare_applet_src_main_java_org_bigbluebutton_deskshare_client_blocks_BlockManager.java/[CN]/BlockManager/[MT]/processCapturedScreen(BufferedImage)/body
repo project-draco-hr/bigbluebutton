@@ -1,0 +1,14 @@
+{
+  long start=System.currentTimeMillis();
+  int numberOfBlocks=numColumns * numRows;
+  for (int position=1; position <= numberOfBlocks; position++) {
+    Block block=blocksMap.get(new Integer(position));
+    block.updateBlock(capturedScreen);
+    if (block.hasChanged()) {
+      System.out.println("Block " + block.getPosition() + " has changed.");
+      notifyChangedBlockListener(block.encode());
+    }
+  }
+  long end=System.currentTimeMillis();
+  System.out.println("ProcessCapturedScreen took " + (end - start) + " ms.");
+}

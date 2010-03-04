@@ -1,9 +1,9 @@
 {
   try {
-    sender.stop();
+    openConnection();
+    sendCaptureStartEvent(screenDim,blockDim);
   }
  catch (  ConnectionException e) {
     e.printStackTrace();
   }
-  stop();
 }

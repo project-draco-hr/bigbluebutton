@@ -1,0 +1,10 @@
+{
+synchronized (this) {
+    try {
+      pixels=ScreenVideoEncoder.getPixels(capturedScreen,getX(),getY(),getWidth(),getHeight());
+    }
+ catch (    PixelExtractException e) {
+      System.out.println(e.toString());
+    }
+  }
+}

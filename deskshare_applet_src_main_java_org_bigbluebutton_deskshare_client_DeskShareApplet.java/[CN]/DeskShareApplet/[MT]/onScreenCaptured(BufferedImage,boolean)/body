@@ -1,3 +1,0 @@
-{
-  blockManager.processCapturedScreen(screen,isKeyFrame);
-}

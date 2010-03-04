@@ -1,6 +1,0 @@
-{
-  long oldsum;
-  oldsum=checksum.getValue();
-  calcChecksum(pixels);
-  return ((oldsum == checksum.getValue()) && !isKeyFrame);
-}

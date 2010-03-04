@@ -1,8 +1,3 @@
 {
-synchronized (this) {
-    Block block=blockManager.getBlock(nextBlockToSend);
-    nextBlockToSend++;
-    if (nextBlockToSend > blocksMap.size())     nextBlockToSend=1;
-    return block;
-  }
+  return (EncodedBlockData)blockDataQ.take();
 }

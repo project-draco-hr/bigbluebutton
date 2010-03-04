@@ -14,6 +14,7 @@
     System.out.println("Trying http tunneling");
     if (tryHttpTunneling()) {
       tunneling=true;
+      httpSenders=new NetworkHttpStreamSender[numThreads];
       return true;
     }
   }

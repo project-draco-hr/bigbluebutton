@@ -1,6 +1,0 @@
-{
-  if (!senderStarted) {
-    sender.start();
-    senderStarted=true;
-  }
-}
