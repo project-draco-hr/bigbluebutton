@@ -1,3 +1,0 @@
-{
-  blockDataQ.offer(data);
-}

@@ -1,4 +1,5 @@
 {
+  this.blockManager=blockManager;
   this.host=host;
   this.room=room;
   this.screenDim=screenDim;

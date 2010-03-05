@@ -6,7 +6,7 @@
   blockManager=new BlockManager();
   blockManager.addListener(this);
   blockManager.initialize(screenDim,tileDim);
-  sender=new NetworkStreamSender(host,room,screenDim,tileDim);
+  sender=new NetworkStreamSender(blockManager,host,room,screenDim,tileDim);
   connected=sender.connect();
   if (connected) {
     captureTaker.addListener(this);

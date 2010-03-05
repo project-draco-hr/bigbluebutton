@@ -6,5 +6,10 @@ synchronized (this) {
  catch (    PixelExtractException e) {
       System.out.println(e.toString());
     }
+    if (!checksumSame()) {
+      sendFlag.compareAndSet(false,true);
+      return true;
+    }
   }
+  return false;
 }

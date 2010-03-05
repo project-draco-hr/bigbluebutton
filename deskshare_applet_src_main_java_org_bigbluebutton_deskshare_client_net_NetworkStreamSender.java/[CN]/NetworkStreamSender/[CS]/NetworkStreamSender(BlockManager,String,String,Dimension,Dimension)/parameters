@@ -1,3 +1,4 @@
+BlockManager blockManager
 String host
 String room
 Dimension screenDim
