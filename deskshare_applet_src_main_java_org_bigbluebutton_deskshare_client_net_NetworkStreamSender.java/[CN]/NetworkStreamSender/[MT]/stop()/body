@@ -8,5 +8,6 @@
       senders[i].disconnect();
     }
   }
+  stopped=true;
   executor.shutdownNow();
 }

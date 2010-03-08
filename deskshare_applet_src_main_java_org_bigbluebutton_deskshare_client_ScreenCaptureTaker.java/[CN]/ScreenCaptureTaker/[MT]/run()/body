@@ -4,13 +4,10 @@
     BufferedImage image=capture.takeSingleSnapshot();
     notifyListeners(image);
     try {
-      System.out.println("Going to sleeeeeep.");
       Thread.sleep(1000);
-      System.out.println("Just woke up.");
     }
  catch (    Exception e) {
       System.out.println("Exception sleeping.");
-      System.exit(0);
     }
   }
   System.out.println("Stopping screen capture.");

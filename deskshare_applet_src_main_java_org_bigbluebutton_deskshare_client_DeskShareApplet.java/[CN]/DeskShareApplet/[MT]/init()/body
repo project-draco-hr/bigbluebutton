@@ -1,5 +1,6 @@
 {
   System.out.println("(c) 2010 Blindside Networks. All Rights Reserved.");
+  System.out.println("Deskshare Applet v0.64");
   screenWidth=Integer.parseInt(getParameter("CAPTURE_WIDTH"));
   screenHeight=Integer.parseInt(getParameter("CAPTURE_HEIGHT"));
   x=Integer.parseInt(getParameter("X"));

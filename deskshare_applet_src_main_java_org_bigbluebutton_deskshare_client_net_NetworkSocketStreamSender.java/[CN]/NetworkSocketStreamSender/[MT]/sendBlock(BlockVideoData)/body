@@ -7,7 +7,6 @@
     sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
     sendToStream(dataToSend);
     long end=System.currentTimeMillis();
-    if ((end - start) > 200)     System.out.println("Sending " + dataToSend.size() + " bytes took "+ (end - start)+ "ms");
   }
  catch (  IOException e) {
     e.printStackTrace();

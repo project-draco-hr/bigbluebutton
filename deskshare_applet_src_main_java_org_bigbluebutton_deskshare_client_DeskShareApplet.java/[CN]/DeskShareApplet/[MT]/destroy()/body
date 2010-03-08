@@ -1,9 +1,4 @@
 {
-  try {
-    sender.stop();
-  }
- catch (  ConnectionException e) {
-    e.printStackTrace();
-  }
+  System.out.println("Destroy");
   stop();
 }

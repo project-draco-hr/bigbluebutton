@@ -1,4 +1,5 @@
 {
-  System.out.println("Deskshare Applet start");
+  System.out.println("Start");
   startCapture();
+  started=true;
 }

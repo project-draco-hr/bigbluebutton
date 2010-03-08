@@ -9,4 +9,5 @@
       executor.execute(senders[i]);
     }
   }
+  stopped=false;
 }

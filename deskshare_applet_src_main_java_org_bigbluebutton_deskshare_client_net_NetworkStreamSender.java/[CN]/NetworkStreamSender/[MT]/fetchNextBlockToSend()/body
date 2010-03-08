@@ -1,4 +1,10 @@
 {
-  Integer position=(Integer)blockDataQ.take();
+  Integer position=1;
+  try {
+    position=(Integer)blockDataQ.take();
+  }
+ catch (  InterruptedException e) {
+    if (!stopped)     e.printStackTrace();
+  }
   return blockManager.getBlock(position).encode();
 }
