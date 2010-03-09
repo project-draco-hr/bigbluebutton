@@ -1,4 +1,5 @@
 {
+  System.out.println("Disconnecting http stream");
   try {
     openConnection();
     sendCaptureEndEvent();

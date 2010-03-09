@@ -1,4 +1,5 @@
 {
+  System.out.println("Tunneling sendCaptureStartEvent");
   ClientHttpRequest chr;
   try {
     chr=new ClientHttpRequest(conn);

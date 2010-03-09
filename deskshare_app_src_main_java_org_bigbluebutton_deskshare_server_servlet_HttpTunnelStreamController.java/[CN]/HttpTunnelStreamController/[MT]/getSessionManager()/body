@@ -1,11 +1,11 @@
 {
   ServletContext ctx=getServletContext();
-  log.info("Got the servlet context: {}",ctx);
+  System.out.println("****Got the servlet context:}****");
   ApplicationContext appCtx=(ApplicationContext)ctx.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
-  log.info("Got the application context: {}",appCtx);
+  System.out.println("**** Got the application context: {} ****");
   ISessionManagerGateway manager=(ISessionManagerGateway)appCtx.getBean("sessionManagerGateway");
   if (manager != null) {
-    log.info("Got the SessionManager context: {}",appCtx);
+    System.out.println("****Got the SessionManager context: *****");
   }
   return manager;
 }

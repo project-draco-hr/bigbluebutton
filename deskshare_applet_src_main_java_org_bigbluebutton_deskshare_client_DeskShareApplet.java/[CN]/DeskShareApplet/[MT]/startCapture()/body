@@ -13,6 +13,6 @@
     captureTaker.setCapture(true);
     captureTakerThread=new Thread(captureTaker,"ScreenCaptureTaker");
     captureTakerThread.start();
+    sender.start();
   }
-  sender.start();
 }

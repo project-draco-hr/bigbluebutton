@@ -1,5 +1,5 @@
 {
-  System.out.println("Disconnecting http stream");
+  System.out.println("sendCaptureEndEvent http stream");
   ClientHttpRequest chr;
   try {
     chr=new ClientHttpRequest(conn);

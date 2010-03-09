@@ -1,10 +1,15 @@
 {
-  for (int i=0; i < numRunningThreads; i++) {
-    if (tunneling) {
+  System.out.println("Starting network sender.");
+  if (tunneling) {
+    for (int i=0; i < 1; i++) {
+      System.out.println("Starting http sender[" + i + "].");
       httpSenders[i].sendStartStreamMessage();
       executor.execute(httpSenders[i]);
     }
+  }
  else {
+    for (int i=0; i < numRunningThreads; i++) {
+      System.out.println("Starting socket sender[" + i + "].");
       senders[i].sendStartStreamMessage();
       executor.execute(senders[i]);
     }

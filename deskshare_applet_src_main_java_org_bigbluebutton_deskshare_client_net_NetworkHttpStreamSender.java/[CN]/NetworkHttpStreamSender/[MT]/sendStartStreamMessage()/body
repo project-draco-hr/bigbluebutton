@@ -1,4 +1,5 @@
 {
+  System.out.println("Tunneling sendStartStreamMessage");
   try {
     openConnection();
     sendCaptureStartEvent(screenDim,blockDim);

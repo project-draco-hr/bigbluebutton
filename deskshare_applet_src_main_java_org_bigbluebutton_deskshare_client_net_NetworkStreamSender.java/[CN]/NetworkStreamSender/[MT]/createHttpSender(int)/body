@@ -1,0 +1,9 @@
+{
+  httpSenders[i]=new NetworkHttpStreamSender(this,room,screenDim,blockDim);
+  try {
+    httpSenders[i].connect(host);
+  }
+ catch (  ConnectionException e) {
+    e.printStackTrace();
+  }
+}

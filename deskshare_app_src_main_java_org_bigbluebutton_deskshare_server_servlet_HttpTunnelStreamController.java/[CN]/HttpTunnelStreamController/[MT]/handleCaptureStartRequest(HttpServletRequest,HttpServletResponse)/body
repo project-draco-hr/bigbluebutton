@@ -1,4 +1,5 @@
 {
+  System.out.println("**** In handleCaptureStartRequest deskshare tunneling ******");
   String room=request.getParameterValues("room")[0];
   String screenInfo=request.getParameterValues("screenInfo")[0];
   String blockInfo=request.getParameterValues("blockInfo")[0];
@@ -11,5 +12,6 @@
     sessionManager=getSessionManager();
     hasSessionManager=true;
   }
+  System.out.println("Http received. Creating session ");
   sessionManager.createSession(room,screenDim,blockDim);
 }

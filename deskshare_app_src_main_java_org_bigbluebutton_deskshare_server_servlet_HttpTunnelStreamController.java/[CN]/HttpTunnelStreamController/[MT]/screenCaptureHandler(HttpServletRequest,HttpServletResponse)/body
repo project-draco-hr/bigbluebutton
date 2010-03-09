@@ -1,4 +1,5 @@
 {
+  System.out.println("**** In deskshare tunneling ******");
   String event=request.getParameterValues("event")[0];
   int captureRequest=Integer.parseInt(event);
   if (0 == captureRequest) {
@@ -11,8 +12,7 @@
     handleCaptureEndRequest(request,response);
   }
  else {
-    log.debug("Cannot handle screen capture event " + captureRequest);
-    System.out.println("Cannot handle screen capture event " + captureRequest);
+    System.out.println("****Cannot handle screen capture event " + captureRequest);
   }
   return null;
 }
