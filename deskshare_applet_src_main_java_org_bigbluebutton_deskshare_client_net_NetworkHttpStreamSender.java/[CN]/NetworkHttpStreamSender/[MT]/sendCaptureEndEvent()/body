@@ -1,5 +1,4 @@
 {
-  System.out.println("sendCaptureEndEvent http stream");
   ClientHttpRequest chr;
   try {
     chr=new ClientHttpRequest(conn);

@@ -5,9 +5,11 @@
       httpSenders[i].disconnect();
     }
  else {
-      senders[i].disconnect();
+      socketSenders[i].disconnect();
     }
   }
   stopped=true;
   executor.shutdownNow();
+  httpSenders=null;
+  socketSenders=null;
 }

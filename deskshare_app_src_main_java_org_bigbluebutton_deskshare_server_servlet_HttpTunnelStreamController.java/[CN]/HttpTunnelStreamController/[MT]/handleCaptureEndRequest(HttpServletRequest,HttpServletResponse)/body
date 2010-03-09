@@ -1,5 +1,4 @@
 {
-  System.out.println("**** In handleCaptureEndRequest deskshare tunneling ******");
   String room=request.getParameterValues("room")[0];
   if (!hasSessionManager) {
     sessionManager=getSessionManager();

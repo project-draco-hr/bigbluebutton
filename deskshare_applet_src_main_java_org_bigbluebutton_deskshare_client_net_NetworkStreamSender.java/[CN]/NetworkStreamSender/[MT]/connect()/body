@@ -1,5 +1,5 @@
 {
-  senders=new NetworkSocketStreamSender[numThreads];
+  socketSenders=new NetworkSocketStreamSender[numThreads];
   int failedAttempts=0;
   for (int i=0; i < numThreads; i++) {
     try {
@@ -17,7 +17,6 @@
       System.out.println("Will use http tunneling");
       httpSenders=new NetworkHttpStreamSender[numThreads];
       for (int i=0; i < numThreads; i++) {
-        System.out.println("Starting http sender[" + i + "].");
         createHttpSender(i);
       }
       return true;

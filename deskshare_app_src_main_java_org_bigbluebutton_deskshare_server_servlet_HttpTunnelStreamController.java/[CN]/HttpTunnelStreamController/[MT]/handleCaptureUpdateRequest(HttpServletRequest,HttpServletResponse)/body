@@ -1,5 +1,4 @@
 {
-  System.out.println("**** In handleCaptureUpdateRequest deskshare tunneling ******");
   MultipartHttpServletRequest multipartRequest=(MultipartHttpServletRequest)request;
   MultipartFile multipartFile=multipartRequest.getFile("blockdata");
   long startRx=System.currentTimeMillis();
@@ -12,6 +11,4 @@
     hasSessionManager=true;
   }
   sessionManager.updateBlock(room,Integer.valueOf(position),blockData,Boolean.parseBoolean(keyframe));
-  long completeRx=System.currentTimeMillis();
-  System.out.println("Http receive and send took " + (completeRx - startRx) + "ms.");
 }

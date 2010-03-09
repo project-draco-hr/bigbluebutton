@@ -1,7 +1,6 @@
 {
   try {
     url=new URL("http://" + host + SCREEN_CAPTURE__URL);
-    System.out.println("Connecting to " + url.toString());
     conn=url.openConnection();
   }
  catch (  MalformedURLException e) {

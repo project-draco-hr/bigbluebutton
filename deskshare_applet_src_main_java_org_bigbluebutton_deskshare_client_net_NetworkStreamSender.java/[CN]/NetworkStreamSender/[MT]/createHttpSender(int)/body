@@ -4,6 +4,6 @@
     httpSenders[i].connect(host);
   }
  catch (  ConnectionException e) {
-    e.printStackTrace();
+    System.out.println("Http sender failed to connect to " + host);
   }
 }

@@ -5,11 +5,10 @@
     try {
       block=retriever.fetchNextBlockToSend();
       BlockVideoData bv=new BlockVideoData(room,block.getPosition(),block.getVideoData(),false);
-      System.out.println("Sending block " + block.getPosition());
       sendBlockData(bv);
     }
  catch (    InterruptedException e) {
-      e.printStackTrace();
+      System.out.println("ERROR: Interrupted exception while proccessing block for sending.");
     }
   }
 }

@@ -1,5 +1,4 @@
 {
-  System.out.println("Tunneling sendBlockData");
   ClientHttpRequest chr;
   try {
     openConnection();
@@ -16,6 +15,6 @@
     e.printStackTrace();
   }
 catch (  ConnectionException e) {
-    e.printStackTrace();
+    System.out.println("ERROR: Failed to send block data.");
   }
 }

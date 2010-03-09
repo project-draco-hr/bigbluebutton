@@ -1,5 +1,4 @@
 {
-  System.out.println("**** In deskshare tunneling ******");
   String event=request.getParameterValues("event")[0];
   int captureRequest=Integer.parseInt(event);
   if (0 == captureRequest) {

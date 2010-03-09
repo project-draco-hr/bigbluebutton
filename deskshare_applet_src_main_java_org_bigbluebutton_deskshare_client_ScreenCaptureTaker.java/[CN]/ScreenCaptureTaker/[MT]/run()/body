@@ -1,6 +1,5 @@
 {
   while (startCapture) {
-    System.out.println("----- Taking screen capture -----");
     BufferedImage image=capture.takeSingleSnapshot();
     notifyListeners(image);
     try {
