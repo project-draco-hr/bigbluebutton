@@ -4,7 +4,6 @@
     return false;
   }
   this.data=data;
-  log.debug("Adding data " + data.remaining());
   this.data.rewind();
   return true;
 }

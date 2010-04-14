@@ -1,6 +1,7 @@
 {
   String room=decodeRoom(session,in);
   if (!"".equals(room)) {
+    log.info("CaptureEndEvent for " + room);
     CaptureEndBlockEvent event=new CaptureEndBlockEvent(room);
     out.write(event);
   }
