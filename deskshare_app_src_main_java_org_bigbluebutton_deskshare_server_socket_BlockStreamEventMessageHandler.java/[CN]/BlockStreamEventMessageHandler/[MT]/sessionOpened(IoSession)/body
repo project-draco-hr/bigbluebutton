@@ -1,3 +1,4 @@
 {
   log.debug("Session Opened.");
+  super.sessionOpened(session);
 }
