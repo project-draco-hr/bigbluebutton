@@ -6,6 +6,6 @@
     out.write(event);
   }
  else {
-    System.out.println("Room is empty.");
+    log.warn("Room is empty.");
   }
 }
