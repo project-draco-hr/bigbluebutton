@@ -3,10 +3,15 @@
   String room="";
   try {
     room=in.getString(roomLength,Charset.forName("UTF-8").newDecoder());
-    session.setAttribute(ROOM,room);
+    if (session.containsAttribute(ROOM)) {
+      String attRoom=(String)session.getAttribute(ROOM);
+      if (!attRoom.equals(room)) {
+        log.warn(room + " is not the same as room in attribute [" + attRoom+ "]");
+      }
+    }
   }
  catch (  CharacterCodingException e) {
-    e.printStackTrace();
+    log.error(e.getMessage());
   }
   return room;
 }

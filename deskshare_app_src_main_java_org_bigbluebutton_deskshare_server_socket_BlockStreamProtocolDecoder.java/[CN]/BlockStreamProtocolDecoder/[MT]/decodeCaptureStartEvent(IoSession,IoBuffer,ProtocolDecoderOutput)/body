@@ -1,5 +1,6 @@
 {
   String room=decodeRoom(session,in);
+  session.setAttribute(ROOM,room);
   Dimension blockDim=decodeDimension(in);
   Dimension screenDim=decodeDimension(in);
   log.info("CaptureStartEvent for " + room);
