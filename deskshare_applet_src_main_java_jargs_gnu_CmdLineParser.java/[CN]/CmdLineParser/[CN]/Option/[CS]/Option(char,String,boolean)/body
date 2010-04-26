@@ -1,0 +1,3 @@
+{
+  this(new String(new char[]{shortForm}),longForm,wantsValue);
+}

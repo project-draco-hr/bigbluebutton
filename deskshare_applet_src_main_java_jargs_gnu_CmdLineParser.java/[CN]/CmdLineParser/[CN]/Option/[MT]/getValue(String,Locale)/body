@@ -1,0 +1,11 @@
+{
+  if (this.wantsValue) {
+    if (arg == null) {
+      throw new IllegalOptionValueException(this,"");
+    }
+    return this.parseValue(arg,locale);
+  }
+ else {
+    return Boolean.TRUE;
+  }
+}

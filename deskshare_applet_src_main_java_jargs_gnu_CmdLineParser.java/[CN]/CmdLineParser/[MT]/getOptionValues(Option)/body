@@ -1,0 +1,12 @@
+{
+  Vector result=new Vector();
+  while (true) {
+    Object o=getOptionValue(option,null);
+    if (o == null) {
+      return result;
+    }
+ else {
+      result.addElement(o);
+    }
+  }
+}

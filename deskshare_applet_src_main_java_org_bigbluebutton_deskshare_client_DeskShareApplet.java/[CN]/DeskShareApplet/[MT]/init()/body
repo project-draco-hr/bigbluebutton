@@ -1,10 +1,12 @@
 {
-  System.out.println(LICENSE_HEADER);
-  System.out.println("Deskshare Applet v0.64");
-  screenWidth=Integer.parseInt(getParameter("CAPTURE_WIDTH"));
-  screenHeight=Integer.parseInt(getParameter("CAPTURE_HEIGHT"));
-  x=Integer.parseInt(getParameter("X"));
-  y=Integer.parseInt(getParameter("Y"));
-  room=getParameter("ROOM");
-  host=getParameter("IP");
+  hostValue=getParameter("IP");
+  String port=getParameter("PORT");
+  if (port != null)   portValue=Integer.parseInt(port);
+  roomValue=getParameter("ROOM");
+  widthValue=Integer.parseInt(getParameter("CAPTURE_WIDTH"));
+  heightValue=Integer.parseInt(getParameter("CAPTURE_HEIGHT"));
+  xValue=Integer.parseInt(getParameter("X"));
+  yValue=Integer.parseInt(getParameter("Y"));
+  String tunnel=getParameter("HTTP_TUNNEL");
+  if (tunnel != null)   tunnelValue=Boolean.parseBoolean(tunnel);
 }

@@ -1,0 +1,14 @@
+{
+  Vector v=(Vector)values.get(o.longForm());
+  if (v == null) {
+    return def;
+  }
+ else   if (v.isEmpty()) {
+    return null;
+  }
+ else {
+    Object result=v.elementAt(0);
+    v.removeElementAt(0);
+    return result;
+  }
+}

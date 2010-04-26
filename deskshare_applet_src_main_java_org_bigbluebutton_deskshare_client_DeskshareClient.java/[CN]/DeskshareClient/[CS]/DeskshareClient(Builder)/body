@@ -1,0 +1,10 @@
+{
+  room=builder.room;
+  host=builder.host;
+  port=builder.port;
+  width=builder.width;
+  height=builder.height;
+  x=builder.x;
+  y=builder.y;
+  httpTunnel=builder.httpTunnel;
+}

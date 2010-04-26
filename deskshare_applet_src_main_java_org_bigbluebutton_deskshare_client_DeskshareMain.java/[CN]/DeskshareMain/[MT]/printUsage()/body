@@ -1,0 +1,6 @@
+{
+  System.err.println("usage: deskshare [options]");
+  for (Iterator<String> i=optionHelpStrings.iterator(); i.hasNext(); ) {
+    System.err.println(i.next());
+  }
+}

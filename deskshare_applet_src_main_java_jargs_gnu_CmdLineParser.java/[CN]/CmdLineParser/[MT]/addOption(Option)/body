@@ -1,0 +1,5 @@
+{
+  if (opt.shortForm() != null)   this.options.put("-" + opt.shortForm(),opt);
+  this.options.put("--" + opt.longForm(),opt);
+  return opt;
+}

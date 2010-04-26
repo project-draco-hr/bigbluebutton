@@ -1,0 +1,10 @@
+{
+  System.out.println(LICENSE_HEADER);
+  System.out.println("Desktop Sharing v0.64");
+  System.out.println("Start");
+  System.out.println("Connecting to " + host + ":"+ port+ " room "+ room);
+  System.out.println("Sharing " + width + "x"+ height+ " at "+ x+ ","+ y);
+  System.out.println("Http Tunnel: " + httpTunnel);
+  startCapture();
+  started=true;
+}

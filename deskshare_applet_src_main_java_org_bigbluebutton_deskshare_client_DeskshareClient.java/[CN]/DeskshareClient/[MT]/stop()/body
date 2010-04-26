@@ -1,0 +1,14 @@
+{
+  System.out.println("Stop");
+  captureTaker.setCapture(false);
+  if (connected && started) {
+    try {
+      sender.stop();
+      started=false;
+      connected=false;
+    }
+ catch (    ConnectionException e) {
+      e.printStackTrace();
+    }
+  }
+}
