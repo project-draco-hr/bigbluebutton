@@ -1,0 +1,5 @@
+{
+  ISharedObjectService service=(ISharedObjectService)getScopeService(scope,ISharedObjectService.class,SharedObjectService.class,false);
+  if (service == null)   throw new NullPointerException();
+  return service.getSharedObject(scope,name);
+}
