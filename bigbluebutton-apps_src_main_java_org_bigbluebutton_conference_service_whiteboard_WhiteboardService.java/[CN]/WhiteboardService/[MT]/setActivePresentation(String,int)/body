@@ -1,0 +1,4 @@
+{
+  log.info("WhiteboardApplication - Setting active presentation: " + name);
+  application.setActivePresentation(name,numPages);
+}

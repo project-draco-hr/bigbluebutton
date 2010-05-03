@@ -1,0 +1,7 @@
+{
+  roomManager.getRoom(getLocalScope().getName()).setWhiteboardEnabled(enabled);
+  ISharedObject drawSO=getSharedObject(getLocalScope(),WHITEBOARD_SHARED_OBJECT);
+  List<Boolean> arguments=new ArrayList<Boolean>();
+  arguments.add(enabled);
+  drawSO.sendMessage("modifyEnabledCallback",arguments);
+}

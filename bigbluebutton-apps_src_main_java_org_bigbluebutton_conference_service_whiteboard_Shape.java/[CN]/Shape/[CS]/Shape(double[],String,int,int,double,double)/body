@@ -1,0 +1,8 @@
+{
+  this.shape=shape;
+  this.type=type;
+  this.color=color;
+  this.thickness=thickness;
+  this.parentWidth=parentWidth;
+  this.parentHeight=parentHeight;
+}

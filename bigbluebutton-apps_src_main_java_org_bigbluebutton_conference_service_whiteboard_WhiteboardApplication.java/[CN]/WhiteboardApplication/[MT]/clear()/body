@@ -1,0 +1,5 @@
+{
+  roomManager.getRoom(getLocalScope().getName()).clear();
+  ISharedObject drawSO=getSharedObject(getLocalScope(),WHITEBOARD_SHARED_OBJECT);
+  drawSO.sendMessage("clear",new ArrayList<Object>());
+}

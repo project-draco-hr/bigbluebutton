@@ -1,0 +1,4 @@
+{
+  activePresentation=new Presentation(name,numPages);
+  presentations.add(activePresentation);
+}

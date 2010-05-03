@@ -1,0 +1,5 @@
+{
+  log.info("WhiteboardApplication - Returning shapes");
+  List<Object[]> shapes=application.getShapes();
+  return shapes;
+}

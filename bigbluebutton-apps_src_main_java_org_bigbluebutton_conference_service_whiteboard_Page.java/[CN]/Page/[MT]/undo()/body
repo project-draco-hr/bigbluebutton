@@ -1,0 +1,3 @@
+{
+  shapes.remove(shapes.size() - 1);
+}

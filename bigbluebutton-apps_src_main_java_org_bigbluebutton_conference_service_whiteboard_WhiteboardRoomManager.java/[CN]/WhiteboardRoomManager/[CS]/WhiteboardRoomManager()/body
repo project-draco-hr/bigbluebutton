@@ -1,0 +1,3 @@
+{
+  rooms=new ArrayList<WhiteboardRoom>();
+}

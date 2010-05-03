@@ -1,0 +1,3 @@
+{
+  roomManager.removeRoom(getLocalScope().getName());
+}

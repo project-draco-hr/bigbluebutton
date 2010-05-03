@@ -1,0 +1,5 @@
+{
+  roomManager.getRoom(getLocalScope().getName()).undo();
+  ISharedObject drawSO=getSharedObject(getLocalScope(),WHITEBOARD_SHARED_OBJECT);
+  drawSO.sendMessage("undo",new ArrayList<Object>());
+}

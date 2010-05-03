@@ -1,0 +1,9 @@
+{
+  WhiteboardRoom room=roomManager.getRoom(getLocalScope().getName());
+  if (room.presentationExists(name)) {
+    room.setActivePresentation(name);
+  }
+ else {
+    room.addPresentation(name,numPages);
+  }
+}
