@@ -1,4 +1,5 @@
 {
+  this.deskSO=deskSO;
   publishedStreamName=name;
   livePipe=null;
   log.trace("name: {}",name);

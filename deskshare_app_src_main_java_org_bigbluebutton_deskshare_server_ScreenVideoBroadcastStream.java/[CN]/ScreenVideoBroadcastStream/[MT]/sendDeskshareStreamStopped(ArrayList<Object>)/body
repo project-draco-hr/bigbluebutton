@@ -1,0 +1,3 @@
+{
+  deskSO.sendMessage("deskshareStreamStopped",msg);
+}
