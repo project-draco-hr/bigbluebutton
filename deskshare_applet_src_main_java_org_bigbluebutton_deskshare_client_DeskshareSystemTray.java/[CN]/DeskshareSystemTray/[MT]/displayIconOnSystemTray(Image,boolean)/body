@@ -1,0 +1,22 @@
+{
+  if (SystemTray.isSupported()) {
+    tray=SystemTray.getSystemTray();
+    PopupMenu popup=new PopupMenu();
+    trayIcon=new TrayIcon(image,"Sharing Deskstop",popup);
+    if (enableActions) {
+      MenuItem stopItem=new MenuItem("Stop Sharing");
+      stopItem.addActionListener(new StopSharingListener(trayIcon,"Stop Desktop Sharing","Stop sharing your desktop",TrayIcon.MessageType.INFO));
+      popup.add(stopItem);
+    }
+    try {
+      tray.add(trayIcon);
+      trayIcon.displayMessage("Sharing Desktop","You are now sharing your dekstop",TrayIcon.MessageType.INFO);
+    }
+ catch (    AWTException e) {
+      System.err.println("Can't add to tray");
+    }
+  }
+ else {
+    System.err.println("Tray unavailable");
+  }
+}

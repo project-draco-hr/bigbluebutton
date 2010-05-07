@@ -1,0 +1,4 @@
+TrayIcon trayIcon
+String title
+String message
+TrayIcon.MessageType messageType

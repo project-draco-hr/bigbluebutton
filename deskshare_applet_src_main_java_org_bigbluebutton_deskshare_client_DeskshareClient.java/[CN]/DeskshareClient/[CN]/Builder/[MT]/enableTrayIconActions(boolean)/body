@@ -1,0 +1,4 @@
+{
+  enableTrayActions=enableActions;
+  return this;
+}

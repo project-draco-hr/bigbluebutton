@@ -1,5 +1,5 @@
 {
   System.out.println("Start");
-  client=new DeskshareClient.Builder().host(hostValue).port(portValue).room(roomValue).width(widthValue).height(heightValue).x(xValue).y(yValue).httpTunnel(tunnelValue).build();
+  client=new DeskshareClient.Builder().host(hostValue).port(portValue).room(roomValue).width(widthValue).height(heightValue).x(xValue).y(yValue).httpTunnel(tunnelValue).trayIcon(icon).enableTrayIconActions(false).build();
   client.start();
 }

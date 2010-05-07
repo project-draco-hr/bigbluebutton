@@ -5,6 +5,8 @@
   System.out.println("Connecting to " + host + ":"+ port+ " room "+ room);
   System.out.println("Sharing " + width + "x"+ height+ " at "+ x+ ","+ y);
   System.out.println("Http Tunnel: " + httpTunnel);
+  tray.addSystemTrayListener(this);
+  tray.displayIconOnSystemTray(sysTrayIcon,enableTrayActions);
   startCapture();
   started=true;
 }

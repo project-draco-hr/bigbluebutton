@@ -9,6 +9,7 @@
   CmdLineParser.Option xCoord=dsMain.addHelp(parser.addIntegerOption('x',"x"),"Upper-left x coordinate of the screen capture");
   CmdLineParser.Option yCoord=dsMain.addHelp(parser.addIntegerOption('y',"y"),"Upper-left y coordinate of the screen capture");
   CmdLineParser.Option tryHttpTunnel=dsMain.addHelp(parser.addBooleanOption('n',"httptunnel"),"Http tunnel if direct connection fails");
+  CmdLineParser.Option icon=dsMain.addHelp(parser.addStringOption('i',"icon"),"Path to system tray icon file");
   CmdLineParser.Option help=dsMain.addHelp(parser.addBooleanOption('h',"help"),"Show this help message");
   try {
     parser.parse(args);
@@ -30,8 +31,18 @@
   Integer xValue=(Integer)parser.getOptionValue(xCoord,new Integer(0));
   Integer yValue=(Integer)parser.getOptionValue(yCoord,new Integer(0));
   Boolean tunnelValue=(Boolean)parser.getOptionValue(tryHttpTunnel,true);
-  DeskshareClient client=new DeskshareClient.Builder().host(hostValue).port(portValue).room(roomValue).width(widthValue).height(heightValue).x(xValue).y(yValue).httpTunnel(tunnelValue).build();
+  String iconValue=(String)parser.getOptionValue(icon,"bbb.gif");
+  Image image=Toolkit.getDefaultToolkit().getImage(iconValue);
+  DeskshareClient client=new DeskshareClient.Builder().host(hostValue).port(portValue).room(roomValue).width(widthValue).height(heightValue).x(xValue).y(yValue).httpTunnel(tunnelValue).trayIcon(image).enableTrayIconActions(true).build();
+  client.addClientListeners(dsMain);
   client.start();
-  while (true) {
+  try {
+    Integer reason=dsMain.exitReasonQ.take();
+    if (reason == 0)     client.stop();
+    System.exit(reason.intValue());
+  }
+ catch (  InterruptedException e) {
+    e.printStackTrace();
+    System.exit(500);
   }
 }

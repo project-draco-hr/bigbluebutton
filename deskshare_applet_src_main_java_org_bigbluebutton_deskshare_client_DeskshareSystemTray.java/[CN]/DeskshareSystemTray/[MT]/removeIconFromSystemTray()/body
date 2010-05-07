@@ -1,0 +1,5 @@
+{
+  if (tray != null && trayIcon != null) {
+    tray.remove(trayIcon);
+  }
+}

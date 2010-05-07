@@ -9,4 +9,5 @@
   yValue=Integer.parseInt(getParameter("Y"));
   String tunnel=getParameter("HTTP_TUNNEL");
   if (tunnel != null)   tunnelValue=Boolean.parseBoolean(tunnel);
+  icon=getImage(getCodeBase(),"bbb.gif");
 }

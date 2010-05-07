@@ -7,4 +7,6 @@
   x=builder.x;
   y=builder.y;
   httpTunnel=builder.httpTunnel;
+  sysTrayIcon=builder.sysTrayIcon;
+  enableTrayActions=builder.enableTrayActions;
 }
