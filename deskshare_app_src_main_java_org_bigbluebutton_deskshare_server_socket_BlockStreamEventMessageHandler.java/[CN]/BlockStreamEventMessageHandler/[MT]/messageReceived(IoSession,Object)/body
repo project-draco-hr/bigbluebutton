@@ -12,4 +12,8 @@
     CaptureEndBlockEvent event=(CaptureEndBlockEvent)message;
     sessionManager.removeSession(event.getRoom());
   }
+ else   if (message instanceof MouseLocationEvent) {
+    MouseLocationEvent event=(MouseLocationEvent)message;
+    sessionManager.updateMouseLocation(event.getRoom(),event.getLoc());
+  }
 }

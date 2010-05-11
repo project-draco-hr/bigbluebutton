@@ -10,6 +10,9 @@
  else   if (2 == captureRequest) {
     handleCaptureEndRequest(request,response);
   }
+ else   if (3 == captureRequest) {
+    handleUpdateMouseLocationRequest(request,response);
+  }
  else {
     System.out.println("****Cannot handle screen capture event " + captureRequest);
   }

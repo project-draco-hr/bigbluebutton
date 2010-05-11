@@ -1,14 +1,13 @@
 {
   processBlocks=true;
   while (processBlocks) {
-    EncodedBlockData block;
+    Message message;
     try {
-      block=retriever.fetchNextBlockToSend();
-      BlockVideoData bv=new BlockVideoData(room,block.getPosition(),block.getVideoData(),false);
-      sendBlockData(bv);
+      message=retriever.getNextMessageToSend();
+      processNextMessageToSend(message);
     }
  catch (    InterruptedException e) {
-      System.out.println("ERROR: Interrupted exception while proccessing block for sending.");
+      e.printStackTrace();
     }
   }
 }

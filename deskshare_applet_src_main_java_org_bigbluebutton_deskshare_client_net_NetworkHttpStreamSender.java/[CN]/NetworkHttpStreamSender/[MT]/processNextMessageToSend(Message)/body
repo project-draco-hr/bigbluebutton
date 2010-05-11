@@ -1,0 +1,11 @@
+{
+  if (message.getMessageType() == Message.MessageType.BLOCK) {
+    EncodedBlockData block=retriever.getBlockToSend(((BlockMessage)message).getPosition());
+    BlockVideoData bv=new BlockVideoData(room,block.getPosition(),block.getVideoData(),false);
+    sendBlockData(bv);
+  }
+ else   if (message.getMessageType() == Message.MessageType.CURSOR) {
+    CursorMessage msg=(CursorMessage)message;
+    sendCursor(msg.getMouseLocation(),msg.getRoom());
+  }
+}

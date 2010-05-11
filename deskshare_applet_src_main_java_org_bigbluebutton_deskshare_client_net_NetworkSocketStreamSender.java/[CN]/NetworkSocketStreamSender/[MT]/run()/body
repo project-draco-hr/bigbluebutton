@@ -1,11 +1,10 @@
 {
   processBlocks=true;
   while (processBlocks) {
-    EncodedBlockData block;
+    Message message;
     try {
-      block=retriever.fetchNextBlockToSend();
-      BlockVideoData bv=new BlockVideoData(room,block.getPosition(),block.getVideoData(),false);
-      sendBlock(bv);
+      message=retriever.getNextMessageToSend();
+      processNextMessageToSend(message);
     }
  catch (    InterruptedException e) {
       e.printStackTrace();

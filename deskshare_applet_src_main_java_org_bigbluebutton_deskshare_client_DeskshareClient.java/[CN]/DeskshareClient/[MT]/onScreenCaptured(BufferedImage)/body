@@ -1,3 +1,5 @@
 {
   blockManager.processCapturedScreen(screen);
+  CursorMessage msg=new CursorMessage(mTaker.getMouseLocation(),room);
+  sender.send(msg);
 }

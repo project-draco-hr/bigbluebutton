@@ -1,0 +1,4 @@
+{
+  this.mouseLoc=mouseLoc;
+  this.room=room;
+}

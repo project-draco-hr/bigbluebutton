@@ -1,0 +1,11 @@
+{
+  String room=request.getParameterValues("room")[0];
+  String mouseX=request.getParameterValues("mousex")[0];
+  String mouseY=request.getParameterValues("mousey")[0];
+  Point loc=new Point(Integer.parseInt(mouseX),Integer.parseInt(mouseY));
+  if (!hasSessionManager) {
+    sessionManager=getSessionManager();
+    hasSessionManager=true;
+  }
+  sessionManager.updateMouseLocation(room,loc);
+}

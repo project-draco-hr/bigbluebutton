@@ -13,6 +13,8 @@ log.warn("Got CAPTURE_END_EVENT event: " + event);
 System.out.println("Got CAPTURE_END_EVENT event: " + event);
 decodeCaptureEndEvent(session,in,out);
 break;
+case MOUSE_LOCATION_EVENT:
+decodeMouseLocationEvent(session,in,out);
 default :
 log.error("Unknown event: " + event);
 }

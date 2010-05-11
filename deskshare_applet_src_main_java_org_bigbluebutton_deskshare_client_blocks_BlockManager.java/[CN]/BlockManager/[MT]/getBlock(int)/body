@@ -1,0 +1,3 @@
+{
+  return (Block)blocksMap.get(new Integer(position));
+}

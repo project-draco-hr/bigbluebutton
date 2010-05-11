@@ -1,0 +1,14 @@
+{
+  PointerInfo pInfo;
+  try {
+    pInfo=MouseInfo.getPointerInfo();
+  }
+ catch (  HeadlessException e) {
+    pInfo=null;
+  }
+catch (  SecurityException e) {
+    pInfo=null;
+  }
+  if (pInfo == null)   return new Point(0,0);
+  return pInfo.getLocation();
+}

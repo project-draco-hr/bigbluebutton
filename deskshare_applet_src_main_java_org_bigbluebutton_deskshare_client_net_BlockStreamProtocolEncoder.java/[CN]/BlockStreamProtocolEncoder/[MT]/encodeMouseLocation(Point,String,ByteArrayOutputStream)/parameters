@@ -1,0 +1,3 @@
+Point mouseLoc
+String room
+ByteArrayOutputStream data

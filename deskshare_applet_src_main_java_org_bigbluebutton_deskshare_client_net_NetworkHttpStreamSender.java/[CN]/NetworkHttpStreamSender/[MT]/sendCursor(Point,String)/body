@@ -1,0 +1,18 @@
+{
+  ClientHttpRequest chr;
+  try {
+    openConnection();
+    chr=new ClientHttpRequest(conn);
+    chr.setParameter("room",room);
+    chr.setParameter("event",CaptureEvents.MOUSE_LOCATION_EVENT.getEvent());
+    chr.setParameter("mousex",mouseLoc.x);
+    chr.setParameter("mousey",mouseLoc.y);
+    chr.post();
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+catch (  ConnectionException e) {
+    System.out.println("ERROR: Failed to send block data.");
+  }
+}

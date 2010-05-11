@@ -1,0 +1,12 @@
+{
+  try {
+    ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
+    dataToSend.reset();
+    BlockStreamProtocolEncoder.encodeMouseLocation(mouseLoc,room,dataToSend);
+    sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
+    sendToStream(dataToSend);
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+}

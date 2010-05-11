@@ -1,0 +1,9 @@
+{
+  try {
+    return (Message)blockDataQ.take();
+  }
+ catch (  InterruptedException e) {
+    if (!stopped)     e.printStackTrace();
+    throw e;
+  }
+}
