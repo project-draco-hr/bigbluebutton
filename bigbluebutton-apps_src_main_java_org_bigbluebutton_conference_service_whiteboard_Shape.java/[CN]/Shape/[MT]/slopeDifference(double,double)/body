@@ -1,0 +1,4 @@
+{
+  double differenceInRad=Math.atan(oldSlope) - Math.atan(newSlope);
+  return Math.abs(Math.toDegrees(differenceInRad));
+}
