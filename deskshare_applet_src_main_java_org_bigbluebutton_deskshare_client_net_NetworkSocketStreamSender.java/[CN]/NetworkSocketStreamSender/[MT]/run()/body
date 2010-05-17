@@ -9,6 +9,11 @@
  catch (    InterruptedException e) {
       e.printStackTrace();
     }
+catch (    IOException e) {
+      e.printStackTrace();
+      processBlocks=false;
+      notifyNetworkStreamListener(ExitCode.CONNECTION_TO_DESKSHARE_SERVER_DROPPED);
+    }
   }
   try {
     outstream.close();

@@ -1,0 +1,15 @@
+{
+  try {
+    numRunningThreads--;
+    if (tunneling) {
+      httpSenders[id].disconnect();
+    }
+ else {
+      socketSenders[id].disconnect();
+    }
+    if (numRunningThreads < 1)     stop();
+  }
+ catch (  ConnectionException e) {
+    e.printStackTrace();
+  }
+}

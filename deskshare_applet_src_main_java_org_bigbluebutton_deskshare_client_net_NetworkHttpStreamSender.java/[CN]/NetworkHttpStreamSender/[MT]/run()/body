@@ -8,6 +8,8 @@
     }
  catch (    InterruptedException e) {
       e.printStackTrace();
+      notifyNetworkStreamListener(ExitCode.DESKSHARE_SERVICE_UNAVAILABLE);
+      processBlocks=false;
     }
   }
 }

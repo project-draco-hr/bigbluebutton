@@ -1,9 +1,4 @@
 {
-  httpSenders[i]=new NetworkHttpStreamSender(this,room,screenDim,blockDim);
-  try {
-    httpSenders[i].connect(host);
-  }
- catch (  ConnectionException e) {
-    System.out.println("Http sender failed to connect to " + host);
-  }
+  httpSenders[i]=new NetworkHttpStreamSender(i,this,room,screenDim,blockDim);
+  httpSenders[i].connect(host);
 }

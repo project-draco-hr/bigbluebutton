@@ -1,14 +1,7 @@
 {
-  long start=System.currentTimeMillis();
-  try {
-    ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
-    dataToSend.reset();
-    BlockStreamProtocolEncoder.encodeBlock(block,dataToSend);
-    sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
-    sendToStream(dataToSend);
-    long end=System.currentTimeMillis();
-  }
- catch (  IOException e) {
-    e.printStackTrace();
-  }
+  ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
+  dataToSend.reset();
+  BlockStreamProtocolEncoder.encodeBlock(block,dataToSend);
+  sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
+  sendToStream(dataToSend);
 }

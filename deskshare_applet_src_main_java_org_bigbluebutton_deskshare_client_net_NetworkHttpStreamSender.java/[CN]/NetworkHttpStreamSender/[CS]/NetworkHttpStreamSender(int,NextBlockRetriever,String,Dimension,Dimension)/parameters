@@ -1,6 +1,5 @@
-BlockManager blockManager
-String host
-int port
+int id
+NextBlockRetriever retriever
 String room
 Dimension screenDim
 Dimension blockDim

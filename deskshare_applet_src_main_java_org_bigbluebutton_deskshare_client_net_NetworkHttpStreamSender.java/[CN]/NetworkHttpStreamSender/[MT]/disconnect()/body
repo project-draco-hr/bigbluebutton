@@ -5,6 +5,7 @@
   }
  catch (  ConnectionException e) {
     e.printStackTrace();
+    notifyNetworkStreamListener(ExitCode.DESKSHARE_SERVICE_UNAVAILABLE);
     throw e;
   }
  finally {
