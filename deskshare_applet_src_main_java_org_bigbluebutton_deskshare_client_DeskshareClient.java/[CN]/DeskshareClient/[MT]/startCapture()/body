@@ -7,7 +7,7 @@
   blockManager.addListener(this);
   blockManager.initialize(screenDim,tileDim);
   mTaker=new MouseLocationTaker();
-  sender=new NetworkStreamSender(blockManager,host,room,screenDim,tileDim);
+  sender=new NetworkStreamSender(blockManager,host,port,room,screenDim,tileDim);
   connected=sender.connect();
   if (connected) {
     captureTaker.addListener(this);

@@ -1,0 +1,27 @@
+{
+  try {
+    serverSocket=new ServerSocket(port);
+  }
+ catch (  IOException e) {
+    System.err.println("Could not listen on port: " + port);
+    notifyListener(ExitCode.CANNOT_BIND_TO_LIFELINE_PORT);
+  }
+  try {
+    clientSocket=serverSocket.accept();
+    clientSocket.setKeepAlive(true);
+    out=new PrintWriter(clientSocket.getOutputStream(),true);
+    in=new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+    String inputLine;
+    connected=true;
+    while ((inputLine=in.readLine()) != null) {
+    }
+  }
+ catch (  IOException e) {
+    System.out.println("IOException listener");
+    System.err.println("Accept failed.");
+    notifyListener(ExitCode.ERROR_ON_LIFELINE_CONNECTION);
+  }
+  close();
+  System.out.println("Stopped listener");
+  notifyListener(ExitCode.LIFELINE_CONNECTION_CLOSED);
+}

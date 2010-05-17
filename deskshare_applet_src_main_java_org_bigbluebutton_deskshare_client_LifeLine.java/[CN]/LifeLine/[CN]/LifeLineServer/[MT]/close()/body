@@ -1,0 +1,11 @@
+{
+  try {
+    if (out != null)     out.close();
+    if (in != null)     in.close();
+    if (clientSocket != null)     clientSocket.close();
+    if (serverSocket != null)     serverSocket.close();
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+}

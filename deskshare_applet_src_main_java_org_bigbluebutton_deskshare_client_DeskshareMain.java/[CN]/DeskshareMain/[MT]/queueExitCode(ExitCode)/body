@@ -1,6 +1,6 @@
 {
   try {
-    exitReasonQ.put(new Integer(reason));
+    exitReasonQ.put(reason);
   }
  catch (  InterruptedException e) {
     e.printStackTrace();
