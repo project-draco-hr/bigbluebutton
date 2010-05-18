@@ -3,7 +3,7 @@
     BufferedImage image=capture.takeSingleSnapshot();
     notifyListeners(image);
     try {
-      Thread.sleep(1000);
+      Thread.sleep(200);
     }
  catch (    Exception e) {
       System.out.println("Exception sleeping.");

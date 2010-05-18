@@ -6,15 +6,19 @@
   blockManager=new BlockManager();
   blockManager.addListener(this);
   blockManager.initialize(screenDim,tileDim);
-  mTaker=new MouseLocationTaker();
   sender=new NetworkStreamSender(blockManager,host,port,room,screenDim,tileDim,httpTunnel);
   connected=sender.connect();
   if (connected) {
     captureTaker.addListener(this);
-    captureTaker.setCapture(true);
+    captureTaker.start();
     captureTakerThread=new Thread(captureTaker,"ScreenCaptureTaker");
     captureTakerThread.start();
     sender.start();
+    mTaker=new MouseLocationTaker();
+    mTaker.start();
+    mouseLocationTakerThread=new Thread(mTaker,"MouseLocationTakerThread");
+    mTaker.addListener(this);
+    mouseLocationTakerThread.start();
   }
  else {
     notifyListener(ExitCode.DESKSHARE_SERVICE_UNAVAILABLE);

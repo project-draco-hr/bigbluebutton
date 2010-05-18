@@ -1,6 +1,6 @@
 {
-  processBlocks=true;
-  while (processBlocks) {
+  processMessages=true;
+  while (processMessages) {
     Message message;
     try {
       message=retriever.getNextMessageToSend();
@@ -11,7 +11,7 @@
     }
 catch (    IOException e) {
       e.printStackTrace();
-      processBlocks=false;
+      processMessages=false;
       notifyNetworkStreamListener(ExitCode.CONNECTION_TO_DESKSHARE_SERVER_DROPPED);
     }
   }

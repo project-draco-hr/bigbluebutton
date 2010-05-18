@@ -1,6 +1,7 @@
 {
   System.out.println("Stop");
-  captureTaker.setCapture(false);
+  captureTaker.stop();
+  mTaker.stop();
   if (connected && started) {
     try {
       sender.stop();

@@ -1,0 +1,4 @@
+{
+  CursorMessage msg=new CursorMessage(loc,room);
+  sender.send(msg);
+}

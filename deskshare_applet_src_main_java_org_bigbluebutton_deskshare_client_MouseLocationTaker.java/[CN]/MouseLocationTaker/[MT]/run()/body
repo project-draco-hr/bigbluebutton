@@ -1,0 +1,11 @@
+{
+  while (trackMouseLocation) {
+    notifyListeners(getMouseLocation());
+    try {
+      Thread.sleep(250);
+    }
+ catch (    Exception e) {
+      System.out.println("Exception sleeping.");
+    }
+  }
+}

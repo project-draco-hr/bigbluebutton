@@ -1,6 +1,6 @@
 {
   System.out.println("Disconnecting socket stream");
-  if (!processBlocks)   return;
+  if (!processMessages)   return;
   try {
     ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
     dataToSend.reset();
@@ -12,6 +12,6 @@
     e.printStackTrace();
   }
  finally {
-    processBlocks=false;
+    processMessages=false;
   }
 }
