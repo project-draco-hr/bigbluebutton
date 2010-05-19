@@ -44,6 +44,7 @@
   try {
     ExitCode reason=dsMain.exitReasonQ.take();
     client.stop();
+    lifeline.disconnect();
     System.exit(reason.getExitCode());
   }
  catch (  InterruptedException e) {
