@@ -1,6 +1,7 @@
 {
   capture=new ScreenCapture(x,y,width,height);
   captureTaker=new ScreenCaptureTaker(capture);
+  mTaker=new MouseLocationTaker();
   Dimension screenDim=new Dimension(width,height);
   Dimension tileDim=new Dimension(blockWidth,blockHeight);
   blockManager=new BlockManager();
@@ -14,7 +15,6 @@
     captureTakerThread=new Thread(captureTaker,"ScreenCaptureTaker");
     captureTakerThread.start();
     sender.start();
-    mTaker=new MouseLocationTaker();
     mTaker.start();
     mouseLocationTakerThread=new Thread(mTaker,"MouseLocationTakerThread");
     mTaker.addListener(this);
