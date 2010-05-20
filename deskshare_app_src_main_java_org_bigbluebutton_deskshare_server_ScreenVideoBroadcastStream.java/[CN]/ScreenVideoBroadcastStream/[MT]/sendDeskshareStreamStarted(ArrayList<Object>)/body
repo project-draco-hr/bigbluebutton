@@ -1,3 +1,0 @@
-{
-  deskSO.sendMessage("appletStarted",msg);
-}
