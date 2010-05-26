@@ -1,4 +1,0 @@
-{
-  String[] roots=new String[]{"agi/scripts/"};
-  this.gse=new GroovyScriptEngine(roots,this.getClass().getClassLoader());
-}
