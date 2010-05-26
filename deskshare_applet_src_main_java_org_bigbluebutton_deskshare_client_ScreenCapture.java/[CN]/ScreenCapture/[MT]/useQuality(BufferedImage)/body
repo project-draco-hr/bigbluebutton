@@ -1,0 +1,9 @@
+{
+  BufferedImage resultImage=jc.createCompatibleImage(scaleWidth,scaleHeight,image.getType());
+  resultImage.setAccelerationPriority(1);
+  Graphics2D g2=resultImage.createGraphics();
+  Image scaledImage=image.getScaledInstance(scaleWidth,scaleHeight,Image.SCALE_AREA_AVERAGING);
+  g2.drawImage(scaledImage,0,0,scaleWidth,scaleHeight,null);
+  g2.dispose();
+  return resultImage;
+}

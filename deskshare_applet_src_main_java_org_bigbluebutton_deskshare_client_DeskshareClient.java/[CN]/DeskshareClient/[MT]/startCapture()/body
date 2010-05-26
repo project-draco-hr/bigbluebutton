@@ -1,8 +1,8 @@
 {
-  capture=new ScreenCapture(x,y,width,height);
+  capture=new ScreenCapture(x,y,captureWidth,captureHeight,scaleWidth,scaleHeight,quality);
   captureTaker=new ScreenCaptureTaker(capture);
   mTaker=new MouseLocationTaker();
-  Dimension screenDim=new Dimension(width,height);
+  Dimension screenDim=new Dimension(scaleWidth,scaleHeight);
   Dimension tileDim=new Dimension(blockWidth,blockHeight);
   blockManager=new BlockManager();
   blockManager.addListener(this);

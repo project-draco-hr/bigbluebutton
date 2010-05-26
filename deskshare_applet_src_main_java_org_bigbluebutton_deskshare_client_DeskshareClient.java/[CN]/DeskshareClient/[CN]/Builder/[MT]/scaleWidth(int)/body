@@ -1,0 +1,4 @@
+{
+  this.scaleWidth=width;
+  return this;
+}

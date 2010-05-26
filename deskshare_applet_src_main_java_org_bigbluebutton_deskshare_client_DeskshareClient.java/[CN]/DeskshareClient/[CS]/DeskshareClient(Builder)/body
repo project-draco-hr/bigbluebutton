@@ -2,8 +2,11 @@
   room=builder.room;
   host=builder.host;
   port=builder.port;
-  width=builder.width;
-  height=builder.height;
+  captureWidth=builder.captureWidth;
+  captureHeight=builder.captureHeight;
+  scaleWidth=builder.scaleWidth;
+  scaleHeight=builder.scaleHeight;
+  quality=builder.quality;
   x=builder.x;
   y=builder.y;
   httpTunnel=builder.httpTunnel;

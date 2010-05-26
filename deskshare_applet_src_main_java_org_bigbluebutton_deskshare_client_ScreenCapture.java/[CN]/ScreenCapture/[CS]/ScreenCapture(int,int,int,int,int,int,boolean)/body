@@ -1,0 +1,17 @@
+{
+  this.captureWidth=captureWidth;
+  this.captureHeight=captureHeight;
+  try {
+    robot=new Robot();
+  }
+ catch (  AWTException e) {
+    System.out.println(e.getMessage());
+  }
+  this.screenBounds=new Rectangle(x,y,this.captureWidth,this.captureHeight);
+  this.scaleWidth=scaleWidth;
+  this.scaleHeight=scaleHeight;
+  this.quality=quality;
+  GraphicsEnvironment je=GraphicsEnvironment.getLocalGraphicsEnvironment();
+  GraphicsDevice js=je.getDefaultScreenDevice();
+  jc=js.getDefaultConfiguration();
+}

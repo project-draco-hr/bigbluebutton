@@ -3,10 +3,16 @@
   String port=getParameter("PORT");
   if (port != null)   portValue=Integer.parseInt(port);
   roomValue=getParameter("ROOM");
-  widthValue=Integer.parseInt(getParameter("CAPTURE_WIDTH"));
-  heightValue=Integer.parseInt(getParameter("CAPTURE_HEIGHT"));
+  cWidthValue=Integer.parseInt(getParameter("CAPTURE_WIDTH"));
+  cHeightValue=Integer.parseInt(getParameter("CAPTURE_HEIGHT"));
   xValue=Integer.parseInt(getParameter("X"));
   yValue=Integer.parseInt(getParameter("Y"));
+  String scaleWidth=getParameter("SCALE_WIDTH");
+  if (scaleWidth != null)   sWidthValue=Integer.parseInt(scaleWidth);
+  String scaleHeight=getParameter("SCALE_HEIGHT");
+  if (scaleHeight != null)   sHeightValue=Integer.parseInt(scaleHeight);
+  String qualityCapture=getParameter("SCALE_WITH_QUALITY");
+  if (qualityCapture != null)   qualityValue=Boolean.parseBoolean(qualityCapture);
   String tunnel=getParameter("HTTP_TUNNEL");
   if (tunnel != null)   tunnelValue=Boolean.parseBoolean(tunnel);
   icon=getImage(getCodeBase(),"bbb.gif");

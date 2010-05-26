@@ -1,0 +1,5 @@
+BufferedImage img
+int targetWidth
+int targetHeight
+Object hint
+boolean higherQuality
