@@ -1,3 +1,0 @@
-{
-  return TRANSFER_TYPE_ATTENDED.equals(transferType);
-}

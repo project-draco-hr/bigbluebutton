@@ -1,3 +1,0 @@
-{
-  return bridgeState != null && BRIDGE_STATE_LINK.equalsIgnoreCase(bridgeState);
-}

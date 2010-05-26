@@ -1,3 +1,0 @@
-{
-  return sendAction(new ModuleCheckAction(module)) instanceof ModuleCheckResponse;
-}

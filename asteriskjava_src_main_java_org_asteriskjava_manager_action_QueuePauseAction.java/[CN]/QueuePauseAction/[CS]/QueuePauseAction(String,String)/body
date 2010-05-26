@@ -1,5 +1,0 @@
-{
-  this.iface=iface;
-  this.queue=queue;
-  this.paused=Boolean.TRUE;
-}

@@ -1,3 +1,0 @@
-{
-  this.dlSr=secStringToDouble(dlSrString);
-}

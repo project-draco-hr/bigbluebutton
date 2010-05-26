@@ -1,8 +1,0 @@
-{
-  AgiReply reply;
-  expect(socket.readLine()).andReturn("510 Invalid or unknown command");
-  replay(socket);
-  reply=agiReader.readReply();
-  assertEquals("Incorrect status",AgiReply.SC_INVALID_OR_UNKNOWN_COMMAND,reply.getStatus());
-  verify(socket);
-}

@@ -1,3 +1,0 @@
-{
-  sendAction(new CommandAction("database del " + family + " "+ key));
-}

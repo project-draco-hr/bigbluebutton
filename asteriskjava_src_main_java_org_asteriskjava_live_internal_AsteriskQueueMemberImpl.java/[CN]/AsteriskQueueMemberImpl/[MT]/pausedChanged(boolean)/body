@@ -1,5 +1,0 @@
-{
-  boolean oldPaused=this.paused;
-  this.paused=paused;
-  firePropertyChange(PROPERTY_PAUSED,oldPaused,paused);
-}

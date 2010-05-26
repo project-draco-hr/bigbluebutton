@@ -1,6 +1,0 @@
-{
-  if (variables == null) {
-    variables=new LinkedHashMap<String,String>();
-  }
-  variables.put(name,value);
-}

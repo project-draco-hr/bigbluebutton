@@ -1,7 +1,0 @@
-{
-  final List<DialedChannelHistoryEntry> copy;
-synchronized (linkedChannelHistory) {
-    copy=new ArrayList<DialedChannelHistoryEntry>(dialedChannelHistory);
-  }
-  return copy;
-}

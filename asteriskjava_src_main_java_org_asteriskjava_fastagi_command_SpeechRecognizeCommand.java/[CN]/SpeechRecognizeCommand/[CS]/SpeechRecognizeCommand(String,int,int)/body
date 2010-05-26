@@ -1,5 +1,0 @@
-{
-  this.prompt=prompt;
-  this.timeout=timeout;
-  this.offset=offset;
-}

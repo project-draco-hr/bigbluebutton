@@ -1,5 +1,0 @@
-{
-  super.setUp();
-  serverSocket=new MockedServerSocketFacade();
-  server=new MockedDefaultAgiServer();
-}

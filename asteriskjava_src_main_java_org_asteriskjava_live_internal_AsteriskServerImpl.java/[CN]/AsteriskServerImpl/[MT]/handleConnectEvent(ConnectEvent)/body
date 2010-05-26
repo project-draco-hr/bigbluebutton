@@ -1,8 +1,0 @@
-{
-  try {
-    initialize();
-  }
- catch (  Exception e) {
-    logger.error("Unable to reinitialize state after reconnection",e);
-  }
-}

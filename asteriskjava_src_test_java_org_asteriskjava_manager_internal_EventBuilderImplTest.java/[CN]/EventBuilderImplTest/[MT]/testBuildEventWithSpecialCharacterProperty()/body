@@ -1,8 +1,0 @@
-{
-  ManagerEvent event;
-  properties.put("event","Hangup");
-  properties.put("cause-txt","some text");
-  event=eventBuilder.buildEvent(this,properties);
-  assertNotNull(event);
-  assertEquals("CauseTxt property not set correctly","some text",((HangupEvent)event).getCauseTxt());
-}

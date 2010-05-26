@@ -1,5 +1,0 @@
-String channel
-String context
-String exten
-int priority
-long timeout

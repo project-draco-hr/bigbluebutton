@@ -1,4 +1,0 @@
-{
-  sendCommand(new SayDateTimeCommand(time,escapeDigits,format,timezone));
-  return lastReply.getResultCodeAsChar();
-}

@@ -1,3 +1,0 @@
-{
-  getChannel().verbose(message,level);
-}

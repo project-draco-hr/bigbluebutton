@@ -1,5 +1,0 @@
-{
-  super();
-  this.application=application;
-  this.options=options;
-}

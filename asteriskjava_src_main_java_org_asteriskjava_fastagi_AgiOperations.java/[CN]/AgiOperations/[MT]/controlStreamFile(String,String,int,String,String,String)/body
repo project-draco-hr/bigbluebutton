@@ -1,3 +1,0 @@
-{
-  return getChannel().controlStreamFile(file,escapeDigits,offset,forwardDigit,rewindDigit,pauseDigit);
-}

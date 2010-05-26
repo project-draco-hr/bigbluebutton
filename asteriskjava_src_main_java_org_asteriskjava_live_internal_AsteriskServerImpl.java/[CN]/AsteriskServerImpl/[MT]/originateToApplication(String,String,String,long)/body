@@ -1,3 +1,0 @@
-{
-  return originateToApplication(channel,application,data,timeout,null,null);
-}

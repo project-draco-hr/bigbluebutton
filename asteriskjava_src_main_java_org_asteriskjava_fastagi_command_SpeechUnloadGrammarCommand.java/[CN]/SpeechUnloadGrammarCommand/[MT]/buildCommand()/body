@@ -1,3 +1,0 @@
-{
-  return "SPEECH UNLOAD GRAMMAR " + escapeAndQuote(name);
-}

@@ -1,6 +1,0 @@
-{
-  super();
-  this.mockReader=mockReader;
-  this.mockWriter=mockWriter;
-  this.mockSocket=mockSocket;
-}

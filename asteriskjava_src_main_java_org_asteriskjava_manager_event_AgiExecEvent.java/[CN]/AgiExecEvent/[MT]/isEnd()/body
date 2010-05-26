@@ -1,3 +1,0 @@
-{
-  return isSubEvent(SUB_EVENT_END);
-}

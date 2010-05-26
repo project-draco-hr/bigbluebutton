@@ -1,4 +1,0 @@
-{
-  final String numberOfResults=agiReply.getAttribute("results");
-  return numberOfResults == null ? 0 : Integer.valueOf(numberOfResults);
-}

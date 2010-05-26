@@ -1,3 +1,0 @@
-{
-  return "CHANNEL STATUS" + (channel == null ? "" : " " + escapeAndQuote(channel));
-}

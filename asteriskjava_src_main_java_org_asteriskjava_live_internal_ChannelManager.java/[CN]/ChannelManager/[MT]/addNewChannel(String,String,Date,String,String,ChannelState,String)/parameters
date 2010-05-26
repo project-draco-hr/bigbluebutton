@@ -1,7 +1,0 @@
-String uniqueId
-String name
-Date dateOfCreation
-String callerIdNumber
-String callerIdName
-ChannelState state
-String account

@@ -1,5 +1,0 @@
-{
-  boolean oldMuted=this.muted;
-  this.muted=muted;
-  firePropertyChange(PROPERTY_MUTED,oldMuted,muted);
-}

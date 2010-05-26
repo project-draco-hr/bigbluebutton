@@ -1,7 +1,0 @@
-{
-  ManagerResponse response;
-  response=new ManagerResponse();
-  response.setActionId("abc");
-  response.setResponse("Success");
-  mc.dispatchResponse(response);
-}

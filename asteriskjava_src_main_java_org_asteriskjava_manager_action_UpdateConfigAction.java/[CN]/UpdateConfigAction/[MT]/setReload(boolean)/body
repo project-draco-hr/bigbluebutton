@@ -1,3 +1,0 @@
-{
-  this.reload=reload ? UpdateConfigAction.RELOAD_STRING_YES : UpdateConfigAction.RELOAD_STRING_NO;
-}

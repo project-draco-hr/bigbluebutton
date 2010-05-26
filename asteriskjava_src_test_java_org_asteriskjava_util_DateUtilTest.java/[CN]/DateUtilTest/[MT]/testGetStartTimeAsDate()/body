@@ -1,5 +1,0 @@
-{
-  final Date result=DateUtil.parseDateTime(dateString);
-  assertEquals(1148039688000L,result.getTime());
-  assertEquals("Fri May 19 11:54:48 GMT 2006",result.toString());
-}

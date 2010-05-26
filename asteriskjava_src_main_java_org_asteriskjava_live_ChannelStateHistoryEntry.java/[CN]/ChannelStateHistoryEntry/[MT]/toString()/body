@@ -1,7 +1,0 @@
-{
-  final StringBuilder sb;
-  sb=new StringBuilder("ChannelStateHistoryEntry[");
-  sb.append("date=").append(date).append(",");
-  sb.append("state=").append(state).append("]");
-  return sb.toString();
-}

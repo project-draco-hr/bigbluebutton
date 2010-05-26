@@ -1,6 +1,0 @@
-{
-  AgiRequest request=new SimpleAgiRequest();
-  AgiScript script=strategy.determineScript(request);
-  assertNotNull("no script determined",script);
-  assertEquals("incorrect script determined",script.getClass(),HelloAgiScript.class);
-}

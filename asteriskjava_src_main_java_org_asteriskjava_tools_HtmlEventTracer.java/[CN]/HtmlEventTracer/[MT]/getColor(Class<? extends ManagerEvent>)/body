@@ -1,8 +1,0 @@
-{
-  for (  Map.Entry<Class<? extends ManagerEvent>,String> entry : colors.entrySet()) {
-    if (entry.getKey().isAssignableFrom(clazz)) {
-      return entry.getValue();
-    }
-  }
-  return "#ffffff";
-}

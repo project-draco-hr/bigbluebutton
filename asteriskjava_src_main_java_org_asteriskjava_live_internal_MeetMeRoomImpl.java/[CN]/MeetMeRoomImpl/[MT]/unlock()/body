@@ -1,3 +1,0 @@
-{
-  sendMeetMeCommand(UNLOCK_COMMAND);
-}

@@ -1,3 +1,0 @@
-{
-  return "GET OPTION " + escapeAndQuote(file) + " "+ escapeAndQuote(escapeDigits)+ (timeout < 0 ? "" : " " + timeout);
-}

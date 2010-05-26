@@ -1,7 +1,0 @@
-{
-  Collection<AsteriskQueue> copy;
-synchronized (queues) {
-    copy=new ArrayList<AsteriskQueue>(queues.values());
-  }
-  return copy;
-}

@@ -1,3 +1,0 @@
-{
-  return getChannel().getFullVariable(name,channel);
-}

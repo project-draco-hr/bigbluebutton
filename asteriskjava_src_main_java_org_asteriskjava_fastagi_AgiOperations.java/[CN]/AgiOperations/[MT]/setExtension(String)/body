@@ -1,3 +1,0 @@
-{
-  getChannel().setExtension(extension);
-}

@@ -1,6 +1,0 @@
-{
-  if (maxDigits < 1 || maxDigits > 1024) {
-    throw new IllegalArgumentException("maxDigits must be in [1..1024]");
-  }
-  this.maxDigits=maxDigits;
-}

@@ -1,4 +1,0 @@
-{
-  assertEquals("setProperty1",actionBuilder.determineSetterName("getProperty1"));
-  assertEquals("setProperty1",actionBuilder.determineSetterName("isProperty1"));
-}

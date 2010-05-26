@@ -1,5 +1,0 @@
-{
-synchronized (users) {
-    return users.get(userNumber);
-  }
-}

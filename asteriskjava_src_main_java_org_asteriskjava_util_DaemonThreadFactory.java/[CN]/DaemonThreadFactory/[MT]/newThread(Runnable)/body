@@ -1,7 +1,0 @@
-{
-  final Thread thread;
-  thread=new Thread(r);
-  thread.setDaemon(true);
-  thread.setName(namePrefix + threadNumber.getAndIncrement());
-  return thread;
-}

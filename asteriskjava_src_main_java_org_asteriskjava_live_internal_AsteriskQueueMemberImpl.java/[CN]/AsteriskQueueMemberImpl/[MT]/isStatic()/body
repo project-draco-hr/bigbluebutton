@@ -1,3 +1,0 @@
-{
-  return membership != null && "static".equals(membership);
-}

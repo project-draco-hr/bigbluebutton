@@ -1,4 +1,0 @@
-{
-  this();
-  setMappingStrategy(new StaticMappingStrategy(agiScript));
-}

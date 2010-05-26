@@ -1,5 +1,0 @@
-{
-  this.jabber=jabber;
-  this.screenName=screenName;
-  this.message=message;
-}

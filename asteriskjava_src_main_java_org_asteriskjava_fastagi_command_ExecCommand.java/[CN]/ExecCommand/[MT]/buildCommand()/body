@@ -1,3 +1,0 @@
-{
-  return "EXEC " + escapeAndQuote(application) + " "+ escapeAndQuote(options);
-}

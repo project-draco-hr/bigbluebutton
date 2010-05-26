@@ -1,3 +1,0 @@
-{
-  originateToApplicationAsync(channel,application,data,timeout,null,null,cb);
-}

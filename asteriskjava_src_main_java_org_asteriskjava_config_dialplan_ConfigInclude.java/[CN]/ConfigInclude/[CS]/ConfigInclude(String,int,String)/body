@@ -1,4 +1,0 @@
-{
-  super(filename,lineno);
-  this.category=category;
-}

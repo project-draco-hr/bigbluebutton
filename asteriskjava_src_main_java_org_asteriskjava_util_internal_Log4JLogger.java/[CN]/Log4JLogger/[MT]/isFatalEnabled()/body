@@ -1,8 +1,0 @@
-{
-  if (IS12) {
-    return getLogger().isEnabledFor((Priority)Level.FATAL);
-  }
- else {
-    return getLogger().isEnabledFor(Level.FATAL);
-  }
-}

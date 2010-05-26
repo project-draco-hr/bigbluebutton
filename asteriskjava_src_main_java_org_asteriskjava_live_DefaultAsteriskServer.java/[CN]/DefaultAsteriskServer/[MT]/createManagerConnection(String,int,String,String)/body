@@ -1,5 +1,0 @@
-{
-  DefaultManagerConnection dmc;
-  dmc=new DefaultManagerConnection(hostname,port,username,password);
-  return dmc;
-}

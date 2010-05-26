@@ -1,7 +1,0 @@
-{
-  this.actionCounter=0;
-  this.srcFilename=srcFilename;
-  this.dstFilename=dstFilename;
-  setReload(reload);
-  actions=new HashMap<String,String>();
-}

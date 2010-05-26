@@ -1,3 +1,0 @@
-{
-  return new DefaultManagerConnection(hostname,port,username,password);
-}

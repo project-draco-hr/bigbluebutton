@@ -1,9 +1,0 @@
-{
-  MeetMeUserState oldState;
-synchronized (this) {
-    oldState=this.state;
-    this.dateLeft=dateLeft;
-    this.state=MeetMeUserState.LEFT;
-  }
-  firePropertyChange(PROPERTY_STATE,oldState,state);
-}

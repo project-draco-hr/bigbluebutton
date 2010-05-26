@@ -1,4 +1,0 @@
-{
-  sendCommand(new SayNumberCommand(number,escapeDigits));
-  return lastReply.getResultCodeAsChar();
-}

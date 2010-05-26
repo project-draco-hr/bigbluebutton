@@ -1,4 +1,0 @@
-{
-  sendCommand(new GetOptionCommand(file,escapeDigits));
-  return lastReply.getResultCodeAsChar();
-}

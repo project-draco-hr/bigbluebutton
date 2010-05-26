@@ -1,9 +1,0 @@
-{
-  ManagerEvent event;
-  properties.put("event","Newcallerid");
-  properties.put("cid-callingpres","abc");
-  event=eventBuilder.buildEvent(this,properties);
-  assertNotNull(event);
-  assertNull("CidCallingPres property not set correctly (must be null)",((NewCallerIdEvent)event).getCidCallingPres());
-  assertNull("CidCallingPresTxt property not set correctly (must be null)",((NewCallerIdEvent)event).getCidCallingPresTxt());
-}

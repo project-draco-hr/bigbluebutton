@@ -1,5 +1,0 @@
-{
-  rtcpReceivedEvent.setPt("200(Sender Report)");
-  assertEquals(new Long(200),rtcpReceivedEvent.getPt());
-  assertEquals(new Long(RtcpReceivedEvent.PT_SENDER_REPORT),rtcpReceivedEvent.getPt());
-}

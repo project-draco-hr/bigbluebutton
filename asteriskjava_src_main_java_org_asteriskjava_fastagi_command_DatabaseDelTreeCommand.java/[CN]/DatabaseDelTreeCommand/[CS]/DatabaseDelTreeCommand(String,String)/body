@@ -1,5 +1,0 @@
-{
-  super();
-  this.family=family;
-  this.keyTree=keyTree;
-}

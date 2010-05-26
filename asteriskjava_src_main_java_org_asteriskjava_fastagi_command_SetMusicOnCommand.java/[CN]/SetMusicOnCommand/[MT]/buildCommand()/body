@@ -1,3 +1,0 @@
-{
-  return "SET MUSIC ON" + (musicOnHoldClass == null ? "" : " " + escapeAndQuote(musicOnHoldClass));
-}

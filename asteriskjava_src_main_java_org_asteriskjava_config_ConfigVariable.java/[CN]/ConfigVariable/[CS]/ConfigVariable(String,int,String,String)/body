@@ -1,5 +1,0 @@
-{
-  super(filename,lineno);
-  setName(name);
-  setValue(value);
-}

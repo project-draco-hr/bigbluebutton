@@ -1,8 +1,0 @@
-{
-  ManagerEvent event;
-  properties.put("event","NewChannel");
-  properties.put("timestamp","1159310429.569108");
-  event=eventBuilder.buildEvent(this,properties);
-  assertNotNull(event);
-  assertEquals("Timestamp property not set correctly",1159310429.569108D,event.getTimestamp());
-}

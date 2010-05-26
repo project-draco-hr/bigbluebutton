@@ -1,7 +1,0 @@
-{
-  if (isDie()) {
-    logger.warn("AgiServer is shutting down: Refused to execute AgiScript");
-    return;
-  }
-  getPool().execute(command);
-}

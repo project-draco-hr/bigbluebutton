@@ -1,5 +1,0 @@
-{
-  this(agent,exten,context);
-  this.ackCall=ackCall;
-  this.wrapupTime=wrapupTime;
-}

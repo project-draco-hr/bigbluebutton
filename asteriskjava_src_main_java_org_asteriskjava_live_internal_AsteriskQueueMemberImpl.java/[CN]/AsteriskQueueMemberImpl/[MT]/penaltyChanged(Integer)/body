@@ -1,5 +1,0 @@
-{
-  Integer oldPenalty=this.penalty;
-  this.penalty=penalty;
-  firePropertyChange(PROPERTY_PENALTY,oldPenalty,penalty);
-}

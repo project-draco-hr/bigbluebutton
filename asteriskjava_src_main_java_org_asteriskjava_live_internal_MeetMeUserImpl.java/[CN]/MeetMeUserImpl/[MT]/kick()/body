@@ -1,3 +1,0 @@
-{
-  sendMeetMeUserCommand(KICK_COMMAND);
-}

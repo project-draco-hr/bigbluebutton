@@ -1,8 +1,0 @@
-{
-  if (currentDate == null) {
-    return new Date();
-  }
- else {
-    return currentDate;
-  }
-}

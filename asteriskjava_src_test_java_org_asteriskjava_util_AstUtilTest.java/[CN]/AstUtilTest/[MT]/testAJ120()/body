@@ -1,5 +1,0 @@
-{
-  String s="\"3496853210\" <3496853210>";
-  assertEquals("3496853210",AstUtil.parseCallerId(s)[0]);
-  assertEquals("3496853210",AstUtil.parseCallerId(s)[1]);
-}

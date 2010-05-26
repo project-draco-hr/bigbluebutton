@@ -1,6 +1,0 @@
-{
-  assertNotNull("TimeZone not found",tz);
-  response.setCoreStartupDate(null);
-  response.setCoreStartupTime("02:49:15");
-  assertNull(response.getCoreStartupDateTimeAsDate(tz));
-}

@@ -1,5 +1,0 @@
-{
-synchronized (channels) {
-    channels.add(channel);
-  }
-}

@@ -1,7 +1,0 @@
-{
-  final StringBuilder sb;
-  sb=new StringBuilder("DialedChannelHistoryEntry[");
-  sb.append("date=").append(date).append(",");
-  sb.append("channel=").append(channel).append("]");
-  return sb.toString();
-}

@@ -1,8 +1,0 @@
-{
-  ManagerEvent event;
-  event=eventBuilder.buildEvent(source,buffer);
-  if (event != null) {
-    event.setDateReceived(DateUtil.getDate());
-  }
-  return event;
-}

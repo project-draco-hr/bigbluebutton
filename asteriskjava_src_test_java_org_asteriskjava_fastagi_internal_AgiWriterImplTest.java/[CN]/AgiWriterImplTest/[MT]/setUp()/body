@@ -1,5 +1,0 @@
-{
-  super.setUp();
-  this.socket=createMock(SocketConnectionFacade.class);
-  this.agiWriter=new FastAgiWriter(socket);
-}

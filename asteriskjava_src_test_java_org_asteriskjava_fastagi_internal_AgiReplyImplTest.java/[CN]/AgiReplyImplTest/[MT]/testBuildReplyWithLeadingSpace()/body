@@ -1,7 +1,0 @@
-{
-  AgiReplyImpl reply;
-  lines.add("200 result= (timeout)");
-  reply=new AgiReplyImpl(lines);
-  assertEquals("Incorrect status",AgiReplyImpl.SC_SUCCESS,reply.getStatus());
-  assertEquals("Incorrect extra","timeout",reply.getExtra());
-}

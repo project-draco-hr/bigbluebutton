@@ -1,3 +1,0 @@
-{
-  return "timeout".equals(agiReply.getExtra());
-}

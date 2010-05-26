@@ -1,7 +1,0 @@
-{
-  AsteriskChannel channel;
-  channel=server.originateToExtension("Local/answer@aj-test","aj-test-delayed","answer",1,timeout);
-  System.err.println(channel);
-  Thread.sleep(20000L);
-  System.err.println(channel);
-}

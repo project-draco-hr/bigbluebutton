@@ -1,9 +1,0 @@
-{
-  if (s == null) {
-    return true;
-  }
-  if (!(s instanceof String)) {
-    return false;
-  }
-  return NULL_LITERALS.contains(((String)s).toLowerCase(Locale.US));
-}

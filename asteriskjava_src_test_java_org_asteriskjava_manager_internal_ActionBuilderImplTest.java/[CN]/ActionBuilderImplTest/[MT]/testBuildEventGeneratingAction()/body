@@ -1,9 +1,0 @@
-{
-  AgentsAction action;
-  String actual;
-  action=new AgentsAction();
-  actual=actionBuilder.buildAction(action);
-  assertTrue("Action name missing",actual.indexOf("action: Agents\r\n") >= 0);
-  assertTrue("Action contains actionCompleteEventClass property",actual.indexOf("actioncompleteeventclass:") == -1);
-  assertTrue("Missing trailing CRNL CRNL",actual.endsWith("\r\n\r\n"));
-}

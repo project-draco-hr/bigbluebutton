@@ -1,6 +1,0 @@
-AsteriskServerImpl server
-String name
-Integer max
-String strategy
-Integer serviceLevel
-Integer weight

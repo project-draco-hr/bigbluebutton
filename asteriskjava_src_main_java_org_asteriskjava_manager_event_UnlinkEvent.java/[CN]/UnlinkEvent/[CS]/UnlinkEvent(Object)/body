@@ -1,4 +1,0 @@
-{
-  super(source);
-  setBridgeState(BRIDGE_STATE_UNLINK);
-}

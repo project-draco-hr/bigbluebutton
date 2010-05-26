@@ -1,4 +1,0 @@
-{
-  super(mappingStrategy);
-  this.socket=socket;
-}

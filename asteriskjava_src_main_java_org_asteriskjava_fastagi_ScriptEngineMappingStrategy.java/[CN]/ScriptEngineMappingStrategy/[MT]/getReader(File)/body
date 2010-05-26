@@ -1,4 +1,0 @@
-{
-  final InputStream is=new FileInputStream(file);
-  return new InputStreamReader(is);
-}

@@ -1,9 +1,0 @@
-{
-  final ManagerResponse response;
-  initializeIfNeeded();
-  response=sendAction(new CommandAction(command));
-  if (!(response instanceof CommandResponse)) {
-    throw new ManagerCommunicationException("Response to CommandAction(\"" + command + "\") was not a CommandResponse but "+ response,null);
-  }
-  return ((CommandResponse)response).getResult();
-}

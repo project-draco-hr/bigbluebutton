@@ -1,3 +1,0 @@
-{
-  asyncAgiEvents.offer(event);
-}

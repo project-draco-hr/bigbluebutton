@@ -1,4 +1,0 @@
-{
-  categories.put(category.getName(),category);
-  currentCategory=category;
-}

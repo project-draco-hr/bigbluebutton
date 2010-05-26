@@ -1,6 +1,0 @@
-{
-  sendCommand(new SpeechUnloadGrammarCommand(name));
-  if (lastReply.getResultCode() != 1) {
-    throw new AgiSpeechException("Grammar '" + name + "' cannot be unloaded");
-  }
-}

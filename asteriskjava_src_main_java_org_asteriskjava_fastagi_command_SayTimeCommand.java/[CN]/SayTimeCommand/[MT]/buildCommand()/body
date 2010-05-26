@@ -1,3 +1,0 @@
-{
-  return "SAY TIME " + time + " "+ escapeAndQuote(escapeDigits);
-}

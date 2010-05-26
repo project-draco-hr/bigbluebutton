@@ -1,4 +1,0 @@
-{
-  createReaderCalls++;
-  return mockReader;
-}

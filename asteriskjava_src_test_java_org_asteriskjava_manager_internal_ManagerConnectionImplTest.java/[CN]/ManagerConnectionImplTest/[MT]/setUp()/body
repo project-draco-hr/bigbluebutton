@@ -1,9 +1,0 @@
-{
-  mockWriter=new ManagerWriterMock();
-  mockWriter.setExpectedUsername("username");
-  mockWriter.setExpectedKey("40b1b887502902a8ce61a16e44630f7c");
-  mockReader=new ManagerReaderMock();
-  mockSocket=createMock(SocketConnectionFacade.class);
-  mc=new MockedManagerConnectionImpl(mockReader,mockWriter,mockSocket);
-  mockWriter.setDispatcher(mc);
-}

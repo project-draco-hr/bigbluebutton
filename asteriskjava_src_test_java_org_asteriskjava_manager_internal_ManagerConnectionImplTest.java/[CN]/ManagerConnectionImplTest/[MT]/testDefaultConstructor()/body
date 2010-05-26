@@ -1,4 +1,0 @@
-{
-  assertEquals("Invalid default hostname","localhost",mc.getHostname());
-  assertEquals("Invalid default port",5038,mc.getPort());
-}

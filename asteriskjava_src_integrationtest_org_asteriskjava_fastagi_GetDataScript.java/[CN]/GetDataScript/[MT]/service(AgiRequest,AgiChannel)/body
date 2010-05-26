@@ -1,4 +1,0 @@
-{
-  channel.streamFile("tt-monkeys");
-  channel.sayDateTime(new Date().getTime());
-}

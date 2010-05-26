@@ -1,3 +1,0 @@
-{
-  namePrefix="Asterisk-Java DaemonPool-" + poolNumber.getAndIncrement() + "-thread-";
-}

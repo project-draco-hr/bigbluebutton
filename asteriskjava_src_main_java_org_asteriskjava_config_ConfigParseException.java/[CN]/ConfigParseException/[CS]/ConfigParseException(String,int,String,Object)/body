@@ -1,5 +1,0 @@
-{
-  super(String.format(format,params));
-  this.filename=filename;
-  this.lineno=lineno;
-}

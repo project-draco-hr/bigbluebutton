@@ -1,5 +1,0 @@
-{
-  AnnotatedAction action=new AnnotatedAction("value1","value2","value3");
-  String actual=actionBuilder.buildAction(action);
-  assertTrue("Incorrect mapping of property with annotated setter",actual.indexOf("property-2: value2\r\n") >= 0);
-}

@@ -1,8 +1,0 @@
-{
-  try {
-    eventBuilder.registerEventClass(AbstractChannelEvent.class);
-    fail("registerEvent() must not accept abstract classes");
-  }
- catch (  IllegalArgumentException ex) {
-  }
-}

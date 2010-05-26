@@ -1,5 +1,0 @@
-{
-  final Extension oldParkedAt=this.parkedAt;
-  this.parkedAt=parkedAt;
-  firePropertyChange(PROPERTY_PARKED_AT,oldParkedAt,parkedAt);
-}

@@ -1,5 +1,0 @@
-{
-  this.commentBlock=new StringBuilder();
-  this.categories=new LinkedHashMap<String,Category>();
-  this.warnings=new ArrayList<ConfigParseException>();
-}

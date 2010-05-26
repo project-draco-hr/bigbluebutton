@@ -1,3 +1,0 @@
-{
-  return "SAY NUMBER " + escapeAndQuote(number) + " "+ escapeAndQuote(escapeDigits);
-}

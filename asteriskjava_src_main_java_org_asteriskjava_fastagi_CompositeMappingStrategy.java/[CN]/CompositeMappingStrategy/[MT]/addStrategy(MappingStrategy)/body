@@ -1,6 +1,0 @@
-{
-  if (strategies == null) {
-    strategies=new ArrayList<MappingStrategy>();
-  }
-  strategies.add(strategy);
-}

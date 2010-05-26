@@ -1,7 +1,0 @@
-{
-  sb.append(name).append(" = ");
-  if (value != null) {
-    sb.append(value);
-  }
-  return sb;
-}

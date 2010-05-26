@@ -1,3 +1,0 @@
-{
-  getChannel().setVariable(name,value);
-}

@@ -1,3 +1,0 @@
-{
-  assertEquals(new CallerId(null,"1234"),new CallerId("<unknown>","1234"));
-}

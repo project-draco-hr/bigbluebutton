@@ -1,3 +1,0 @@
-{
-  return "DATABASE DELTREE " + escapeAndQuote(family) + (keyTree == null ? "" : " " + escapeAndQuote(keyTree));
-}

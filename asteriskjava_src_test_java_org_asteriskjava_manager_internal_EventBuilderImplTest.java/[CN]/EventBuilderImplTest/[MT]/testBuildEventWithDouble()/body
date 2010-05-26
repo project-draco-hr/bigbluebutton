@@ -1,8 +1,0 @@
-{
-  ManagerEvent event;
-  properties.put("event","RTPReceiverStat");
-  properties.put("transit","12.3456");
-  event=eventBuilder.buildEvent(this,properties);
-  assertNotNull(event);
-  assertEquals("Transit property not set correctly",12.3456,((RtpReceiverStatEvent)event).getTransit());
-}

@@ -1,4 +1,0 @@
-{
-  this.eventBuilder=new EventBuilderImpl();
-  this.properties=new HashMap<String,Object>();
-}

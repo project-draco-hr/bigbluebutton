@@ -1,4 +1,0 @@
-{
-  rtcpReceivedEvent.setRtt("12345(sec)");
-  assertEquals(new Long(12345),rtcpReceivedEvent.getRtt());
-}

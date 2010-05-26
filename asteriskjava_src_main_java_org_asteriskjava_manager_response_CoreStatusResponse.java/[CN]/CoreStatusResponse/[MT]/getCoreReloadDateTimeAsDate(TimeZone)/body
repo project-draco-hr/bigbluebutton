@@ -1,6 +1,0 @@
-{
-  if (coreReloadDate == null || coreReloadTime == null) {
-    return null;
-  }
-  return DateUtil.parseDateTime(coreReloadDate + " " + coreReloadTime,tz);
-}

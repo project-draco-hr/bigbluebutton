@@ -1,6 +1,0 @@
-{
-  this.dateOfRemoval=dateOfRemoval;
-  this.hangupCause=hangupCause;
-  this.hangupCauseText=hangupCauseText;
-  stateChanged(dateOfRemoval,ChannelState.HUNGUP);
-}

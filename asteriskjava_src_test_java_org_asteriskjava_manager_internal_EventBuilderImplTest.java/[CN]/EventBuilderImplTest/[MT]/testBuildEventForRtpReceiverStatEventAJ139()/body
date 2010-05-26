@@ -1,9 +1,0 @@
-{
-  RtpReceiverStatEvent event;
-  properties.put("event","RtpReceiverStat");
-  properties.put("receivedpackets","0");
-  event=(RtpReceiverStatEvent)eventBuilder.buildEvent(this,properties);
-  assertNotNull(event);
-  assertEquals("Returned event is of wrong type",RtpReceiverStatEvent.class,event.getClass());
-  assertEquals("Property receivedPacket is not set correctly",0,(long)event.getReceivedPackets());
-}

@@ -1,8 +1,0 @@
-{
-  List<String> lines;
-  AgiRequest request;
-  lines=new ArrayList<String>();
-  lines.add("agi_rdnis: unknown");
-  request=new AgiRequestImpl(lines);
-  assertNull("rdnis must not be set if \"unknown\"",request.getRdnis());
-}

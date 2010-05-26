@@ -1,7 +1,0 @@
-{
-  final ExpectedResponse annotation=actionClass.getAnnotation(ExpectedResponse.class);
-  if (annotation == null) {
-    return null;
-  }
-  return annotation.value();
-}

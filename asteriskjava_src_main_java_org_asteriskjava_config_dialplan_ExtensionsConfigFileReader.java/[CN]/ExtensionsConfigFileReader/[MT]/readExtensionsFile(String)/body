@@ -1,4 +1,0 @@
-{
-  super.readFile(configfile);
-  return new ExtensionsConfigFile(configfile,categories);
-}

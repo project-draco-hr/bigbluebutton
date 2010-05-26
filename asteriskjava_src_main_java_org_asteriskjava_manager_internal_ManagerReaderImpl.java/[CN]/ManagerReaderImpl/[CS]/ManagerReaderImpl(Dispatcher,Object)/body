@@ -1,7 +1,0 @@
-{
-  this.dispatcher=dispatcher;
-  this.source=source;
-  this.eventBuilder=new EventBuilderImpl();
-  this.responseBuilder=new ResponseBuilderImpl();
-  this.expectedResponseClasses=new ConcurrentHashMap<String,Class<? extends ManagerResponse>>();
-}

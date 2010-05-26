@@ -1,4 +1,0 @@
-{
-  status.noAnswerChannel=channel;
-  doNotify();
-}

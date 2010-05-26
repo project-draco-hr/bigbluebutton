@@ -1,7 +1,0 @@
-{
-  ManagerResponse response;
-  response=server.sendAction(new MonitorAction(name,filename,format,mix));
-  if (response instanceof ManagerError) {
-    throw new NoSuchChannelException("Channel '" + name + "' is not available: "+ response.getMessage());
-  }
-}

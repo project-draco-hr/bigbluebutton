@@ -1,4 +1,0 @@
-{
-  System.out.println(Arrays.toString(server.getVersion("cdr_manager.c")));
-  System.out.println(server.getVersion());
-}

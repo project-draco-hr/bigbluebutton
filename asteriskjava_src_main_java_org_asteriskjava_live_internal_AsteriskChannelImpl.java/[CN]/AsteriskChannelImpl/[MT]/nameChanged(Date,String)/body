@@ -1,8 +1,0 @@
-{
-  final String oldName=this.name;
-  if (oldName != null && oldName.equals(name)) {
-    return;
-  }
-  this.name=name;
-  firePropertyChange(PROPERTY_NAME,oldName,name);
-}

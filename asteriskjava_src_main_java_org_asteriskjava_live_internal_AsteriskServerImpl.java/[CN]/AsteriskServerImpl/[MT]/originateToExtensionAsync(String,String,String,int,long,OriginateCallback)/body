@@ -1,3 +1,0 @@
-{
-  originateToExtensionAsync(channel,context,exten,priority,timeout,null,null,cb);
-}

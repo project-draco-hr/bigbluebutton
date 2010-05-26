@@ -1,6 +1,0 @@
-{
-synchronized (result) {
-    result.setResponse(response);
-    result.notifyAll();
-  }
-}

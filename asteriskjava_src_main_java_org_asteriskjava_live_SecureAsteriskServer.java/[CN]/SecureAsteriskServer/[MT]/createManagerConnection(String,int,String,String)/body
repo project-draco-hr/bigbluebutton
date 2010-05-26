@@ -1,6 +1,0 @@
-{
-  DefaultManagerConnection dmc;
-  dmc=super.createManagerConnection(hostname,port,username,password);
-  dmc.setSsl(true);
-  return dmc;
-}

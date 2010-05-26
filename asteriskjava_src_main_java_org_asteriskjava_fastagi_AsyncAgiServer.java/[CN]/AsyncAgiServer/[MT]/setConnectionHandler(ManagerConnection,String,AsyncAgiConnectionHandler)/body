@@ -1,5 +1,0 @@
-{
-synchronized (connectionHandlers) {
-    connectionHandlers.put(calculateHashKey(connection,channelName),connectionHandler);
-  }
-}

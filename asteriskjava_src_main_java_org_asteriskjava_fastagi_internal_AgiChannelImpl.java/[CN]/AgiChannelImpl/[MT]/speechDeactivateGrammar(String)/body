@@ -1,6 +1,0 @@
-{
-  sendCommand(new SpeechDeactivateGrammarCommand(name));
-  if (lastReply.getResultCode() != 1) {
-    throw new AgiSpeechException("Grammar '" + name + "' cannot be deactivated");
-  }
-}

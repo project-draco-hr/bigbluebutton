@@ -1,3 +1,0 @@
-{
-  managerWriter=new ManagerWriterImpl();
-}

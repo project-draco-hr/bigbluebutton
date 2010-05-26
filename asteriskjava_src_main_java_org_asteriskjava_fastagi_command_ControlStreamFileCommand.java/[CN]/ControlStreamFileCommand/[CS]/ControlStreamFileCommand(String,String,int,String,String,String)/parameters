@@ -1,6 +1,0 @@
-String file
-String escapeDigits
-int offset
-String forwardDigit
-String rewindDigit
-String pauseDigit

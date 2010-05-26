@@ -1,7 +1,0 @@
-AsteriskServerImpl server
-AsteriskQueueImpl queue
-String location
-QueueMemberState state
-boolean paused
-Integer penalty
-String membership

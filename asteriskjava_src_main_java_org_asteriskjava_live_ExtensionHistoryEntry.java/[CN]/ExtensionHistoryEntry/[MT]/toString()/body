@@ -1,8 +1,0 @@
-{
-  final StringBuilder sb;
-  sb=new StringBuilder(100);
-  sb.append("ExtensionHistoryEntry[");
-  sb.append("date=").append(date).append(",");
-  sb.append("extension=").append(extension).append("]");
-  return sb.toString();
-}

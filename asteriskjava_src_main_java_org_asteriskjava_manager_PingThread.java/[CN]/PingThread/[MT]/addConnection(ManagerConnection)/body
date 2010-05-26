@@ -1,5 +1,0 @@
-{
-synchronized (connections) {
-    connections.add(connection);
-  }
-}

@@ -1,7 +1,0 @@
-{
-  StackTraceElement stack[]=(new Throwable()).getStackTrace();
-  if (stack.length > 2) {
-    return stack[2];
-  }
-  return null;
-}

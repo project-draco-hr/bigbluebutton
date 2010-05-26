@@ -1,3 +1,0 @@
-{
-  return "SET EXTENSION " + escapeAndQuote(extension);
-}

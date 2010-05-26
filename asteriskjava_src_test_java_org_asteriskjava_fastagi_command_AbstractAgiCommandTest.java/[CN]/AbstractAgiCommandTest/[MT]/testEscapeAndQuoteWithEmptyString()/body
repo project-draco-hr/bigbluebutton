@@ -1,4 +1,0 @@
-{
-  myCommand=new MyCommand("");
-  assertEquals("MY \"\"",myCommand.buildCommand());
-}

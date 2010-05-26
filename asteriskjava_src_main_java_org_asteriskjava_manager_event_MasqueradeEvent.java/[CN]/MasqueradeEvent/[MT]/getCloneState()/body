@@ -1,3 +1,0 @@
-{
-  return AstState.str2state(cloneStateDesc);
-}

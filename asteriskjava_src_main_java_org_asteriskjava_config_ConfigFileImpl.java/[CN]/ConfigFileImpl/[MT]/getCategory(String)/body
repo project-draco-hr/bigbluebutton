@@ -1,5 +1,0 @@
-{
-synchronized (categories) {
-    return categories.get(name);
-  }
-}

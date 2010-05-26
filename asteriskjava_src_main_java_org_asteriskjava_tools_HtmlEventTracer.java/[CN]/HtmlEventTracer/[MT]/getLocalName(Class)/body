@@ -1,5 +1,0 @@
-{
-  String s;
-  s=c.getName();
-  return s.substring(s.lastIndexOf(".") + 1,s.length());
-}

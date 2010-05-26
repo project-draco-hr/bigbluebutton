@@ -1,8 +1,0 @@
-{
-  ManagerResponse response;
-  attributes.put("response","Success");
-  attributes.put("challenge","131494410");
-  response=responseBuilder.buildResponse(ChallengeResponse.class,attributes);
-  assertEquals("Response of wrong type",ChallengeResponse.class,response.getClass());
-  assertEquals("Challenge not set correctly","131494410",((ChallengeResponse)response).getChallenge());
-}

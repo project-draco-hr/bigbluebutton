@@ -1,3 +1,0 @@
-{
-  return "HANGUP" + (channel == null ? "" : " " + escapeAndQuote(channel));
-}

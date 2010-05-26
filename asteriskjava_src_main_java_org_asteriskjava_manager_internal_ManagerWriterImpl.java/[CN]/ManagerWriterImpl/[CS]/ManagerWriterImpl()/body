@@ -1,3 +1,0 @@
-{
-  this.actionBuilder=new ActionBuilderImpl();
-}

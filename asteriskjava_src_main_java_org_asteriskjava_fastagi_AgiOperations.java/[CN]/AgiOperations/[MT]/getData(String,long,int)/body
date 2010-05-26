@@ -1,3 +1,0 @@
-{
-  return getChannel().getData(file,timeout,maxDigits);
-}

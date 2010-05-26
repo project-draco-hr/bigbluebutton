@@ -1,9 +1,0 @@
-{
-synchronized (status) {
-    server.originateToExtensionAsync("Local/answer@aj-test","aj-test","answer",1,timeout,cb);
-    status.wait();
-    status.print();
-    assertNotNull(status.dialingChannel);
-    assertNotNull(status.successChannel);
-  }
-}

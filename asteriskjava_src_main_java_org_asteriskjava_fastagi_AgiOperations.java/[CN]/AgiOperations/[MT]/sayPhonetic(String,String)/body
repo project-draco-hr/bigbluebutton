@@ -1,3 +1,0 @@
-{
-  return getChannel().sayPhonetic(text,escapeDigits);
-}

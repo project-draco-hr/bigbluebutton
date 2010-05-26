@@ -1,6 +1,0 @@
-{
-  ManagerEvent event;
-  properties.put("event","Nonexisting");
-  event=eventBuilder.buildEvent(this,properties);
-  assertNull(event);
-}

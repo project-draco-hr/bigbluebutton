@@ -1,3 +1,0 @@
-{
-  return MEMBERSHIP_STATIC.equals(membership);
-}

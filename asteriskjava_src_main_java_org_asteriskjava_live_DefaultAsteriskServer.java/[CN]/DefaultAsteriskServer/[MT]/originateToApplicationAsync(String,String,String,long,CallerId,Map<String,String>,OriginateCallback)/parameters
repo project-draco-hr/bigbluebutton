@@ -1,7 +1,0 @@
-String channel
-String application
-String data
-long timeout
-CallerId callerId
-Map<String,String> variables
-OriginateCallback cb

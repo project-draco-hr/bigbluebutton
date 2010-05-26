@@ -1,3 +1,0 @@
-{
-  getChannel().controlStreamFile(file);
-}

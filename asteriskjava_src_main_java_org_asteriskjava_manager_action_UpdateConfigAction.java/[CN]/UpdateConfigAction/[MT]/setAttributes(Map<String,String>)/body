@@ -1,4 +1,0 @@
-{
-  this.actions=actions;
-  this.actionCounter=actions.keySet().size();
-}

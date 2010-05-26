@@ -1,5 +1,0 @@
-String agent
-String exten
-String context
-Boolean ackCall
-Long wrapupTime

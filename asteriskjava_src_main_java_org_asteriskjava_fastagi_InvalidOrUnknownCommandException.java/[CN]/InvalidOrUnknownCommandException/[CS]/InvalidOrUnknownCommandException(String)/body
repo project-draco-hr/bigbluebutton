@@ -1,3 +1,0 @@
-{
-  super("Invalid or unknown command: " + command);
-}

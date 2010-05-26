@@ -1,5 +1,0 @@
-AsteriskServerImpl server
-MeetMeRoomImpl room
-Integer userNumber
-AsteriskChannelImpl channel
-Date dateJoined

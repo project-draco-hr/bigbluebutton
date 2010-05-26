@@ -1,3 +1,0 @@
-{
-  startMonitoring(filename,format,false);
-}

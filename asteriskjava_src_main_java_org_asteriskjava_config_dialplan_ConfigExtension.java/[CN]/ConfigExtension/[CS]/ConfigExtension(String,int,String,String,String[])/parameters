@@ -1,5 +1,0 @@
-String filename
-int lineno
-String name
-String priority
-String[] application

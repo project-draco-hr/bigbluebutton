@@ -1,5 +1,0 @@
-{
-  CallerId callerId=new CallerId(null,null);
-  assertEquals(callerId,CallerId.valueOf("\"\" <>"));
-  assertEquals(callerId,CallerId.valueOf("<Unknown>"));
-}

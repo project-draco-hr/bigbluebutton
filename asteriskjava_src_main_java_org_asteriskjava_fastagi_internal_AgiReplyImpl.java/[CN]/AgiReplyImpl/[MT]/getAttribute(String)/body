@@ -1,9 +1,0 @@
-{
-  if (getStatus() != SC_SUCCESS) {
-    return null;
-  }
-  if ("result".equalsIgnoreCase(name)) {
-    return getResult();
-  }
-  return getAttributes().get(name.toLowerCase(Locale.ENGLISH));
-}

@@ -1,3 +1,0 @@
-{
-  sendMeetMeUserCommand(UNMUTE_COMMAND);
-}

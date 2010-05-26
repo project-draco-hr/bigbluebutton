@@ -1,3 +1,0 @@
-{
-  return "VERBOSE " + escapeAndQuote(message) + " "+ level;
-}

@@ -1,5 +1,0 @@
-{
-  super.setUp();
-  this.mappingStrategy=new ResourceBundleMappingStrategy();
-  this.mappingStrategy.setResourceBundleName("test-mapping");
-}

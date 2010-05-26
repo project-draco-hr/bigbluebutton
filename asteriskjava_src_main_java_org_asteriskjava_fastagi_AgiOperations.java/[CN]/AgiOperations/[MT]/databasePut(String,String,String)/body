@@ -1,3 +1,0 @@
-{
-  getChannel().databasePut(family,key,value);
-}

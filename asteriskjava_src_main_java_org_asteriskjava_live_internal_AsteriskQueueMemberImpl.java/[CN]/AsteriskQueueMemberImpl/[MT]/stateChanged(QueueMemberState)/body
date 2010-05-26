@@ -1,5 +1,0 @@
-{
-  QueueMemberState oldState=this.state;
-  this.state=state;
-  firePropertyChange(PROPERTY_STATE,oldState,state);
-}

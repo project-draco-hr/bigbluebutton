@@ -1,3 +1,0 @@
-{
-  return "SPEECH RECOGNIZE " + escapeAndQuote(prompt) + " "+ timeout+ " "+ offset;
-}

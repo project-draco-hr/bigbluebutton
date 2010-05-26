@@ -1,6 +1,0 @@
-{
-  if (element instanceof Category) {
-    throw new IllegalArgumentException("Nested categories are not allowed");
-  }
-  elements.add(element);
-}

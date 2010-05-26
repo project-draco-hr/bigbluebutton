@@ -1,3 +1,0 @@
-{
-  assertTrue("\"-none-\" must be considered null",AstUtil.isNull("-none-"));
-}

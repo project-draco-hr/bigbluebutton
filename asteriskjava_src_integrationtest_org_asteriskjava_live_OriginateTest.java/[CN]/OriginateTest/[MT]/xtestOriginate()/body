@@ -1,9 +1,0 @@
-{
-  AsteriskChannel channel;
-  channel=server.originateToExtension("SIP/1310","from-local","1330",1,timeout);
-  System.err.println(channel);
-  System.err.println(channel.getVariable("AJ_TRACE_ID"));
-  Thread.sleep(20000L);
-  System.err.println(channel);
-  System.err.println(channel.getVariable("AJ_TRACE_ID"));
-}

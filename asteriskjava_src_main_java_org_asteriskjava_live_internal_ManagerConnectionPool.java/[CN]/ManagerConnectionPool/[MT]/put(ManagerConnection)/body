@@ -1,8 +1,0 @@
-{
-  try {
-    connections.put(connection);
-  }
- catch (  InterruptedException e) {
-    throw new RuntimeException("Interrupted while trying to add connection to pool");
-  }
-}

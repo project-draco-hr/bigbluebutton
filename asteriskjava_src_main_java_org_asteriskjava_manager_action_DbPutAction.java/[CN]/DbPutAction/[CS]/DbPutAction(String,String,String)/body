@@ -1,5 +1,0 @@
-{
-  this.family=family;
-  this.key=key;
-  this.val=val;
-}

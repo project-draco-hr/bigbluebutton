@@ -1,6 +1,0 @@
-{
-  logger.info("Set state of agent " + agent.getAgentId() + " to "+ newState);
-synchronized (agent) {
-    agent.updateState(newState);
-  }
-}

@@ -1,4 +1,0 @@
-{
-  initializeIfNeeded();
-  return agentManager.getAgents();
-}

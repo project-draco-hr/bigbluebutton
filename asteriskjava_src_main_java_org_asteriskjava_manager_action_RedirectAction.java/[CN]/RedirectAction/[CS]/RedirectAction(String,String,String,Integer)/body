@@ -1,6 +1,0 @@
-{
-  this.channel=channel;
-  this.context=context;
-  this.exten=exten;
-  this.priority=priority;
-}

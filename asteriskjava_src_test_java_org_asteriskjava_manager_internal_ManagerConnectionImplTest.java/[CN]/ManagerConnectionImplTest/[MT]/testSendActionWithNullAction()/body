@@ -1,9 +1,0 @@
-{
-  mc.connect();
-  try {
-    mc.sendAction(null);
-    fail("No IllgealArgumentException thrown");
-  }
- catch (  IllegalArgumentException e) {
-  }
-}

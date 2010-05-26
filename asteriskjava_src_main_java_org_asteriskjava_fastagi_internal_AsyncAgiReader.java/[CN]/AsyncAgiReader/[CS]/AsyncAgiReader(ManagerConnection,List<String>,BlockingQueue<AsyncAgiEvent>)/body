@@ -1,8 +1,0 @@
-{
-  this.request=new AgiRequestImpl(environment);
-  this.asyncAgiEvents=asyncAgiEvents;
-  request.setLocalAddress(connection.getLocalAddress());
-  request.setLocalPort(connection.getLocalPort());
-  request.setRemoteAddress(connection.getRemoteAddress());
-  request.setRemotePort(connection.getRemotePort());
-}

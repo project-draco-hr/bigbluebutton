@@ -1,3 +1,0 @@
-{
-  impl.originateToExtensionAsync(channel,context,exten,priority,timeout,callerId,variables,cb);
-}

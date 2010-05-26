@@ -1,3 +1,0 @@
-{
-  newStateEvent=new NewStateEvent(this);
-}

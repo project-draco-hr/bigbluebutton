@@ -1,3 +1,0 @@
-{
-  impl.sendAction(action,callbackHandler);
-}

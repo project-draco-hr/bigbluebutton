@@ -1,4 +1,0 @@
-{
-  sendCommand(new ControlStreamFileCommand(file,escapeDigits,offset));
-  return lastReply.getResultCodeAsChar();
-}

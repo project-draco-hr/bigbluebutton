@@ -1,5 +1,0 @@
-{
-  super("Invalid command syntax: " + synopsis);
-  this.synopsis=synopsis;
-  this.usage=usage;
-}

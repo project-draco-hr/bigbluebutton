@@ -1,3 +1,0 @@
-{
-  this.maxCallBr=stringToInteger(maxCallBr,"kbps");
-}

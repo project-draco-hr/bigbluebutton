@@ -1,4 +1,0 @@
-{
-  CallerId callerId=new CallerId("Hans Wurst",null);
-  assertEquals(callerId,CallerId.valueOf("\"Hans Wurst\" <>"));
-}

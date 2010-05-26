@@ -1,5 +1,0 @@
-{
-  super();
-  this.resourceBundleName=resourceBundleName;
-  this.shareInstances=shareInstances;
-}

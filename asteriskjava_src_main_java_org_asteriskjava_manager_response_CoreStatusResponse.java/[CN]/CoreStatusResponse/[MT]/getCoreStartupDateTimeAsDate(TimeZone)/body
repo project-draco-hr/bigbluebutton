@@ -1,6 +1,0 @@
-{
-  if (coreStartupDate == null || coreStartupTime == null) {
-    return null;
-  }
-  return DateUtil.parseDateTime(coreStartupDate + " " + coreStartupTime,tz);
-}

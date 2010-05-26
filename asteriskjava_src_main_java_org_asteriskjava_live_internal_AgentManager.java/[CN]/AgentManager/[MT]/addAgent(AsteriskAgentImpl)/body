@@ -1,6 +1,0 @@
-{
-synchronized (agents) {
-    agents.put(agent.getAgentId(),agent);
-  }
-  server.fireNewAgent(agent);
-}

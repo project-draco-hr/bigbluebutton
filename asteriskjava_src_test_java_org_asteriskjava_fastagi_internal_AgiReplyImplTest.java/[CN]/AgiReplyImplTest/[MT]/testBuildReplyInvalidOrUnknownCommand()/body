@@ -1,6 +1,0 @@
-{
-  AgiReplyImpl reply;
-  lines.add("510 Invalid or unknown command");
-  reply=new AgiReplyImpl(lines);
-  assertEquals("Incorrect status",AgiReplyImpl.SC_INVALID_OR_UNKNOWN_COMMAND,reply.getStatus());
-}

@@ -1,3 +1,0 @@
-{
-  return "SPEECH LOAD GRAMMAR " + escapeAndQuote(name) + " "+ escapeAndQuote(path);
-}

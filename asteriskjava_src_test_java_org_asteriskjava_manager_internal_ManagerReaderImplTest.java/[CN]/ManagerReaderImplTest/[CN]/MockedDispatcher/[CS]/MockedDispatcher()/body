@@ -1,4 +1,0 @@
-{
-  this.dispatchedEvents=new ArrayList<ManagerEvent>();
-  this.dispatchedResponses=new ArrayList<ManagerResponse>();
-}

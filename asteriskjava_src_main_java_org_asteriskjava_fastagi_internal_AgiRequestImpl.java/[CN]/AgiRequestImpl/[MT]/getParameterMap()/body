@@ -1,6 +1,0 @@
-{
-  if (parameterMap == null) {
-    parameterMap=parseParameters(parameters);
-  }
-  return parameterMap;
-}

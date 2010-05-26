@@ -1,4 +1,0 @@
-{
-  status.successChannel=channel;
-  doNotify();
-}

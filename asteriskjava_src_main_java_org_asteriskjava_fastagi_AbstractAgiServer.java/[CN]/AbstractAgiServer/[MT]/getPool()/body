@@ -1,7 +1,0 @@
-{
-  if (pool == null) {
-    pool=createPool();
-    logger.info("Thread pool started.");
-  }
-  return pool;
-}

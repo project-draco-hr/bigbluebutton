@@ -1,8 +1,0 @@
-{
-  ManagerEvent event;
-  properties.put("event","Cdr");
-  properties.put("source","source value");
-  event=eventBuilder.buildEvent(this,properties);
-  assertNotNull(event);
-  assertEquals("Src property not set correctly","source value",((CdrEvent)event).getSrc());
-}

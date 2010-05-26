@@ -1,4 +1,0 @@
-{
-  this.name=(AstUtil.isNull(name)) ? null : name;
-  this.number=(AstUtil.isNull(number)) ? null : number;
-}

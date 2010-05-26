@@ -1,8 +1,0 @@
-{
-  final StringBuffer sb;
-  sb=new StringBuffer();
-  sb.append(this.hashCode());
-  sb.append("_");
-  sb.append(actionIdCounter.getAndIncrement());
-  return sb.toString();
-}

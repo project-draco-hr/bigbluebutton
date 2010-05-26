@@ -1,9 +1,0 @@
-{
-  this();
-  if (lines != null) {
-    this.lines=new ArrayList<String>(lines);
-    if (!lines.isEmpty()) {
-      firstLine=lines.get(0);
-    }
-  }
-}

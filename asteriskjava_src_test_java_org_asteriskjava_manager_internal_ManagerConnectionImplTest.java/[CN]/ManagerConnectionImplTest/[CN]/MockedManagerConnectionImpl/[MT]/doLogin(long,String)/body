@@ -1,8 +1,0 @@
-{
-  loginCalls++;
-  if (throwTimeoutExceptionOnFirstLogin && loginCalls == 1) {
-    disconnect();
-    throw new TimeoutException("Provoked timeout");
-  }
-  super.doLogin(timeout,events);
-}

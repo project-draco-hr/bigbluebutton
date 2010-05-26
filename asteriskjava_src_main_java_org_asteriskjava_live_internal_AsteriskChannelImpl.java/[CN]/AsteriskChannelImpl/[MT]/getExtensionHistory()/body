@@ -1,7 +1,0 @@
-{
-  final List<ExtensionHistoryEntry> copy;
-synchronized (extensionHistory) {
-    copy=new ArrayList<ExtensionHistoryEntry>(extensionHistory);
-  }
-  return copy;
-}

@@ -1,3 +1,0 @@
-{
-  log=Logger.getLogger(clazz.getName());
-}

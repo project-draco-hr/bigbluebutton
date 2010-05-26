@@ -1,9 +1,0 @@
-{
-  try {
-    socket.write(command.buildCommand() + "\n");
-    socket.flush();
-  }
- catch (  IOException e) {
-    throw new AgiNetworkException("Unable to send command to Asterisk: " + e.getMessage(),e);
-  }
-}

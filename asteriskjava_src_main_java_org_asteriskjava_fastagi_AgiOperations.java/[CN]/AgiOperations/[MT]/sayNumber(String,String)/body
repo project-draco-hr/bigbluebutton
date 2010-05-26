@@ -1,3 +1,0 @@
-{
-  return getChannel().sayNumber(number,escapeDigits);
-}

@@ -1,8 +1,0 @@
-{
-  if (keyTree == null) {
-    return "DATABASE DELTREE " + escapeAndQuote(family) + " "+ escapeAndQuote(keyTree);
-  }
- else {
-    return "DATABASE DELTREE " + escapeAndQuote(family);
-  }
-}

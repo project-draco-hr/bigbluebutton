@@ -1,5 +1,0 @@
-{
-synchronized (queues) {
-    queues.put(queue.getName(),queue);
-  }
-}

@@ -1,5 +1,0 @@
-{
-  this.server=asteriskServerImpl;
-  agents=new HashMap<String,AsteriskAgentImpl>();
-  ringingAgents=new HashMap<String,AsteriskAgentImpl>();
-}

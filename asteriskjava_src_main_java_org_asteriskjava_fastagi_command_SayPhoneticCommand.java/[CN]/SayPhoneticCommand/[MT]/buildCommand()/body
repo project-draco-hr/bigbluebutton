@@ -1,3 +1,0 @@
-{
-  return "SAY PHONETIC " + escapeAndQuote(text) + " "+ escapeAndQuote(escapeDigits);
-}

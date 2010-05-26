@@ -1,4 +1,0 @@
-{
-  server.setGlobalVariable("AJ_TEST_VAR","foobar");
-  assertEquals("foobar",server.getGlobalVariable("AJ_TEST_VAR"));
-}

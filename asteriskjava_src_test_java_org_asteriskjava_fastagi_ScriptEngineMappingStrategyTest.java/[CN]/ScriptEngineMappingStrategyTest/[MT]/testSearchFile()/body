@@ -1,7 +1,0 @@
-{
-  assertNull(scriptEngineMappingStrategy.searchFile(null,new String[]{"src","test","."}));
-  assertNull(scriptEngineMappingStrategy.searchFile("pom.xml",null));
-  assertNull(scriptEngineMappingStrategy.searchFile("pom.xml",new String[]{}));
-  assertNull(scriptEngineMappingStrategy.searchFile("pom.xml",new String[]{"src","test"}));
-  assertEquals(new File("pom.xml").getCanonicalPath(),scriptEngineMappingStrategy.searchFile("pom.xml",new String[]{"bla","src","."}).getPath());
-}

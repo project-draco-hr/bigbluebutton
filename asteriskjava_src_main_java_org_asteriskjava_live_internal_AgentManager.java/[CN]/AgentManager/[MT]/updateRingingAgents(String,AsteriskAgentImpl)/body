@@ -1,8 +1,0 @@
-{
-synchronized (ringingAgents) {
-    if (ringingAgents.containsKey(channelCalling)) {
-      updateAgentState(ringingAgents.get(channelCalling),AgentState.AGENT_IDLE);
-    }
-    ringingAgents.put(channelCalling,agent);
-  }
-}

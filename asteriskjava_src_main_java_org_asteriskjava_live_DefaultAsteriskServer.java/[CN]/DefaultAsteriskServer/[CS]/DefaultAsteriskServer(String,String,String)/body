@@ -1,5 +1,0 @@
-{
-  final ManagerConnection connection;
-  connection=createManagerConnection(hostname,0,username,password);
-  impl=new AsteriskServerImpl(connection);
-}

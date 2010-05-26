@@ -1,7 +1,0 @@
-{
-synchronized (this.eventListeners) {
-    if (this.eventListeners.contains(listener)) {
-      this.eventListeners.remove(listener);
-    }
-  }
-}

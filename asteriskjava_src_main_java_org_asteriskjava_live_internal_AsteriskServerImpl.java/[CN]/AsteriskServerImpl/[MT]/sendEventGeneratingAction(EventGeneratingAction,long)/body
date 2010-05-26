@@ -1,8 +1,0 @@
-{
-  try {
-    return eventConnection.sendEventGeneratingAction(action,timeout);
-  }
- catch (  Exception e) {
-    throw ManagerCommunicationExceptionMapper.mapSendActionException(action.getAction(),e);
-  }
-}

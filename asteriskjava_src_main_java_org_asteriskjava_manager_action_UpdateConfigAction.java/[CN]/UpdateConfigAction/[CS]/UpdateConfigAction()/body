@@ -1,4 +1,0 @@
-{
-  this.actionCounter=0;
-  actions=new HashMap<String,String>();
-}

@@ -1,5 +1,0 @@
-{
-  final MeetMeUserImpl oldMeetMeUserImpl=this.meetMeUserImpl;
-  this.meetMeUserImpl=meetMeUserImpl;
-  firePropertyChange(PROPERTY_MEET_ME_USER,oldMeetMeUserImpl,meetMeUserImpl);
-}

@@ -1,3 +1,0 @@
-{
-  assertNull(scriptEngineMappingStrategy.searchFile("../pom.xml",new String[]{"src"}));
-}

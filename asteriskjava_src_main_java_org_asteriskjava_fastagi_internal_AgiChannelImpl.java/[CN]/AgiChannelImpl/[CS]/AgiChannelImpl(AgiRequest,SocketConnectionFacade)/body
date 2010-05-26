@@ -1,6 +1,0 @@
-{
-  this.request=request;
-  this.agiWriter=new FastAgiWriter(socket);
-  this.agiReader=new FastAgiReader(socket);
-  this.lastReply=null;
-}

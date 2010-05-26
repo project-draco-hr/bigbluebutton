@@ -1,8 +1,0 @@
-{
-synchronized (members) {
-    if (members.containsKey(location)) {
-      return members.get(location);
-    }
-  }
-  return null;
-}

@@ -1,3 +1,0 @@
-{
-  return getChannel().streamFile(file,escapeDigits);
-}

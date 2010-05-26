@@ -1,9 +1,0 @@
-{
-  try {
-    return connections.take();
-  }
- catch (  InterruptedException e) {
-    logger.error("Interrupted while waiting for ManagerConnection to become available",e);
-    return null;
-  }
-}

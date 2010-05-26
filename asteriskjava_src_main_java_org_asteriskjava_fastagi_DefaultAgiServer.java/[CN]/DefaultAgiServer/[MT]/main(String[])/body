@@ -1,5 +1,0 @@
-{
-  final AgiServer server;
-  server=new DefaultAgiServer();
-  server.startup();
-}

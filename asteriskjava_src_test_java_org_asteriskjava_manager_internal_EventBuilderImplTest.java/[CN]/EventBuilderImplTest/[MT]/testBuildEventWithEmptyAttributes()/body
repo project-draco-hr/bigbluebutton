@@ -1,5 +1,0 @@
-{
-  ManagerEvent event;
-  event=eventBuilder.buildEvent(this,properties);
-  assertNull(event);
-}

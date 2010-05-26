@@ -1,7 +1,0 @@
-{
-  this.resourceBundleName=resourceBundleName;
-synchronized (this) {
-    this.mappings=null;
-    this.instances=null;
-  }
-}

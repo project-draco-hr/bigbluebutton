@@ -1,7 +1,0 @@
-{
-  commentBlock=new StringBuilder();
-  categories.clear();
-  warnings.clear();
-  currentCategory=null;
-  currentCommentLevel=0;
-}

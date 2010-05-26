@@ -1,5 +1,0 @@
-{
-  event.setReloadReason(null);
-  assertNull(event.getReloadReasonCode());
-  assertNull(event.getReloadReasonDescription());
-}

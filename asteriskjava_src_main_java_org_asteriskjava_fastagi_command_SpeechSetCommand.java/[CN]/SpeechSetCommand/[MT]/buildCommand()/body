@@ -1,3 +1,0 @@
-{
-  return "SPEECH SET " + escapeAndQuote(name) + " "+ escapeAndQuote(value);
-}

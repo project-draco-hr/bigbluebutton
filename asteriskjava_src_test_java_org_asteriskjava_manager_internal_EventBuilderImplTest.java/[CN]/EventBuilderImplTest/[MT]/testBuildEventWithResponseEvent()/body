@@ -1,9 +1,0 @@
-{
-  ManagerEvent event;
-  properties.put("event","StatusComplete");
-  properties.put("actionid","1234#origId");
-  event=eventBuilder.buildEvent(this,properties);
-  assertNotNull(event);
-  assertEquals("Returned event is of wrong type",StatusCompleteEvent.class,event.getClass());
-  assertEquals("ActionId not set correctly","origId",((ResponseEvent)event).getActionId());
-}

@@ -1,4 +1,0 @@
-{
-  this.responseBuilder=new ResponseBuilderImpl();
-  this.attributes=new HashMap<String,Object>();
-}

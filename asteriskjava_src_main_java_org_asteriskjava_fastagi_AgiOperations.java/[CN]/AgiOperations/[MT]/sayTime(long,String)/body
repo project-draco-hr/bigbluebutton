@@ -1,3 +1,0 @@
-{
-  return getChannel().sayTime(time,escapeDigits);
-}

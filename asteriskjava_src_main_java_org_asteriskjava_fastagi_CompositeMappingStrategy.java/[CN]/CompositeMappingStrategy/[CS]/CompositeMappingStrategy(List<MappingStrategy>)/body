@@ -1,4 +1,0 @@
-{
-  super();
-  this.strategies=new ArrayList<MappingStrategy>(strategies);
-}

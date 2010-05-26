@@ -1,3 +1,0 @@
-{
-  return parseDateTime(s,null);
-}

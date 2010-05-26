@@ -1,9 +1,0 @@
-{
-  StackTraceElement ste=getInvokerSTE();
-  if (ste != null) {
-    log.logp(Level.WARNING,ste.getClassName(),ste.getMethodName(),obj.toString());
-  }
- else {
-    log.warning(obj.toString());
-  }
-}

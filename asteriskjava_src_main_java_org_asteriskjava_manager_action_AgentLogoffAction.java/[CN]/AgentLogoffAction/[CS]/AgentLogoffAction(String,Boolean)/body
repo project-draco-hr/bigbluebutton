@@ -1,4 +1,0 @@
-{
-  this(agent);
-  this.soft=soft;
-}

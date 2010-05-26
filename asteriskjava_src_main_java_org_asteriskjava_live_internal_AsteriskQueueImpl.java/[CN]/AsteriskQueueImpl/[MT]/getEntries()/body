@@ -1,5 +1,0 @@
-{
-synchronized (entries) {
-    return new ArrayList<AsteriskQueueEntry>(entries);
-  }
-}

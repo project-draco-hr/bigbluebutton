@@ -1,6 +1,0 @@
-{
-  AgiRequest request;
-  request=new SimpleAgiRequest();
-  mappingStrategy.setResourceBundleName("net.sf.asterisk.fastagi.unavailable");
-  assertNull(mappingStrategy.determineScript(request));
-}

@@ -1,3 +1,0 @@
-{
-  return "speech".equals(agiReply.getExtra());
-}

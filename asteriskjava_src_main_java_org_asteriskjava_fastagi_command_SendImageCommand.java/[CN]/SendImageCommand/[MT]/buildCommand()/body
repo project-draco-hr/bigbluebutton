@@ -1,3 +1,0 @@
-{
-  return "SEND IMAGE " + escapeAndQuote(image);
-}

@@ -1,6 +1,0 @@
-{
-  final TimeZone tz=TimeZone.getTimeZone("GMT+2");
-  final Date result=DateUtil.parseDateTime(dateString,tz);
-  assertEquals(1148032488000L,result.getTime());
-  assertEquals("Fri May 19 09:54:48 GMT 2006",result.toString());
-}

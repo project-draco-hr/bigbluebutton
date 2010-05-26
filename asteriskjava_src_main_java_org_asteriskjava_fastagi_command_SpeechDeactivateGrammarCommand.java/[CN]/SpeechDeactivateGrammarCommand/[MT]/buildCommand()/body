@@ -1,3 +1,0 @@
-{
-  return "SPEECH DEACTIVATE GRAMMAR " + escapeAndQuote(name);
-}

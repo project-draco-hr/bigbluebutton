@@ -1,3 +1,0 @@
-ManagerConnection connection
-List<String> environment
-BlockingQueue<AsyncAgiEvent> asyncAgiEvents

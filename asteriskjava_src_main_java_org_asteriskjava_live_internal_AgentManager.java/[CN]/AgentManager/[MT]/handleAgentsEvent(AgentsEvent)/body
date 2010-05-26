@@ -1,5 +1,0 @@
-{
-  AsteriskAgentImpl agent=new AsteriskAgentImpl(server,event.getName(),"Agent/" + event.getAgent(),AgentState.valueOf(event.getStatus()));
-  logger.info("Adding agent " + agent.getName() + "("+ agent.getAgentId()+ ")");
-  addAgent(agent);
-}

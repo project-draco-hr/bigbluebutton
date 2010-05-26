@@ -1,4 +1,0 @@
-{
-  super(message);
-  this.partialResult=partialResult;
-}

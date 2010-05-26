@@ -1,8 +1,0 @@
-{
-  OriginateAction originateAction;
-  String actual;
-  originateAction=new OriginateAction();
-  originateAction.setVariable("var1=value1|var2=|var3=value3");
-  actual=actionBuilder.buildAction(originateAction);
-  assertTrue("Incorrect mapping of variable property for Asterisk 1.0",actual.indexOf("variable: var1=value1|var2=|var3=value3\r\n") >= 0);
-}

@@ -1,9 +1,0 @@
-{
-  super();
-  this.file=file;
-  this.escapeDigits=escapeDigits;
-  this.offset=offset;
-  this.forwardDigit=forwardDigit;
-  this.rewindDigit=rewindDigit;
-  this.pauseDigit=pauseDigit;
-}

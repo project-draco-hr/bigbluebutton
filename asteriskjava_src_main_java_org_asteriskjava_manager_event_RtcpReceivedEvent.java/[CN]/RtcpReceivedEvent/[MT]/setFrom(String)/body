@@ -1,4 +1,0 @@
-{
-  this.fromAddress=stringToAddress(from);
-  this.fromPort=stringToPort(from);
-}

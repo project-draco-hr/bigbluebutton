@@ -1,3 +1,0 @@
-{
-  return agiReply.getAttribute("text0");
-}

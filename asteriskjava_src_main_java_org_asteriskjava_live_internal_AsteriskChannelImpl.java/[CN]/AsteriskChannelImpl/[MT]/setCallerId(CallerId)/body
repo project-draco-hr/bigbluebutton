@@ -1,5 +1,0 @@
-{
-  final CallerId oldCallerId=this.callerId;
-  this.callerId=callerId;
-  firePropertyChange(PROPERTY_CALLER_ID,oldCallerId,callerId);
-}

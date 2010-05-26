@@ -1,7 +1,0 @@
-{
-  showVersion();
-  System.err.println();
-  System.err.println("-a, -agi [port]\n\tStarts a FastAGI server");
-  System.err.println("-h, -help\n\tDisplays the available options\n");
-  System.err.println("-v, -version\n\tDisplays the version of Asterisk-Java\n");
-}

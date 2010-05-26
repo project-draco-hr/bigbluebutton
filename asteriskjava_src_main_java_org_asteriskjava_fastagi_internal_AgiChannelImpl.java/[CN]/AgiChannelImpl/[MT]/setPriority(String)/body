@@ -1,3 +1,0 @@
-{
-  sendCommand(new SetPriorityCommand(priority));
-}

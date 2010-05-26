@@ -1,6 +1,0 @@
-{
-  if (mappings == null) {
-    return null;
-  }
-  return mappings.get(request.getScript());
-}

@@ -1,7 +1,0 @@
-{
-  if (getParameterMap().isEmpty()) {
-    return new String[0];
-  }
-  final String[] values=parameterMap.get(name);
-  return values == null ? new String[0] : values;
-}

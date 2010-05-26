@@ -1,3 +1,0 @@
-{
-  return "DATABASE GET " + escapeAndQuote(family) + " "+ escapeAndQuote(key);
-}

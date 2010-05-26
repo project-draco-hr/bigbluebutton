@@ -1,5 +1,0 @@
-String host
-int port
-boolean ssl
-int timeout
-int readTimeout

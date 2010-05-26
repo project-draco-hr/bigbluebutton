@@ -1,5 +1,0 @@
-{
-  AsteriskServerImpl server=new AsteriskServerImpl();
-  agent=new AsteriskAgentImpl(server,"Testagent","Agent/999",AgentState.AGENT_IDLE);
-  numberOfChanges=0;
-}

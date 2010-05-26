@@ -1,5 +1,0 @@
-{
-  super();
-  this.instances=new HashMap<String,AgiScript>();
-  this.shareInstances=shareInstances;
-}

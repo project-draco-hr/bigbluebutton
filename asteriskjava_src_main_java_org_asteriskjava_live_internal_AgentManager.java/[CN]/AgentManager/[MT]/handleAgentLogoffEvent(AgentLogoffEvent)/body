@@ -1,8 +1,0 @@
-{
-  AsteriskAgentImpl agent=getAgentByAgentId("Agent/" + event.getAgent());
-  if (agent == null) {
-    logger.error("Ignored AgentLogoffEvent for unknown agent " + event.getAgent() + ". Agents: "+ agents.values().toString());
-    return;
-  }
-  agent.updateState(AgentState.AGENT_LOGGEDOFF);
-}

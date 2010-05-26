@@ -1,3 +1,0 @@
-{
-  return speechRecognize(new SpeechRecognizeCommand(prompt,timeout,offset));
-}
