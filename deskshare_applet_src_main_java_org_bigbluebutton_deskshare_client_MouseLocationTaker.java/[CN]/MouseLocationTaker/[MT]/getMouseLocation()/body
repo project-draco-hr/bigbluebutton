@@ -1,5 +1,6 @@
 {
   PointerInfo pInfo;
+  Point pointerLocation=new Point(0,0);
   try {
     pInfo=MouseInfo.getPointerInfo();
   }
@@ -9,6 +10,12 @@
 catch (  SecurityException e) {
     pInfo=null;
   }
-  if (pInfo == null)   return new Point(0,0);
-  return pInfo.getLocation();
+  if (pInfo == null)   return pointerLocation;
+  if (adjustPointerLocationDueToScaling()) {
+    pointerLocation=calculatePointerLocation(pInfo.getLocation());
+  }
+ else {
+    pointerLocation=pInfo.getLocation();
+  }
+  return pointerLocation;
 }

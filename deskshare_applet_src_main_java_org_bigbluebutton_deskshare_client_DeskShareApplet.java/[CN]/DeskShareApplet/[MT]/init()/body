@@ -13,6 +13,8 @@
   if (scaleHeight != null)   sHeightValue=Integer.parseInt(scaleHeight);
   String qualityCapture=getParameter("SCALE_WITH_QUALITY");
   if (qualityCapture != null)   qualityValue=Boolean.parseBoolean(qualityCapture);
+  String aspectRatio=getParameter("MAINTAIN_ASPECT_RATIO");
+  if (aspectRatio != null)   aspectRatioValue=Boolean.parseBoolean(aspectRatio);
   String tunnel=getParameter("HTTP_TUNNEL");
   if (tunnel != null)   tunnelValue=Boolean.parseBoolean(tunnel);
   icon=getImage(getCodeBase(),"bbb.gif");

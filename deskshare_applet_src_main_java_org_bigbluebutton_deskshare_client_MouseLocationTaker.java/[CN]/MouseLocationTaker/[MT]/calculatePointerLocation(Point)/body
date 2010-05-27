@@ -1,0 +1,5 @@
+{
+  double mx=((double)p.x / (double)captureWidth) * (double)scaleWidth;
+  double my=((double)p.y / (double)captureHeight) * (double)scaleHeight;
+  return new Point((int)mx,(int)my);
+}

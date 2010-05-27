@@ -1,0 +1,6 @@
+{
+  this.captureWidth=captureWidth;
+  this.captureHeight=captureHeight;
+  this.scaleWidth=scaleWidth;
+  this.scaleHeight=scaleHeight;
+}

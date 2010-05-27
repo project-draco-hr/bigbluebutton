@@ -1,0 +1,4 @@
+{
+  this.aspectRatio=aspectRatio;
+  return this;
+}
