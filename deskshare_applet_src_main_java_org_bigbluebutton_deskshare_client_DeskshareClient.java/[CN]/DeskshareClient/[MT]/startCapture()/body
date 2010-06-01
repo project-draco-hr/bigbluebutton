@@ -13,6 +13,7 @@
   sender=new NetworkStreamSender(blockManager,host,port,room,screenDim,tileDim,httpTunnel);
   connected=sender.connect();
   if (connected) {
+    sender.addNetworkConnectionListener(this);
     captureTaker.addListener(this);
     captureTaker.start();
     captureTakerThread=new Thread(captureTaker,"ScreenCaptureTaker");

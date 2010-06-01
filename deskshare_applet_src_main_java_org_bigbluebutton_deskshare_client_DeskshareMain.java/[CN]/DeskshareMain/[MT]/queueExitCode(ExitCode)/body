@@ -1,8 +1,12 @@
 {
   try {
     exitReasonQ.put(reason);
+    System.out.println("Triggered stop client.");
   }
  catch (  InterruptedException e) {
     e.printStackTrace();
+    client.stop();
+    lifeline.disconnect();
+    System.exit(reason.getExitCode());
   }
 }

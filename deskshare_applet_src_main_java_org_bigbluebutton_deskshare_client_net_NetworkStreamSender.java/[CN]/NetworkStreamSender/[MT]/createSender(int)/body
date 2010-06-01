@@ -1,4 +1,5 @@
 {
   socketSenders[i]=new NetworkSocketStreamSender(i,this,room,screenDim,blockDim);
+  socketSenders[i].addListener(this);
   socketSenders[i].connect(host,port);
 }

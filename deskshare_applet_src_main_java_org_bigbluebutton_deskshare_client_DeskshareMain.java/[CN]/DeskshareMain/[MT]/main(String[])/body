@@ -44,13 +44,15 @@
   Boolean tunnelValue=(Boolean)parser.getOptionValue(tryHttpTunnel,false);
   String iconValue=(String)parser.getOptionValue(icon,"bbb.gif");
   Image image=Toolkit.getDefaultToolkit().getImage(iconValue);
-  LifeLine lifeline=new LifeLine(listenPortValue.intValue(),dsMain);
+  lifeline=new LifeLine(listenPortValue.intValue(),dsMain);
   lifeline.listen();
-  DeskshareClient client=new DeskshareClient.Builder().host(hostValue).port(portValue).room(roomValue).captureWidth(cWidthValue).captureHeight(cHeightValue).scaleWidth(sWidthValue).scaleHeight(sHeightValue).quality(qualityValue).aspectRatio(aspectValue).x(xValue).y(yValue).httpTunnel(tunnelValue).trayIcon(image).enableTrayIconActions(true).build();
+  client=new DeskshareClient.Builder().host(hostValue).port(portValue).room(roomValue).captureWidth(cWidthValue).captureHeight(cHeightValue).scaleWidth(sWidthValue).scaleHeight(sHeightValue).quality(qualityValue).aspectRatio(aspectValue).x(xValue).y(yValue).httpTunnel(tunnelValue).trayIcon(image).enableTrayIconActions(true).build();
   client.addClientListeners(dsMain);
   client.start();
   try {
+    System.out.println("Waiting for trigger to Stop client.");
     ExitCode reason=dsMain.exitReasonQ.take();
+    System.out.println("Stopping client.");
     client.stop();
     lifeline.disconnect();
     System.exit(reason.getExitCode());

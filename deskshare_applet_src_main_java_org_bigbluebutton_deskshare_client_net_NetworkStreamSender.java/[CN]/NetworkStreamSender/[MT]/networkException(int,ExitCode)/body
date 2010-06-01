@@ -7,7 +7,14 @@
  else {
       socketSenders[id].disconnect();
     }
-    if (numRunningThreads < 1)     stop();
+    if (numRunningThreads < 1) {
+      System.out.println("No more sender threads. Stopping.");
+      stop();
+      notifyNetworkConnectionListener(reason);
+    }
+ else {
+      System.out.println("Sender thread stopped. " + numRunningThreads + " sender threads remaining.");
+    }
   }
  catch (  ConnectionException e) {
     e.printStackTrace();
