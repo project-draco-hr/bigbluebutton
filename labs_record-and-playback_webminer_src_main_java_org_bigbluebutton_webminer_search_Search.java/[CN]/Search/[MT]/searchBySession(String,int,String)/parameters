@@ -1,0 +1,3 @@
+String queryStr
+int startFrom
+String operator

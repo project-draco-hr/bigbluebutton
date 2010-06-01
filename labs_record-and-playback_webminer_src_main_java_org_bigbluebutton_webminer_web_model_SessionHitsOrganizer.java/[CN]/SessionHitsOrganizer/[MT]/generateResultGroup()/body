@@ -1,0 +1,79 @@
+{
+  Set<String> ksHitsMap=this.hitsMap.keySet();
+  if (ksHitsMap != null) {
+    Iterator it=this.hitsMap.keySet().iterator();
+    while (it.hasNext()) {
+      String url=(String)it.next();
+      ArrayList<String> relevantSlidesURL=new ArrayList<String>();
+      int slideNum=getSlideNumFromFilePath(url);
+      float currentScore=this.hitsMap.get(url);
+      String prevHitURL=getPrevHitURL(slideNum);
+      int prevHitSlideNum=getPrevHitSlideNum(slideNum);
+      if (logger.isInfoEnabled()) {
+        logger.info("Current hit (" + slideNum + ")="+ url);
+        logger.info("PrevHitURL (" + prevHitSlideNum + ")="+ prevHitURL);
+      }
+      String lastQualifyURL=null;
+      int lastQualifySlideNum=-1;
+      float prevHitScore=-1;
+      while (prevHitURL != null) {
+        prevHitScore=this.hitsMap.get(prevHitURL);
+        if (logger.isInfoEnabled()) {
+          logger.info("Prev hit slide number=" + prevHitSlideNum + "; Score="+ prevHitScore+ "current hit score="+ currentScore);
+        }
+        if (Math.abs(currentScore - prevHitScore) < this.releventRange) {
+          lastQualifyURL=prevHitURL;
+          lastQualifySlideNum=prevHitSlideNum;
+          prevHitURL=getPrevHitURL(prevHitSlideNum);
+          if (prevHitURL == null) {
+            for (int num=prevHitSlideNum; num < slideNum; num++) {
+              relevantSlidesURL.add(getFilePathFromSlideNumber(num,url));
+            }
+          }
+ else {
+            prevHitSlideNum=getPrevHitSlideNum(prevHitSlideNum);
+          }
+        }
+ else {
+          if (lastQualifySlideNum < 0) {
+            break;
+          }
+ else           if ((lastQualifySlideNum - prevHitSlideNum) < 2) {
+            for (int num=slideNum - 1; num >= lastQualifySlideNum; num--) {
+              relevantSlidesURL.add(getFilePathFromSlideNumber(num,url));
+            }
+            break;
+          }
+ else {
+            if (lastQualifyURL != null) {
+              float lastQualifyScore=this.hitsMap.get(lastQualifyURL);
+              float factor=Math.abs((lastQualifyScore - prevHitScore) / (lastQualifySlideNum - prevHitSlideNum));
+              for (int k=1; k < (lastQualifySlideNum - prevHitSlideNum); k++) {
+                float estimatedScore=factor * k + prevHitScore;
+                System.out.println("Score------------" + estimatedScore);
+                if (Math.abs(estimatedScore - lastQualifyScore) < this.releventRange) {
+                  for (int num=slideNum - 1; num >= lastQualifySlideNum - k; num--) {
+                    relevantSlidesURL.add(getFilePathFromSlideNumber(num,url));
+                    if (logger.isInfoEnabled()) {
+                      logger.info("add relevant slide:" + getFilePathFromSlideNumber(num,url));
+                    }
+                  }
+                  break;
+                }
+              }
+            }
+          }
+          break;
+        }
+      }
+      if (logger.isInfoEnabled()) {
+        for (int x=0; x < relevantSlidesURL.size(); x++) {
+          logger.info("====Previous Hit form " + url + "===========");
+          logger.info((x + 1) + ": " + relevantSlidesURL.get(x));
+          logger.info("===============");
+        }
+      }
+      hitSlideGroup.put(url,relevantSlidesURL);
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  if (getLocation() != null && getFileName() != null) {
+    String fqName=System.getProperty(getLocation()) + "/" + getFileName();
+    long refreshInterval=DEFAULT_REFRESH_INTERVAL;
+    String intervalString=getInterval();
+    if (intervalString != null) {
+      refreshInterval=Long.parseLong(intervalString);
+    }
+    PropertyConfigurator.configureAndWatch(fqName,refreshInterval);
+  }
+ else {
+    throw new IllegalArgumentException("Missing log4jConfigLocation or log4jConfigName parameter.");
+  }
+}

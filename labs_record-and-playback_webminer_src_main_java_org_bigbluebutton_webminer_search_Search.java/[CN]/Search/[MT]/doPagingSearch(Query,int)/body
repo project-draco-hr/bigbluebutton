@@ -1,0 +1,9 @@
+{
+  TopDocCollector collector=new TopDocCollector(startFrom + 10);
+  searcher.search(query,collector);
+  if (logger.isDebugEnabled()) {
+    logger.debug(query.toString());
+    logger.debug(collector.toString());
+  }
+  return collector;
+}

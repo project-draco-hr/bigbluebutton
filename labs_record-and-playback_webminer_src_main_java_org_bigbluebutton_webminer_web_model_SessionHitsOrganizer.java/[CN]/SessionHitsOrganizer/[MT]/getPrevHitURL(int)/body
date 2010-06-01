@@ -1,0 +1,8 @@
+{
+  for (int i=slideNum - 1; i > -1; i--) {
+    if (this.slideNumURLMap.containsKey(i)) {
+      return (String)this.slideNumURLMap.get(i);
+    }
+  }
+  return null;
+}

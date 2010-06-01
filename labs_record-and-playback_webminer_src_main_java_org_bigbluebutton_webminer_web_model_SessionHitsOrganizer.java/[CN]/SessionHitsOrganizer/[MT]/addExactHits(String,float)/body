@@ -1,0 +1,4 @@
+{
+  this.hitsMap.put(URL,new Float(score));
+  this.slideNumURLMap.put(getSlideNumFromFilePath(URL),URL);
+}

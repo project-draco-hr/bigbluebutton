@@ -1,0 +1,4 @@
+{
+  logger.info("Go to course indexing page");
+  return new ModelAndView("courseIndexing.jsp");
+}

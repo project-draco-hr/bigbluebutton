@@ -1,0 +1,38 @@
+{
+  try {
+    IndexReader.unlock(FSDirectory.getDirectory(ConfigHandler.indexPath));
+    if (logger.isInfoEnabled()) {
+      logger.info("index file path " + ConfigHandler.indexPath);
+    }
+    reader=IndexReader.open(ConfigHandler.indexPath);
+    TermEnum uidIter=reader.terms(new Term("uid"));
+    while (uidIter.term() != null) {
+      if (uid.equalsIgnoreCase(uidIter.term().text())) {
+        reader.deleteDocuments(uidIter.term());
+      }
+      uidIter.next();
+    }
+    reader.close();
+  }
+ catch (  CorruptIndexException e) {
+    e.printStackTrace();
+  }
+catch (  LockObtainFailedException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+  }
+  try {
+    writer=new IndexWriter(ConfigHandler.indexPath,new StandardAnalyzer(),new IndexWriter.MaxFieldLength(1000000));
+  }
+ catch (  CorruptIndexException e) {
+    e.printStackTrace();
+  }
+catch (  LockObtainFailedException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+  }
+}

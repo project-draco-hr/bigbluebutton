@@ -1,0 +1,4 @@
+{
+  this.topFieldDocs=tfd;
+  this.searcher=searcher;
+}

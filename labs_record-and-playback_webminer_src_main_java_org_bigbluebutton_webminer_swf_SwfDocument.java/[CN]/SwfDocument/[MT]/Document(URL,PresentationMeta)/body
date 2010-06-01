@@ -1,0 +1,20 @@
+{
+  Document doc=new Document();
+  doc.add(new Field("path",url.toString(),Field.Store.YES,Field.Index.NOT_ANALYZED));
+  doc.add(new Field("modified",(new Date(System.currentTimeMillis())).toString(),Field.Store.YES,Field.Index.NOT_ANALYZED));
+  doc.add(new Field("uid",meta.getUid(),Field.Store.YES,Field.Index.NOT_ANALYZED));
+  SwfParser parser=new SwfParser(url);
+  parser.parse();
+  doc.add(new Field("contents",parser.getReader()));
+  doc.add(new Field("title",parser.getContents(),Field.Store.YES,Field.Index.ANALYZED));
+  if (meta != null) {
+    doc.add(new Field("summary",meta.getSummary(),Field.Store.YES,Field.Index.ANALYZED));
+  }
+  if (meta != null) {
+    doc.add(new Field("fileName",meta.getFileName(),Field.Store.YES,Field.Index.ANALYZED));
+  }
+  if (meta != null) {
+    doc.add(new Field("slideTime",meta.getSlideTime(),Field.Store.YES,Field.Index.ANALYZED));
+  }
+  return doc;
+}

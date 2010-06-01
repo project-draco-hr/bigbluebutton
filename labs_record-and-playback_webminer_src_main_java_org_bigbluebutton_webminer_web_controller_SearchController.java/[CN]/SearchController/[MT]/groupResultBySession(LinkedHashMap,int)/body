@@ -1,0 +1,6 @@
+{
+  LinkedHashMap extdResultMap=new LinkedHashMap<String,Object>();
+  int lastSessionNum=0;
+  int currentSessionNum=0;
+  return extdResultMap;
+}

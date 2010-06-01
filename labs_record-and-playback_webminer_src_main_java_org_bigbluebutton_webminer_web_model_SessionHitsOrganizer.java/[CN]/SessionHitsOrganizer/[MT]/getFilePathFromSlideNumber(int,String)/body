@@ -1,0 +1,7 @@
+{
+  String rtnValue="";
+  Pattern p=Pattern.compile("-slide-\\d{1,3}.swf");
+  Matcher matcher=p.matcher(baseURL);
+  rtnValue=matcher.replaceAll("-slide-" + (new Integer(slideNum)).toString() + ".swf");
+  return rtnValue;
+}

@@ -1,0 +1,4 @@
+{
+  if (logger.isDebugEnabled())   logger.debug(sb.toString());
+  return new StringReader(sb.toString());
+}

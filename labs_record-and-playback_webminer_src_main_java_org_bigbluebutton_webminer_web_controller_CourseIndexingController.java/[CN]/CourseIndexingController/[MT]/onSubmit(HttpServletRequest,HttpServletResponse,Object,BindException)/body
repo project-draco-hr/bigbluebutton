@@ -1,0 +1,62 @@
+{
+  IndexingContentSource contentSourceCommand=(IndexingContentSource)command;
+  String lectureXMLURL=contentSourceCommand.getLectureURL();
+  System.out.println("in indexing");
+  try {
+    DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
+    DocumentBuilder parser=factory.newDocumentBuilder();
+    org.w3c.dom.Document document=parser.parse(lectureXMLURL);
+    String slideBaseURL=contentSourceCommand.getSlideBaseURL();
+    List slideListResult=slideExpression.evaluateAsNodeList(document);
+    List playTimeNodeList=slidePlayTimeExpression.evaluateAsNodeList(document);
+    Map<String,String> slideTimeMap=new HashMap<String,String>();
+    for (int i=0; i < playTimeNodeList.size(); i++) {
+      Node slideNode=(Node)playTimeNodeList.get(i);
+      String slideTime=slideNode.getAttributes().getNamedItem("time").getNodeValue();
+      String slideIndex=slideNode.getTextContent();
+      if (slideTimeMap.get(slideIndex) != null) {
+        String value=slideTimeMap.get(slideIndex) + "||" + slideTime;
+        slideTimeMap.put(slideIndex,value);
+      }
+ else {
+        slideTimeMap.put(slideIndex,slideTime);
+      }
+      if (logger.isInfoEnabled()) {
+        logger.info("slide index = " + slideIndex + " "+ slideTime);
+        logger.info("---Slide play time ---" + (String)slideTimeMap.get(slideIndex));
+      }
+    }
+    ArrayList<String> fileURLs=new ArrayList();
+    String fileLocation=null;
+synchronized (Index.getInstance()) {
+      Index.getInstance().startIndex(lectureXMLURL);
+      for (int i=0; i < slideListResult.size(); i++) {
+        Node node=(Node)slideListResult.get(i);
+        String swfName=node.getNodeValue();
+        fileLocation=slideBaseURL + swfName;
+        fileURLs.add(i,fileLocation);
+        Map attrs=new HashMap();
+        attrs.put("fileName",swfName);
+        attrs.put("uid",lectureXMLURL);
+        String idxToKey=(new Integer(i + 1)).toString();
+        if (logger.isDebugEnabled()) {
+          logger.debug("idxToKey" + idxToKey + " resultsize="+ slideListResult.size()+ "---Slide play time ---"+ (String)slideTimeMap.get(idxToKey)+ " summary = "+ contentSourceCommand.getSummary());
+        }
+        if (slideTimeMap.get(idxToKey) != null) {
+          attrs.put("slideTime","Slide " + idxToKey + ": played at "+ (String)slideTimeMap.get(idxToKey));
+        }
+        attrs.put("summary",contentSourceCommand.getSummary());
+        Index.getInstance().addIndex(fileLocation,attrs);
+      }
+      Index.getInstance().finishIndex();
+    }
+  }
+ catch (  Exception e) {
+    System.out.println("-----------------exception -----------------------");
+    Map<String,Object> model=new HashMap<String,Object>();
+    model.put("generalError","Please check the URL of files required by indexing");
+    model.put("sourceContentURL",contentSourceCommand);
+    return new ModelAndView(this.getFormView(),model);
+  }
+  return new ModelAndView(this.getSuccessView(),errors.getModel());
+}

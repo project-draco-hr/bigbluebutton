@@ -1,0 +1,6 @@
+{
+  if (indexer == null) {
+    indexer=new Index();
+  }
+  return indexer;
+}

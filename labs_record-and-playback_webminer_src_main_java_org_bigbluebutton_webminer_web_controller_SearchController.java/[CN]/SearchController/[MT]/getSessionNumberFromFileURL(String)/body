@@ -1,0 +1,5 @@
+{
+  String[] pathTokens=filePath.split("/");
+  String rtnValue=pathTokens[pathTokens.length - 3];
+  return rtnValue;
+}

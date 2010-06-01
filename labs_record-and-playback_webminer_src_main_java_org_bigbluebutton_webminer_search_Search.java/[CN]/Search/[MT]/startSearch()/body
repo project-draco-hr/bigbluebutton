@@ -1,0 +1,11 @@
+{
+  try {
+    IndexReader.unlock(FSDirectory.getDirectory(ConfigHandler.indexPath));
+    reader=IndexReader.open(ConfigHandler.indexPath);
+    searcher=new IndexSearcher(reader);
+    analyzer=new StandardAnalyzer();
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+}

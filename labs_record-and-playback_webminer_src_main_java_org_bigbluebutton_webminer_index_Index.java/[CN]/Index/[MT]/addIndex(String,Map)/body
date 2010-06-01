@@ -1,0 +1,24 @@
+{
+  URL root=new URL(presentationArch);
+  Date start=new Date();
+  PresentationMeta meta=new PresentationMeta();
+  meta.setSummary((String)attrs.get("summary"));
+  meta.setFileName((String)attrs.get("fileName"));
+  meta.setUid((String)attrs.get("uid"));
+  if (attrs.get("slideTime") != null) {
+    meta.setSlideTime((String)attrs.get("slideTime"));
+  }
+  Document doc=SwfDocument.Document(root,meta);
+  if (logger.isInfoEnabled()) {
+    logger.info("adding " + doc.get("path"));
+  }
+  writer.addDocument(doc);
+  if (logger.isInfoEnabled()) {
+    logger.info("Optimizing index...");
+  }
+  writer.optimize();
+  Date end=new Date();
+  if (logger.isInfoEnabled()) {
+    logger.info("Total milliseconds = " + (end.getTime() - start.getTime()));
+  }
+}

@@ -1,0 +1,11 @@
+{
+  String[] contentTokens=fullText.split(",");
+  String rtnValue=fullText;
+  for (int i=0; i < contentTokens.length; i++) {
+    if (contentTokens[i].indexOf(keyWord) > -1) {
+      rtnValue=contentTokens[i];
+      break;
+    }
+  }
+  return rtnValue;
+}

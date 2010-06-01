@@ -1,0 +1,11 @@
+{
+  try {
+    writer.close();
+  }
+ catch (  CorruptIndexException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+  }
+}

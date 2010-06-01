@@ -1,0 +1,24 @@
+{
+  try {
+    queryStr=queryStr.trim();
+    QueryParser parser=new QueryParser("contents",analyzer);
+    if (QueryParser.AND_OPERATOR.toString().equalsIgnoreCase(operator)) {
+      parser.setDefaultOperator(QueryParser.AND_OPERATOR);
+    }
+ else {
+      parser.setDefaultOperator(QueryParser.OR_OPERATOR);
+    }
+    Query query;
+    query=parser.parse(queryStr);
+    TopDocCollector collector=doPagingSearch(query,startFrom);
+    TopDocCollectorSearchResult result=new TopDocCollectorSearchResult(collector,searcher);
+    return result;
+  }
+ catch (  ParseException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+  }
+  return null;
+}

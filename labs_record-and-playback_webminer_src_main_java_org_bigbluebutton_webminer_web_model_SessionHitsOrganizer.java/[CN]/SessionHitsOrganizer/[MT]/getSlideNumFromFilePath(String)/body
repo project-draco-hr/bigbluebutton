@@ -1,0 +1,13 @@
+{
+  Integer rtnValue=null;
+  String[] pathTokens=filePath.split("/");
+  String fileName=pathTokens[pathTokens.length - 1];
+  String[] nameTokens=fileName.split("-");
+  String slideNumPart=nameTokens[nameTokens.length - 1];
+  if (slideNumPart != null && slideNumPart.length() > 0) {
+    int index=slideNumPart.indexOf(".");
+    String number=slideNumPart.substring(0,index);
+    rtnValue=(new Integer(number)).intValue();
+  }
+  return rtnValue;
+}

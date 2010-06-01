@@ -1,0 +1,26 @@
+{
+  try {
+    queryStr=queryStr.trim();
+    QueryParser parser=new QueryParser("contents",analyzer);
+    Operator op=QueryParser.AND_OPERATOR;
+    if (QueryParser.AND_OPERATOR.toString().equalsIgnoreCase(operator)) {
+      parser.setDefaultOperator(QueryParser.AND_OPERATOR);
+    }
+ else {
+      parser.setDefaultOperator(QueryParser.OR_OPERATOR);
+    }
+    Query query;
+    query=parser.parse(queryStr);
+    Sort sort=new Sort("summary",true);
+    TopFieldDocs tfd=searcher.search(query,null,startFrom + 10,sort);
+    TopFieldDocsSearchResult result=new TopFieldDocsSearchResult(tfd,searcher);
+    return result;
+  }
+ catch (  ParseException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+  }
+  return null;
+}
