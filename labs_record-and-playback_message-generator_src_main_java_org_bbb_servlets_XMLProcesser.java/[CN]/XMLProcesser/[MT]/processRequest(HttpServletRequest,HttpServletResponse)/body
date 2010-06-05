@@ -1,0 +1,17 @@
+{
+  response.setContentType("text/xml");
+  PrintWriter out=response.getWriter();
+  try {
+    String url_param=request.getParameter("url");
+    String message="";
+    ArrayList listmapvalues=Utils.parseLectureXML(Utils.parseXmlFile(url_param));
+    for (int i=0; i < listmapvalues.size(); i++) {
+      Map<String,String> mapvalues=(Map<String,String>)listmapvalues.get(i);
+      sendMessagesToQueue(mapvalues);
+    }
+    out.println("<message>" + message + "</message>");
+  }
+  finally {
+    out.close();
+  }
+}
