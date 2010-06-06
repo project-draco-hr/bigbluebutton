@@ -1,0 +1,3 @@
+{
+  jmsTemplate.send(new MessageCreatorEvent(map));
+}

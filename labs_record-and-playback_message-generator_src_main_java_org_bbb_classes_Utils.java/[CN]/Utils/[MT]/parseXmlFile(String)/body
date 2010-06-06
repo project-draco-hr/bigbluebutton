@@ -1,0 +1,18 @@
+{
+  Document dom=null;
+  DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
+  try {
+    DocumentBuilder db=dbf.newDocumentBuilder();
+    dom=db.parse(urlxml);
+  }
+ catch (  ParserConfigurationException pce) {
+    pce.printStackTrace();
+  }
+catch (  SAXException se) {
+    se.printStackTrace();
+  }
+catch (  IOException ioe) {
+    ioe.printStackTrace();
+  }
+  return dom;
+}
