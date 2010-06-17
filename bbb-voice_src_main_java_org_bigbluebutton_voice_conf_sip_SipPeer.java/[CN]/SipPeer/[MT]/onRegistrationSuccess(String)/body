@@ -1,0 +1,4 @@
+{
+  log.info("Successfully registered with Sip Server.");
+  registered=true;
+}

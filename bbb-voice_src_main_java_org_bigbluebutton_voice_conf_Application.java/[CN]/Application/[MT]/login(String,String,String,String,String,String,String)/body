@@ -1,6 +1,0 @@
-{
-  System.out.println("Red5SIP login " + uid);
-  int rport=getRtpPort();
-  int sport=getSipPort();
-  login(proxy,uid,new Integer(rtpPort).toString(),username,password,realm,proxy,sport,rport);
-}

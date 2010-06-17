@@ -1,5 +1,0 @@
-{
-  log.debug("Red5SIP register");
-  String userid=getSipUserId();
-  sipManager.registerSipUser(userid);
-}

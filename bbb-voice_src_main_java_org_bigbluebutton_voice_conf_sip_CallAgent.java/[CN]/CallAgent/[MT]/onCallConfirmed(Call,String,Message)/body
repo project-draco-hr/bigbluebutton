@@ -3,5 +3,5 @@
   if (!isCurrentCall(call))   return;
   log.debug("CONFIRMED/CALL.");
   changeStatus(CallState.UA_ONCALL);
-  launchMediaApplication();
+  createVoiceStreams();
 }

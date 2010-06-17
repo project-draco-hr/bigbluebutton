@@ -1,0 +1,7 @@
+{
+  SipPeerProfile callerProfile=createCallSipProfile(callerName,destination);
+  CallAgent ca=new CallAgent(sipProvider,callerProfile,clientId);
+  ca.setClientConnectionManager(clientConnManager);
+  ca.setCallStreamFactory(callStreamFactory);
+  ca.call(destination);
+}

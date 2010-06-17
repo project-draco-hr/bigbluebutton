@@ -1,8 +1,0 @@
-{
-  log.debug("SIPUser register");
-  if (sipProvider != null) {
-    registerAgent=new SipRegisterAgent(sipProvider,userProfile.fromUrl,userProfile.contactUrl,userProfile.username,userProfile.realm,userProfile.passwd);
-    registerAgent.addListener(rtmpConnection);
-    registerAgent.register(userProfile.expires,userProfile.expires / 2,userProfile.keepaliveTime);
-  }
-}

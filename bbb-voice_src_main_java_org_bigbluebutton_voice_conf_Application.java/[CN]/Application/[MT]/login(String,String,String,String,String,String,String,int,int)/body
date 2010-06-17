@@ -1,9 +1,0 @@
-{
-  System.out.println("Red5SIP login " + uid);
-  IConnection conn=Red5.getConnectionLocal();
-  IServiceCapableConnection service=(IServiceCapableConnection)conn;
-  ConnectionClientMethodInvoker rtmpConnection=new ConnectionClientMethodInvoker(service,conn.getScope());
-  String userid=getSipUserId();
-  sipManager.createSipUser(userid,rtmpConnection,sipport,rtpport);
-  sipManager.login(userid,obproxy,phone,username,password,realm,proxy);
-}

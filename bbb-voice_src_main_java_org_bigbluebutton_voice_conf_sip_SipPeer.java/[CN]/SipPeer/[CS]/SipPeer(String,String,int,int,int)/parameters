@@ -1,0 +1,5 @@
+String id
+String host
+int sipPort
+int startRtpPort
+int stopRtpPort

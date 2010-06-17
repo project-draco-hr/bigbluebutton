@@ -1,0 +1,8 @@
+{
+  this.id=id;
+  this.host=host;
+  this.sipPort=sipPort;
+  this.startRtpPort=startRtpPort;
+  this.stopRtpPort=stopRtpPort;
+  initSipProvider(sipPort);
+}

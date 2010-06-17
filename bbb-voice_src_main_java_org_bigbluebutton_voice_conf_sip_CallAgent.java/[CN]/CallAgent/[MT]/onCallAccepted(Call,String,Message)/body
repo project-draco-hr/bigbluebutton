@@ -7,6 +7,6 @@
   if (userProfile.noOffer) {
     call.ackWithAnswer(localSession);
   }
-  launchMediaApplication();
+  createVoiceStreams();
   notifyListenersOfOnOutgoingCallAccepted();
 }

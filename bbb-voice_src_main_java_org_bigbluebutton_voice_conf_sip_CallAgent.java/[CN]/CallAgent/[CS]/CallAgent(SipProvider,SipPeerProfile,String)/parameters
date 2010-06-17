@@ -1,0 +1,3 @@
+SipProvider sipProvider
+SipPeerProfile userProfile
+String clientId

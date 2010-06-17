@@ -1,4 +1,0 @@
-{
-  SipPeer sipUser=new SipPeer(userid,sipPort,rtpPort);
-  sipPeers.put(userid,sipUser);
-}
