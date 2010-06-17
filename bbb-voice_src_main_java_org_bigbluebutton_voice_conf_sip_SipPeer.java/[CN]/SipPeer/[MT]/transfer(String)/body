@@ -1,7 +1,0 @@
-{
-  log.debug("Transfer To: " + transferTo);
-  if (transferTo.indexOf("@") == -1) {
-    transferTo=transferTo + "@" + proxy;
-  }
-  userAgent.transfer(transferTo);
-}

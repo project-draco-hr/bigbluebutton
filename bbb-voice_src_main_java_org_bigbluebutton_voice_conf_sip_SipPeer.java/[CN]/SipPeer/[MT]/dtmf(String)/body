@@ -1,6 +1,0 @@
-{
-  log.debug("SIPUser dtmf " + digits);
-  if (userAgent != null) {
-    userAgent.queueSipDtmfDigits(digits);
-  }
-}

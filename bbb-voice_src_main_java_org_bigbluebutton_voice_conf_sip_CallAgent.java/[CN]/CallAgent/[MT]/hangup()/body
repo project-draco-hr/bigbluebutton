@@ -1,7 +1,7 @@
 {
   log.debug("hangup");
   if (isIdle())   return;
-  closeMediaApplication();
+  closeVoiceStreams();
   if (call != null)   call.hangup();
   changeStatus(CallState.UA_IDLE);
 }

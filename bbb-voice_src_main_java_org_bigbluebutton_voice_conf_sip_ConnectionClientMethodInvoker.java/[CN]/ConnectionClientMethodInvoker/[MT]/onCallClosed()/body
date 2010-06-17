@@ -1,4 +1,0 @@
-{
-  log.debug("onCallClosed");
-  connection.invoke("callState",new Object[]{"onUaCallClosed"});
-}

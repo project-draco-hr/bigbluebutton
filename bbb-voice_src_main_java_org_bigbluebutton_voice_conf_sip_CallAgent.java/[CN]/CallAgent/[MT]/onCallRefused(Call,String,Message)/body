@@ -3,11 +3,5 @@
   if (!isCurrentCall(call))   return;
   log.debug("REFUSED (" + reason + ").");
   changeStatus(CallState.UA_IDLE);
-  if (call == callTransfer) {
-    StatusLine status_line=resp.getStatusLine();
-    int code=status_line.getCode();
-    this.call.notify(code,reason);
-    callTransfer=null;
-  }
   notifyListenersOnOutgoingCallFailed();
 }

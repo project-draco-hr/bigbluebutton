@@ -1,11 +1,12 @@
 {
   log.debug("SIPUser unregister");
+  Collection<CallAgent> calls=callManager.getAll();
+  for (Iterator<CallAgent> iter=calls.iterator(); iter.hasNext(); ) {
+    CallAgent ca=(CallAgent)iter.next();
+    ca.hangup();
+  }
   if (registerAgent != null) {
     registerAgent.unregister();
     registerAgent=null;
   }
-  if (userAgent != null) {
-    userAgent.hangup();
-  }
-  userAgent=null;
 }

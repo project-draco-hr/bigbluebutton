@@ -1,3 +1,0 @@
-{
-  if (userAgent != null)   userAgent.stopTalkStream(broadcastStream,scope);
-}

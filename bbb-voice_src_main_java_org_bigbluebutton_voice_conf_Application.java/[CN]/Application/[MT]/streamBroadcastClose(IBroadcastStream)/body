@@ -2,6 +2,5 @@
   System.out.println("streamBroadcastClose: " + stream.getPublishedName());
   IConnection conn=Red5.getConnectionLocal();
   String userid=conn.getClient().getId();
-  sipPeerManager.stopTalkStream(userid,stream,Red5.getConnectionLocal().getScope());
   super.streamBroadcastClose(stream);
 }

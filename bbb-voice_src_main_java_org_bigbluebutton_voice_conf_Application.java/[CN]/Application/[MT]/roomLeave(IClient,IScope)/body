@@ -1,6 +1,5 @@
 {
   log.debug("VoiceConferenceApplication appLeave[" + client.getId() + "]");
   clientConnManager.removeClient(client.getId());
-  log.debug("Red5SIP Client closing client " + userid);
-  sipPeerManager.close(userid);
+  log.debug("Red5SIP Client closing client {}",client.getId());
 }

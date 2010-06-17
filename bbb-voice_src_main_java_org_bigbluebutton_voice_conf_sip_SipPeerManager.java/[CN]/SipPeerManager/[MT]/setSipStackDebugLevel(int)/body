@@ -1,4 +1,6 @@
 {
   this.sipStackDebugLevel=sipStackDebugLevel;
-  initializeSipStack();
+  SipStack.init();
+  SipStack.debug_level=sipStackDebugLevel;
+  SipStack.log_path="log";
 }

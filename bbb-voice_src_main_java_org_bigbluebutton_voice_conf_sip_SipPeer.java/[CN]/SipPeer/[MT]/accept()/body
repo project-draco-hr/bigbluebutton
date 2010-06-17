@@ -1,6 +1,0 @@
-{
-  log.debug("SIPUser accept");
-  if (userAgent != null) {
-    userAgent.accept();
-  }
-}

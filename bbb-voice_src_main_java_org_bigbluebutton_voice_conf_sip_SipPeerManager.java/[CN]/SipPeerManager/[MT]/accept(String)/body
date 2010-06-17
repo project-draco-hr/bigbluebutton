@@ -1,6 +1,0 @@
-{
-  SipPeer sipUser=sipPeers.get(userid);
-  if (sipUser != null) {
-    sipUser.accept();
-  }
-}

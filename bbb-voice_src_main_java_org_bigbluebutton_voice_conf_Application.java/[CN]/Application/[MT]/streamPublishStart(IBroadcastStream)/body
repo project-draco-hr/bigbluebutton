@@ -4,5 +4,4 @@
   super.streamPublishStart(stream);
   IConnection conn=Red5.getConnectionLocal();
   String userid=conn.getClient().getId();
-  sipPeerManager.startTalkStream(userid,stream,Red5.getConnectionLocal().getScope());
 }
