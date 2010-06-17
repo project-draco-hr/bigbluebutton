@@ -1,0 +1,6 @@
+{
+  rtpSocket.close();
+  if (listener != null) {
+    listener.onStoppedReceiving();
+  }
+}

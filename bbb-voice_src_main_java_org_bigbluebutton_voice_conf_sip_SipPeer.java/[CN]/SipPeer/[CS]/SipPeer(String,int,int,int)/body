@@ -1,0 +1,8 @@
+{
+  log.debug("SIPUser Constructor: sip port " + sipPort);
+  this.host=host;
+  this.sipPort=sipPort;
+  this.startRtpPort=startRtpPort;
+  this.stopRtpPort=stopRtpPort;
+  initSipProvider(sipPort);
+}

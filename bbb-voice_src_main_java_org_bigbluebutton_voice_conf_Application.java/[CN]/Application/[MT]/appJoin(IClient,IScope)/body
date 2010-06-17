@@ -1,0 +1,4 @@
+{
+  log.debug("VoiceConferenceApplication appJoin[" + client.getId() + "]");
+  return true;
+}

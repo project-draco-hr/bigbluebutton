@@ -1,0 +1,7 @@
+{
+  String payloadId="";
+  if (isPayloadRelatedAttribute(attribute)) {
+    payloadId=attribute.getAttributeValue().substring(0,attribute.getAttributeValue().indexOf(" "));
+  }
+  return payloadId;
+}

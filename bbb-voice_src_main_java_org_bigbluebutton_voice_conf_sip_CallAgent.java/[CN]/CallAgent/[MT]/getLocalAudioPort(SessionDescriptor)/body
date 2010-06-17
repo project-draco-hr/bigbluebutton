@@ -1,0 +1,10 @@
+{
+  int localAudioPort=0;
+  for (Enumeration e=localSdp.getMediaDescriptors().elements(); e.hasMoreElements(); ) {
+    MediaField media=((MediaDescriptor)e.nextElement()).getMedia();
+    if (media.getMedia().equals("audio")) {
+      localAudioPort=media.getPort();
+    }
+  }
+  return localAudioPort;
+}

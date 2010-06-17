@@ -1,0 +1,5 @@
+{
+  if (callStream != null) {
+    callStream.stopTalkStream(broadcastStream,scope);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  log.debug("Red5SIP open");
+  login(uid,username);
+  register(uid);
+}

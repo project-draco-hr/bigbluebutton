@@ -1,0 +1,6 @@
+{
+  int sipport=sipPort;
+  sipPort++;
+  if (sipPort > stopSIPPort)   sipPort=startSIPPort;
+  return sipport;
+}

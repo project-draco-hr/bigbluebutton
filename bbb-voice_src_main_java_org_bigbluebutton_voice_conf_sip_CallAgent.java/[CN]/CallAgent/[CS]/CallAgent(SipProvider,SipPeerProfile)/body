@@ -1,0 +1,6 @@
+{
+  this.sipProvider=sipProvider;
+  this.userProfile=userProfile;
+  userProfile.initContactAddress(sipProvider);
+  initSessionDescriptor();
+}

@@ -1,0 +1,5 @@
+{
+  System.out.println("Red5SIP open");
+  login(obproxy,uid,phone,username,password,realm,proxy);
+  register(uid);
+}

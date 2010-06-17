@@ -1,0 +1,4 @@
+{
+  byte[] payload=packet.getPayload();
+  transcoder.transcode(payload);
+}

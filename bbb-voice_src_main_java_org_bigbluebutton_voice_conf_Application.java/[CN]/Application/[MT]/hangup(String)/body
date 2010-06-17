@@ -1,0 +1,5 @@
+{
+  log.debug("Red5SIP Hangup");
+  String userid=getSipUserId();
+  sipManager.hangup(userid);
+}

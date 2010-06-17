@@ -1,0 +1,12 @@
+{
+  log.debug("onCallAccepted");
+  if (!isCurrentCall(call))   return;
+  log.debug("ACCEPTED/CALL.");
+  changeStatus(CallState.UA_ONCALL);
+  setupSdpAndCodec(sdp);
+  if (userProfile.noOffer) {
+    call.ackWithAnswer(localSession);
+  }
+  launchMediaApplication();
+  notifyListenersOfOnOutgoingCallAccepted();
+}

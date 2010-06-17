@@ -1,0 +1,5 @@
+{
+  log.debug("SIP Call Connected");
+  System.out.println("SIP Call Connected");
+  connection.invoke("connected",new Object[]{publishName,playName});
+}

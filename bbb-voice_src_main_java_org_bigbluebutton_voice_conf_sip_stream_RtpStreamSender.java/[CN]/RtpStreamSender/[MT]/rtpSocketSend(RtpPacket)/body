@@ -1,0 +1,9 @@
+{
+  try {
+    rtpSocket.send(rtpPacket);
+    timestamp+=rtpPacket.getPayloadLength();
+  }
+ catch (  Exception e) {
+    log.error("Exception while sending packet");
+  }
+}

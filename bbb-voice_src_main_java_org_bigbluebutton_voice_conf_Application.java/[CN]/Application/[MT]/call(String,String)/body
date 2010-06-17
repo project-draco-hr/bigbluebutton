@@ -1,0 +1,7 @@
+{
+  log.debug("Red5SIP Call " + destination);
+  System.out.println("Red5SIP Call " + destination);
+  String userid=getSipUserId();
+  String extension=callExtensionPattern.format(new String[]{destination});
+  sipManager.call(userid,extension);
+}

@@ -1,0 +1,7 @@
+{
+  log.debug("onCallCanceling");
+  if (!isCurrentCall(call))   return;
+  log.debug("CANCEL.");
+  changeStatus(CallState.UA_IDLE);
+  notifyListenersOfOnIncomingCallCancelled();
+}

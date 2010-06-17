@@ -1,0 +1,11 @@
+{
+  int remoteAudioPort=0;
+  for (Enumeration e=remoteSdp.getMediaDescriptors().elements(); e.hasMoreElements(); ) {
+    MediaDescriptor descriptor=(MediaDescriptor)e.nextElement();
+    MediaField media=descriptor.getMedia();
+    if (media.getMedia().equals("audio")) {
+      remoteAudioPort=media.getPort();
+    }
+  }
+  return remoteAudioPort;
+}

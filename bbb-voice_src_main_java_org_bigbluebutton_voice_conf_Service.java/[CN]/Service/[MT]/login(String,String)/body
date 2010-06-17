@@ -1,0 +1,9 @@
+{
+  log.debug("Red5SIP login " + userid);
+  String realm=asteriskHost;
+  String proxy=realm;
+  int rport=getRtpPort();
+  int sport=getSipPort();
+  log.debug("Logging in as [" + rport + ","+ sport+ "]");
+  login(proxy,userid,new Integer(rport).toString(),username,password,realm,proxy,sport,rport);
+}

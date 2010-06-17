@@ -1,0 +1,7 @@
+String userid
+String obproxy
+String phone
+String username
+String password
+String realm
+String proxy

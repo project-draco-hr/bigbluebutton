@@ -1,0 +1,8 @@
+{
+  packetBuffer=new byte[transcoder.getOutgoingEncodedFrameSize() + RTP_HEADER_SIZE];
+  rtpPacket=new RtpPacket(packetBuffer,0);
+  rtpPacket.setPayloadType(transcoder.getCodecId());
+  startPayloadPos=rtpPacket.getHeaderLength();
+  sequenceNum=0;
+  timestamp=0;
+}

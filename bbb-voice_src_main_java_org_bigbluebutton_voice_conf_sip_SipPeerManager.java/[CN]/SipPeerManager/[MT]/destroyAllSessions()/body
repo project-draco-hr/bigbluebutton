@@ -1,0 +1,10 @@
+{
+  Collection sipUsers=getSIPUsers();
+  SipPeer sipUser;
+  for (Iterator iter=sipUsers.iterator(); iter.hasNext(); ) {
+    sipUser=(SipPeer)iter.next();
+    sipUser.close();
+    sipUser=null;
+  }
+  sipPeers=new HashMap<String,SipPeer>();
+}

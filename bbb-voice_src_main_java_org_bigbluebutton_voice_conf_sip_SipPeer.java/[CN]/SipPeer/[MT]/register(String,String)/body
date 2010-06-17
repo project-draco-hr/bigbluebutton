@@ -1,0 +1,6 @@
+{
+  log.debug("SIPUser login");
+  sipProvider.setOutboundProxy(new SocketAddress(host));
+  initializeUserProfile(username,password);
+  initializeUserAgent();
+}

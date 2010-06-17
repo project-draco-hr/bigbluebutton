@@ -1,0 +1,3 @@
+{
+  return callState == CallState.UA_IDLE;
+}

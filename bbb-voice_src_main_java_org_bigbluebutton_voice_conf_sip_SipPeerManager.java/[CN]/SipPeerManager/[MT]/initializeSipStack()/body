@@ -1,0 +1,5 @@
+{
+  SipStack.init();
+  SipStack.debug_level=sipStackDebugLevel;
+  SipStack.log_path="log";
+}

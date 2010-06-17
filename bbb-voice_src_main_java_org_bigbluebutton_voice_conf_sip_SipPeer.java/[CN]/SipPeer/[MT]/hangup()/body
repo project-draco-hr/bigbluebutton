@@ -1,0 +1,6 @@
+{
+  log.debug("SIPUser hangup");
+  if (userAgent != null) {
+    userAgent.hangup();
+  }
+}

@@ -1,0 +1,6 @@
+{
+  log.debug("VoiceConferenceApplication appLeave[" + client.getId() + "]");
+  String userid=getSipUserId();
+  log.debug("Red5SIP Client closing client " + userid);
+  sipManager.close(userid);
+}

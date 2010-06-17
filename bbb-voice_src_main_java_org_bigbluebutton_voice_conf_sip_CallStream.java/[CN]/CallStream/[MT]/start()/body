@@ -1,0 +1,23 @@
+{
+  try {
+    socket=new DatagramSocket(connInfo.getLocalPort());
+  }
+ catch (  SocketException e) {
+    log.error("SocketException while initializing DatagramSocket");
+    throw new Exception("Exception while initializing CallStream");
+  }
+  listenStream=new ListenStream(scopeProvider.getScope());
+  Transcoder rtmpToRtpTranscoder, rtpToRtmpTranscoder;
+  if (sipCodec.getCodecId() == SpeexCodec.codecId) {
+    rtmpToRtpTranscoder=new SpeexToSpeexTranscoder(sipCodec);
+    rtpToRtmpTranscoder=new SpeexToSpeexTranscoder(sipCodec,listenStream);
+  }
+ else {
+    rtmpToRtpTranscoder=new NellyToPcmTranscoder(sipCodec);
+    rtpToRtmpTranscoder=new PcmToNellyTranscoder(sipCodec,listenStream);
+  }
+  packetProcessor=new ReceivedRtpPacketProcessor(rtpToRtmpTranscoder);
+  rtpReceiver=new RtpStreamReceiver(packetProcessor,socket,rtpToRtmpTranscoder.getIncomingEncodedFrameSize());
+  rtpSender=new RtpStreamSender(rtmpToRtpTranscoder,socket,connInfo.getRemoteAddr(),connInfo.getRemotePort());
+  talkStream=new TalkStream(rtmpToRtpTranscoder,rtpSender);
+}

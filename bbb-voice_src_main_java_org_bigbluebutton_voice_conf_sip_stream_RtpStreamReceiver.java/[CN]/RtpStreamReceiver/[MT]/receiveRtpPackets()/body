@@ -1,0 +1,20 @@
+{
+  int packetReceivedCounter=0;
+  int internalBufferLength=payloadLength + RTP_HEADER_SIZE;
+  while (receivePackets) {
+    try {
+      byte[] internalBuffer=new byte[internalBufferLength];
+      RtpPacket rtpPacket=new RtpPacket(internalBuffer,0);
+      rtpSocket.receive(rtpPacket);
+      packetReceivedCounter++;
+      processReceivedPacket(rtpPacket);
+    }
+ catch (    IOException e) {
+      log.error("IOException while receiving rtp packets.");
+      receivePackets=false;
+    }
+  }
+  closeSocket();
+  log.debug("Rtp Receiver stopped.");
+  log.debug("Packet Received = " + packetReceivedCounter + ".");
+}

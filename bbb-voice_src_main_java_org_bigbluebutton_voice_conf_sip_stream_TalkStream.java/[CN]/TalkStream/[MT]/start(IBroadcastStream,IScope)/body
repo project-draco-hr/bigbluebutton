@@ -1,0 +1,20 @@
+{
+  log.debug("startTranscodingStream({},{})",broadcastStream.getPublishedName(),scope.getName());
+  broadcastStream.addStreamListener(mInputListener);
+  processAudio=true;
+  audioProcessor=new Runnable(){
+    public void run(){
+      while (processAudio) {
+        try {
+          RtmpAudioData packet=packets.take();
+          processAudioPacket(packet);
+        }
+ catch (        InterruptedException e) {
+          log.info("InterruptedExeption while taking audio packet.");
+        }
+      }
+    }
+  }
+;
+  exec.execute(audioProcessor);
+}

@@ -1,0 +1,8 @@
+{
+  try {
+    packetProcessor.process(rtpPacket);
+  }
+ catch (  InterruptedException e) {
+    log.error("InterruptedException while attempting to process received Rtp packet");
+  }
+}

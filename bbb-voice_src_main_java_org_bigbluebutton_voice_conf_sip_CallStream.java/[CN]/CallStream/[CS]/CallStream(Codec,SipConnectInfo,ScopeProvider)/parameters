@@ -1,0 +1,3 @@
+Codec sipCodec
+SipConnectInfo connInfo
+ScopeProvider scopeProvider

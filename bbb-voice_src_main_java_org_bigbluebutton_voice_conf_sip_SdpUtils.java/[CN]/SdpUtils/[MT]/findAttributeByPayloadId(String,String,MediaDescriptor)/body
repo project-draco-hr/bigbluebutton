@@ -1,0 +1,16 @@
+{
+  AttributeField searchingMediaAttribute=null;
+  Vector mediaAttributes=mediaDescriptor.getAttributes(attributeName);
+  for (Enumeration attributesEnum=mediaAttributes.elements(); attributesEnum.hasMoreElements(); ) {
+    AttributeField mediaAttribute=(AttributeField)attributesEnum.nextElement();
+    if (getPayloadIdFromAttribute(mediaAttribute).equals(payloadId)) {
+      searchingMediaAttribute=mediaAttribute;
+      break;
+    }
+  }
+  if (searchingMediaAttribute != null) {
+  }
+ else {
+  }
+  return searchingMediaAttribute;
+}

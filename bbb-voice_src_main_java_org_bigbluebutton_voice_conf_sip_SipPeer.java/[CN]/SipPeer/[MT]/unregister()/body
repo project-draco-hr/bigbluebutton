@@ -1,0 +1,11 @@
+{
+  log.debug("SIPUser unregister");
+  if (registerAgent != null) {
+    registerAgent.unregister();
+    registerAgent=null;
+  }
+  if (userAgent != null) {
+    userAgent.hangup();
+  }
+  userAgent=null;
+}

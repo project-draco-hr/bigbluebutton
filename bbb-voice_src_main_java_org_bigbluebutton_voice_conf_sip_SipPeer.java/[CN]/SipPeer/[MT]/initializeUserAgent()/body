@@ -1,0 +1,5 @@
+{
+  userAgent=new CallAgent(sipProvider,userProfile,rtmpConnection);
+  userAgent.addListener(rtmpConnection);
+  userAgent.initialize();
+}

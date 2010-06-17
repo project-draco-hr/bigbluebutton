@@ -1,0 +1,5 @@
+{
+  this.localPort=localPort;
+  this.remoteAddr=remoteAddr;
+  this.remotePort=remotePort;
+}

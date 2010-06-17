@@ -1,0 +1,6 @@
+{
+  int rtpport=rtpPort;
+  rtpPort++;
+  if (rtpPort > stopRTPPort)   rtpPort=startRTPPort;
+  return rtpport;
+}
