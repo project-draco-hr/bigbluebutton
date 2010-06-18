@@ -1,0 +1,15 @@
+{
+  if (msg instanceof ObjectMessage) {
+    try {
+      IEvent objmsg=(IEvent)((ObjectMessage)msg).getObject();
+      if (objmsg instanceof IEvent) {
+        if (!isDuplicated(objmsg)) {
+          insertEvent(objmsg);
+        }
+      }
+    }
+ catch (    JMSException ex) {
+      ex.printStackTrace();
+    }
+  }
+}

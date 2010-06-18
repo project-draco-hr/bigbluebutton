@@ -1,0 +1,36 @@
+{
+  response.setContentType("text/xml");
+  PrintWriter out=response.getWriter();
+  try {
+    String conferenceid=request.getParameter("conferenceid");
+    String xml_param=request.getParameter("url");
+    String output="";
+    URL url=new URL(xml_param);
+    XMLSerializer xmlser=new XMLSerializer();
+    JSONObject json=(JSONObject)xmlser.readFromStream(url.openStream());
+    JSONObject jsonpar=json.getJSONObject("par");
+    JSONObject jsonseq=jsonpar.getJSONObject("seq");
+    ArrayList<String> listmessages=new ArrayList<String>();
+    listmessages.addAll(parseXMLtoJSON(jsonseq));
+    for (int i=0; i < listmessages.size(); i++) {
+      String message=(String)listmessages.get(i);
+      IEvent event=null;
+      event=new Event();
+      ((Event)event).setConferenceID(conferenceid);
+      ((Event)event).setMessage(message);
+      ((Event)event).setUUID(java.util.UUID.randomUUID().toString());
+      sendMessagesToQueue(event);
+      try {
+        Thread.sleep(100);
+      }
+ catch (      InterruptedException ex) {
+        Logger.getLogger(XMLProcesser.class.getName()).log(Level.SEVERE,null,ex);
+      }
+    }
+    output="finish processing " + listmessages.size() + " objects";
+    out.println("<message>" + output + "</message>");
+  }
+  finally {
+    out.close();
+  }
+}
