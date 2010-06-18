@@ -1,3 +1,0 @@
-{
-  return new CallStream(sipCodec,connInfo,scopeProvider);
-}

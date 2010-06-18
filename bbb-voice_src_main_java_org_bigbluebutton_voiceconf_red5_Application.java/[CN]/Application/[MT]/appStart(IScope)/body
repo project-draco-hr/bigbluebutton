@@ -1,0 +1,15 @@
+{
+  log.debug("VoiceConferenceApplication appStart[" + scope.getName() + "]");
+  callStreamFactory=new CallStreamFactory();
+  callStreamFactory.setScope(scope);
+  sipPeerManager.setCallStreamFactory(callStreamFactory);
+  sipPeerManager.setClientConnectionManager(clientConnManager);
+  sipPeerManager.createSipPeer(sipServerHost,sipServerHost,startSipPort,startRtpPort,stopRtpPort);
+  try {
+    sipPeerManager.register(sipServerHost,username,password);
+  }
+ catch (  PeerNotFoundException e) {
+    e.printStackTrace();
+  }
+  return true;
+}

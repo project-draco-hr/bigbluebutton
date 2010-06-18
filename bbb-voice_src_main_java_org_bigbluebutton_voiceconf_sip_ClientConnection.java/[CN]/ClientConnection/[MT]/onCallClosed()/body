@@ -1,0 +1,4 @@
+{
+  log.debug("onCallClosed");
+  connection.invoke("disconnectedFromJoinVoiceConferenceCallback",new Object[]{"onUaCallClosed"});
+}

@@ -1,0 +1,5 @@
+{
+  this.sipCodec=sipCodec;
+  this.connInfo=connInfo;
+  this.scope=scope;
+}
