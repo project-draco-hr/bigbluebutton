@@ -1,0 +1,4 @@
+{
+  log.trace("getStreamListeners()");
+  return streamListeners;
+}

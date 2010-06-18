@@ -1,4 +1,0 @@
-{
-  System.out.println("**** GETTING METADATA ******");
-  return null;
-}
