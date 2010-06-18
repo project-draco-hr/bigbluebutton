@@ -1,5 +1,0 @@
-{
-  broadcastStream.stop();
-  broadcastStream.close();
-  log.debug("stopping and closing stream {}",listenStreamName);
-}

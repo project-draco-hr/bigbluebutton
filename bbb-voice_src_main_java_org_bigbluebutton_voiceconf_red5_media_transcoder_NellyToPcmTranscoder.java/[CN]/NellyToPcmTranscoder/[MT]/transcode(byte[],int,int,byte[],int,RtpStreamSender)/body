@@ -1,0 +1,32 @@
+{
+  asao_buffer_processed=false;
+  if (!hasInitilializedBuffers) {
+    tempBuffer=new float[NELLYMOSER_DECODED_PACKET_SIZE];
+    encodingBuffer=new float[sipCodec.getOutgoingDecodedFrameSize()];
+    hasInitilializedBuffers=true;
+  }
+  if (num > 0) {
+    do {
+      int encodedBytes=fillRtpPacketBuffer(asaoBuffer,transcodedData,dataOffset);
+      log.debug("send " + sipCodec.getCodecName() + " encoded "+ encodedBytes+ " bytes.");
+      if (encodedBytes == 0) {
+        break;
+      }
+      if (encodingOffset == sipCodec.getOutgoingDecodedFrameSize()) {
+        log.debug("Send this audio to asterisk.");
+        try {
+          rtpSender.sendTranscodedData();
+        }
+ catch (        StreamException e) {
+          log.warn("Error while sending transcoded audio packet.");
+        }
+        encodingOffset=0;
+      }
+      log.debug("asao_buffer_processed = [" + asao_buffer_processed + "] .");
+    }
+ while (!asao_buffer_processed);
+  }
+ else   if (num < 0) {
+    log.debug("Closing");
+  }
+}

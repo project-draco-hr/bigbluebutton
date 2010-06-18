@@ -1,0 +1,5 @@
+{
+  if (data.length > buffer.length - offset)   return false;
+  System.arraycopy(data,0,buffer,offset,data.length);
+  return true;
+}

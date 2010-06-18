@@ -1,4 +1,0 @@
-{
-  System.out.println("Closing socket");
-  socket.close();
-}

@@ -1,3 +1,6 @@
 {
-  streamEnded();
+  rtpStreamReceiver.stop();
+  audioBroadcastStream.stop();
+  audioBroadcastStream.close();
+  log.debug("stopping and closing stream {}",listenStreamName);
 }

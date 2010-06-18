@@ -1,4 +1,0 @@
-{
-  rtpSocket.close();
-  log.debug(" Stopping Rtp sender.");
-}

@@ -1,0 +1,4 @@
+{
+  buffer=data;
+  this.offset=offset;
+}

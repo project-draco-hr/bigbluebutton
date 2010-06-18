@@ -1,3 +1,4 @@
 {
-  streamAudioData(audioData);
+  audioBroadcastStream.dispatchEvent(audioData);
+  audioData.release();
 }

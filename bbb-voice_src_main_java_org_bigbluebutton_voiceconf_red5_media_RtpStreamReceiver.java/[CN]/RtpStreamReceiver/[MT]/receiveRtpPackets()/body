@@ -7,14 +7,13 @@
       RtpPacket rtpPacket=new RtpPacket(internalBuffer,0);
       rtpSocket.receive(rtpPacket);
       packetReceivedCounter++;
-      processReceivedPacket(rtpPacket);
+      transcoder.transcode(rtpPacket.getPayload());
     }
  catch (    IOException e) {
       log.error("IOException while receiving rtp packets.");
       receivePackets=false;
     }
   }
-  closeSocket();
   log.debug("Rtp Receiver stopped.");
   log.debug("Packet Received = " + packetReceivedCounter + ".");
 }

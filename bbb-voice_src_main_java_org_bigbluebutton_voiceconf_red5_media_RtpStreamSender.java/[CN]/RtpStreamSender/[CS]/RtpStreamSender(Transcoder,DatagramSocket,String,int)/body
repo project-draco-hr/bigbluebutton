@@ -1,4 +1,0 @@
-{
-  this.transcoder=transcoder;
-  rtpSocket=new RtpSocket(srcSocket,InetAddress.getByName(destAddr),destPort);
-}

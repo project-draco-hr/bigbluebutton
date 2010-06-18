@@ -1,0 +1,3 @@
+IScope scope
+Transcoder transcoder
+DatagramSocket socket

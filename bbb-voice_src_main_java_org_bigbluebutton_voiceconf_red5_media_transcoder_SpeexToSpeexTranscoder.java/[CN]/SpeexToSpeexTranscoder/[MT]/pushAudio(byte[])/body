@@ -1,0 +1,14 @@
+{
+  timestamp=timestamp + audio.length;
+  IoBuffer buffer=IoBuffer.allocate(1024);
+  buffer.setAutoExpand(true);
+  buffer.clear();
+  buffer.put((byte)SPEEX_CODEC);
+  byte[] copy=new byte[audio.length];
+  System.arraycopy(audio,0,copy,0,audio.length);
+  buffer.put(copy);
+  buffer.flip();
+  AudioData audioData=new AudioData(buffer);
+  audioData.setTimestamp((int)timestamp);
+  listener.handleTranscodedAudioData(audioData);
+}

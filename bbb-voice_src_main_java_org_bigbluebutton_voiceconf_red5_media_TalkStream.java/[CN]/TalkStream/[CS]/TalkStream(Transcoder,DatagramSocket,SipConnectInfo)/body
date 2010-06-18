@@ -1,0 +1,5 @@
+{
+  this.transcoder=transcoder;
+  this.srcSocket=srcSocket;
+  this.connInfo=connInfo;
+}

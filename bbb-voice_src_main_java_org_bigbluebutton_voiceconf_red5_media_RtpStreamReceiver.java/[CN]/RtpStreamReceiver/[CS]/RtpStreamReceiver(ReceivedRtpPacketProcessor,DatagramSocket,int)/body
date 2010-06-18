@@ -1,5 +1,0 @@
-{
-  this.packetProcessor=packetProcessor;
-  this.payloadLength=payloadLength;
-  rtpSocket=new RtpSocket(socket);
-}

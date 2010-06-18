@@ -1,4 +1,0 @@
-Transcoder transcoder
-DatagramSocket srcSocket
-String destAddr
-int destPort

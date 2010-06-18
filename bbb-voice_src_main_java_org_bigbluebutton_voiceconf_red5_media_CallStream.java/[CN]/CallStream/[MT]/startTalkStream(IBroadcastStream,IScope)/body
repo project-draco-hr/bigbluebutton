@@ -1,8 +1,3 @@
 {
   talkStream.start(broadcastStream,scope);
-  packetProcessor.start();
-  listenStream.start();
-  rtpSender.start();
-  rtpReceiver.setRtpStreamReceiverListener(this);
-  rtpReceiver.start();
 }

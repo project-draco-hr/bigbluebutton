@@ -1,0 +1,6 @@
+{
+  this.transcoder=transcoder;
+  this.payloadLength=transcoder.getIncomingEncodedFrameSize();
+  rtpSocket=new RtpSocket(socket);
+  initializeSocket();
+}

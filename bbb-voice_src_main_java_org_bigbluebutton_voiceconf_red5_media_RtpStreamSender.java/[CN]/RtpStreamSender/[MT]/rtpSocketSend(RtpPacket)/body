@@ -3,7 +3,9 @@
     rtpSocket.send(rtpPacket);
     timestamp+=rtpPacket.getPayloadLength();
   }
- catch (  Exception e) {
-    log.error("Exception while sending packet");
+ catch (  IOException e) {
+    log.error("Exception while trying to send rtp packet");
+    log.error(StackTraceUtil.getStackTrace(e));
+    throw new StreamException("Failed to send data to server.");
   }
 }

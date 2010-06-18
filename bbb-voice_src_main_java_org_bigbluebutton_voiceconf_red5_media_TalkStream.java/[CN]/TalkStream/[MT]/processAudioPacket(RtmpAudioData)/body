@@ -1,4 +1,0 @@
-{
-  byte[] data=packet.getData();
-  rtpSender.send(data,1,data.length - 1);
-}
