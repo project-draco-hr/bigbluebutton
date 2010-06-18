@@ -1,5 +1,5 @@
 {
-  log.debug("onCallAccepted");
+  log.debug("Received 200/OK. So user has successfully joined the conference.");
   if (!isCurrentCall(call))   return;
   log.debug("ACCEPTED/CALL.");
   changeStatus(CallState.UA_ONCALL);
@@ -8,5 +8,4 @@
     call.ackWithAnswer(localSession);
   }
   createVoiceStreams();
-  notifyListenersOfOnOutgoingCallAccepted();
 }

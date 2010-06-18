@@ -1,3 +1,8 @@
 {
-  callStream.startTalkStream(broadcastStream,scope);
+  try {
+    callStream.startTalkStream(broadcastStream,scope);
+  }
+ catch (  StreamException e) {
+    e.printStackTrace();
+  }
 }

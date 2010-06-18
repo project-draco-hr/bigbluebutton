@@ -1,6 +1,6 @@
 {
   if (callStream != null) {
-    log.debug("launchMediaApplication","Media application is already running.");
+    log.debug("Media application is already running.");
     return;
   }
   SessionDescriptor localSdp=new SessionDescriptor(call.getLocalSessionDescriptor());

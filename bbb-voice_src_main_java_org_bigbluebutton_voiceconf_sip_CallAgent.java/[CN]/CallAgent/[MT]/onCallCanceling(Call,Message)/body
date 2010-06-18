@@ -1,7 +1,7 @@
 {
-  log.debug("onCallCanceling");
+  log.error("Server shouldn't cancel call...or does it???");
   if (!isCurrentCall(call))   return;
-  log.debug("CANCEL.");
+  log.debug("Server has CANCEL-led the call.");
   changeStatus(CallState.UA_IDLE);
   notifyListenersOfOnIncomingCallCancelled();
 }

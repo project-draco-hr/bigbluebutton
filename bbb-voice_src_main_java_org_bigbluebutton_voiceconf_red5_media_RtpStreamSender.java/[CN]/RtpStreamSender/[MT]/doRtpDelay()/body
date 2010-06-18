@@ -1,7 +1,0 @@
-{
-  try {
-    Thread.sleep(transcoder.getOutgoingPacketization() - 2);
-  }
- catch (  Exception e) {
-  }
-}

@@ -1,3 +1,0 @@
-{
-  rtpSender.sendDtmfDigits(dtmfDigits);
-}
