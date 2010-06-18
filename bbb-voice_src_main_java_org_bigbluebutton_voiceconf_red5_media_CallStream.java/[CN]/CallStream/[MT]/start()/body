@@ -15,7 +15,7 @@
     rtmpToRtpTranscoder=new NellyToPcmTranscoder(sipCodec);
     rtpToRtmpTranscoder=new PcmToNellyTranscoder(sipCodec,listenStream);
   }
-  listenStream=new ListenStream(scope,rtpToRtmpTranscoder,socket);
+  listenStream=new SipToFlashAudioStream(scope,rtpToRtmpTranscoder,socket);
   listenStream.addListenStreamObserver(this);
-  talkStream=new TalkStream(rtmpToRtpTranscoder,socket,connInfo);
+  talkStream=new FlashToSipAudioStream(rtmpToRtpTranscoder,socket,connInfo);
 }
