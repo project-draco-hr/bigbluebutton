@@ -1,4 +1,5 @@
 {
+  audioData.setTimestamp((int)(System.currentTimeMillis() - startTimestamp));
   audioBroadcastStream.dispatchEvent(audioData);
   audioData.release();
 }
