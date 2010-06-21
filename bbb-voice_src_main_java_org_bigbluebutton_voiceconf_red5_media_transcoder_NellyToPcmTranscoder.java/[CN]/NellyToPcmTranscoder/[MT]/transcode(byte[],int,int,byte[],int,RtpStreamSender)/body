@@ -8,12 +8,10 @@
   if (num > 0) {
     do {
       int encodedBytes=fillRtpPacketBuffer(asaoBuffer,transcodedData,dataOffset);
-      log.debug("send " + sipCodec.getCodecName() + " encoded "+ encodedBytes+ " bytes.");
       if (encodedBytes == 0) {
         break;
       }
       if (encodingOffset == sipCodec.getOutgoingDecodedFrameSize()) {
-        log.debug("Send this audio to asterisk.");
         try {
           rtpSender.sendTranscodedData();
         }
@@ -22,7 +20,6 @@
         }
         encodingOffset=0;
       }
-      log.debug("asao_buffer_processed = [" + asao_buffer_processed + "] .");
     }
  while (!asao_buffer_processed);
   }

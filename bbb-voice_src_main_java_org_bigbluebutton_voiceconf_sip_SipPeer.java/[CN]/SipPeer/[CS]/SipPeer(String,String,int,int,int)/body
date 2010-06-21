@@ -3,6 +3,7 @@
   this.host=host;
   this.sipPort=sipPort;
   this.startRtpPort=startRtpPort;
+  curFreeRtpPort=startRtpPort;
   this.stopRtpPort=stopRtpPort;
   initSipProvider(sipPort);
 }

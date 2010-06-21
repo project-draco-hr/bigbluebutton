@@ -1,6 +1,10 @@
 {
   SipPeerProfile userProfile=new SipPeerProfile();
-  userProfile.audioPort=startRtpPort;
+synchronized (this) {
+    userProfile.audioPort=curFreeRtpPort;
+    curFreeRtpPort++;
+    log.debug("Using rtp port {} for audio.",userProfile.audioPort);
+  }
   String fromURL="\"" + callerName + "\" <sip:"+ destination+ "@"+ host+ ">";
   userProfile.username=callerName;
   userProfile.passwd=password;
