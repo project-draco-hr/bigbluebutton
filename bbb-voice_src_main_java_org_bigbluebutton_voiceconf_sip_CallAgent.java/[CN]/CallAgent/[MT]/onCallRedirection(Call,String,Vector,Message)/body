@@ -1,6 +1,5 @@
 {
   log.debug("onCallRedirection");
   if (!isCurrentCall(call))   return;
-  log.debug("REDIRECTION (" + reason + ").");
   call.call(((String)contact_list.elementAt(0)));
 }

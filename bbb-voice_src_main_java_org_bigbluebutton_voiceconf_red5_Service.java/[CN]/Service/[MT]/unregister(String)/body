@@ -1,5 +1,0 @@
-{
-  log.debug("Red5SIP unregister");
-  String userid=getSipUserId();
-  sipManager.unregister(userid);
-}

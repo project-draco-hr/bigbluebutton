@@ -1,5 +1,4 @@
 {
-  for (  SipUserAgentListener listener : listeners) {
-    listener.onCallClosed();
-  }
+  log.debug("notifyListenersOfOnCallClosed for {}",clientId);
+  clientConnManager.leaveConference(clientId);
 }

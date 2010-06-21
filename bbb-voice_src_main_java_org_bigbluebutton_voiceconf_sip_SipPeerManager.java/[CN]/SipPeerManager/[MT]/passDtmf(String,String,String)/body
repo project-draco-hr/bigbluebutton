@@ -1,6 +1,0 @@
-{
-  SipPeer sipPeer=sipPeers.get(peerId);
-  if (sipPeer != null) {
-    sipPeer.dtmf(clientId,digits);
-  }
-}

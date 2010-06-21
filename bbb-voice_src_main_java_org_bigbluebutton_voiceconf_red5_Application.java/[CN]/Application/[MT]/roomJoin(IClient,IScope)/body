@@ -1,5 +1,0 @@
-{
-  log.debug("VoiceConferenceApplication appJoin[" + client.getId() + "]");
-  clientConnManager.createClient(client.getId(),(IServiceCapableConnection)Red5.getConnectionLocal());
-  return true;
-}

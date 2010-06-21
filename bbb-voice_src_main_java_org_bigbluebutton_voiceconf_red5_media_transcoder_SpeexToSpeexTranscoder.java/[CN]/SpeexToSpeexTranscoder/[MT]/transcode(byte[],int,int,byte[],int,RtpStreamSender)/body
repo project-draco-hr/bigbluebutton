@@ -1,4 +1,9 @@
 {
   System.arraycopy(asaoBuffer,offset,transcodedData,dataOffset,num);
-  rtpSender.sendTranscodedData();
+  try {
+    rtpSender.sendTranscodedData();
+  }
+ catch (  StreamException e) {
+    log.warn("Error while sending transcoded audio packet.");
+  }
 }

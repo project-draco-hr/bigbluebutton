@@ -4,6 +4,6 @@
   log.debug("CLOSE.");
   closeVoiceStreams();
   notifyListenersOfOnCallClosed();
-  changeStatus(CallState.UA_IDLE);
+  callState=CallState.UA_IDLE;
   initSessionDescriptor();
 }

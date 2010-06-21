@@ -3,5 +3,5 @@
   if (!isCurrentCall(call))   return;
   log.debug("CLOSE/OK.");
   notifyListenersOfOnCallClosed();
-  changeStatus(CallState.UA_IDLE);
+  callState=CallState.UA_IDLE;
 }

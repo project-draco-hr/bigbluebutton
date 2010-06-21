@@ -1,5 +1,0 @@
-{
-  log.debug("Red5SIP DTMF " + digits);
-  String userid=getSipUserId();
-  sipManager.passDtmf(userid,digits);
-}

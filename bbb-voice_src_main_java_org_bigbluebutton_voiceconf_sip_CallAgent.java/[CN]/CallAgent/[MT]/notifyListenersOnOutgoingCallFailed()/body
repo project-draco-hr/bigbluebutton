@@ -1,5 +1,4 @@
 {
-  for (  SipUserAgentListener listener : listeners) {
-    listener.onOutgoingCallFailed();
-  }
+  log.debug("notifyListenersOnOutgoingCallFailed for {}",clientId);
+  clientConnManager.joinConferenceFailed(clientId);
 }

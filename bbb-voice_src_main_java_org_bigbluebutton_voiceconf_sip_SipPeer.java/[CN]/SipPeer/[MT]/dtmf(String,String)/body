@@ -1,7 +1,0 @@
-{
-  log.debug("SIPUser dtmf " + digits);
-  CallAgent ca=callManager.get(clientId);
-  if (ca != null) {
-    ca.queueSipDtmfDigits(digits);
-  }
-}

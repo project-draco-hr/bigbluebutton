@@ -1,7 +1,6 @@
 {
-  log.debug("onCallRefused");
+  log.debug("Call has been refused.");
   if (!isCurrentCall(call))   return;
-  log.debug("REFUSED (" + reason + ").");
-  changeStatus(CallState.UA_IDLE);
+  callState=CallState.UA_IDLE;
   notifyListenersOnOutgoingCallFailed();
 }

@@ -1,5 +1,4 @@
 {
-  for (  SipUserAgentListener listener : listeners) {
-    listener.onCallConnected(talkStream,listenStream);
-  }
+  log.debug("notifyListenersOnCallConnected for {}",clientId);
+  clientConnManager.joinConferenceSuccess(clientId,talkStream,listenStream);
 }

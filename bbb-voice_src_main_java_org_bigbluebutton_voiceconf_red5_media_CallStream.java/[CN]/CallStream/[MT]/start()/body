@@ -13,9 +13,10 @@
   }
  else {
     rtmpToRtpTranscoder=new NellyToPcmTranscoder(sipCodec);
-    rtpToRtmpTranscoder=new PcmToNellyTranscoder(sipCodec,userListenStream);
+    rtpToRtmpTranscoder=new PcmToNellyTranscoder(sipCodec);
+    userListenStream=new SipToFlashAudioStream(scope,rtpToRtmpTranscoder,socket);
+    userListenStream.addListenStreamObserver(this);
+    ((PcmToNellyTranscoder)rtpToRtmpTranscoder).addTranscodedAudioDataListener(userListenStream);
   }
-  userListenStream=new SipToFlashAudioStream(scope,rtpToRtmpTranscoder,socket);
-  userListenStream.addListenStreamObserver(this);
   userTalkStream=new FlashToSipAudioStream(rtmpToRtpTranscoder,socket,connInfo);
 }

@@ -1,5 +1,3 @@
 {
-  for (  SipUserAgentListener listener : listeners) {
-    listener.onIncomingCallCancelled();
-  }
+  log.debug("notifyListenersOfOnIncomingCallCancelled for {}",clientId);
 }

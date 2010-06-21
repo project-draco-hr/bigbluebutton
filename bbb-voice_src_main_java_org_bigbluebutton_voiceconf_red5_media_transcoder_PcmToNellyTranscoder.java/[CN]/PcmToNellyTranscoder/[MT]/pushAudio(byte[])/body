@@ -9,5 +9,6 @@
   buffer.flip();
   AudioData audioData=new AudioData(buffer);
   audioData.setTimestamp((int)(System.currentTimeMillis() - start));
-  listener.handleTranscodedAudioData(audioData);
+  if (listener != null)   listener.handleTranscodedAudioData(audioData);
+ else   log.warn("No interested parties for transcoded audio.");
 }

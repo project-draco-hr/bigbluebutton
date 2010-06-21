@@ -1,5 +1,0 @@
-{
-  log.debug("Red5SIP Accept");
-  String userid=getSipUserId();
-  sipManager.accept(userid);
-}

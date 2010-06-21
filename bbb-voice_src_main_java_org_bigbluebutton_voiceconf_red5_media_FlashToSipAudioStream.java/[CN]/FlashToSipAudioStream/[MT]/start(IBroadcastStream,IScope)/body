@@ -1,6 +1,5 @@
 {
   log.debug("startTranscodingStream({},{})",broadcastStream.getPublishedName(),scope.getName());
-  talkStreamName=broadcastStream.getPublishedName();
   mInputListener=new IStreamListener(){
     public void packetReceived(    IBroadcastStream broadcastStream,    IStreamPacket packet){
       IoBuffer buf=packet.getData();

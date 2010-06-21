@@ -1,5 +1,0 @@
-{
-  for (  SipUserAgentListener listener : listeners) {
-    listener.onOutgoingCallAccepted();
-  }
-}

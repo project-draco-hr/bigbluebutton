@@ -1,7 +1,6 @@
 {
   log.debug("Received ACK. Hmmm...is this for when the server initiates the call????");
   if (!isCurrentCall(call))   return;
-  log.debug("CONFIRMED/CALL.");
-  changeStatus(CallState.UA_ONCALL);
+  callState=CallState.UA_ONCALL;
   createVoiceStreams();
 }
