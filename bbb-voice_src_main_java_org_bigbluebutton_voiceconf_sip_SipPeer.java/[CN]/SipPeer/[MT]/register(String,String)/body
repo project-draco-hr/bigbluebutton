@@ -1,12 +1,9 @@
 {
   log.debug("SIPUser register");
-  this.username=username;
-  this.password=password;
-  sipProvider.setOutboundProxy(new SocketAddress(host));
-  SipPeerProfile regProfile=createRegisterUserProfile();
+  createRegisterUserProfile(username,password);
   if (sipProvider != null) {
-    registerAgent=new SipRegisterAgent(sipProvider,regProfile.fromUrl,regProfile.contactUrl,regProfile.username,regProfile.realm,regProfile.passwd);
+    registerAgent=new SipRegisterAgent(sipProvider,registeredProfile.fromUrl,registeredProfile.contactUrl,registeredProfile.username,registeredProfile.realm,registeredProfile.passwd);
     registerAgent.addListener(this);
-    registerAgent.register(regProfile.expires,regProfile.expires / 2,regProfile.keepaliveTime);
+    registerAgent.register(registeredProfile.expires,registeredProfile.expires / 2,registeredProfile.keepaliveTime);
   }
 }

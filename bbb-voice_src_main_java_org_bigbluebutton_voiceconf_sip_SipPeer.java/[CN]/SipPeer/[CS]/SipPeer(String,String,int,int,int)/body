@@ -1,9 +1,5 @@
 {
   this.id=id;
-  this.host=host;
-  this.sipPort=sipPort;
-  this.startRtpPort=startRtpPort;
-  curFreeRtpPort=startRtpPort;
-  this.stopRtpPort=stopRtpPort;
-  initSipProvider(sipPort);
+  audioconfProvider=new AudioConferenceProvider(host,sipPort,startAudioPort,stopAudioPort);
+  initSipProvider(host,sipPort);
 }

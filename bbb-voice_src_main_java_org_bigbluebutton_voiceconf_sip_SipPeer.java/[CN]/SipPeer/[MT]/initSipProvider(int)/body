@@ -1,4 +1,0 @@
-{
-  sipProvider=new SipProvider(host,sipPort);
-  sipProvider.addSipProviderListener(new OptionMethodListener());
-}

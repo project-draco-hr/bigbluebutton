@@ -1,0 +1,16 @@
+{
+  registeredProfile=new SipPeerProfile();
+  registeredProfile.audioPort=audioconfProvider.getStartAudioPort();
+  String fromURL="\"" + username + "\" <sip:"+ username+ "@"+ audioconfProvider.getHost()+ ">";
+  registeredProfile.username=username;
+  registeredProfile.passwd=password;
+  registeredProfile.realm=audioconfProvider.getHost();
+  registeredProfile.fromUrl=fromURL;
+  registeredProfile.contactUrl="sip:" + username + "@"+ sipProvider.getViaAddress();
+  if (sipProvider.getPort() != SipStack.default_port) {
+    registeredProfile.contactUrl+=":" + sipProvider.getPort();
+  }
+  registeredProfile.keepaliveTime=8000;
+  registeredProfile.acceptTime=0;
+  registeredProfile.hangupTime=20;
+}

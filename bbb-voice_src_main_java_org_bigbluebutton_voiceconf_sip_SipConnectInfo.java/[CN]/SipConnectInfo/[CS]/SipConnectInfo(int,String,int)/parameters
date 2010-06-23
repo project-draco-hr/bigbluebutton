@@ -1,3 +1,0 @@
-int localPort
-String remoteAddr
-int remotePort

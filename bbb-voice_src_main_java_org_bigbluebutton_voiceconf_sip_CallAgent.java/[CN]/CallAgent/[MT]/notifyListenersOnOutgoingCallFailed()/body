@@ -1,4 +1,5 @@
 {
   log.debug("notifyListenersOnOutgoingCallFailed for {}",clientId);
   clientConnManager.joinConferenceFailed(clientId);
+  cleanup();
 }

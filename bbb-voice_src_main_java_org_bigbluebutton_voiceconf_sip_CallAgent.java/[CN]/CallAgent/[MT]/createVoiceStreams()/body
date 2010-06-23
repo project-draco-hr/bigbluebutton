@@ -5,13 +5,13 @@
   }
   SessionDescriptor localSdp=new SessionDescriptor(call.getLocalSessionDescriptor());
   SessionDescriptor remoteSdp=new SessionDescriptor(call.getRemoteSessionDescriptor());
-  String remoteMediaAddress=(new Parser(remoteSdp.getConnection().toString())).skipString().skipString().getString();
-  int remoteAudioPort=getRemoteAudioPort(remoteSdp);
-  int localAudioPort=getLocalAudioPort(localSdp);
+  String remoteMediaAddress=SessionDescriptorUtil.getRemoteMediaAddress(remoteSdp);
+  int remoteAudioPort=SessionDescriptorUtil.getRemoteAudioPort(remoteSdp);
+  int localAudioPort=SessionDescriptorUtil.getLocalAudioPort(localSdp);
+  SipConnectInfo connInfo=new SipConnectInfo(localSocket,remoteMediaAddress,remoteAudioPort);
   log.debug("[localAudioPort=" + localAudioPort + ",remoteAudioPort="+ remoteAudioPort+ "]");
   if (userProfile.audio && localAudioPort != 0 && remoteAudioPort != 0) {
     if ((callStream == null) && (sipCodec != null)) {
-      SipConnectInfo connInfo=new SipConnectInfo(localAudioPort,remoteMediaAddress,remoteAudioPort);
       try {
         callStream=callStreamFactory.createCallStream(sipCodec,connInfo);
         callStream.start();

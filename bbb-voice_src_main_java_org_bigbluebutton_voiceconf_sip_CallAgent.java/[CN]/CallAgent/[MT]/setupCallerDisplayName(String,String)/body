@@ -1,0 +1,9 @@
+{
+  String fromURL="\"" + callerName + "\" <sip:"+ destination+ "@"+ portProvider.getHost()+ ">";
+  userProfile.username=callerName;
+  userProfile.fromUrl=fromURL;
+  userProfile.contactUrl="sip:" + destination + "@"+ sipProvider.getViaAddress();
+  if (sipProvider.getPort() != SipStack.default_port) {
+    userProfile.contactUrl+=":" + sipProvider.getPort();
+  }
+}
