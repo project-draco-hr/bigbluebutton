@@ -1,0 +1,9 @@
+{
+  AttributeField newAttribute=null;
+  String attribName=codecMediaAttribute.substring(0,codecMediaAttribute.indexOf(":"));
+  String attribValue=codecMediaAttribute.substring(codecMediaAttribute.indexOf(":") + 1);
+  if ((!attribName.isEmpty()) && (!attribValue.isEmpty())) {
+    newAttribute=new AttributeField(attribName,attribValue);
+  }
+  return newAttribute;
+}

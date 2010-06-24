@@ -1,0 +1,4 @@
+{
+  log.error("Failed to register with Sip Server.");
+  registered=false;
+}

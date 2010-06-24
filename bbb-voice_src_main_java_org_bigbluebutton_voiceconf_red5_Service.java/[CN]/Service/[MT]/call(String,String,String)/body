@@ -1,0 +1,13 @@
+{
+  log.debug("Joining voice conference " + destination);
+  String extension=callExtensionPattern.format(new String[]{destination});
+  try {
+    sipPeerManager.call(peerId,getClientId(),callerName,extension);
+    Red5.getConnectionLocal().setAttribute("VOICE_CONF_PEER",peerId);
+    return true;
+  }
+ catch (  PeerNotFoundException e) {
+    log.error("PeerNotFound {}",peerId);
+    return false;
+  }
+}

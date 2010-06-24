@@ -1,0 +1,7 @@
+{
+  log.debug("onCallTimeout");
+  if (!isCurrentCall(call))   return;
+  log.debug("NOT FOUND/TIMEOUT.");
+  callState=CallState.UA_IDLE;
+  notifyListenersOnOutgoingCallFailed();
+}

@@ -1,0 +1,12 @@
+{
+  SessionDescriptor remoteSdp=new SessionDescriptor(sdp);
+  SessionDescriptor localSdp=new SessionDescriptor(localSession);
+  log.debug("localSdp = " + localSdp.toString() + ".");
+  log.debug("remoteSdp = " + remoteSdp.toString() + ".");
+  SessionDescriptor newSdp=SdpUtils.makeMediaPayloadsNegotiation(localSdp,remoteSdp);
+  createAudioCodec(newSdp);
+  SdpUtils.completeSdpNegotiation(newSdp,localSdp,remoteSdp);
+  localSession=newSdp.toString();
+  log.debug("newSdp = " + localSession + ".");
+  CodecUtils.initSipAudioCodec(sipCodec,userProfile.audioDefaultPacketization,userProfile.audioDefaultPacketization,newSdp,remoteSdp);
+}

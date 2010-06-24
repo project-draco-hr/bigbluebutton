@@ -1,0 +1,9 @@
+{
+  log.debug("SIPUser register");
+  createRegisterUserProfile(username,password);
+  if (sipProvider != null) {
+    registerAgent=new SipRegisterAgent(sipProvider,registeredProfile.fromUrl,registeredProfile.contactUrl,registeredProfile.username,registeredProfile.realm,registeredProfile.passwd);
+    registerAgent.addListener(this);
+    registerAgent.register(registeredProfile.expires,registeredProfile.expires / 2,registeredProfile.keepaliveTime);
+  }
+}

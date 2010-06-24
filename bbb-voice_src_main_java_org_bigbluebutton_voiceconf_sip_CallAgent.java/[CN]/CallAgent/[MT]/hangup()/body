@@ -1,0 +1,7 @@
+{
+  log.debug("hangup");
+  if (callState == CallState.UA_IDLE)   return;
+  closeVoiceStreams();
+  if (call != null)   call.hangup();
+  callState=CallState.UA_IDLE;
+}

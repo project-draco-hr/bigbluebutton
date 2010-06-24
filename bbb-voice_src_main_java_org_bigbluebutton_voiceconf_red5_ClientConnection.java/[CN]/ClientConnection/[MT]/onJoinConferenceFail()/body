@@ -1,0 +1,4 @@
+{
+  log.debug("onOutgoingCallFailed");
+  connection.invoke("failedToJoinVoiceConferenceCallback",new Object[]{"onUaCallFailed"});
+}

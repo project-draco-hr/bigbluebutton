@@ -1,0 +1,5 @@
+{
+  log.debug("notifyListenersOfOnCallClosed for {}",clientId);
+  clientConnManager.leaveConference(clientId);
+  cleanup();
+}

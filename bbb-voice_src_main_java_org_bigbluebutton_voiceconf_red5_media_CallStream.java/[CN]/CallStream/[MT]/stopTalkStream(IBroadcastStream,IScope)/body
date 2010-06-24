@@ -1,0 +1,3 @@
+{
+  userTalkStream.stop(broadcastStream,scope);
+}

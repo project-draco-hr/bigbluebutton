@@ -1,0 +1,6 @@
+SipProvider sipProvider
+String targetUrl
+String contactUrl
+String username
+String realm
+String passwd

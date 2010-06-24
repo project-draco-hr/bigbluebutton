@@ -1,0 +1,7 @@
+{
+  boolean isPayloadAttribute=false;
+  if ((attribute.getAttributeName().compareToIgnoreCase(Codec.ATTRIBUTE_RTPMAP) == 0) || (attribute.getAttributeName().compareToIgnoreCase(Codec.ATTRIBUTE_AS) == 0) || (attribute.getAttributeName().compareToIgnoreCase(Codec.ATTRIBUTE_FMTP) == 0)) {
+    isPayloadAttribute=true;
+  }
+  return isPayloadAttribute;
+}

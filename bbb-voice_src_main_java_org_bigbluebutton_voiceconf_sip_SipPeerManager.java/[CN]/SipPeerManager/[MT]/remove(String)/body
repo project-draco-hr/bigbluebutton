@@ -1,0 +1,4 @@
+{
+  log.debug("Number of SipUsers in Manager before remove {}",sipPeers.size());
+  sipPeers.remove(userid);
+}

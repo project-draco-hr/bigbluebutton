@@ -1,0 +1,18 @@
+{
+  int payloadId;
+  String rtpmap;
+  Codec sipCodec=null;
+  MediaDescriptor md=negotiatedSDP.getMediaDescriptor(Codec.MEDIA_TYPE_AUDIO);
+  rtpmap=md.getAttribute(Codec.ATTRIBUTE_RTPMAP).getAttributeValue();
+  if (!rtpmap.isEmpty()) {
+    payloadId=Integer.parseInt(rtpmap.substring(0,rtpmap.indexOf(" ")));
+    sipCodec=CodecFactory.getInstance().getSIPAudioCodec(payloadId);
+    if (sipCodec == null) {
+      log.error("Negotiated codec {} not found",payloadId);
+    }
+ else {
+      log.info("Found codec: payloadType={}, payloadName={}.",sipCodec.getCodecId(),sipCodec.getCodecName());
+    }
+  }
+  return sipCodec;
+}

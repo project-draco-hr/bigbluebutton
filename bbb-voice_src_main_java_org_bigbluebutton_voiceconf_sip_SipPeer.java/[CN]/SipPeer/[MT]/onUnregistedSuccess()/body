@@ -1,0 +1,4 @@
+{
+  log.info("Successfully unregistered with Sip Server");
+  registered=false;
+}

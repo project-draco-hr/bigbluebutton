@@ -1,0 +1,6 @@
+{
+  CallAgent ca=callManager.get(clientId);
+  if (ca != null) {
+    ca.stopTalkStream(broadcastStream,scope);
+  }
+}

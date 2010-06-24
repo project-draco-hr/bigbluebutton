@@ -1,0 +1,5 @@
+{
+  sipProvider=new SipProvider(host,sipPort);
+  sipProvider.setOutboundProxy(new SocketAddress(host));
+  sipProvider.addSipProviderListener(new OptionMethodListener());
+}

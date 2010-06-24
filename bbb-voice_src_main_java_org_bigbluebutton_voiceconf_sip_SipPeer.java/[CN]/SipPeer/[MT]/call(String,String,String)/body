@@ -1,0 +1,12 @@
+{
+  if (!registered) {
+    log.warn("Call request for {} but not registered.",id);
+    return;
+  }
+  SipPeerProfile callerProfile=SipPeerProfile.copy(registeredProfile);
+  CallAgent ca=new CallAgent(sipProvider,callerProfile,audioconfProvider,clientId);
+  ca.setClientConnectionManager(clientConnManager);
+  ca.setCallStreamFactory(callStreamFactory);
+  callManager.add(ca);
+  ca.call(callerName,destination);
+}

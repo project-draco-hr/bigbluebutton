@@ -1,0 +1,37 @@
+{
+  printLog("onTransFailureResponse start: ");
+  if (transaction.getTransactionMethod().equals(SipMethods.REGISTER)) {
+    StatusLine status=resp.getStatusLine();
+    int code=status.getCode();
+    if ((code == 401 && attempts < MAX_ATTEMPTS && resp.hasWwwAuthenticateHeader() && resp.getWwwAuthenticateHeader().getRealmParam().equalsIgnoreCase(realm)) || (code == 407 && attempts < MAX_ATTEMPTS && resp.hasProxyAuthenticateHeader() && resp.getProxyAuthenticateHeader().getRealmParam().equalsIgnoreCase(realm))) {
+      printLog("onTransFailureResponse 401 or 407: ");
+      attempts++;
+      Message req=transaction.getRequestMessage();
+      req.setCSeqHeader(req.getCSeqHeader().incSequenceNumber());
+      this.registerCSeq++;
+      WwwAuthenticateHeader wwwAuthHeader;
+      if (code == 401)       wwwAuthHeader=resp.getWwwAuthenticateHeader();
+ else       wwwAuthHeader=resp.getProxyAuthenticateHeader();
+      String qopOptions=wwwAuthHeader.getQopOptionsParam();
+      ViaHeader via=req.getViaHeader();
+      req.removeViaHeader();
+      via.setBranch(SipProvider.pickBranch());
+      req.addViaHeader(via);
+      qop=(qopOptions != null) ? "auth" : null;
+      DigestAuthentication digest=new DigestAuthentication(SipMethods.REGISTER,req.getRequestLine().getAddress().toString(),wwwAuthHeader,qop,null,username,passwd);
+      AuthorizationHeader authHeader;
+      if (code == 401)       authHeader=digest.getAuthorizationHeader();
+ else       authHeader=digest.getProxyAuthorizationHeader();
+      req.setAuthorizationHeader(authHeader);
+      TransactionClient t=new TransactionClient(sipProvider,req,this);
+      t.request();
+    }
+ else {
+      String result=code + " " + status.getReason();
+      lastRegFailed=true;
+      regInprocess=false;
+      printLog("Registration failure: " + result);
+      notifyListenersOfRegistrationFailure(result);
+    }
+  }
+}

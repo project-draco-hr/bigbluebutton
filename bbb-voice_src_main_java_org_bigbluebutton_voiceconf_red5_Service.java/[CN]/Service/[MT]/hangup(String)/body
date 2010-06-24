@@ -1,0 +1,11 @@
+{
+  log.debug("Red5SIP Hangup");
+  try {
+    sipPeerManager.hangup(peerId,getClientId());
+    return true;
+  }
+ catch (  PeerNotFoundException e) {
+    log.error("PeerNotFound {}",peerId);
+    return false;
+  }
+}

@@ -1,0 +1,4 @@
+{
+  log.trace("removeStreamListener({})",listener);
+  streamListeners.remove(listener);
+}

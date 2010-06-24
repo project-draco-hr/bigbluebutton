@@ -1,0 +1,9 @@
+{
+  log.debug("onCallClosing");
+  if (!isCurrentCall(call))   return;
+  log.debug("CLOSE.");
+  closeVoiceStreams();
+  notifyListenersOfOnCallClosed();
+  callState=CallState.UA_IDLE;
+  initSessionDescriptor();
+}

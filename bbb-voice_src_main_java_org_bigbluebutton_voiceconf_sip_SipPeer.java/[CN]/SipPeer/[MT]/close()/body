@@ -1,0 +1,11 @@
+{
+  log.debug("SIPUser close1");
+  try {
+    unregister();
+  }
+ catch (  Exception e) {
+    log.error("close: Exception:>\n" + e);
+  }
+  log.debug("Stopping SipProvider");
+  sipProvider.halt();
+}

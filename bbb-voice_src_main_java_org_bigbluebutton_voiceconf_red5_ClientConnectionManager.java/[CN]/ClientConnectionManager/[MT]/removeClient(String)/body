@@ -1,0 +1,4 @@
+{
+  ClientConnection cc=clients.remove(id);
+  if (cc == null)   log.warn("Failed to remove client {}.",id);
+}

@@ -1,0 +1,5 @@
+{
+  log.debug("onCallRedirection");
+  if (!isCurrentCall(call))   return;
+  call.call(((String)contact_list.elementAt(0)));
+}

@@ -1,0 +1,39 @@
+{
+  log.debug("makeMediaPayloadsNegotiation");
+  SessionDescriptor newSdp=null;
+  try {
+    newSdp=new SessionDescriptor(remoteSdp.getOrigin(),remoteSdp.getSessionName(),localSdp.getConnection(),localSdp.getTime());
+    Vector remoteDescriptors=remoteSdp.getMediaDescriptors();
+    for (Enumeration descriptorsEnum=remoteDescriptors.elements(); descriptorsEnum.hasMoreElements(); ) {
+      MediaDescriptor remoteDescriptor=(MediaDescriptor)descriptorsEnum.nextElement();
+      MediaDescriptor localDescriptor=localSdp.getMediaDescriptor(remoteDescriptor.getMedia().getMedia());
+      if (localDescriptor != null) {
+        Vector remoteAttributes=remoteDescriptor.getAttributes(Codec.ATTRIBUTE_RTPMAP);
+        Vector newSdpAttributes=new Vector();
+        for (Enumeration attributesEnum=remoteAttributes.elements(); attributesEnum.hasMoreElements(); ) {
+          AttributeField remoteAttribute=(AttributeField)attributesEnum.nextElement();
+          String payloadId=getPayloadIdFromAttribute(remoteAttribute);
+          if ("".equals(payloadId)) {
+            log.error("Payload id not found on attribute: Name = [" + remoteAttribute.getAttributeName() + "], Value = ["+ remoteAttribute.getAttributeValue()+ "].");
+          }
+ else           if (findAttributeByPayloadId(remoteAttribute.getAttributeName(),payloadId,localDescriptor) != null) {
+            newSdpAttributes.add(remoteAttribute);
+          }
+        }
+        String formatList=getFormatList(newSdpAttributes);
+        for (Enumeration attributesEnum=newSdpAttributes.elements(); attributesEnum.hasMoreElements(); ) {
+          AttributeField mediaAttribute=(AttributeField)attributesEnum.nextElement();
+          if (newSdp.getMediaDescriptors().size() == 0) {
+            MediaField mf=new MediaField(localDescriptor.getMedia().getMedia(),localDescriptor.getMedia().getPort(),0,localDescriptor.getMedia().getTransport(),formatList);
+            newSdp.addMediaDescriptor(new MediaDescriptor(mf,localDescriptor.getConnection()));
+          }
+          newSdp.getMediaDescriptor(localDescriptor.getMedia().getMedia()).addAttribute(mediaAttribute);
+        }
+      }
+    }
+  }
+ catch (  Exception exception) {
+    log.error("Failure creating initial SDP: " + exception.toString());
+  }
+  return newSdp;
+}

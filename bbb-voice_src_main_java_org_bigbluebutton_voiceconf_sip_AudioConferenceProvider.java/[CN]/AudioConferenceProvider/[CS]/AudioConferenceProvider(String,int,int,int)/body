@@ -1,0 +1,7 @@
+{
+  this.host=host;
+  this.sipPort=sipPort;
+  this.startAudioPort=startAudioPort;
+  this.stopAudioPort=stopAudioPort;
+  curAvailablePort=startAudioPort;
+}

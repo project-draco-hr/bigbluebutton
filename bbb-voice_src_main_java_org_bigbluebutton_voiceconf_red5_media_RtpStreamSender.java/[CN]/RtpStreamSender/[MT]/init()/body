@@ -1,0 +1,7 @@
+{
+  transcodedAudioDataBuffer=new byte[transcoder.getOutgoingEncodedFrameSize() + RTP_HEADER_SIZE];
+  rtpPacket=new RtpPacket(transcodedAudioDataBuffer,0);
+  rtpPacket.setPayloadType(transcoder.getCodecId());
+  sequenceNum=0;
+  timestamp=0;
+}

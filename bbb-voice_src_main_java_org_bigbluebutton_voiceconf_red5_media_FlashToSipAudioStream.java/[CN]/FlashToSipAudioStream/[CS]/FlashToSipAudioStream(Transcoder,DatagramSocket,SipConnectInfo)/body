@@ -1,0 +1,6 @@
+{
+  this.transcoder=transcoder;
+  this.srcSocket=srcSocket;
+  this.connInfo=connInfo;
+  talkStreamName="microphone_" + System.currentTimeMillis();
+}

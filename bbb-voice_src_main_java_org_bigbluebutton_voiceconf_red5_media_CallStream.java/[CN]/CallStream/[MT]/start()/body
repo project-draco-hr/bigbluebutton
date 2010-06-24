@@ -1,0 +1,15 @@
+{
+  Transcoder rtmpToRtpTranscoder, rtpToRtmpTranscoder;
+  if (sipCodec.getCodecId() == SpeexCodec.codecId) {
+    rtmpToRtpTranscoder=new SpeexToSpeexTranscoder(sipCodec);
+    rtpToRtmpTranscoder=new SpeexToSpeexTranscoder(sipCodec,userListenStream);
+  }
+ else {
+    rtmpToRtpTranscoder=new NellyToPcmTranscoder(sipCodec);
+    rtpToRtmpTranscoder=new PcmToNellyTranscoder(sipCodec);
+    userListenStream=new SipToFlashAudioStream(scope,rtpToRtmpTranscoder,connInfo.getSocket());
+    userListenStream.addListenStreamObserver(this);
+    ((PcmToNellyTranscoder)rtpToRtmpTranscoder).addTranscodedAudioDataListener(userListenStream);
+  }
+  userTalkStream=new FlashToSipAudioStream(rtmpToRtpTranscoder,connInfo.getSocket(),connInfo);
+}

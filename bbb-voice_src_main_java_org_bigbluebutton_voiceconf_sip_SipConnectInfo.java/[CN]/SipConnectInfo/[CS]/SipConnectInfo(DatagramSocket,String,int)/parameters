@@ -1,0 +1,3 @@
+DatagramSocket socket
+String remoteAddr
+int remotePort
