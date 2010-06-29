@@ -1,0 +1,7 @@
+{
+  String subClass=getEventHeaders().get(EslEventHeaderNames.EVENT_SUBCLASS);
+  if (subClass == null) {
+    return "NONE";
+  }
+  return subClass;
+}

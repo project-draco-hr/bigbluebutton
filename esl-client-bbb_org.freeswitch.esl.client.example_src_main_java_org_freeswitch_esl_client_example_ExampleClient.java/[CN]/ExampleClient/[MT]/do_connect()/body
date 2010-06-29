@@ -1,0 +1,17 @@
+{
+  client=new Client();
+  client.addEventListener(new EslEventListener());
+  log.info("Client connecting ..");
+  try {
+    client.connect(host,port,password,2);
+  }
+ catch (  InboundConnectionFailure e) {
+    log.error("Connect failed",e);
+    return;
+  }
+  log.info("Client connected ..");
+  client.setEventSubscriptions("plain","all");
+  client.addEventFilter("Event-Name","heartbeat");
+  client.addEventFilter("Event-Name","custom");
+  client.addEventFilter("Event-Name","background_job");
+}

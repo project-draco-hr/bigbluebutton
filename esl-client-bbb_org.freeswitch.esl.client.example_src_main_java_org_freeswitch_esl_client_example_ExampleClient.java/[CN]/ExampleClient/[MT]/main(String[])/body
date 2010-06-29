@@ -1,0 +1,19 @@
+{
+  ExampleClient test=new ExampleClient();
+  try {
+    test.do_connect();
+    Scanner myInput=new Scanner(System.in);
+    boolean notDone=true;
+    while (notDone) {
+      String Input1=myInput.next();
+      if (Input1.equalsIgnoreCase("q")) {
+        notDone=false;
+      }
+      Thread.sleep(25000);
+    }
+    test.close_client();
+  }
+ catch (  InterruptedException ie) {
+    return;
+  }
+}

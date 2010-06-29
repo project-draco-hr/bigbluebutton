@@ -1,0 +1,62 @@
+{
+  Client client=new Client();
+  client.addEventListener(new IEslEventListener(){
+    public void eventReceived(    EslEvent event){
+      log.info("Event received [{}]",event);
+    }
+    public void backgroundJobResultReceived(    EslEvent event){
+      log.info("Background job result received [{}]",event);
+    }
+    public void conferenceEventJoin(    String uniqueId,    String confName,    int confSize,    EslEvent event){
+      log.info("Event received [{}]",event);
+    }
+    public void conferenceEventLeave(    String uniqueId,    String confName,    int confSize,    EslEvent event){
+      log.info("Event received [{}]",event);
+    }
+    public void conferenceEventMute(    String uniqueId,    String confName,    int confSize,    EslEvent event){
+      log.info("Event received [{}]",event);
+    }
+    public void conferenceEventUnMute(    String uniqueId,    String confName,    int confSize,    EslEvent event){
+      log.info("Event received [{}]",event);
+    }
+    public void conferenceEventAction(    String uniqueId,    String confName,    int confSize,    String action,    EslEvent event){
+      log.info("Event received [{}]",event);
+    }
+    public void conferenceEventTransfer(    String uniqueId,    String confName,    int confSize,    EslEvent event){
+      log.info("Event received [{}]",event);
+    }
+    public void conferenceEventThreadRun(    String uniqueId,    String confName,    int confSize,    EslEvent event){
+      log.info("Event received [{}]",event);
+    }
+    public void conferenceEventPlayFile(    String uniqueId,    String confName,    int confSize,    EslEvent event){
+      log.info("Event received [{}]",event);
+    }
+    public void exceptionCaught(    ExceptionEvent e){
+      log.info("exception received [{}]",e);
+    }
+  }
+);
+  log.info("Client connecting ..");
+  try {
+    client.connect(host,port,password,2);
+  }
+ catch (  InboundConnectionFailure e) {
+    log.error("Connect failed",e);
+    return;
+  }
+  log.info("Client connected ..");
+  client.setEventSubscriptions("plain","all");
+  client.addEventFilter("Event-Name","heartbeat");
+  client.cancelEventSubscriptions();
+  client.setEventSubscriptions("plain","all");
+  client.addEventFilter("Event-Name","heartbeat");
+  client.addEventFilter("Event-Name","channel_create");
+  client.addEventFilter("Event-Name","background_job");
+  String jobId=client.sendAsyncApiCommand("status","");
+  log.info("Job id [{}] for [status]",jobId);
+  client.sendSyncApiCommand("version","");
+  EslMessage response=client.sendSyncApiCommand("sofia status","");
+  log.info("sofia status = [{}]",response.getBodyLines().get(3));
+  Thread.sleep(25000);
+  client.close();
+}

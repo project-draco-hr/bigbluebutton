@@ -1,0 +1,6 @@
+{
+  log.debug("Received new connection from server, sending connect message");
+  EslMessage response=sendSyncSingleLineCommand(ctx.getChannel(),"connect");
+  EslEvent channelDataEvent=new EslEvent(response,true);
+  handleConnectResponse(ctx,channelDataEvent);
+}

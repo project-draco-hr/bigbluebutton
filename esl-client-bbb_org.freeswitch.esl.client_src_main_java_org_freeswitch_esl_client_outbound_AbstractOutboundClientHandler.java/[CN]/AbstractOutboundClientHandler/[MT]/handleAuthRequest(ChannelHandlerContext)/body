@@ -1,0 +1,3 @@
+{
+  log.warn("Auth request received in outbound mode, ignoring");
+}

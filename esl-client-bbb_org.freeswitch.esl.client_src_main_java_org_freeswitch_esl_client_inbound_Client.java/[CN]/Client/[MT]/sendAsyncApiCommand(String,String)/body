@@ -1,0 +1,14 @@
+{
+  checkConnected();
+  InboundClientHandler handler=(InboundClientHandler)channel.getPipeline().getLast();
+  StringBuilder sb=new StringBuilder();
+  if (command != null && !command.isEmpty()) {
+    sb.append("bgapi ");
+    sb.append(command);
+  }
+  if (arg != null && !arg.isEmpty()) {
+    sb.append(' ');
+    sb.append(arg);
+  }
+  return handler.sendAsyncCommand(channel,sb.toString());
+}

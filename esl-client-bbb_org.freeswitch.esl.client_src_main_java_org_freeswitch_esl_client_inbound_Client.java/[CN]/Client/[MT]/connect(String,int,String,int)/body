@@ -1,0 +1,30 @@
+{
+  if (canSend()) {
+    close();
+  }
+  ClientBootstrap bootstrap=new ClientBootstrap(new NioClientSocketChannelFactory(Executors.newCachedThreadPool(),Executors.newCachedThreadPool()));
+  InboundClientHandler handler=new InboundClientHandler(password,protocolListener);
+  bootstrap.setPipelineFactory(new InboundPipelineFactory(handler));
+  ChannelFuture future=bootstrap.connect(new InetSocketAddress(host,port));
+  if (!future.awaitUninterruptibly(timeoutSeconds,TimeUnit.SECONDS)) {
+    throw new InboundConnectionFailure("Timeout connecting to " + host + ":"+ port);
+  }
+  channel=future.getChannel();
+  if (!future.isSuccess()) {
+    log.warn("Failed to connect to [{}:{}]",host,port);
+    log.warn("  * reason: {}",future.getCause());
+    channel=null;
+    bootstrap.releaseExternalResources();
+    throw new InboundConnectionFailure("Could not connect to " + host + ":"+ port,future.getCause());
+  }
+  while (!authenticatorResponded.get()) {
+    try {
+      Thread.sleep(250);
+    }
+ catch (    InterruptedException e) {
+    }
+  }
+  if (!authenticated) {
+    throw new InboundConnectionFailure("Authentication failed: " + authenticationResponse.getReplyText());
+  }
+}

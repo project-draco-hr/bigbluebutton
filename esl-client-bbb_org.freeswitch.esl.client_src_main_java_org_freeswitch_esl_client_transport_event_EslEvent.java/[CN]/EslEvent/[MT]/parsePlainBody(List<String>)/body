@@ -1,0 +1,31 @@
+{
+  boolean isEventBody=false;
+  for (  String rawLine : rawBodyLines) {
+    if (!isEventBody) {
+      String[] headerParts=HeaderParser.splitHeader(rawLine);
+      if (decodeEventHeaders) {
+        try {
+          String decodedValue=URLDecoder.decode(headerParts[1],"UTF-8");
+          log.trace("decoded from: [{}]",headerParts[1]);
+          log.trace("decoded   to: [{}]",decodedValue);
+          eventHeaders.put(headerParts[0],decodedValue);
+        }
+ catch (        UnsupportedEncodingException e) {
+          log.warn("Could not URL decode [{}]",headerParts[1]);
+          eventHeaders.put(headerParts[0],headerParts[1]);
+        }
+      }
+ else {
+        eventHeaders.put(headerParts[0],headerParts[1]);
+      }
+      if (headerParts[0].equals(EslEventHeaderNames.CONTENT_LENGTH)) {
+        isEventBody=true;
+      }
+    }
+ else {
+      if (rawLine.length() > 0) {
+        eventBody.add(rawLine);
+      }
+    }
+  }
+}

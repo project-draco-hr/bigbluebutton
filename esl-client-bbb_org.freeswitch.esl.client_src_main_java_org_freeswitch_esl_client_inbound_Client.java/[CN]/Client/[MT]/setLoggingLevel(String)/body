@@ -1,0 +1,11 @@
+{
+  checkConnected();
+  InboundClientHandler handler=(InboundClientHandler)channel.getPipeline().getLast();
+  StringBuilder sb=new StringBuilder();
+  if (level != null && !level.isEmpty()) {
+    sb.append("log ");
+    sb.append(level);
+  }
+  EslMessage response=handler.sendSyncSingleLineCommand(channel,sb.toString());
+  return new CommandResponse(sb.toString(),response);
+}
