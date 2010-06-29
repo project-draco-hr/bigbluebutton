@@ -1,0 +1,3 @@
+{
+  myConfrenceMembers=new ArrayList<ConferenceMember>();
+}

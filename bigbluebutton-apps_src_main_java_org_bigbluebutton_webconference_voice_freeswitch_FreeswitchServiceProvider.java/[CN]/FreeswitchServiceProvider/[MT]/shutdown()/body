@@ -1,0 +1,10 @@
+{
+  if ((connection != null)) {
+    Client c=connection.getESLClient();
+    if ((c != null) && c.canSend()) {
+      log.info("Logging off fom [" + connection.toString() + "]");
+      connection.disconnect();
+    }
+  }
+  appDelegate.shutdown();
+}

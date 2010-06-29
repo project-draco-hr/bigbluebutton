@@ -1,0 +1,6 @@
+{
+  Map<String,Integer> result=new HashMap<String,Integer>();
+  result.put("start-talking",ESL_ACTION_START_TALKING);
+  result.put("stop-talking",ESL_ACTION_STOP_TALKING);
+  return Collections.unmodifiableMap(result);
+}
