@@ -3,7 +3,7 @@
   Map<String,String> headers=event.getEventHeaders();
   String callerId=this.getCallerIdFromEvent(event);
   String callerIdName=this.getCallerIdNameFromEvent(event);
-  boolean muted=headers.get("Speak").equals("true") ? true : false;
+  boolean muted=headers.get("Speak").equals("true") ? false : true;
   boolean speeking=headers.get("Talking").equals("true") ? true : false;
   ParticipantJoinedEvent pj=new ParticipantJoinedEvent(memberId,confName,callerId,callerIdName,muted,speeking);
   conferenceEventListener.handleConferenceEvent(pj);
