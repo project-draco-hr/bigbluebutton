@@ -12,4 +12,9 @@
  catch (  InterruptedException ex) {
     java.util.logging.Logger.getLogger(FreeswitchApplication.class.getName()).log(Level.SEVERE,null,ex);
   }
+  if (heartbeatMonitor == null) {
+    heartbeatMonitor=new FreeswitchHeartbeatMonitor(manager,this);
+    this.addObserver(heartbeatMonitor);
+    heartbeatMonitor.start();
+  }
 }

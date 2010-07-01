@@ -1,3 +1,4 @@
 {
-  log.error("FreeSwitch ESL Exception.",e);
+  setChanged();
+  notifyObservers(e);
 }
