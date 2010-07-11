@@ -10,7 +10,6 @@
       transcoder.transcode(rtpPacket.getPayload());
     }
  catch (    IOException e) {
-      log.error("IOException while receiving rtp packets.");
       receivePackets=false;
     }
   }
