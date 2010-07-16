@@ -1,0 +1,16 @@
+{
+  if (e.getMessage() instanceof EslMessage) {
+    EslMessage message=(EslMessage)e.getMessage();
+    String contentType=message.getContentType();
+    if (contentType.equals(Value.TEXT_EVENT_PLAIN) || contentType.equals(Value.TEXT_EVENT_XML)) {
+      EslEvent eslEvent=new EslEvent(message);
+      handleEslEvent(ctx,eslEvent);
+    }
+ else {
+      handleEslMessage(ctx,(EslMessage)e.getMessage());
+    }
+  }
+ else {
+    throw new IllegalStateException("Unexpected message type: " + e.getMessage().getClass());
+  }
+}

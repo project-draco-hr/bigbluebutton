@@ -1,0 +1,4 @@
+String uniqueId
+String confName
+int confSize
+EslEvent event

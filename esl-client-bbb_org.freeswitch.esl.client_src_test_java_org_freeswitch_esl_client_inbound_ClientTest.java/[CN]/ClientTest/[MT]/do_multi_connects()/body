@@ -1,0 +1,21 @@
+{
+  Client client=new Client();
+  log.info("Client connecting ..");
+  try {
+    client.connect(host,port,password,2);
+  }
+ catch (  InboundConnectionFailure e) {
+    log.error("Connect failed",e);
+    return;
+  }
+  log.info("Client connected ..");
+  log.info("Client connecting ..");
+  try {
+    client.connect("127.0.0.1",8021,password,2);
+  }
+ catch (  InboundConnectionFailure e) {
+    log.error("Connect failed",e);
+    return;
+  }
+  log.info("Client connected ..");
+}

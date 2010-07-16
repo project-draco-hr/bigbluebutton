@@ -1,0 +1,5 @@
+{
+  PopulateRoomCommand prc=new PopulateRoomCommand(room,USER);
+  EslMessage response=manager.getESLClient().sendSyncApiCommand(prc.getCommand(),prc.getCommandArgs());
+  prc.handleResponse(response,conferenceEventListener);
+}

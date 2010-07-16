@@ -1,0 +1,6 @@
+{
+  ChannelGroupFuture future=allChannels.close();
+  future.awaitUninterruptibly();
+  channelFactory.releaseExternalResources();
+  log.info("SocketClient stopped");
+}

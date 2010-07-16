@@ -1,0 +1,13 @@
+{
+  log.debug("Auth requested, sending [auth {}]","*****");
+  EslMessage response=sendSyncSingleLineCommand(ctx.getChannel(),"auth " + password);
+  log.debug("Auth response [{}]",response);
+  if (response.getContentType().equals(Value.COMMAND_REPLY)) {
+    CommandResponse commandResponse=new CommandResponse("auth " + password,response);
+    listener.authResponseReceived(commandResponse);
+  }
+ else {
+    log.error("Bad auth response message [{}]",response);
+    throw new IllegalStateException("Incorrect auth response");
+  }
+}

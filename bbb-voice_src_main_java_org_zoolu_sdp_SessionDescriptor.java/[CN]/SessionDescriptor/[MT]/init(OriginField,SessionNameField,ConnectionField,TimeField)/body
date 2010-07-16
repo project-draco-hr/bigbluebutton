@@ -4,6 +4,6 @@
   s=session;
   c=connection;
   t=time;
-  av=new Vector();
-  media=new Vector();
+  av=new Vector<AttributeField>();
+  media=new Vector<MediaDescriptor>();
 }

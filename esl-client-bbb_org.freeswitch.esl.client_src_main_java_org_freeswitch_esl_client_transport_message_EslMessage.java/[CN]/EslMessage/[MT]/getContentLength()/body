@@ -1,0 +1,9 @@
+{
+  if (contentLength != null) {
+    return contentLength;
+  }
+  if (hasContentLength()) {
+    contentLength=Integer.valueOf(headers.get(Name.CONTENT_LENGTH));
+  }
+  return contentLength;
+}

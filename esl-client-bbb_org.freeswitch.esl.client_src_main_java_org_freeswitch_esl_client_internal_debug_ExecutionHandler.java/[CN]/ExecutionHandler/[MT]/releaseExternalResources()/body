@@ -1,0 +1,3 @@
+{
+  ExecutorUtil.terminate(getExecutor());
+}

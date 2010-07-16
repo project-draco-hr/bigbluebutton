@@ -1,0 +1,5 @@
+{
+  EjectParticipantCommand mpc=new EjectParticipantCommand(room,participant,USER);
+  String jobId=manager.getESLClient().sendAsyncApiCommand(mpc.getCommand(),mpc.getCommandArgs());
+  log.debug("eject/kick called for room [{}] jobid [{}]",room,jobId);
+}

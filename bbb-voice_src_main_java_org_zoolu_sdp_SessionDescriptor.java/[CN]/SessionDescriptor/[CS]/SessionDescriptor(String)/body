@@ -13,12 +13,12 @@
   while (par.hasMore() && (!par.startsWith("a=") && !par.startsWith("m="))) {
     par.goToNextLine();
   }
-  av=new Vector();
+  av=new Vector<AttributeField>();
   while (par.hasMore() && par.startsWith("a=")) {
     AttributeField attribute=par.parseAttributeField();
     av.addElement(attribute);
   }
-  media=new Vector();
+  media=new Vector<MediaDescriptor>();
   MediaDescriptor md;
   while ((md=par.parseMediaDescriptor()) != null) {
     addMediaDescriptor(md);
