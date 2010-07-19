@@ -1,3 +1,0 @@
-{
-  checkPermission(principal,new WildcardPermission(s));
-}

@@ -1,3 +1,0 @@
-{
-  checkPermissions(principal,toPermissionList(strings));
-}
