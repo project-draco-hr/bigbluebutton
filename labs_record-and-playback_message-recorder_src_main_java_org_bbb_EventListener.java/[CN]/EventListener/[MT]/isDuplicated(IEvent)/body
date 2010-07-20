@@ -1,6 +1,0 @@
-{
-  String sql="select count(0) from events where uuid = ?";
-  int count=jdbcTemplate.queryForInt(sql,new Object[]{objmsg.getUUID()});
-  if (count > 0)   return true;
-  return false;
-}

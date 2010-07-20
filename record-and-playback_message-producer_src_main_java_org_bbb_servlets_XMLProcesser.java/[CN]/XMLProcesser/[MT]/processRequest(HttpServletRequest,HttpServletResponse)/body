@@ -1,0 +1,69 @@
+{
+  response.setContentType("text/xml");
+  PrintWriter out=response.getWriter();
+  try {
+    String conferenceid=request.getParameter("conferenceid");
+    String xml_param=request.getParameter("url");
+    String output="";
+    DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
+    DocumentBuilder db=dbf.newDocumentBuilder();
+    Document dom=db.parse(xml_param);
+    Element docEle=dom.getDocumentElement();
+    NodeList sequence_list=docEle.getElementsByTagName("seq").item(0).getChildNodes();
+    int total=0;
+    for (int i=0; i < sequence_list.getLength(); i++) {
+      Node node_event=sequence_list.item(i);
+      if (node_event.getNodeType() == Node.ELEMENT_NODE) {
+        String json_message="{";
+        String activity=node_event.getNodeName();
+        json_message=json_message + "\"event\":\"" + activity+ "\"";
+        if (node_event.hasAttributes()) {
+          NamedNodeMap event_attribs=node_event.getAttributes();
+          for (int j=0; j < event_attribs.getLength(); j++) {
+            Node attrib=event_attribs.item(j);
+            String attrib_name=attrib.getNodeName();
+            String attrib_value=attrib.getNodeValue();
+            json_message=json_message + ",\"" + attrib_name+ "\":\""+ attrib_value+ "\"";
+          }
+        }
+        if (node_event.hasChildNodes()) {
+          if (node_event.getFirstChild().getNodeType() == Node.TEXT_NODE) {
+            String text=node_event.getFirstChild().getNodeValue().trim();
+            if (!text.equalsIgnoreCase("")) {
+              json_message=json_message + ",\"text\":\"" + text+ "\"";
+            }
+          }
+          NodeList subnodes=node_event.getChildNodes();
+          if (subnodes.getLength() > 1) {
+            json_message=json_message + ",\"" + subnodes.item(1).getNodeName()+ "\":[";
+            for (int j=0; j < subnodes.getLength(); j++) {
+              Node subnode=subnodes.item(j);
+              if (subnode.getNodeType() == Node.ELEMENT_NODE) {
+                json_message=json_message + "\"" + subnode.getFirstChild().getNodeValue()+ "\"";
+                json_message+=",";
+              }
+            }
+            json_message=json_message.substring(0,json_message.length() - 1);
+            json_message+="]";
+          }
+        }
+        json_message+="}";
+        IEvent event=new Event();
+        ((Event)event).setConferenceID(conferenceid);
+        ((Event)event).setTimeStamp(System.currentTimeMillis());
+        ((Event)event).setMessage(json_message);
+        sendMessagesToQueue(event);
+        total++;
+        Thread.sleep(150);
+      }
+    }
+    output="finish processing " + total + " objects";
+    out.println("<message>" + output + "</message>");
+  }
+ catch (  Exception ex) {
+    Logger.getLogger(XMLProcesser.class.getName()).log(Level.SEVERE,null,ex);
+  }
+ finally {
+    out.close();
+  }
+}
