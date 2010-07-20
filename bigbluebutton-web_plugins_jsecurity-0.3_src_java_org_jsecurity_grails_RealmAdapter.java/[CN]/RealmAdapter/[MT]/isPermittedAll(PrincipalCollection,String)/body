@@ -1,3 +1,0 @@
-{
-  return isPermittedAll(principal,toPermissionList(strings));
-}

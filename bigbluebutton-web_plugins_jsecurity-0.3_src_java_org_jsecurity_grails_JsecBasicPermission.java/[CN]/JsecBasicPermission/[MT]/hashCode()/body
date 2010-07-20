@@ -1,6 +1,0 @@
-{
-  int result;
-  result=(this.target != null ? this.target.hashCode() : 0);
-  result=31 * result + this.actions.hashCode();
-  return result;
-}
