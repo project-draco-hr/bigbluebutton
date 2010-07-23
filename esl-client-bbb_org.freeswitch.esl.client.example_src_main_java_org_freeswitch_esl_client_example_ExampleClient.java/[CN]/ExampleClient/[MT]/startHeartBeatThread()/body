@@ -1,0 +1,4 @@
+{
+  hbThread=new HeartbeatThread(client);
+  new Thread(hbThread).start();
+}

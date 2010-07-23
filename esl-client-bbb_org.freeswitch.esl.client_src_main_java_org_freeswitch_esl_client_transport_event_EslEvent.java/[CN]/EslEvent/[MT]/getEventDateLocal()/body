@@ -1,0 +1,3 @@
+{
+  return getEventHeaders().get(EslEventHeaderNames.EVENT_DATE_LOCAL);
+}

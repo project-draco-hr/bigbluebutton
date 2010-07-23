@@ -1,0 +1,14 @@
+{
+  StringBuilder sb=new StringBuilder("EslEvent: name=[");
+  sb.append(getEventName());
+  sb.append("] subclass=[");
+  sb.append(getEventSubclass());
+  sb.append("] headers=");
+  sb.append(messageHeaders.size());
+  sb.append(", eventHeaders=");
+  sb.append(eventHeaders.size());
+  sb.append(", eventBody=");
+  sb.append(eventBody.size());
+  sb.append(" lines.");
+  return sb.toString();
+}

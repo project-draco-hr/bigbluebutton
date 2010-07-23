@@ -1,0 +1,18 @@
+{
+  if (!format.equals("plain")) {
+    throw new IllegalStateException("Only 'plain' event format is supported at present");
+  }
+  checkConnected();
+  InboundClientHandler handler=(InboundClientHandler)channel.getPipeline().getLast();
+  StringBuilder sb=new StringBuilder();
+  if (format != null && !format.isEmpty()) {
+    sb.append("event ");
+    sb.append(format);
+  }
+  if (events != null && !events.isEmpty()) {
+    sb.append(' ');
+    sb.append(events);
+  }
+  EslMessage response=handler.sendSyncSingleLineCommand(channel,sb.toString());
+  return new CommandResponse(sb.toString(),response);
+}

@@ -1,0 +1,3 @@
+{
+  log.info("Background job result received [{}]",event);
+}

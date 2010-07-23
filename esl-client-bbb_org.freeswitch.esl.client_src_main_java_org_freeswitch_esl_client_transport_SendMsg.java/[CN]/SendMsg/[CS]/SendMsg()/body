@@ -1,0 +1,4 @@
+{
+  msgLines.add("sendmsg");
+  hasUuid=false;
+}

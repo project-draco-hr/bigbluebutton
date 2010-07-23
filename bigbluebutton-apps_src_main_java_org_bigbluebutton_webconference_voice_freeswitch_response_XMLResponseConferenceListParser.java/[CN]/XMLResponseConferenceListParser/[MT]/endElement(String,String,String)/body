@@ -1,0 +1,50 @@
+{
+  if (qName.equalsIgnoreCase("member")) {
+    myConfrenceMembers.add(tempMember);
+  }
+ else   if (qName.equalsIgnoreCase("flags")) {
+    tempMember.setFlags(tempFlags);
+    inFlags=false;
+  }
+ else   if (inFlags) {
+    if (qName.equalsIgnoreCase("can_speak")) {
+      tempFlags.setCanSpeak(tempVal);
+    }
+ else     if (qName.equalsIgnoreCase("talking")) {
+      tempFlags.setTalking(tempVal);
+    }
+  }
+ else   if (qName.equalsIgnoreCase("id")) {
+    try {
+      tempMember.setId(Integer.parseInt(tempVal));
+    }
+ catch (    NumberFormatException nfe) {
+      log.error("cannot set ConferenceMember Id value [{}] NFE.",tempVal);
+    }
+  }
+ else   if (qName.equalsIgnoreCase("uuid")) {
+    tempMember.setUUID(tempVal);
+  }
+ else   if (qName.equalsIgnoreCase("caller_id_name")) {
+    tempMember.setCallerIdName(tempVal);
+  }
+ else   if (qName.equalsIgnoreCase("caller_id_number")) {
+    tempMember.setCallerId(tempVal);
+  }
+ else   if (qName.equalsIgnoreCase("join_time")) {
+    try {
+      tempMember.setJoinTime(Integer.parseInt(tempVal));
+    }
+ catch (    NumberFormatException nfe) {
+      log.debug("cannot set setJoinTime value [{}] NFE.",tempVal);
+    }
+  }
+ else   if (qName.equalsIgnoreCase("last_talking")) {
+    try {
+      tempMember.setLastTalking(Integer.parseInt(tempVal));
+    }
+ catch (    NumberFormatException nfe) {
+      log.debug("cannot set setLastTalking value [{}] NFE.",tempVal);
+    }
+  }
+}

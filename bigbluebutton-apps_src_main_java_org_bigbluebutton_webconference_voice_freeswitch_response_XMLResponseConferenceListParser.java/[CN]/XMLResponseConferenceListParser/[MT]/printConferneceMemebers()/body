@@ -1,0 +1,7 @@
+{
+  log.info("Number of Members found in room [{}] was ({}).",room,myConfrenceMembers.size());
+  Iterator<ConferenceMember> it=myConfrenceMembers.iterator();
+  while (it.hasNext()) {
+    log.info("room [{}] member: [{}]",room,it.next().toString());
+  }
+}

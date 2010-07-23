@@ -1,0 +1,6 @@
+{
+  checkConnected();
+  InboundClientHandler handler=(InboundClientHandler)channel.getPipeline().getLast();
+  EslMessage response=handler.sendSyncMultiLineCommand(channel,sendMsg.getMsgLines());
+  return new CommandResponse(sendMsg.toString(),response);
+}

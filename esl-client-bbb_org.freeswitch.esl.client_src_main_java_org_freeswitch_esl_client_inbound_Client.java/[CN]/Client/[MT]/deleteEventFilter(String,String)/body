@@ -1,0 +1,15 @@
+{
+  checkConnected();
+  InboundClientHandler handler=(InboundClientHandler)channel.getPipeline().getLast();
+  StringBuilder sb=new StringBuilder();
+  if (eventHeader != null && !eventHeader.isEmpty()) {
+    sb.append("filter delete ");
+    sb.append(eventHeader);
+  }
+  if (valueToFilter != null && !valueToFilter.isEmpty()) {
+    sb.append(' ');
+    sb.append(valueToFilter);
+  }
+  EslMessage response=handler.sendSyncSingleLineCommand(channel,sb.toString());
+  return new CommandResponse(sb.toString(),response);
+}

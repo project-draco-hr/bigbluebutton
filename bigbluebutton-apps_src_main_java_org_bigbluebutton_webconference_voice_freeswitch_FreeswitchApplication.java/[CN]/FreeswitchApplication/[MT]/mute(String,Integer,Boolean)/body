@@ -1,0 +1,5 @@
+{
+  MuteParticipantCommand mpc=new MuteParticipantCommand(room,participant,mute,USER);
+  String jobId=manager.getESLClient().sendAsyncApiCommand(mpc.getCommand(),mpc.getCommandArgs());
+  log.debug("mute called for room [{}] jobid [{}]",room,jobId);
+}

@@ -1,0 +1,13 @@
+{
+  if (e instanceof ChannelStateEvent) {
+    ChannelStateEvent cse=(ChannelStateEvent)e;
+    if (cse.getState() == ChannelState.INTEREST_OPS && (((Integer)cse.getValue()).intValue() & Channel.OP_READ) != 0) {
+      boolean readSuspended=ctx.getAttachment() != null;
+      if (readSuspended) {
+        e.getFuture().setSuccess();
+        return;
+      }
+    }
+  }
+  ctx.sendDownstream(e);
+}

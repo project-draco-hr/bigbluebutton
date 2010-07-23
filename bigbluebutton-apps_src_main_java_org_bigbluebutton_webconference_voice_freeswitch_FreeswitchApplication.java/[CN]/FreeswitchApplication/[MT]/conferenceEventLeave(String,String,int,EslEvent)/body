@@ -1,0 +1,5 @@
+{
+  Integer memberId=this.getMemeberIdFromEvent(event);
+  ParticipantLeftEvent pl=new ParticipantLeftEvent(memberId,confName);
+  conferenceEventListener.handleConferenceEvent(pl);
+}

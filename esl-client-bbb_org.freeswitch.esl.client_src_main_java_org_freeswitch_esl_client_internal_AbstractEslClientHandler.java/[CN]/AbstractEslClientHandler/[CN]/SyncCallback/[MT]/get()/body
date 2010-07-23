@@ -1,0 +1,11 @@
+{
+  try {
+    log.trace("awaiting latch ... ");
+    latch.await();
+  }
+ catch (  InterruptedException e) {
+    throw new RuntimeException(e);
+  }
+  log.trace("returning response [{}]",response);
+  return response;
+}

@@ -1,0 +1,13 @@
+{
+  log.info("HeartbeatMonitor Starting");
+  if (!running) {
+    running=true;
+    monitorProcess=new Runnable(){
+      public void run(){
+        monitorFreeswitchServer();
+      }
+    }
+;
+    exec.execute(monitorProcess);
+  }
+}

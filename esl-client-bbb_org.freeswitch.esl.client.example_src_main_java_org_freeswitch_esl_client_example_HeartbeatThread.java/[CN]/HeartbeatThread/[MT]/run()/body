@@ -1,0 +1,29 @@
+{
+  while (!shutdown) {
+    try {
+      String jobId=client.sendAsyncApiCommand("status","");
+      log.info("Job id [{}] for [status]",jobId);
+      Thread.sleep(25000);
+    }
+ catch (    IllegalStateException is) {
+      log.warn("ISE: [{}]",is.getMessage());
+      log.info("Client connecting ..");
+      try {
+        client.connect(host,port,password,2);
+        log.info("Client connected ..");
+      }
+ catch (      InboundConnectionFailure e) {
+        log.warn("Connect failed [{}]",e.getMessage());
+        try {
+          Thread.sleep(25000);
+        }
+ catch (        InterruptedException ex) {
+          Logger.getLogger(HeartbeatThread.class.getName()).log(Level.SEVERE,null,ex);
+        }
+      }
+    }
+catch (    InterruptedException ex) {
+      Logger.getLogger(HeartbeatThread.class.getName()).log(Level.SEVERE,null,ex);
+    }
+  }
+}
