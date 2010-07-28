@@ -5,8 +5,10 @@
     try {
       byte[] internalBuffer=new byte[internalBufferLength];
       RtpPacket rtpPacket=new RtpPacket(internalBuffer,0);
+      System.out.println("Waiting for RTP packet [" + rtpPacket.getLength() + ","+ rtpPacket.getPayloadLength()+ ","+ internalBufferLength+ "]");
       rtpSocket.receive(rtpPacket);
       packetReceivedCounter++;
+      System.out.println("Received RTP packet [" + rtpPacket.getLength() + ","+ rtpPacket.getPayloadLength()+ "]");
       transcoder.transcode(rtpPacket.getPayload());
     }
  catch (    IOException e) {

@@ -1,0 +1,4 @@
+{
+  log.error("Not implemented.");
+  return 0;
+}
