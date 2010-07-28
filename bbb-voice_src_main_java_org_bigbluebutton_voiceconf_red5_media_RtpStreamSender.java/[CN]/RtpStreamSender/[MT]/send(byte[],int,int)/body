@@ -1,3 +1,4 @@
 {
+  System.out.println("Audio Data length = " + audioData.length + " buffer = "+ transcoder.getOutgoingEncodedFrameSize());
   transcoder.transcode(audioData,offset,num,transcodedAudioDataBuffer,RTP_HEADER_SIZE,this);
 }
