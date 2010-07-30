@@ -1,4 +1,23 @@
 {
-  System.out.println("Audio Data length = " + audioData.length + " buffer = "+ transcoder.getOutgoingEncodedFrameSize());
-  transcoder.transcode(audioData,offset,num,transcodedAudioDataBuffer,RTP_HEADER_SIZE,this);
+  byte[] transcodedAudioDataBuffer=new byte[audioData.length - 1 + RTP_HEADER_SIZE];
+  System.arraycopy(audioData,offset,transcodedAudioDataBuffer,RTP_HEADER_SIZE,num);
+  RtpPacket rtpPacket=new RtpPacket(transcodedAudioDataBuffer,0);
+  if (!marked) {
+    rtpPacket.setMarker(true);
+    marked=true;
+  }
+  rtpPacket.setPadding(false);
+  rtpPacket.setExtension(false);
+  rtpPacket.setPayloadType(transcoder.getCodecId());
+  System.out.println("Audio Data length = " + audioData.length + " buffer = "+ transcodedAudioDataBuffer.length);
+  rtpPacket.setSequenceNumber(sequenceNum++);
+  timestamp+=transcodedAudioDataBuffer.length;
+  rtpPacket.setTimestamp((int)(System.currentTimeMillis() - startTimestamp));
+  rtpPacket.setPayloadLength(num);
+  try {
+    rtpSocketSend(rtpPacket);
+  }
+ catch (  StreamException e) {
+    e.printStackTrace();
+  }
 }
