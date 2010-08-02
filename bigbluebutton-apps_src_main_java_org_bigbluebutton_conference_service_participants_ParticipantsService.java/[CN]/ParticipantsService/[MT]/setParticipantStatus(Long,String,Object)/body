@@ -1,0 +1,5 @@
+{
+  String roomName=Red5.getConnectionLocal().getScope().getName();
+  log.debug("Setting participant status $roomName $userid $status $value");
+  application.setParticipantStatus(roomName,userid,status,value);
+}

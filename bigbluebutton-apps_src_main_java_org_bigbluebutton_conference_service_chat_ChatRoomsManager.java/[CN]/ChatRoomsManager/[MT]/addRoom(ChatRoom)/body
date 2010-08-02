@@ -1,0 +1,4 @@
+{
+  log.debug("In ChatRoomsManager adding room ${room.name}");
+  rooms.put(room.getName(),room);
+}

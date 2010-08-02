@@ -1,0 +1,4 @@
+String roomName
+Long userid
+String status
+Object value

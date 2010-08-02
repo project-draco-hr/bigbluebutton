@@ -1,0 +1,13 @@
+{
+  log.debug("${APP}:roomConnect");
+  log.debug("In live mode");
+  ISharedObject so=getSharedObject(connection.getScope(),CHAT_SO);
+  log.debug("Setting up recorder");
+  ChatEventRecorder recorder=new ChatEventRecorder(so,getBbbSession().getRecord());
+  log.debug("adding event recorder to ${connection.scope.name}");
+  recorderApplication.addEventRecorder(connection.getScope().getName(),recorder);
+  log.debug("Adding room listener");
+  chatApplication.addRoomListener(connection.getScope().getName(),recorder);
+  log.debug("Done setting up recorder and listener");
+  return true;
+}

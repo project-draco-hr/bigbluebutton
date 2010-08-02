@@ -1,0 +1,4 @@
+{
+  this.conferenceEventListener=lstnr;
+  this.room=room;
+}

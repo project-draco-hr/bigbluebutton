@@ -1,0 +1,18 @@
+{
+  log.debug("assignPresenter $userid $name $assignedBy");
+  IScope scope=Red5.getConnectionLocal().getScope();
+  ArrayList presenter=new ArrayList();
+  presenter.add(userid);
+  presenter.add(name);
+  presenter.add(assignedBy);
+  ArrayList curPresenter=presentationApplication.getCurrentPresenter(scope.getName());
+  participantsApplication.setParticipantStatus(scope.getName(),userid,"presenter",true);
+  if (curPresenter != null) {
+    long curUserid=(Long)curPresenter.get(0);
+    if (curUserid != userid) {
+      log.debug("Changing presenter from ${curPresenter[0]} to $userid");
+      participantsApplication.setParticipantStatus(scope.getName(),(Long)curPresenter.get(0),"presenter",false);
+    }
+  }
+  presentationApplication.assignPresenter(scope.getName(),presenter);
+}

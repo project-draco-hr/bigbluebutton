@@ -1,0 +1,8 @@
+{
+  log.debug("${APP}:getParticipants - ${roomName}");
+  if (!roomsManager.hasRoom(roomName)) {
+    log.warn("Could not find room ${roomName}");
+    return null;
+  }
+  return roomsManager.getParticipants(roomName);
+}

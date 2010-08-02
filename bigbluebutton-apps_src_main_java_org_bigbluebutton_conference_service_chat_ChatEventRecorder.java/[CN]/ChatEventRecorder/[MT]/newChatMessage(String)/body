@@ -1,0 +1,7 @@
+{
+  log.debug("New chat message...");
+  List list=new ArrayList();
+  list.add(message);
+  so.sendMessage("newChatMessage",list);
+  recordEvent(message);
+}

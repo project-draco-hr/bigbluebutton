@@ -1,0 +1,23 @@
+{
+  log.debug("${APP}:participantJoin - getting userid");
+  BigBlueButtonSession bbbSession=getBbbSession();
+  if (bbbSession == null) {
+    log.warn("bbb session is null");
+  }
+  Long userid=bbbSession.getUserid();
+  log.debug("${APP}:participantJoin - userid $userid");
+  String username=bbbSession.getUsername();
+  log.debug("${APP}:participantJoin - username $username");
+  String role=bbbSession.getRole();
+  log.debug("${APP}:participantJoin - role $role");
+  String room=bbbSession.getRoom();
+  log.debug("${APP}:participantJoin - room $room");
+  String externUserID=bbbSession.getExternUserID();
+  log.debug("${APP}:participantJoin");
+  Map status=new HashMap();
+  status.put("raiseHand",false);
+  status.put("presenter",false);
+  status.put("hasStream",false);
+  log.debug("${APP}:participantJoin setting status");
+  return participantsApplication.participantJoin(room,userid,username,role,externUserID,status);
+}

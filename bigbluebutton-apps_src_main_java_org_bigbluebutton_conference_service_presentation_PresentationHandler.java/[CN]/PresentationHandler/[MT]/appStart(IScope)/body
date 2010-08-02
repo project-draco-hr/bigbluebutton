@@ -1,0 +1,5 @@
+{
+  log.debug("${APP}:appStart ${scope.name}");
+  conversionUpdatesMessageListener.start();
+  return true;
+}

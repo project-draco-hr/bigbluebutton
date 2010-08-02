@@ -1,0 +1,8 @@
+{
+  log.debug("A participant has joined ${p.userid}.");
+  ArrayList args=new ArrayList();
+  args.add(p.toMap());
+  log.debug("Sending participantJoined ${p.userid} to client.");
+  so.sendMessage("participantJoined",args);
+  recordEvent(parseParticipantsToJSON(args,"JOIN"));
+}

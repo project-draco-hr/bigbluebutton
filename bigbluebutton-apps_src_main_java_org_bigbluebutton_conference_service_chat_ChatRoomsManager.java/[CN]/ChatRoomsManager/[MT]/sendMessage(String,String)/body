@@ -1,0 +1,7 @@
+{
+  ChatRoom r=getRoom(room);
+  if (r != null) {
+    r.sendMessage(message);
+  }
+  log.warn("Sending message to a non-existing room ${room}");
+}

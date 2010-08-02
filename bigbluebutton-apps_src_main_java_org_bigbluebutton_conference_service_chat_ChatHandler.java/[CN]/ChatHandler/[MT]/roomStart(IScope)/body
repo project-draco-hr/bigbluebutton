@@ -1,0 +1,11 @@
+{
+  log.debug("${APP} - roomStart ${scope.name}");
+  chatApplication.createRoom(scope.getName());
+  if (!hasSharedObject(scope,CHAT_SO)) {
+    if (createSharedObject(scope,CHAT_SO,false)) {
+      return true;
+    }
+  }
+  log.error("Failed to start room ${scope.name}");
+  return false;
+}

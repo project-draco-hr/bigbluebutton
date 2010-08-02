@@ -1,0 +1,10 @@
+{
+  log.debug("${APP} - roomStart ${scope.name}");
+  if (!hasSharedObject(scope,PARTICIPANTS_SO)) {
+    if (createSharedObject(scope,PARTICIPANTS_SO,false)) {
+      return true;
+    }
+  }
+  log.error("Failed to start room ${scope.name}");
+  return false;
+}

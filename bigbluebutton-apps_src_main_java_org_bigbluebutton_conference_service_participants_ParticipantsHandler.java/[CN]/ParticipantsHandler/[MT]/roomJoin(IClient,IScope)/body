@@ -1,0 +1,5 @@
+{
+  log.debug("${APP}:roomJoin ${scope.name} - ${scope.parent.name}");
+  participantJoin();
+  return true;
+}

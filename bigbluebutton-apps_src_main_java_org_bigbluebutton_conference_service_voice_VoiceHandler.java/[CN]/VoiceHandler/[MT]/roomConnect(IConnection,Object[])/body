@@ -1,0 +1,10 @@
+{
+  log.debug("${APP}:roomConnect");
+  log.debug("In live mode");
+  ISharedObject so=getSharedObject(connection.getScope(),VOICE_SO);
+  String voiceBridge=getBbbSession().getVoiceBridge();
+  log.debug("Setting up voiceBridge $voiceBridge");
+  clientManager.addSharedObject(connection.getScope().getName(),voiceBridge,so);
+  conferenceService.createConference(voiceBridge);
+  return true;
+}

@@ -1,0 +1,4 @@
+{
+  log.debug("In RoomsManager get room ${name}");
+  return rooms.get(name);
+}

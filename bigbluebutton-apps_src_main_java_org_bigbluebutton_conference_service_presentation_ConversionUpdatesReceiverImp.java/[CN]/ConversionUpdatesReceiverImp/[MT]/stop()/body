@@ -1,0 +1,6 @@
+{
+  log.debug("Stopping conversion updates receiver.");
+  conversionUpdatesProcessor.stop();
+  waitForMessage=false;
+  exec.shutdown();
+}

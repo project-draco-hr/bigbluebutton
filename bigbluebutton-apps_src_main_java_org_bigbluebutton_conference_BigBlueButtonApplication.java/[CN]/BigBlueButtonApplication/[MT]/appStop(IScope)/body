@@ -1,0 +1,4 @@
+{
+  log.debug("${APP} - appStop");
+  super.appStop(app);
+}

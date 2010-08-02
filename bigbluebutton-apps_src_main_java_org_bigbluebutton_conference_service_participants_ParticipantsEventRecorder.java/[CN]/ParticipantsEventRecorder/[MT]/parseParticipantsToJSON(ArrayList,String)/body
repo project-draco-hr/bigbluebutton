@@ -1,0 +1,22 @@
+{
+  String json="{ ";
+  if (type.equalsIgnoreCase("STATUS_CHANGE")) {
+    json+="\"event\":\"STATUS_CHANGE\", ";
+    json+="\"userid\":\"" + list.get(0) + "\", ";
+    json+="\"status\":\"" + list.get(1) + "\", ";
+    json+="\"value\":\"" + list.get(2) + "\" ";
+  }
+ else   if (type.equalsIgnoreCase("JOIN")) {
+    Map map=(Map)list.get(0);
+    json+="\"event\":\"JOIN\", ";
+    json+="\"userid\":\"" + map.get("userid") + "\", ";
+    json+="\"name\":\"" + map.get("name") + "\", ";
+    json+="\"role\":\"" + map.get("role") + "\" ";
+  }
+ else   if (type.equalsIgnoreCase("LEAVE")) {
+    json+="\"event\":\"LEAVE\", ";
+    json+="\"userid\":\"" + list.get(0) + "\" ";
+  }
+  json+="}";
+  return json;
+}

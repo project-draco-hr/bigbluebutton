@@ -1,0 +1,4 @@
+{
+  roomsManager.addRoom(new Room(name));
+  return true;
+}

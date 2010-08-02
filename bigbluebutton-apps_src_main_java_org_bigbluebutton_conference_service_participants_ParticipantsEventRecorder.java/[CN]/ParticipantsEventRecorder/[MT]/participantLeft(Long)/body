@@ -1,0 +1,6 @@
+{
+  ArrayList args=new ArrayList();
+  args.add(userid);
+  so.sendMessage("participantLeft",args);
+  recordEvent(parseParticipantsToJSON(args,"LEAVE"));
+}

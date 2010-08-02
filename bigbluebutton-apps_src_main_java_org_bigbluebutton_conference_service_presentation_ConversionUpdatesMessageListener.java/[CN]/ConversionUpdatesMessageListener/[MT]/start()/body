@@ -1,0 +1,4 @@
+{
+  log.debug("Starting conversion updates receiver.");
+  conversionUpdatesProcessor.start();
+}

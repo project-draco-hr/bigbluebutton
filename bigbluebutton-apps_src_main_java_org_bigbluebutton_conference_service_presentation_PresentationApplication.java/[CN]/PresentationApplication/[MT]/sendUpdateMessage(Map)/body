@@ -1,0 +1,8 @@
+{
+  String room=(String)message.get("room");
+  if (roomsManager.hasRoom(room)) {
+    roomsManager.sendUpdateMessage(message);
+    return;
+  }
+  log.warn("Sending update message to a non-existant room ${room}");
+}

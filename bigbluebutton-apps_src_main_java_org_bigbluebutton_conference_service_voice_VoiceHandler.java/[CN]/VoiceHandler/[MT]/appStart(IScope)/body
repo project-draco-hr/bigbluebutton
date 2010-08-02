@@ -1,0 +1,5 @@
+{
+  log.debug("${APP}:appStart ${scope.name}");
+  conferenceService.startup();
+  return true;
+}

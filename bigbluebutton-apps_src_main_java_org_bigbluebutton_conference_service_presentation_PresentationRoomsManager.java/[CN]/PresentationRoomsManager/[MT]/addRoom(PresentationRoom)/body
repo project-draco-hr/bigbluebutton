@@ -1,0 +1,4 @@
+{
+  log.debug("In PresentationRoomsManager adding room ${room.name}");
+  rooms.put(room.getName(),room);
+}

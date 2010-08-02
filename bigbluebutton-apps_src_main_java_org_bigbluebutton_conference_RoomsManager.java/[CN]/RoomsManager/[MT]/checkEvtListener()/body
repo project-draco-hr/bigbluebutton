@@ -1,0 +1,4 @@
+{
+  log.debug("RoomsManager event listener: " + conferenceEventListener);
+  return conferenceEventListener != null;
+}

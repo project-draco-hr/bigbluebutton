@@ -1,0 +1,10 @@
+{
+  if (recordSessions.containsKey(sessionName)) {
+    log.debug("Adding event recorder to session $sessionName.");
+    RecorderSession session=recordSessions.get(sessionName);
+    session.addEventRecorder(recorder);
+  }
+ else {
+    log.debug("Not adding event recorder to session $sessionName.");
+  }
+}
