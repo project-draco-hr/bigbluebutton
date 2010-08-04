@@ -1,0 +1,2 @@
+DatagramSocket srcSocket
+SipConnectInfo connInfo

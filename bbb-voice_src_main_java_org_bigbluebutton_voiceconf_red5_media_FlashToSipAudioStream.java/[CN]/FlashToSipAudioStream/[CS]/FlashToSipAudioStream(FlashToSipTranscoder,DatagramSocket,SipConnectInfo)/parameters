@@ -1,0 +1,3 @@
+FlashToSipTranscoder transcoder
+DatagramSocket srcSocket
+SipConnectInfo connInfo

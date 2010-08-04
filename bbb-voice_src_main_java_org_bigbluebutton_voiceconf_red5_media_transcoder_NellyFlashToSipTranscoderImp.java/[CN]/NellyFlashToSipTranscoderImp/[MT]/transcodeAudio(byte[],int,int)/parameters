@@ -1,0 +1,3 @@
+byte[] srcAudio
+int startOffset
+int length

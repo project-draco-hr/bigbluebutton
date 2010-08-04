@@ -1,5 +1,4 @@
 {
   sequenceNum=0;
-  timestamp=0;
   startTimestamp=System.currentTimeMillis();
 }
