@@ -1,9 +1,0 @@
-{
-  ClientConnection cc=clients.get(clientId);
-  if (cc != null) {
-    cc.onJoinConferenceSuccess(usertalkStream,userListenStream);
-  }
- else {
-    log.warn("Can't find connection {}",clientId);
-  }
-}

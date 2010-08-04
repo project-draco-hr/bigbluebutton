@@ -7,7 +7,8 @@
       RtpPacket rtpPacket=new RtpPacket(internalBuffer,0);
       rtpSocket.receive(rtpPacket);
       packetReceivedCounter++;
-      transcoder.transcode(rtpPacket.getPayload());
+      if (listener != null)       listener.onAudioDataReceived(rtpPacket.getPayload());
+ else       log.debug("No listener for incoming audio packet");
     }
  catch (    IOException e) {
       receivePackets=false;

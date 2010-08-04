@@ -1,0 +1,4 @@
+{
+  this.srcSocket=srcSocket;
+  this.connInfo=connInfo;
+}

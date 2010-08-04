@@ -1,0 +1,3 @@
+{
+  return NELLYMOSER_CODEC_ID;
+}

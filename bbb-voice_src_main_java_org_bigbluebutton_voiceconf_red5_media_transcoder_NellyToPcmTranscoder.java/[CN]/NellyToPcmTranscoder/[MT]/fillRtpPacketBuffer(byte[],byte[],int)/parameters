@@ -1,3 +1,0 @@
-byte[] audioData
-byte[] transcodedData
-int dataOffset
