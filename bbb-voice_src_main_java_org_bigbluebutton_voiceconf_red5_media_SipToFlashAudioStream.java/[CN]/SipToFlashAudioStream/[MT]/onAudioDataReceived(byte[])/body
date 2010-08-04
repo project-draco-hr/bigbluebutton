@@ -1,6 +1,6 @@
 {
-  if (audioData != null) {
-    byte[] transcodedAudio=transcoder.transcode(audioData);
+  byte[] transcodedAudio=transcoder.transcode(audioData);
+  if (transcodedAudio != null) {
     pushAudio(transcodedAudio);
   }
  else {

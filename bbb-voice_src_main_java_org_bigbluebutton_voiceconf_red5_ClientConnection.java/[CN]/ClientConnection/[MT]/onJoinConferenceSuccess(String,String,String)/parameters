@@ -1,2 +1,3 @@
 String publishName
 String playName
+String codec
