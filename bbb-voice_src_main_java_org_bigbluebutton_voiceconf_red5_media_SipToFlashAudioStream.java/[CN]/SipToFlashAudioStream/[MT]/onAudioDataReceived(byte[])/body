@@ -1,9 +1,3 @@
 {
-  byte[] transcodedAudio=transcoder.transcode(audioData);
-  if (transcodedAudio != null) {
-    pushAudio(transcodedAudio);
-  }
- else {
-    log.warn("Transcoded audio is null. Discarding.");
-  }
+  transcoder.transcode(audioData,this);
 }

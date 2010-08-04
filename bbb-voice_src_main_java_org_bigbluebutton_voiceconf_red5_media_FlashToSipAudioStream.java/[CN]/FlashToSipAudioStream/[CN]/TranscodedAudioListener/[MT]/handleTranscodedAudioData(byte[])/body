@@ -1,0 +1,8 @@
+{
+  if (audioData != null) {
+    rtpSender.sendAudio(audioData,transcoder.getCodecId());
+  }
+ else {
+    log.warn("Transcodec audio is null. Discarding.");
+  }
+}

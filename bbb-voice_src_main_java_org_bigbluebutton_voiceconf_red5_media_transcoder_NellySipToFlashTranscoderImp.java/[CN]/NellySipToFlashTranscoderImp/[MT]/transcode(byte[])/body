@@ -1,8 +1,0 @@
-{
-  float[] decodingBuffer=new float[codedBuffer.length];
-  int decodedBytes=audioCodec.codecToPcm(codedBuffer,decodingBuffer);
-  if (decodedBytes == audioCodec.getIncomingDecodedFrameSize()) {
-    return forwardAudioToFlashPlayer(decodingBuffer);
-  }
-  return null;
-}

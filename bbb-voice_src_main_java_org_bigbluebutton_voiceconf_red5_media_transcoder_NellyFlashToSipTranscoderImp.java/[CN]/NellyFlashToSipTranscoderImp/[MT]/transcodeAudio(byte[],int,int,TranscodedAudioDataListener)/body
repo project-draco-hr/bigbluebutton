@@ -16,10 +16,9 @@
       }
       if (encodingOffset == sipCodec.getOutgoingDecodedFrameSize()) {
         encodingOffset=0;
-        return transcodedAudioData;
+        listener.handleTranscodedAudioData(transcodedAudioData);
       }
     }
  while (!asao_buffer_processed);
   }
-  return null;
 }
