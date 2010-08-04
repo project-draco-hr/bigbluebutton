@@ -1,3 +1,0 @@
-{
-  return audioCodec.getOutgoingEncodedFrameSize();
-}

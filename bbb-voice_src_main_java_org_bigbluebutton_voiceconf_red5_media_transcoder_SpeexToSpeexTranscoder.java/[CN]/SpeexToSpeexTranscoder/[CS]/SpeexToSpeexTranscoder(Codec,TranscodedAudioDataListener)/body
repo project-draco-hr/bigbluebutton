@@ -1,5 +1,0 @@
-{
-  this.audioCodec=audioCodec;
-  this.listener=listener;
-  start=System.currentTimeMillis();
-}
