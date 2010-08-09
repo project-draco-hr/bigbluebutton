@@ -7,7 +7,7 @@
   c.addEventFilter("Event-Name","custom");
   c.addEventFilter("Event-Name","background_job");
   try {
-    Thread.sleep(25000);
+    Thread.sleep(5000);
   }
  catch (  InterruptedException ex) {
     java.util.logging.Logger.getLogger(FreeswitchApplication.class.getName()).log(Level.SEVERE,null,ex);
