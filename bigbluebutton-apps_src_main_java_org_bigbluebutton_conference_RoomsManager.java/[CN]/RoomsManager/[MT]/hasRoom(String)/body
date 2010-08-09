@@ -1,4 +1,3 @@
 {
-  log.debug("In RoomsManager has Room ${name}");
   return rooms.containsKey(name);
 }

@@ -3,6 +3,6 @@
   if (r != null) {
     return r.getChatMessages();
   }
-  log.warn("Getting messages from a non-existing room ${room}");
+  log.warn("Getting messages from a non-existing room {}",room);
   return "";
 }

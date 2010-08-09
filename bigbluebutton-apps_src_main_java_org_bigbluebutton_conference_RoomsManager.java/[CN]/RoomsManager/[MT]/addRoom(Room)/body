@@ -1,9 +1,9 @@
 {
-  log.debug("In RoomsManager adding room ${room.name}");
+  log.debug("Adding room {}",room.getName());
   room.addRoomListener(new ParticipantUpdatingRoomListener(conferenceEventListener,room));
   if (checkEvtListener()) {
     conferenceEventListener.started(room);
-    log.debug("notified event listener of conference start");
+    log.debug("Notified event listener of conference start");
   }
   rooms.put(room.getName(),room);
 }

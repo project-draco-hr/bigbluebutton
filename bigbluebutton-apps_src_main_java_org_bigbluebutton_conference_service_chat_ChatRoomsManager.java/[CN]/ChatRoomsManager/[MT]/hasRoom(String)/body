@@ -1,4 +1,4 @@
 {
-  log.debug("In ChatRoomsManager has Room ${name}");
+  log.debug("In ChatRoomsManager has Room {}",name);
   return rooms.containsKey(name);
 }

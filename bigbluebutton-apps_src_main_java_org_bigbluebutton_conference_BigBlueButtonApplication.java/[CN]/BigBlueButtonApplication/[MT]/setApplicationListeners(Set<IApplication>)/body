@@ -1,9 +1,9 @@
 {
   log.debug("Setting application listeners");
   int count=0;
-  Iterator iter=listeners.iterator();
+  Iterator<IApplication> iter=listeners.iterator();
   while (iter.hasNext()) {
-    log.debug("Setting application listeners $count");
+    log.debug("Setting application listeners {}",count);
     super.addListener((IApplication)iter.next());
     count++;
   }

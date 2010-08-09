@@ -1,4 +1,4 @@
 {
-  log.debug("Starting BigBlueButton version $version");
+  log.debug("Starting BigBlueButton version {}",version);
   return super.appStart(app);
 }

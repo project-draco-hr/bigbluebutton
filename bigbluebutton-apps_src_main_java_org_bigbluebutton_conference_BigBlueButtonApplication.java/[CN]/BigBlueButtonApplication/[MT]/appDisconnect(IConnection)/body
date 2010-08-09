@@ -1,4 +1,4 @@
 {
-  log.debug("${APP} - appDisconnect ");
+  log.debug("{} - appDisconnect",APP);
   super.appDisconnect(conn);
 }

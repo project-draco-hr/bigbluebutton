@@ -1,5 +1,5 @@
 {
   this.scope=scope;
-  log.debug("${APP}:appStart ${scope.name}");
+  log.debug("appStart: {}",scope.getName());
   return true;
 }
