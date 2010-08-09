@@ -1,0 +1,6 @@
+{
+  this.client=c;
+  this.host=h;
+  this.port=p;
+  this.password=pass;
+}

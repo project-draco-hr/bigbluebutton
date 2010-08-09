@@ -1,0 +1,8 @@
+{
+  try {
+    ctx.sendUpstream(e);
+  }
+ catch (  Throwable t) {
+    log.error("Caught -->",t);
+  }
+}

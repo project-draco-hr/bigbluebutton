@@ -1,7 +1,0 @@
-{
-  rtpPacket.setSequenceNumber(sequenceNum++);
-  timestamp+=transcoder.getOutgoingEncodedFrameSize();
-  rtpPacket.setTimestamp(timestamp);
-  rtpPacket.setPayloadLength(transcoder.getOutgoingEncodedFrameSize());
-  rtpSocketSend(rtpPacket);
-}

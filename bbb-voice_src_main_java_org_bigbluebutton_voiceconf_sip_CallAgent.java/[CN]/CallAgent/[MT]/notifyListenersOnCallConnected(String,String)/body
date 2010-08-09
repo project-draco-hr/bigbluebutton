@@ -1,4 +1,4 @@
 {
   log.debug("notifyListenersOnCallConnected for {}",clientId);
-  clientConnManager.joinConferenceSuccess(clientId,talkStream,listenStream);
+  clientConnManager.joinConferenceSuccess(clientId,talkStream,listenStream,sipCodec.getCodecName());
 }

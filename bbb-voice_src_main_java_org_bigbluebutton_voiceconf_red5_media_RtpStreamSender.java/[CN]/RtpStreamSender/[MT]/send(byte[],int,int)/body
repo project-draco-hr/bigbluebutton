@@ -1,3 +1,0 @@
-{
-  transcoder.transcode(audioData,offset,num,transcodedAudioDataBuffer,RTP_HEADER_SIZE,this);
-}

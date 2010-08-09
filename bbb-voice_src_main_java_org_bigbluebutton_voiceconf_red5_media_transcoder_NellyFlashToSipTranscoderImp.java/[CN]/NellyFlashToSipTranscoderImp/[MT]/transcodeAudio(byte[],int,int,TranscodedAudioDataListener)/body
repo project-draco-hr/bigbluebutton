@@ -1,0 +1,24 @@
+{
+  byte[] audioData=new byte[length];
+  System.arraycopy(srcAudio,startOffset,audioData,0,length);
+  byte[] transcodedAudioData=new byte[sipCodec.getOutgoingEncodedFrameSize()];
+  asao_buffer_processed=false;
+  if (!hasInitilializedBuffers) {
+    tempBuffer=new float[NELLYMOSER_DECODED_PACKET_SIZE];
+    encodingBuffer=new float[sipCodec.getOutgoingDecodedFrameSize()];
+    hasInitilializedBuffers=true;
+  }
+  if (length > 0) {
+    do {
+      int encodedBytes=fillRtpPacketBuffer(audioData,transcodedAudioData);
+      if (encodedBytes == 0) {
+        break;
+      }
+      if (encodingOffset == sipCodec.getOutgoingDecodedFrameSize()) {
+        encodingOffset=0;
+        listener.handleTranscodedAudioData(transcodedAudioData);
+      }
+    }
+ while (!asao_buffer_processed);
+  }
+}

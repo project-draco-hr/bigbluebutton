@@ -1,0 +1,6 @@
+{
+  this.command=command;
+  this.response=response;
+  this.replyText=response.getHeaderValue(Name.REPLY_TEXT);
+  this.success=replyText.startsWith("+OK");
+}

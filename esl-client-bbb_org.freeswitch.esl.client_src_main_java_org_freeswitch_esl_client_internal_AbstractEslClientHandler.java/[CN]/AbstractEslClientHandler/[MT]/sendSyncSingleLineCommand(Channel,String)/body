@@ -1,0 +1,12 @@
+{
+  SyncCallback callback=new SyncCallback();
+  syncLock.lock();
+  try {
+    syncCallbacks.add(callback);
+    channel.write(command + MESSAGE_TERMINATOR);
+  }
+  finally {
+    syncLock.unlock();
+  }
+  return callback.get();
+}

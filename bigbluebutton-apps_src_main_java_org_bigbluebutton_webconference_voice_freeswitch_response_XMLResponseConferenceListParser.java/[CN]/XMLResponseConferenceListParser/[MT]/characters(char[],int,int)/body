@@ -1,0 +1,3 @@
+{
+  tempVal=new String(ch,start,length);
+}

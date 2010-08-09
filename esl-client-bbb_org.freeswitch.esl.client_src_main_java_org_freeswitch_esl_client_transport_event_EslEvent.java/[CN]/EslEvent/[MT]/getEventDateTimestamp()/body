@@ -1,0 +1,3 @@
+{
+  return Long.valueOf(getEventHeaders().get(EslEventHeaderNames.EVENT_DATE_TIMESTAMP));
+}

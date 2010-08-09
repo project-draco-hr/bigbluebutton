@@ -1,0 +1,9 @@
+{
+  EslMessage response=sendSyncSingleLineCommand(channel,command);
+  if (response.hasHeader(Name.JOB_UUID)) {
+    return response.getHeaderValue(Name.JOB_UUID);
+  }
+ else {
+    throw new IllegalStateException("Missing Job-UUID header in bgapi response");
+  }
+}

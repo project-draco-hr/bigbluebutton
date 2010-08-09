@@ -1,0 +1,4 @@
+{
+  log.debug("Received exception caught notice");
+  listener.exceptionCaught(e);
+}

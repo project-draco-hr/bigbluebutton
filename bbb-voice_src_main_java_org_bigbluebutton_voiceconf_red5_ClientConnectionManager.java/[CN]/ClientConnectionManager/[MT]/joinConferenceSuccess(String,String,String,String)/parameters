@@ -1,0 +1,4 @@
+String clientId
+String usertalkStream
+String userListenStream
+String codec

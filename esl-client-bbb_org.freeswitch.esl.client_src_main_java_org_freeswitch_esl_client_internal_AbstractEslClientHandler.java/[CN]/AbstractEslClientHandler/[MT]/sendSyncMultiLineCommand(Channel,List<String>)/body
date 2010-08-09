@@ -1,0 +1,18 @@
+{
+  SyncCallback callback=new SyncCallback();
+  StringBuilder sb=new StringBuilder();
+  for (  String line : commandLines) {
+    sb.append(line);
+    sb.append(LINE_TERMINATOR);
+  }
+  sb.append(LINE_TERMINATOR);
+  syncLock.lock();
+  try {
+    syncCallbacks.add(callback);
+    channel.write(sb.toString());
+  }
+  finally {
+    syncLock.unlock();
+  }
+  return callback.get();
+}

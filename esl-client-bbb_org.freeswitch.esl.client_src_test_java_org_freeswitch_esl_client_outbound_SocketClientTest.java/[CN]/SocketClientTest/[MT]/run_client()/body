@@ -1,0 +1,8 @@
+{
+  log.info("Test starting ...");
+  SocketClient client=new SocketClient(8084,new SimpleHangupPipelineFactory());
+  client.start();
+  Thread.sleep(45000);
+  client.stop();
+  log.info("Test ended");
+}

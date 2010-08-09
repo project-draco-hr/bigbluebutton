@@ -9,7 +9,7 @@
       MediaDescriptor localDescriptor=localSdp.getMediaDescriptor(remoteDescriptor.getMedia().getMedia());
       if (localDescriptor != null) {
         Vector remoteAttributes=remoteDescriptor.getAttributes(Codec.ATTRIBUTE_RTPMAP);
-        Vector newSdpAttributes=new Vector();
+        Vector<AttributeField> newSdpAttributes=new Vector<AttributeField>();
         for (Enumeration attributesEnum=remoteAttributes.elements(); attributesEnum.hasMoreElements(); ) {
           AttributeField remoteAttribute=(AttributeField)attributesEnum.nextElement();
           String payloadId=getPayloadIdFromAttribute(remoteAttribute);

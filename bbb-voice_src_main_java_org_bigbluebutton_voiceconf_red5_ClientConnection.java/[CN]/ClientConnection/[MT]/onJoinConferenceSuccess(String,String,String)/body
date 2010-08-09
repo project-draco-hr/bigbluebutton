@@ -1,0 +1,4 @@
+{
+  log.debug("SIP Call Connected");
+  connection.invoke("successfullyJoinedVoiceConferenceCallback",new Object[]{publishName,playName,codec});
+}

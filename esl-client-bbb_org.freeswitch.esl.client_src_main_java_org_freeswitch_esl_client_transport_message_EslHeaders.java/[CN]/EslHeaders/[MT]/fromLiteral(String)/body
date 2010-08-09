@@ -1,0 +1,8 @@
+{
+  for (  Name name : values()) {
+    if (name.literal.equalsIgnoreCase(literal)) {
+      return name;
+    }
+  }
+  return null;
+}

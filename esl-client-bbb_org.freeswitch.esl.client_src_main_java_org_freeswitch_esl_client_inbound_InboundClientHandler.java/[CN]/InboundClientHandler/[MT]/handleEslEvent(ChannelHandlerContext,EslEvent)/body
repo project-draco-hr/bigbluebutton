@@ -1,0 +1,4 @@
+{
+  log.debug("Received event: [{}]",event);
+  listener.eventReceived(event);
+}
