@@ -10,7 +10,13 @@
       }
       if (packet instanceof AudioData) {
         byte[] data=SerializeUtils.ByteBufferToByteArray(buf);
-        transcoder.transcodeAudio(data,1,data.length - 1,new TranscodedAudioListener());
+        AudioByteData abd=new AudioByteData(data,System.currentTimeMillis());
+        try {
+          audioDataQ.put(abd);
+        }
+ catch (        InterruptedException e) {
+          e.printStackTrace();
+        }
       }
     }
   }
@@ -18,4 +24,12 @@
   broadcastStream.addStreamListener(mInputListener);
   rtpSender=new RtpStreamSender(srcSocket,connInfo);
   rtpSender.connect();
+  processAudioData=true;
+  audioDataProcessor=new Runnable(){
+    public void run(){
+      processAudioData();
+    }
+  }
+;
+  exec.execute(audioDataProcessor);
 }

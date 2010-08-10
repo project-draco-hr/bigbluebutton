@@ -1,4 +1,5 @@
 {
+  processAudioData=false;
   rtpStreamReceiver.stop();
   audioBroadcastStream.stop();
   audioBroadcastStream.close();

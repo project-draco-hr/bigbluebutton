@@ -1,3 +1,4 @@
 {
   broadcastStream.removeStreamListener(mInputListener);
+  processAudioData=false;
 }

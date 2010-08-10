@@ -1,3 +1,9 @@
 {
-  transcoder.transcode(audioData,this);
+  AudioByteData abd=new AudioByteData(audioData,System.currentTimeMillis());
+  try {
+    audioDataQ.put(abd);
+  }
+ catch (  InterruptedException e) {
+    e.printStackTrace();
+  }
 }

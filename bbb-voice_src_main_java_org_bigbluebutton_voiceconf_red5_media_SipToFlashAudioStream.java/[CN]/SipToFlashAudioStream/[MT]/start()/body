@@ -15,5 +15,13 @@
   }
   startTimestamp=System.currentTimeMillis();
   audioBroadcastStream.start();
+  processAudioData=true;
+  audioDataProcessor=new Runnable(){
+    public void run(){
+      processAudioData();
+    }
+  }
+;
+  exec.execute(audioDataProcessor);
   rtpStreamReceiver.start();
 }
