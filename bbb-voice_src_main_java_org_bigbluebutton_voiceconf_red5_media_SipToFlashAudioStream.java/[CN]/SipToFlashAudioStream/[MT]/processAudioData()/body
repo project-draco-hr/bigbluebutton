@@ -3,7 +3,7 @@
     try {
       AudioByteData abd=audioDataQ.take();
       long delay=System.currentTimeMillis() - abd.getTimestamp();
-      System.out.println("S2F [" + audioDataQ.size() + ","+ delay+ "]");
+      log.debug("S2F [" + audioDataQ.size() + ","+ delay+ "]");
       transcoder.transcode(abd.getData(),this);
     }
  catch (    InterruptedException e) {
