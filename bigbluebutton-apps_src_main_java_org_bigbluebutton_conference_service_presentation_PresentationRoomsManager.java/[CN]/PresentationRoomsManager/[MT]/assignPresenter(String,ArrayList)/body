@@ -4,5 +4,5 @@
     r.assignPresenter(presenter);
     return;
   }
-  log.warn("Assigning presenter to a non-existing room $room");
+  log.warn("Assigning presenter to a non-existing room {}",room);
 }

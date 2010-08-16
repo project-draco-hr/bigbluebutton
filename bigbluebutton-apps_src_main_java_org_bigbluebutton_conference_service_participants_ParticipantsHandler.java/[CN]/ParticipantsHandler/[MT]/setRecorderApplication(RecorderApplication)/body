@@ -1,4 +1,4 @@
 {
-  log.debug("Setting archive application");
+  log.debug("Setting recorder application");
   recorderApplication=a;
 }

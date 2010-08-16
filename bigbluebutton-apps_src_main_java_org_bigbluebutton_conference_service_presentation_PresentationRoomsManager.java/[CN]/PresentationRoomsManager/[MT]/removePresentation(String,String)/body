@@ -3,5 +3,5 @@
   if (r != null) {
     r.removePresentation(name);
   }
-  log.warn("Removing presentation from a non-existing room $room");
+  log.warn("Removing presentation from a non-existing room {}",room);
 }

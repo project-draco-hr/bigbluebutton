@@ -4,6 +4,6 @@
     log.debug("Removed record session");
   }
  else {
-    log.debug("Could not find record session $sessionName");
+    log.debug("Could not find record session {}",sessionName);
   }
 }

@@ -1,9 +1,9 @@
 {
-  log.debug("${APP}:roomConnect");
+  log.debug(APP + ":roomConnect");
   log.debug("In live mode");
   ISharedObject so=getSharedObject(connection.getScope(),PARTICIPANTS_SO);
   ParticipantsEventRecorder recorder=new ParticipantsEventRecorder(so,getBbbSession().getRecord());
-  log.debug("adding event recorder to ${connection.scope.name}");
+  log.debug("adding event recorder to {}",connection.getScope().getName());
   recorderApplication.addEventRecorder(connection.getScope().getName(),recorder);
   log.debug("Adding room listener");
   participantsApplication.addRoomListener(connection.getScope().getName(),recorder);

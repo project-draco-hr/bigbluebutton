@@ -1,5 +1,5 @@
 {
-  log.debug("calling assignPresenterCallback $userid, $name $assignedBy");
+  log.debug("calling assignPresenterCallback " + presenter.get(0) + ", "+ presenter.get(1)+ " "+ presenter.get(2));
   so.sendMessage("assignPresenterCallback",presenter);
-  recordEvent(presenter.toString());
+  recordEvent(parsePresentationToJSON(presenter,this.RECORD_EVENT_ASSIGN_PRESENTER));
 }

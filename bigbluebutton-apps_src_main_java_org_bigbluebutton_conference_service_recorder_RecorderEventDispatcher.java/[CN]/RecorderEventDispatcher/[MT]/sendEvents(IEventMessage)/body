@@ -6,4 +6,5 @@
     }
   }
 );
+  log.debug("create and send object message");
 }

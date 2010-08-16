@@ -1,4 +1,4 @@
 {
-  log.debug("${APP}:appJoin ${scope.name}");
+  log.debug("{}:appJoin {}",APP,scope.getName());
   return true;
 }

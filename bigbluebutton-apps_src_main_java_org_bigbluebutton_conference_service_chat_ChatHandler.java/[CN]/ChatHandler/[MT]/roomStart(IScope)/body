@@ -6,6 +6,6 @@
       return true;
     }
   }
-  log.error("Failed to start room ",scope.getName());
+  log.error("Failed to start room {}",scope.getName());
   return false;
 }

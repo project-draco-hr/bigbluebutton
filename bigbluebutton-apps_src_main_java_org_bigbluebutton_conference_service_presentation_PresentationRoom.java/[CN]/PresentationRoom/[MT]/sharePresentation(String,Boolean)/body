@@ -1,5 +1,5 @@
 {
-  log.debug("Request share presentation $presentationName $share for room $name");
+  log.debug("Request share presentation " + presentationName + " "+ share+ " for room "+ name);
   sharing=share;
   if (share) {
     currentPresentation=presentationName;
@@ -10,7 +10,7 @@
   for (Iterator iter=listeners.values().iterator(); iter.hasNext(); ) {
     log.debug("calling on listener");
     IPresentationRoomListener listener=(IPresentationRoomListener)iter.next();
-    log.debug("calling sharePresentation on listener ${listener.getName()}");
+    log.debug("calling sharePresentation on listener {}",listener.getName());
     listener.sharePresentation(presentationName,share);
   }
 }

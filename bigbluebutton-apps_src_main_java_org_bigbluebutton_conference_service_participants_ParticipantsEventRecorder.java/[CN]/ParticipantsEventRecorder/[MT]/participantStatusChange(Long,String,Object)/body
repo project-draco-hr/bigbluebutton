@@ -1,9 +1,9 @@
 {
-  log.debug("A participant's status has changed ${userid} $status $value.");
+  log.debug("A participant's status has changed " + userid + " "+ status+ " "+ value);
   ArrayList args=new ArrayList();
   args.add(userid);
   args.add(status);
   args.add(value);
   so.sendMessage("participantStatusChange",args);
-  recordEvent(parseParticipantsToJSON(args,"STATUS_CHANGE"));
+  recordEvent(parseParticipantsToJSON(args,this.RECORD_EVENT_STATUS_CHANGE));
 }

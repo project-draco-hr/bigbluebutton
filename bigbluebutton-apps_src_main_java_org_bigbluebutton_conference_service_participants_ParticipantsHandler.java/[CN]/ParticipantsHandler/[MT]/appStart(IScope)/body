@@ -1,4 +1,4 @@
 {
-  log.debug("${APP}:appStart ${scope.name}");
+  log.debug(APP + ":appStart " + scope.getName());
   return true;
 }

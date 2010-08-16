@@ -1,4 +1,4 @@
 {
-  log.debug("${APP}:appStop ${scope.name}");
+  log.debug("{}:appStop {}",APP,scope.getName());
   conversionUpdatesMessageListener.stop();
 }

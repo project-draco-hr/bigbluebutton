@@ -1,3 +1,3 @@
 {
-  log.debug("${APP}:appStop ${scope.name}");
+  log.debug(APP + ":appStop " + scope.getName());
 }

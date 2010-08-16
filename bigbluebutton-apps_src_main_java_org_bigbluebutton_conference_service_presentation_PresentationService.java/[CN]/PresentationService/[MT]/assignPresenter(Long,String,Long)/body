@@ -1,5 +1,5 @@
 {
-  log.debug("assignPresenter $userid $name $assignedBy");
+  log.debug("assignPresenter " + userid + " "+ name+ " "+ assignedBy);
   IScope scope=Red5.getConnectionLocal().getScope();
   ArrayList presenter=new ArrayList();
   presenter.add(userid);
@@ -10,7 +10,7 @@
   if (curPresenter != null) {
     long curUserid=(Long)curPresenter.get(0);
     if (curUserid != userid) {
-      log.debug("Changing presenter from ${curPresenter[0]} to $userid");
+      log.debug("Changing presenter from {} to {}",curPresenter.get(0),userid);
       participantsApplication.setParticipantStatus(scope.getName(),(Long)curPresenter.get(0),"presenter",false);
     }
   }

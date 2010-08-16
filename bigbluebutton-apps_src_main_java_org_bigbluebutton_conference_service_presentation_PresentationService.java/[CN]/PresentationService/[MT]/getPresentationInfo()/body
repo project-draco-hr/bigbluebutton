@@ -13,7 +13,7 @@
     presenter.put("user",curPresenter.get(0));
     presenter.put("name",curPresenter.get(1));
     presenter.put("assignedBy",curPresenter.get(2));
-    log.debug("Presenter: ${curPresenter[0]} ${curPresenter[1]} ${curPresenter[2]}");
+    log.debug("Presenter: " + curPresenter.get(0) + " "+ curPresenter.get(1)+ " "+ curPresenter.get(2));
   }
  else {
     presenter.put("hasPresenter",false);
@@ -29,7 +29,7 @@
       presentation.put("widthRatio",presentersSettings.get("widthRatio"));
       presentation.put("heightRatio",presentersSettings.get("heightRatio"));
     }
-    log.debug("Presentation: presentation= $currentPresentation slide= $curSlide");
+    log.debug("Presentation: presentation={} slide={}",currentPresentation,curSlide);
   }
  else {
     presentation.put("sharing",false);

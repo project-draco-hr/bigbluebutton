@@ -1,4 +1,4 @@
 {
-  log.debug("In PresentationRoomsManager get room ${name}");
+  log.debug("In PresentationRoomsManager get room {}",name);
   return rooms.get(name);
 }

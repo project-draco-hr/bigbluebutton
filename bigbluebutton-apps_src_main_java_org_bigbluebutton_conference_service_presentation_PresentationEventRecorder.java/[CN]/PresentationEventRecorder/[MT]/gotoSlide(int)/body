@@ -1,7 +1,7 @@
 {
-  log.debug("calling gotoSlideCallback $slide");
+  log.debug("calling gotoSlideCallback {}",slide);
   ArrayList list=new ArrayList();
   list.add(slide);
   so.sendMessage("gotoSlideCallback",list);
-  recordEvent(list.toString());
+  recordEvent(parsePresentationToJSON(list,this.RECORD_EVENT_UPDATE_SLIDE));
 }
