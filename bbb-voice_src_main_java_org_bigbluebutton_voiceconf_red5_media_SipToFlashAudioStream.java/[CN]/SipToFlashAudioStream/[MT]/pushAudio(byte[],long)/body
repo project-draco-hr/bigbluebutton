@@ -8,7 +8,9 @@
   buffer.put(copy);
   buffer.flip();
   AudioData audioData=new AudioData(buffer);
-  audioData.setTimestamp((int)(System.currentTimeMillis() - startTimestamp));
+  long ts=(System.currentTimeMillis() - startTimestamp);
+  System.out.println("Sending RTMP = " + ts);
+  audioData.setTimestamp((int)ts);
   audioBroadcastStream.dispatchEvent(audioData);
   audioData.release();
 }
