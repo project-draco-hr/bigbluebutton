@@ -10,7 +10,8 @@
       }
       if (packet instanceof AudioData) {
         byte[] data=SerializeUtils.ByteBufferToByteArray(buf);
-        AudioByteData abd=new AudioByteData(data,System.currentTimeMillis());
+        System.out.println("RTMP data = [" + data[0] + ","+ data.length+ ","+ packet.getTimestamp()+ "]");
+        AudioByteData abd=new AudioByteData(data,packet.getTimestamp());
         try {
           audioDataQ.put(abd);
         }

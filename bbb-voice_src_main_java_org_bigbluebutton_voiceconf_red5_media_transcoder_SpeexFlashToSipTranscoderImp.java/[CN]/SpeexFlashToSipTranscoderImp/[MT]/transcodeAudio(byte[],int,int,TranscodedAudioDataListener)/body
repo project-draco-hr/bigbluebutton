@@ -1,5 +1,0 @@
-{
-  byte[] transcodedAudio=new byte[length];
-  System.arraycopy(srcAudio,startOffset,transcodedAudio,0,length);
-  listener.handleTranscodedAudioData(transcodedAudio);
-}

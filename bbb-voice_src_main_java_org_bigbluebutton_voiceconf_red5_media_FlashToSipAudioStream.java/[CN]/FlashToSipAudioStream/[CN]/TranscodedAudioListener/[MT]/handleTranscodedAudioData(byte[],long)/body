@@ -1,6 +1,6 @@
 {
   if (audioData != null) {
-    rtpSender.sendAudio(audioData,transcoder.getCodecId());
+    rtpSender.sendAudio(audioData,transcoder.getCodecId(),timestamp);
   }
  else {
     log.warn("Transcodec audio is null. Discarding.");

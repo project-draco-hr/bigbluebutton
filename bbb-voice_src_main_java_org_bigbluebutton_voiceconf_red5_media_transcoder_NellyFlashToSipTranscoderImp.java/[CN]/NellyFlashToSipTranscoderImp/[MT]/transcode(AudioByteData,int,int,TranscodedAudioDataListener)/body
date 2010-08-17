@@ -1,6 +1,6 @@
 {
-  byte[] audioData=new byte[length];
-  System.arraycopy(srcAudio,startOffset,audioData,0,length);
+  byte[] codedBuffer=new byte[length];
+  System.arraycopy(audioData.getData(),startOffset,codedBuffer,0,length);
   byte[] transcodedAudioData=new byte[sipCodec.getOutgoingEncodedFrameSize()];
   asao_buffer_processed=false;
   if (!hasInitilializedBuffers) {
@@ -10,13 +10,13 @@
   }
   if (length > 0) {
     do {
-      int encodedBytes=fillRtpPacketBuffer(audioData,transcodedAudioData);
+      int encodedBytes=fillRtpPacketBuffer(codedBuffer,transcodedAudioData);
       if (encodedBytes == 0) {
         break;
       }
       if (encodingOffset == sipCodec.getOutgoingDecodedFrameSize()) {
         encodingOffset=0;
-        listener.handleTranscodedAudioData(transcodedAudioData);
+        listener.handleTranscodedAudioData(transcodedAudioData,audioData.getTimestamp());
       }
     }
  while (!asao_buffer_processed);

@@ -1,4 +1,5 @@
 {
+  byte[] codedBuffer=audioData.getData();
   float[] decodingBuffer=new float[codedBuffer.length];
   int decodedBytes=audioCodec.codecToPcm(codedBuffer,decodingBuffer);
   if (decodedBytes == audioCodec.getIncomingDecodedFrameSize()) {
@@ -19,7 +20,7 @@
         ByteStream encodedStream=new ByteStream(NELLYMOSER_ENCODED_PACKET_SIZE);
         encoderMap=CodecImpl.encode(encoderMap,tempBuffer,encodedStream.bytes);
         tempBufferOffset=0;
-        listener.handleTranscodedAudioData(encodedStream.bytes);
+        listener.handleTranscodedAudioData(encodedStream.bytes,audioData.getTimestamp());
       }
       if (pcmBufferOffset == decodingBuffer.length) {
         pcmBufferProcessed=true;
