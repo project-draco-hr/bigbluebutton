@@ -13,7 +13,15 @@
     log.error("could not register broadcast stream");
     throw new RuntimeException("could not register broadcast stream");
   }
-  startTimestamp=System.currentTimeMillis();
+  startTimestamp=0;
   audioBroadcastStream.start();
+  processAudioData=true;
+  audioDataProcessor=new Runnable(){
+    public void run(){
+      processAudioData();
+    }
+  }
+;
+  exec.execute(audioDataProcessor);
   rtpStreamReceiver.start();
 }
