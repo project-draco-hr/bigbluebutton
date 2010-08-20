@@ -1,7 +1,7 @@
 {
   byte[] transcodedAudioDataBuffer=new byte[audioData.length + RTP_HEADER_SIZE];
   System.arraycopy(audioData,0,transcodedAudioDataBuffer,RTP_HEADER_SIZE,audioData.length);
-  RtpPacket rtpPacket=new RtpPacket(transcodedAudioDataBuffer,0);
+  RtpPacket rtpPacket=new RtpPacket(transcodedAudioDataBuffer,transcodedAudioDataBuffer.length);
   if (!marked) {
     rtpPacket.setMarker(true);
     marked=true;
@@ -9,8 +9,8 @@
   rtpPacket.setPadding(false);
   rtpPacket.setExtension(false);
   rtpPacket.setPayloadType(codecId);
-  rtpPacket.setSequenceNumber(sequenceNum++);
-  rtpPacket.setTimestamp(timestamp);
+  rtpPacket.setSeqNum(sequenceNum++);
+  rtpPacket.setTimestamp(startTimestamp+=320);
   rtpPacket.setPayloadLength(audioData.length);
   try {
     rtpSocketSend(rtpPacket);
