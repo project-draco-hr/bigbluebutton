@@ -1,0 +1,4 @@
+{
+  rtpPacket.setMarker(false);
+  Assert.assertFalse(rtpPacket.hasMarker(),"Packet should not have marker.");
+}

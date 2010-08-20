@@ -1,0 +1,10 @@
+{
+  if (packetLength >= HEADER_LENGTH) {
+    if (p) {
+      packet[0]=(byte)(packet[0] | 0x20);
+    }
+ else {
+      packet[0]=(byte)(packet[0] & 0xDF);
+    }
+  }
+}

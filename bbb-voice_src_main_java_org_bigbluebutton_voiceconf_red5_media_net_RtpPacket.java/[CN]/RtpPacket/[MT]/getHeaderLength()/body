@@ -1,0 +1,4 @@
+{
+  if (packetLength >= HEADER_LENGTH)   return HEADER_LENGTH + 4 * getCscrCount();
+ else   return packetLength;
+}

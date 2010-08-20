@@ -1,0 +1,4 @@
+{
+  if (packetLength >= HEADER_LENGTH)   return ((packet[0] & 0x20) >> 5) == 1;
+ else   return false;
+}

@@ -1,0 +1,5 @@
+{
+  packet=buffer;
+  packetLength=packet_length;
+  if (packetLength < HEADER_LENGTH)   packetLength=HEADER_LENGTH;
+}

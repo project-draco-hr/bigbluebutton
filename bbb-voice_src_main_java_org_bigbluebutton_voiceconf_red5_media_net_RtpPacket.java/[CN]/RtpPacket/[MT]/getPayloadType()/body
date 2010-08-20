@@ -1,0 +1,4 @@
+{
+  if (packetLength >= HEADER_LENGTH)   return (packet[1] & 0x7F);
+ else   return -1;
+}

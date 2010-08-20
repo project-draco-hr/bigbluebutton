@@ -1,0 +1,4 @@
+{
+  rtpPacket.setPayloadType(100);
+  Assert.assertEquals(rtpPacket.getPayloadType(),100,"Payload type should be 100.");
+}

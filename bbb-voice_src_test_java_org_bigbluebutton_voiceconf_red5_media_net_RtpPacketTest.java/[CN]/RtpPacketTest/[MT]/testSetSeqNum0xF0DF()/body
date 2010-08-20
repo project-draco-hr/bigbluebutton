@@ -1,0 +1,4 @@
+{
+  rtpPacket.setSeqNum(0xF0DF);
+  Assert.assertEquals(rtpPacket.getSeqNum(),0xF0DF,"Sequence number 0xF0DF. " + (int)rtpPacket.getPayload()[2] + ","+ (int)rtpPacket.getPayload()[3]+ ","+ (byte)((int)0xF0DF & 0xFF));
+}

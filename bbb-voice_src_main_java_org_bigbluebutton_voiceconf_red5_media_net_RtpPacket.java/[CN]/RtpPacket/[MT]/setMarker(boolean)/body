@@ -1,0 +1,10 @@
+{
+  if (packetLength >= HEADER_LENGTH) {
+    if (m) {
+      packet[1]=(byte)(packet[1] | 0x80);
+    }
+ else {
+      packet[1]=(byte)(packet[1] & 0x7F);
+    }
+  }
+}

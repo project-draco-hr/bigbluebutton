@@ -1,0 +1,4 @@
+{
+  rtpPacket.setPadding(true);
+  Assert.assertTrue(rtpPacket.hasPadding(),"Packet should have padding.");
+}
