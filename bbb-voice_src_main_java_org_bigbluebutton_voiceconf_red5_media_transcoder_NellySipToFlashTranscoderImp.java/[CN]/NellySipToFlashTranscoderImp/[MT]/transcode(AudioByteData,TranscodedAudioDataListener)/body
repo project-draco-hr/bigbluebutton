@@ -20,7 +20,7 @@
         ByteStream encodedStream=new ByteStream(NELLYMOSER_ENCODED_PACKET_SIZE);
         encoderMap=CodecImpl.encode(encoderMap,tempBuffer,encodedStream.bytes);
         tempBufferOffset=0;
-        listener.handleTranscodedAudioData(encodedStream.bytes,audioData.getTimestamp());
+        listener.handleTranscodedAudioData(encodedStream.bytes,timestamp+=TS_INCREMENT);
       }
       if (pcmBufferOffset == decodingBuffer.length) {
         pcmBufferProcessed=true;

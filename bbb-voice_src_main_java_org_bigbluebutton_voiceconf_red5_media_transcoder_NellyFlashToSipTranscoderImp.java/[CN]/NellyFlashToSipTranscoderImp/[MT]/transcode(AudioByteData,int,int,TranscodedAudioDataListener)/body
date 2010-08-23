@@ -16,7 +16,7 @@
       }
       if (encodingOffset == sipCodec.getOutgoingDecodedFrameSize()) {
         encodingOffset=0;
-        listener.handleTranscodedAudioData(transcodedAudioData,audioData.getTimestamp());
+        listener.handleTranscodedAudioData(transcodedAudioData,timestamp+=TS_INCREMENT);
       }
     }
  while (!asao_buffer_processed);
