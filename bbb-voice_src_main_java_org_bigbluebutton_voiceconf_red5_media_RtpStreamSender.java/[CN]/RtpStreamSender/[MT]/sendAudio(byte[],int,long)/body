@@ -10,7 +10,7 @@
   rtpPacket.setExtension(false);
   rtpPacket.setPayloadType(codecId);
   rtpPacket.setSeqNum(sequenceNum++);
-  rtpPacket.setTimestamp(startTimestamp+=320);
+  rtpPacket.setTimestamp(timestamp);
   rtpPacket.setPayloadLength(audioData.length);
   try {
     rtpSocketSend(rtpPacket);
