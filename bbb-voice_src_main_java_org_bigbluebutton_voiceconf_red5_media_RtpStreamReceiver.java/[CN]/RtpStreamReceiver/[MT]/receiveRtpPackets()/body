@@ -14,7 +14,6 @@
  else         log.debug("No listener for incoming audio packet");
       }
  else {
-        log.debug("SequenceNumber < lastSequence (" + rtpPacket.getSeqNum() + " < "+ lastSequenceNumber+ ")");
       }
     }
  catch (    IOException e) {

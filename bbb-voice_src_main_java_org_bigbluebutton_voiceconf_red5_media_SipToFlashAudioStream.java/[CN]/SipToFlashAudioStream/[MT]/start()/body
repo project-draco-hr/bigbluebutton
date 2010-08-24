@@ -15,6 +15,7 @@
   }
   audioBroadcastStream.start();
   processAudioData=true;
+  startTimestamp=System.currentTimeMillis();
   audioDataProcessor=new Runnable(){
     public void run(){
       processAudioData();
