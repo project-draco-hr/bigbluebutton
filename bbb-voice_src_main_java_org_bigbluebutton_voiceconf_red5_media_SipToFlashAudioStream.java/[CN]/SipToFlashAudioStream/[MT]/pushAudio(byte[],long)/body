@@ -1,4 +1,18 @@
 {
+  if (!sentMetadata) {
+    IoBuffer mBuffer=IoBuffer.allocate(1024);
+    mBuffer.setAutoExpand(true);
+    mBuffer.clear();
+    mBuffer.put(fakeMetadata);
+    mBuffer.flip();
+    Notify notifyData=new Notify(mBuffer);
+    long ts=(System.currentTimeMillis() - startTimestamp);
+    System.out.println("Sending RTMP = " + ts);
+    notifyData.setTimestamp((int)ts);
+    audioBroadcastStream.dispatchEvent(notifyData);
+    notifyData.release();
+    sentMetadata=true;
+  }
   IoBuffer buffer=IoBuffer.allocate(1024);
   buffer.setAutoExpand(true);
   buffer.clear();
@@ -8,7 +22,9 @@
   buffer.put(copy);
   buffer.flip();
   AudioData audioData=new AudioData(buffer);
-  audioData.setTimestamp((int)timestamp);
+  long ts=(System.currentTimeMillis() - startTimestamp);
+  System.out.println("Sending RTMP = " + ts);
+  audioData.setTimestamp((int)ts);
   audioBroadcastStream.dispatchEvent(audioData);
   audioData.release();
 }
