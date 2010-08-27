@@ -1,0 +1,4 @@
+{
+  rtpPacket.setExtension(true);
+  Assert.assertTrue(rtpPacket.hasExtension(),"Packet should have extension.");
+}

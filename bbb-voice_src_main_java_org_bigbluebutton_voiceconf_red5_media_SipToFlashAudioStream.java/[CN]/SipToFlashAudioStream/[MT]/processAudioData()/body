@@ -1,0 +1,11 @@
+{
+  while (processAudioData) {
+    try {
+      AudioByteData abd=audioDataQ.take();
+      transcoder.transcode(abd,this);
+    }
+ catch (    InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+}

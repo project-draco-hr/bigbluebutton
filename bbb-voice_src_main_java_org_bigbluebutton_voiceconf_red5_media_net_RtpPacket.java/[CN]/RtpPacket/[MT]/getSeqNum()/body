@@ -1,0 +1,6 @@
+{
+  if (packetLength >= HEADER_LENGTH) {
+    return getInt(packet,2);
+  }
+ else   return 0;
+}

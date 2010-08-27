@@ -1,0 +1,6 @@
+{
+  data[start]=(byte)((int)n >> 24);
+  data[start + 1]=(byte)((int)n >> 16);
+  data[start + 2]=(byte)((int)n >> 8);
+  data[start + 3]=(byte)((int)n & 0xFF);
+}

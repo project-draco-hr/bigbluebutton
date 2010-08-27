@@ -1,0 +1,6 @@
+{
+  packet=buffer;
+  packetLength=packet_length;
+  setVersion(2);
+  if (packetLength < HEADER_LENGTH)   packetLength=HEADER_LENGTH;
+}

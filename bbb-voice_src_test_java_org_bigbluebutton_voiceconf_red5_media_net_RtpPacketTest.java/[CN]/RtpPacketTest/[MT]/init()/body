@@ -1,0 +1,4 @@
+{
+  byte[] internalBuffer=new byte[42];
+  rtpPacket=new RtpPacket(internalBuffer,42);
+}

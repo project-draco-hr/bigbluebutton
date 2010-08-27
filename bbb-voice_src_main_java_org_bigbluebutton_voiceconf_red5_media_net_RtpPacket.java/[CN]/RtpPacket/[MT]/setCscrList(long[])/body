@@ -1,0 +1,7 @@
+{
+  if (packetLength >= HEADER_LENGTH) {
+    int cc=cscr.length;
+    setCscrCount(cc);
+    for (int i=0; i < cc; i++)     setLong(cscr[i],packet,HEADER_LENGTH + 4 * i);
+  }
+}

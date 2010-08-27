@@ -1,8 +1,0 @@
-{
-  if (audioData != null) {
-    pushAudio(audioData);
-  }
- else {
-    log.warn("Transcoded audio is null. Discarding.");
-  }
-}

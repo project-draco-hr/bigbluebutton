@@ -1,0 +1,6 @@
+{
+  this.target=target;
+  this.delta_time=delta_time;
+  init(udp_socket,null);
+  start();
+}

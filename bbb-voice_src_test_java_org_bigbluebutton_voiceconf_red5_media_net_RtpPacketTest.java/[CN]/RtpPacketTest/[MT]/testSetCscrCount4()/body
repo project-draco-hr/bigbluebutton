@@ -1,0 +1,4 @@
+{
+  rtpPacket.setCscrCount(4);
+  Assert.assertEquals(rtpPacket.getCscrCount(),4,"CSCR count should be 4.");
+}

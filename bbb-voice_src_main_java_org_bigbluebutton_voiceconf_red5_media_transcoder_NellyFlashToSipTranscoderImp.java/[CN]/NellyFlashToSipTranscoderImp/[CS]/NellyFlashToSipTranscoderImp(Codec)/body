@@ -2,4 +2,6 @@
   this.sipCodec=sipCodec;
   decoder=new Decoder();
   decoderMap=null;
+  Random rgen=new Random();
+  timestamp=rgen.nextInt(1000);
 }

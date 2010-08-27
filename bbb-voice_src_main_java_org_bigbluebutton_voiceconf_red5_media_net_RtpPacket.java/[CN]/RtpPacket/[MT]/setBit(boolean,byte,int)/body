@@ -1,0 +1,4 @@
+{
+  if (value)   b=(byte)(b | (1 << bit));
+ else   b=(byte)((b | (1 << bit)) ^ (1 << bit));
+}

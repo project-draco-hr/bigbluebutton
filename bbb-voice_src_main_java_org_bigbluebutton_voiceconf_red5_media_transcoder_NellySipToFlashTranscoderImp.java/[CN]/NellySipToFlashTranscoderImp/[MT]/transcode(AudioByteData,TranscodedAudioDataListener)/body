@@ -1,0 +1,34 @@
+{
+  byte[] codedBuffer=audioData.getData();
+  float[] decodingBuffer=new float[codedBuffer.length];
+  int decodedBytes=audioCodec.codecToPcm(codedBuffer,decodingBuffer);
+  if (decodedBytes == audioCodec.getIncomingDecodedFrameSize()) {
+    int pcmBufferOffset=0;
+    int copySize=0;
+    boolean pcmBufferProcessed=false;
+    do {
+      if ((tempBuffer.length - tempBufferOffset) <= (decodingBuffer.length - pcmBufferOffset)) {
+        copySize=tempBuffer.length - tempBufferOffset;
+      }
+ else {
+        copySize=decodingBuffer.length - pcmBufferOffset;
+      }
+      System.arraycopy(decodingBuffer,pcmBufferOffset,tempBuffer,tempBufferOffset,copySize);
+      tempBufferOffset+=copySize;
+      pcmBufferOffset+=copySize;
+      if (tempBufferOffset == NELLYMOSER_DECODED_PACKET_SIZE) {
+        ByteStream encodedStream=new ByteStream(NELLYMOSER_ENCODED_PACKET_SIZE);
+        encoderMap=CodecImpl.encode(encoderMap,tempBuffer,encodedStream.bytes);
+        tempBufferOffset=0;
+        listener.handleTranscodedAudioData(encodedStream.bytes,timestamp+=TS_INCREMENT);
+      }
+      if (pcmBufferOffset == decodingBuffer.length) {
+        pcmBufferProcessed=true;
+      }
+    }
+ while (!pcmBufferProcessed);
+  }
+ else {
+    log.warn("Decoded bytes not equal to getIncomingDecodedFrameSize " + audioCodec.getIncomingDecodedFrameSize());
+  }
+}

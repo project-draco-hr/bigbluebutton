@@ -1,8 +1,8 @@
 {
   try {
     rtpSocket=new RtpSocket(srcSocket,InetAddress.getByName(connInfo.getRemoteAddr()),connInfo.getRemotePort());
-    sequenceNum=0;
-    startTimestamp=System.currentTimeMillis();
+    Random rgen=new Random();
+    sequenceNum=rgen.nextInt(1000);
   }
  catch (  UnknownHostException e) {
     log.error("Failed to connect to {}",connInfo.getRemoteAddr());

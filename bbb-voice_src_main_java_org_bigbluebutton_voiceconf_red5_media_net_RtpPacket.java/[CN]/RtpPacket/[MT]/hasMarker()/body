@@ -1,0 +1,6 @@
+{
+  if (packetLength >= HEADER_LENGTH) {
+    return ((packet[1] & 0x80) >> 7) == 1;
+  }
+ else   return false;
+}

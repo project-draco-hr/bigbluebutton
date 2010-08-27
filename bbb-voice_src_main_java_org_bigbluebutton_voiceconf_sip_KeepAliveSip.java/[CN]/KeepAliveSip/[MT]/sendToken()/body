@@ -1,0 +1,5 @@
+{
+  if (!stop && target != null && sip_provider != null) {
+    sip_provider.sendMessage(message,sip_provider.getDefaultTransport(),target.getAddress().toString(),target.getPort(),127);
+  }
+}

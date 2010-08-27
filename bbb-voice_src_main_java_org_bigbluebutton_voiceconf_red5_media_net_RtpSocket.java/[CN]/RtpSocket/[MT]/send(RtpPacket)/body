@@ -1,0 +1,6 @@
+{
+  DatagramPacket datagram=new DatagramPacket(rtpp.getPacket(),rtpp.getLength());
+  datagram.setAddress(r_addr);
+  datagram.setPort(r_port);
+  socket.send(datagram);
+}

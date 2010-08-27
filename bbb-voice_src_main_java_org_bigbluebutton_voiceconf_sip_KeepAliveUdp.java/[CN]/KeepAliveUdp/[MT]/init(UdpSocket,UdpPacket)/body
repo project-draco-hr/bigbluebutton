@@ -1,0 +1,12 @@
+{
+  this.udp_socket=udp_socket;
+  if (udp_packet == null) {
+    byte[] buff={(byte)'\r',(byte)'\n'};
+    udp_packet=new UdpPacket(buff,0,buff.length);
+  }
+  if (target != null) {
+    udp_packet.setIpAddress(target.getAddress());
+    udp_packet.setPort(target.getPort());
+  }
+  this.udp_packet=udp_packet;
+}

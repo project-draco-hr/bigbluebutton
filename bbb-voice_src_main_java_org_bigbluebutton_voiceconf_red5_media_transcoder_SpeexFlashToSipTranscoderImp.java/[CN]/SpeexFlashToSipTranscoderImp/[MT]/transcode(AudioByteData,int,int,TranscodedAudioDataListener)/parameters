@@ -1,0 +1,4 @@
+AudioByteData audioData
+int startOffset
+int length
+TranscodedAudioDataListener listener

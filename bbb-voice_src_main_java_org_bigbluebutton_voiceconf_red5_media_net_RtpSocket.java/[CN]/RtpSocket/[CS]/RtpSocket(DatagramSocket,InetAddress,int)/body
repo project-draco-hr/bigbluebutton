@@ -1,0 +1,5 @@
+{
+  socket=datagram_socket;
+  r_addr=remote_address;
+  r_port=remote_port;
+}
