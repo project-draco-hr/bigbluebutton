@@ -1,0 +1,3 @@
+{
+  return (BigBlueButtonSession)Red5.getConnectionLocal().getAttribute(Constants.SESSION);
+}

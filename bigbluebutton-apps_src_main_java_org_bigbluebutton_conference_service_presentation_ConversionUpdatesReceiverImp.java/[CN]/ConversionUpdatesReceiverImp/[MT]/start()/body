@@ -1,0 +1,28 @@
+{
+  log.debug("Starting conversion updates receiver.");
+  conversionUpdatesProcessor.start();
+  try {
+    exec.execute(new Runnable(){
+      @Override public void run(){
+        log.debug("Waiting for JMS messages");
+        while (waitForMessage) {
+          Message jmsMessage=template.receive(destination);
+          log.debug("Got JMS message.");
+          if (jmsMessage instanceof MapMessage) {
+            try {
+              MapMessage mapMessage=((MapMessage)jmsMessage);
+              handleReceivedMessage(mapMessage);
+            }
+ catch (            JMSException e) {
+              log.error("Received an invalid JMS message: " + jmsMessage.toString());
+            }
+          }
+        }
+      }
+    }
+);
+  }
+ catch (  RejectedExecutionException e) {
+    if (!exec.isShutdown())     log.warn("RejectedExecutionException when trying to receive presentaion conversion updates.");
+  }
+}

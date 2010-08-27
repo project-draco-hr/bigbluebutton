@@ -1,0 +1,4 @@
+{
+  recordSessions=new ConcurrentHashMap<String,RecorderSession>();
+  log.debug("Instantiated ArchiveApplication");
+}

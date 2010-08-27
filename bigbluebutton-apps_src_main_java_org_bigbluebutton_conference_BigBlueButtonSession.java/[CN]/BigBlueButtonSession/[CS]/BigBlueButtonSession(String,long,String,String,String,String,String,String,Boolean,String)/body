@@ -1,0 +1,12 @@
+{
+  this.userid=userid;
+  this.sessionName=sessionName;
+  this.username=username;
+  this.role=role;
+  this.conference=conference;
+  this.mode=mode;
+  this.room=room;
+  this.voiceBridge=voiceBridge;
+  this.record=record;
+  this.externUserID=externUserID;
+}

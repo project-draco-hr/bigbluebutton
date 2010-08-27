@@ -1,0 +1,4 @@
+{
+  so.sendMessage("logout",new ArrayList());
+  recordEvent(parseParticipantsToJSON(new ArrayList(),this.RECORD_EVENT_LEAVE_ALL));
+}

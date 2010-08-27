@@ -1,0 +1,4 @@
+{
+  log.debug("Setting presentation application");
+  presentationApplication=a;
+}

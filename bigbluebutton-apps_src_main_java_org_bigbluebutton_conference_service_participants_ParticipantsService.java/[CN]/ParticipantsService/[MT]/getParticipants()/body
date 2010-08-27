@@ -1,0 +1,23 @@
+{
+  String roomName=Red5.getConnectionLocal().getScope().getName();
+  log.debug("getting participants for {}",roomName);
+  Map p=application.getParticipants(roomName);
+  log.debug("getting participants for {}",roomName);
+  Map participants=new HashMap();
+  if (p == null) {
+    participants.put("count",0);
+  }
+ else {
+    participants.put("count",p.size());
+    if (p.size() > 0) {
+      Collection pc=p.values();
+      Map pm=new HashMap();
+      for (Iterator it=pc.iterator(); it.hasNext(); ) {
+        Participant ap=(Participant)it.next();
+        pm.put(ap.getUserid(),ap.toMap());
+      }
+      participants.put("participants",pm);
+    }
+  }
+  return participants;
+}

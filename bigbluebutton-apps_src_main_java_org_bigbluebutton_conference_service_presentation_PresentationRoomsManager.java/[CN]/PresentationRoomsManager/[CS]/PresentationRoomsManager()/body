@@ -1,0 +1,4 @@
+{
+  log.debug("In PresentationRoomsManager constructor");
+  rooms=new ConcurrentHashMap<String,PresentationRoom>();
+}

@@ -1,0 +1,6 @@
+{
+  if (roomsManager.hasRoom(room)) {
+    roomsManager.removePresentation(room,name);
+  }
+  log.warn("Removing presentation from a non-existant room {}",room);
+}

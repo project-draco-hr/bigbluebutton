@@ -1,0 +1,4 @@
+{
+  log.debug("{}:appJoin {}",APP,scope.getName());
+  return true;
+}

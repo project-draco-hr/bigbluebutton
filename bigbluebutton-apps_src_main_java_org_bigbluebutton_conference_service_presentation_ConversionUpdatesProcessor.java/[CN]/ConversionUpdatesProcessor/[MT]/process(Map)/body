@@ -1,0 +1,8 @@
+{
+  try {
+    updatesQueue.put(message);
+  }
+ catch (  InterruptedException e) {
+    log.warn(e.getMessage());
+  }
+}

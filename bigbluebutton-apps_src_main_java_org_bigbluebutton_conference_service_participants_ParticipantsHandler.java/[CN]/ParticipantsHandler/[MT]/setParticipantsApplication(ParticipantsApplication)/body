@@ -1,0 +1,4 @@
+{
+  log.debug("Setting participants application");
+  participantsApplication=a;
+}

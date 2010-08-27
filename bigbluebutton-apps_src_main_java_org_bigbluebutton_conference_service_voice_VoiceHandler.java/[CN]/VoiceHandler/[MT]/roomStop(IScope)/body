@@ -1,0 +1,8 @@
+{
+  log.debug("${APP}:roomStop ${scope.name}");
+  conferenceService.destroyConference(scope.getName());
+  clientManager.removeSharedObject(scope.getName());
+  if (!hasSharedObject(scope,VOICE_SO)) {
+    clearSharedObjects(scope,VOICE_SO);
+  }
+}

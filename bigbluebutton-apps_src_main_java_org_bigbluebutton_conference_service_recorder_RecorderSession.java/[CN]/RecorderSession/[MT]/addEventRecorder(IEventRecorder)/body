@@ -1,0 +1,12 @@
+{
+synchronized (this) {
+    if (!recorders.containsKey(r.getName())) {
+      r.acceptRecorder(recorder);
+      recorders.put(r.getName(),r);
+      log.debug("Added event recorder {}",r.getName());
+    }
+ else {
+      log.debug("Did not add recorder as it's already there.");
+    }
+  }
+}

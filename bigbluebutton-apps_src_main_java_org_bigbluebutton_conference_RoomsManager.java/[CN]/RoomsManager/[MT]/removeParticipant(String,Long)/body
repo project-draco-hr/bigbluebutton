@@ -1,0 +1,12 @@
+{
+  log.debug("Remove participant {} from {}",userid,roomName);
+  Room r=getRoom(roomName);
+  if (r != null) {
+    if (checkEvtListener()) {
+      conferenceEventListener.participantsUpdated(r);
+    }
+    r.removeParticipant(userid);
+    return;
+  }
+  log.warn("Removing listener from a non-existing room ${roomName}");
+}

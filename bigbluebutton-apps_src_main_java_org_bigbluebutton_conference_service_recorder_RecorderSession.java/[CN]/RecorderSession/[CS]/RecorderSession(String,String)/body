@@ -1,0 +1,5 @@
+{
+  name=room;
+  this.conference=conference;
+  recorders=new ConcurrentHashMap<String,IEventRecorder>();
+}

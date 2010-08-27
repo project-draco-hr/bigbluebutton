@@ -1,0 +1,61 @@
+{
+  String json="{ ";
+  json+="\"module\":\"presentation\", ";
+  if (type.equalsIgnoreCase(this.RECORD_EVENT_ASSIGN_PRESENTER)) {
+    json+="\"event\":\"" + this.RECORD_EVENT_ASSIGN_PRESENTER + "\", ";
+    json+="\"userid\":\"" + list.get(0) + "\", ";
+    json+="\"name\":\"" + list.get(1) + "\", ";
+    json+="\"assignedBy\":\"" + list.get(2) + "\" ";
+  }
+ else   if (type.equalsIgnoreCase(this.RECORD_EVENT_REMOVE_PRESENTATION)) {
+    json+="\"event\":\"" + this.RECORD_EVENT_REMOVE_PRESENTATION + "\", ";
+    json+="\"presentationName\":\"" + list.get(0) + "\" ";
+  }
+ else   if (type.equalsIgnoreCase(this.RECORD_EVENT_RESIZE_MOVE_SLIDE)) {
+    json+="\"event\":\"" + this.RECORD_EVENT_RESIZE_MOVE_SLIDE + "\", ";
+    json+="\"xOffset\":\"" + list.get(0) + "\", ";
+    json+="\"yOffset\":\"" + list.get(1) + "\", ";
+    json+="\"widthRatio\":\"" + list.get(2) + "\", ";
+    json+="\"heightRatio\":\"" + list.get(3) + "\" ";
+  }
+ else   if (type.equalsIgnoreCase(this.RECORD_EVENT_SHARE_PRESENTATION)) {
+    json+="\"event\":\"" + this.RECORD_EVENT_SHARE_PRESENTATION + "\", ";
+    json+="\"presentationName\":\"" + list.get(0) + "\", ";
+    json+="\"share\":\"" + list.get(1) + "\" ";
+  }
+ else   if (type.equalsIgnoreCase(this.RECORD_EVENT_UPDATE_SLIDE)) {
+    json+="\"event\":\"" + this.RECORD_EVENT_UPDATE_SLIDE + "\", ";
+    json+="\"slide\":\"" + list.get(0) + "\" ";
+  }
+ else   if (type.equalsIgnoreCase(this.RECORD_EVENT_CONVERSION_STATUS)) {
+    json+="\"event\":\"" + this.RECORD_EVENT_CONVERSION_STATUS + "\", ";
+    json+="\"code\":\"" + list.get(2) + "\", ";
+    json+="\"presentationName\":\"" + list.get(3) + "\", ";
+    json+="\"messageKey\":\"" + list.get(4) + "\" ";
+  }
+ else   if (type.equalsIgnoreCase(this.RECORD_EVENT_PAGE_COUNT_EXCEEDED)) {
+    json+="\"event\":\"" + this.RECORD_EVENT_PAGE_COUNT_EXCEEDED + "\", ";
+    json+="\"code\":\"" + list.get(2) + "\", ";
+    json+="\"presentationName\":\"" + list.get(3) + "\", ";
+    json+="\"messageKey\":\"" + list.get(4) + "\", ";
+    json+="\"numberOfPages\":\"" + list.get(5) + "\", ";
+    json+="\"maxNumberPages\":\"" + list.get(6) + "\" ";
+  }
+ else   if (type.equalsIgnoreCase(this.RECORD_EVENT_GENERATED_SLIDE)) {
+    json+="\"event\":\"" + this.RECORD_EVENT_GENERATED_SLIDE + "\", ";
+    json+="\"code\":\"" + list.get(2) + "\", ";
+    json+="\"presentationName\":\"" + list.get(3) + "\", ";
+    json+="\"messageKey\":\"" + list.get(4) + "\", ";
+    json+="\"numberOfPages\":\"" + list.get(5) + "\", ";
+    json+="\"pagesCompleted\":\"" + list.get(6) + "\" ";
+  }
+ else   if (type.equalsIgnoreCase(this.RECORD_EVENT_CONVERSION_COMPLETE)) {
+    json+="\"event\":\"" + this.RECORD_EVENT_CONVERSION_COMPLETE + "\", ";
+    json+="\"code\":\"" + list.get(2) + "\", ";
+    json+="\"presentationName\":\"" + list.get(3) + "\", ";
+    json+="\"messageKey\":\"" + list.get(4) + "\", ";
+    json+="\"slidesInfo\":\"" + list.get(5) + "\" ";
+  }
+  json+="}";
+  return json;
+}

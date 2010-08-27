@@ -1,0 +1,3 @@
+{
+  roomsManager.changeParticipantStatus(room,userid,status,value);
+}

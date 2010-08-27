@@ -1,0 +1,11 @@
+{
+  log.debug("{} - roomStart {}",APP,scope.getName());
+  presentationApplication.createRoom(scope.getName());
+  if (!hasSharedObject(scope,PRESENTATION_SO)) {
+    if (createSharedObject(scope,PRESENTATION_SO,false)) {
+      return true;
+    }
+  }
+  log.error("Failed to start room {}",scope.getName());
+  return false;
+}

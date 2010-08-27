@@ -1,0 +1,16 @@
+{
+  log.debug("Add participant {}",participant.getName());
+  Room r=getRoom(roomName);
+  if (r != null) {
+    if (checkEvtListener()) {
+      conferenceEventListener.participantsUpdated(r);
+      if (r.getNumberOfParticipants() == 0) {
+        conferenceEventListener.started(r);
+        log.debug("Notified event listener of conference start");
+      }
+    }
+    r.addParticipant(participant);
+    return;
+  }
+  log.warn("Adding participant to a non-existing room {}",roomName);
+}

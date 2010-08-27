@@ -1,0 +1,6 @@
+{
+  if (jmsMessage instanceof MapMessage) {
+    MapMessage mapMessage=((MapMessage)jmsMessage);
+    handleReceivedMessage(mapMessage);
+  }
+}

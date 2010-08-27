@@ -1,0 +1,4 @@
+{
+  this.name=name;
+  listeners=new ConcurrentHashMap<String,IChatRoomListener>();
+}

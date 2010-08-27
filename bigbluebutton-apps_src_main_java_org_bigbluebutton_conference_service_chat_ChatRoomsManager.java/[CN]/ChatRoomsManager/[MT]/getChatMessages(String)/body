@@ -1,0 +1,8 @@
+{
+  ChatRoom r=getRoom(room);
+  if (r != null) {
+    return r.getChatMessages();
+  }
+  log.warn("Getting messages from a non-existing room {}",room);
+  return "";
+}
