@@ -1,0 +1,7 @@
+{
+  if (packetLength >= HEADER_LENGTH) {
+    int header_len=getHeaderLength();
+    System.arraycopy(payload,0,packet,getHeaderLength(),len);
+    packetLength=header_len + len;
+  }
+}

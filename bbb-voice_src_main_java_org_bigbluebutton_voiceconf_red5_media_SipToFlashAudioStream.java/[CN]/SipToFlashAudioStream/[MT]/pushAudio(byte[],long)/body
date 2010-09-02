@@ -1,0 +1,28 @@
+{
+  if (!sentMetadata) {
+    IoBuffer mBuffer=IoBuffer.allocate(1024);
+    mBuffer.setAutoExpand(true);
+    mBuffer.clear();
+    mBuffer.put(fakeMetadata);
+    mBuffer.flip();
+    Notify notifyData=new Notify(mBuffer);
+    long ts=(System.currentTimeMillis() - startTimestamp);
+    notifyData.setTimestamp((int)ts);
+    audioBroadcastStream.dispatchEvent(notifyData);
+    notifyData.release();
+    sentMetadata=true;
+  }
+  IoBuffer buffer=IoBuffer.allocate(1024);
+  buffer.setAutoExpand(true);
+  buffer.clear();
+  buffer.put((byte)transcoder.getCodecId());
+  byte[] copy=new byte[audio.length];
+  System.arraycopy(audio,0,copy,0,audio.length);
+  buffer.put(copy);
+  buffer.flip();
+  AudioData audioData=new AudioData(buffer);
+  long ts=(System.currentTimeMillis() - startTimestamp);
+  audioData.setTimestamp((int)ts);
+  audioBroadcastStream.dispatchEvent(audioData);
+  audioData.release();
+}

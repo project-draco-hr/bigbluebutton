@@ -1,0 +1,5 @@
+{
+  socket=datagram_socket;
+  r_addr=null;
+  r_port=0;
+}

@@ -1,0 +1,3 @@
+{
+  if (packetLength >= HEADER_LENGTH)   packet[0]=(byte)((v << 6) | packet[0]);
+}

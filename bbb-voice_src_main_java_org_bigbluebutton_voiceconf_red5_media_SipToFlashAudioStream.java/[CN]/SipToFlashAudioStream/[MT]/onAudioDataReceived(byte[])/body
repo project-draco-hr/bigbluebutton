@@ -1,3 +1,0 @@
-{
-  transcoder.transcode(audioData,this);
-}

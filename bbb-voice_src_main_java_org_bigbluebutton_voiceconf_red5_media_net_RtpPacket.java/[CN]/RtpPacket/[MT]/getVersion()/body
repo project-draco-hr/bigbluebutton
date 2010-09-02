@@ -1,0 +1,4 @@
+{
+  if (packetLength >= HEADER_LENGTH)   return ((packet[0] & 0xC0) >> 6);
+ else   return 0;
+}

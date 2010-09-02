@@ -1,0 +1,6 @@
+{
+  if (packetLength >= HEADER_LENGTH) {
+    return getLong(packet,4);
+  }
+ else   return 0;
+}

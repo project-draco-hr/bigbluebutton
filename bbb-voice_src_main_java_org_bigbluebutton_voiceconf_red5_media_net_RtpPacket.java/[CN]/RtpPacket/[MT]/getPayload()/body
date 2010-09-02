@@ -1,0 +1,6 @@
+{
+  int len=packetLength - getHeaderLength();
+  byte[] payload=new byte[len];
+  System.arraycopy(packet,getHeaderLength(),payload,0,len);
+  return payload;
+}

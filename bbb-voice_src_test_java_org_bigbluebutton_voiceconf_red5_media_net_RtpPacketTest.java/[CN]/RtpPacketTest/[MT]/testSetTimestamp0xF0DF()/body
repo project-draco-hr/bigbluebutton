@@ -1,0 +1,4 @@
+{
+  rtpPacket.setTimestamp(0xF0DF);
+  Assert.assertEquals(rtpPacket.getTimestamp(),0xF0DF,"Timestamp should be 0xF0DF.");
+}

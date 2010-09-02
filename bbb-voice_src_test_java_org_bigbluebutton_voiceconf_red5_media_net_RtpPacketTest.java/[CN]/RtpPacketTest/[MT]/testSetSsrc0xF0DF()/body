@@ -1,0 +1,4 @@
+{
+  rtpPacket.setSsrc(0xF0DF);
+  Assert.assertEquals(rtpPacket.getSsrc(),0xF0DF,"SSRC should be 0xF0DF.");
+}

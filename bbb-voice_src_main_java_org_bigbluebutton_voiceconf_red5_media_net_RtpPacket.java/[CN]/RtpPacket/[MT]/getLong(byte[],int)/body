@@ -1,0 +1,3 @@
+{
+  return ((int)((data[start] << 24) & 0xFF000000) + ((int)(data[start + 1] << 16) & 0xFF0000) + ((int)(data[start + 2] << 8) & 0xFF00)+ ((int)(data[start + 3] & 0xFF)));
+}

@@ -1,0 +1,3 @@
+{
+  return ((int)(data[start] << 8) & 0xFF00) + ((int)(data[start + 1] & 0xFF));
+}

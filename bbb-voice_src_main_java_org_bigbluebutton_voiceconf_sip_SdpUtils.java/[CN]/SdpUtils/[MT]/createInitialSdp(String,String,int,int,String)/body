@@ -1,6 +1,7 @@
 {
   SessionDescriptor initialDescriptor=null;
   try {
+    log.debug("userName = [" + userName + "], viaAddress = ["+ viaAddress+ "], audioPort = ["+ audioPort+ "], videoPort = ["+ videoPort+ "], audioCodecsPrecedence = ["+ audioCodecsPrecedence+ "].");
     int audioCodecsNumber=CodecFactory.getInstance().getAvailableAudioCodecsCount();
     int videoCodecsNumber=CodecFactory.getInstance().getAvailableVideoCodecsCount();
     if ((audioCodecsNumber == 0) && (videoCodecsNumber == 0)) {
@@ -27,10 +28,13 @@
         String rtpmapParamValue=payloadId;
         rtpmapParamValue+=" " + audioCodecs[audioIndex].getCodecName();
         rtpmapParamValue+="/" + audioCodecs[audioIndex].getSampleRate() + "/1";
+        log.debug("Adding rtpmap for payload [" + payloadId + "] with value = ["+ rtpmapParamValue+ "].");
         audioAttributes.add(new AttributeField(Codec.ATTRIBUTE_RTPMAP,rtpmapParamValue));
         String[] codecMediaAttributes=audioCodecs[audioIndex].getCodecMediaAttributes();
         if (codecMediaAttributes != null) {
+          log.debug("Adding " + codecMediaAttributes.length + " audio codec media attributes.");
           for (int attribIndex=0; attribIndex < codecMediaAttributes.length; attribIndex++) {
+            log.debug("Adding audio media attribute [" + codecMediaAttributes[attribIndex] + "].");
             AttributeField newAttribute=parseAttributeField(codecMediaAttributes[attribIndex]);
             if (newAttribute != null) {
               audioAttributes.add(newAttribute);
@@ -45,16 +49,20 @@
       for (Enumeration attributesEnum=audioAttributes.elements(); attributesEnum.hasMoreElements(); ) {
         AttributeField audioAttribute=(AttributeField)attributesEnum.nextElement();
         if (initialDescriptor.getMediaDescriptor(Codec.MEDIA_TYPE_AUDIO) == null) {
+          log.debug("Creating audio media descriptor.");
           MediaField mf=new MediaField(Codec.MEDIA_TYPE_AUDIO,audioPort,0,"RTP/AVP",formatList);
           initialDescriptor.addMedia(mf,audioAttribute);
         }
  else {
+          log.debug("Just adding attribute.");
           initialDescriptor.getMediaDescriptor(Codec.MEDIA_TYPE_AUDIO).addAttribute(audioAttribute);
         }
       }
       String[] commonAudioMediaAttributes=CodecFactory.getInstance().getCommonAudioMediaAttributes();
       if (commonAudioMediaAttributes != null) {
+        log.debug("Adding " + commonAudioMediaAttributes.length + " common audio media attributes.");
         for (int attribIndex=0; attribIndex < commonAudioMediaAttributes.length; attribIndex++) {
+          log.debug("Adding common audio media attribute [" + commonAudioMediaAttributes[attribIndex] + "].");
           AttributeField newAttribute=parseAttributeField(commonAudioMediaAttributes[attribIndex]);
           if (newAttribute != null) {
             initialDescriptor.getMediaDescriptor(Codec.MEDIA_TYPE_AUDIO).addAttribute(newAttribute);
@@ -73,10 +81,13 @@
         String rtpmapParamValue=payloadId;
         rtpmapParamValue+=" " + videoCodecs[videoIndex].getCodecName();
         rtpmapParamValue+="/" + videoCodecs[videoIndex].getSampleRate() + "/1";
+        log.debug("Adding rtpmap for payload [" + payloadId + "] with value = ["+ rtpmapParamValue+ "].");
         videoAttributes.add(new AttributeField(Codec.ATTRIBUTE_RTPMAP,rtpmapParamValue));
         String[] codecMediaAttributes=videoCodecs[videoIndex].getCodecMediaAttributes();
         if (codecMediaAttributes != null) {
+          log.debug("Adding " + codecMediaAttributes.length + " video codec media attributes.");
           for (int attribIndex=0; attribIndex < codecMediaAttributes.length; attribIndex++) {
+            log.debug("Adding video media attribute [" + codecMediaAttributes[attribIndex] + "].");
             AttributeField newAttribute=parseAttributeField(codecMediaAttributes[attribIndex]);
             if (newAttribute != null) {
               videoAttributes.add(newAttribute);
@@ -100,7 +111,9 @@
       }
       String[] commonVideoMediaAttributes=CodecFactory.getInstance().getCommonAudioMediaAttributes();
       if (commonVideoMediaAttributes != null) {
+        log.debug("Adding " + commonVideoMediaAttributes.length + " common video media attributes.");
         for (int attribIndex=0; attribIndex < commonVideoMediaAttributes.length; attribIndex++) {
+          log.debug("Adding common video media attribute [" + commonVideoMediaAttributes[attribIndex] + "].");
           AttributeField newAttribute=parseAttributeField(commonVideoMediaAttributes[attribIndex]);
           if (newAttribute != null) {
             initialDescriptor.getMediaDescriptor(Codec.MEDIA_TYPE_VIDEO).addAttribute(newAttribute);
@@ -115,5 +128,6 @@
  catch (  Exception exception) {
     log.error("Failure creating initial SDP: " + exception.toString());
   }
+  log.debug("Created initial SDP");
   return initialDescriptor;
 }
