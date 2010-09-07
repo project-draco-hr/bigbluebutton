@@ -7,13 +7,16 @@
     try {
       rtpSocket.receive(rtpPacket);
       packetReceivedCounter++;
-      if (rtpPacket.getSeqNum() > lastSequenceNumber) {
-        lastSequenceNumber=rtpPacket.getSeqNum();
-        AudioByteData audioData=new AudioByteData(rtpPacket.getPayload());
-        if (listener != null)         listener.onAudioDataReceived(audioData);
- else         log.debug("No listener for incoming audio packet");
+      if (shouldHandlePacket(rtpPacket)) {
+        processRtpPacket(rtpPacket);
       }
  else {
+        if (isFirstPacket()) {
+          processRtpPacket(rtpPacket);
+        }
+ else {
+          log.info("Corrupt packet seqNum[rtpSeqNum=" + rtpPacket.getSeqNum() + ",lastSeqNum="+ lastSequenceNumber+ "][rtpTS="+ rtpPacket.getTimestamp()+ ",lastTS="+ lastPacketTimestamp+ "]");
+        }
       }
     }
  catch (    IOException e) {

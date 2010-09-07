@@ -1,0 +1,3 @@
+{
+  return rtpPacket.getSeqNum() > lastSequenceNumber && rtpPacket.getSeqNum() - lastSequenceNumber < 100;
+}
