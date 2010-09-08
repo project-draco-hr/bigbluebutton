@@ -1,0 +1,7 @@
+{
+  final RecordingAppletFrame raf=new RecordingAppletFrame(5);
+  raf.setHeight(300);
+  raf.setWidth(600);
+  raf.centerOnScreen();
+  raf.setVisible(true);
+}

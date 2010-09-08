@@ -2,3 +2,5 @@ int captureWidth
 int captureHeight
 int scaleWidth
 int scaleHeight
+int captureX
+int captureY

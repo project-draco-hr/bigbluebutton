@@ -1,0 +1,6 @@
+{
+  mTopLeft.x=x;
+  mTopLeft.y=y;
+  repaint();
+  if (dimensionsListener != null)   dimensionsListener.setScreenCoordinates(x,y);
+}

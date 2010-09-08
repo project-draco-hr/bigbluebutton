@@ -1,20 +1,20 @@
 {
+  raf=new RecordingAppletFrame(5);
+  raf.setHeight(300);
+  raf.setWidth(600);
+  raf.centerOnScreen();
+  raf.setVisible(true);
+  raf.setApplet(this);
   hostValue=getParameter("IP");
   String port=getParameter("PORT");
   if (port != null)   portValue=Integer.parseInt(port);
   roomValue=getParameter("ROOM");
-  cWidthValue=Integer.parseInt(getParameter("CAPTURE_WIDTH"));
-  cHeightValue=Integer.parseInt(getParameter("CAPTURE_HEIGHT"));
-  xValue=Integer.parseInt(getParameter("X"));
-  yValue=Integer.parseInt(getParameter("Y"));
+  cWidthValue=raf.getWidth();
+  cHeightValue=raf.getHeight();
+  xValue=raf.getX();
+  yValue=raf.getY();
   sWidthValue=cWidthValue;
-  String scaleWidth=getParameter("SCALE_WIDTH");
-  if (scaleWidth != null) {
-    sWidthValue=Integer.parseInt(scaleWidth);
-  }
   sHeightValue=cHeightValue;
-  String scaleHeight=getParameter("SCALE_HEIGHT");
-  if (scaleHeight != null)   sHeightValue=Integer.parseInt(scaleHeight);
   String qualityCapture=getParameter("SCALE_WITH_QUALITY");
   if (qualityCapture != null)   qualityValue=Boolean.parseBoolean(qualityCapture);
   String aspectRatio=getParameter("MAINTAIN_ASPECT_RATIO");

@@ -1,0 +1,8 @@
+{
+  super(frame);
+  super.setAlwaysOnTop(true);
+  frame.setAlwaysOnTop(true);
+  mOffsetLocator=ol;
+  add(content);
+  pack();
+}

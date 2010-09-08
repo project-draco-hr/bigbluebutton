@@ -1,0 +1,11 @@
+{
+  final BufferedImage image=mRobot.createScreenCapture(getFramedRectangle());
+  try {
+    File outputfile=File.createTempFile("screencap-",".png");
+    ImageIO.write(image,"png",outputfile);
+    System.out.println("selected area captured to: " + outputfile.getAbsolutePath());
+  }
+ catch (  IOException ioe) {
+    throw new RuntimeException("could not capture selected area as an image: " + ioe.getMessage(),ioe);
+  }
+}

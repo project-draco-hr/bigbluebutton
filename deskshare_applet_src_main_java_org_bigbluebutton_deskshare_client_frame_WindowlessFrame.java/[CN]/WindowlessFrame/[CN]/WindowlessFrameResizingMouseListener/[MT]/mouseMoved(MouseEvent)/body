@@ -1,0 +1,18 @@
+{
+  final Point mouse=e.getLocationOnScreen();
+  if (isNearTopLeftCorner(mouse)) {
+    e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR));
+  }
+ else   if (isNearBottomLeftCorner(mouse)) {
+    e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR));
+  }
+ else   if (isNearTopRightCorner(mouse)) {
+    e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR));
+  }
+ else   if (isNearBottomRightCorner(mouse)) {
+    e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR));
+  }
+ else {
+    e.getComponent().setCursor(Cursor.getDefaultCursor());
+  }
+}

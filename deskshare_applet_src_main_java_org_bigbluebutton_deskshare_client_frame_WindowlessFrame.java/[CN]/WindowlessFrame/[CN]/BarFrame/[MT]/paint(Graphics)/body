@@ -1,0 +1,11 @@
+{
+  if (shouldPaintRectangle()) {
+    Graphics2D g2=(Graphics2D)g;
+    g2.setStroke(mBorderStroke);
+    g2.setPaint(mGradient);
+    g2.drawRect(0,0,getWidth(),getHeight());
+  }
+ else {
+    super.paint(g);
+  }
+}
