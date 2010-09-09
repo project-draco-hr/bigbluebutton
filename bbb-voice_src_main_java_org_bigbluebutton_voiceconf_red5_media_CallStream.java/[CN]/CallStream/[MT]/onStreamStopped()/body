@@ -1,2 +1,4 @@
 {
+  log.error("ERRROOOOORRRRRR: STREAM HAS STOPPED " + connInfo.getSocket().getLocalPort());
+  if (callStreamObserver != null)   callStreamObserver.onCallStreamStopped();
 }

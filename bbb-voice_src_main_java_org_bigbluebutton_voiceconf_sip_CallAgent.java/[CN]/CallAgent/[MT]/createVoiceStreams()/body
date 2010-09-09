@@ -14,6 +14,7 @@
     if ((callStream == null) && (sipCodec != null)) {
       try {
         callStream=callStreamFactory.createCallStream(sipCodec,connInfo);
+        callStream.addCallStreamObserver(this);
         callStream.start();
         notifyListenersOnCallConnected(callStream.getTalkStreamName(),callStream.getListenStreamName());
       }
