@@ -1,3 +1,0 @@
-{
-  return lastSequenceNumber == 0 && lastPacketTimestamp == 0;
-}
