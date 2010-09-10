@@ -1,7 +1,7 @@
 {
-  boolean rolledOver=lastSequenceNumber - rtpPacket.getSeqNum() > 65000;
-  if (rolledOver) {
+  if (lastSequenceNumber - rtpPacket.getSeqNum() > 65000) {
     log.debug("Packet rolling over seqNum[rtpSeqNum=" + rtpPacket.getSeqNum() + ",lastSeqNum="+ lastSequenceNumber+ "][rtpTS="+ rtpPacket.getTimestamp()+ ",lastTS="+ lastPacketTimestamp+ "][port="+ rtpSocket.getDatagramSocket().getLocalPort()+ "]");
+    return true;
   }
-  return rolledOver;
+  return false;
 }
