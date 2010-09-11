@@ -1,0 +1,4 @@
+{
+  log.info("Call stream has been stopped");
+  notifyListenersOfOnCallClosed();
+}

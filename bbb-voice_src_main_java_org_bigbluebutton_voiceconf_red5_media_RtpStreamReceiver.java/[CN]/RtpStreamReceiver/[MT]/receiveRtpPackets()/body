@@ -11,19 +11,13 @@
         processRtpPacket(rtpPacket);
       }
  else {
-        if (isFirstPacket()) {
-          processRtpPacket(rtpPacket);
-        }
- else {
-          log.info("Corrupt packet seqNum[rtpSeqNum=" + rtpPacket.getSeqNum() + ",lastSeqNum="+ lastSequenceNumber+ "][rtpTS="+ rtpPacket.getTimestamp()+ ",lastTS="+ lastPacketTimestamp+ "]");
-        }
+        log.debug("Corrupt packet seqNum[rtpSeqNum=" + rtpPacket.getSeqNum() + ",lastSeqNum="+ lastSequenceNumber+ "][rtpTS="+ rtpPacket.getTimestamp()+ ",lastTS="+ lastPacketTimestamp+ "][port="+ rtpSocket.getDatagramSocket().getLocalPort()+ "]");
       }
     }
  catch (    IOException e) {
       receivePackets=false;
     }
   }
-  log.debug("Rtp Receiver stopped.");
-  log.debug("Packet Received = " + packetReceivedCounter + ".");
+  log.debug("Rtp Receiver stopped. Packet Received = " + packetReceivedCounter + ".");
   if (listener != null)   listener.onStoppedReceiving();
 }
