@@ -1,0 +1,26 @@
+{
+  DocumentBuilderFactory dbfac=DocumentBuilderFactory.newInstance();
+  DocumentBuilder docBuilder;
+  try {
+    docBuilder=dbfac.newDocumentBuilder();
+    Document doc=docBuilder.newDocument();
+    Element node=doc.createElement(module);
+    ArrayList keysarray=new ArrayList(keyvalues.keySet());
+    for (int i=0; i < keysarray.size(); i++) {
+      String key=(String)keysarray.get(i);
+      node.setAttribute(key,keyvalues.get(key) + "");
+    }
+    doc.appendChild(node);
+    Transformer transformer=TransformerFactory.newInstance().newTransformer();
+    transformer.setOutputProperty(OutputKeys.INDENT,"yes");
+    StreamResult result=new StreamResult(new StringWriter());
+    DOMSource source=new DOMSource(doc);
+    transformer.transform(source,result);
+    String xmlString=result.getWriter().toString();
+    return xmlString;
+  }
+ catch (  Exception e) {
+    log.warn("Exception {}",e.getMessage());
+  }
+  return "";
+}

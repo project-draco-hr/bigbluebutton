@@ -5,5 +5,5 @@
   args.add(status);
   args.add(value);
   so.sendMessage("participantStatusChange",args);
-  recordEvent(parseParticipantsToJSON(args,this.RECORD_EVENT_STATUS_CHANGE));
+  recordEvent(parseParticipantsToXML(args,this.RECORD_EVENT_STATUS_CHANGE));
 }

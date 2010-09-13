@@ -4,5 +4,5 @@
   args.add(p.toMap());
   log.debug("Sending participantJoined {} to client.",p.getUserid());
   so.sendMessage("participantJoined",args);
-  recordEvent(parseParticipantsToJSON(args,this.RECORD_EVENT_JOIN));
+  recordEvent(parseParticipantsToXML(args,this.RECORD_EVENT_JOIN));
 }
