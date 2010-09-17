@@ -1,6 +1,0 @@
-{
-  checksum.reset();
-  for (int i=0; i < pixels.length; i++) {
-    checksum.update(pixels[i]);
-  }
-}
