@@ -1,3 +1,3 @@
 {
-  return isFirstPacket(rtpPacket) || validSeqNum(rtpPacket) || seqNumRolledOver(rtpPacket);
+  return isFirstPacket(rtpPacket) || isMarkerPacket(rtpPacket) || validSeqNum(rtpPacket)|| seqNumRolledOver(rtpPacket);
 }
