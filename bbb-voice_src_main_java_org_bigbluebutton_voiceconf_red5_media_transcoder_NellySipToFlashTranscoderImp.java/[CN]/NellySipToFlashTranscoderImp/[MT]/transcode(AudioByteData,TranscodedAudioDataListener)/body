@@ -1,9 +1,3 @@
 {
-  try {
-    audioOutputStream.write(audioData.getData());
-    transcodeAudioStream(listener);
-  }
- catch (  IOException e) {
-    log.error(StackTraceUtil.getStackTrace(e));
-  }
+  transcodePcmToNellymoser(audioData.getData(),listener);
 }
