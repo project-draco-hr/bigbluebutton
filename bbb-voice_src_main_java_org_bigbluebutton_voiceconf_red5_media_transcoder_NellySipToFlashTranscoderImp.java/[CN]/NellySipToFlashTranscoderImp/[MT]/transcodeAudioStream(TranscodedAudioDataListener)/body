@@ -1,0 +1,13 @@
+{
+  int numAvailBytes=0;
+  try {
+    numAvailBytes=audioInputStream.available();
+    if (numAvailBytes < audioCodec.getIncomingDecodedFrameSize())     return;
+    byte[] codedBuffer=new byte[audioCodec.getIncomingDecodedFrameSize()];
+    audioInputStream.read(codedBuffer);
+    transcodePcmToNellymoser(codedBuffer,listener);
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+}
