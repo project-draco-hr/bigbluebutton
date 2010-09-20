@@ -7,12 +7,7 @@
     try {
       rtpSocket.receive(rtpPacket);
       packetReceivedCounter++;
-      if (shouldHandlePacket(rtpPacket)) {
-        processRtpPacket(rtpPacket);
-      }
- else {
-        log.debug("Corrupt packet seqNum[rtpSeqNum=" + rtpPacket.getSeqNum() + ",lastSeqNum="+ lastSequenceNumber+ "][rtpTS="+ rtpPacket.getTimestamp()+ ",lastTS="+ lastPacketTimestamp+ "][port="+ rtpSocket.getDatagramSocket().getLocalPort()+ "]");
-      }
+      processRtpPacket(rtpPacket);
     }
  catch (    IOException e) {
       receivePackets=false;

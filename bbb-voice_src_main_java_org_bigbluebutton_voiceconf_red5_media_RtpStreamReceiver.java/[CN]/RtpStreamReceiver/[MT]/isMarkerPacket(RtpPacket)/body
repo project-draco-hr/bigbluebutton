@@ -1,0 +1,7 @@
+{
+  if (rtpPacket.hasMarker()) {
+    log.debug("Marked packet seqNum[rtpSeqNum=" + rtpPacket.getSeqNum() + ",lastSeqNum="+ lastSequenceNumber+ "][rtpTS="+ rtpPacket.getTimestamp()+ ",lastTS="+ lastPacketTimestamp+ "][port="+ rtpSocket.getDatagramSocket().getLocalPort()+ "]");
+    return true;
+  }
+  return false;
+}
