@@ -1,13 +1,25 @@
 {
   int packetReceivedCounter=0;
   int internalBufferLength=payloadLength + RTP_HEADER_SIZE;
-  byte[] internalBuffer=new byte[internalBufferLength];
-  RtpPacket rtpPacket=new RtpPacket(internalBuffer,internalBufferLength);
   while (receivePackets) {
     try {
+      byte[] internalBuffer=new byte[internalBufferLength];
+      RtpPacket rtpPacket=new RtpPacket(internalBuffer,internalBufferLength);
       rtpSocket.receive(rtpPacket);
       packetReceivedCounter++;
-      processRtpPacket(rtpPacket);
+      if (rtpPacket.isRtcpPacket()) {
+        log.debug("RTCP packet [" + rtpPacket.getRtcpPayloadType() + ", length="+ rtpPacket.getPayloadLength()+ "] seqNum[rtpSeqNum="+ rtpPacket.getSeqNum()+ ",lastSeqNum="+ lastSequenceNumber+ "][rtpTS="+ rtpPacket.getTimestamp()+ ",lastTS="+ lastPacketTimestamp+ "][port="+ rtpSocket.getDatagramSocket().getLocalPort()+ "]");
+      }
+ else {
+        if (shouldHandlePacket(rtpPacket)) {
+          processRtpPacket(rtpPacket);
+        }
+ else {
+          log.debug("Corrupt packet [" + rtpPacket.getRtcpPayloadType() + ","+ rtpPacket.getPayloadType()+ ", length="+ rtpPacket.getPayloadLength()+ "] seqNum[rtpSeqNum="+ rtpPacket.getSeqNum()+ ",lastSeqNum="+ lastSequenceNumber+ "][rtpTS="+ rtpPacket.getTimestamp()+ ",lastTS="+ lastPacketTimestamp+ "][port="+ rtpSocket.getDatagramSocket().getLocalPort()+ "]");
+          if (lastPacketDropped)           successivePacketDroppedCount++;
+ else           lastPacketDropped=true;
+        }
+      }
     }
  catch (    IOException e) {
       receivePackets=false;

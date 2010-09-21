@@ -1,7 +1,7 @@
 {
   if (firstPacket) {
     firstPacket=false;
-    log.debug("First packet seqNum[rtpSeqNum=" + rtpPacket.getSeqNum() + ",lastSeqNum="+ lastSequenceNumber+ "][rtpTS="+ rtpPacket.getTimestamp()+ ",lastTS="+ lastPacketTimestamp+ "][port="+ rtpSocket.getDatagramSocket().getLocalPort()+ "]");
+    log.debug("First packet [" + rtpPacket.getPayloadType() + ", length="+ rtpPacket.getPayloadLength()+ "] seqNum[rtpSeqNum="+ rtpPacket.getSeqNum()+ ",lastSeqNum="+ lastSequenceNumber+ "][rtpTS="+ rtpPacket.getTimestamp()+ ",lastTS="+ lastPacketTimestamp+ "][port="+ rtpSocket.getDatagramSocket().getLocalPort()+ "]");
     return true;
   }
   return false;
