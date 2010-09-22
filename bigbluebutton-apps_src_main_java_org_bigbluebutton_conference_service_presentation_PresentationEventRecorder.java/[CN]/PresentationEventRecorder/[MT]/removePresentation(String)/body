@@ -3,5 +3,5 @@
   ArrayList list=new ArrayList();
   list.add(name);
   so.sendMessage("removePresentationCallback",list);
-  recordEvent(parsePresentationToXML(list,this.RECORD_EVENT_REMOVE_PRESENTATION));
+  recordEvent(parsePresentationToJSON(list,this.RECORD_EVENT_REMOVE_PRESENTATION));
 }
