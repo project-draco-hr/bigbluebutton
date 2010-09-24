@@ -21,8 +21,7 @@
   buffer.put(copy);
   buffer.flip();
   AudioData audioData=new AudioData(buffer);
-  long ts=(System.currentTimeMillis() - startTimestamp);
-  audioData.setTimestamp((int)ts);
+  audioData.setTimestamp((int)timestamp);
   audioBroadcastStream.dispatchEvent(audioData);
   audioData.release();
 }
