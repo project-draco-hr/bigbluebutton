@@ -9,6 +9,9 @@
       rtpPacket=new RtpPacket(internalBuffer,internalBufferLength);
       rtpSocket.receive(rtpPacket);
       packetReceivedCounter++;
+      if (shouldDropDelayedPacket(rtpPacket)) {
+        continue;
+      }
       if (rtpPacket.isRtcpPacket()) {
         if (log.isDebugEnabled())         log.debug("RTCP packet [" + rtpPacket.getRtcpPayloadType() + ", length="+ rtpPacket.getPayloadLength()+ "] seqNum[rtpSeqNum="+ rtpPacket.getSeqNum()+ ",lastSeqNum="+ lastSequenceNumber+ "][rtpTS="+ rtpPacket.getTimestamp()+ ",lastTS="+ lastPacketTimestamp+ "][port="+ rtpSocket.getDatagramSocket().getLocalPort()+ "]");
       }
