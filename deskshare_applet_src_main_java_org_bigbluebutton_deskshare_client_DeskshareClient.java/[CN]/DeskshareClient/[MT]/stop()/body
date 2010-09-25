@@ -1,7 +1,7 @@
 {
   System.out.println("Stop");
   captureTaker.stop();
-  mTaker.stop();
+  mouseLocTaker.stop();
   if (connected && started) {
     try {
       sender.stop();

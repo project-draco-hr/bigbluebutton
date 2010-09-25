@@ -1,0 +1,17 @@
+{
+  room=builder.room;
+  host=builder.host;
+  port=builder.port;
+  captureWidth=builder.captureWidth;
+  captureHeight=builder.captureHeight;
+  scaleWidth=builder.scaleWidth;
+  scaleHeight=builder.scaleHeight;
+  quality=builder.quality;
+  aspectRatio=builder.aspectRatio;
+  x=builder.x;
+  y=builder.y;
+  httpTunnel=builder.httpTunnel;
+  sysTrayIcon=builder.sysTrayIcon;
+  fullScreen=builder.fullScreen;
+  enableTrayActions=builder.enableTrayActions;
+}

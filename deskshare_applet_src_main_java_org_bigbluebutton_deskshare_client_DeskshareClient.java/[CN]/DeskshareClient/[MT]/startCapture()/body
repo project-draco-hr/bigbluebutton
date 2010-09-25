@@ -1,10 +1,7 @@
 {
-  if (aspectRatio) {
-    recalculateScaleDimensionsToMaintainAspectRatio();
-  }
   capture=new ScreenCapture(x,y,captureWidth,captureHeight,scaleWidth,scaleHeight,quality);
   captureTaker=new ScreenCaptureTaker(capture);
-  mTaker=new MouseLocationTaker(captureWidth,captureHeight,scaleWidth,scaleHeight,x,y);
+  mouseLocTaker=new MouseLocationTaker(captureWidth,captureHeight,scaleWidth,scaleHeight,x,y);
   Dimension screenDim=new Dimension(scaleWidth,scaleHeight);
   Dimension tileDim=new Dimension(blockWidth,blockHeight);
   blockManager=new BlockManager();
@@ -19,9 +16,9 @@
     captureTakerThread=new Thread(captureTaker,"ScreenCaptureTaker");
     captureTakerThread.start();
     sender.start();
-    mTaker.start();
-    mouseLocationTakerThread=new Thread(mTaker,"MouseLocationTakerThread");
-    mTaker.addListener(this);
+    mouseLocTaker.start();
+    mouseLocationTakerThread=new Thread(mouseLocTaker,"MouseLocationTakerThread");
+    mouseLocTaker.addListener(this);
     mouseLocationTakerThread.start();
   }
  else {

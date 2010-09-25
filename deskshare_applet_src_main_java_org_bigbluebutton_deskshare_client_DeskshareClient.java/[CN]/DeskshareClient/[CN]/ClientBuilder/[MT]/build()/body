@@ -1,0 +1,9 @@
+{
+  if (fullScreen) {
+    setupFullScreen();
+  }
+ else {
+    setupCaptureRegion();
+  }
+  return new DeskshareClient(this);
+}
