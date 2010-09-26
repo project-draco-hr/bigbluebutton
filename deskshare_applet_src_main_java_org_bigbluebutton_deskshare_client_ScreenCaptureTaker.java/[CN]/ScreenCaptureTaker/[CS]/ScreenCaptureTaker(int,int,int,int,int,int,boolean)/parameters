@@ -1,0 +1,7 @@
+int x
+int y
+int captureWidth
+int captureHeight
+int scaleWidth
+int scaleHeight
+boolean quality

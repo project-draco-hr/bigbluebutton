@@ -1,25 +1,22 @@
 {
-  capture=new ScreenCapture(x,y,captureWidth,captureHeight,scaleWidth,scaleHeight,quality);
-  captureTaker=new ScreenCaptureTaker(capture);
+  captureTaker=new ScreenCaptureTaker(x,y,captureWidth,captureHeight,scaleWidth,scaleHeight,quality);
   mouseLocTaker=new MouseLocationTaker(captureWidth,captureHeight,scaleWidth,scaleHeight,x,y);
   Dimension screenDim=new Dimension(scaleWidth,scaleHeight);
   Dimension tileDim=new Dimension(blockWidth,blockHeight);
   blockManager=new BlockManager();
-  blockManager.addListener(this);
   blockManager.initialize(screenDim,tileDim);
   sender=new NetworkStreamSender(blockManager,host,port,room,screenDim,tileDim,httpTunnel);
   connected=sender.connect();
   if (connected) {
-    sender.addNetworkConnectionListener(this);
-    captureTaker.addListener(this);
+    ChangedBlocksListener changedBlocksListener=new ChangedBlockListenerImp(sender);
+    blockManager.addListener(changedBlocksListener);
+    ScreenCaptureListener screenCapListener=new ScreenCaptureListenerImp(blockManager);
+    captureTaker.addListener(screenCapListener);
     captureTaker.start();
-    captureTakerThread=new Thread(captureTaker,"ScreenCaptureTaker");
-    captureTakerThread.start();
     sender.start();
+    MouseLocationListenerImp mouseLocListener=new MouseLocationListenerImp(sender,room);
+    mouseLocTaker.addListener(mouseLocListener);
     mouseLocTaker.start();
-    mouseLocationTakerThread=new Thread(mouseLocTaker,"MouseLocationTakerThread");
-    mouseLocTaker.addListener(this);
-    mouseLocationTakerThread.start();
   }
  else {
     notifyListener(ExitCode.DESKSHARE_SERVICE_UNAVAILABLE);

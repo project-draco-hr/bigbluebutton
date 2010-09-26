@@ -1,0 +1,8 @@
+{
+  CaptureRegionListener crl=new CaptureRegionListenerImp(captureTaker,mouseLocTaker);
+  CaptureRegionFrame frame=new CaptureRegionFrame(crl,3);
+  frame.setHeight(captureHeight);
+  frame.setWidth(captureWidth);
+  frame.setLocation(x,y);
+  frame.setVisible(true);
+}

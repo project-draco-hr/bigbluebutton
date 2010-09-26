@@ -1,0 +1,4 @@
+{
+  sct.setCaptureCoordinates(x,y);
+  mlt.setCaptureCoordinates(x,y);
+}

@@ -1,3 +1,13 @@
 {
   trackMouseLocation=true;
+  mouseLocRunner=new Runnable(){
+    public void run(){
+      while (trackMouseLocation) {
+        takeMouseLocation();
+        pause(250);
+      }
+    }
+  }
+;
+  mouseLocTakerExec.execute(mouseLocRunner);
 }

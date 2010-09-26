@@ -1,5 +1,0 @@
-{
-  super(borderWidth);
-  this.client=client;
-  setToolbar(createToolbar());
-}

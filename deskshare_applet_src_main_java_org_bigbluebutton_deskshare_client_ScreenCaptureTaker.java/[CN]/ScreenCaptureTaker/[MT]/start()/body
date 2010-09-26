@@ -1,3 +1,14 @@
 {
   startCapture=true;
+  screenCapRunner=new Runnable(){
+    public void run(){
+      while (startCapture) {
+        captureScreen();
+        pause(200);
+      }
+      System.out.println("Stopping screen capture.");
+    }
+  }
+;
+  screenCapTakerExec.execute(screenCapRunner);
 }

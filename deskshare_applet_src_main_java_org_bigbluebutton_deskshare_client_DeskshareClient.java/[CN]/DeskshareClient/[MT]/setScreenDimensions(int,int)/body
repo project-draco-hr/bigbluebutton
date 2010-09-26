@@ -1,4 +1,0 @@
-{
-  capture.setWidth(width);
-  capture.setHeight(height);
-}
