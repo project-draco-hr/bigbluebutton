@@ -1,7 +1,6 @@
 {
   CaptureRegionListener crl=new CaptureRegionListenerImp(this);
   frame=new CaptureRegionFrame(crl,5);
-  System.out.println("Init [" + ssi.x + ","+ ssi.y+ "]["+ ssi.captureWidth+ ","+ ssi.captureHeight+ "]");
   frame.setHeight(ssi.captureHeight);
   frame.setWidth(ssi.captureWidth);
   frame.setLocation(ssi.x,ssi.y);

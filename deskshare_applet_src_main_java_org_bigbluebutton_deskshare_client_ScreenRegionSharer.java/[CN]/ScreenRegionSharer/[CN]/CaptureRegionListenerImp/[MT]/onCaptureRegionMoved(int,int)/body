@@ -1,6 +1,5 @@
 {
   ssi.x=x;
   ssi.y=y;
-  System.out.println("Moving [" + ssi.x + ","+ ssi.y+ "]["+ ssi.captureWidth+ ","+ ssi.captureHeight+ "]");
   if (sharer != null)   sharer.setCaptureCoordinates(x,y);
 }
