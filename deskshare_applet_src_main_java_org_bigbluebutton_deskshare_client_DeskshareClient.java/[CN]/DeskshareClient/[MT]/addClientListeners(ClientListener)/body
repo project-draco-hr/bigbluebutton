@@ -1,9 +1,0 @@
-{
-  listener=l;
-  SystemTrayListener systrayListener=new SystemTrayListenerImp(listener);
-  tray.addSystemTrayListener(systrayListener);
-  tray.displayIconOnSystemTray(sysTrayIcon,enableTrayActions);
-  NetworkConnectionListener netConnListener=new NetworkConnectionListenerImp(listener);
-  if (sender != null)   sender.addNetworkConnectionListener(netConnListener);
- else   System.out.println("ERROR: Cannot add listener to network connection.");
-}

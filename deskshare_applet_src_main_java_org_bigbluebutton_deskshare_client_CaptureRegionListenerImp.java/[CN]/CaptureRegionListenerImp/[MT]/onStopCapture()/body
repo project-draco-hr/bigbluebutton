@@ -1,4 +1,0 @@
-{
-  sct.stop();
-  mlt.stop();
-}

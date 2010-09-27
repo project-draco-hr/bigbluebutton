@@ -1,0 +1,5 @@
+{
+  sharer=new ScreenSharerRunner(ssi);
+  sharer.addClientListener(listener);
+  sharer.startSharing();
+}
