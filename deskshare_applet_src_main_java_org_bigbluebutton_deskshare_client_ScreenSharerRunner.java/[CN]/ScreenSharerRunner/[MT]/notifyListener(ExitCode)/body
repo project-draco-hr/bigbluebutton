@@ -1,6 +1,6 @@
 {
   if (listener != null) {
-    System.out.println("Notifying app of client stopping.");
+    System.out.println(NAME + "Notifying app of client stopping.");
     listener.onClientStop(reason);
   }
 }

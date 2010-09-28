@@ -5,5 +5,5 @@
   tray.displayIconOnSystemTray(ssi.sysTrayIcon,ssi.enableTrayActions);
   NetworkConnectionListener netConnListener=new NetworkConnectionListenerImp(listener);
   if (sender != null)   sender.addNetworkConnectionListener(netConnListener);
- else   System.out.println("ERROR: Cannot add listener to network connection.");
+ else   System.out.println(NAME + "ERROR - Cannot add listener to network connection.");
 }

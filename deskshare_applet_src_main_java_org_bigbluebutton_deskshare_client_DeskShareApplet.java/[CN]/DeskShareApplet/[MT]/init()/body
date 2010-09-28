@@ -3,17 +3,7 @@
   String port=getParameter("PORT");
   if (port != null)   portValue=Integer.parseInt(port);
   roomValue=getParameter("ROOM");
-  sWidthValue=cWidthValue;
-  String scaleWidth=getParameter("SCALE_WIDTH");
-  if (scaleWidth != null)   sWidthValue=Integer.parseInt(scaleWidth);
-  sHeightValue=cHeightValue;
-  String scaleHeight=getParameter("SCALE_HEIGHT");
-  if (scaleHeight != null)   sHeightValue=Integer.parseInt(scaleHeight);
-  String qualityCapture=getParameter("SCALE_WITH_QUALITY");
-  if (qualityCapture != null)   qualityValue=Boolean.parseBoolean(qualityCapture);
-  String aspectRatio=getParameter("MAINTAIN_ASPECT_RATIO");
-  if (aspectRatio != null)   aspectRatioValue=Boolean.parseBoolean(aspectRatio);
-  String captureFullScreen=getParameter("CAPTURE_FULL_SCREEN");
+  String captureFullScreen=getParameter("FULL_SCREEN");
   if (captureFullScreen != null)   fullScreenValue=Boolean.parseBoolean(captureFullScreen);
   String tunnel=getParameter("HTTP_TUNNEL");
   if (tunnel != null)   tunnelValue=Boolean.parseBoolean(tunnel);

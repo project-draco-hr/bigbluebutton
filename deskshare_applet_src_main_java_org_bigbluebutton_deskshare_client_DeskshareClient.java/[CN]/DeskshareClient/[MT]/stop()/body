@@ -1,4 +1,4 @@
 {
-  System.out.println("Stop");
+  System.out.println(NAME + "Stop");
   screenSharer.stop();
 }

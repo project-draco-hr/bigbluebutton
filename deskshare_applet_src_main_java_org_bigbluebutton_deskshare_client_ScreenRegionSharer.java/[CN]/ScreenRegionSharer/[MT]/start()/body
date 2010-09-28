@@ -5,5 +5,5 @@
   frame.setWidth(ssi.captureWidth);
   frame.setLocation(ssi.x,ssi.y);
   frame.setVisible(true);
-  System.out.println("Launching Screen Capture Frame");
+  System.out.println(NAME + "Launching Screen Capture Frame");
 }

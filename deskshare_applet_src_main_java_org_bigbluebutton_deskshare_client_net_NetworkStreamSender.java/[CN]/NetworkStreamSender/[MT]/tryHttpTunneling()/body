@@ -5,7 +5,7 @@
     return true;
   }
  catch (  ConnectionException e) {
-    System.out.println("Problem connecting to " + host);
+    System.out.println(NAME + "Problem connecting to " + host);
   }
   return false;
 }

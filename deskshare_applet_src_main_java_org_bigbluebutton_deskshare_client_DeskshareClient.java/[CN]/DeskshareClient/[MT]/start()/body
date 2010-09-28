@@ -1,8 +1,10 @@
 {
   if (ssi.fullScreen) {
+    System.out.println(NAME + "Sharing full screen.");
     shareFullScreen();
   }
  else {
+    System.out.println(NAME + "Sharing region of screen.");
     shareWithFrame();
   }
 }
