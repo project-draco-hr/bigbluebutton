@@ -1,0 +1,16 @@
+{
+  System.out.println(NAME + "Stopping");
+  captureTaker.stop();
+  mouseLocTaker.stop();
+  if (connected && started) {
+    try {
+      sender.stop();
+      started=false;
+      connected=false;
+    }
+ catch (    ConnectionException e) {
+      e.printStackTrace();
+    }
+  }
+  tray.removeIconFromSystemTray();
+}

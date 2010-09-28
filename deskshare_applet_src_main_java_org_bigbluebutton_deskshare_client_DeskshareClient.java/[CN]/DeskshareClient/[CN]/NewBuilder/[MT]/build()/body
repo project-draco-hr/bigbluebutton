@@ -1,0 +1,25 @@
+{
+  if (fullScreen) {
+    setupFullScreen();
+  }
+ else {
+    setupCaptureRegion();
+  }
+  ScreenShareInfo ssi=new ScreenShareInfo();
+  ssi.host=host;
+  ssi.port=port;
+  ssi.room=room;
+  ssi.captureWidth=captureWidth;
+  ssi.captureHeight=captureHeight;
+  ssi.scaleWidth=scaleWidth;
+  ssi.scaleHeight=scaleHeight;
+  ssi.quality=quality;
+  ssi.aspectRatio=aspectRatio;
+  ssi.x=x;
+  ssi.y=y;
+  ssi.httpTunnel=httpTunnel;
+  ssi.fullScreen=fullScreen;
+  ssi.sysTrayIcon=sysTrayIcon;
+  ssi.enableTrayActions=enableTrayActions;
+  return new DeskshareClient(ssi);
+}

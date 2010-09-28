@@ -2,5 +2,8 @@
   mTopLeft.x=x;
   mTopLeft.y=y;
   repaint();
-  if (dimensionsListener != null)   dimensionsListener.setScreenCoordinates(x,y);
+  if (captureRegionListener != null) {
+    Rectangle rect=getFramedRectangle();
+    captureRegionListener.onCaptureRegionMoved(rect.x,rect.y);
+  }
 }

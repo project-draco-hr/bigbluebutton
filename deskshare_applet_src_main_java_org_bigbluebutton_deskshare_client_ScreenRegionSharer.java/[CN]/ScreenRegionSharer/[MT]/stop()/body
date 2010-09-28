@@ -1,0 +1,4 @@
+{
+  sharer.stopSharing();
+  System.out.println(NAME + "Closing Screen Capture Frame");
+}

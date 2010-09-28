@@ -1,5 +1,0 @@
-{
-  capture.setX(x);
-  capture.setY(y);
-  mTaker.setCaptureCoordinates(x,y);
-}

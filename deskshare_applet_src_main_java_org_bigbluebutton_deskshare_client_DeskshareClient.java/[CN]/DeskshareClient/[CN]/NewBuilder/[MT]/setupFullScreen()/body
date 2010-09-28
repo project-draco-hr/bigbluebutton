@@ -1,0 +1,8 @@
+{
+  java.awt.Dimension fullScreenSize=Toolkit.getDefaultToolkit().getScreenSize();
+  captureWidth=(int)fullScreenSize.getWidth();
+  captureHeight=(int)fullScreenSize.getHeight();
+  x=0;
+  y=0;
+  calculateDimensionsToMaintainAspectRation();
+}

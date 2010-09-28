@@ -1,9 +1,0 @@
-{
-  System.out.println("Start Sharing");
-  client=new DeskshareClient.Builder().host(hostValue).port(portValue).room(roomValue).captureWidth(cWidthValue).captureHeight(cHeightValue).scaleWidth(sWidthValue).scaleHeight(sHeightValue).quality(qualityValue).aspectRatio(aspectRatioValue).x(xValue).y(yValue).httpTunnel(tunnelValue).trayIcon(icon).enableTrayIconActions(false).build();
-  raf.setDimensionsListener(this);
-  isSharing=true;
-  client.start();
-  raf.btnStartStop.setLabel("Stop Sharing");
-  raf.removeResizeListeners();
-}

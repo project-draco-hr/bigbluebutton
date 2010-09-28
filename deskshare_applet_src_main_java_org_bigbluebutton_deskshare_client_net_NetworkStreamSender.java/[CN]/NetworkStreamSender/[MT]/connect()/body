@@ -11,12 +11,12 @@
     }
   }
   if ((failedAttempts == numThreads) && httpTunnel) {
-    System.out.println("Trying http tunneling");
+    System.out.println(NAME + "Trying http tunneling");
     failedAttempts=0;
     numRunningThreads=0;
     if (tryHttpTunneling()) {
       tunneling=true;
-      System.out.println("Will use http tunneling");
+      System.out.println(NAME + "Will use http tunneling");
       httpSenders=new NetworkHttpStreamSender[numThreads];
       for (int i=0; i < numThreads; i++) {
         try {
@@ -49,6 +49,6 @@
       return true;
     }
   }
-  System.out.println("Http tunneling failed.");
+  System.out.println(NAME + "Http tunneling failed.");
   return false;
 }

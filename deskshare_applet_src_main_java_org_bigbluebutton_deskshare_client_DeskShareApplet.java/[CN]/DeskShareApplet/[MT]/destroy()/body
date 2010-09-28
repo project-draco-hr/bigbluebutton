@@ -1,4 +1,4 @@
 {
-  System.out.println("Destroy");
+  System.out.println(NAME + "Destroy");
   stop();
 }

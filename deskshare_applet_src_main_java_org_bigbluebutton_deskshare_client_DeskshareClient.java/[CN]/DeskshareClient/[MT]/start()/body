@@ -1,13 +1,10 @@
 {
-  System.out.println(LICENSE_HEADER);
-  System.out.println("Desktop Sharing v0.7");
-  System.out.println("Start");
-  System.out.println("Connecting to " + host + ":"+ port+ " room "+ room);
-  System.out.println("Sharing " + captureWidth + "x"+ captureHeight+ " at "+ x+ ","+ y);
-  System.out.println("Scale to " + scaleWidth + "x"+ scaleHeight+ " with quality = "+ quality);
-  System.out.println("Http Tunnel: " + httpTunnel);
-  tray.addSystemTrayListener(this);
-  tray.displayIconOnSystemTray(sysTrayIcon,enableTrayActions);
-  startCapture();
-  started=true;
+  if (ssi.fullScreen) {
+    System.out.println(NAME + "Sharing full screen.");
+    shareFullScreen();
+  }
+ else {
+    System.out.println(NAME + "Sharing region of screen.");
+    shareWithFrame();
+  }
 }

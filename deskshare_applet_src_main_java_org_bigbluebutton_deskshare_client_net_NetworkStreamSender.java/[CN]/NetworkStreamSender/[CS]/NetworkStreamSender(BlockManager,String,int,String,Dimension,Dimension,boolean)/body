@@ -7,6 +7,6 @@
   this.blockDim=blockDim;
   this.httpTunnel=httpTunnel;
   numThreads=Runtime.getRuntime().availableProcessors();
-  System.out.println("Starting up " + numThreads + " sender threads.");
+  System.out.println(NAME + "Starting up " + numThreads+ " sender threads.");
   executor=Executors.newFixedThreadPool(numThreads);
 }
