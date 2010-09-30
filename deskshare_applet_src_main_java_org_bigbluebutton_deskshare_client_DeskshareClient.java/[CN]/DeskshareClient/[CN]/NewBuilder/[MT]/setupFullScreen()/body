@@ -4,5 +4,5 @@
   captureHeight=(int)fullScreenSize.getHeight();
   x=0;
   y=0;
-  calculateDimensionsToMaintainAspectRation();
+  calculateDimensionsToMaintainAspectRatio();
 }

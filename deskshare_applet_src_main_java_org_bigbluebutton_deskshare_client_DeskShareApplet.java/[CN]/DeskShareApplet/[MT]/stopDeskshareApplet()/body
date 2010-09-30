@@ -1,0 +1,4 @@
+{
+  System.out.println("stopDeskshareApplet");
+  client.stop();
+}

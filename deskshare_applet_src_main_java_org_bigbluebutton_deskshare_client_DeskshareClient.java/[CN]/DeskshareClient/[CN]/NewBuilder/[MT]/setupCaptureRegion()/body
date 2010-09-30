@@ -5,6 +5,6 @@
       x=((int)fullScreenSize.getWidth() - captureWidth) / 2;
       y=((int)fullScreenSize.getHeight() - captureHeight) / 2;
     }
-    calculateDimensionsToMaintainAspectRation();
+    calculateDimensionsToMaintainAspectRatio();
   }
 }
