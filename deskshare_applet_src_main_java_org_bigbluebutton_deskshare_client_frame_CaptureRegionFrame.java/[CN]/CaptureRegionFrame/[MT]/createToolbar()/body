@@ -5,16 +5,7 @@
   btnStartStop=new Button("Start Capture");
   btnStartStop.addActionListener(new ActionListener(){
     @Override public void actionPerformed(    ActionEvent e){
-      if (capturing) {
-        capturing=false;
-        btnStartStop.setLabel("Start Capture");
-        stopCapture();
-      }
- else {
-        capturing=true;
-        btnStartStop.setLabel("Stop Capture");
-        startCapture();
-      }
+      startCapture();
     }
   }
 );
