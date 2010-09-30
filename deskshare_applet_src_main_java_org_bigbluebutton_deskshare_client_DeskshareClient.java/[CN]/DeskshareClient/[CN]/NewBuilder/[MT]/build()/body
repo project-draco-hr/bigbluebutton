@@ -1,8 +1,10 @@
 {
   if (fullScreen) {
+    System.out.println("Sharing full screen.");
     setupFullScreen();
   }
  else {
+    System.out.println("Sharing region screen.");
     setupCaptureRegion();
   }
   ScreenShareInfo ssi=new ScreenShareInfo();

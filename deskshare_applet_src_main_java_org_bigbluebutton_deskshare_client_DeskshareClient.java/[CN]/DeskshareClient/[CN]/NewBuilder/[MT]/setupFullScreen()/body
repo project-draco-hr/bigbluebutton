@@ -6,4 +6,11 @@
   scaleHeight=captureHeight;
   x=0;
   y=0;
+  System.out.println("Check for scaling[" + captureWidth + ","+ captureHeight+ "]["+ scaleWidth+ ","+ scaleHeight+ "]");
+  if (scaleWidth > 1280) {
+    scaleWidth=1280;
+    double ratio=(double)captureHeight / (double)captureWidth;
+    scaleHeight=(int)((double)scaleWidth * ratio);
+    System.out.println("Scaling[" + captureWidth + ","+ captureHeight+ "]["+ scaleWidth+ ","+ scaleHeight+ "]");
+  }
 }
