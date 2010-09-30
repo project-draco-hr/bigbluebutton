@@ -1,4 +1,5 @@
 {
   System.out.println("Desktop Sharing Applet Destroy");
-  stopDeskshareApplet();
+  client.stop();
+  super.destroy();
 }

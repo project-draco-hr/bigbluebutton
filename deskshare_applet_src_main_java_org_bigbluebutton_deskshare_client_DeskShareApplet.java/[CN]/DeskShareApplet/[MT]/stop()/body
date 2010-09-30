@@ -1,4 +1,5 @@
 {
   System.out.println("Desktop Sharing Applet Stopping");
-  stopDeskshareApplet();
+  client.stop();
+  super.stop();
 }
