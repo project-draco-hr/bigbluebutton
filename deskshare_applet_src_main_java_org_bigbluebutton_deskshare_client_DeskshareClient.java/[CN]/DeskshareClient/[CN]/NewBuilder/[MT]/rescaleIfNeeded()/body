@@ -1,5 +1,0 @@
-{
-  if (captureWidth > 1280) {
-    scaleWidth=1280;
-  }
-}
