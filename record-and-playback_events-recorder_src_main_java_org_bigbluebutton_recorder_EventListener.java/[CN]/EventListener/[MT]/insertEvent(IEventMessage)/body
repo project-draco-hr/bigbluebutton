@@ -1,6 +1,0 @@
-{
-  String sql="INSERT INTO " + TABLE_EVENT;
-  sql=sql + " (" + FIELD_CONFERENCEID+ ","+ FIELD_TSEVENT+ ","+ FIELD_MESSAGE+ ")";
-  sql=sql + " VALUES (?, ?, ?)";
-  jdbcTemplate.update(sql,new Object[]{event.getConferenceID(),event.getTimeStamp(),event.getMessage()});
-}

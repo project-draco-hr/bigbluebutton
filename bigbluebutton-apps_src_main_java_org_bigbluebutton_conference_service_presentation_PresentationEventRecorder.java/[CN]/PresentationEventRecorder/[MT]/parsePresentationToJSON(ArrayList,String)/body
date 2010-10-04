@@ -54,7 +54,6 @@
     json+="\"code\":\"" + list.get(2) + "\", ";
     json+="\"presentationName\":\"" + list.get(3) + "\", ";
     json+="\"messageKey\":\"" + list.get(4) + "\", ";
-    json+="\"slidesInfo\":\"" + list.get(5) + "\" ";
   }
   json+="}";
   return json;

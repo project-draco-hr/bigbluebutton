@@ -4,5 +4,5 @@
   list.add(presentationName);
   list.add(share);
   so.sendMessage("sharePresentationCallback",list);
-  recordEvent(parsePresentationToJSON(list,this.RECORD_EVENT_SHARE_PRESENTATION));
+  recordEvent(parsePresentationToXML(list,this.RECORD_EVENT_SHARE_PRESENTATION));
 }

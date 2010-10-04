@@ -6,5 +6,5 @@
   list.add(widthRatio);
   list.add(heightRatio);
   so.sendMessage("moveCallback",list);
-  recordEvent(parsePresentationToJSON(list,this.RECORD_EVENT_RESIZE_MOVE_SLIDE));
+  recordEvent(parsePresentationToXML(list,this.RECORD_EVENT_RESIZE_MOVE_SLIDE));
 }

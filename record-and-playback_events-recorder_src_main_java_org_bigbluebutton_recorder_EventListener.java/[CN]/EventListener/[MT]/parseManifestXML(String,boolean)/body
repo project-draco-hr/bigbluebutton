@@ -1,0 +1,29 @@
+{
+  Document manifest=null;
+  String dirpath=pathConferences + "/" + confid+ "/"+ confid+ "/";
+  String filename=dirpath + FILENAME;
+  try {
+    DocumentBuilder docBuilder=createDocBuilder();
+    if (isFileExists(filename)) {
+      manifest=docBuilder.parse(filename);
+    }
+ else     if (createnew) {
+      if (!isFileExists(dirpath)) {
+        boolean success=(new File(dirpath)).mkdirs();
+        System.out.println("create dirs: " + success);
+      }
+      manifest=docBuilder.newDocument();
+      Node root=manifest.createElement("events");
+      Node sequence=manifest.createElement("seq");
+      root.appendChild(sequence);
+      manifest.appendChild(root);
+    }
+  }
+ catch (  SAXException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+  }
+  return manifest;
+}

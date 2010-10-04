@@ -1,6 +1,0 @@
-{
-  String sql="SELECT COUNT(0) FROM " + TABLE_EVENT + " WHERE "+ FIELD_CONFERENCEID+ " = ? AND "+ FIELD_TSEVENT+ " = ?";
-  int count=jdbcTemplate.queryForInt(sql,new Object[]{objmsg.getConferenceID(),objmsg.getTimeStamp()});
-  if (count > 0)   return true;
-  return false;
-}

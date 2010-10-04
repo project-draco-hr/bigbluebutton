@@ -28,13 +28,11 @@
   }
  else   if (type.equalsIgnoreCase(this.RECORD_EVENT_CONVERSION_STATUS)) {
     keyvalues.put("event",this.RECORD_EVENT_CONVERSION_STATUS);
-    keyvalues.put("code",list.get(2));
     keyvalues.put("presentationName",list.get(3));
     keyvalues.put("messageKey",list.get(4));
   }
  else   if (type.equalsIgnoreCase(this.RECORD_EVENT_PAGE_COUNT_EXCEEDED)) {
     keyvalues.put("event",this.RECORD_EVENT_PAGE_COUNT_EXCEEDED);
-    keyvalues.put("code",list.get(2));
     keyvalues.put("presentationName",list.get(3));
     keyvalues.put("messageKey",list.get(4));
     keyvalues.put("numberOfPages",list.get(5));
@@ -42,7 +40,6 @@
   }
  else   if (type.equalsIgnoreCase(this.RECORD_EVENT_GENERATED_SLIDE)) {
     keyvalues.put("event",this.RECORD_EVENT_GENERATED_SLIDE);
-    keyvalues.put("code",list.get(2));
     keyvalues.put("presentationName",list.get(3));
     keyvalues.put("messageKey",list.get(4));
     keyvalues.put("numberOfPages",list.get(5));
@@ -50,7 +47,6 @@
   }
  else   if (type.equalsIgnoreCase(this.RECORD_EVENT_CONVERSION_COMPLETE)) {
     keyvalues.put("event",this.RECORD_EVENT_CONVERSION_COMPLETE);
-    keyvalues.put("code",list.get(2));
     keyvalues.put("presentationName",list.get(3));
     keyvalues.put("messageKey",list.get(4));
   }
