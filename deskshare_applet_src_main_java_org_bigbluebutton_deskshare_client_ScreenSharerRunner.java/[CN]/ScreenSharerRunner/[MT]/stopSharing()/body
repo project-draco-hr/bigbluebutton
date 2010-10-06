@@ -1,5 +1,7 @@
 {
   System.out.println(NAME + "Stopping");
+  System.out.println(NAME + "Removing icon from system tray.");
+  tray.removeIconFromSystemTray();
   captureTaker.stop();
   mouseLocTaker.stop();
   if (connected && started) {
@@ -12,5 +14,4 @@
       e.printStackTrace();
     }
   }
-  tray.removeIconFromSystemTray();
 }
