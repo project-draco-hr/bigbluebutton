@@ -1,4 +1,5 @@
 {
+  log.info("Creating room {}",name);
   roomsManager.addRoom(new Room(name));
   return true;
 }

@@ -1,4 +1,0 @@
-{
-  log.debug("{} - appConnect",APP);
-  return super.appConnect(conn,params);
-}

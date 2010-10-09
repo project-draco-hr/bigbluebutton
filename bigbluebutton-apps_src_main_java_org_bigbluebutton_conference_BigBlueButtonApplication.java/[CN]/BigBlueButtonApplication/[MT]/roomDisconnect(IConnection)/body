@@ -1,0 +1,5 @@
+{
+  BigBlueButtonSession bbbSession=(BigBlueButtonSession)Red5.getConnectionLocal().getAttribute(Constants.SESSION);
+  log.info("User Left [{}, {}]",bbbSession.getUsername(),bbbSession.getRoom());
+  super.roomDisconnect(conn);
+}
