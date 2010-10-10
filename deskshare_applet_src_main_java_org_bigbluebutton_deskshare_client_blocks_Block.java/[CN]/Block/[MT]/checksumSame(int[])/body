@@ -1,6 +1,3 @@
 {
-  long oldsum=checksum.getValue();
-  checksum.reset();
-  checksum.update(convertIntPixelsToBytePixels(pixels));
-  return (oldsum == checksum.getValue());
+  return checksum.isChecksumSame(convertIntPixelsToBytePixels(pixels));
 }

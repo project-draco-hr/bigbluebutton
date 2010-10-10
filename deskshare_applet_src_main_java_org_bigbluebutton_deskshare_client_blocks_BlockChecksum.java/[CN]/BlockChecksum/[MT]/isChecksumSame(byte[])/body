@@ -1,0 +1,6 @@
+{
+  long oldsum=checksum.getValue();
+  checksum.reset();
+  checksum.update(pixels);
+  return (oldsum == checksum.getValue());
+}
