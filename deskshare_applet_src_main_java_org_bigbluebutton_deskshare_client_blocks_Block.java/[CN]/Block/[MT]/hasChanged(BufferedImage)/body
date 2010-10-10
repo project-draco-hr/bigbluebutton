@@ -6,8 +6,11 @@ synchronized (pixelsLock) {
  catch (    PixelExtractException e) {
       System.out.println(e.toString());
     }
-    if ((!checksumSame(capturedPixels)) || sendKeepAliveBlock()) {
-      return dirtyFlag.compareAndSet(false,true);
+    if (!dirtyBlock.get()) {
+      if ((!checksumSame(capturedPixels)) || sendKeepAliveBlock()) {
+        dirtyBlock.set(true);
+        return true;
+      }
     }
   }
   return false;
