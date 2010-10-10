@@ -1,4 +1,0 @@
-{
-  checksum.reset();
-  checksum.update(convertIntPixelsToBytePixels(pixels));
-}

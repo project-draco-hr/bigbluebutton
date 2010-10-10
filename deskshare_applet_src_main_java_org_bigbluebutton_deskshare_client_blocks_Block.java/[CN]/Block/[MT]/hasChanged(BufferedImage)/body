@@ -7,7 +7,7 @@ synchronized (this) {
       System.out.println(e.toString());
     }
     if ((!checksumSame(pixels)) || sendKeepAliveBlock()) {
-      if (sendFlag.compareAndSet(false,true)) {
+      if (dirtyFlag.compareAndSet(false,true)) {
         return true;
       }
     }
