@@ -3,6 +3,7 @@
     EncodedBlockData block=retriever.getBlockToSend(((BlockMessage)message).getPosition());
     BlockVideoData bv=new BlockVideoData(room,block.getPosition(),block.getVideoData(),false);
     sendBlockData(bv);
+    retriever.blockSent(block.getPosition());
   }
  else   if (message.getMessageType() == Message.MessageType.CURSOR) {
     CursorMessage msg=(CursorMessage)message;

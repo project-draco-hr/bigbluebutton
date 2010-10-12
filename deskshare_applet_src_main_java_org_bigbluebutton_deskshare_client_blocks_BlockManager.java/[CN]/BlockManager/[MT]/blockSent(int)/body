@@ -1,0 +1,4 @@
+{
+  Block block=(Block)blocksMap.get(new Integer(position));
+  block.sent();
+}

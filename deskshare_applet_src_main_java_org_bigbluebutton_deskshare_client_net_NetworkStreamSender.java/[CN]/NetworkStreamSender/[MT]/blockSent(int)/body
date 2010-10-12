@@ -1,0 +1,3 @@
+{
+  blockManager.blockSent(position);
+}
