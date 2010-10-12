@@ -1,0 +1,5 @@
+String room
+int position
+byte[] videoData
+boolean isKeyFrame
+int sequenceNum

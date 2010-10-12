@@ -1,10 +1,11 @@
 {
   String room=decodeRoom(session,in);
+  int seqNum=in.getInt();
   int position=in.getShort();
   boolean isKeyFrame=(in.get() == 1) ? true : false;
   int length=in.getInt();
   byte[] data=new byte[length];
   in.get(data,0,length);
-  CaptureUpdateBlockEvent event=new CaptureUpdateBlockEvent(room,position,data,isKeyFrame);
+  CaptureUpdateBlockEvent event=new CaptureUpdateBlockEvent(room,position,data,isKeyFrame,seqNum);
   out.write(event);
 }

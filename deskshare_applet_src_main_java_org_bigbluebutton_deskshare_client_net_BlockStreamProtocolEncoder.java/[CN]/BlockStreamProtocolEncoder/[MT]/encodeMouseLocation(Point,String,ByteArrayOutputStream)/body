@@ -1,7 +1,0 @@
-{
-  data.write(MOUSE_LOCATION_EVENT);
-  data.write(room.length());
-  data.write(room.getBytes());
-  data.write(intToBytes(mouseLoc.x));
-  data.write(intToBytes(mouseLoc.y));
-}

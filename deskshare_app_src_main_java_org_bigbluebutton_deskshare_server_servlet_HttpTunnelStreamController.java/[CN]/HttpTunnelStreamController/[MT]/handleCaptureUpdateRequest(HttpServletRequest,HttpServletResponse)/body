@@ -4,11 +4,12 @@
   long startRx=System.currentTimeMillis();
   byte[] blockData=multipartFile.getBytes();
   String room=request.getParameterValues("room")[0];
+  String seqNum=request.getParameterValues("sequenceNumber")[0];
   String keyframe=request.getParameterValues("keyframe")[0];
   String position=request.getParameterValues("position")[0];
   if (!hasSessionManager) {
     sessionManager=getSessionManager();
     hasSessionManager=true;
   }
-  sessionManager.updateBlock(room,Integer.valueOf(position),blockData,Boolean.parseBoolean(keyframe));
+  sessionManager.updateBlock(room,Integer.valueOf(position),blockData,Boolean.parseBoolean(keyframe),Integer.parseInt(seqNum));
 }

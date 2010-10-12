@@ -1,7 +1,7 @@
 {
   ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
   dataToSend.reset();
-  BlockStreamProtocolEncoder.encodeBlock(block,dataToSend);
+  BlockStreamProtocolEncoder.encodeBlock(block,dataToSend,seqNumGenerator.getNext());
   sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
   sendToStream(dataToSend);
 }

@@ -1,5 +1,0 @@
-{
-  data.write(CAPTURE_END_EVENT);
-  data.write(room.length());
-  data.write(room.getBytes());
-}

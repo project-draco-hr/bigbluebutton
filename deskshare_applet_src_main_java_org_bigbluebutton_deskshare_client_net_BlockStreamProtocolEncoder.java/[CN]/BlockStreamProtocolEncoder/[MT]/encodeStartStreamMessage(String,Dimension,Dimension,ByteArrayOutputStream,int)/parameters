@@ -1,0 +1,5 @@
+String room
+Dimension screen
+Dimension block
+ByteArrayOutputStream data
+int seqNum
