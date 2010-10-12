@@ -1,0 +1,3 @@
+String room
+int seqNum
+ByteArrayOutputStream data
