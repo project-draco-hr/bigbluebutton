@@ -1,5 +1,0 @@
-{
-  this.room=room;
-  screenDim=screen;
-  blockDim=block;
-}

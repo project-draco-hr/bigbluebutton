@@ -1,7 +1,8 @@
 {
   String room=decodeRoom(session,in);
+  int seqNum=in.getInt();
   int mouseX=in.getInt();
   int mouseY=in.getInt();
-  MouseLocationEvent event=new MouseLocationEvent(room,new Point(mouseX,mouseY));
+  MouseLocationEvent event=new MouseLocationEvent(room,new Point(mouseX,mouseY),seqNum);
   out.write(event);
 }

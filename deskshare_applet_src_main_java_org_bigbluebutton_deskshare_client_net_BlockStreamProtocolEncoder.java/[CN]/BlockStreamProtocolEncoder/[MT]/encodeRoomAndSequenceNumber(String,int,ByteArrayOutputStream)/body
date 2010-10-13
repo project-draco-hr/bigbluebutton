@@ -1,0 +1,5 @@
+{
+  data.write(CAPTURE_UPDATE_EVENT);
+  encodeRoom(data,room);
+  encodeSequenceNumber(data,seqNum);
+}

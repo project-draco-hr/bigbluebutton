@@ -1,0 +1,4 @@
+Point mouseLoc
+String room
+ByteArrayOutputStream data
+int seqNum

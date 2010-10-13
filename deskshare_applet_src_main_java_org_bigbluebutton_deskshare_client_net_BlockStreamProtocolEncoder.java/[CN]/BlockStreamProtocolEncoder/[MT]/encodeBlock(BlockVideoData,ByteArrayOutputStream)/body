@@ -1,7 +1,4 @@
 {
-  data.write(CAPTURE_UPDATE_EVENT);
-  data.write(block.getRoom().length());
-  data.write(block.getRoom().getBytes());
   byte[] position=new byte[2];
   int pos=block.getPosition();
   position[0]=(byte)((pos >> 8) & 0xff);
