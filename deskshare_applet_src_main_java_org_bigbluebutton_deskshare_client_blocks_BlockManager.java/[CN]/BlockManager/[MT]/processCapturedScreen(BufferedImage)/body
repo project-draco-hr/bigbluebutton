@@ -7,7 +7,12 @@
     if (block.hasChanged(capturedScreen)) {
       changedBlocks.add(new Integer(position));
     }
+    if ((position % numColumns == 0) && (changedBlocks.size() > 0)) {
+      Integer[] bc=new Integer[changedBlocks.size()];
+      System.arraycopy(changedBlocks.toArray(),0,bc,0,bc.length);
+      changedBlocks.clear();
+      notifyChangedBlockListener(new BlockMessage(bc));
+    }
   }
-  if (changedBlocks.size() > 0)   notifyChangedBlockListener(new BlockMessage(changedBlocks));
   long end=System.currentTimeMillis();
 }

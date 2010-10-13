@@ -3,7 +3,7 @@
     ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
     dataToSend.reset();
     BlockStreamProtocolEncoder.encodeRoomAndSequenceNumber(room,seqNumGenerator.getNext(),dataToSend);
-    Object[] changedBlocks=((BlockMessage)message).getBlocks().toArray();
+    Integer[] changedBlocks=((BlockMessage)message).getBlocks();
     BlockStreamProtocolEncoder.numBlocksChanged(changedBlocks.length,dataToSend);
     String blocksStr="Encoding ";
     for (int i=0; i < changedBlocks.length; i++) {
