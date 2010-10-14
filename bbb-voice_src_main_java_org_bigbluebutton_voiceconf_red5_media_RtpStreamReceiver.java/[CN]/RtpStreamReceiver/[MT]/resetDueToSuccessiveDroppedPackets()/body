@@ -1,0 +1,9 @@
+{
+  if (lastPacketDropped && successivePacketDroppedCount > 3) {
+    if (log.isDebugEnabled())     log.debug("Resetting after successive dropped packets [successivePacketDroppedCount=" + successivePacketDroppedCount + "][port="+ rtpSocket.getDatagramSocket().getLocalPort()+ "]");
+    lastPacketDropped=false;
+    successivePacketDroppedCount=0;
+    return true;
+  }
+  return false;
+}

@@ -1,0 +1,7 @@
+{
+  final int changeInX=e.getLocationOnScreen().x - mActionOffset.x - mTopLeft.x;
+  final int changeInY=e.getLocationOnScreen().y - mActionOffset.y - mTopLeft.y;
+  if (mMoving.get() && !e.isConsumed()) {
+    WindowlessFrame.this.setLocation(changeInX + mTopLeft.x,changeInY + mTopLeft.y);
+  }
+}

@@ -1,4 +1,0 @@
-{
-  rtpPacket.setVersion(0);
-  Assert.assertEquals(rtpPacket.getVersion(),0,"Expect version = 0");
-}

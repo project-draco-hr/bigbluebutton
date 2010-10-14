@@ -2,12 +2,13 @@
   ClientHttpRequest chr;
   try {
     chr=new ClientHttpRequest(conn);
-    chr.setParameter("room",room);
+    chr.setParameter(ROOM,room);
+    chr.setParameter(SEQ_NUM,seqNumGenerator.getNext());
     String screenInfo=Integer.toString(screen.getWidth()) + "x" + Integer.toString(screen.getHeight());
-    chr.setParameter("screenInfo",screenInfo);
+    chr.setParameter(SCREEN,screenInfo);
     String blockInfo=Integer.toString(block.getWidth()) + "x" + Integer.toString(block.getHeight());
-    chr.setParameter("blockInfo",blockInfo);
-    chr.setParameter("event",CaptureEvents.CAPTURE_START.getEvent());
+    chr.setParameter(BLOCK,blockInfo);
+    chr.setParameter(EVENT,CaptureEvents.CAPTURE_START.getEvent());
     chr.post();
   }
  catch (  IOException e) {

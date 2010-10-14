@@ -1,0 +1,19 @@
+{
+  printHeader();
+  connected=sender.connect();
+  if (connected) {
+    ChangedBlocksListener changedBlocksListener=new ChangedBlockListenerImp(sender);
+    blockManager.addListener(changedBlocksListener);
+    ScreenCaptureListener screenCapListener=new ScreenCaptureListenerImp(blockManager);
+    captureTaker.addListener(screenCapListener);
+    captureTaker.start();
+    sender.start();
+    MouseLocationListenerImp mouseLocListener=new MouseLocationListenerImp(sender,ssi.room);
+    mouseLocTaker.addListener(mouseLocListener);
+    mouseLocTaker.start();
+    started=true;
+  }
+ else {
+    notifyListener(ExitCode.DESKSHARE_SERVICE_UNAVAILABLE);
+  }
+}

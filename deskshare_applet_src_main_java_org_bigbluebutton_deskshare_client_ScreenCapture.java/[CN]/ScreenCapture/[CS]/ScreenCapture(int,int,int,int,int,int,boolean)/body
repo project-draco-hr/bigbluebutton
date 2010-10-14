@@ -13,5 +13,5 @@
   this.quality=quality;
   GraphicsEnvironment je=GraphicsEnvironment.getLocalGraphicsEnvironment();
   GraphicsDevice js=je.getDefaultScreenDevice();
-  jc=js.getDefaultConfiguration();
+  graphicsConfig=js.getDefaultConfiguration();
 }

@@ -15,7 +15,7 @@ catch (  SecurityException e) {
     pointerLocation=calculatePointerLocation(pInfo.getLocation());
   }
  else {
-    pointerLocation=pInfo.getLocation();
+    pointerLocation=calculatePointerLocation(pInfo.getLocation());
   }
   return pointerLocation;
 }

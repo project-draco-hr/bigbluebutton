@@ -1,0 +1,5 @@
+{
+  mMoving.set(false);
+  mActionOffset=null;
+  e.getComponent().setCursor(Cursor.getDefaultCursor());
+}

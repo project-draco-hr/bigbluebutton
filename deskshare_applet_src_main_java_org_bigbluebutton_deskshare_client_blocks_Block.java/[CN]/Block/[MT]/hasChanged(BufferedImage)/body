@@ -1,17 +1,15 @@
 {
-synchronized (this) {
+synchronized (pixelsLock) {
     try {
-      pixels=ScreenVideoEncoder.getPixels(capturedScreen,getX(),getY(),getWidth(),getHeight());
+      capturedPixels=ScreenVideoEncoder.getPixels(capturedScreen,getX(),getY(),getWidth(),getHeight());
     }
  catch (    PixelExtractException e) {
       System.out.println(e.toString());
     }
-    if ((!checksumSame()) || sendKeepAliveBlock()) {
-      if (sendFlag.compareAndSet(false,true)) {
+    if (!dirtyBlock.get()) {
+      if ((!checksumSame(capturedPixels)) || sendKeepAliveBlock()) {
+        dirtyBlock.set(true);
         return true;
-      }
- else {
-        return false;
       }
     }
   }

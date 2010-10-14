@@ -1,9 +1,10 @@
 {
   String room=decodeRoom(session,in);
   session.setAttribute(ROOM,room);
+  int seqNum=in.getInt();
   Dimension blockDim=decodeDimension(in);
   Dimension screenDim=decodeDimension(in);
   log.info("CaptureStartEvent for " + room);
-  CaptureStartBlockEvent event=new CaptureStartBlockEvent(room,screenDim,blockDim);
+  CaptureStartBlockEvent event=new CaptureStartBlockEvent(room,screenDim,blockDim,seqNum);
   out.write(event);
 }

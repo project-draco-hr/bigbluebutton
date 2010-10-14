@@ -1,0 +1,12 @@
+{
+  final OffsetLocator toolbarOffsetLocator=new OffsetLocator(){
+    @Override public int getTopOffset(){
+      return mOverallSize.height + mBorderWidth;
+    }
+    @Override public int getLeftOffset(){
+      return 0;
+    }
+  }
+;
+  mToolbarFrame=new ToolbarFrame(mWindowFrame,toolbarOffsetLocator,toolbar);
+}

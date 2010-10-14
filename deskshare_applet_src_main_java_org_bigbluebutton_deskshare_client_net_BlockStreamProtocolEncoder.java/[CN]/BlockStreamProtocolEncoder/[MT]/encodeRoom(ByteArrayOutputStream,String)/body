@@ -1,0 +1,4 @@
+{
+  data.write(room.length());
+  data.write(room.getBytes());
+}

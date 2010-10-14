@@ -1,5 +1,5 @@
 {
-  System.out.println("Starting NetworkSocketStreamSender ");
+  System.out.println("NetworkSocketStreamSender: connecting to " + host + ":"+ port);
   try {
     socket=new Socket(host,port);
     outstream=new DataOutputStream(socket.getOutputStream());

@@ -1,11 +1,11 @@
 {
-  NetworkHttpStreamSender httpSender=new NetworkHttpStreamSender(0,this,room,screenDim,blockDim);
+  NetworkHttpStreamSender httpSender=new NetworkHttpStreamSender(0,this,room,screenDim,blockDim,seqNumGenerator);
   try {
     httpSender.connect(host);
     return true;
   }
  catch (  ConnectionException e) {
-    System.out.println("Problem connecting to " + host);
+    System.out.println(NAME + "Problem connecting to " + host);
   }
   return false;
 }

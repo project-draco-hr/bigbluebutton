@@ -1,0 +1,13 @@
+{
+  mRightBorder.removeMouseListener(resizingAdapter);
+  mRightBorder.removeMouseMotionListener(resizingAdapter);
+  mLeftBorder.removeMouseListener(resizingAdapter);
+  mLeftBorder.removeMouseMotionListener(resizingAdapter);
+  mTopBorder.removeMouseListener(resizingAdapter);
+  mTopBorder.removeMouseMotionListener(resizingAdapter);
+  mBottomBorder.removeMouseListener(resizingAdapter);
+  mBottomBorder.removeMouseMotionListener(resizingAdapter);
+  repaint();
+  System.out.println("Removing listeners......................");
+  mToolbarFrame.setVisible(false);
+}

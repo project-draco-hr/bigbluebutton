@@ -1,0 +1,14 @@
+{
+  if (!sentMetadata) {
+    IoBuffer mBuffer=IoBuffer.allocate(1024);
+    mBuffer.setAutoExpand(true);
+    mBuffer.clear();
+    mBuffer.put(fakeMetadata);
+    mBuffer.flip();
+    Notify notifyData=new Notify(mBuffer);
+    notifyData.setTimestamp((int)timestamp);
+    audioBroadcastStream.dispatchEvent(notifyData);
+    notifyData.release();
+    sentMetadata=true;
+  }
+}

@@ -1,0 +1,3 @@
+{
+  this.captureRegionListener=listener;
+}

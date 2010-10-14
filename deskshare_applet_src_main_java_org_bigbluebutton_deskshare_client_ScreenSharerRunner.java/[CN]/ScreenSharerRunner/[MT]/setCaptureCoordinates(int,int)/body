@@ -1,0 +1,4 @@
+{
+  captureTaker.setCaptureCoordinates(x,y);
+  mouseLocTaker.setCaptureCoordinates(x,y);
+}

@@ -1,0 +1,7 @@
+{
+  final WindowlessFrame wf=new WindowlessFrame(5);
+  wf.setHeight(300);
+  wf.setWidth(600);
+  wf.setLocation(100,200);
+  wf.setVisible(true);
+}

@@ -1,0 +1,30 @@
+{
+  final int changeInX=e.getLocationOnScreen().x - mActionOffset.x - mTopLeft.x;
+  final int changeInY=e.getLocationOnScreen().y - mActionOffset.y - mTopLeft.y;
+  if (mResizing.get()) {
+    int newH=mOriginalSize.height;
+    int newW=mOriginalSize.width;
+    if (mCorner == Corner.SOUTHEAST) {
+      newH+=changeInY;
+      newW+=changeInX;
+    }
+ else     if (mCorner == Corner.NORTHEAST) {
+      mTopLeft.y=mTopLeft.y + changeInY;
+      newH=mOverallSize.height + -changeInY;
+      newW+=changeInX;
+    }
+ else     if (mCorner == Corner.NORTHWEST) {
+      mTopLeft.y=mTopLeft.y + changeInY;
+      newH=mOverallSize.height + -changeInY;
+      mTopLeft.x=mTopLeft.x + changeInX;
+      newW=mOverallSize.width + -changeInX;
+    }
+ else     if (mCorner == Corner.SOUTHWEST) {
+      newH+=changeInY;
+      mTopLeft.x=mTopLeft.x + changeInX;
+      newW=mOverallSize.width + -changeInX;
+    }
+    WindowlessFrame.this.setSize(newH,newW);
+    e.consume();
+  }
+}

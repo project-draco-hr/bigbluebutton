@@ -1,0 +1,9 @@
+{
+  pc.changeOn(mTopBorder);
+  pc.changeOn(mRightBorder);
+  pc.changeOn(mBottomBorder);
+  pc.changeOn(mLeftBorder);
+  if (repaint) {
+    repaint();
+  }
+}

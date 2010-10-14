@@ -3,7 +3,7 @@
   String room=(String)session.getAttribute("ROOM");
   if (room != null) {
     log.debug("Session Closed for room " + room);
-    sessionManager.removeSession(room);
+    sessionManager.removeSession(room,0);
   }
  else {
     log.warn("Closing session for a NULL room");

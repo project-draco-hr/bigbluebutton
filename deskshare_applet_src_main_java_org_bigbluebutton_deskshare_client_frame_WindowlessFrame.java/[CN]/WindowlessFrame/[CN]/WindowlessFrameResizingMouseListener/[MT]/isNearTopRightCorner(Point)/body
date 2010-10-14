@@ -1,0 +1,5 @@
+{
+  int xToTopRight=Math.abs(mTopLeft.x + (int)mOverallSize.getWidth() - mouse.x);
+  int yToTopRight=Math.abs(mTopLeft.y - mouse.y);
+  return xToTopRight < CORNER_SIZE && yToTopRight < CORNER_SIZE;
+}

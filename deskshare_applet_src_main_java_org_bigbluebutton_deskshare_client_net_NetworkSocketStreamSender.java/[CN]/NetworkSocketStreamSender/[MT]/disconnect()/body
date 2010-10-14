@@ -4,7 +4,7 @@
   try {
     ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
     dataToSend.reset();
-    BlockStreamProtocolEncoder.encodeEndStreamMessage(room,dataToSend);
+    BlockStreamProtocolEncoder.encodeEndStreamMessage(room,dataToSend,seqNumGenerator.getNext());
     sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
     sendToStream(dataToSend);
   }
