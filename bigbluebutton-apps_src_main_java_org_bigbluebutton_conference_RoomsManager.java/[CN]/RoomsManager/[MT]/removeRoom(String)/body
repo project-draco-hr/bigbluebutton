@@ -2,6 +2,7 @@
   log.debug("Remove room {}",name);
   Room room=rooms.remove(name);
   if (checkEvtListener() && room != null) {
+    room.endAndKickAll();
     conferenceEventListener.ended(room);
     log.debug("Notified event listener of conference end");
   }

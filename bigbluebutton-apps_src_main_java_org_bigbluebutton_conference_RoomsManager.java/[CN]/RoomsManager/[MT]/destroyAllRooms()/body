@@ -1,0 +1,6 @@
+{
+  for (  Map.Entry<String,Room> entry : rooms.entrySet()) {
+    Room room=entry.getValue();
+    room.endAndKickAll();
+  }
+}
