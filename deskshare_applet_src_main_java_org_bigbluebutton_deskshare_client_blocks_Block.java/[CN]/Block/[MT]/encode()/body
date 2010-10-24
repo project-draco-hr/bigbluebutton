@@ -1,7 +1,6 @@
 {
   int[] pixelsCopy=new int[capturedPixels.length];
 synchronized (pixelsLock) {
-    dirtyBlock.set(false);
     System.arraycopy(capturedPixels,0,pixelsCopy,0,capturedPixels.length);
   }
   byte[] encodedBlock=ScreenVideoEncoder.encodePixels(pixelsCopy,getWidth(),getHeight());

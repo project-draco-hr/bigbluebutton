@@ -1,0 +1,7 @@
+{
+  data.write(MOUSE_LOCATION_EVENT);
+  encodeRoom(data,room);
+  encodeSequenceNumber(data,seqNum);
+  data.write(intToBytes(mouseLoc.x));
+  data.write(intToBytes(mouseLoc.y));
+}

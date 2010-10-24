@@ -2,7 +2,9 @@
   try {
     numRunningThreads--;
     if (tunneling) {
-      httpSenders[id].disconnect();
+      System.out.println(NAME + "Failed to use http tunneling. Stopping.");
+      stop();
+      notifyNetworkConnectionListener(reason);
     }
  else {
       socketSenders[id].disconnect();
@@ -18,5 +20,12 @@
   }
  catch (  ConnectionException e) {
     e.printStackTrace();
+    if (numRunningThreads < 1) {
+      System.out.println(NAME + "No more sender threads. Stopping.");
+      notifyNetworkConnectionListener(reason);
+    }
+ else {
+      System.out.println(NAME + "Sender thread stopped. " + numRunningThreads+ " sender threads remaining.");
+    }
   }
 }

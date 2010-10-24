@@ -1,0 +1,6 @@
+{
+  byte[] nb=new byte[2];
+  nb[0]=(byte)((numBlocks >> 8) & 0xff);
+  nb[1]=(byte)(numBlocks & 0xff);
+  data.write(nb);
+}

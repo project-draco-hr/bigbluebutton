@@ -1,8 +1,22 @@
 {
   if (message.getMessageType() == Message.MessageType.BLOCK) {
-    EncodedBlockData block=retriever.getBlockToSend(((BlockMessage)message).getPosition());
-    BlockVideoData bv=new BlockVideoData(room,block.getPosition(),block.getVideoData(),false);
-    sendBlock(bv);
+    ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
+    dataToSend.reset();
+    BlockStreamProtocolEncoder.encodeRoomAndSequenceNumber(room,seqNumGenerator.getNext(),dataToSend);
+    Integer[] changedBlocks=((BlockMessage)message).getBlocks();
+    BlockStreamProtocolEncoder.numBlocksChanged(changedBlocks.length,dataToSend);
+    String blocksStr="Encoding ";
+    for (int i=0; i < changedBlocks.length; i++) {
+      blocksStr+=" " + (Integer)changedBlocks[i];
+      EncodedBlockData block=retriever.getBlockToSend((Integer)changedBlocks[i]);
+      BlockVideoData bv=new BlockVideoData(room,block.getPosition(),block.getVideoData(),false);
+      BlockStreamProtocolEncoder.encodeBlock(bv,dataToSend);
+    }
+    sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
+    sendToStream(dataToSend);
+    for (int i=0; i < changedBlocks.length; i++) {
+      retriever.blockSent((Integer)changedBlocks[i]);
+    }
   }
  else   if (message.getMessageType() == Message.MessageType.CURSOR) {
     CursorMessage msg=(CursorMessage)message;

@@ -3,10 +3,11 @@
   try {
     openConnection();
     chr=new ClientHttpRequest(conn);
-    chr.setParameter("room",room);
-    chr.setParameter("event",CaptureEvents.MOUSE_LOCATION_EVENT.getEvent());
-    chr.setParameter("mousex",mouseLoc.x);
-    chr.setParameter("mousey",mouseLoc.y);
+    chr.setParameter(ROOM,room);
+    chr.setParameter(SEQ_NUM,seqNumGenerator.getNext());
+    chr.setParameter(EVENT,CaptureEvents.MOUSE_LOCATION_EVENT.getEvent());
+    chr.setParameter(MOUSEX,mouseLoc.x);
+    chr.setParameter(MOUSEY,mouseLoc.y);
     chr.post();
   }
  catch (  IOException e) {

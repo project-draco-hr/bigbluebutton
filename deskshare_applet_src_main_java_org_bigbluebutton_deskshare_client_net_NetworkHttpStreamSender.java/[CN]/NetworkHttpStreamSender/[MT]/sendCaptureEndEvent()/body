@@ -2,8 +2,9 @@
   ClientHttpRequest chr;
   try {
     chr=new ClientHttpRequest(conn);
-    chr.setParameter("room",room);
-    chr.setParameter("event",CaptureEvents.CAPTURE_END.getEvent());
+    chr.setParameter(ROOM,room);
+    chr.setParameter(SEQ_NUM,seqNumGenerator.getNext());
+    chr.setParameter(EVENT,CaptureEvents.CAPTURE_END.getEvent());
     chr.post();
   }
  catch (  IOException e) {
