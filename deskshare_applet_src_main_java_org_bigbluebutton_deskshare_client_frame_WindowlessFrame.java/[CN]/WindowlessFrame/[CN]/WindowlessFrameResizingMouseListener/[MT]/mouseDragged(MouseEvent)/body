@@ -1,12 +1,24 @@
 {
   final int changeInX=e.getLocationOnScreen().x - mActionOffset.x - mTopLeft.x;
   final int changeInY=e.getLocationOnScreen().y - mActionOffset.y - mTopLeft.y;
+  Toolkit tk=Toolkit.getDefaultToolkit();
+  Dimension d=tk.getScreenSize();
   if (mResizing.get()) {
     int newH=mOriginalSize.height;
     int newW=mOriginalSize.width;
-    if (mCorner == Corner.SOUTHEAST) {
-      newH+=changeInY;
-      newW+=changeInX;
+    if (Corner.SOUTHEAST == mCorner) {
+      if (e.getLocationOnScreen().x < mTopLeft.x + 5) {
+        newW=5;
+      }
+ else {
+        newW+=changeInX;
+      }
+      if (e.getLocationOnScreen().y < mTopLeft.y + 5) {
+        newH=5;
+      }
+ else {
+        newH+=changeInY;
+      }
     }
  else     if (mCorner == Corner.NORTHEAST) {
       mTopLeft.y=mTopLeft.y + changeInY;
@@ -23,6 +35,12 @@
       newH+=changeInY;
       mTopLeft.x=mTopLeft.x + changeInX;
       newW=mOverallSize.width + -changeInX;
+    }
+    if (newH + mTopLeft.y > d.height - 5) {
+      newH=d.height - mTopLeft.y - 5;
+    }
+    if (newW + mTopLeft.x > d.width - 5) {
+      newW=d.width - mTopLeft.x - 5;
     }
     WindowlessFrame.this.setSize(newH,newW);
     e.consume();
