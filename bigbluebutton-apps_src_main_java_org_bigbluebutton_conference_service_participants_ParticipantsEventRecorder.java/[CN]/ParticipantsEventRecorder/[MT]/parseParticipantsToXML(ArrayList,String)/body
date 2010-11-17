@@ -20,5 +20,5 @@
  else   if (type.equalsIgnoreCase(this.RECORD_EVENT_LEAVE_ALL)) {
     keyvalues.put("event",this.RECORD_EVENT_LEAVE_ALL);
   }
-  return recorder.parseEventsToXML("participants",keyvalues);
+  return BigBlueButtonUtils.parseEventsToXML("participants",keyvalues);
 }

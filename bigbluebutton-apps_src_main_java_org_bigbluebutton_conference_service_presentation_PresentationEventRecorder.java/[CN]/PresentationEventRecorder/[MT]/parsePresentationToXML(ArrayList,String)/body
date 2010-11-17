@@ -50,9 +50,9 @@
     keyvalues.put("presentationName",list.get(3));
     keyvalues.put("messageKey",list.get(4));
   }
-  String xml=recorder.parseEventsToXML("presentation",keyvalues);
+  String xml=BigBlueButtonUtils.parseEventsToXML("presentation",keyvalues);
   if (type.equalsIgnoreCase(this.RECORD_EVENT_CONVERSION_COMPLETE)) {
-    xml=recorder.appendXMLToEvent(xml,(String)list.get(5),"slides");
+    xml=BigBlueButtonUtils.appendXMLToEvent(xml,(String)list.get(5),"slides");
   }
   return xml;
 }

@@ -20,7 +20,6 @@
     return xmlString;
   }
  catch (  Exception e) {
-    log.warn("Exception {}",e.getMessage());
   }
   return "";
 }

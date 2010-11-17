@@ -6,6 +6,6 @@
   keyvalues.put("user",chat_attribs[1]);
   keyvalues.put("color",chat_attribs[2]);
   keyvalues.put("language",chat_attribs[4]);
-  String xmlstr=recorder.parseEventsToXML("chat",keyvalues);
+  String xmlstr=BigBlueButtonUtils.parseEventsToXML("chat",keyvalues);
   return xmlstr;
 }
