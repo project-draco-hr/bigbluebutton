@@ -1,0 +1,7 @@
+{
+  System.out.println(NAME + "Disconneted");
+  System.out.println(NAME + "Change system tray icon message");
+  tray.disconnectIconSystemTrayMessage();
+  captureTaker.stop();
+  mouseLocTaker.stop();
+}
