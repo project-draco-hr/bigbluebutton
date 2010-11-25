@@ -1,4 +1,6 @@
 {
   this.connection=connection;
   this.connId=connId;
+  this.userid=userid;
+  this.username=username;
 }

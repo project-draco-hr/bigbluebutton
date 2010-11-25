@@ -1,5 +1,8 @@
 {
-  log.debug("Joining voice conference " + destination);
+  String clientId=Red5.getConnectionLocal().getClient().getId();
+  String userid=getUserId();
+  String username=getUsername();
+  log.debug("{} is calling into conference {}",username + "[uid=" + userid+ "][clientid="+ clientId+ "]",destination);
   String extension=callExtensionPattern.format(new String[]{destination});
   try {
     sipPeerManager.call(peerId,getClientId(),callerName,extension);

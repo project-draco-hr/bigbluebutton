@@ -1,0 +1,5 @@
+{
+  String userid=(String)Red5.getConnectionLocal().getAttribute("USERID");
+  if ((userid == null) || ("".equals(userid)))   userid="unknown-userid";
+  return userid;
+}

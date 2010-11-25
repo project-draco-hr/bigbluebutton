@@ -1,5 +1,8 @@
 {
-  log.debug("Red5SIP Hangup");
+  String clientId=Red5.getConnectionLocal().getClient().getId();
+  String userid=getUserId();
+  String username=getUsername();
+  log.debug("{} is hanging up from the conference.",username + "[uid=" + userid+ "][clientid="+ clientId+ "]");
   try {
     sipPeerManager.hangup(peerId,getClientId());
     return true;

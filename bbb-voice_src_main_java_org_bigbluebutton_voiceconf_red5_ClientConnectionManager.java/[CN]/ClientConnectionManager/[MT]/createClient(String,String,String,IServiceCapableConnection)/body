@@ -1,0 +1,4 @@
+{
+  ClientConnection cc=new ClientConnection(id,userid,username,connection);
+  clients.put(id,cc);
+}

@@ -1,2 +1,4 @@
 String connId
+String userid
+String username
 IServiceCapableConnection connection

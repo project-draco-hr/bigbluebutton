@@ -1,0 +1,17 @@
+{
+  String clientId=Red5.getConnectionLocal().getClient().getId();
+  String userid=getUserId();
+  String username=getUsername();
+  log.debug("{} [clientid={}] is leaving the voice conf app. Removing from ConnectionManager.",username + "[uid=" + userid+ "]",clientId);
+  clientConnManager.removeClient(clientId);
+  String peerId=(String)Red5.getConnectionLocal().getAttribute("VOICE_CONF_PEER");
+  if (peerId != null) {
+    try {
+      log.debug("Hanging up {} [clientid={}] in case the user is still in the conference.",username + "[uid=" + userid+ "]",clientId);
+      sipPeerManager.hangup(peerId,clientId);
+    }
+ catch (    PeerNotFoundException e) {
+      e.printStackTrace();
+    }
+  }
+}
