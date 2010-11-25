@@ -2,6 +2,9 @@
   String clientId=Red5.getConnectionLocal().getClient().getId();
   String userid=getUserId();
   String username=getUsername();
+  String remoteHost=Red5.getConnectionLocal().getRemoteAddress();
+  int remotePort=Red5.getConnectionLocal().getRemotePort();
+  log.info("[clientid={}] disconnnected from {}.",clientId,remoteHost + ":" + remotePort);
   log.debug("{} [clientid={}] is leaving the voice conf app. Removing from ConnectionManager.",username + "[uid=" + userid+ "]",clientId);
   clientConnManager.removeClient(clientId);
   String peerId=(String)Red5.getConnectionLocal().getAttribute("VOICE_CONF_PEER");
