@@ -2,14 +2,5 @@
   if (isNearBottomRightCorner(mouse)) {
     return Corner.SOUTHEAST;
   }
- else   if (isNearTopRightCorner(mouse)) {
-    return Corner.NORTHEAST;
-  }
- else   if (isNearTopLeftCorner(mouse)) {
-    return Corner.NORTHWEST;
-  }
- else   if (isNearBottomLeftCorner(mouse)) {
-    return Corner.SOUTHWEST;
-  }
   return null;
 }
