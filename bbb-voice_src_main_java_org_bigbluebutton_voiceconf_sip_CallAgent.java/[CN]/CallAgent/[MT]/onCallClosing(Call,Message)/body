@@ -1,7 +1,6 @@
 {
-  log.debug("onCallClosing");
+  log.info("Received a BYE from the other end telling us to hangup.");
   if (!isCurrentCall(call))   return;
-  log.debug("CLOSE.");
   closeVoiceStreams();
   notifyListenersOfOnCallClosed();
   callState=CallState.UA_IDLE;
