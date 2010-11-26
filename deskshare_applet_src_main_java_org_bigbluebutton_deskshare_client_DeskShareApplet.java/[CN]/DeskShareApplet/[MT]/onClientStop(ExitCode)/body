@@ -3,7 +3,7 @@
     JFrame pframe=new JFrame("Desktop Sharing Disconneted");
     if (null != pframe) {
       client.disconnected();
-      JOptionPane.showMessageDialog(pframe,"Desktop sharing disconnected. Reason: " + reason,"Disconnected",JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(pframe,"Disconnected. Reason: Lost connection to the server." + reason,"Disconnected",JOptionPane.ERROR_MESSAGE);
     }
  else {
       System.out.println("Desktop sharing allocate memory failed.");
