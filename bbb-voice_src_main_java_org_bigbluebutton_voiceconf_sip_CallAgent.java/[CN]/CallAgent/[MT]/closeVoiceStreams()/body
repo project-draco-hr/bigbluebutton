@@ -4,4 +4,7 @@
     callStream.stop();
     callStream=null;
   }
+ else {
+    log.debug("Can't shutdown voice stream. callstream is NULL");
+  }
 }

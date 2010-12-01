@@ -1,3 +1,9 @@
 {
-  localSocket.close();
+  log.debug("Closing local audio port {}",localSocket.getLocalPort());
+  if (localSocket != null) {
+    localSocket.close();
+  }
+ else {
+    log.debug("Trying to close un-allocated port {}",localSocket.getLocalPort());
+  }
 }
