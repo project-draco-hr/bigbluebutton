@@ -12,7 +12,7 @@
       if (packet instanceof AudioData) {
         System.out.println("**** Receive RTMP audio packet.");
         byte[] data=SerializeUtils.ByteBufferToByteArray(buf);
-        AudioByteData abd=new AudioByteData(data);
+        AudioByteData abd=new AudioByteData(data,false);
         try {
           audioDataQ.put(abd);
         }

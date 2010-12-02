@@ -1,6 +1,12 @@
 {
   log.debug("Stopping stream for {}",listenStreamName);
   processAudioData=false;
+  try {
+    audioDataQ.put(new AudioByteData(new byte[]{0},true));
+  }
+ catch (  InterruptedException e) {
+    e.printStackTrace();
+  }
   rtpStreamReceiver.stop();
   log.debug("Stopped RTP Stream Receiver for {}",listenStreamName);
   audioBroadcastStream.stop();
