@@ -1,5 +1,11 @@
 {
   processAudioData=false;
+  try {
+    audioDataQ.put(new AudioByteData(new byte[]{0},true));
+  }
+ catch (  InterruptedException e) {
+    e.printStackTrace();
+  }
   rtpStreamReceiver.stop();
   audioBroadcastStream.stop();
   audioBroadcastStream.close();
