@@ -1,27 +1,2 @@
 {
-  log.debug("started publishing stream in " + scope.getName());
-  audioBroadcastStream=new AudioBroadcastStream(listenStreamName);
-  audioBroadcastStream.setPublishedName(listenStreamName);
-  audioBroadcastStream.setScope(scope);
-  IContext context=scope.getContext();
-  IProviderService providerService=(IProviderService)context.getBean(IProviderService.BEAN_NAME);
-  if (providerService.registerBroadcastStream(scope,listenStreamName,audioBroadcastStream)) {
-    IBroadcastScope bScope=(BroadcastScope)providerService.getLiveProviderInput(scope,listenStreamName,true);
-    bScope.setAttribute(IBroadcastScope.STREAM_ATTRIBUTE,audioBroadcastStream);
-  }
- else {
-    log.error("could not register broadcast stream");
-    throw new RuntimeException("could not register broadcast stream");
-  }
-  audioBroadcastStream.start();
-  processAudioData=true;
-  startTimestamp=System.currentTimeMillis();
-  audioDataProcessor=new Runnable(){
-    public void run(){
-      processAudioData();
-    }
-  }
-;
-  exec.execute(audioDataProcessor);
-  rtpStreamReceiver.start();
 }

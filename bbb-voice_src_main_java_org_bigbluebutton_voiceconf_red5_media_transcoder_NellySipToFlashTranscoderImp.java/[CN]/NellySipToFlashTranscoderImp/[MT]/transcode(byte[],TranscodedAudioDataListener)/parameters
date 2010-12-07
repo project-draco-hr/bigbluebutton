@@ -1,2 +1,2 @@
-AudioByteData audioData
+byte[] audioData
 TranscodedAudioDataListener listener

@@ -1,24 +1,31 @@
 {
   int packetReceivedCounter=0;
   int internalBufferLength=payloadLength + RTP_HEADER_SIZE;
+  byte[] internalBuffer=new byte[internalBufferLength];
+  RtpPacket rtpPacket=new RtpPacket(internalBuffer,internalBufferLength);
+  ;
   while (receivePackets) {
     try {
-      byte[] internalBuffer;
-      RtpPacket rtpPacket;
-      internalBuffer=new byte[internalBufferLength];
-      rtpPacket=new RtpPacket(internalBuffer,internalBufferLength);
       rtpSocket.receive(rtpPacket);
-      byte[] pb=rtpPacket.getPacket();
-      StringBuilder p=new StringBuilder("Rx [");
-      for (int i=0; i < pb.length; i++) {
-        p.append(Integer.toHexString(pb[i] & 0xFF) + ",");
-      }
-      p.append("] " + pb.length + " "+ internalBufferLength);
-      log.debug(p.toString());
       packetReceivedCounter++;
-      log.debug("Received packet [" + rtpPacket.getRtcpPayloadType() + ","+ rtpPacket.getPayloadType()+ ", length="+ rtpPacket.getPayloadLength()+ "] seqNum[rtpSeqNum="+ rtpPacket.getSeqNum()+ ",lastSeqNum="+ lastSequenceNumber+ "][rtpTS="+ rtpPacket.getTimestamp()+ ",lastTS="+ lastPacketTimestamp+ "][port="+ rtpSocket.getDatagramSocket().getLocalPort()+ "]");
-      processRtpPacket(rtpPacket);
-      rtpPacket=null;
+      if (shouldDropDelayedPacket(rtpPacket)) {
+        continue;
+      }
+      if (rtpPacket.isRtcpPacket()) {
+        if (log.isDebugEnabled())         log.debug("RTCP packet [" + rtpPacket.getRtcpPayloadType() + ", length="+ rtpPacket.getPayloadLength()+ "] seqNum[rtpSeqNum="+ rtpPacket.getSeqNum()+ ",lastSeqNum="+ lastSequenceNumber+ "][rtpTS="+ rtpPacket.getTimestamp()+ ",lastTS="+ lastPacketTimestamp+ "][port="+ rtpSocket.getDatagramSocket().getLocalPort()+ "]");
+      }
+ else {
+        if (shouldHandlePacket(rtpPacket)) {
+          lastSequenceNumber=rtpPacket.getSeqNum();
+          lastPacketTimestamp=rtpPacket.getTimestamp();
+          processRtpPacket(internalBuffer,RTP_HEADER_SIZE,payloadLength);
+        }
+ else {
+          if (log.isDebugEnabled())           log.debug("Corrupt packet [" + rtpPacket.getRtcpPayloadType() + ","+ rtpPacket.getPayloadType()+ ", length="+ rtpPacket.getPayloadLength()+ "] seqNum[rtpSeqNum="+ rtpPacket.getSeqNum()+ ",lastSeqNum="+ lastSequenceNumber+ "][rtpTS="+ rtpPacket.getTimestamp()+ ",lastTS="+ lastPacketTimestamp+ "][port="+ rtpSocket.getDatagramSocket().getLocalPort()+ "]");
+          if (lastPacketDropped)           successivePacketDroppedCount++;
+ else           lastPacketDropped=true;
+        }
+      }
     }
  catch (    IOException e) {
       receivePackets=false;

@@ -1,4 +1,4 @@
-AudioByteData audioData
+byte[] audioData
 int startOffset
 int length
 TranscodedAudioDataListener listener
