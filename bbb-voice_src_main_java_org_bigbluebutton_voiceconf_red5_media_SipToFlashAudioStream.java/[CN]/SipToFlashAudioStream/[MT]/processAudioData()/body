@@ -7,7 +7,6 @@
     try {
       if (streamToFlash.available() > 1000) {
         long skipped=streamToFlash.skip(1000L);
-        System.out.println("** Skipping audio bytes[" + skipped + "]");
       }
       int bytesRead=streamToFlash.read(pcmAudio,offset,remaining);
       remaining-=bytesRead;

@@ -4,6 +4,7 @@
   mBuffer.put((byte)transcoder.getCodecId());
   mBuffer.put(audio);
   mBuffer.flip();
+  audioData.setSourceType(Constants.SOURCE_TYPE_LIVE);
   audioData.setTimestamp((int)(System.currentTimeMillis() - startTimestamp));
   audioData.setData(mBuffer);
   audioBroadcastStream.dispatchEvent(audioData);

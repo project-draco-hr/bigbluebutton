@@ -6,6 +6,7 @@
     mBuffer.flip();
     Notify notifyData=new Notify(mBuffer);
     notifyData.setTimestamp((int)startTimestamp);
+    notifyData.setSourceType(Constants.SOURCE_TYPE_LIVE);
     audioBroadcastStream.dispatchEvent(notifyData);
     notifyData.release();
     sentMetadata=true;

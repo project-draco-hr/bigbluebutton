@@ -1,12 +1,4 @@
 {
   broadcastStream.removeStreamListener(mInputListener);
   processAudioData=false;
-  try {
-    log.debug("Posioning Flash Queue");
-    audioDataQ.put(new AudioByteData(new byte[]{0},true));
-    log.debug("Posioned Flash Queue");
-  }
- catch (  InterruptedException e) {
-    e.printStackTrace();
-  }
 }
