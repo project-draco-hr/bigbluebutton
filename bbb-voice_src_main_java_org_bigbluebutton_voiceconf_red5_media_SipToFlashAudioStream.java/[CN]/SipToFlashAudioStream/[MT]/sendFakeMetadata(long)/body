@@ -1,11 +1,10 @@
 {
   if (!sentMetadata) {
-    startTimestamp=System.currentTimeMillis();
     mBuffer.clear();
     mBuffer.put(fakeMetadata);
     mBuffer.flip();
     Notify notifyData=new Notify(mBuffer);
-    notifyData.setTimestamp((int)startTimestamp);
+    notifyData.setTimestamp((int)timestamp);
     notifyData.setSourceType(Constants.SOURCE_TYPE_LIVE);
     audioBroadcastStream.dispatchEvent(notifyData);
     notifyData.release();
