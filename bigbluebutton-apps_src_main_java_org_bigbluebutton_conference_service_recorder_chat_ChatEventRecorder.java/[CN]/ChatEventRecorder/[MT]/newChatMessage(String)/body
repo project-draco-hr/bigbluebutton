@@ -1,0 +1,3 @@
+{
+  recordEvent(message);
+}
