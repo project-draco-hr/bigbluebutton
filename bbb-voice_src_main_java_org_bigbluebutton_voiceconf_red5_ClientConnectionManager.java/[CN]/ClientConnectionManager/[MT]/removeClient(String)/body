@@ -1,4 +1,9 @@
 {
   ClientConnection cc=clients.remove(id);
-  if (cc == null)   log.warn("Failed to remove client {}.",id);
+  if (cc == null) {
+    log.warn("Failed to remove client {}.",id);
+  }
+ else {
+    log.debug("Removed client {} from ConnectionManager.",id);
+  }
 }

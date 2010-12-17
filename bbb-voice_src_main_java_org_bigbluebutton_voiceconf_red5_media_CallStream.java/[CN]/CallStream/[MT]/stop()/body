@@ -1,3 +1,4 @@
 {
+  log.debug("Stopping call stream");
   userListenStream.stop();
 }

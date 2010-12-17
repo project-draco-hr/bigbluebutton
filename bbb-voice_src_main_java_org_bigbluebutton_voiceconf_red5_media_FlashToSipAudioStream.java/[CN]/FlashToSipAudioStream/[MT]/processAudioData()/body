@@ -1,10 +1,23 @@
 {
+  int len=64;
+  byte[] nellyAudio=new byte[len];
+  int remaining=len;
+  int offset=0;
+  TranscodedAudioListener transcodedAudioListener=new TranscodedAudioListener();
   while (processAudioData) {
     try {
-      AudioByteData abd=audioDataQ.take();
-      transcoder.transcode(abd,1,abd.getData().length - 1,new TranscodedAudioListener());
+      int bytesRead=streamToSip.read(nellyAudio,offset,remaining);
+      remaining-=bytesRead;
+      if (remaining == 0) {
+        remaining=len;
+        offset=0;
+        transcoder.transcode(nellyAudio,0,nellyAudio.length,transcodedAudioListener);
+      }
+ else {
+        offset+=bytesRead;
+      }
     }
- catch (    InterruptedException e) {
+ catch (    IOException e) {
       e.printStackTrace();
     }
   }

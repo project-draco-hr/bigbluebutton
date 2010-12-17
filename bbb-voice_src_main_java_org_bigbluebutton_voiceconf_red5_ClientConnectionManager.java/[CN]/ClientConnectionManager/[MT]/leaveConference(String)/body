@@ -4,6 +4,6 @@
     cc.onLeaveConference();
   }
  else {
-    log.warn("Can't find connection {}",clientId);
+    log.warn("Can't find client {} to inform user that she has left the conference.",clientId);
   }
 }

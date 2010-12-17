@@ -4,4 +4,5 @@
   decoderMap=null;
   Random rgen=new Random();
   timestamp=rgen.nextInt(1000);
+  viewBuffer=l16Audio.asReadOnlyBuffer();
 }
