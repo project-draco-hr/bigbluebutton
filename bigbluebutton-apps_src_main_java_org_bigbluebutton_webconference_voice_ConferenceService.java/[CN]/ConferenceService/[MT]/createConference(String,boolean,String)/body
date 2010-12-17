@@ -1,4 +1,5 @@
 {
+  if (record)   confProvider.record(room,meetingid);
   if (roomMgr.hasRoom(room))   return;
   roomMgr.createRoom(room);
   confProvider.populateRoom(room);

@@ -5,4 +5,5 @@
   if (!hasSharedObject(scope,VOICE_SO)) {
     clearSharedObjects(scope,VOICE_SO);
   }
+  log.debug("I think for stop record, it will be here...");
 }
