@@ -1,0 +1,8 @@
+{
+  Hashtable keyvalues=new Hashtable();
+  keyvalues.put("event","clearPage");
+  keyvalues.put("presentation",presentation.getName());
+  keyvalues.put("pageNum",presentation.getActivePage().getPageIndex());
+  String xmlstr=BigBlueButtonUtils.parseEventsToXML("whiteboard",keyvalues);
+  recordEvent(xmlstr);
+}

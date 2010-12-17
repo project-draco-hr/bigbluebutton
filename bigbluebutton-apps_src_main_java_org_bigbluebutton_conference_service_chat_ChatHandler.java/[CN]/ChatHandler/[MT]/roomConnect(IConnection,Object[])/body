@@ -2,11 +2,13 @@
   log.debug("roomConnect");
   ISharedObject so=getSharedObject(connection.getScope(),CHAT_SO);
   log.debug("Setting up recorder");
-  ChatEventRecorder recorder=new ChatEventRecorder(so,getBbbSession().getRecord());
+  ChatMessageSender messageSender=new ChatMessageSender(so);
+  ChatEventRecorder recorder=new ChatEventRecorder(getBbbSession().getRecord());
   log.debug("adding event recorder to {}",connection.getScope().getName());
   recorderApplication.addEventRecorder(connection.getScope().getName(),recorder);
   log.debug("Adding room listener");
   chatApplication.addRoomListener(connection.getScope().getName(),recorder);
+  chatApplication.addRoomListener(connection.getScope().getName(),messageSender);
   log.debug("Done setting up recorder and listener");
   return true;
 }

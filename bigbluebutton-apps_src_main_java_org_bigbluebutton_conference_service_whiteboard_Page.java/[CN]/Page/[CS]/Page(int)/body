@@ -1,0 +1,4 @@
+{
+  this.shapes=new ArrayCollection<Shape>();
+  this.setPageIndex(pageIndex);
+}
