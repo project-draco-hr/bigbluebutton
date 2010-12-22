@@ -1,3 +1,4 @@
 {
   activePresentation.getActivePage().undo();
+  notifyUndoShape(activePresentation);
 }

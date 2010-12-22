@@ -1,5 +1,4 @@
 {
-  if ((index > pages.size()) || (index == activePageIndex))   return;
+  if ((index > pages.size()) || (index == activePage.getPageIndex()))   return;
   activePage=pages.get(index);
-  activePageIndex=index;
 }

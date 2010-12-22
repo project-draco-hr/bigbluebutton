@@ -1,3 +1,11 @@
 {
+  log.debug("WHITEBOARD - getting record parameters");
+  if (getBbbSession().getRecord()) {
+    log.debug("WHITEBOARD - recording : true");
+    WhiteboardEventRecorder recorder=new WhiteboardEventRecorder();
+    roomManager.getRoom(getLocalScope().getName()).addRoomListener(recorder);
+    recorderApplication.addEventRecorder(getLocalScope().getName(),recorder);
+    log.debug("event session is " + getLocalScope().getName());
+  }
   return true;
 }
