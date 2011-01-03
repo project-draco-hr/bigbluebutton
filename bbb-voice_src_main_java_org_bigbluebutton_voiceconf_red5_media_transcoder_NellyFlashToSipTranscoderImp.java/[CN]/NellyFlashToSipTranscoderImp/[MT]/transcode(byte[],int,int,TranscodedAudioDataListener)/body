@@ -1,24 +1,33 @@
 {
-  byte[] codedBuffer=new byte[length];
-  System.arraycopy(audioData,startOffset,codedBuffer,0,length);
-  byte[] transcodedAudioData=new byte[sipCodec.getOutgoingEncodedFrameSize()];
-  asao_buffer_processed=false;
-  if (!hasInitilializedBuffers) {
-    tempBuffer=new float[NELLYMOSER_DECODED_PACKET_SIZE];
-    encodingBuffer=new float[sipCodec.getOutgoingDecodedFrameSize()];
-    hasInitilializedBuffers=true;
+  byte[] codedBuffer=new byte[160];
+  decoderMap=decoder.decode(decoderMap,audioData,0,tempBuffer,0);
+  nellyAudio.put(tempBuffer);
+  ulawAudio.get(encodingBuffer);
+  int encodedBytes=sipCodec.pcmToCodec(encodingBuffer,codedBuffer);
+  if (encodedBytes == sipCodec.getOutgoingEncodedFrameSize()) {
+    listener.handleTranscodedAudioData(codedBuffer,timestamp+=TS_INCREMENT);
   }
-  if (length > 0) {
-    do {
-      int encodedBytes=fillRtpPacketBuffer(codedBuffer,transcodedAudioData);
-      if (encodedBytes == 0) {
-        break;
-      }
-      if (encodingOffset == sipCodec.getOutgoingDecodedFrameSize()) {
-        encodingOffset=0;
-        listener.handleTranscodedAudioData(transcodedAudioData,timestamp+=TS_INCREMENT);
-      }
+ else {
+    log.error("Failure encoding buffer.");
+  }
+  if (nellyAudio.position() == nellyAudio.capacity()) {
+    ulawAudio.get(encodingBuffer);
+    encodedBytes=sipCodec.pcmToCodec(encodingBuffer,codedBuffer);
+    if (encodedBytes == sipCodec.getOutgoingEncodedFrameSize()) {
+      listener.handleTranscodedAudioData(codedBuffer,timestamp+=TS_INCREMENT);
     }
- while (!asao_buffer_processed);
+ else {
+      log.error("Failure encoding buffer.");
+    }
+    ulawAudio.get(encodingBuffer);
+    encodedBytes=sipCodec.pcmToCodec(encodingBuffer,codedBuffer);
+    if (encodedBytes == sipCodec.getOutgoingEncodedFrameSize()) {
+      listener.handleTranscodedAudioData(codedBuffer,timestamp+=TS_INCREMENT);
+    }
+ else {
+      log.error("Failure encoding buffer.");
+    }
+    nellyAudio.clear();
+    ulawAudio.clear();
   }
 }

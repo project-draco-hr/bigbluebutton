@@ -1,7 +1,9 @@
 {
   this.sipCodec=sipCodec;
+  encodingBuffer=new float[sipCodec.getOutgoingDecodedFrameSize()];
   decoder=new Decoder();
   decoderMap=null;
   Random rgen=new Random();
   timestamp=rgen.nextInt(1000);
+  ulawAudio=nellyAudio.asReadOnlyBuffer();
 }
