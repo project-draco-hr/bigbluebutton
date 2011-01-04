@@ -3,26 +3,19 @@
   byte[] nellyAudio=new byte[len];
   int remaining=len;
   int offset=0;
-  long startProc;
-  boolean transcoded=false;
+  TranscodedAudioListener transcodedAudioListener=new TranscodedAudioListener();
   while (processAudioData) {
     try {
-      startProc=System.currentTimeMillis();
-      if (streamToSip.available() > 1000) {
-        long skipped=streamToSip.skip(1000L);
-      }
       int bytesRead=streamToSip.read(nellyAudio,offset,remaining);
       remaining-=bytesRead;
       if (remaining == 0) {
         remaining=len;
         offset=0;
-        transcoder.transcode(nellyAudio,0,nellyAudio.length,new TranscodedAudioListener());
-        transcoded=true;
+        transcoder.transcode(nellyAudio,0,nellyAudio.length,transcodedAudioListener);
       }
  else {
         offset+=bytesRead;
       }
-      transcoded=false;
     }
  catch (    IOException e) {
       e.printStackTrace();

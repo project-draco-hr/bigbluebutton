@@ -19,7 +19,16 @@
         ByteStream encodedStream=new ByteStream(NELLYMOSER_ENCODED_PACKET_SIZE);
         encoderMap=CodecImpl.encode(encoderMap,tempBuffer,encodedStream.bytes);
         tempBufferOffset=0;
-        listener.handleTranscodedAudioData(encodedStream.bytes,timestamp+=TS_INCREMENT);
+        boolean sendPacket=true;
+        IConnection conn=Red5.getConnectionLocal();
+        if (conn instanceof RTMPMinaConnection) {
+          long pendingMessages=((RTMPMinaConnection)conn).getPendingMessages();
+          if (pendingMessages > 25) {
+            sendPacket=false;
+            log.info("Dropping packet. Connection {} congested with {} pending messages (~500ms worth of audio) .",conn.getClient().getId(),pendingMessages);
+          }
+        }
+        if (sendPacket)         listener.handleTranscodedAudioData(encodedStream.bytes,timestamp+=TS_INCREMENT);
       }
       if (pcmBufferOffset == decodingBuffer.length) {
         pcmBufferProcessed=true;
