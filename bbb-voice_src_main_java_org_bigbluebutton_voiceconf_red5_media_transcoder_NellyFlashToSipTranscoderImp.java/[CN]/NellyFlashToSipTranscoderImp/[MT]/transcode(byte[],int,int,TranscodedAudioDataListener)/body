@@ -1,34 +1,39 @@
 {
-  byte[] codedBuffer=new byte[160];
-  decoderMap=decoder.decode(decoderMap,audioData,0,tempBuffer,0);
-  nellyAudio.put(tempBuffer);
-  ulawAudio.get(encodingBuffer);
-  int encodedBytes=sipCodec.pcmToCodec(encodingBuffer,codedBuffer);
-  listener.handleTranscodedAudioData(codedBuffer,timestamp+=TS_INCREMENT);
-  if (nellyAudio.position() == nellyAudio.capacity()) {
-    ulawAudio.get(encodingBuffer);
-    encodedBytes=sipCodec.pcmToCodec(encodingBuffer,codedBuffer);
+  if (audioData.length != NELLY_AUDIO_LENGTH) {
+    log.warn("Receiving bad nelly audio. Expecting {}, got {}.",NELLY_AUDIO_LENGTH,audioData.length);
+    return;
+  }
+  decoderMap=decoder.decode(decoderMap,audioData,0,tempL16Buffer,0);
+  l16Audio.put(tempL16Buffer);
+  viewBuffer.get(tempUlawBuffer);
+  int encodedBytes=sipCodec.pcmToCodec(tempUlawBuffer,ulawEncodedBuffer);
+  listener.handleTranscodedAudioData(ulawEncodedBuffer,timestamp+=TS_INCREMENT);
+  if (l16Audio.position() == l16Audio.capacity()) {
+    viewBuffer.get(tempUlawBuffer);
+    encodedBytes=sipCodec.pcmToCodec(tempUlawBuffer,ulawEncodedBuffer);
     if (encodedBytes == sipCodec.getOutgoingEncodedFrameSize()) {
-      listener.handleTranscodedAudioData(codedBuffer,timestamp+=TS_INCREMENT);
+      listener.handleTranscodedAudioData(ulawEncodedBuffer,timestamp+=TS_INCREMENT);
     }
  else {
       log.error("Failure encoding buffer.");
     }
-    ulawAudio.get(encodingBuffer);
-    encodedBytes=sipCodec.pcmToCodec(encodingBuffer,codedBuffer);
+    viewBuffer.get(tempUlawBuffer);
+    encodedBytes=sipCodec.pcmToCodec(tempUlawBuffer,ulawEncodedBuffer);
     if (encodedBytes == sipCodec.getOutgoingEncodedFrameSize()) {
-      listener.handleTranscodedAudioData(codedBuffer,timestamp+=TS_INCREMENT);
+      listener.handleTranscodedAudioData(ulawEncodedBuffer,timestamp+=TS_INCREMENT);
     }
  else {
       log.error("Failure encoding buffer.");
     }
+    viewBuffer.get(tempUlawBuffer);
+    encodedBytes=sipCodec.pcmToCodec(tempUlawBuffer,ulawEncodedBuffer);
     if (encodedBytes == sipCodec.getOutgoingEncodedFrameSize()) {
-      listener.handleTranscodedAudioData(codedBuffer,timestamp+=TS_INCREMENT);
+      listener.handleTranscodedAudioData(ulawEncodedBuffer,timestamp+=TS_INCREMENT);
     }
  else {
       log.error("Failure encoding buffer.");
     }
-    nellyAudio.clear();
-    ulawAudio.clear();
+    l16Audio.clear();
+    viewBuffer.clear();
   }
 }

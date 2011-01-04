@@ -1,5 +1,5 @@
 {
-  DatagramPacket datagram=new DatagramPacket(rtpp.getPacket(),rtpp.getLength());
-  socket.receive(datagram);
-  rtpp.setPacketLength(datagram.getLength());
+  rxDatagram.setData(rtpp.getPacket());
+  socket.receive(rxDatagram);
+  rtpp.setPacketLength(rxDatagram.getLength());
 }

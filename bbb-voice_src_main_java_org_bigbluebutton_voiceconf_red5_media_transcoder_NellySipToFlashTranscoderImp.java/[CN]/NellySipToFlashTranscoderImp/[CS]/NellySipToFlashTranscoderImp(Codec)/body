@@ -1,7 +1,7 @@
 {
   this.audioCodec=audioCodec;
   encoderMap=new float[64];
-  tempBuffer=new float[NELLYMOSER_DECODED_PACKET_SIZE];
   Random rgen=new Random();
   timestamp=rgen.nextInt(1000);
+  viewBuffer=l16Audio.asReadOnlyBuffer();
 }
