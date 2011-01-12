@@ -13,6 +13,7 @@
     p.setTalking(pje.getSpeaking());
     log.debug("Joined [" + p.getId() + ","+ p.getName()+ ","+ p.isMuted()+ ","+ p.isTalking()+ "] to room "+ rm.getName());
     rm.add(p);
+    if (rm.isRecorded())     confService.recordSession(event.getRoom(),rm.getMeeting());
     if (rm.isMuted() && !p.isMuted()) {
       confService.mute(p.getId(),event.getRoom(),true);
     }

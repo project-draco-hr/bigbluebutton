@@ -1,5 +1,6 @@
 {
-  String RECORD_DIR="/tmp";
+  if (recording)   return;
+  String RECORD_DIR="/var/freeswitch/meetings";
   String DATE_FORMAT="yyyyMMdd-hhmmss";
   Calendar cal=Calendar.getInstance();
   SimpleDateFormat sdf=new SimpleDateFormat(DATE_FORMAT);
@@ -9,4 +10,5 @@
   log.debug(rcc.getCommand() + rcc.getCommandArgs());
   EslMessage response=manager.getESLClient().sendSyncApiCommand(rcc.getCommand(),rcc.getCommandArgs());
   rcc.handleResponse(response,conferenceEventListener);
+  recording=true;
 }
