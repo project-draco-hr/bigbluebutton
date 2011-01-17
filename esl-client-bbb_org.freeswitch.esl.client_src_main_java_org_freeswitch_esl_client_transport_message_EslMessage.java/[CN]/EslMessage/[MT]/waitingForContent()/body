@@ -1,4 +1,0 @@
-{
-  log.debug("received [{}], expecting [{}]",receivedContentLength,getContentLength());
-  return receivedContentLength < getContentLength();
-}

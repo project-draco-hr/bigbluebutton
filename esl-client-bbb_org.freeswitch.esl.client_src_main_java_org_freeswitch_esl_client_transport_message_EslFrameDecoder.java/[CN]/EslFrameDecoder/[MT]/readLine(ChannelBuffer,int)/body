@@ -1,0 +1,16 @@
+{
+  StringBuilder sb=new StringBuilder(64);
+  while (buffer.readable()) {
+    byte nextByte=buffer.readByte();
+    if (nextByte == LF) {
+      return sb.toString();
+    }
+ else {
+      if (sb.length() >= maxLineLength) {
+        throw new TooLongFrameException("ESL message line is longer than " + maxLineLength + " bytes.");
+      }
+      sb.append((char)nextByte);
+    }
+  }
+  return sb.toString();
+}

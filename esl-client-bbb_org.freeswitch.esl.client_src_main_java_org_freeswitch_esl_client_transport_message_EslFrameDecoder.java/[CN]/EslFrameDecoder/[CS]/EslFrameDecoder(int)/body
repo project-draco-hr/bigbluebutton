@@ -1,0 +1,7 @@
+{
+  super(State.READ_HEADER);
+  if (maxHeaderSize <= 0) {
+    throw new IllegalArgumentException("maxHeaderSize must be a positive integer: " + maxHeaderSize);
+  }
+  this.maxHeaderSize=maxHeaderSize;
+}

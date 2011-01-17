@@ -1,0 +1,57 @@
+{
+  log.trace("decode() : state [{}]",state);
+switch (state) {
+case READ_HEADER:
+    if (currentMessage == null) {
+      currentMessage=new EslMessage();
+    }
+  boolean reachedDoubleLF=false;
+while (!reachedDoubleLF) {
+  String headerLine=readToLineFeedOrFail(buffer,maxHeaderSize);
+  log.debug("read header line [{}]",headerLine);
+  if (!headerLine.isEmpty()) {
+    String[] headerParts=HeaderParser.splitHeader(headerLine);
+    Name headerName=Name.fromLiteral(headerParts[0]);
+    if (headerName == null) {
+      if (treatUnknownHeadersAsBody) {
+        currentMessage.addBodyLine(headerLine);
+      }
+ else {
+        throw new IllegalStateException("Unhandled ESL header [" + headerParts[0] + ']');
+      }
+    }
+    currentMessage.addHeader(headerName,headerParts[1]);
+  }
+ else {
+    reachedDoubleLF=true;
+  }
+  checkpoint();
+}
+if (currentMessage.hasContentLength()) {
+checkpoint(State.READ_BODY);
+log.debug("have content-length, decoding body ..");
+return null;
+}
+ else {
+checkpoint(State.READ_HEADER);
+EslMessage decodedMessage=currentMessage;
+currentMessage=null;
+return decodedMessage;
+}
+case READ_BODY:
+int contentLength=currentMessage.getContentLength();
+ChannelBuffer bodyBytes=buffer.readBytes(contentLength);
+log.debug("read [{}] body bytes",bodyBytes.writerIndex());
+while (bodyBytes.readable()) {
+String bodyLine=readLine(bodyBytes,contentLength);
+log.debug("read body line [{}]",bodyLine);
+currentMessage.addBodyLine(bodyLine);
+}
+checkpoint(State.READ_HEADER);
+EslMessage decodedMessage=currentMessage;
+currentMessage=null;
+return decodedMessage;
+default :
+throw new Error("Illegal state: [" + state + ']');
+}
+}

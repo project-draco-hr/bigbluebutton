@@ -1,0 +1,12 @@
+{
+  ChannelBuffer buffer=ChannelBuffers.dynamicBuffer();
+  Iterator<String> it=inputLines.iterator();
+  while (it.hasNext()) {
+    buffer.writeBytes(it.next().getBytes());
+    if (it.hasNext() || terminateLastLine) {
+      buffer.writeByte('\n');
+    }
+  }
+  log.debug("Created buffer with [{}] bytes",buffer.writerIndex());
+  return buffer;
+}

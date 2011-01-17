@@ -1,0 +1,3 @@
+{
+  embedder=new DecoderEmbedder<EslMessage>(new EslFrameDecoder(64));
+}
