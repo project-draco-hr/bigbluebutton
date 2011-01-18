@@ -13,7 +13,11 @@
     p.setTalking(pje.getSpeaking());
     log.debug("Joined [" + p.getId() + ","+ p.getName()+ ","+ p.isMuted()+ ","+ p.isTalking()+ "] to room "+ rm.getName());
     rm.add(p);
-    if (rm.isRecorded())     confService.recordSession(event.getRoom(),rm.getMeeting());
+    if ((rm.numParticipants() == 1) && (rm.record())) {
+      rm.recording(true);
+      log.debug("Starting recording of voice conference");
+      confService.recordSession(event.getRoom(),rm.getMeeting());
+    }
     if (rm.isMuted() && !p.isMuted()) {
       confService.mute(p.getId(),event.getRoom(),true);
     }
@@ -21,6 +25,10 @@
  else   if (event instanceof ParticipantLeftEvent) {
     log.debug("Processing ParticipantLeftEvent for room: " + event.getRoom());
     rm.remove(event.getParticipantId());
+    if ((rm.numParticipants() == 0) && (rm.record())) {
+      log.debug("Stopping recording of voice conference");
+      rm.recording(false);
+    }
   }
  else   if (event instanceof ParticipantMutedEvent) {
     log.debug("Processing ParticipantMutedEvent for room: " + event.getRoom());
