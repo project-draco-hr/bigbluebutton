@@ -1,6 +1,6 @@
 {
   RecorderSession session;
-  RecorderEventDispatcher recorder=null;
+  RedisDispatcher recorder=null;
   boolean createdSession=false;
   log.debug("Trying to create a record session for {}",sessionName);
 synchronized (this) {
@@ -12,8 +12,8 @@ synchronized (this) {
       log.debug("record session is NOT null");
     }
     if (!recordSessions.containsKey(sessionName)) {
-      log.debug("Creating jms recorder for " + conference + " "+ room);
-      recorder=new RecorderEventDispatcher(conference,room);
+      log.debug("Creating redis dispatcher for " + conference + " "+ room);
+      recorder=new RedisDispatcher(room);
       log.debug("Creating record session for {}",sessionName);
       session=new RecorderSession(conference,room);
       log.debug("Adding record session {} to record sessions",sessionName);
@@ -28,6 +28,5 @@ synchronized (this) {
     }
   }
   if (createdSession) {
-    recorder.setJmsTemplate(jmsTemplate);
   }
 }

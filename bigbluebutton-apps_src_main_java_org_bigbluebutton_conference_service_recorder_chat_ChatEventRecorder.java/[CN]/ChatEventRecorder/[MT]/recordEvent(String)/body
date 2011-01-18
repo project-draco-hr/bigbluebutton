@@ -1,5 +1,5 @@
 {
   if (record) {
-    recorder.recordEvent(parseChatToXML(message));
+    recorder.record(parseChatToXML(message));
   }
 }

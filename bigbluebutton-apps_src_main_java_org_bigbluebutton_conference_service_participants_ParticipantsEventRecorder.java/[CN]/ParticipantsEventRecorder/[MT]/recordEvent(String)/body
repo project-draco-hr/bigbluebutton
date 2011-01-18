@@ -1,5 +1,4 @@
 {
   if (record) {
-    recorder.recordEvent(message);
   }
 }
