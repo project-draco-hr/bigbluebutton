@@ -1,4 +1,0 @@
-{
-  dataSource=source;
-  db=new Sql(dataSource);
-}
