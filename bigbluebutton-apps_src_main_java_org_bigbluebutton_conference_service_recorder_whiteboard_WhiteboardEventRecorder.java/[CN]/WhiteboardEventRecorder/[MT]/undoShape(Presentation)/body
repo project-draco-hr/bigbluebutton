@@ -1,8 +1,8 @@
 {
-  Hashtable keyvalues=new Hashtable();
-  keyvalues.put("event","undoShape");
-  keyvalues.put("presentation",presentation.getName());
-  keyvalues.put("pageNum",presentation.getActivePage().getPageIndex());
-  String xmlstr=BigBlueButtonUtils.parseEventsToXML("whiteboard",keyvalues);
-  recordEvent(xmlstr);
+  HashMap<String,String> map=new HashMap<String,String>();
+  map.put("module","whiteboard");
+  map.put("event","undoShape");
+  map.put("presetation",presentation.getName());
+  map.put("pageNum",Integer.toString(presentation.getActivePage().getPageIndex()));
+  recordEvent(map);
 }

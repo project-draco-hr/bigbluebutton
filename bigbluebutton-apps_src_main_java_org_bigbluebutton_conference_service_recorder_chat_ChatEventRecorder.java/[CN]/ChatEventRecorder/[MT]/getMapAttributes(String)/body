@@ -1,0 +1,11 @@
+{
+  HashMap<String,String> map=new HashMap<String,String>();
+  String[] chat_attribs=message.trim().split("\\|",-1);
+  map.put("module","chat");
+  map.put("event","new_message");
+  map.put("user",chat_attribs[1]);
+  map.put("text",chat_attribs[0]);
+  map.put("language",chat_attribs[4]);
+  map.put("color",chat_attribs[2]);
+  return map;
+}

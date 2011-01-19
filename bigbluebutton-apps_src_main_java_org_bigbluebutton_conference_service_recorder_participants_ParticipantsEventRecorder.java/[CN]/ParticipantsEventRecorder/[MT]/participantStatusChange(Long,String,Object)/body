@@ -1,0 +1,9 @@
+{
+  HashMap<String,String> map=new HashMap<String,String>();
+  map.put("module","participants");
+  map.put("event","status_change");
+  map.put("userid",userid.toString());
+  map.put("status",status);
+  map.put("value",value.toString());
+  recordEvent(map);
+}

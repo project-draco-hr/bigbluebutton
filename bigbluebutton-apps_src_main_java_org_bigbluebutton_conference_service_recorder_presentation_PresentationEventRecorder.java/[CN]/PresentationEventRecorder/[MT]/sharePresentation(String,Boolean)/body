@@ -1,0 +1,9 @@
+{
+  log.debug("RECORD module:presentation event:share_presentation");
+  HashMap<String,String> map=new HashMap<String,String>();
+  map.put("module","presentation");
+  map.put("event","share_presentation");
+  map.put("presentationName",presentationName);
+  map.put("share",share.toString());
+  recordEvent(map);
+}

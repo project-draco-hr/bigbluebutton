@@ -1,4 +1,5 @@
 {
   jedis=new Jedis("localhost",6379);
   this.meeting=conference;
+  jedis.lpush("global" + SEPARATOR_CHAR + "recordedMeetings",conference);
 }

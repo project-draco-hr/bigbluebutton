@@ -1,0 +1,10 @@
+{
+  log.debug("RECORD module:presentation event:assign_presenter");
+  HashMap<String,String> map=new HashMap<String,String>();
+  map.put("module","presentation");
+  map.put("event","assign_presenter");
+  map.put("userid",presenter.get(0).toString());
+  map.put("name",presenter.get(1).toString());
+  map.put("assignedBy",presenter.get(2).toString());
+  recordEvent(map);
+}

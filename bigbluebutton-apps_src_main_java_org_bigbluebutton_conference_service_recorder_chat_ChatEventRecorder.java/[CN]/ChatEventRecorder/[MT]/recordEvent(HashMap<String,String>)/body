@@ -1,0 +1,5 @@
+{
+  if (record) {
+    recorder.record(message);
+  }
+}
