@@ -3,11 +3,13 @@
   log.debug("In live mode");
   ISharedObject so=getSharedObject(connection.getScope(),PRESENTATION_SO);
   log.debug("Setting up recorder");
-  PresentationEventRecorder recorder=new PresentationEventRecorder(so,getBbbSession().getRecord());
+  PresentationEventSender sender=new PresentationEventSender(so,getBbbSession().getRecord());
+  PresentationEventRecorder recorder=new PresentationEventRecorder(getBbbSession().getRecord());
   log.debug("adding event recorder to {}",connection.getScope().getName());
   recorderApplication.addEventRecorder(connection.getScope().getName(),recorder);
   log.debug("Adding room listener");
   presentationApplication.addRoomListener(connection.getScope().getName(),recorder);
+  presentationApplication.addRoomListener(connection.getScope().getName(),sender);
   log.debug("Done setting up recorder and listener");
   return true;
 }

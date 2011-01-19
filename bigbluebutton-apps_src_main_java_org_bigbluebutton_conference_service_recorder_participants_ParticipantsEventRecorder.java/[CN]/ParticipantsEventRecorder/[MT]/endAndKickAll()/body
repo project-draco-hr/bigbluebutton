@@ -1,0 +1,6 @@
+{
+  HashMap<String,String> map=new HashMap<String,String>();
+  map.put("module","participants");
+  map.put("event","leave_all");
+  recordEvent(map);
+}

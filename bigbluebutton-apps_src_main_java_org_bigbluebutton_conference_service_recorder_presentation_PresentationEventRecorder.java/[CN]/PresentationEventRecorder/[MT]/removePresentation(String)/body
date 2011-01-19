@@ -1,0 +1,8 @@
+{
+  log.debug("RECORD module:presentation event:remove_presentation");
+  HashMap<String,String> map=new HashMap<String,String>();
+  map.put("module","presentation");
+  map.put("event","remove_presentation");
+  map.put("presentationName",name);
+  recordEvent(map);
+}

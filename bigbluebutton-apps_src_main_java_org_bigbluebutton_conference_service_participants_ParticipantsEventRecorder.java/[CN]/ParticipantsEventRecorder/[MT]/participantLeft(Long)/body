@@ -1,6 +1,0 @@
-{
-  ArrayList args=new ArrayList();
-  args.add(userid);
-  so.sendMessage("participantLeft",args);
-  recordEvent(parseParticipantsToXML(args,this.RECORD_EVENT_LEAVE));
-}
