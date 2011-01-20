@@ -2,6 +2,7 @@
   String presentationName=(String)message.get("presentationName");
   String messageKey=(String)message.get("messageKey");
   HashMap<String,String> map=new HashMap<String,String>();
+  map.put("timestamp",Long.toString(System.currentTimeMillis()));
   map.put("presentationName",presentationName);
   if (messageKey.equalsIgnoreCase(GENERATED_SLIDE_KEY)) {
     log.debug("{}[{}]",messageKey,presentationName);

@@ -1,6 +1,7 @@
 {
   log.debug("RECORD module:presentation event:assign_presenter");
   HashMap<String,String> map=new HashMap<String,String>();
+  map.put("timestamp",Long.toString(System.currentTimeMillis()));
   map.put("module","presentation");
   map.put("event","assign_presenter");
   map.put("userid",presenter.get(0).toString());

@@ -1,6 +1,7 @@
 {
   log.debug("RECORD module:presentation event:resize_move_slide");
   HashMap<String,String> map=new HashMap<String,String>();
+  map.put("timestamp",Long.toString(System.currentTimeMillis()));
   map.put("module","presentation");
   map.put("event","resize_move_slide");
   map.put("xOffset",Double.toString(xOffset));
