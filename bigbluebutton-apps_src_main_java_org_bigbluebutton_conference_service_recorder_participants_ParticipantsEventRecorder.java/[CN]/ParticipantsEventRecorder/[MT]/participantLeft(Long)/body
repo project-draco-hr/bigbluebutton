@@ -1,5 +1,6 @@
 {
   HashMap<String,String> map=new HashMap<String,String>();
+  map.put("timestamp",Long.toString(System.currentTimeMillis()));
   map.put("module","participants");
   map.put("event","leave");
   map.put("userid",userid.toString());
