@@ -1,4 +1,3 @@
 {
-  roomMgr=new RoomManager(this);
   confProvider.startup();
 }

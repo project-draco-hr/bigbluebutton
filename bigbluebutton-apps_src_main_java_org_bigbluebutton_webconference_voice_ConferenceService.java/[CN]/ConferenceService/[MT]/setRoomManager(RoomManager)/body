@@ -1,0 +1,4 @@
+{
+  this.roomMgr=roomManager;
+  roomManager.setConferenceService(this);
+}

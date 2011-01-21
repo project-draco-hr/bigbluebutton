@@ -1,0 +1,12 @@
+{
+  ParticipantMutedEvent pme=(ParticipantMutedEvent)event;
+  HashMap<String,String> map=new HashMap<String,String>();
+  map.put("timestamp",Long.toString(System.currentTimeMillis()));
+  map.put("meeting",room);
+  map.put("bridge",event.getRoom());
+  map.put("module","voice");
+  map.put("event","userMuted");
+  map.put("participant",event.getParticipantId().toString());
+  map.put("muted",Boolean.toString(pme.isMuted()));
+  recorder.record(room,map);
+}

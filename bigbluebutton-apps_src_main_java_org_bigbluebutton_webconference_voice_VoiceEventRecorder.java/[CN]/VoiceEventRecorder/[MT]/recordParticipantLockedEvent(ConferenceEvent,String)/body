@@ -1,0 +1,12 @@
+{
+  ParticipantLockedEvent ple=(ParticipantLockedEvent)event;
+  HashMap<String,String> map=new HashMap<String,String>();
+  map.put("timestamp",Long.toString(System.currentTimeMillis()));
+  map.put("meeting",room);
+  map.put("bridge",event.getRoom());
+  map.put("module","voice");
+  map.put("event","userLocked");
+  map.put("participant",event.getParticipantId().toString());
+  map.put("locked",Boolean.toString(ple.isLocked()));
+  recorder.record(room,map);
+}

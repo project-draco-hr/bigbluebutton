@@ -1,0 +1,4 @@
+{
+  ParticipantLockedEvent ple=(ParticipantLockedEvent)event;
+  lockParticipant(ple.getRoom(),ple.getParticipantId(),ple.isLocked());
+}

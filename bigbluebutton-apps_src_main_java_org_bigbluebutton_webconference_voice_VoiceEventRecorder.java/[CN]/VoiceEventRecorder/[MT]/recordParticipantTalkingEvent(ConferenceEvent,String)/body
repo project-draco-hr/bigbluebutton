@@ -1,0 +1,12 @@
+{
+  ParticipantTalkingEvent pte=(ParticipantTalkingEvent)event;
+  HashMap<String,String> map=new HashMap<String,String>();
+  map.put("timestamp",Long.toString(System.currentTimeMillis()));
+  map.put("meeting",room);
+  map.put("bridge",event.getRoom());
+  map.put("module","voice");
+  map.put("event","userTalking");
+  map.put("participant",event.getParticipantId().toString());
+  map.put("talking",Boolean.toString(pte.isTalking()));
+  recorder.record(room,map);
+}

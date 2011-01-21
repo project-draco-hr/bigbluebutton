@@ -1,0 +1,16 @@
+{
+  ParticipantJoinedEvent pje=(ParticipantJoinedEvent)event;
+  HashMap<String,String> map=new HashMap<String,String>();
+  map.put("timestamp",Long.toString(System.currentTimeMillis()));
+  map.put("meeting",room);
+  map.put("bridge",event.getRoom());
+  map.put("module","voice");
+  map.put("event","userJoin");
+  map.put("participant",pje.getParticipantId().toString());
+  map.put("callername",pje.getCallerIdName());
+  map.put("callernumber",pje.getCallerIdName());
+  map.put("muted",pje.getMuted().toString());
+  map.put("talking",pje.getSpeaking().toString());
+  map.put("locked",pje.isLocked().toString());
+  recorder.record(room,map);
+}

@@ -1,4 +1,3 @@
 {
   rooms=new ConcurrentHashMap<String,RoomImp>();
-  confService=service;
 }
