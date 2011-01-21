@@ -1,0 +1,2 @@
+String session
+HashMap<String,String> message

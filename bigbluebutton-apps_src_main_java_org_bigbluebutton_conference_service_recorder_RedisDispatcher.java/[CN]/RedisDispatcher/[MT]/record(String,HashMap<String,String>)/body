@@ -1,0 +1,5 @@
+{
+  Long msgid=jedis.incr("global:nextRecordedMsgId");
+  jedis.hmset("recording" + COLON + session+ COLON+ msgid,message);
+  jedis.rpush("meeting" + COLON + session+ COLON+ "recordings",msgid.toString());
+}

@@ -1,4 +1,0 @@
-{
-  log.debug("Accepting IRecorder");
-  this.recorder=recorder;
-}

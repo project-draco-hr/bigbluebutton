@@ -1,0 +1,3 @@
+{
+  log.debug("create an instance of RecorderEventDispatcher");
+}

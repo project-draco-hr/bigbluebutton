@@ -1,5 +1,3 @@
 {
-  if (record) {
-    recorder.record(message);
-  }
+  recorder.record(session,message);
 }

@@ -1,0 +1,7 @@
+{
+  EventMessage event=new EventMessage();
+  event.setConferenceID(session);
+  event.setTimeStamp(System.currentTimeMillis());
+  sendEvents(event);
+  log.debug("event-message: {}",message);
+}
