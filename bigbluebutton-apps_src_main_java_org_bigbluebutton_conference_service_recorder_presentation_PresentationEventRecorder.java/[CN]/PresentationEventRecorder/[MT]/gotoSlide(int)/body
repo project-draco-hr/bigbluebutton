@@ -1,9 +1,8 @@
 {
   log.debug("RECORD module:presentation event:update_slide");
-  HashMap<String,String> map=new HashMap<String,String>();
-  map.put("timestamp",Long.toString(System.currentTimeMillis()));
-  map.put("module","presentation");
-  map.put("event","update_slide");
-  map.put("slide",Integer.toString(curslide));
-  recordEvent(map);
+  GotoSlidePresentationRecordEvent event=new GotoSlidePresentationRecordEvent();
+  event.setMeetingId(session);
+  event.setTimestamp(System.currentTimeMillis());
+  event.setSlide(curslide);
+  recorder.record(session,event);
 }

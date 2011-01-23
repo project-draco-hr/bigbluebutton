@@ -1,11 +1,10 @@
 {
   log.debug("RECORD module:presentation event:assign_presenter");
-  HashMap<String,String> map=new HashMap<String,String>();
-  map.put("timestamp",Long.toString(System.currentTimeMillis()));
-  map.put("module","presentation");
-  map.put("event","assign_presenter");
-  map.put("userid",presenter.get(0).toString());
-  map.put("name",presenter.get(1).toString());
-  map.put("assignedBy",presenter.get(2).toString());
-  recordEvent(map);
+  AssignPresenterPresentationRecordEvent event=new AssignPresenterPresentationRecordEvent();
+  event.setMeetingId(session);
+  event.setTimestamp(System.currentTimeMillis());
+  event.setUserId(presenter.get(0).toString());
+  event.setName(presenter.get(1).toString());
+  event.setAssignedBy(presenter.get(2).toString());
+  recorder.record(session,event);
 }

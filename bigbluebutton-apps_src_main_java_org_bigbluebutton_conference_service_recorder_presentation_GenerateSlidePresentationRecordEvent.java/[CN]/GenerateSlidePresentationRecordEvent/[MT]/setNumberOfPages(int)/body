@@ -1,0 +1,3 @@
+{
+  eventMap.put("numberOfPages",Integer.toString(numPages));
+}

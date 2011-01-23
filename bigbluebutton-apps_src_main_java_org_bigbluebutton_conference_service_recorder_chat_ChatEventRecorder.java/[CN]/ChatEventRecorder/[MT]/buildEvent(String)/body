@@ -1,0 +1,10 @@
+{
+  PublicChatRecordEvent ev=new PublicChatRecordEvent();
+  ev.setTimestamp(System.currentTimeMillis());
+  String[] chatAttribs=message.trim().split("\\|",-1);
+  ev.setSender(chatAttribs[1]);
+  ev.setMessage(chatAttribs[0]);
+  ev.setLocale(chatAttribs[4]);
+  ev.setColor(chatAttribs[2]);
+  return ev;
+}

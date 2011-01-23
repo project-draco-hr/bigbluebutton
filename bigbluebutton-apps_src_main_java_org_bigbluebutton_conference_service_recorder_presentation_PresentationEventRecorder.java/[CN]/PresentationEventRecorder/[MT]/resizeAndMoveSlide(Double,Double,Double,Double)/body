@@ -1,12 +1,11 @@
 {
   log.debug("RECORD module:presentation event:resize_move_slide");
-  HashMap<String,String> map=new HashMap<String,String>();
-  map.put("timestamp",Long.toString(System.currentTimeMillis()));
-  map.put("module","presentation");
-  map.put("event","resize_move_slide");
-  map.put("xOffset",Double.toString(xOffset));
-  map.put("yOffset",Double.toString(yOffset));
-  map.put("widthRatio",Double.toString(widthRatio));
-  map.put("heightRatio",Double.toString(heightRatio));
-  recordEvent(map);
+  ResizeAndMoveSlidePresentationRecordEvent event=new ResizeAndMoveSlidePresentationRecordEvent();
+  event.setMeetingId(session);
+  event.setTimestamp(System.currentTimeMillis());
+  event.setXOffset(xOffset.doubleValue());
+  event.setYOffset(yOffset.doubleValue());
+  event.setWidthRatio(widthRatio.doubleValue());
+  event.setHeightRatio(heightRatio.doubleValue());
+  recorder.record(session,event);
 }

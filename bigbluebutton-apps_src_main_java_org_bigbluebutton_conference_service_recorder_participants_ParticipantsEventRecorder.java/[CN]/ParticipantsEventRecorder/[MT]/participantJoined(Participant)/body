@@ -1,10 +1,9 @@
 {
-  HashMap<String,String> map=new HashMap<String,String>();
-  map.put("timestamp",Long.toString(System.currentTimeMillis()));
-  map.put("module","participants");
-  map.put("event","join");
-  map.put("userid",arg0.getUserid().toString());
-  map.put("status",arg0.getStatus().toString());
-  map.put("role",arg0.getRole());
-  recordEvent(map);
+  ParticipantJoinRecordEvent ev=new ParticipantJoinRecordEvent();
+  ev.setTimestamp(System.currentTimeMillis());
+  ev.setUserId(p.getUserid().toString());
+  ev.setMeetingId(session);
+  ev.setStatus(p.getStatus().toString());
+  ev.setRole(p.getRole());
+  recorder.record(session,ev);
 }
