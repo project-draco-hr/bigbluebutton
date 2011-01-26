@@ -1,11 +1,8 @@
 {
   String RECORD_DIR="/var/freeswitch/meetings";
-  String DATE_FORMAT="yyyyMMdd-hhmmss";
-  Calendar cal=Calendar.getInstance();
-  SimpleDateFormat sdf=new SimpleDateFormat(DATE_FORMAT);
-  String voice_path=RECORD_DIR + File.separatorChar + meetingid+ "-"+ sdf.format(cal.getTime())+ ".wav";
-  log.debug("freeswitch is going to record in " + voice_path);
-  RecordConferenceCommand rcc=new RecordConferenceCommand(room,USER,true,voice_path);
+  String voicePath=RECORD_DIR + File.separatorChar + meetingid+ "-"+ System.currentTimeMillis()+ ".wav";
+  if (log.isDebugEnabled())   log.debug("Asking Freeswitch to start recording in {}",voicePath);
+  RecordConferenceCommand rcc=new RecordConferenceCommand(room,USER,true,voicePath);
   log.debug(rcc.getCommand() + rcc.getCommandArgs());
   EslMessage response=manager.getESLClient().sendSyncApiCommand(rcc.getCommand(),rcc.getCommandArgs());
   rcc.handleResponse(response,conferenceEventListener);
