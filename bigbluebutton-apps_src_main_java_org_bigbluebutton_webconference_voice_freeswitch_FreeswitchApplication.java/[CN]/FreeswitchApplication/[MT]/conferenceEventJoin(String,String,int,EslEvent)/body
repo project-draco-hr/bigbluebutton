@@ -1,5 +1,5 @@
 {
-  Integer memberId=this.getMemeberIdFromEvent(event);
+  Integer memberId=this.getMemberIdFromEvent(event);
   Map<String,String> headers=event.getEventHeaders();
   String callerId=this.getCallerIdFromEvent(event);
   String callerIdName=this.getCallerIdNameFromEvent(event);

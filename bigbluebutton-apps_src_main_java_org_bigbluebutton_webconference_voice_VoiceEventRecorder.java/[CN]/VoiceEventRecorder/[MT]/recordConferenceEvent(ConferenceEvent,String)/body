@@ -14,6 +14,9 @@
  else   if (event instanceof ParticipantLockedEvent) {
     recordParticipantLockedEvent(event,room);
   }
+ else   if (event instanceof StartRecordingEvent) {
+    recordStartRecordingEvent(event,room);
+  }
  else {
     log.debug("Processing UnknownEvent " + event.getClass().getName() + " for room: "+ event.getRoom());
   }

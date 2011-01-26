@@ -20,6 +20,8 @@
  else   if (event instanceof ParticipantLockedEvent) {
     handleParticipantLockedEvent(event,rm);
   }
+ else   if (event instanceof StartRecordingEvent) {
+  }
  else {
     log.debug("Processing UnknownEvent " + event.getClass().getName() + " for room: "+ event.getRoom());
     return;
