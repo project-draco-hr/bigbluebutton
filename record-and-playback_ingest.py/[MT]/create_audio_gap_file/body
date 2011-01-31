@@ -1,0 +1,10 @@
+def create_audio_gap_file(length_in_sec, filename):
+    f = open((filename + '.dat'), 'wb')
+    samples = (length_in_sec * 16000)
+    f.write('; SampleRate 16000\n')
+    x = 0
+    while (x <= samples):
+        f.write((str((x / 16000)) + '\t0\n'))
+        x += 1
+    f.close()
+    proc = subprocess.Popen((((('sox ' + filename) + '.dat -b 16 -r 16000 -c 1 -s ') + filename) + '.wav'), shell=True)
