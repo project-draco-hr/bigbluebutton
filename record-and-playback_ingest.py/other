@@ -1,18 +1,28 @@
 from lxml import etree
 import subprocess
-print 'Loading events.xml'
+import logging
+import os
+logfile = 'ingest.log'
+logging.basicConfig(level=logging.INFO, filename=logfile)
+logging.info('Starting ingest process')
+audio_sampling_rate = 16000
+src_dir = 'workspace'
+audio_recordings = []
+logging.info('Loading workspace/events.xml')
 tree = etree.parse('workspace/event.xml')
 r = tree.xpath('/events/event')
+logging.info('Determining start and stop timestamp for session')
 begin = r[0].get('timestamp')
 end = r[(len(r) - 1)].get('timestamp')
 length = (long(end) - long(begin))
+logging.info('Count how many audio files')
 proc = subprocess.Popen('ls workspace/audio/*.wav | wc -l', shell=True, stdout=subprocess.PIPE)
 num_files = proc.communicate()[0]
 audio_recs = []
 audio_recs_dict = {}
 start_rec_events = tree.xpath("//event[@name='StartRecordingEvent']")
 for evt in start_rec_events:
-    e = AudioRecEvents()
+    e = AudioRecording()
     e.filename = evt.find('filename').text
     e.start_timestamp = evt.find('recordingTimestamp').text
     e.start_event_timestamp = evt.get('timestamp')
@@ -25,15 +35,39 @@ for evt in stop_rec_events:
     rec = audio_recs_dict[evt.find('filename').text]
     rec.stop_timestamp = evt.find('recordingTimestamp').text
     rec.stop_event_timestamp = evt.get('timestamp')
-audio_gaps = []
-prev = long(begin)
-for e in audio_recs:
-    length = (long(e.stop_timestamp) - long(e.start_timestamp))
-    audio_gap = (long(e.start_event_timestamp) - prev)
-    audio_gaps.append(audio_gap)
-    prev = long(e.stop_event_timestamp)
-audio_gaps.append((long(end) - long(prev)))
-for g in audio_gaps:
-    lsec = (g / 1000)
-    print ((str(lsec) + ' ') + str(g))
-    create_audio_gap_file(lsec, ('gap-' + str(lsec)))
+length_of_gap = (long(audio_recs[0].start_event_timestamp) - long(begin))
+print ('l gap ' + str(length_of_gap))
+if (length_of_gap > 0):
+    add_audio_recording(long(begin), long(audio_recs[0].start_event_timestamp), True, length_of_gap)
+num_audio_recs = len(audio_recs)
+i = 0
+while (i < (num_audio_recs - 1)):
+    ar_prev = audio_recs[i]
+    ar_next = audio_recs[(i + 1)]
+    length_of_gap = (long(ar_next.start_event_timestamp) - long(ar_prev.stop_event_timestamp))
+    audio_recordings.append(ar_prev)
+    if (length_of_gap > 0):
+        print ('l gap ' + str(length_of_gap))
+        add_audio_recording(long(ar_prev.stop_event_timestamp), long(ar_next.start_event_timestamp), True, length_of_gap)
+    i += 1
+length_of_gap = (long(end) - long(audio_recs[(-1)].stop_event_timestamp))
+print ('l gap ' + str(length_of_gap))
+audio_recordings.append(audio_recs[(-1)])
+if (length_of_gap > 0):
+    add_audio_recording(long(audio_recs[(-1)].stop_event_timestamp), long(end), True, length_of_gap)
+print len(audio_recordings)
+audio_filenames = []
+for ar in audio_recordings:
+    if ar.gap_file:
+        audio_filenames.append((ar.filename + '.wav'))
+        lsec = long(ar.length_of_gap)
+        print ('gap = ' + str(lsec))
+        create_audio_gap_file(lsec, ar.filename, audio_sampling_rate)
+    else:
+        audio_filenames.append(ar.filename)
+concat_cmd = 'sox '
+for ar in audio_filenames:
+    concat_cmd += (' ' + ar)
+concat_cmd += ' recording.wav'
+proc = subprocess.Popen(concat_cmd, shell=True)
+proc.wait()
