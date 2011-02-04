@@ -14,7 +14,6 @@ def generate_events_xml(redisHost, redisPort, meetingId, archiveDir):
             if (key not in ['timestamp', 'module', 'eventName', 'meetingId']):
                 ev.append(E(key, val))
         page.append(ev)
-    print etree.tostring(page, pretty_print=True)
     targetFile = (((archiveDir + '/') + meetingId) + '/events.xml')
     f = open(targetFile, 'w')
     f.write(etree.tostring(page, pretty_print=True))

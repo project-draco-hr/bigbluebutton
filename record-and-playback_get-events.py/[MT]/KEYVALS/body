@@ -1,5 +1,0 @@
-def KEYVALS(res):
-    result = ''
-    for (key, value) in res.items():
-        result += (((((('<' + key) + '>') + value) + '</') + key) + '>')
-    return result

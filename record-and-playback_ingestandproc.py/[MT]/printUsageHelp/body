@@ -1,0 +1,3 @@
+def printUsageHelp():
+    usage()
+    sys.exit(2)
