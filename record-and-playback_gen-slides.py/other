@@ -1,0 +1,9 @@
+import os, getopt, sys
+import shutil, subprocess
+OPTIONS = '-sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH'
+FIRSTPAGE = '-dFirstPage='
+LASTPAGE = '-dLastPage='
+NO_PDF_MARK_WORKAROUND = '/etc/bigbluebutton/nopdfmark.ps'
+OUTPUTFILE = '-sOutputFile='
+if (__name__ == '__main__'):
+    main()

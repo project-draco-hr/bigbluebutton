@@ -1,0 +1,21 @@
+def generate_events_xml(redisHost, redisPort, meetingId, archiveDir):
+    r = redis.Redis(host=redisHost, port=redisPort, db=0)
+    count = r.llen((('meeting:' + meetingId) + ':recordings'))
+    print count
+    msgs = r.lrange((('meeting:' + meetingId) + ':recordings'), 0, count)
+    html = page = E.events(E.head(E.title('This is a sample document')))
+    for msg in msgs:
+        res = r.hgetall(((('recording:' + meetingId) + ':') + str(msg)))
+        timestamp = res.get('timestamp')
+        module = res.get('module')
+        eventname = res.get('eventName')
+        ev = E.event(TIMESTAMP(timestamp), MODULE(module), EVENTNAME(eventname))
+        for (key, val) in res.items():
+            if (key not in ['timestamp', 'module', 'eventName', 'meetingId']):
+                ev.append(E(key, val))
+        page.append(ev)
+    print etree.tostring(page, pretty_print=True)
+    targetFile = (((archiveDir + '/') + meetingId) + '/events.xml')
+    f = open(targetFile, 'w')
+    f.write(etree.tostring(page, pretty_print=True))
+    f.close()

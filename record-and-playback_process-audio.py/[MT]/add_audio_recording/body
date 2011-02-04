@@ -1,0 +1,8 @@
+def add_audio_recording(start_timestamp, stop_timestamp, is_gap, length_of_gap):
+    audio_gap = AudioRecording()
+    audio_gap.start_event_timestamp = long(start_timestamp)
+    audio_gap.stop_event_timestamp = long(stop_timestamp)
+    audio_gap.gap_file = is_gap
+    audio_gap.length_of_gap = length_of_gap
+    audio_gap.filename = ('gap-' + str(length_of_gap))
+    audio_recordings.append(audio_gap)

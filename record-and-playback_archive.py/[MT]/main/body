@@ -1,0 +1,45 @@
+def main():
+    meetingId = ''
+    audioSrcDir = ''
+    presentationSrcDir = ''
+    archiveDir = ''
+    try:
+        (opts, args) = getopt.getopt(sys.argv[1:], 'hm:a:p:r:', ['help', 'meeting-id=', 'audio-dir=', 'presentation-dir=', 'archive-dir='])
+    except getopt.GetoptError as err:
+        print str(err)
+        usage()
+        sys.exit(2)
+    for (o, a) in opts:
+        if (o in ('-h', '--help')):
+            usage()
+            sys.exit()
+        elif (o in ('-m', '--meeting-id')):
+            meetingId = a
+        elif (o in ('-a', '--audio-dir')):
+            audioSrcDir = a
+        elif (o in ('-p', '--presentation-dir')):
+            presentationSrcDir = a
+        elif (o in ('-r', '--archive-dir')):
+            archiveDir = a
+        else:
+            assert False, 'unhandled option'
+    printUsage = False
+    if (meetingId == ''):
+        print 'Missing meeting id.'
+        printUsage = True
+    if (audioSrcDir == ''):
+        print 'Missing audio dir.'
+        printUsage = True
+    if (presentationSrcDir == ''):
+        print 'Missing presentation dir.'
+        printUsage = True
+    if (archiveDir == ''):
+        print 'Missing archive dir.'
+        printUsage = True
+    if printUsage:
+        printUsageHelp()
+    print meetingId
+    print audioSrcDir
+    print presentationSrcDir
+    print archiveDir
+    copy_files_to_archive(meetingId, audioSrcDir, presentationSrcDir, archiveDir)

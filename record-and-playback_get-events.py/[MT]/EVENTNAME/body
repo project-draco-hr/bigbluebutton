@@ -1,0 +1,2 @@
+def EVENTNAME(*args):
+    return {'name': ' '.join(args), }
