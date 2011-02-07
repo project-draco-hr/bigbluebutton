@@ -1,0 +1,7 @@
+def insert_stop_event_info(evt, audioRecordings):
+    for rec in audioRecordings:
+        if (rec.filename == evt.find('filename').text):
+            rec.stopTimestamp = evt.find('recordingTimestamp').text
+            rec.stopEventTimestamp = evt.get('timestamp')
+            return True
+    return False

@@ -1,5 +1,5 @@
 from lxml import etree
-import logging, os, getopt, sys, subprocess
+import logging, os, getopt, sys, subprocess, re
 logFile = 'process-audio.log'
 audioSamplingRate = 16000
 AUDIO_DIR = 'audio'

@@ -1,0 +1,5 @@
+def determine_if_file_is_present(audioFileDir, audioRecordings):
+    audioFileList = os.listdir(audioFileDir)
+    for ar in audioRecordings:
+        ar.filename = ar.filename.split('/')[(-1)]
+        ar.fileFound = True
