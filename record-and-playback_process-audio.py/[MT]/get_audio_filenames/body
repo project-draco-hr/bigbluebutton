@@ -1,0 +1,5 @@
+def get_audio_filenames(audioRecordings):
+    audioFilenames = []
+    for ar in audioRecordings:
+        audioFilenames.append(ar.filename)
+    return audioFilenames

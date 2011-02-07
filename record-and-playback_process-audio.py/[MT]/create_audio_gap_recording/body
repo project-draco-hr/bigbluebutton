@@ -1,0 +1,9 @@
+def create_audio_gap_recording(startTimestamp, stopTimestamp, isGap, lengthOfGap):
+    '\n        \n    '
+    audioGap = AudioRecording()
+    audioGap.startEventTimestamp = long(startTimestamp)
+    audioGap.stopEventTimestamp = long(stopTimestamp)
+    audioGap.gapFile = isGap
+    audioGap.lengthOfGap = lengthOfGap
+    audioGap.filename = (('gap-' + str(lengthOfGap)) + '.wav')
+    return audioGap

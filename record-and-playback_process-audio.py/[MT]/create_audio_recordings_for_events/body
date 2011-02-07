@@ -1,0 +1,8 @@
+def create_audio_recordings_for_events(startRecEvents, audioRecordings, audioRecsDict):
+    for evt in startRecEvents:
+        e = AudioRecording()
+        e.filename = evt.find('filename').text
+        e.startTimestamp = evt.find('recordingTimestamp').text
+        e.startEventTimestamp = evt.get('timestamp')
+        audioRecordings.append(e)
+        audioRecsDict[e.filename] = e

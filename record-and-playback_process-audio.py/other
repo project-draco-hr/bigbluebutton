@@ -1,9 +1,10 @@
 from lxml import etree
 import logging, os, getopt, sys, subprocess
-logFile = 'ingest.log'
-meeting_id = '1b199e88-7df7-4842-a5f1-0e84b781c5c8'
-audio_sampling_rate = 16000
-src_dir = (('playback-client-js' + '/') + meeting_id)
+logFile = 'process-audio.log'
+audioSamplingRate = 16000
+AUDIO_DIR = 'audio'
+AUDIO_RECORDING_WAV = 'recording.wav'
+AUDIO_RECORDING_OGG = 'recording.ogg'
 audio_recordings = []
 if (__name__ == '__main__'):
     main()

@@ -1,0 +1,11 @@
+def concatenate_all_audio_files(meetingArchiveDir, audioFilenames):
+    concatCmd = 'sox '
+    for ar in audioFilenames:
+        concatCmd += (' ' + ar)
+    outputWavFile = ((meetingArchiveDir + '/') + AUDIO_RECORDING_WAV)
+    concatCmd += (' ' + outputWavFile)
+    logging.info('Creating recorded audio file')
+    print ('Concat ' + concatCmd)
+    proc = subprocess.Popen(concatCmd, shell=True)
+    proc.wait()
+    return outputWavFile

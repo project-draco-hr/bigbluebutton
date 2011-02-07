@@ -1,0 +1,12 @@
+def pad_between_recorded_audio_files_if_needed(audioRecordings, meetingAudio):
+    numAudioRecs = len(audioRecordings)
+    i = 0
+    while (i < (numAudioRecs - 1)):
+        arPrev = audioRecordings[i]
+        arNext = audioRecordings[(i + 1)]
+        lengthOfGap = (long(arNext.startEventTimestamp) - long(arPrev.stopEventTimestamp))
+        meetingAudio.append(arPrev)
+        if (lengthOfGap > 0):
+            audioGap = create_audio_gap_recording(long(arPrev.stopEventTimestamp), long(arNext.startEventTimestamp), True, lengthOfGap)
+            meetingAudio.append(audioGap)
+        i += 1

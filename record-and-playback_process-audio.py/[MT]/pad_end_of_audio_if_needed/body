@@ -1,0 +1,6 @@
+def pad_end_of_audio_if_needed(audioRecording, lastEventTimestamp, meetingAudio):
+    lengthOfGap = (long(lastEventTimestamp) - long(audioRecording.stopEventTimestamp))
+    meetingAudio.append(audioRecording)
+    if (lengthOfGap > 0):
+        audioGap = create_audio_gap_recording(long(audioRecording.stopEventTimestamp), long(lastEventTimestamp), True, lengthOfGap)
+        meetingAudio.append(audioGap)

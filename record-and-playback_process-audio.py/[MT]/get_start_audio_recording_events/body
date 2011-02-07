@@ -1,0 +1,2 @@
+def get_start_audio_recording_events(tree):
+    return tree.xpath("//event[@name='StartRecordingEvent']")

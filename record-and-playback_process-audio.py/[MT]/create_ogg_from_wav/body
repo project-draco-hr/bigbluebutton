@@ -1,0 +1,5 @@
+def create_ogg_from_wav(meetingArchiveDir, outputWavFile):
+    ogg_file = ((meetingArchiveDir + '/') + AUDIO_RECORDING_OGG)
+    logging.info('Convert wav file to ogg')
+    proc = subprocess.Popen(((('oggenc -a "Budka Suflera" -l "Za Ostatni Grosz" -N 1 -t "Za Ostatni Grosz" -d "1981-05-01" -c "composer=Romuald Lipko, Marek Dutkiewicz" -o ' + ogg_file) + ' ') + outputWavFile), shell=True)
+    proc.wait()

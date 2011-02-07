@@ -1,0 +1,5 @@
+def get_stop_recording_events_info(stopRecEvents, audioRecsDict):
+    for evt in stopRecEvents:
+        rec = audioRecsDict[evt.find('filename').text]
+        rec.stopTimestamp = evt.find('recordingTimestamp').text
+        rec.stopEventTimestamp = evt.get('timestamp')

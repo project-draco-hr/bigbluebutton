@@ -1,0 +1,2 @@
+def get_last_timestamp_of_session(events):
+    return events[(len(events) - 1)].get('timestamp')

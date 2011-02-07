@@ -1,4 +1,5 @@
 def create_audio_gap_file(length_in_msec, filename, sampling_rate):
+    '\n        Creates a raw audio file\n        length_in_msec:     The length of the audio in milliseconds\n        filename:           The absolute filename of the audio resulting .wav file\n        sampling_rate:      The sampling rate of the audio (e.g. 16000)\n    '
     rate_in_ms = (sampling_rate / 1000)
     f = open((filename + '.dat'), 'wb')
     samples = (length_in_msec * rate_in_ms)
@@ -8,6 +9,6 @@ def create_audio_gap_file(length_in_msec, filename, sampling_rate):
         f.write((str((x / rate_in_ms)) + '\t0\n'))
         x += 1
     f.close()
-    proc = subprocess.Popen((((('sox ' + filename) + '.dat -b 16 -r 16000 -c 1 -s ') + filename) + '.wav'), shell=True)
+    proc = subprocess.Popen(((('sox ' + filename) + '.dat -b 16 -r 16000 -c 1 -s ') + filename), shell=True)
     proc.wait()
     os.remove((filename + '.dat'))
