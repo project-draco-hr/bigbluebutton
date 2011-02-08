@@ -1,4 +1,5 @@
 def determine_number_of_pages(presentationDir):
+    '\n        Determine the number pages in a presentation by looking at the number of\n        swf files in a directory.\n    '
     dirList = os.listdir(presentationDir)
     numFiles = 0
     for fname in dirList:

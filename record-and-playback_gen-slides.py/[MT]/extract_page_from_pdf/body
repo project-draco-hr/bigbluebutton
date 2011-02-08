@@ -1,4 +1,5 @@
 def extract_page_from_pdf(page, pdfFile, presentationDir):
+    '\n        Extract a page from the pdf file.\n    '
     command = ((((((((((((((((('ghostscript ' + OPTIONS) + ' ') + FIRSTPAGE) + str(page)) + ' ') + LASTPAGE) + str(page)) + ' ') + OUTPUTFILE) + presentationDir) + '/slide-') + str(page)) + '.pdf') + ' ') + NO_PDF_MARK_WORKAROUND) + ' ') + pdfFile)
     print command
     proc = subprocess.Popen(command, shell=True)

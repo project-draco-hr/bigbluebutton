@@ -33,9 +33,8 @@ def main():
     lastEventTimestamp = get_last_timestamp_of_session(r)
     startRecordingEvents = get_start_audio_recording_events(tree)
     stopRecordingEvents = get_stop_audio_recording_events(tree)
-    if (len(startRecordingEvents) == len(stopRecordingEvents)):
+    if (len(startRecordingEvents) != len(stopRecordingEvents)):
         logging.warn(('Number of start events [%s] does not match stop events [%s]' % (len(startRecordingEvents), len(stopRecordingEvents))))
-        print ('Number of start events [%s] does not match stop events [%s]' % (len(startRecordingEvents), len(stopRecordingEvents)))
     for evt in startRecordingEvents:
         ar = AudioRecording()
         ar.filename = evt.find('filename').text

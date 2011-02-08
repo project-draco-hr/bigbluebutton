@@ -1,5 +1,5 @@
 def copy_files_to_archive(meetingId, audioSrcDir, presentationSrcDir, archiveDir):
-    print ('Listing ' + audioSrcDir)
+    '\n        Copy all audio recordings and presentations into the archive directory.\n    '
     dirList = os.listdir(audioSrcDir)
     for fname in dirList:
         if (fname.find(meetingId) == 0):

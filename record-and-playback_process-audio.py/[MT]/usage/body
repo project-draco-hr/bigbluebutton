@@ -1,7 +1,8 @@
 def usage():
     print ' -------------------------------------------------------------------------'
     print ' '
-    print ' Ingest and process BigBlueButton Recordings'
+    print ' Create an audio file in ogg format by combining all audio recordings and '
+    print ' filling the gaps between recordings with silence '
     print ' '
     print ' Usage:'
     print ' process-audio.py -m [meetingid] -a [audio-recording-directory] -p [presentation directory] -r [archive directory]'

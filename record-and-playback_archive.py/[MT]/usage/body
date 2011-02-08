@@ -1,8 +1,5 @@
 def usage():
     print ' -------------------------------------------------------------------------'
-    print ' (c) Blindside Networks Inc. 2010'
-    print ' '
-    print ' Ingest and process BigBlueButton Recordings'
     print ' '
     print ' Usage:'
     print ' archive.py -m test123 -a /var/freeswitch/meetings -p /var/bigbluebutton -r /var/bigbluebutton/archive'
