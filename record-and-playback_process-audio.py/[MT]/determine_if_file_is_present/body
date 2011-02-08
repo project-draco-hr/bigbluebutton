@@ -1,5 +1,6 @@
 def determine_if_file_is_present(audioFileDir, audioRecordings):
+    '\n        Check if the audio file is in the archive directory.\n    '
     audioFileList = os.listdir(audioFileDir)
     for ar in audioRecordings:
-        ar.filename = ar.filename.split('/')[(-1)]
+        ar.filename = ((audioFileDir + '/') + ar.filename.split('/')[(-1)])
         ar.fileFound = True

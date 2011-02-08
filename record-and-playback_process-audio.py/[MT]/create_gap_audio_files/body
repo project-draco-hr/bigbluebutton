@@ -1,4 +1,5 @@
 def create_gap_audio_files(meetingArchiveDir, audioRecordings, audioSamplingRate):
+    '\n        Create an audio of silence to fill in the gaps between recordings.\n    '
     for ar in audioRecordings:
         if ar.gapFile:
             ar.filename = ((meetingArchiveDir + '/audio/') + ar.filename)

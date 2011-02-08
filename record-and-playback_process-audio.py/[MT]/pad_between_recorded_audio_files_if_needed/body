@@ -1,4 +1,5 @@
 def pad_between_recorded_audio_files_if_needed(audioRecordings, meetingAudio):
+    '\n        Pad the audio in between audio recordings.\n    '
     numAudioRecs = len(audioRecordings)
     i = 0
     while (i < (numAudioRecs - 1)):

@@ -1,6 +1,6 @@
 def create_audio_recording_for_event(event):
     ar = AudioRecording()
     ar.filename = evt.find('filename').text
-    ar.startTimestamp = evt.find('recordingTimestamp').text
+    ar.startRecordingTimestamp = evt.find('recordingTimestamp').text
     ar.startEventTimestamp = evt.get('timestamp')
     return ar

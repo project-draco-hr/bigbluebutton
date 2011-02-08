@@ -1,4 +1,5 @@
 def create_audio_recordings_for_events(startRecEvents):
+    '\n        Create an audio recording event for start audio events.\n    '
     audioRecordings = []
     for evt in startRecEvents:
         audioRecordings.append(create_audio_recording_for_event(evt))

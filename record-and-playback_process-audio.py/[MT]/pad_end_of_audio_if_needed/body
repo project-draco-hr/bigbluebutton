@@ -1,4 +1,5 @@
 def pad_end_of_audio_if_needed(audioRecording, lastEventTimestamp, meetingAudio):
+    '\n        Pad the audio to end at the same time as the last event timestamp.\n    '
     lengthOfGap = (long(lastEventTimestamp) - long(audioRecording.stopEventTimestamp))
     meetingAudio.append(audioRecording)
     if (lengthOfGap > 0):

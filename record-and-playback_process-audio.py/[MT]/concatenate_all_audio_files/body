@@ -1,4 +1,5 @@
 def concatenate_all_audio_files(meetingArchiveDir, audioFilenames):
+    '\n        Concatenate all audio files, including gaps, to create one audio recording file.\n    '
     concatCmd = 'sox '
     for ar in audioFilenames:
         concatCmd += (' ' + ar)

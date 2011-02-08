@@ -21,6 +21,7 @@ def main():
         else:
             assert False, 'unhandled option'
     meetingArchiveDir = ((archiveDir + '/') + meetingId)
+    audioArchiveDir = ((meetingArchiveDir + '/') + AUDIO_DIR)
     logFile = (meetingArchiveDir + '/process-audio.log')
     logging.basicConfig(level=logging.INFO, filename=logFile)
     logging.info('Starting ingest process')
@@ -38,15 +39,24 @@ def main():
     for evt in startRecordingEvents:
         ar = AudioRecording()
         ar.filename = evt.find('filename').text
-        ar.startTimestamp = evt.find('recordingTimestamp').text
+        ar.startRecordingTimestamp = (int(evt.find('recordingTimestamp').text) / 1000)
         ar.startEventTimestamp = evt.get('timestamp')
         audioRecordings.append(ar)
     for evt in stopRecordingEvents:
         if (not insert_stop_event_info(evt, audioRecordings)):
             ar = AudioRecording()
             ar.filename = evt.find('filename').text
-            ar.stopTimestamp = evt.find('recordingTimestamp').text
+            ar.stopRecordingTimestamp = (int(evt.find('recordingTimestamp').text) / 1000)
             ar.stopEventTimestamp = evt.get('timestamp')
             audioRecordings.append(ar)
-    determine_if_file_is_present(((meetingArchiveDir + '/') + AUDIO_DIR), audioRecordings)
-    determine_length_of_audio_from_file(((meetingArchiveDir + '/') + AUDIO_DIR), audioRecordings)
+    determine_if_file_is_present(audioArchiveDir, audioRecordings)
+    determine_length_of_audio_from_file(audioArchiveDir, audioRecordings)
+    sanitize_audio_recording_info(audioRecordings)
+    generate_recording_xml(audioArchiveDir, audioRecordings)
+    pad_beginning_of_audio_if_needed(audioRecordings[0], firstEventTimestamp, meetingAudio)
+    pad_between_recorded_audio_files_if_needed(audioRecordings, meetingAudio)
+    pad_end_of_audio_if_needed(audioRecordings[(-1)], lastEventTimestamp, meetingAudio)
+    create_gap_audio_files(meetingArchiveDir, meetingAudio, audioSamplingRate)
+    audio_filenames = get_audio_filenames(meetingAudio)
+    outputWavFile = concatenate_all_audio_files(meetingArchiveDir, audio_filenames)
+    create_ogg_from_wav(meetingArchiveDir, outputWavFile)

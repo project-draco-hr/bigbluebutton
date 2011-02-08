@@ -1,0 +1,17 @@
+def sanitize_audio_recording_info(audioRecordings):
+    '\n        Try as much as possible to put values on the timestamp fields.\n    '
+    for ar in audioRecordings:
+        if ((ar.startRecordingTimestamp == 0) and (ar.startEventTimestamp > 0)):
+            ar.startRecordingTimestamp = ar.startEventTimestamp
+        if ((ar.startRecordingTimestamp > 0) and (ar.startEventTimestamp == 0)):
+            ar.startEventTimestamp = ar.startRecordingTimestamp
+        if ((ar.stopRecordingTimestamp == 0) and (ar.stopEventTimestamp > 0)):
+            ar.stopRecordingTimestamp = ar.stopEventTimestamp
+        if ((ar.stopRecordingTimestamp > 0) and (ar.stopEventTimestamp == 0)):
+            ar.stopEventTimestamp = ar.stopRecordingTimestamp
+        if ((ar.startRecordingTimestamp == 0) and (ar.startEventTimestamp == 0)):
+            if (ar.fileFound and (ar.stopEventTimestamp > 0)):
+                ar.startRecordingTimestamp = ar.startEventTimestamp = (ar.stopEventTimestamp - ar.lengthFromFile)
+        if ((ar.stopRecordingTimestamp == 0) and (ar.stopEventTimestamp == 0)):
+            if (ar.fileFound and (ar.startEventTimestamp > 0)):
+                ar.stopRecordingTimestamp = ar.stopEventTimestamp = (ar.startEventTimestamp + ar.lengthFromFile)

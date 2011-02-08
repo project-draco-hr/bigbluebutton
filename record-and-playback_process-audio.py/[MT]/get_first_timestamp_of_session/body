@@ -1,2 +1,3 @@
 def get_first_timestamp_of_session(events):
+    '\n        Get the timestamp of the first event.\n    '
     return events[0].get('timestamp')

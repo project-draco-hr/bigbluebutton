@@ -1,5 +1,5 @@
 def create_audio_gap_recording(startTimestamp, stopTimestamp, isGap, lengthOfGap):
-    '\n        \n    '
+    '\n        Create information for a gap in the audio recording.\n    '
     audioGap = AudioRecording()
     audioGap.startEventTimestamp = long(startTimestamp)
     audioGap.stopEventTimestamp = long(stopTimestamp)
