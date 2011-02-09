@@ -4,10 +4,11 @@ def determine_length_of_audio_from_file(audioFileDir, audioRecordings):
     for ar in audioRecordings:
         if ar.fileFound:
             proc = subprocess.Popen((('sox ' + ar.filename) + ' -n stat 2>&1'), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            proc.wait()
+            retCode = proc.wait()
             result = proc.stdout.read()
-            rc = proc.wait()
-            if (rc == 0):
+            if (retCode == 0):
                 regex = re.compile('Length \\(seconds\\):(.+)')
                 length = (float(regex.findall(result)[0].strip()) * 1000)
                 ar.lengthFromFile = int(length)
+            else:
+                ar.lengthFromFile = int((-1))
