@@ -1,0 +1,5 @@
+def copy_files_to_publish_dir(meetingId, ingestDir, publishDir):
+    '\n        Copy all files from the archive directory to the ingest directory in preparation for processing.\n    '
+    if (os.path.isdir(publishDir) is False):
+        os.makedirs(publishDir)
+    shutil.copytree(((ingestDir + '/') + meetingId), ((publishDir + '/') + meetingId))
