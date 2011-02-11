@@ -11,7 +11,7 @@ def sanitize_audio_recording_info(audioRecordings):
             ar.stopEventTimestamp = ar.stopRecordingTimestamp
         if ((ar.startRecordingTimestamp == 0) and (ar.startEventTimestamp == 0)):
             if (ar.fileFound and (ar.stopEventTimestamp > 0)):
-                ar.startRecordingTimestamp = ar.startEventTimestamp = (ar.stopEventTimestamp - ar.lengthFromFile)
+                ar.startRecordingTimestamp = ar.startEventTimestamp = (long(ar.stopEventTimestamp) - ar.lengthFromFile)
         if ((ar.stopRecordingTimestamp == 0) and (ar.stopEventTimestamp == 0)):
             if (ar.fileFound and (ar.startEventTimestamp > 0)):
-                ar.stopRecordingTimestamp = ar.stopEventTimestamp = (ar.startEventTimestamp + ar.lengthFromFile)
+                ar.stopRecordingTimestamp = ar.stopEventTimestamp = (long(ar.startEventTimestamp) + ar.lengthFromFile)

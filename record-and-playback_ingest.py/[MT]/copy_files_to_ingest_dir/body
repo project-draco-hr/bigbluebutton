@@ -1,0 +1,5 @@
+def copy_files_to_ingest_dir(meetingId, ingestDir, archiveDir):
+    '\n        Copy all files from the archive directory to the ingest directory in preparation for processing.\n    '
+    if (os.path.isdir(ingestDir) is False):
+        os.makedirs(((ingestDir + '/') + meetingId))
+    shutil.copytree(((archiveDir + '/') + meetingId), ((ingestDir + '/') + meetingId))
