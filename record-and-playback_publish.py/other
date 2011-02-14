@@ -1,4 +1,7 @@
 import os, getopt, sys
 import shutil
+from lxml.builder import E
+from lxml import etree
+import time
 if (__name__ == '__main__'):
     main()

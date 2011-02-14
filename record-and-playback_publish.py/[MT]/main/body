@@ -33,3 +33,4 @@ def main():
     if printUsage:
         printUsageHelp()
     copy_files_to_publish_dir(meetingId, ingestDir, publishDir)
+    generate_index_html(publishDir)
