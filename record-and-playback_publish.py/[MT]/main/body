@@ -2,8 +2,9 @@ def main():
     meetingId = ''
     ingestDir = ''
     publishDir = ''
+    playbackHost = ''
     try:
-        (opts, args) = getopt.getopt(sys.argv[1:], 'hm:i:p:', ['help', 'meeting-id=', 'ingest-dir=', 'publish-dir='])
+        (opts, args) = getopt.getopt(sys.argv[1:], 'hm:i:p:k:', ['help', 'meeting-id=', 'ingest-dir=', 'publish-dir=', 'playback-host='])
     except getopt.GetoptError as err:
         print str(err)
         usage()
@@ -18,6 +19,8 @@ def main():
             ingestDir = a
         elif (o in ('-p', '--publish-dir')):
             publishDir = a
+        elif (o in ('-k', '--playback-host')):
+            playbackHost = a
         else:
             assert False, 'unhandled option'
     printUsage = False
@@ -30,7 +33,10 @@ def main():
     if (publishDir == ''):
         print 'Missing publish dir.'
         printUsage = True
+    if (playbackHost == ''):
+        print 'Missing playback host.'
+        printUsage = True
     if printUsage:
         printUsageHelp()
     copy_files_to_publish_dir(meetingId, ingestDir, publishDir)
-    generate_index_html(publishDir)
+    generate_index_html(publishDir, playbackHost)
