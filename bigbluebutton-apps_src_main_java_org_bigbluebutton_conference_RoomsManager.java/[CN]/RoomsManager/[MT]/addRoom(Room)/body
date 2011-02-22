@@ -3,6 +3,7 @@
   room.addRoomListener(new ParticipantUpdatingRoomListener(conferenceEventListener,room));
   if (checkEvtListener()) {
     conferenceEventListener.started(room);
+    redisDispatcher.getJedis().publish(CHANNEL_NAME,"conferenceStarted");
     log.debug("Notified event listener of conference start");
   }
   rooms.put(room.getName(),room);

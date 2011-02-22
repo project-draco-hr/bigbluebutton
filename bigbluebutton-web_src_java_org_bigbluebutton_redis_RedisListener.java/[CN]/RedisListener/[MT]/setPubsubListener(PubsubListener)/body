@@ -1,0 +1,4 @@
+{
+  System.out.println("setting pubsub");
+  this.pubsubListener=pubsubListener;
+}

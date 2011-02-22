@@ -1,0 +1,4 @@
+{
+  log.debug("sending {} to {}",message,channel);
+  jedis.publish(channel,message);
+}

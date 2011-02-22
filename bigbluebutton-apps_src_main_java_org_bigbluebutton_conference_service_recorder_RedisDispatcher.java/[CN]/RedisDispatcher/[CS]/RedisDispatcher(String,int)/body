@@ -1,4 +1,5 @@
 {
   this.host=host;
   this.port=port;
+  jedis=new Jedis(host,port);
 }
