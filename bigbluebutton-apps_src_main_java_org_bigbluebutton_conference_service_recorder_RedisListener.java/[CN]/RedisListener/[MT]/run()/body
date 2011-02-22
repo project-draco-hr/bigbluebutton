@@ -1,0 +1,3 @@
+{
+  jedis.subscribe(pubsubListener,"bbbConferenceEvents");
+}
