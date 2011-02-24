@@ -3,11 +3,6 @@
   this.srcSocket=srcSocket;
   this.connInfo=connInfo;
   talkStreamName="microphone_" + System.currentTimeMillis();
-  streamFromFlash=new PipedOutputStream();
-  try {
-    streamToSip=new PipedInputStream(streamFromFlash);
-  }
- catch (  IOException e) {
-    e.printStackTrace();
-  }
+  transcodedAudioListener=new TranscodedAudioListener();
+  transcoder.setTranscodedAudioListener(transcodedAudioListener);
 }

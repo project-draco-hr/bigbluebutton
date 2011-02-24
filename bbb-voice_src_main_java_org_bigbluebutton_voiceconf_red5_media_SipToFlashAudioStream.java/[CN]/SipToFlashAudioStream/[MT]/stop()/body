@@ -1,14 +1,14 @@
 {
-  log.debug("Stopping stream for {}",listenStreamName);
-  processAudioData=false;
+  if (log.isDebugEnabled())   log.debug("Stopping stream for {}",listenStreamName);
+  transcoder.stop();
   rtpStreamReceiver.stop();
-  log.debug("Stopped RTP Stream Receiver for {}",listenStreamName);
+  if (log.isDebugEnabled())   log.debug("Stopped RTP Stream Receiver for {}",listenStreamName);
   if (audioBroadcastStream != null) {
     audioBroadcastStream.stop();
-    log.debug("Stopped audioBroadcastStream for {}",listenStreamName);
+    if (log.isDebugEnabled())     log.debug("Stopped audioBroadcastStream for {}",listenStreamName);
     audioBroadcastStream.close();
-    log.debug("Closed audioBroadcastStream for {}",listenStreamName);
+    if (log.isDebugEnabled())     log.debug("Closed audioBroadcastStream for {}",listenStreamName);
   }
- else   log.debug("audioBroadcastStream is null, couldn't stop");
-  log.debug("Stream(s) stopped");
+ else   if (log.isDebugEnabled())   log.debug("audioBroadcastStream is null, couldn't stop");
+  if (log.isDebugEnabled())   log.debug("Stream(s) stopped");
 }

@@ -1,0 +1,8 @@
+{
+  try {
+    streamFromSip.write(audioData,offset,len);
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+}
