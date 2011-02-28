@@ -3,7 +3,7 @@
     log.warn("Received corrupt audio. Got {}, expected {}.",audioData.length,ULAW_AUDIO_LENGTH);
     return;
   }
-  int decodedBytes=audioCodec.codecToPcm(audioData,tempL16Buffer);
+  audioCodec.codecToPcm(audioData,tempL16Buffer);
   l16Audio.put(tempL16Buffer);
   if ((l16Audio.position() - viewBuffer.position()) >= L16_AUDIO_LENGTH) {
     viewBuffer.get(tempNellyBuffer);
@@ -17,7 +17,7 @@
         log.info("Dropping packet. Connection {} congested with {} pending messages (~500ms worth of audio) .",conn.getClient().getId(),pendingMessages);
       }
     }
-    if (sendPacket)     listener.handleTranscodedAudioData(nellyBytes,timestamp+=TS_INCREMENT);
+    if (sendPacket)     transcodedAudioListener.handleTranscodedAudioData(nellyBytes,timestamp+=TS_INCREMENT);
   }
   if (l16Audio.position() == l16Audio.capacity()) {
     l16Audio.clear();

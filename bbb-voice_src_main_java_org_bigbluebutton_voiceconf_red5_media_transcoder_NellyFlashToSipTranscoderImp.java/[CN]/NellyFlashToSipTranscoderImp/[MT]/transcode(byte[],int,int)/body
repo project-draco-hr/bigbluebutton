@@ -7,12 +7,12 @@
   l16Audio.put(tempL16Buffer);
   viewBuffer.get(tempUlawBuffer);
   int encodedBytes=sipCodec.pcmToCodec(tempUlawBuffer,ulawEncodedBuffer);
-  listener.handleTranscodedAudioData(ulawEncodedBuffer,timestamp+=TS_INCREMENT);
+  transcodedAudioListener.handleTranscodedAudioData(ulawEncodedBuffer,timestamp+=TS_INCREMENT);
   if (l16Audio.position() == l16Audio.capacity()) {
     viewBuffer.get(tempUlawBuffer);
     encodedBytes=sipCodec.pcmToCodec(tempUlawBuffer,ulawEncodedBuffer);
     if (encodedBytes == sipCodec.getOutgoingEncodedFrameSize()) {
-      listener.handleTranscodedAudioData(ulawEncodedBuffer,timestamp+=TS_INCREMENT);
+      transcodedAudioListener.handleTranscodedAudioData(ulawEncodedBuffer,timestamp+=TS_INCREMENT);
     }
  else {
       log.error("Failure encoding buffer.");
@@ -20,7 +20,7 @@
     viewBuffer.get(tempUlawBuffer);
     encodedBytes=sipCodec.pcmToCodec(tempUlawBuffer,ulawEncodedBuffer);
     if (encodedBytes == sipCodec.getOutgoingEncodedFrameSize()) {
-      listener.handleTranscodedAudioData(ulawEncodedBuffer,timestamp+=TS_INCREMENT);
+      transcodedAudioListener.handleTranscodedAudioData(ulawEncodedBuffer,timestamp+=TS_INCREMENT);
     }
  else {
       log.error("Failure encoding buffer.");
@@ -28,7 +28,7 @@
     viewBuffer.get(tempUlawBuffer);
     encodedBytes=sipCodec.pcmToCodec(tempUlawBuffer,ulawEncodedBuffer);
     if (encodedBytes == sipCodec.getOutgoingEncodedFrameSize()) {
-      listener.handleTranscodedAudioData(ulawEncodedBuffer,timestamp+=TS_INCREMENT);
+      transcodedAudioListener.handleTranscodedAudioData(ulawEncodedBuffer,timestamp+=TS_INCREMENT);
     }
  else {
       log.error("Failure encoding buffer.");

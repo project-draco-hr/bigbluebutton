@@ -4,4 +4,12 @@
   Random rgen=new Random();
   timestamp=rgen.nextInt(1000);
   viewBuffer=l16Audio.asReadOnlyBuffer();
+  streamFromSip=new PipedOutputStream();
+  try {
+    streamToFlash=new PipedInputStream(streamFromSip);
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+  startNow();
 }

@@ -10,7 +10,7 @@
       if (remaining == 0) {
         remaining=len;
         offset=0;
-        transcoder.transcode(pcmAudio,this);
+        transcode(pcmAudio);
       }
  else {
         offset+=bytesRead;
