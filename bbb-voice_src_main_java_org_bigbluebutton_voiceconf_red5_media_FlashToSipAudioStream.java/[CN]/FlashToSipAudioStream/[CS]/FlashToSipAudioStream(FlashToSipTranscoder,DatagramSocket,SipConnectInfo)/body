@@ -5,5 +5,4 @@
   talkStreamName="microphone_" + System.currentTimeMillis();
   transcodedAudioListener=new TranscodedAudioListener();
   transcoder.setTranscodedAudioListener(transcodedAudioListener);
-  transcoder.setProcessAudioData(processAudioData);
 }

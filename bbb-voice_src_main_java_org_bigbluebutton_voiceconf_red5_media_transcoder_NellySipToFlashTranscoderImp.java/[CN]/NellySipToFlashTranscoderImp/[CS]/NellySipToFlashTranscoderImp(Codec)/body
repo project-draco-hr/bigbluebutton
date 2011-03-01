@@ -11,5 +11,4 @@
  catch (  IOException e) {
     e.printStackTrace();
   }
-  startNow();
 }

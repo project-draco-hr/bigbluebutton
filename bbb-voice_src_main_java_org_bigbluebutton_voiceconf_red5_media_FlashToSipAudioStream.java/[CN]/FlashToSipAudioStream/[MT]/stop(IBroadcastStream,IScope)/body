@@ -4,7 +4,6 @@
     broadcastStream.stop();
     broadcastStream.close();
   }
-  processAudioData=false;
-  transcoder.setProcessAudioData(processAudioData);
+  transcoder.stop();
   srcSocket.close();
 }

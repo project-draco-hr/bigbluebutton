@@ -1,7 +1,6 @@
 {
   log.debug("Stopping stream for {}",listenStreamName);
-  processAudioData=false;
-  transcoder.setProcessAudioData(processAudioData);
+  transcoder.stop();
   rtpStreamReceiver.stop();
   log.debug("Stopped RTP Stream Receiver for {}",listenStreamName);
   if (audioBroadcastStream != null) {

@@ -2,5 +2,4 @@
   this.audioCodec=audioCodec;
   Random rgen=new Random();
   timestamp=rgen.nextInt(1000);
-  System.out.println("Speex start!");
 }

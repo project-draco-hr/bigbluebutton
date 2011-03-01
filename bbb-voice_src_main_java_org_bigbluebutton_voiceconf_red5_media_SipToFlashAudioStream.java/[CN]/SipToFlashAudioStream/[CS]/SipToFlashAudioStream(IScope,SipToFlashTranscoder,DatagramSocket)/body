@@ -1,5 +1,4 @@
 {
-  processAudioData=true;
   transcoder.setProcessAudioData(processAudioData);
   this.scope=scope;
   this.transcoder=transcoder;
@@ -12,4 +11,5 @@
   mBuffer=mBuffer.setAutoExpand(true);
   audioData=new AudioData();
   transcoder.setTranscodedAudioListener(this);
+  start();
 }

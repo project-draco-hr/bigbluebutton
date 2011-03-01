@@ -1,4 +1,5 @@
 {
+  processAudioData=true;
   audioDataProcessor=new Runnable(){
     public void run(){
       processAudioData();
