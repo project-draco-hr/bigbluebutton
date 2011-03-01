@@ -1,19 +1,15 @@
 {
+  processAudioData=true;
+  transcoder.setProcessAudioData(processAudioData);
   this.scope=scope;
   this.transcoder=transcoder;
   rtpStreamReceiver=new RtpStreamReceiver(socket,transcoder.getIncomingEncodedFrameSize());
   rtpStreamReceiver.setRtpStreamReceiverListener(this);
   listenStreamName="speaker_" + System.currentTimeMillis();
   scope.setName(listenStreamName);
-  streamFromSip=new PipedOutputStream();
-  try {
-    streamToFlash=new PipedInputStream(streamFromSip);
-    startNow();
-    mBuffer=IoBuffer.allocate(1024);
-    mBuffer=mBuffer.setAutoExpand(true);
-    audioData=new AudioData();
-  }
- catch (  IOException e) {
-    e.printStackTrace();
-  }
+  startNow();
+  mBuffer=IoBuffer.allocate(1024);
+  mBuffer=mBuffer.setAutoExpand(true);
+  audioData=new AudioData();
+  transcoder.setTranscodedAudioListener(this);
 }

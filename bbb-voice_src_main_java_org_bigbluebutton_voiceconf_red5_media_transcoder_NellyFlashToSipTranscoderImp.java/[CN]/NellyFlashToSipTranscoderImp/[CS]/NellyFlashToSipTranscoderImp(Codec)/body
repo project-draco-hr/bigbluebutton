@@ -5,4 +5,19 @@
   Random rgen=new Random();
   timestamp=rgen.nextInt(1000);
   viewBuffer=l16Audio.asReadOnlyBuffer();
+  streamFromFlash=new PipedOutputStream();
+  try {
+    streamToSip=new PipedInputStream(streamFromFlash);
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+  processAudioData=true;
+  audioDataProcessor=new Runnable(){
+    public void run(){
+      processAudioData();
+    }
+  }
+;
+  exec.execute(audioDataProcessor);
 }

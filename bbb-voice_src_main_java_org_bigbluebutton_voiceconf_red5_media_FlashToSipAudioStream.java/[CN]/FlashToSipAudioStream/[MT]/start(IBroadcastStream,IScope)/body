@@ -1,5 +1,7 @@
 {
   log.debug("startTranscodingStream({},{})",broadcastStream.getPublishedName(),scope.getName());
+  processAudioData=true;
+  transcoder.setProcessAudioData(processAudioData);
   mInputListener=new IStreamListener(){
     public void packetReceived(    IBroadcastStream broadcastStream,    IStreamPacket packet){
       IoBuffer buf=packet.getData();
@@ -10,12 +12,7 @@
       }
       if (packet instanceof AudioData) {
         byte[] data=SerializeUtils.ByteBufferToByteArray(buf);
-        try {
-          streamFromFlash.write(data,1,data.length - 1);
-        }
- catch (        IOException e) {
-          e.printStackTrace();
-        }
+        if (data.length > 20)         transcoder.handlePacket(data,1,data.length - 1);
       }
     }
   }
@@ -23,12 +20,4 @@
   broadcastStream.addStreamListener(mInputListener);
   rtpSender=new RtpStreamSender(srcSocket,connInfo);
   rtpSender.connect();
-  processAudioData=true;
-  audioDataProcessor=new Runnable(){
-    public void run(){
-      processAudioData();
-    }
-  }
-;
-  exec.execute(audioDataProcessor);
 }

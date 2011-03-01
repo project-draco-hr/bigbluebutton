@@ -1,4 +1,0 @@
-{
-  byte[] codedBuffer=audioData;
-  listener.handleTranscodedAudioData(codedBuffer,timestamp+=TS_INCREMENT);
-}
