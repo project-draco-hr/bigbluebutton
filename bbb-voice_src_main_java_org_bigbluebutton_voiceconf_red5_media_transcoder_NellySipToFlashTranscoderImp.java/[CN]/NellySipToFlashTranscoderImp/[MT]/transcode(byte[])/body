@@ -1,6 +1,6 @@
 {
   if (audioData.length != ULAW_AUDIO_LENGTH) {
-    log.warn("Received corrupt audio. Got {}, expected {}.",audioData.length,ULAW_AUDIO_LENGTH);
+    if (log.isWarnEnabled())     log.warn("Received corrupt audio. Got {}, expected {}.",audioData.length,ULAW_AUDIO_LENGTH);
     return;
   }
   audioCodec.codecToPcm(audioData,tempL16Buffer);
@@ -14,7 +14,7 @@
       long pendingMessages=((RTMPMinaConnection)conn).getPendingMessages();
       if (pendingMessages > 25) {
         sendPacket=false;
-        log.info("Dropping packet. Connection {} congested with {} pending messages (~500ms worth of audio) .",conn.getClient().getId(),pendingMessages);
+        if (log.isInfoEnabled())         log.info("Dropping packet. Connection {} congested with {} pending messages (~500ms worth of audio) .",conn.getClient().getId(),pendingMessages);
       }
     }
     if (sendPacket)     transcodedAudioListener.handleTranscodedAudioData(nellyBytes,timestamp+=TS_INCREMENT);

@@ -1,6 +1,6 @@
 {
   if (audioData.length != NELLY_AUDIO_LENGTH) {
-    log.warn("Receiving bad nelly audio. Expecting {}, got {}.",NELLY_AUDIO_LENGTH,audioData.length);
+    if (log.isWarnEnabled())     log.warn("Receiving bad nelly audio. Expecting {}, got {}.",NELLY_AUDIO_LENGTH,audioData.length);
     return;
   }
   decoderMap=decoder.decode(decoderMap,audioData,0,tempL16Buffer,0);
