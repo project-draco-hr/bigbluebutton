@@ -1,0 +1,18 @@
+{
+  ArrayList<Recording> recs=new ArrayList<Recording>();
+  if (meetingIds.isEmpty()) {
+    meetingIds.addAll(getAllRecordingIds(publishedDir));
+    meetingIds.addAll(getAllRecordingIds(unpublishedDir));
+  }
+  for (  String meetingId : meetingIds) {
+    ArrayList<Recording> published=getRecordingsForPath(meetingId,publishedDir);
+    if (!published.isEmpty()) {
+      recs.addAll(published);
+    }
+    ArrayList<Recording> unpublished=getRecordingsForPath(meetingId,unpublishedDir);
+    if (!unpublished.isEmpty()) {
+      recs.addAll(unpublished);
+    }
+  }
+  return recs;
+}
