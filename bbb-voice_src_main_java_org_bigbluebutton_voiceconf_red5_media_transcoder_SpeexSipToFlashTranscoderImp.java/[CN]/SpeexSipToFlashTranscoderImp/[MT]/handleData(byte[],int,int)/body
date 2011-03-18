@@ -1,0 +1,5 @@
+{
+  byte[] data=new byte[len];
+  System.arraycopy(audioData,offset,data,0,len);
+  transcode(data);
+}
