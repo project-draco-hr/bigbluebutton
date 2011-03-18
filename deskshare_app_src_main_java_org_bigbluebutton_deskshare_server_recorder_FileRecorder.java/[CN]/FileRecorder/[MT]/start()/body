@@ -1,0 +1,30 @@
+{
+  try {
+    fo=new FileOutputStream(flvFilename);
+    fo.write(svf.encodeHeader());
+  }
+ catch (  FileNotFoundException e1) {
+    e1.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+  }
+  sendCapturedScreen=true;
+  System.out.println("Starting stream");
+  capturedScreenSender=new Runnable(){
+    public void run(){
+      while (sendCapturedScreen) {
+        try {
+          System.out.println("ScreenQueue size " + screenQueue.size());
+          IoBuffer newScreen=screenQueue.take();
+          sendCapturedScreen(newScreen);
+        }
+ catch (        InterruptedException e) {
+          System.out.println("InterruptedExeption while taking event.");
+        }
+      }
+    }
+  }
+;
+  exec.execute(capturedScreenSender);
+}
