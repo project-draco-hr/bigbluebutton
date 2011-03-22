@@ -3,7 +3,6 @@ long userid
 String username
 String role
 String conference
-String mode
 String room
 String voiceBridge
 Boolean record
