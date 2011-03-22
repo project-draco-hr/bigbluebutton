@@ -1,5 +1,5 @@
 {
-  if (audioData != null && processAudioData) {
+  if (audioData != null) {
     rtpSender.sendAudio(audioData,transcoder.getCodecId(),timestamp);
   }
  else {

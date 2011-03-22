@@ -18,7 +18,7 @@
         if (shouldHandlePacket(rtpPacket)) {
           lastSequenceNumber=rtpPacket.getSeqNum();
           lastPacketTimestamp=rtpPacket.getTimestamp();
-          processRtpPacket(internalBuffer,RTP_HEADER_SIZE,payloadLength);
+          processRtpPacket(internalBuffer,RTP_HEADER_SIZE,rtpPacket.getPayloadLength());
         }
  else {
           if (log.isDebugEnabled())           log.debug("Corrupt packet [" + rtpPacket.getRtcpPayloadType() + ","+ rtpPacket.getPayloadType()+ ", length="+ rtpPacket.getPayloadLength()+ "] seqNum[rtpSeqNum="+ rtpPacket.getSeqNum()+ ",lastSeqNum="+ lastSequenceNumber+ "][rtpTS="+ rtpPacket.getTimestamp()+ ",lastTS="+ lastPacketTimestamp+ "][port="+ rtpSocket.getDatagramSocket().getLocalPort()+ "]");

@@ -1,0 +1,23 @@
+{
+  int len=160;
+  byte[] pcmAudio=new byte[len];
+  int remaining=len;
+  int offset=0;
+  while (processAudioData) {
+    try {
+      int bytesRead=streamToFlash.read(pcmAudio,offset,remaining);
+      remaining-=bytesRead;
+      if (remaining == 0) {
+        remaining=len;
+        offset=0;
+        transcode(pcmAudio);
+      }
+ else {
+        offset+=bytesRead;
+      }
+    }
+ catch (    IOException e) {
+      e.printStackTrace();
+    }
+  }
+}

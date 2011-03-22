@@ -1,0 +1,23 @@
+{
+  int len=64;
+  byte[] nellyAudio=new byte[len];
+  int remaining=len;
+  int offset=0;
+  while (processAudioData) {
+    try {
+      int bytesRead=streamToSip.read(nellyAudio,offset,remaining);
+      remaining-=bytesRead;
+      if (remaining == 0) {
+        remaining=len;
+        offset=0;
+        transcode(nellyAudio,0,nellyAudio.length);
+      }
+ else {
+        offset+=bytesRead;
+      }
+    }
+ catch (    IOException e) {
+      e.printStackTrace();
+    }
+  }
+}
