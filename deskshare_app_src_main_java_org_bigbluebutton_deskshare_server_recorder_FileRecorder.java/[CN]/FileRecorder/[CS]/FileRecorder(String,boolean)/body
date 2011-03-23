@@ -1,5 +1,0 @@
-{
-  if (record) {
-    flvFilename="/tmp/" + name + "-"+ System.currentTimeMillis()+ ".flv";
-  }
-}

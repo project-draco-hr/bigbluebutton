@@ -1,0 +1,3 @@
+{
+  flvFilename=recordingPath + "/" + name+ "-"+ System.currentTimeMillis()+ ".flv";
+}

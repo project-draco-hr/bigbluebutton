@@ -16,8 +16,8 @@ catch (  IOException e) {
       while (sendCapturedScreen) {
         try {
           System.out.println("ScreenQueue size " + screenQueue.size());
-          IoBuffer newScreen=screenQueue.take();
-          sendCapturedScreen(newScreen);
+          IoBuffer frame=screenQueue.take();
+          recordFrameToFile(frame);
         }
  catch (        InterruptedException e) {
           System.out.println("InterruptedExeption while taking event.");

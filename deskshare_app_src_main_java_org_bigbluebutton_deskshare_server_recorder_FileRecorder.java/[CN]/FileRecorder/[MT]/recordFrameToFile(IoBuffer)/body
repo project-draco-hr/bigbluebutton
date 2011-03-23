@@ -1,0 +1,11 @@
+{
+  try {
+    fo.write(svf.encodeFlvData(frame.array()));
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+catch (  FlvEncodeException e) {
+    e.printStackTrace();
+  }
+}
