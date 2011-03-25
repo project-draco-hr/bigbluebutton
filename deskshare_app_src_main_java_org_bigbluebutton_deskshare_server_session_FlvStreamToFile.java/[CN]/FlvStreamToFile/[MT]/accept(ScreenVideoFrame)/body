@@ -1,8 +1,0 @@
-{
-  try {
-    screenQueue.put(frame);
-  }
- catch (  InterruptedException e) {
-    System.out.println("InterruptedException while putting event into queue.");
-  }
-}
