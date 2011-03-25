@@ -3,9 +3,9 @@
     fo.write(svf.encodeFlvData(frame.array()));
   }
  catch (  IOException e) {
-    e.printStackTrace();
+    log.error(StackTraceUtil.getStackTrace(e));
   }
 catch (  FlvEncodeException e) {
-    e.printStackTrace();
+    log.error(StackTraceUtil.getStackTrace(e));
   }
 }

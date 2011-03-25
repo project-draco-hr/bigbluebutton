@@ -4,23 +4,22 @@
     fo.write(svf.encodeHeader());
   }
  catch (  FileNotFoundException e1) {
-    e1.printStackTrace();
+    log.error(StackTraceUtil.getStackTrace(e1));
   }
 catch (  IOException e) {
-    e.printStackTrace();
+    log.error(StackTraceUtil.getStackTrace(e));
   }
   sendCapturedScreen=true;
-  System.out.println("Starting stream");
+  log.info("Starting stream");
   capturedScreenSender=new Runnable(){
     public void run(){
       while (sendCapturedScreen) {
         try {
-          System.out.println("ScreenQueue size " + screenQueue.size());
           IoBuffer frame=screenQueue.take();
           recordFrameToFile(frame);
         }
  catch (        InterruptedException e) {
-          System.out.println("InterruptedExeption while taking event.");
+          log.info("InterruptedExeption while taking event.");
         }
       }
     }
