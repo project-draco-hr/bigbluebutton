@@ -1,0 +1,6 @@
+{
+  final Writer result=new StringWriter();
+  final PrintWriter printWriter=new PrintWriter(result);
+  aThrowable.printStackTrace(printWriter);
+  return result.toString();
+}

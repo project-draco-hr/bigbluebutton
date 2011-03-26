@@ -5,5 +5,10 @@
   }
  catch (  IOException e) {
     log.error(StackTraceUtil.getStackTrace(e));
+    RecordErrorEvent event=new RecordErrorEvent(session);
+    event.setReason("Cannot record to recording output.");
+    listeners.notifyListeners(event);
   }
+  RecordStoppedEvent event=new RecordStoppedEvent(session);
+  listeners.notifyListeners(event);
 }

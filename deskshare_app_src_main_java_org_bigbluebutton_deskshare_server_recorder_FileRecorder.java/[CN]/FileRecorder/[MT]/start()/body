@@ -5,9 +5,15 @@
   }
  catch (  FileNotFoundException e1) {
     log.error(StackTraceUtil.getStackTrace(e1));
+    RecordErrorEvent event=new RecordErrorEvent(session);
+    event.setReason("Failed to create recording output.");
+    listeners.notifyListeners(event);
   }
 catch (  IOException e) {
     log.error(StackTraceUtil.getStackTrace(e));
+    RecordErrorEvent event=new RecordErrorEvent(session);
+    event.setReason("Cannot record to recording output.");
+    listeners.notifyListeners(event);
   }
   sendCapturedScreen=true;
   log.info("Starting stream");
@@ -19,11 +25,16 @@ catch (  IOException e) {
           recordFrameToFile(frame);
         }
  catch (        InterruptedException e) {
-          log.info("InterruptedExeption while taking event.");
+          log.error("InterruptedExeption while taking event.");
+          RecordErrorEvent event=new RecordErrorEvent(session);
+          event.setReason("Cannot record to recording output.");
+          listeners.notifyListeners(event);
         }
       }
     }
   }
 ;
   exec.execute(capturedScreenSender);
+  RecordStartedEvent event=new RecordStartedEvent(session);
+  listeners.notifyListeners(event);
 }
