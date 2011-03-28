@@ -10,5 +10,6 @@
     listeners.notifyListeners(event);
   }
   RecordStoppedEvent event=new RecordStoppedEvent(session);
+  event.setFile(flvFilename);
   listeners.notifyListeners(event);
 }

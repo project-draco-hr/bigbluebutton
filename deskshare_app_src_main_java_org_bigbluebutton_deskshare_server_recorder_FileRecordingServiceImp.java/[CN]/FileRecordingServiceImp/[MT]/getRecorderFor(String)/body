@@ -1,3 +1,5 @@
 {
-  return new FileRecorder(name,recordingDir);
+  FileRecorder r=new FileRecorder(name,recordingDir);
+  r.addListener(redisDispatcher);
+  return r;
 }

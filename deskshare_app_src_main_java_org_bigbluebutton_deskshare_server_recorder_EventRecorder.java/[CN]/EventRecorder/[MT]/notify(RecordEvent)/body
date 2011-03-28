@@ -1,0 +1,5 @@
+{
+  if ((event instanceof RecordStoppedEvent) || (event instanceof RecordStartedEvent)) {
+    record(((AbstractDeskshareRecordEvent)event).getSession(),event);
+  }
+}

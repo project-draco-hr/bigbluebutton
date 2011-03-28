@@ -36,5 +36,6 @@ catch (  IOException e) {
 ;
   exec.execute(capturedScreenSender);
   RecordStartedEvent event=new RecordStartedEvent(session);
+  event.setFile(flvFilename);
   listeners.notifyListeners(event);
 }
