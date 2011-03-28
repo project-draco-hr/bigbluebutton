@@ -7,9 +7,11 @@
       if (r.getNumberOfParticipants() == 0) {
         conferenceEventListener.started(r);
         log.debug("Notified event listener of conference start");
+        publisher.publish("bigbluebutton:conference:status",r.getName() + ":started");
       }
     }
     r.addParticipant(participant);
+    publisher.publish("bigbluebutton:conference:join",r.getName() + ":" + participant.getUserid()+ ":"+ participant.getName()+ ":"+ participant.getRole());
     return;
   }
   log.warn("Adding participant to a non-existing room {}",roomName);

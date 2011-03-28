@@ -1,0 +1,8 @@
+{
+  for (  DynamicConferenceParticipant p : this.participants) {
+    if (p.getUserid().equalsIgnoreCase(userid)) {
+      this.participants.remove(p);
+      break;
+    }
+  }
+}
