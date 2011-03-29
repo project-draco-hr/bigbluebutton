@@ -1,3 +1,21 @@
 {
   System.out.println("RtmpClientAdapter: TODO Notify client of recording status");
+  ArrayList<Object> msg=new ArrayList<Object>();
+  if (event instanceof RecordStoppedEvent) {
+    msg.add(new String("DESKSHARE_RECORD_STOPPED_EVENT"));
+  }
+ else   if (event instanceof RecordStartedEvent) {
+    msg.add(new String("DESKSHARE_RECORD_STARTED_EVENT"));
+  }
+ else   if (event instanceof RecordUpdateEvent) {
+    long now=System.currentTimeMillis();
+    if ((now - lastUpdate) > 30000) {
+      msg.add(new String("DESKSHARE_RECORD_UPDATED_EVENT"));
+      lastUpdate=now;
+    }
+  }
+ else   if (event instanceof RecordErrorEvent) {
+    msg.add(new String("DESKSHARE_RECORD_ERROR_EVENT"));
+  }
+  so.sendMessage("recordingStatusCallback",msg);
 }
