@@ -1,0 +1,11 @@
+{
+  if (dumpCount > 0) {
+    dumpCount--;
+    try {
+      dumpFile.write(mem);
+    }
+ catch (    IOException e) {
+      e.printStackTrace();
+    }
+  }
+}
