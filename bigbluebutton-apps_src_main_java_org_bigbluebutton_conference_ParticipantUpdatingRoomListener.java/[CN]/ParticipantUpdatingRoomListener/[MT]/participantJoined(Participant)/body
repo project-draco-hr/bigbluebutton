@@ -1,5 +1,6 @@
 {
   if (conferenceEventListener != null) {
     conferenceEventListener.participantsUpdated(room);
+    publisher.publish("bigbluebutton:conference:join",room.getName() + ":" + p.getUserid()+ ":"+ p.getName()+ ":"+ p.getRole());
   }
 }

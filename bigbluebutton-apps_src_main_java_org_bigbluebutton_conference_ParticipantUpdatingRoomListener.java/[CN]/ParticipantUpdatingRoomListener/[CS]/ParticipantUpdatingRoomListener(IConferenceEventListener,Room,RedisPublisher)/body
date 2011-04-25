@@ -1,4 +1,5 @@
 {
   this.conferenceEventListener=lstnr;
   this.room=room;
+  this.publisher=publisher;
 }

@@ -5,4 +5,5 @@
   this.moderatorPassword=(moderatorPW == null ? createPassword() : moderatorPW);
   this.maxParticipants=maxParticipants < 0 ? -1 : maxParticipants;
   this.meetingToken=createMeetingToken();
+  this.participants=new ArrayList<DynamicConferenceParticipant>();
 }

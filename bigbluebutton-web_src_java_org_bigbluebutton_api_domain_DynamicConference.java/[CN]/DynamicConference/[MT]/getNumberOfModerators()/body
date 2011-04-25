@@ -1,0 +1,9 @@
+{
+  int sum=0;
+  for (  DynamicConferenceParticipant p : this.participants) {
+    if (p.isModerator()) {
+      sum++;
+    }
+  }
+  return sum;
+}

@@ -6,6 +6,7 @@
       conferenceEventListener.participantsUpdated(r);
     }
     r.removeParticipant(userid);
+    publisher.publish("bigbluebutton:conference:remove",r.getName() + ":" + userid);
     return;
   }
   log.warn("Removing listener from a non-existing room ${roomName}");

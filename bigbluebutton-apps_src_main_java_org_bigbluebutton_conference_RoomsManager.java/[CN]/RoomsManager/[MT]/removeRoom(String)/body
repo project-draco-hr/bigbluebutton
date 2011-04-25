@@ -4,6 +4,7 @@
   if (checkEvtListener() && room != null) {
     room.endAndKickAll();
     conferenceEventListener.ended(room);
+    publisher.publish("bigbluebutton:conference:status",room.getName() + ":ended");
     log.debug("Notified event listener of conference end");
   }
 }
