@@ -6,4 +6,5 @@
   this.maxParticipants=maxParticipants < 0 ? -1 : maxParticipants;
   this.meetingToken=createMeetingToken();
   this.participants=new ArrayList<DynamicConferenceParticipant>();
+  this.metadata=new Hashtable<String,String>();
 }

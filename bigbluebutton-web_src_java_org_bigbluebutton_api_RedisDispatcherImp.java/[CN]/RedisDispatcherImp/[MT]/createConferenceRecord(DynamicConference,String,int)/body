@@ -5,4 +5,5 @@
   System.out.println("Storing " + conf.getName());
   confMap.put("name",conf.getName());
   jedis.hmset("meeting.info" + COLON + conf.getMeetingToken(),confMap);
+  jedis.hmset("meeting:metadata" + COLON + conf.getMeetingToken(),conf.getMetadata());
 }
