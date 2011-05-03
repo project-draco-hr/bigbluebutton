@@ -1,4 +1,0 @@
-import os, getopt, sys
-import shutil
-if (__name__ == '__main__'):
-    main()

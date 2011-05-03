@@ -1,3 +1,0 @@
-def get_stop_audio_recording_events(tree):
-    '\n        Retrieve all the stop audio recording events.\n        tree:       The xml tree of all events.\n    '
-    return tree.xpath("//event[@name='StopRecordingEvent']")

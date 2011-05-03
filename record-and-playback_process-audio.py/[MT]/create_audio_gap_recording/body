@@ -1,9 +1,0 @@
-def create_audio_gap_recording(startTimestamp, stopTimestamp, isGap, lengthOfGap):
-    '\n        Create information for a gap in the audio recording.\n        startTimestamp:         The start of the event\n        stopTimestamp:          The end of the event\n        isGap:                  If the audio is a gap filler\n        lengthOfGap:            How long is the audio\n    '
-    audioGap = AudioRecording()
-    audioGap.startEventTimestamp = long(startTimestamp)
-    audioGap.stopEventTimestamp = long(stopTimestamp)
-    audioGap.gapFile = isGap
-    audioGap.lengthOfGap = lengthOfGap
-    audioGap.filename = (('gap-' + str(lengthOfGap)) + '.wav')
-    return audioGap

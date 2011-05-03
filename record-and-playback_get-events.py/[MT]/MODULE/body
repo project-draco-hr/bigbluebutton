@@ -1,2 +1,0 @@
-def MODULE(*args):
-    return {'module': ' '.join(args), }

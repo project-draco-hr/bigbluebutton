@@ -1,6 +1,0 @@
-import os, getopt, sys
-import shutil, subprocess, logging
-from lxml import etree
-LOGFILE = 'ingest.log'
-if (__name__ == '__main__'):
-    main()

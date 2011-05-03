@@ -1,5 +1,0 @@
-{
-  WebApplicationContext con=WebApplicationContextUtils.getRequiredWebApplicationContext(this.getServletContext());
-  IMessageGeneratorSender sender=(MessageGeneratorSender)con.getBean("sender");
-  sender.sendEvents(event);
-}

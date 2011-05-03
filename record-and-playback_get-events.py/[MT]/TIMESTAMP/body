@@ -1,2 +1,0 @@
-def TIMESTAMP(*args):
-    return {'timestamp': ' '.join(args), }

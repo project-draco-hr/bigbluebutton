@@ -1,6 +1,0 @@
-def get_audio_filenames(audioRecordings):
-    '\n        Get the filnames of all audio files.\n    '
-    audioFilenames = []
-    for ar in audioRecordings:
-        audioFilenames.append(ar.filename)
-    return audioFilenames
