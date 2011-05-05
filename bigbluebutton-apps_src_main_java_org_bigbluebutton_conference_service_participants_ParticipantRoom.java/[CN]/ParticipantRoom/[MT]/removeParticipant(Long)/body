@@ -1,0 +1,12 @@
+{
+  if (participants.containsKey(userid)) {
+    log.debug("removing participant");
+    Participant p=participants.remove(userid);
+    for (Iterator it=listeners.values().iterator(); it.hasNext(); ) {
+      log.debug("calling participantLeft on listener");
+      IParticipantRoomListener listener=(IParticipantRoomListener)it.next();
+      log.debug("calling participantLeft on listener ${listener.getName()}");
+      listener.participantLeft(p);
+    }
+  }
+}

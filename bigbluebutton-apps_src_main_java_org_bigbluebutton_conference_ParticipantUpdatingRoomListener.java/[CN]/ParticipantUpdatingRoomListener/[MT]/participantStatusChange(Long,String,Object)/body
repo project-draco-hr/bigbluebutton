@@ -1,5 +1,0 @@
-{
-  if (conferenceEventListener != null) {
-    conferenceEventListener.participantsUpdated(room);
-  }
-}

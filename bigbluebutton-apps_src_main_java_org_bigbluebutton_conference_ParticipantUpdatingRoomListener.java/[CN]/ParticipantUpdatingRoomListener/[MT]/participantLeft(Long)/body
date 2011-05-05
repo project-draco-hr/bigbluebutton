@@ -1,6 +1,0 @@
-{
-  if (conferenceEventListener != null) {
-    conferenceEventListener.participantsUpdated(room);
-    publisher.publish("bigbluebutton:conference:remove",room.getName() + ":" + userid);
-  }
-}
