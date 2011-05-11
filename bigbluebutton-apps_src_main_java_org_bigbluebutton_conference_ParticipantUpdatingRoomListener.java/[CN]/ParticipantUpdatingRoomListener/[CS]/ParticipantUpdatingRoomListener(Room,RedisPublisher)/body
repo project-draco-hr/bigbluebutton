@@ -1,0 +1,5 @@
+{
+  this.room=room;
+  this.publisher=publisher;
+  this.pubsub_pattern="bigbluebutton:meeting:participants";
+}

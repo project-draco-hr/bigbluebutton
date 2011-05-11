@@ -1,7 +1,0 @@
-{
-  this.userid=userid;
-  this.name=name;
-  this.role=role;
-  this.externUserID=externUserID;
-  this.status=status;
-}

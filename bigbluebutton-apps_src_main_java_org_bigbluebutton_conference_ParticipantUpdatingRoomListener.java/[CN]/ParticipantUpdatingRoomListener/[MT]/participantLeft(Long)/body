@@ -1,0 +1,5 @@
+{
+  if (publisher != null) {
+    publisher.publish(this.pubsub_pattern,this.room.getName() + ":left:" + room.getName()+ ":"+ userid);
+  }
+}

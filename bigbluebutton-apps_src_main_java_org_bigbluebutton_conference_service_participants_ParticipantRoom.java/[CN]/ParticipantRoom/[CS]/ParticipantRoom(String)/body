@@ -1,5 +1,0 @@
-{
-  this.name=name;
-  listeners=new HashMap<String,IParticipantRoomListener>();
-  participants=new HashMap<Long,Participant>();
-}

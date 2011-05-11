@@ -1,0 +1,6 @@
+{
+  this.name=name;
+  participants=new ConcurrentHashMap<Long,Participant>();
+  unmodifiableMap=Collections.unmodifiableMap(participants);
+  listeners=new ConcurrentHashMap<String,IRoomListener>();
+}

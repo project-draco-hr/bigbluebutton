@@ -1,10 +1,9 @@
 {
   log.debug("Remove room {}",name);
   Room room=rooms.remove(name);
-  if (checkEvtListener() && room != null) {
+  if (checkPublisher() && room != null) {
     room.endAndKickAll();
-    conferenceEventListener.ended(room);
-    publisher.publish("bigbluebutton:conference:status",room.getName() + ":ended");
+    publisher.publish("bigbluebutton:meeting:state",room.getName() + ":ended");
     log.debug("Notified event listener of conference end");
   }
 }

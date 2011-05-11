@@ -1,0 +1,20 @@
+{
+  boolean present=false;
+synchronized (this) {
+    present=participants.containsKey(userid);
+    if (present) {
+      log.debug("change participant status");
+      Participant p=participants.get(userid);
+      p.setStatus(status,value);
+      unmodifiableMap=Collections.unmodifiableMap(participants);
+    }
+  }
+  if (present) {
+    for (Iterator it=listeners.values().iterator(); it.hasNext(); ) {
+      log.debug("calling participantStatusChange on listener");
+      IRoomListener listener=(IRoomListener)it.next();
+      log.debug("calling participantStatusChange on listener ${listener.getName()}");
+      listener.participantStatusChange(userid,status,value);
+    }
+  }
+}

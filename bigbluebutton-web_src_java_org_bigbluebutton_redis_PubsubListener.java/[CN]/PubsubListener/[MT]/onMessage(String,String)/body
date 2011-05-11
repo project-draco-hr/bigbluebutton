@@ -1,2 +1,33 @@
 {
+  String[] args=message.split(COLON);
+  if (channel.equalsIgnoreCase(CHANNEL_STATE)) {
+    String roomname=args[0];
+    String status=args[1];
+    if (status.equalsIgnoreCase("started")) {
+      dynamicConferenceService.conferenceStarted2(roomname);
+    }
+ else     if (status.equalsIgnoreCase("ended")) {
+      dynamicConferenceService.conferenceEnded2(roomname);
+    }
+  }
+ else   if (channel.equalsIgnoreCase(CHANNEL_PARTICIPANTS)) {
+    String roomname=args[0];
+    String action=args[1];
+    if (action.equalsIgnoreCase("join")) {
+      String userid=args[2];
+      String fullname=args[3];
+      String role=args[4];
+      dynamicConferenceService.participantsUpdatedJoin(roomname,userid,fullname,role);
+    }
+ else     if (action.equalsIgnoreCase("status")) {
+      String userid=args[2];
+      String status=args[3];
+      String value=args[4];
+      dynamicConferenceService.participantsUpdatedStatus(roomname,userid,status,value);
+    }
+ else     if (action.equalsIgnoreCase("left")) {
+      String userid=args[2];
+      dynamicConferenceService.participantsUpdatedLeft(roomname,userid);
+    }
+  }
 }

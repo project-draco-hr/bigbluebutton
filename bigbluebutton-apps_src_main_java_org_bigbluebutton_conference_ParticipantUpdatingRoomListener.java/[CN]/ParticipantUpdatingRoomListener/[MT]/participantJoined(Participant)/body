@@ -1,5 +1,5 @@
 {
-  if (this.publisher != null) {
-    publisher.publish("bigbluebutton:meeting:" + room.getName() + ":participants","joined:" + p.getUserid() + ":"+ p.getName()+ ":"+ p.getRole());
+  if (publisher != null) {
+    publisher.publish(this.pubsub_pattern,this.room.getName() + ":join:" + p.getUserid()+ ":"+ p.getName()+ ":"+ p.getRole());
   }
 }

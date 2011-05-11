@@ -1,5 +1,0 @@
-{
-  if (this.publisher != null) {
-    publisher.publish("bigbluebutton:meeting:" + room.getName() + ":participants","statuschanged:" + participant.getUserid() + ":"+ participant.getStatus());
-  }
-}

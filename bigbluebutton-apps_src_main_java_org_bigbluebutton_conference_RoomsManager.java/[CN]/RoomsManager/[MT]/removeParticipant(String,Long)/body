@@ -2,11 +2,9 @@
   log.debug("Remove participant {} from {}",userid,roomName);
   Room r=getRoom(roomName);
   if (r != null) {
-    if (checkEvtListener()) {
-      conferenceEventListener.participantsUpdated(r);
+    if (checkPublisher()) {
     }
     r.removeParticipant(userid);
-    publisher.publish("bigbluebutton:conference:remove",r.getName() + ":" + userid);
     return;
   }
   log.warn("Removing listener from a non-existing room ${roomName}");
