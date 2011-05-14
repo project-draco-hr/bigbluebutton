@@ -1,5 +1,6 @@
 {
   if (publisher != null) {
     publisher.publish(this.pubsub_pattern,this.room.getName() + ":join:" + p.getUserid()+ ":"+ p.getName()+ ":"+ p.getRole());
+    log.debug("Publishing message to {} action join",this.pubsub_pattern);
   }
 }

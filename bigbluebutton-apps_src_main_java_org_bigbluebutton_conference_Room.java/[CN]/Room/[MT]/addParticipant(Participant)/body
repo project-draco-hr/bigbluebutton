@@ -1,11 +1,13 @@
 {
-  log.debug("adding participant ${participant.userid}");
-  participants.put(participant.getUserid(),participant);
-  log.debug("addparticipant - informing roomlisteners ${listeners.size()}");
+synchronized (this) {
+    log.debug("adding participant {}",participant.getUserid());
+    participants.put(participant.getUserid(),participant);
+  }
+  log.debug("addparticipant - informing roomlisteners {}",listeners.size());
   for (Iterator it=listeners.values().iterator(); it.hasNext(); ) {
     log.debug("calling participantJoined on listener");
     IRoomListener listener=(IRoomListener)it.next();
-    log.debug("calling participantJoined on listener ${listener.getName()}");
+    log.debug("calling participantJoined on listener {}",listener.getName());
     listener.participantJoined(participant);
   }
 }

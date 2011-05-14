@@ -1,5 +1,6 @@
 {
   if (publisher != null) {
-    publisher.publish(this.pubsub_pattern,this.room.getName() + ":left:" + room.getName()+ ":"+ userid);
+    publisher.publish(this.pubsub_pattern,this.room.getName() + ":left:" + userid);
+    log.debug("Publishing message to {} action left",this.pubsub_pattern);
   }
 }

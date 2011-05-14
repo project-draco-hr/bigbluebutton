@@ -11,7 +11,7 @@ synchronized (this) {
     for (Iterator it=listeners.values().iterator(); it.hasNext(); ) {
       log.debug("calling participantLeft on listener");
       IRoomListener listener=(IRoomListener)it.next();
-      log.debug("calling participantLeft on listener ${listener.getName()}");
+      log.debug("calling participantLeft on listener {}",listener.getName());
       listener.participantLeft(userid);
     }
   }

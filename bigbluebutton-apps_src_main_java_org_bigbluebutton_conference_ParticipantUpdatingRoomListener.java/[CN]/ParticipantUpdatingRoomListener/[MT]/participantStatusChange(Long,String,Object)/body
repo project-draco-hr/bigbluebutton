@@ -1,5 +1,6 @@
 {
   if (publisher != null) {
     publisher.publish(this.pubsub_pattern,this.room.getName() + ":status:" + userid+ ":"+ status+ ":"+ value);
+    log.debug("Publishing message to {} action status change",this.pubsub_pattern);
   }
 }
