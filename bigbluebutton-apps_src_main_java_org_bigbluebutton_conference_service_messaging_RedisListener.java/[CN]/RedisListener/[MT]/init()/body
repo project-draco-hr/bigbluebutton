@@ -1,0 +1,4 @@
+{
+  Jedis jedis=redisPool.getResource();
+  redisPool.returnResource(jedis);
+}

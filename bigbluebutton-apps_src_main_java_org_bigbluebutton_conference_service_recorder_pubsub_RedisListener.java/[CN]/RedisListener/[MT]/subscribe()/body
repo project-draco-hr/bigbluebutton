@@ -1,4 +1,0 @@
-{
-  Thread t=new Thread(this);
-  t.start();
-}
