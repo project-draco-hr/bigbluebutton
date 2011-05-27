@@ -7,4 +7,5 @@
   this.meetingToken=createMeetingToken();
   this.participants=new ArrayList<DynamicConferenceParticipant>();
   this.metadata=new Hashtable<String,String>();
+  addMetadataValue("title","Default Title");
 }
