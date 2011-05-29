@@ -1,0 +1,34 @@
+{
+  System.out.println("redis message received. pattern:" + pattern + " channel:"+ channel+ " message:"+ message);
+  if (pattern.equalsIgnoreCase(PATTERN_CONFERENCE)) {
+    String[] args=message.split(COLON);
+    if (channel.equalsIgnoreCase(CHANNEL_STATUS)) {
+      String meetingId=args[0];
+      String status=args[1];
+      for (      MessageListener listener : listeners) {
+        if (status.equalsIgnoreCase("started")) {
+          listener.meetingStarted(meetingId);
+        }
+ else         if (status.equalsIgnoreCase("ended")) {
+          listener.meetingStarted(meetingId);
+        }
+      }
+    }
+ else     if (channel.equalsIgnoreCase(CHANNEL_JOIN)) {
+      String meetingId=args[0];
+      String userId=args[1];
+      String name=args[2];
+      String role=args[3];
+      for (      MessageListener listener : listeners) {
+        listener.userJoined(meetingId,userId,name,role);
+      }
+    }
+ else     if (channel.equalsIgnoreCase(CHANNEL_LEAVE)) {
+      String meetingId=args[0];
+      String userId=args[1];
+      for (      MessageListener listener : listeners) {
+        listener.userLeft(meetingId,userId);
+      }
+    }
+  }
+}

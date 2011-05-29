@@ -1,0 +1,6 @@
+{
+  jedis=new Jedis(host,port,0);
+  if (jedis != null) {
+    jedis.psubscribe(new PubSubListener(),"bigbluebutton:conference:*");
+  }
+}
