@@ -1,6 +1,19 @@
 {
   jedis=new Jedis(host,port,0);
-  if (jedis != null) {
-    jedis.psubscribe(new PubSubListener(),"bigbluebutton:conference:*");
+  try {
+    jedis.connect();
+    pubsubListener=new Runnable(){
+      public void run(){
+        jedis.psubscribe(new PubSubListener(),"bigbluebutton:conference:*");
+      }
+    }
+;
+    exec.execute(pubsubListener);
+  }
+ catch (  UnknownHostException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
   }
 }
