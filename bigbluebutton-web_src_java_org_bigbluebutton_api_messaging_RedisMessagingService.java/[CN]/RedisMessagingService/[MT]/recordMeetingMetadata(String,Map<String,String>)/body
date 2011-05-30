@@ -1,2 +1,3 @@
 {
+  jedis.hmset("meeting:metadata:" + meetingId,metadata);
 }

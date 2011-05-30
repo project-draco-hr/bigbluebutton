@@ -1,0 +1,6 @@
+{
+  conf.setStoredTime(new Date());
+  meetings.put(conf.getMeetingID(),conf);
+  if (conf.isRecord()) {
+  }
+}

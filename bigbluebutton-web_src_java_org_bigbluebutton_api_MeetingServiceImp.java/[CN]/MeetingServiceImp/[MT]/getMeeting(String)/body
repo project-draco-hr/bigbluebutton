@@ -1,0 +1,6 @@
+{
+  if (meetingID == null) {
+    return null;
+  }
+  return (Meeting)meetings.get(meetingID);
+}

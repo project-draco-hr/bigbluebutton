@@ -1,0 +1,7 @@
+{
+  Meeting conf=getMeeting(meetingID);
+  if (conf != null) {
+    conf.setStartTime(new Date());
+    conf.setEndTime(null);
+  }
+}

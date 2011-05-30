@@ -1,0 +1,4 @@
+{
+  dynConfService=s;
+  s.setMeetingService(this);
+}

@@ -1,0 +1,7 @@
+{
+  Participant dcp=new Participant(userid,fullname,role);
+  Meeting conf=getMeeting(meetingID);
+  if (conf != null) {
+    conf.addParticipant(dcp);
+  }
+}
