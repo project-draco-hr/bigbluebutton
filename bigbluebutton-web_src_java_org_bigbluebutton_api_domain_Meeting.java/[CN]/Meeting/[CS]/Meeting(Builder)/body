@@ -1,0 +1,11 @@
+{
+  this.name=builder.name;
+  this.extMeetingId=builder.externalId;
+  this.intMeetingId=builder.internalId;
+  this.viewerPass=builder.viewerPass;
+  this.moderatorPass=builder.moderatorPass;
+  this.maxUsers=builder.maxUsers;
+  this.participants=new ArrayList<Participant>();
+  this.metadata=new Hashtable<String,String>();
+  addMetadataValue("title","Default Title");
+}

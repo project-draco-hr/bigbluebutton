@@ -1,9 +1,3 @@
 {
-  Collection<Meeting> confs=meetings.values();
-  for (  Meeting c : confs) {
-    if (voiceBridge == c.getVoiceBridge()) {
-      return true;
-    }
-  }
   return false;
 }

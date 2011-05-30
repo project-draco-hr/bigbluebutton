@@ -1,4 +1,3 @@
 {
-  boolean running=startTime != null && endTime == null;
-  return running;
+  return false;
 }

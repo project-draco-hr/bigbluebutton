@@ -1,6 +1,2 @@
 {
-  Meeting conf=getMeeting(meetingID);
-  if (conf != null) {
-    conf.removeParticipant(userid);
-  }
 }
