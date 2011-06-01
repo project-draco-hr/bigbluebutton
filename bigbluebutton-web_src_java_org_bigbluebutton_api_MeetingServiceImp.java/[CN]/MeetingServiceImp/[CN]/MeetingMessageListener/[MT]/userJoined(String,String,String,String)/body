@@ -1,0 +1,7 @@
+{
+  Meeting m=getMeeting(meetingId);
+  if (m != null) {
+    User user=new User(userId,name,role);
+    m.userJoined(user);
+  }
+}

@@ -1,5 +1,4 @@
 {
-  this.service=svc;
   cleanupTimer=new Timer("bbb-api-cleanup",true);
   cleanupTimer.scheduleAtFixedRate(new CleanupTask(),60000,300000);
 }

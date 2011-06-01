@@ -11,9 +11,9 @@
     exec.execute(pubsubListener);
   }
  catch (  UnknownHostException e) {
-    e.printStackTrace();
+    log.error("Unknown host[" + host + "]");
   }
 catch (  IOException e) {
-    e.printStackTrace();
+    log.error("Cannot connect to [" + host + ":"+ port+ "]");
   }
 }

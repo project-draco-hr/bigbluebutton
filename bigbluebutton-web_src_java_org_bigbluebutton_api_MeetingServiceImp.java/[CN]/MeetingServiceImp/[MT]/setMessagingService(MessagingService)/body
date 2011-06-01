@@ -1,0 +1,4 @@
+{
+  messagingService=mess;
+  messagingService.addListener(new MeetingMessageListener());
+}

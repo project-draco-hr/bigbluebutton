@@ -1,6 +1,6 @@
 {
-  if (meetingID == null) {
+  if (meetingId == null) {
     return null;
   }
-  return (Meeting)meetings.get(meetingID);
+  return (Meeting)meetings.get(meetingId);
 }
