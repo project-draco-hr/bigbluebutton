@@ -5,7 +5,7 @@
   this.viewerPass=builder.viewerPass;
   this.moderatorPass=builder.moderatorPass;
   this.maxUsers=builder.maxUsers;
-  this.participants=new ArrayList<Participant>();
-  this.metadata=new Hashtable<String,String>();
-  addMetadataValue("title","Default Title");
+  users=new ConcurrentHashMap<String,User>();
+  metadata=new ConcurrentHashMap<String,String>();
+  metadata.put("meetingId",extMeetingId);
 }

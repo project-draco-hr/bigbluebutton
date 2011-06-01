@@ -1,9 +1,0 @@
-{
-  int sum=0;
-  for (  Participant p : this.participants) {
-    if (p.isModerator()) {
-      sum++;
-    }
-  }
-  return sum;
-}
