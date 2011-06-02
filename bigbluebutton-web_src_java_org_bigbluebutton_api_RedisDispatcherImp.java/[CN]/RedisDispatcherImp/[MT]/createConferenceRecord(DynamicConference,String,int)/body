@@ -1,9 +1,4 @@
 {
-  System.out.println("In createConferenceRecord " + redisHost + ":"+ redisPort);
   Jedis jedis=new Jedis(redisHost,redisPort);
-  Map<String,String> confMap=new HashMap<String,String>();
-  System.out.println("Storing " + conf.getName());
-  confMap.put("name",conf.getName());
-  jedis.hmset("meeting:" + conf.getMeetingToken() + ":info",confMap);
   jedis.hmset("meeting:" + conf.getMeetingToken() + ":metadata",conf.getMetadata());
 }
