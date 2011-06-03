@@ -1,4 +1,14 @@
 {
   Jedis jedis=new Jedis(redisHost,redisPort);
-  jedis.hmset("meeting:" + conf.getMeetingToken() + ":metadata",conf.getMetadata());
+  try {
+    log.debug("Setting metada for " + "meeting:" + conf.getMeetingToken() + ":metadata");
+    jedis.connect();
+    jedis.hmset("meeting:" + conf.getMeetingToken() + ":metadata",conf.getMetadata());
+  }
+ catch (  UnknownHostException e) {
+    log.error("Cannot connect to " + redisHost + ":"+ redisPort);
+  }
+catch (  IOException e) {
+    log.error("Failed to connect to Redis on " + redisHost + ":"+ redisPort);
+  }
 }
