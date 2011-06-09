@@ -1,3 +1,4 @@
 {
+  log.debug("Storing Meeting with internal id:" + m.getInternalId());
   meetings.put(m.getInternalId(),m);
 }

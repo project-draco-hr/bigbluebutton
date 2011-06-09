@@ -1,19 +1,19 @@
 {
-  jedis=new Jedis(host,port,0);
+  log.debug("Starting redis pubsub...");
+  final Jedis jedis=redisPool.getResource();
   try {
-    jedis.connect();
     pubsubListener=new Runnable(){
       public void run(){
-        jedis.psubscribe(new PubSubListener(),"bigbluebutton:conference:*");
+        jedis.psubscribe(new PubSubListener(),"bigbluebutton:meeting:*");
       }
     }
 ;
     exec.execute(pubsubListener);
   }
- catch (  UnknownHostException e) {
-    log.error("Unknown host[" + host + "]");
+ catch (  JedisException e) {
+    log.error("Cannot subscribe to the redis channel");
   }
-catch (  IOException e) {
-    log.error("Cannot connect to [" + host + ":"+ port+ "]");
+ finally {
+    redisPool.returnResource(jedis);
   }
 }

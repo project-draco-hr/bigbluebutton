@@ -2,5 +2,6 @@
   Meeting m=getMeeting(meetingId);
   if (m != null) {
     m.userLeft(userId);
+    log.debug("Removing user...");
   }
 }

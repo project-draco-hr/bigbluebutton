@@ -1,0 +1,5 @@
+{
+  Room room=getRoom(roomname);
+  log.debug("End meeting request for room: {} ",room.getName());
+  room.endAndKickAll();
+}

@@ -1,6 +1,6 @@
 {
-  if (conferenceEventListener != null) {
-    conferenceEventListener.participantsUpdated(room);
-    publisher.publish("bigbluebutton:conference:remove",room.getName() + ":" + userid);
+  if (publisher != null) {
+    publisher.publish(this.pubsub_pattern,this.room.getName() + ":left:" + userid);
+    log.debug("Publishing message to {} action left",this.pubsub_pattern);
   }
 }

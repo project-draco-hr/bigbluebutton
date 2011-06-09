@@ -1,3 +1,12 @@
 {
-  jedis.publish(channel,message);
+  Jedis jedis=redisPool.getResource();
+  try {
+    jedis.publish(channel,message);
+  }
+ catch (  JedisException e) {
+    log.error("Cannot publish the message %s to redis",message);
+  }
+ finally {
+    redisPool.returnResource(jedis);
+  }
 }
