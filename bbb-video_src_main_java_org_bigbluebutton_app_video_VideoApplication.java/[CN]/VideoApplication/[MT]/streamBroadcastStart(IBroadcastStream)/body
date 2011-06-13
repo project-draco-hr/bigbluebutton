@@ -1,4 +1,12 @@
 {
+  IConnection conn=Red5.getConnectionLocal();
   super.streamBroadcastStart(stream);
-  log.info("streamBroadcastStart " + stream.getPublishedName() + " "+ System.currentTimeMillis());
+  log.info("streamBroadcastStart " + stream.getPublishedName() + " "+ System.currentTimeMillis()+ " "+ conn.getScope().getName());
+  Map<String,String> event=new HashMap<String,String>();
+  event.put("module","WEBCAM");
+  event.put("timestamp",new Long(System.currentTimeMillis()).toString());
+  event.put("meetingId",conn.getScope().getName());
+  event.put("stream",stream.getPublishedName());
+  event.put("eventName","StartWebcamShareEvent");
+  recordingService.record(conn.getScope().getName(),event);
 }
