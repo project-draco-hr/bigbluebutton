@@ -1,4 +1,0 @@
-{
-  log.debug("getListOfAvailableFLVs empty");
-  return new HashMap<String,Map<String,Object>>(1);
-}

@@ -1,0 +1,4 @@
+{
+  super.streamBroadcastStart(stream);
+  log.info("streamBroadcastStart " + stream.getPublishedName() + " "+ System.currentTimeMillis());
+}

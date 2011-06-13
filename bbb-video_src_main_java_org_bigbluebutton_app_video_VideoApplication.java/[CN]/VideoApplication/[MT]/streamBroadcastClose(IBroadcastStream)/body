@@ -1,0 +1,4 @@
+{
+  super.streamBroadcastClose(stream);
+  log.info("streamBroadcastClose " + stream.getPublishedName() + " "+ System.currentTimeMillis());
+}
