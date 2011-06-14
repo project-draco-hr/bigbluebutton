@@ -5,8 +5,15 @@
   viewerPass=builder.viewerPass;
   moderatorPass=builder.moderatorPass;
   maxUsers=builder.maxUsers;
+  logoutUrl=builder.logoutUrl;
+  record=builder.record;
+  duration=builder.duration;
+  webVoice=builder.webVoice;
+  telVoice=builder.telVoice;
+  welcomeMsg=builder.welcomeMsg;
+  dialNumber=builder.dialNumber;
+  metadata=builder.metadata;
   createdTime=System.currentTimeMillis();
   users=new ConcurrentHashMap<String,User>();
-  metadata=new ConcurrentHashMap<String,String>();
   metadata.put("meetingId",extMeetingId);
 }
