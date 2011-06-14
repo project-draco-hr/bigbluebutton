@@ -20,24 +20,9 @@
             }
           }
  else           if (channel.equalsIgnoreCase("bigbluebutton:meeting:presentation")) {
-            String[] args=message.split(":");
-            HashMap<String,Object> map=new HashMap<String,Object>();
-            map.put("code",args[0]);
-            map.put("presentationName",args[1]);
-            map.put("conference",args[2]);
-            String messageKey=args[3];
-            map.put("messageKey",messageKey);
-            if (messageKey.equalsIgnoreCase(ConversionUpdatesMessageListener.PAGE_COUNT_EXCEEDED_KEY)) {
-              map.put("numberOfPages",args[4]);
-              map.put("maxNumberPages",args[5]);
-            }
- else             if (messageKey.equalsIgnoreCase(ConversionUpdatesMessageListener.GENERATED_SLIDE_KEY)) {
-              map.put("numberOfPages",args[4]);
-              map.put("pagesCompleted",args[5]);
-            }
- else             if (messageKey.equalsIgnoreCase(ConversionUpdatesMessageListener.CONVERSION_COMPLETED_KEY)) {
-              map.put("slidesInfo",args[4]);
-            }
+            System.out.println("receiving Message " + message);
+            Gson gson=new Gson();
+            HashMap<String,Object> map=gson.fromJson(message,HashMap.class);
             messageListener.handleReceivedMessage(map);
           }
         }

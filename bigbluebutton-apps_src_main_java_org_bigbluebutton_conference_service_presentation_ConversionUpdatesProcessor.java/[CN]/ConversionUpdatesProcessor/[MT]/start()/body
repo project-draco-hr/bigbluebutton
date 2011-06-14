@@ -1,22 +1,6 @@
 {
   log.debug("Starting conversion updates processor.");
   try {
-    exec.execute(new Runnable(){
-      @SuppressWarnings("unchecked") @Override public void run(){
-        log.debug("Waiting for JMS message to process.");
-        while (processMessage) {
-          try {
-            Map message=(Map)updatesQueue.take();
-            log.debug("Processing updates message " + message);
-            presentationApplication.sendUpdateMessage(message);
-          }
- catch (          InterruptedException e) {
-            log.warn(e.getMessage());
-          }
-        }
-      }
-    }
-);
   }
  catch (  RejectedExecutionException e) {
     if (!exec.isShutdown())     log.warn("RejectedExecutionException when trying to receive presentaion conversion updates.");

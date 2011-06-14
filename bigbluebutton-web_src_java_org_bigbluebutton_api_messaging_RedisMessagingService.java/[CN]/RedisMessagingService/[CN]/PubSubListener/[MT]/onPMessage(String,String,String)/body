@@ -28,6 +28,9 @@
       String userid=args[2];
       String status=args[3];
       String value=args[4];
+      for (      MessageListener listener : listeners) {
+        listener.updatedStatus(meetingId,userid,status,value);
+      }
     }
  else     if (action.equalsIgnoreCase("left")) {
       String userid=args[2];

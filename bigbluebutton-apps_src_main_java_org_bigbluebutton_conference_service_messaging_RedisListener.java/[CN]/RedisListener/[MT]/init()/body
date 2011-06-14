@@ -1,4 +1,5 @@
 {
-  Jedis jedis=redisPool.getResource();
-  redisPool.returnResource(jedis);
+  Jedis jedis=new Jedis("localhost");
+  System.out.println("setting redislistener.java");
+  subscribe(jedis);
 }
