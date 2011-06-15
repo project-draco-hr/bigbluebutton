@@ -1,8 +1,2 @@
 {
-  try {
-    redisPool.destroy();
-  }
- catch (  Exception e) {
-    e.printStackTrace();
-  }
 }

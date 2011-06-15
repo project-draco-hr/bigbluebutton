@@ -1,12 +1,2 @@
 {
-  Jedis jedis=redisPool.getResource();
-  try {
-    jedis.hmset("meeting:metadata:" + meetingId,metadata);
-  }
- catch (  JedisException e) {
-    log.error("Cannot record the metadata meeting: %s",meetingId);
-  }
- finally {
-    redisPool.returnResource(jedis);
-  }
 }

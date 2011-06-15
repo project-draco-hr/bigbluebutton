@@ -3,7 +3,7 @@
     Gson gson=new Gson();
     String updateMsg=gson.toJson(msg);
     log.debug("sending: " + updateMsg);
-    messagingService.send(MessagingService.PRESENTATION_CHANNEL,updateMsg);
+    messagingService.send("foo",updateMsg);
   }
  else {
     log.warn("ConversionProgressNotifier has not been set!.");
