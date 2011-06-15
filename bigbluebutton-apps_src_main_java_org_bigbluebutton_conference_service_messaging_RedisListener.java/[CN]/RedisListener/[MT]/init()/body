@@ -1,5 +1,14 @@
 {
   Jedis jedis=new Jedis("localhost");
-  System.out.println("setting redislistener.java");
+  log.debug("subscribing to the channels...");
+  try {
+    jedis.connect();
+  }
+ catch (  UnknownHostException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+  }
   subscribe(jedis);
 }

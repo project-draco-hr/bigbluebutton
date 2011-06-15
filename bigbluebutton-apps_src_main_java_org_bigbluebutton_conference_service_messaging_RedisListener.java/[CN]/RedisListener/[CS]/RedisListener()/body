@@ -1,4 +1,3 @@
 {
   super();
-  System.out.println("creating redislistener.java");
 }

@@ -1,7 +1,9 @@
 {
+  log.debug("subscribe init...");
   Thread t=new Thread(new Runnable(){
     @Override public void run(){
-      jedis.subscribe(new JedisPubSub(){
+      jedis.psubscribe(new JedisPubSub(){
+        private Logger log2=Red5LoggerFactory.getLogger(JedisPubSub.class,"bigbluebutton");
         @Override public void onUnsubscribe(        String arg0,        int arg1){
         }
         @Override public void onSubscribe(        String arg0,        int arg1){
@@ -9,8 +11,10 @@
         @Override public void onPUnsubscribe(        String arg0,        int arg1){
         }
         @Override public void onPSubscribe(        String arg0,        int arg1){
+          log.debug("subscribe to: " + arg0 + " "+ arg1);
         }
         @Override public void onPMessage(        String pattern,        String channel,        String message){
+          log2.debug("messsage " + pattern + channel+ message);
           if (channel.equalsIgnoreCase("bigbluebutton:meeting:request")) {
             String[] args=message.split(":");
             String roomname=args[0];
@@ -20,13 +24,16 @@
             }
           }
  else           if (channel.equalsIgnoreCase("bigbluebutton:meeting:presentation")) {
-            System.out.println("receiving Message " + message);
+            log2.debug("receiving message " + message);
             Gson gson=new Gson();
-            HashMap<String,Object> map=gson.fromJson(message,HashMap.class);
+            HashMap<String,Object> map=gson.fromJson(message,new TypeToken<Map<String,String>>(){
+            }
+.getType());
             messageListener.handleReceivedMessage(map);
           }
         }
         @Override public void onMessage(        String channel,        String message){
+          log2.debug("messsage " + channel + message);
         }
       }
 ,"bigbluebutton:meeting:*");
