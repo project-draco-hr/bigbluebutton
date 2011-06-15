@@ -1,18 +1,11 @@
 {
   log.debug("Starting redis pubsub...");
-  final Jedis jedis=new Jedis("localhost");
-  try {
-    pubsubListener=new Runnable(){
-      public void run(){
-        jedis.psubscribe(new PubSubListener(),MEETING_EVENTS);
-      }
+  final Jedis jedis=new Jedis(this.host,this.port);
+  pubsubListener=new Runnable(){
+    public void run(){
+      jedis.psubscribe(new PubSubListener(),MessagingConstants.BIGBLUEBUTTON_PATTERN);
     }
+  }
 ;
-    exec.execute(pubsubListener);
-  }
- catch (  JedisException e) {
-    log.error("Cannot subscribe to the redis channel");
-  }
- finally {
-  }
+  exec.execute(pubsubListener);
 }

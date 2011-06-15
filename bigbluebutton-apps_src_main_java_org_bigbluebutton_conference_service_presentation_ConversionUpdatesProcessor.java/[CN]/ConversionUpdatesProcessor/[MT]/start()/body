@@ -1,8 +1,0 @@
-{
-  log.debug("Starting conversion updates processor.");
-  try {
-  }
- catch (  RejectedExecutionException e) {
-    if (!exec.isShutdown())     log.warn("RejectedExecutionException when trying to receive presentaion conversion updates.");
-  }
-}

@@ -1,8 +1,8 @@
 {
-  log.debug("Adding new user...");
   Meeting m=getMeeting(meetingId);
   if (m != null) {
     User user=new User(userId,name,role);
     m.userJoined(user);
+    log.debug("New user in meeting:" + user.getFullname());
   }
 }

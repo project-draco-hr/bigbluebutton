@@ -1,4 +1,3 @@
 {
   log.debug("Stopping conversion updates receiver.");
-  conversionUpdatesProcessor.stop();
 }

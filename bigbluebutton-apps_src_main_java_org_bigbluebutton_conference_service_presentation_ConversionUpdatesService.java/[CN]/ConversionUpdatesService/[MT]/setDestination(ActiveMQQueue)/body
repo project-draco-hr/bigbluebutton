@@ -1,4 +1,0 @@
-{
-  log.debug("Setting destination");
-  this.destination=(Destination)destination;
-}

@@ -3,7 +3,6 @@
   Thread t=new Thread(new Runnable(){
     @Override public void run(){
       jedis.psubscribe(new JedisPubSub(){
-        private Logger log2=Red5LoggerFactory.getLogger(JedisPubSub.class,"bigbluebutton");
         @Override public void onUnsubscribe(        String arg0,        int arg1){
         }
         @Override public void onSubscribe(        String arg0,        int arg1){
@@ -14,29 +13,33 @@
           log.debug("subscribe to: " + arg0 + " "+ arg1);
         }
         @Override public void onPMessage(        String pattern,        String channel,        String message){
-          log2.debug("messsage " + pattern + channel+ message);
-          if (channel.equalsIgnoreCase("bigbluebutton:meeting:request")) {
-            String[] args=message.split(":");
-            String roomname=args[0];
-            String type=args[1];
-            if (type.equalsIgnoreCase("end")) {
-              roomsManager.endMeetingRequest(roomname);
+          log.debug("messsage " + pattern + channel+ message);
+          if (channel.equalsIgnoreCase(MessagingConstants.SYSTEM_CHANNEL)) {
+            Gson gson=new Gson();
+            HashMap<String,String> map=gson.fromJson(message,new TypeToken<Map<String,String>>(){
+            }
+.getType());
+            String meetingId=map.get("meetingId");
+            String request=map.get("request");
+            if (request != null) {
+              if (request.equalsIgnoreCase("end")) {
+                roomsManager.endMeetingRequest(meetingId);
+              }
             }
           }
- else           if (channel.equalsIgnoreCase("bigbluebutton:meeting:presentation")) {
-            log2.debug("receiving message " + message);
+ else           if (channel.equalsIgnoreCase(MessagingConstants.PRESENTATION_CHANNEL)) {
+            log.debug("receiving message " + message);
             Gson gson=new Gson();
-            HashMap<String,Object> map=gson.fromJson(message,new TypeToken<Map<String,String>>(){
+            HashMap<String,String> map=gson.fromJson(message,new TypeToken<Map<String,String>>(){
             }
 .getType());
             messageListener.handleReceivedMessage(map);
           }
         }
         @Override public void onMessage(        String channel,        String message){
-          log2.debug("messsage " + channel + message);
         }
       }
-,"bigbluebutton:meeting:*");
+,MessagingConstants.BIGBLUEBUTTON_PATTERN);
     }
   }
 );

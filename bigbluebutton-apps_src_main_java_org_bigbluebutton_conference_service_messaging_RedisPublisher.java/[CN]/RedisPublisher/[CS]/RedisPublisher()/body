@@ -1,4 +1,3 @@
 {
   super();
-  System.out.println("Creating Redis Publisher");
 }

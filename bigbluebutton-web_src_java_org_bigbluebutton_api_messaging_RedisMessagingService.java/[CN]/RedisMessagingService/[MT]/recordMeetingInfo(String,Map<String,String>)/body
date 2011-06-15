@@ -3,8 +3,8 @@
   try {
     jedis.hmset("meeting.info:" + meetingId,info);
   }
- catch (  JedisException e) {
-    log.error("Cannot record the info meeting: %s",meetingId);
+ catch (  Exception e) {
+    log.warn("Cannot record the info meeting:" + meetingId,e);
   }
  finally {
     redisPool.returnResource(jedis);

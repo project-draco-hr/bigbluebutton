@@ -2,6 +2,6 @@
   Meeting m=getMeeting(meetingId);
   if (m != null) {
     m.setEndTime(System.currentTimeMillis());
-    log.debug("Setting meeting end time...");
+    log.debug("Setting meeting end time");
   }
 }

@@ -1,5 +1,0 @@
-{
-  log.debug("Stopping conversion updates processor.");
-  processMessage=false;
-  exec.shutdown();
-}

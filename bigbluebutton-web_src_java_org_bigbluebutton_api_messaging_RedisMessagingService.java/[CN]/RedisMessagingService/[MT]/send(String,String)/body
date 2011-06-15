@@ -3,8 +3,8 @@
   try {
     jedis.publish(channel,message);
   }
- catch (  JedisException e) {
-    log.error("Cannot publish the message %s to redis",message);
+ catch (  Exception e) {
+    log.warn("Cannot publish the message to redis",e);
   }
  finally {
     redisPool.returnResource(jedis);
