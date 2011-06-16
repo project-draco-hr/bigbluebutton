@@ -1,4 +1,0 @@
-{
-  internalId=id;
-  return this;
-}

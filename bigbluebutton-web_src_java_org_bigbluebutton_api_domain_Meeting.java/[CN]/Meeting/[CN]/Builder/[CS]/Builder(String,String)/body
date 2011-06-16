@@ -1,0 +1,4 @@
+{
+  this.externalId=externalId;
+  this.internalId=internalId;
+}

@@ -1,4 +1,0 @@
-{
-  externalId=id;
-  return this;
-}
