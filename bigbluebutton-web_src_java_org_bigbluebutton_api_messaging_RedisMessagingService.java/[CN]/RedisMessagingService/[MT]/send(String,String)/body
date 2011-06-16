@@ -1,6 +1,7 @@
 {
   Jedis jedis=redisPool.getResource();
   try {
+    System.out.println("Sending " + message + " to "+ channel);
     jedis.publish(channel,message);
   }
  catch (  Exception e) {
