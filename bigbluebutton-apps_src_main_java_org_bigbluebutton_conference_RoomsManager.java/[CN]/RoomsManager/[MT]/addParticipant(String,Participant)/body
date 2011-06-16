@@ -5,7 +5,11 @@
     if (checkPublisher()) {
       if (r.getNumberOfParticipants() == 0) {
         log.debug("Notified event listener of conference start");
-        publisher.publish("bigbluebutton:meeting:state",roomName + ":started");
+        HashMap<String,String> map=new HashMap<String,String>();
+        map.put("meetingId",roomName);
+        map.put("state","started");
+        Gson gson=new Gson();
+        publisher.publish(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
       }
     }
     r.addParticipant(participant);

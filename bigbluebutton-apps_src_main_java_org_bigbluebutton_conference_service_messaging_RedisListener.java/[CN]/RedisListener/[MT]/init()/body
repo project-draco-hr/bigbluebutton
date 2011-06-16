@@ -1,13 +1,10 @@
 {
-  Jedis jedis=new Jedis("localhost");
+  Jedis jedis=new Jedis(host,port);
   log.debug("subscribing to the channels...");
   try {
     jedis.connect();
   }
- catch (  UnknownHostException e) {
-    e.printStackTrace();
-  }
-catch (  IOException e) {
+ catch (  Exception e) {
     e.printStackTrace();
   }
   subscribe(jedis);

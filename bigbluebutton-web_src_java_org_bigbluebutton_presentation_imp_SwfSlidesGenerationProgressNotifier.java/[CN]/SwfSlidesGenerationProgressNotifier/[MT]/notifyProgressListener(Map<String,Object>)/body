@@ -1,11 +1,11 @@
 {
-  if (meetingService != null) {
+  if (messagingService != null) {
     Gson gson=new Gson();
     String updateMsg=gson.toJson(msg);
     log.debug("sending: " + updateMsg);
-    meetingService.send("foo",updateMsg);
+    messagingService.send(MessagingConstants.PRESENTATION_CHANNEL,updateMsg);
   }
  else {
-    log.warn("ConversionProgressNotifier has not been set");
+    log.warn("MessagingService has not been set");
   }
 }

@@ -1,6 +1,13 @@
 {
   if (publisher != null) {
-    publisher.publish(this.pubsub_pattern,this.room.getName() + ":status:" + userid+ ":"+ status+ ":"+ value);
-    log.debug("Publishing message to {} action status change",this.pubsub_pattern);
+    HashMap<String,String> map=new HashMap<String,String>();
+    map.put("meetingId",this.room.getName());
+    map.put("action","status");
+    map.put("userid",userid.toString());
+    map.put("status",status);
+    map.put("value",value.toString());
+    Gson gson=new Gson();
+    publisher.publish(MessagingConstants.PARTICIPANTS_CHANNEL,gson.toJson(map));
+    log.debug("Publishing a status change in:{}",this.room.getName());
   }
 }

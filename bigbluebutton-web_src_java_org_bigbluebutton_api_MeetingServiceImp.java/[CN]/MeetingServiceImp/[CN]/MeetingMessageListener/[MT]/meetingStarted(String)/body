@@ -2,6 +2,6 @@
   Meeting m=getMeeting(meetingId);
   if (m != null) {
     m.setStartTime(System.currentTimeMillis());
-    log.debug("Setting meeting started time...");
+    log.debug("Setting meeting started time");
   }
 }
