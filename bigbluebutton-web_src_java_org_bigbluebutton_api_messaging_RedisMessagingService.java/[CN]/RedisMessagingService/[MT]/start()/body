@@ -1,11 +1,20 @@
 {
   log.debug("Starting redis pubsub...");
   final Jedis jedis=new Jedis(this.host,this.port);
-  pubsubListener=new Runnable(){
-    public void run(){
-      jedis.psubscribe(new PubSubListener(),MessagingConstants.BIGBLUEBUTTON_PATTERN);
+  try {
+    jedis.connect();
+    pubsubListener=new Runnable(){
+      public void run(){
+        jedis.psubscribe(new PubSubListener(),MessagingConstants.BIGBLUEBUTTON_PATTERN);
+      }
     }
-  }
 ;
-  exec.execute(pubsubListener);
+    exec.execute(pubsubListener);
+  }
+ catch (  UnknownHostException e) {
+    log.error("Unknown host[" + host + "]");
+  }
+catch (  IOException e) {
+    log.error("Cannot connect to [" + host + ":"+ port+ "]");
+  }
 }
