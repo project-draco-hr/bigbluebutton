@@ -1,2 +1,27 @@
 {
+  log.debug("Starting redis pubsub...");
+  final Jedis jedis=new Jedis("192.168.0.166");
+  try {
+    try {
+      jedis.connect();
+    }
+ catch (    UnknownHostException e) {
+      e.printStackTrace();
+    }
+catch (    IOException e) {
+      e.printStackTrace();
+    }
+    pubsubListener=new Runnable(){
+      public void run(){
+        jedis.psubscribe(new PubSubListener(),"bar");
+      }
+    }
+;
+    exec.execute(pubsubListener);
+  }
+ catch (  JedisException e) {
+    log.error("Cannot subscribe to the redis channel");
+  }
+ finally {
+  }
 }

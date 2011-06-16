@@ -1,2 +1,12 @@
 {
+  Jedis jedis=redisPool.getResource();
+  try {
+    jedis.hmset("meeting.info:" + meetingId,info);
+  }
+ catch (  JedisException e) {
+    log.error("Cannot record the info meeting: %s",meetingId);
+  }
+ finally {
+    redisPool.returnResource(jedis);
+  }
 }
