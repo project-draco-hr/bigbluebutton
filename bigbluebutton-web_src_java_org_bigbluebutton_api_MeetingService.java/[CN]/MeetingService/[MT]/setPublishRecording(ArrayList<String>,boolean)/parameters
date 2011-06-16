@@ -1,1 +1,2 @@
 ArrayList<String> idList
+boolean publish
