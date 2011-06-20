@@ -13,7 +13,7 @@
   welcomeMsg=builder.welcomeMsg;
   dialNumber=builder.dialNumber;
   metadata=builder.metadata;
-  createdTime=System.currentTimeMillis();
+  createdTime=builder.createdTime;
   users=new ConcurrentHashMap<String,User>();
   metadata.put("meetingId",extMeetingId);
 }

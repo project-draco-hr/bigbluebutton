@@ -7,7 +7,7 @@
       continue;
     }
     long now=System.currentTimeMillis();
-    long millisSinceStored=now - m.getCreatedTime();
+    long millisSinceStored=now - m.getCreateTime();
     long millisSinceEnd=now - m.getEndTime();
     if (m.getStartTime() > 0 && millisSinceEnd > (minutesElapsedBeforeMeetingExpiration * 60000)) {
       log.debug("Removing meeting because it started, ended, and is past the max expiration");
