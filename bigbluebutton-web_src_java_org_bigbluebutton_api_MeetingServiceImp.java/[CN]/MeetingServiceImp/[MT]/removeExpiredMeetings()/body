@@ -1,0 +1,14 @@
+{
+  for (  Meeting m : meetings.values()) {
+    if (m.hasExpired(minutesElapsedBeforeMeetingExpiration) || m.wasNeverStarted(minutesElapsedBeforeMeetingExpiration)) {
+      log.info("Removing expired meeting [{} - {}]",m.getInternalId(),m.getName());
+      meetings.remove(m.getInternalId());
+      continue;
+    }
+    if (m.hasExceededDuration()) {
+      log.info("Ending meeting [{} - {}]",m.getInternalId(),m.getName());
+      m.setForciblyEnded(true);
+      endMeeting(m.getInternalId());
+    }
+  }
+}
