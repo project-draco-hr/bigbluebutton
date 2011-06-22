@@ -1,5 +1,5 @@
 {
-  File[] dirs=getDirectories(publishedDir);
+  File[] dirs=getDirectories(path);
   String[] formats=new String[dirs.length];
   for (int i=0; i < dirs.length; i++) {
     formats[i]=dirs[i].getName();
