@@ -1,0 +1,4 @@
+{
+  Recording rec=recordingServiceHelper.getRecordingInfo(recordingId,publishedDir,format);
+  return rec;
+}

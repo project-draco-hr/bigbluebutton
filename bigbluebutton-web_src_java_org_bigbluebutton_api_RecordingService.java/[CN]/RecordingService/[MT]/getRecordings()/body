@@ -1,0 +1,5 @@
+{
+  ArrayList<Recording> r=new ArrayList<Recording>();
+  String[] format=getPlaybackFormats();
+  return r;
+}

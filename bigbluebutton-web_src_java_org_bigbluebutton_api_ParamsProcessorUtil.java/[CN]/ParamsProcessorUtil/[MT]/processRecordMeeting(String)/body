@@ -1,0 +1,12 @@
+{
+  boolean rec=false;
+  if (!StringUtils.isEmpty(record)) {
+    try {
+      rec=Boolean.parseBoolean(record);
+    }
+ catch (    Exception ex) {
+      rec=false;
+    }
+  }
+  return rec;
+}
