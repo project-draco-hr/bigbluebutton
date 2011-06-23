@@ -16,7 +16,7 @@
  else     if (keyword.equals(CONF_NUM)) {
       welcomeMessage=welcomeMessage.replaceAll(CONF_NUM,telVoice);
     }
- else     if (keyword.equals(CONF_NUM)) {
+ else     if (keyword.equals(CONF_NAME)) {
       welcomeMessage=welcomeMessage.replaceAll(CONF_NAME,meetingName);
     }
   }
