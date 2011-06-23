@@ -1,0 +1,7 @@
+{
+  String welcomeMessage=message;
+  if (StringUtils.isEmpty(message)) {
+    welcomeMessage=defaultWelcomeMessage;
+  }
+  return welcomeMessage;
+}

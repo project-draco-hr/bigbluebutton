@@ -1,0 +1,3 @@
+{
+  return DigestUtils.shaHex(extMeetingId);
+}

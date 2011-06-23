@@ -1,0 +1,4 @@
+{
+  publish(publishedDir,recordingId,publish);
+  publish(unpublishedDir,recordingId,publish);
+}

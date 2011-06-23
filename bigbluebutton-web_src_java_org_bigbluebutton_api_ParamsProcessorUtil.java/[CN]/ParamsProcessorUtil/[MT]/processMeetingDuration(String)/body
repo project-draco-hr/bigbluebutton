@@ -4,7 +4,7 @@
     mDuration=Integer.parseInt(duration);
   }
  catch (  Exception ex) {
-    mDuration=Integer.parseInt(defaultMeetingDuration);
+    mDuration=defaultMeetingDuration;
   }
   return mDuration;
 }
