@@ -15,7 +15,7 @@
   int meetingDuration=processMeetingDuration(params.get("duration"));
   String welcomeMessage=processWelcomeMessage(params.get("welcome"));
   welcomeMessage=substituteKeywords(welcomeMessage,dialNumber,telVoice,meetingName);
-  String internalMeetingId="";
+  String internalMeetingId=convertToInternalMeetingId(externalMeetingId);
   if (isTestMeeting(telVoice)) {
     internalMeetingId=getIntMeetingIdForTestMeeting(telVoice);
   }
