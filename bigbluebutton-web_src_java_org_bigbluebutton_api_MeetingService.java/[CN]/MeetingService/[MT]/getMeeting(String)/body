@@ -1,7 +1,4 @@
 {
-  if (StringUtils.isEmpty(meetingId)) {
-    return null;
-  }
   for (  String key : meetings.keySet()) {
     if (key.startsWith(meetingId))     return (Meeting)meetings.get(key);
   }
