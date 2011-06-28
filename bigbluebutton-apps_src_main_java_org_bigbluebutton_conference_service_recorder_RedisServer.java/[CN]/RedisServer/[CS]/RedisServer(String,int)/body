@@ -1,4 +1,0 @@
-{
-  jedis=new Jedis(server,port,0);
-  jedis.set("foo","bar");
-}

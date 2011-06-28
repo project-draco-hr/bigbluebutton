@@ -1,3 +1,0 @@
-{
-  return "DynamicConference: " + this.meetingToken + "["+ this.meetingID+ "|"+ this.voiceBridge+ "]:"+ this.name;
-}

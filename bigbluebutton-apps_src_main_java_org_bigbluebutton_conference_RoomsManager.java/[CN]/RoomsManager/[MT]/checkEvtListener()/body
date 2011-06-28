@@ -1,3 +1,0 @@
-{
-  return conferenceEventListener != null;
-}

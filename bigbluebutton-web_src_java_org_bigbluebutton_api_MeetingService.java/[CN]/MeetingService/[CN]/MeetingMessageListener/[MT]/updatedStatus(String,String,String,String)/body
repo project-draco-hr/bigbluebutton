@@ -1,0 +1,8 @@
+{
+  Meeting m=getMeeting(meetingId);
+  if (m != null) {
+    User user=m.getUserById(userId);
+    user.setStatus(status,value);
+    log.debug("Setting new status value for participant:" + user.getFullname());
+  }
+}

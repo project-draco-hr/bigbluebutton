@@ -1,0 +1,60 @@
+{
+  Map<String,Object> newParams=new HashMap<String,Object>();
+  String meetingName=params.get("name");
+  if (!StringUtils.isEmpty(meetingName)) {
+    newParams.put("name",meetingName);
+  }
+  String viewerPass=params.get("attendeePW");
+  if (!StringUtils.isEmpty(viewerPass)) {
+    newParams.put("attendeePW",viewerPass);
+  }
+  String modPass=params.get("moderatorPW");
+  if (!StringUtils.isEmpty(modPass)) {
+    newParams.put("moderatorPW",modPass);
+  }
+  String telVoice=params.get("voiceBridge");
+  if (!StringUtils.isEmpty(telVoice)) {
+    newParams.put("voiceBridge",telVoice);
+  }
+  String webVoice=params.get("webVoice");
+  if (!StringUtils.isEmpty(webVoice)) {
+    newParams.put("webVoice",webVoice);
+  }
+  String dialNumber=params.get("dialNumber");
+  if (!StringUtils.isEmpty(dialNumber)) {
+    newParams.put("dialNumber",dialNumber);
+  }
+  String logoutUrl=params.get("logoutURL");
+  if (!StringUtils.isEmpty(logoutUrl)) {
+    newParams.put("logoutURL",logoutUrl);
+  }
+  String record=params.get("record");
+  if (!StringUtils.isEmpty(record)) {
+    newParams.put("record",record);
+  }
+  String maxUsers=params.get("maxParticipants");
+  if (!StringUtils.isEmpty(maxUsers)) {
+    newParams.put("maxParticipants",maxUsers);
+  }
+  String meetingDuration=params.get("duration");
+  if (!StringUtils.isEmpty(meetingDuration)) {
+    newParams.put("duration",meetingDuration);
+  }
+  String welcomeMessage=params.get("welcome");
+  if (!StringUtils.isEmpty(welcomeMessage)) {
+    newParams.put("welcome",welcomeMessage);
+  }
+  Map<String,String> meetingInfo=new HashMap<String,String>();
+  for (  String key : params.keySet()) {
+    if (key.contains("meta")) {
+      String[] meta=key.split("_");
+      if (meta.length == 2) {
+        meetingInfo.put(meta[1],params.get(key));
+      }
+    }
+  }
+  if (!meetingInfo.isEmpty()) {
+    newParams.put("metadata",meetingInfo);
+  }
+  return newParams;
+}

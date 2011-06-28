@@ -1,0 +1,5 @@
+Long userid
+String name
+String role
+String externUserID
+Map<String,Object> status

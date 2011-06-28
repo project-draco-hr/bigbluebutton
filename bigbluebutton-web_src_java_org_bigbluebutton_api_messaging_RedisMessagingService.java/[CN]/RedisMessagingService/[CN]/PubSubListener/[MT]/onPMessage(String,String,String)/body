@@ -1,33 +1,44 @@
 {
-  System.out.println("redis message received. pattern:" + pattern + " channel:"+ channel+ " message:"+ message);
-  if (pattern.equalsIgnoreCase(PATTERN_CONFERENCE)) {
-    String[] args=message.split(COLON);
-    if (channel.equalsIgnoreCase(CHANNEL_STATUS)) {
-      String meetingId=args[0];
-      String status=args[1];
-      for (      MessageListener listener : listeners) {
-        if (status.equalsIgnoreCase("started")) {
-          listener.meetingStarted(meetingId);
-        }
- else         if (status.equalsIgnoreCase("ended")) {
-          listener.meetingStarted(meetingId);
-        }
+  log.debug("Message Received in channel: " + channel);
+  Gson gson=new Gson();
+  HashMap<String,String> map=gson.fromJson(message,new TypeToken<Map<String,String>>(){
+  }
+.getType());
+  if (channel.equalsIgnoreCase(MessagingConstants.SYSTEM_CHANNEL)) {
+    String meetingId=map.get("meetingId");
+    String state=map.get("state");
+    for (    MessageListener listener : listeners) {
+      if (state.equalsIgnoreCase("started")) {
+        listener.meetingStarted(meetingId);
+      }
+ else       if (state.equalsIgnoreCase("ended")) {
+        listener.meetingEnded(meetingId);
       }
     }
- else     if (channel.equalsIgnoreCase(CHANNEL_JOIN)) {
-      String meetingId=args[0];
-      String userId=args[1];
-      String name=args[2];
-      String role=args[3];
+  }
+ else   if (channel.equalsIgnoreCase(MessagingConstants.PARTICIPANTS_CHANNEL)) {
+    String meetingId=map.get("meetingId");
+    String action=map.get("action");
+    if (action.equalsIgnoreCase("join")) {
+      String userid=map.get("userid");
+      String fullname=map.get("fullname");
+      String role=map.get("role");
       for (      MessageListener listener : listeners) {
-        listener.userJoined(meetingId,userId,name,role);
+        listener.userJoined(meetingId,userid,fullname,role);
       }
     }
- else     if (channel.equalsIgnoreCase(CHANNEL_LEAVE)) {
-      String meetingId=args[0];
-      String userId=args[1];
+ else     if (action.equalsIgnoreCase("status")) {
+      String userid=map.get("userid");
+      String status=map.get("status");
+      String value=map.get("value");
       for (      MessageListener listener : listeners) {
-        listener.userLeft(meetingId,userId);
+        listener.updatedStatus(meetingId,userid,status,value);
+      }
+    }
+ else     if (action.equalsIgnoreCase("left")) {
+      String userid=map.get("userid");
+      for (      MessageListener listener : listeners) {
+        listener.userLeft(meetingId,userid);
       }
     }
   }

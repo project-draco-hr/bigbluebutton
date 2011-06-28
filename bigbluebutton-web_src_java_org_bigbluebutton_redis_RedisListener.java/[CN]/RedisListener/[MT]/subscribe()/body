@@ -1,5 +1,0 @@
-{
-  System.out.println("execute init method");
-  Thread t=new Thread(this);
-  t.start();
-}

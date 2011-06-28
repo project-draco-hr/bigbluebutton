@@ -1,0 +1,8 @@
+{
+  this.userid=userid;
+  this.name=name;
+  this.role=role;
+  this.externUserID=externUserID;
+  this.status=new ConcurrentHashMap<String,Object>(status);
+  unmodifiableStatus=Collections.unmodifiableMap(status);
+}

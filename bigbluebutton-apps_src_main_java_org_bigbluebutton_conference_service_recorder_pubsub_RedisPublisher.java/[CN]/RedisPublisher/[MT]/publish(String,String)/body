@@ -1,3 +1,0 @@
-{
-  jedis.publish(channel,message);
-}

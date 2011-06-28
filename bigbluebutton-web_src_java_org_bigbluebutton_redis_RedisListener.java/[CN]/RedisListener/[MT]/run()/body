@@ -1,3 +1,0 @@
-{
-  jedis.psubscribe(pubsubListener,"bigbluebutton:conference:*");
-}
