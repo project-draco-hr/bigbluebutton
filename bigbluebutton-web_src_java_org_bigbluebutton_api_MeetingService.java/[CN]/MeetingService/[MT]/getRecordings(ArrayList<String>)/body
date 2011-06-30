@@ -1,3 +1,4 @@
 {
-  return recordingService.getRecordings(idList);
+  HashMap<String,Recording> recs=reorderRecordings(recordingService.getRecordings(idList));
+  return recs;
 }
