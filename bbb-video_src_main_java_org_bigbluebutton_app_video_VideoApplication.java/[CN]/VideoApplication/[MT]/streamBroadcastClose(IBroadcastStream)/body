@@ -1,14 +1,20 @@
 {
   IConnection conn=Red5.getConnectionLocal();
   super.streamBroadcastClose(stream);
-  long publishDuration=(System.currentTimeMillis() - stream.getCreationTime()) / 1000;
-  log.info("streamBroadcastClose " + stream.getPublishedName() + " "+ System.currentTimeMillis()+ " "+ conn.getScope().getName());
-  Map<String,String> event=new HashMap<String,String>();
-  event.put("module","WEBCAM");
-  event.put("timestamp",new Long(System.currentTimeMillis()).toString());
-  event.put("meetingId",conn.getScope().getName());
-  event.put("stream",stream.getPublishedName());
-  event.put("duration",new Long(publishDuration).toString());
-  event.put("eventName","StopWebcamShareEvent");
-  recordingService.record(conn.getScope().getName(),event);
+  if (recordVideoStream) {
+    IStreamListener listener=streamListeners.remove(conn.getScope().getName() + "-" + stream.getPublishedName());
+    if (listener != null) {
+      stream.removeStreamListener(listener);
+    }
+    long publishDuration=(System.currentTimeMillis() - stream.getCreationTime()) / 1000;
+    log.info("streamBroadcastClose " + stream.getPublishedName() + " "+ System.currentTimeMillis()+ " "+ conn.getScope().getName());
+    Map<String,String> event=new HashMap<String,String>();
+    event.put("module","WEBCAM");
+    event.put("timestamp",new Long(System.currentTimeMillis()).toString());
+    event.put("meetingId",conn.getScope().getName());
+    event.put("stream",stream.getPublishedName());
+    event.put("duration",new Long(publishDuration).toString());
+    event.put("eventName","StopWebcamShareEvent");
+    recordingService.record(conn.getScope().getName(),event);
+  }
 }
