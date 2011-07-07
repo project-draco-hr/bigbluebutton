@@ -1,0 +1,3 @@
+{
+  Assert.assertEquals(session.getUserid(),1L,"Userid should be 1");
+}

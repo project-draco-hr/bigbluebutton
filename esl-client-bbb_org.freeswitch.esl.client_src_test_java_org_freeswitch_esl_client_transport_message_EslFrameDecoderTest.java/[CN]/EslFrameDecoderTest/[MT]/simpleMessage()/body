@@ -1,0 +1,12 @@
+{
+  List<String> inputLines=new ArrayList<String>();
+  inputLines.add("Content-Type: command/reply");
+  inputLines.add("Reply-Text: +OK event listener enabled plain");
+  inputLines.add("");
+  embedder.offer(createInputBuffer(inputLines,true));
+  embedder.finish();
+  EslMessage result=embedder.poll();
+  assertNotNull(result);
+  assertEquals(2,result.getHeaders().size());
+  assertFalse(result.hasContentLength());
+}

@@ -1,0 +1,5 @@
+{
+  String username=(String)Red5.getConnectionLocal().getAttribute("USERNAME");
+  if ((username == null) || ("".equals(username)))   username="UNKNOWN-CALLER";
+  return username;
+}

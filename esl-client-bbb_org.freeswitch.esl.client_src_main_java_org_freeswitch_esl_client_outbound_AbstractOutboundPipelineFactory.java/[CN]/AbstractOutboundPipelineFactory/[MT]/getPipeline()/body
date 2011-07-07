@@ -1,9 +1,7 @@
 {
   ChannelPipeline pipeline=Channels.pipeline();
-  pipeline.addLast("framer",new DelimiterBasedFrameDecoder(8192,delimiters));
-  pipeline.addLast("stringDecoder",new StringDecoder());
   pipeline.addLast("encoder",new StringEncoder());
-  pipeline.addLast("eslMessageDecoder",new EslMessageDecoder(true));
+  pipeline.addLast("decoder",new EslFrameDecoder(8092,true));
   pipeline.addLast("executor",new ExecutionHandler(new OrderedMemoryAwareThreadPoolExecutor(16,1048576,1048576)));
   pipeline.addLast("clientHandler",makeHandler());
   return pipeline;

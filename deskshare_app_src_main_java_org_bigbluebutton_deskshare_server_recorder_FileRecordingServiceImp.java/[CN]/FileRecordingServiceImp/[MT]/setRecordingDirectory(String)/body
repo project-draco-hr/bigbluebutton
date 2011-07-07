@@ -1,0 +1,14 @@
+{
+  File f=new File(path);
+  if (!f.exists()) {
+    try {
+      if (!f.mkdirs()) {
+        log.error("Failed to create recording directory [" + path + "]");
+      }
+    }
+ catch (    SecurityException ex) {
+      log.error("Security Error. Failed to create recording directory [" + path + "].");
+    }
+  }
+  recordingDir=path;
+}

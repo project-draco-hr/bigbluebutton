@@ -1,12 +1,11 @@
 {
   if (!sentMetadata) {
-    IoBuffer mBuffer=IoBuffer.allocate(1024);
-    mBuffer.setAutoExpand(true);
     mBuffer.clear();
     mBuffer.put(fakeMetadata);
     mBuffer.flip();
     Notify notifyData=new Notify(mBuffer);
     notifyData.setTimestamp((int)timestamp);
+    notifyData.setSourceType(Constants.SOURCE_TYPE_LIVE);
     audioBroadcastStream.dispatchEvent(notifyData);
     notifyData.release();
     sentMetadata=true;

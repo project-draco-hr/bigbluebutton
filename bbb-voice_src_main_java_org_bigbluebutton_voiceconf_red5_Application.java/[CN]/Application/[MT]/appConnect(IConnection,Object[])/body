@@ -1,0 +1,15 @@
+{
+  String userid=((String)params[0]).toString();
+  String username=((String)params[1]).toString();
+  String clientId=Red5.getConnectionLocal().getClient().getId();
+  String remoteHost=Red5.getConnectionLocal().getRemoteAddress();
+  int remotePort=Red5.getConnectionLocal().getRemotePort();
+  if ((userid == null) || ("".equals(userid)))   userid="unknown-userid";
+  if ((username == null) || ("".equals(username)))   username="UNKNOWN-CALLER";
+  Red5.getConnectionLocal().setAttribute("USERID",userid);
+  Red5.getConnectionLocal().setAttribute("USERNAME",username);
+  log.info("{} [clientid={}] has connected to the voice conf app.",username + "[uid=" + userid+ "]",clientId);
+  log.info("[clientid={}] connected from {}.",clientId,remoteHost + ":" + remotePort);
+  clientConnManager.createClient(clientId,userid,username,(IServiceCapableConnection)Red5.getConnectionLocal());
+  return true;
+}

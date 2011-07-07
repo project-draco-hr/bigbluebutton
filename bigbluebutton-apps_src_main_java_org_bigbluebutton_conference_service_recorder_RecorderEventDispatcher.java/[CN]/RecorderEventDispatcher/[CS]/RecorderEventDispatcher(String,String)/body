@@ -1,5 +1,0 @@
-{
-  this.conference=conference;
-  this.room=room;
-  log.debug("create an instance of RecorderEventDispatcher");
-}

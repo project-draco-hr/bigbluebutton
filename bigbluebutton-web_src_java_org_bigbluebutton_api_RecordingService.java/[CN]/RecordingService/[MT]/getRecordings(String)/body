@@ -1,0 +1,12 @@
+{
+  ArrayList<Recording> recs=new ArrayList<Recording>();
+  ArrayList<Recording> published=getRecordingsForPath(meetingId,publishedDir);
+  if (!published.isEmpty()) {
+    recs.addAll(published);
+  }
+  ArrayList<Recording> unpublished=getRecordingsForPath(meetingId,unpublishedDir);
+  if (!unpublished.isEmpty()) {
+    recs.addAll(unpublished);
+  }
+  return recs;
+}

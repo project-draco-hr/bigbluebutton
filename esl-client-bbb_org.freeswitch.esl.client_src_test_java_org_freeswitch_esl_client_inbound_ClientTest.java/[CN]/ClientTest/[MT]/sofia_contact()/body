@@ -1,0 +1,19 @@
+{
+  Client client=new Client();
+  try {
+    client.connect(host,port,password,2);
+  }
+ catch (  InboundConnectionFailure e) {
+    log.error("Connect failed",e);
+    return;
+  }
+  EslMessage response=client.sendSyncApiCommand("sofia_contact","internal/102@192.168.100.201");
+  log.info("Response to 'sofia_contact': [{}]",response);
+  for (  Entry<Name,String> header : response.getHeaders().entrySet()) {
+    log.info(" * header [{}]",header);
+  }
+  for (  String bodyLine : response.getBodyLines()) {
+    log.info(" * body [{}]",bodyLine);
+  }
+  client.close();
+}

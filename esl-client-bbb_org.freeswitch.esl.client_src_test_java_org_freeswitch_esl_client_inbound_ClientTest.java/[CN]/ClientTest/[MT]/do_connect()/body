@@ -52,6 +52,7 @@
   client.addEventFilter("Event-Name","heartbeat");
   client.addEventFilter("Event-Name","channel_create");
   client.addEventFilter("Event-Name","background_job");
+  client.sendSyncApiCommand("echo","Foo foo bar");
   String jobId=client.sendAsyncApiCommand("status","");
   log.info("Job id [{}] for [status]",jobId);
   client.sendSyncApiCommand("version","");

@@ -3,4 +3,6 @@
   this.srcSocket=srcSocket;
   this.connInfo=connInfo;
   talkStreamName="microphone_" + System.currentTimeMillis();
+  transcodedAudioListener=new TranscodedAudioListener();
+  transcoder.setTranscodedAudioListener(transcodedAudioListener);
 }

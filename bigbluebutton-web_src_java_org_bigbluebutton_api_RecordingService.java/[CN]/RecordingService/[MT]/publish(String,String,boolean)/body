@@ -1,0 +1,25 @@
+{
+  String[] format=getPlaybackFormats(path);
+  for (int i=0; i < format.length; i++) {
+    File[] recordings=getDirectories(path + File.pathSeparatorChar + format[i]);
+    for (int f=0; f < recordings.length; f++) {
+      if (recordings[f].getName().equals(recordingId)) {
+        Recording r=getRecordingInfo(recordingId,path,format[i]);
+        if (r != null) {
+          File dest;
+          if (publish) {
+            dest=new File(publishedDir);
+          }
+ else {
+            dest=new File(unpublishedDir);
+          }
+          boolean moved=recordings[f].renameTo(new File(dest,recordings[f].getName()));
+          if (moved) {
+            r.setPublished(publish);
+            recordingServiceHelper.writeRecordingInfo(dest.getAbsolutePath() + File.pathSeparatorChar + recordings[f].getName(),r);
+          }
+        }
+      }
+    }
+  }
+}

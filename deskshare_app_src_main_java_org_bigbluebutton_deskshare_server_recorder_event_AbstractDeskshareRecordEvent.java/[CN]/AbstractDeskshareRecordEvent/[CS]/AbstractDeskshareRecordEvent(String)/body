@@ -1,0 +1,4 @@
+{
+  setModule("Deskshare");
+  this.session=session;
+}

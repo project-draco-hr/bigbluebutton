@@ -1,7 +1,10 @@
 {
-  log.debug("closeMediaApplication");
+  log.debug("Shutting down the voice streams.");
   if (callStream != null) {
     callStream.stop();
     callStream=null;
+  }
+ else {
+    log.debug("Can't shutdown voice stream. callstream is NULL");
   }
 }

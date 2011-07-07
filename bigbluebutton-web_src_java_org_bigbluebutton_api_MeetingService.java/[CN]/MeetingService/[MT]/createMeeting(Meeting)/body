@@ -1,0 +1,7 @@
+{
+  log.debug("Storing Meeting with internal id:" + m.getInternalId());
+  meetings.put(m.getInternalId(),m);
+  if (m.isRecord()) {
+    messagingService.recordMeetingInfo(m.getInternalId(),m.getMetadata());
+  }
+}

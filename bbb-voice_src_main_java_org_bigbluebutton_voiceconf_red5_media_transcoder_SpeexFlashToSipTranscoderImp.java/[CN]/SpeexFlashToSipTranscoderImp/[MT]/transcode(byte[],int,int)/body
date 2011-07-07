@@ -1,0 +1,5 @@
+{
+  byte[] transcodedAudio=new byte[length];
+  System.arraycopy(audioData,startOffset,transcodedAudio,0,length);
+  transcodedAudioListener.handleTranscodedAudioData(transcodedAudio,timestamp+=TS_INCREMENT);
+}

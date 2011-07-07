@@ -1,9 +1,3 @@
 {
-  RecorderSession s=recordSessions.remove(sessionName);
-  if (s != null) {
-    log.debug("Removed record session");
-  }
- else {
-    log.debug("Could not find record session {}",sessionName);
-  }
+  recordingSessions.remove(sessionName);
 }

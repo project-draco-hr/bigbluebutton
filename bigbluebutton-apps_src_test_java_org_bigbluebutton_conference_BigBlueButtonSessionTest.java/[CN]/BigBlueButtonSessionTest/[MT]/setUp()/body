@@ -1,0 +1,3 @@
+{
+  session=new BigBlueButtonSession("test-session",1L,"test-user","MODERATOR","test-conference","test-room","87115",false,"1233");
+}

@@ -1,3 +1,5 @@
 {
-  rooms.add(new WhiteboardRoom(scope));
+  WhiteboardRoom newRoom=new WhiteboardRoom(scope);
+  rooms.add(newRoom);
+  return newRoom;
 }

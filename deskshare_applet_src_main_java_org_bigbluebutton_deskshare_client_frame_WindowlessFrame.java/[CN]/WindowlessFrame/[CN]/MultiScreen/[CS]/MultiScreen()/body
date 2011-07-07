@@ -1,0 +1,21 @@
+{
+  int i;
+  ge=GraphicsEnvironment.getLocalGraphicsEnvironment();
+  screenDevice=ge.getScreenDevices();
+  if (1 < screenDevice.length) {
+    ismultiscreen=true;
+    for (i=0; i < screenDevice.length; i++) {
+      GraphicsConfiguration[] gc=screenDevice[i].getConfigurations();
+      if (gc[0].getBounds().x <= minX) {
+        minX=gc[0].getBounds().x;
+      }
+      if (gc[0].getBounds().x >= 0) {
+        totalWidth=totalWidth + gc[0].getBounds().width;
+      }
+    }
+  }
+ else {
+    ismultiscreen=false;
+  }
+  curWidth=screenDevice[0].getConfigurations()[0].getBounds().width;
+}

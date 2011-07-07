@@ -1,0 +1,15 @@
+{
+  try {
+    log.info("Closing stream");
+    fo.close();
+  }
+ catch (  IOException e) {
+    log.error(StackTraceUtil.getStackTrace(e));
+    RecordErrorEvent event=new RecordErrorEvent(session);
+    event.setReason("Cannot record to recording output.");
+    listeners.notifyListeners(event);
+  }
+  RecordStoppedEvent event=new RecordStoppedEvent(session);
+  event.setFile(flvFilename);
+  listeners.notifyListeners(event);
+}

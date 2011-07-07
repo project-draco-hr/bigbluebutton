@@ -1,6 +1,0 @@
-{
-  managerConnection.addEventListener(this);
-  managerConnection.login();
-  managerConnection.sendAction(new StatusAction());
-  Thread.sleep(10000);
-}

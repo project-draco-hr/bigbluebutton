@@ -1,9 +1,0 @@
-{
-  scriptsLocation=location;
-  try {
-    this.gse=new GroovyScriptEngine(scriptsLocation);
-  }
- catch (  IOException e) {
-    e.printStackTrace();
-  }
-}

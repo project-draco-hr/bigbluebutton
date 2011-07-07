@@ -5,6 +5,7 @@
   if (!marked) {
     rtpPacket.setMarker(true);
     marked=true;
+    startTimestamp=System.currentTimeMillis();
   }
   rtpPacket.setPadding(false);
   rtpPacket.setExtension(false);

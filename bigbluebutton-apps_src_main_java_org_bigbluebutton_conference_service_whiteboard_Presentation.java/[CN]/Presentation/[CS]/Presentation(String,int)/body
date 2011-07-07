@@ -2,8 +2,7 @@
   this.name=name;
   this.pages=new ArrayList<Page>(numPages);
   for (int i=0; i < numPages; i++) {
-    pages.add(new Page());
+    pages.add(new Page(i));
   }
   this.activePage=pages.get(0);
-  this.activePageIndex=0;
 }

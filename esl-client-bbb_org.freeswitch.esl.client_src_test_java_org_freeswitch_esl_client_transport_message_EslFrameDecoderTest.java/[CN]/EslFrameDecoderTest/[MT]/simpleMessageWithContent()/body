@@ -1,0 +1,21 @@
+{
+  List<String> inputLines=new ArrayList<String>();
+  inputLines.add("Content-Type: api/response");
+  inputLines.add("Content-Length: 694");
+  inputLines.add("");
+  inputLines.add("=================================================================================================");
+  inputLines.add("                     Name     Type                               Data  State");
+  inputLines.add("                 internal  profile   sip:mod_sofia@192.168.1.1:5060        RUNNING (0)");
+  inputLines.add("                 external  profile   sip:mod_sofia@yyy.yyy.yyy.yyy:5080    RUNNING (0)");
+  inputLines.add("                    iinet  gateway   sip:02xxxxxxxx@sip.nsw.iinet.net.au   REGED");
+  inputLines.add("                   clinic  profile   sip:mod_sofia@yyy.yyy.yyy.yyy:5070    RUNNING (0)");
+  inputLines.add("              192.168.1.1  alias                             internal  ALIASED");
+  inputLines.add("=================================================================================================");
+  embedder.offer(createInputBuffer(inputLines,true));
+  EslMessage result=embedder.poll();
+  embedder.finish();
+  assertNotNull(result);
+  assertEquals(2,result.getHeaders().size());
+  assertTrue(result.hasContentLength());
+  assertEquals(8,result.getBodyLines().size());
+}

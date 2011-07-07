@@ -1,4 +1,0 @@
-{
-  ClientConnection cc=new ClientConnection(id,connection);
-  clients.put(id,cc);
-}

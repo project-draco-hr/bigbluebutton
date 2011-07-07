@@ -1,7 +1,0 @@
-{
-  log.debug("calling removePresentationCallback {}",name);
-  ArrayList list=new ArrayList();
-  list.add(name);
-  so.sendMessage("removePresentationCallback",list);
-  recordEvent(parsePresentationToJSON(list,this.RECORD_EVENT_REMOVE_PRESENTATION));
-}

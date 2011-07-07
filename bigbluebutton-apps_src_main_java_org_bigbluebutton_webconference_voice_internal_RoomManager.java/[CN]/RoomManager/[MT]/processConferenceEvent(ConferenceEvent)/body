@@ -2,42 +2,29 @@
   log.debug("Processing event for room: " + event.getRoom());
   RoomImp rm=rooms.get(event.getRoom());
   if (rm == null) {
-    log.info("Processing event for non-existing room: " + event.getRoom());
+    log.warn("Processing event for non-existing room: " + event.getRoom());
     return;
   }
   if (event instanceof ParticipantJoinedEvent) {
-    log.debug("Processing ParticipantJoinedEvent for room: " + event.getRoom());
-    ParticipantJoinedEvent pje=(ParticipantJoinedEvent)event;
-    ParticipantImp p=new ParticipantImp(pje.getParticipantId(),pje.getCallerIdName());
-    p.setMuted(pje.getMuted());
-    p.setTalking(pje.getSpeaking());
-    log.debug("Joined [" + p.getId() + ","+ p.getName()+ ","+ p.isMuted()+ ","+ p.isTalking()+ "] to room "+ rm.getName());
-    rm.add(p);
-    if (rm.isMuted() && !p.isMuted()) {
-      confService.mute(p.getId(),event.getRoom(),true);
-    }
+    handleParticipantJoinedEvent(event,rm);
   }
  else   if (event instanceof ParticipantLeftEvent) {
-    log.debug("Processing ParticipantLeftEvent for room: " + event.getRoom());
-    rm.remove(event.getParticipantId());
+    handleParticipantLeftEvent(event,rm);
   }
  else   if (event instanceof ParticipantMutedEvent) {
-    log.debug("Processing ParticipantMutedEvent for room: " + event.getRoom());
-    ParticipantMutedEvent pme=(ParticipantMutedEvent)event;
-    ParticipantImp p=(ParticipantImp)rm.getParticipant(event.getParticipantId());
-    if (p != null)     p.setMuted(pme.isMuted());
+    handleParticipantMutedEvent(event,rm);
   }
  else   if (event instanceof ParticipantTalkingEvent) {
-    log.debug("Processing ParticipantTalkingEvent for room: " + event.getRoom());
-    ParticipantTalkingEvent pte=(ParticipantTalkingEvent)event;
-    ParticipantImp p=(ParticipantImp)rm.getParticipant(event.getParticipantId());
-    if (p != null)     p.setTalking(pte.isTalking());
+    handleParticipantTalkingEvent(event,rm);
   }
  else   if (event instanceof ParticipantLockedEvent) {
-    ParticipantLockedEvent ple=(ParticipantLockedEvent)event;
-    lockParticipant(ple.getRoom(),ple.getParticipantId(),ple.isLocked());
+    handleParticipantLockedEvent(event,rm);
+  }
+ else   if (event instanceof StartRecordingEvent) {
   }
  else {
-    log.debug("Processing UnknowEvent " + event.getClass().getName() + " for room: "+ event.getRoom());
+    log.debug("Processing UnknownEvent " + event.getClass().getName() + " for room: "+ event.getRoom());
+    return;
   }
+  recorder.recordConferenceEvent(event,rm.getMeeting());
 }

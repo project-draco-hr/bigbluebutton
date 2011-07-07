@@ -1,4 +1,9 @@
 {
   broadcastStream.removeStreamListener(mInputListener);
-  processAudioData=false;
+  if (broadcastStream != null) {
+    broadcastStream.stop();
+    broadcastStream.close();
+  }
+  transcoder.stop();
+  srcSocket.close();
 }

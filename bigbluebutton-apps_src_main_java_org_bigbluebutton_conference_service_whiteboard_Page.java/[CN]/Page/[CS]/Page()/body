@@ -1,3 +1,0 @@
-{
-  this.shapes=new ArrayCollection<Shape>();
-}

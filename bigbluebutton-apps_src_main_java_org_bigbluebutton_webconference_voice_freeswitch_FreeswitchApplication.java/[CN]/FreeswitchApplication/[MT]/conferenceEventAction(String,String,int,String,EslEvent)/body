@@ -1,5 +1,5 @@
 {
-  Integer memberId=this.getMemeberIdFromEvent(event);
+  Integer memberId=this.getMemberIdFromEvent(event);
   ParticipantTalkingEvent pt;
   if (action == null) {
     if (debug) {

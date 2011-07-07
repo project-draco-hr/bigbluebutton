@@ -1,0 +1,5 @@
+{
+  FileRecorder r=new FileRecorder(name,recordingDir);
+  r.addListener(redisDispatcher);
+  return r;
+}

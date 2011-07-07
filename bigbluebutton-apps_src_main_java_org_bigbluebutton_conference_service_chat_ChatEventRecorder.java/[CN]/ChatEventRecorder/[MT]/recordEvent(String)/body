@@ -1,3 +1,0 @@
-{
-  if (record)   recorder.recordEvent(parseChatToJSON(message));
-}

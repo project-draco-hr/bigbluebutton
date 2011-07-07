@@ -1,8 +1,0 @@
-{
-  try {
-    audioDataQ.put(audioData);
-  }
- catch (  InterruptedException e) {
-    e.printStackTrace();
-  }
-}

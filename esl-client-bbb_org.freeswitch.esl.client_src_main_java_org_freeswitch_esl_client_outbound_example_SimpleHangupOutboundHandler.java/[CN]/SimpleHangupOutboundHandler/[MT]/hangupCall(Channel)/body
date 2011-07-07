@@ -7,5 +7,6 @@
     log.info("Call hangup successful");
   }
  else {
+    log.error("Call hangup failed: [{}}",response.getHeaderValue(Name.REPLY_TEXT));
   }
 }

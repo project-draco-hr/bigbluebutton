@@ -1,6 +1,0 @@
-{
-  ArrayList<Object> msg=new ArrayList<Object>();
-  msg.add(new Integer(mouseLoc.x));
-  msg.add(new Integer(mouseLoc.y));
-  deskSO.sendMessage("mouseLocationCallback",msg);
-}

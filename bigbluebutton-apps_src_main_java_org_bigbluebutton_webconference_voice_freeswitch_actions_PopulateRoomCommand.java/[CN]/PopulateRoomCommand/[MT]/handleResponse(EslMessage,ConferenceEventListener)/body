@@ -16,7 +16,7 @@
     ParticipantJoinedEvent pj;
     for (    ConferenceMember member : confXML.getConferenceList()) {
       log.debug("conf list member [{}] for room [{}].",member.getId(),confXML.getConferenceRoom());
-      pj=new ParticipantJoinedEvent(member.getId(),confXML.getConferenceRoom(),member.getCallerId(),member.getCallerIdName(),member.getMuted(),member.getSpeeking());
+      pj=new ParticipantJoinedEvent(member.getId(),confXML.getConferenceRoom(),member.getCallerId(),member.getCallerIdName(),member.getMuted(),member.getSpeaking());
       eventListener.handleConferenceEvent(pj);
     }
   }

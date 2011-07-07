@@ -2,8 +2,7 @@
   log.debug("Remove participant {} from {}",userid,roomName);
   Room r=getRoom(roomName);
   if (r != null) {
-    if (checkEvtListener()) {
-      conferenceEventListener.participantsUpdated(r);
+    if (checkPublisher()) {
     }
     r.removeParticipant(userid);
     return;

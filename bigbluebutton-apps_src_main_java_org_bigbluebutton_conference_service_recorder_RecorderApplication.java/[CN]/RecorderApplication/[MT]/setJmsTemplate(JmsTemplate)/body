@@ -1,4 +1,0 @@
-{
-  log.debug("Setting JmsTemplate");
-  this.jmsTemplate=jmsTemplate;
-}

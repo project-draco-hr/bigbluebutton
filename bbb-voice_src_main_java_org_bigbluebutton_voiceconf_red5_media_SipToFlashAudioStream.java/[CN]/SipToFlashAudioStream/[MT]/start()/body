@@ -1,5 +1,5 @@
 {
-  log.debug("started publishing stream in " + scope.getName());
+  if (log.isDebugEnabled())   log.debug("started publishing stream in " + scope.getName());
   audioBroadcastStream=new AudioBroadcastStream(listenStreamName);
   audioBroadcastStream.setPublishedName(listenStreamName);
   audioBroadcastStream.setScope(scope);
@@ -14,14 +14,6 @@
     throw new RuntimeException("could not register broadcast stream");
   }
   audioBroadcastStream.start();
-  processAudioData=true;
-  startTimestamp=System.currentTimeMillis();
-  audioDataProcessor=new Runnable(){
-    public void run(){
-      processAudioData();
-    }
-  }
-;
-  exec.execute(audioDataProcessor);
+  transcoder.start();
   rtpStreamReceiver.start();
 }

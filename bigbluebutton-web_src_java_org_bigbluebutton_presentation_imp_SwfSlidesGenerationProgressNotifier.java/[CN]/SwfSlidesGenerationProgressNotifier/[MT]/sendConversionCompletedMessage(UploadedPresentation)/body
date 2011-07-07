@@ -4,8 +4,9 @@
     return;
   }
   String xml=generatedSlidesInfoHelper.generateUploadedPresentationInfo(pres);
+  String escape_xml=StringEscapeUtils.escapeXml(xml);
   MessageBuilder builder=new ConversionUpdateMessage.MessageBuilder(pres);
   builder.messageKey(ConversionMessageConstants.CONVERSION_COMPLETED_KEY);
-  builder.slidesInfo(xml);
+  builder.slidesInfo(escape_xml);
   notifyProgressListener(builder.build().getMessage());
 }

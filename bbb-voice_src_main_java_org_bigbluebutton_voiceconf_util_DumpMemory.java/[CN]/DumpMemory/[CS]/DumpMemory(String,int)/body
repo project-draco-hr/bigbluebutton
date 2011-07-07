@@ -1,0 +1,10 @@
+{
+  try {
+    dumpFile=new FileOutputStream(fileName);
+  }
+ catch (  FileNotFoundException e) {
+    System.out.printf("error open file %s",fileName);
+    e.printStackTrace();
+  }
+  dumpCount=num;
+}

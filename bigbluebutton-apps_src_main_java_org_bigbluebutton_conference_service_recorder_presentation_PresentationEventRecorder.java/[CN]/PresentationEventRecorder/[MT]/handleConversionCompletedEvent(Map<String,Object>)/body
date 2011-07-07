@@ -1,0 +1,9 @@
+{
+  log.debug("Conversion Completed Event [{}]",(String)message.get("presentationName"));
+  ConversionCompletedPresentationRecordEvent event=new ConversionCompletedPresentationRecordEvent();
+  event.setMeetingId(session);
+  event.setTimestamp(System.currentTimeMillis());
+  event.setPresentationName((String)message.get("presentationName"));
+  event.setSlidesInfo((String)message.get("slidesInfo"));
+  recorder.record(session,event);
+}

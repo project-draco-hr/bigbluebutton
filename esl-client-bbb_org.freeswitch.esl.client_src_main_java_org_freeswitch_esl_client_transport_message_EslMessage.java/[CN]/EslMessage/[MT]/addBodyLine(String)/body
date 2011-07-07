@@ -2,8 +2,5 @@
   if (line == null) {
     return;
   }
-  receivedContentLength+=(line.length() + 1);
-  if (line.length() > 0) {
-    body.add(line);
-  }
+  body.add(line);
 }
