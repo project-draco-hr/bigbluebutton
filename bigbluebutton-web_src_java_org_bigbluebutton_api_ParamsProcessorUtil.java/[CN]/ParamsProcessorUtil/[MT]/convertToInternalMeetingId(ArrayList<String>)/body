@@ -1,0 +1,7 @@
+{
+  ArrayList<String> internalMeetingIds=new ArrayList<String>();
+  for (  String extid : extMeetingIds) {
+    internalMeetingIds.add(convertToInternalMeetingId(extid));
+  }
+  return internalMeetingIds;
+}
