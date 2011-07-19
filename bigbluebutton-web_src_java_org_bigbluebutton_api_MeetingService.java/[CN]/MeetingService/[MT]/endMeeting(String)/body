@@ -1,3 +1,7 @@
 {
   messagingService.endMeeting(meetingId);
+  Meeting m=getMeeting(meetingId);
+  if (m != null) {
+    m.setForciblyEnded(true);
+  }
 }
