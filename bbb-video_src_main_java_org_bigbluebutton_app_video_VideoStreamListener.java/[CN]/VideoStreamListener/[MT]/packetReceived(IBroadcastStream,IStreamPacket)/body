@@ -1,0 +1,20 @@
+{
+  IoBuffer buf=packet.getData();
+  if (buf != null)   buf.rewind();
+  if (buf == null || buf.remaining() == 0) {
+    return;
+  }
+  if (packet instanceof VideoData) {
+    if (!firstPacketReceived) {
+      firstPacketReceived=true;
+      IConnection conn=Red5.getConnectionLocal();
+      Map<String,String> event=new HashMap<String,String>();
+      event.put("module","WEBCAM");
+      event.put("timestamp",new Long(System.currentTimeMillis()).toString());
+      event.put("meetingId",conn.getScope().getName());
+      event.put("stream",stream.getPublishedName());
+      event.put("eventName","StartWebcamShareEvent");
+      recordingService.record(conn.getScope().getName(),event);
+    }
+  }
+}

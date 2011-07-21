@@ -20,9 +20,9 @@
             }
 .getType());
             String meetingId=map.get("meetingId");
-            String request=map.get("request");
-            if (request != null) {
-              if (request.equalsIgnoreCase("endMeeting")) {
+            String messageId=map.get("messageId");
+            if (messageId != null) {
+              if (MessagingConstants.END_MEETING_REQUEST_EVENT.equalsIgnoreCase(messageId)) {
                 roomsManager.endMeetingRequest(meetingId);
               }
             }

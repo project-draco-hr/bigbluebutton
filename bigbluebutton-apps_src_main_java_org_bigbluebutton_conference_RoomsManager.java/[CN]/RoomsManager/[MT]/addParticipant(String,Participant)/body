@@ -2,16 +2,6 @@
   log.debug("Add participant {}",participant.getName());
   Room r=getRoom(roomName);
   if (r != null) {
-    if (checkPublisher()) {
-      if (r.getNumberOfParticipants() == 0) {
-        log.debug("Notified event listener of conference start");
-        HashMap<String,String> map=new HashMap<String,String>();
-        map.put("meetingId",roomName);
-        map.put("state","started");
-        Gson gson=new Gson();
-        publisher.publish(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
-      }
-    }
     r.addParticipant(participant);
     return;
   }

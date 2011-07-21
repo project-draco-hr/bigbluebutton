@@ -1,4 +1,4 @@
 {
-  publish(publishedDir,recordingId,publish);
-  publish(unpublishedDir,recordingId,publish);
+  if (publish)   publish(unpublishedDir,recordingId,publish);
+ else   publish(publishedDir,recordingId,publish);
 }
