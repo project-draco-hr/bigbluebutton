@@ -1,4 +1,0 @@
-{
-  subscribe();
-  log.debug("Subscribe to the BigBlueButton Topics");
-}

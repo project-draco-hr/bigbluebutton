@@ -1,0 +1,3 @@
+{
+  return users.isEmpty() ? Collections.<User>emptySet() : Collections.unmodifiableCollection(users.values());
+}

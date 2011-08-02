@@ -1,0 +1,10 @@
+{
+  int mDuration=-1;
+  try {
+    mDuration=Integer.parseInt(duration);
+  }
+ catch (  Exception ex) {
+    mDuration=defaultMeetingDuration;
+  }
+  return mDuration;
+}

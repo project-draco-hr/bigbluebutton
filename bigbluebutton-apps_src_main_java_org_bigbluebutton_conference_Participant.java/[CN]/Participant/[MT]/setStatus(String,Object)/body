@@ -1,0 +1,6 @@
+{
+synchronized (this) {
+    status.put(statusName,value);
+    unmodifiableStatus=Collections.unmodifiableMap(status);
+  }
+}

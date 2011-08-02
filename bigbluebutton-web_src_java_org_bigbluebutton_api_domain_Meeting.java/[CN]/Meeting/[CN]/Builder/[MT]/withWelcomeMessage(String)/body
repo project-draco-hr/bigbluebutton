@@ -1,0 +1,4 @@
+{
+  welcomeMsg=w;
+  return this;
+}

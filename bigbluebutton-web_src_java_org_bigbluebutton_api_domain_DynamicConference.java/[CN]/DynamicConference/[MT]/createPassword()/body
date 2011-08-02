@@ -1,3 +1,0 @@
-{
-  return RandomStringUtils.randomAlphanumeric(8).toLowerCase();
-}

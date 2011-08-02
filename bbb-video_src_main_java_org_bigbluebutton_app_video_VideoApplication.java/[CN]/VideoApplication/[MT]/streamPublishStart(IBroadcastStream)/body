@@ -1,5 +1,3 @@
 {
-  if (recordVideoStream) {
-    recordStream(stream);
-  }
+  super.streamPublishStart(stream);
 }

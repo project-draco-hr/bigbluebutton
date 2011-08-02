@@ -1,4 +1,0 @@
-{
-  super(server,port);
-  log.debug("RedisListener is connected");
-}

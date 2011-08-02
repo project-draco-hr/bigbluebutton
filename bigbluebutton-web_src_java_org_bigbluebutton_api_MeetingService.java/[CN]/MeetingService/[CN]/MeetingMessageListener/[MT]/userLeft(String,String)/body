@@ -1,0 +1,7 @@
+{
+  Meeting m=getMeeting(meetingId);
+  if (m != null) {
+    User user=m.userLeft(userId);
+    log.debug("User removed from meeting:" + user.getFullname());
+  }
+}
