@@ -4,8 +4,9 @@
     if (!map.containsKey(r.getId())) {
       Map<String,String> meta=r.getMetadata();
       String mid=meta.remove("meetingId");
-      r.setName(mid);
+      String name=meta.remove("meetingName");
       r.setMeetingID(mid);
+      r.setName(name);
       ArrayList<Playback> plays=new ArrayList<Playback>();
       plays.add(new Playback(r.getPlaybackFormat(),r.getPlaybackLink(),getMinutesRecording(r.getStartTime(),r.getEndTime())));
       r.setPlaybacks(plays);
