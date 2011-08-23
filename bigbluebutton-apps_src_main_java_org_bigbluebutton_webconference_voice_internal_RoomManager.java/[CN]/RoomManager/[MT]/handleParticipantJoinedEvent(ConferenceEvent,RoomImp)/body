@@ -6,7 +6,7 @@
   p.setTalking(pje.getSpeaking());
   log.debug("Joined [" + p.getId() + ","+ p.getName()+ ","+ p.isMuted()+ ","+ p.isTalking()+ "] to room "+ rm.getName());
   rm.add(p);
-  if ((rm.numParticipants() == 1) && (rm.record())) {
+  if ((rm.numParticipants() == 1) && rm.record() && !rm.isRecording()) {
     rm.recording(true);
     log.debug("Starting recording of voice conference");
     log.warn(" ** WARNING: Prototyping only. Works only with FreeSWITCH for now. We need to come up with a generic way to trigger recording for both Asterisk and FreeSWITCH.");

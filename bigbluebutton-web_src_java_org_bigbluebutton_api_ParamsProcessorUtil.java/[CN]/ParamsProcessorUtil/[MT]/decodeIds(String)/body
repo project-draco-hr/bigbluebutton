@@ -1,0 +1,10 @@
+{
+  ArrayList<String> ids=new ArrayList<String>();
+  try {
+    ids.addAll(Arrays.asList(URLDecoder.decode(encodeid,"UTF-8").split(URLDECODER_SEPARATOR)));
+  }
+ catch (  UnsupportedEncodingException e) {
+    log.error("Couldn't decode the IDs");
+  }
+  return ids;
+}

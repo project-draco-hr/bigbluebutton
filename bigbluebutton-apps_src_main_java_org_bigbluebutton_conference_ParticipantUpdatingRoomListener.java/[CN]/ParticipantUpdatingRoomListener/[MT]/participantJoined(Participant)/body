@@ -2,7 +2,7 @@
   if (publisher != null) {
     HashMap<String,String> map=new HashMap<String,String>();
     map.put("meetingId",this.room.getName());
-    map.put("action","join");
+    map.put("messageId",MessagingConstants.USER_JOINED_EVENT);
     map.put("userid",p.getUserid().toString());
     map.put("fullname",p.getName());
     map.put("role",p.getRole());
