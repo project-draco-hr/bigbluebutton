@@ -1,5 +1,5 @@
 {
-  log.debug("Checking if we need to process recording for [{}]",meetingId);
+  log.debug("Process recording for [{}]",meetingId);
   Meeting m=getMeeting(meetingId);
   if (m != null) {
     int numUsers=m.getNumUsers();
