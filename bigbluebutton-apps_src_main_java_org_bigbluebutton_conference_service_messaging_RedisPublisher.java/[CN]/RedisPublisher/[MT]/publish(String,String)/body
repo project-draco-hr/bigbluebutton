@@ -1,9 +1,0 @@
-{
-  Jedis jedis=redisPool.getResource();
-  try {
-    jedis.publish(channel,message);
-  }
-  finally {
-    redisPool.returnResource(jedis);
-  }
-}

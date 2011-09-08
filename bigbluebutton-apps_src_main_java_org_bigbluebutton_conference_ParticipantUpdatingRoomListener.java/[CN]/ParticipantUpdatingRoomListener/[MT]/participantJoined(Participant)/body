@@ -1,5 +1,5 @@
 {
-  if (publisher != null) {
+  if (messagingService != null) {
     HashMap<String,String> map=new HashMap<String,String>();
     map.put("meetingId",this.room.getName());
     map.put("messageId",MessagingConstants.USER_JOINED_EVENT);
@@ -7,7 +7,7 @@
     map.put("fullname",p.getName());
     map.put("role",p.getRole());
     Gson gson=new Gson();
-    publisher.publish(MessagingConstants.PARTICIPANTS_CHANNEL,gson.toJson(map));
+    messagingService.send(MessagingConstants.PARTICIPANTS_CHANNEL,gson.toJson(map));
     log.debug("Publishing message participant joined in {}",this.room.getName());
   }
 }
