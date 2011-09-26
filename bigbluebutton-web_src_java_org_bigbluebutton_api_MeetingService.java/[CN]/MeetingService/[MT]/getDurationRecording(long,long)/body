@@ -1,0 +1,10 @@
+{
+  int duration;
+  try {
+    duration=(int)((end - start) / 60000);
+  }
+ catch (  Exception e) {
+    duration=0;
+  }
+  return duration;
+}
