@@ -5,7 +5,7 @@
   String voiceBridge=getBbbSession().getVoiceBridge();
   String meetingid=getBbbSession().getConference();
   Boolean record=getBbbSession().getRecord();
-  log.debug("Setting up voiceBridge $voiceBridge");
+  log.debug("Setting up voiceBridge {}",voiceBridge);
   clientManager.addSharedObject(connection.getScope().getName(),voiceBridge,so);
   conferenceService.createConference(voiceBridge,meetingid,record);
   return true;
