@@ -1,4 +1,0 @@
-{
-  PopulateRoomCommand prc=new PopulateRoomCommand(room,USER);
-  konfMgr.sendCommand(prc);
-}
