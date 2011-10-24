@@ -17,5 +17,4 @@
  else   if (event instanceof RecordErrorEvent) {
     msg.add(new String("DESKSHARE_RECORD_ERROR_EVENT"));
   }
-  so.sendMessage("recordingStatusCallback",msg);
 }
