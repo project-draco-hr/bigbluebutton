@@ -1,3 +1,0 @@
-{
-  return new CommandAction("konference kick" + SPACE + room+ SPACE+ participant);
-}

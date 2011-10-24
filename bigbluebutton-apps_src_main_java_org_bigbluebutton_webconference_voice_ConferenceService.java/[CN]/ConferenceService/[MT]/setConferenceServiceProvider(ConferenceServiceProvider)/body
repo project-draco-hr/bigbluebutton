@@ -1,3 +1,4 @@
 {
   confProvider=c;
+  confProvider.setConferenceEventListener(this);
 }
