@@ -1,0 +1,4 @@
+{
+  conferenceEventListener=l;
+  appDelegate.setConferenceEventListener(conferenceEventListener);
+}

@@ -1,9 +1,0 @@
-{
-  log.debug("KickUser: [" + user.getUserNumber() + ","+ user.getRoom().getRoomNumber()+ "]");
-  try {
-    user.kick();
-  }
- catch (  ManagerCommunicationException e) {
-    log.warn("ManagerCommunicationException while trying to kick user");
-  }
-}
