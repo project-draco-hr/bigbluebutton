@@ -1,3 +1,3 @@
 {
-  log.debug("${APP}:appLeave ${scope.name}");
+  log.debug(APP + ":appLeave " + scope.getName());
 }

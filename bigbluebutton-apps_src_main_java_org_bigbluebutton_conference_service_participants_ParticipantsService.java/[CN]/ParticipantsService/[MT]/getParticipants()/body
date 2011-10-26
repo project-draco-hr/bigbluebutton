@@ -1,16 +1,16 @@
 {
   String roomName=Red5.getConnectionLocal().getScope().getName();
-  log.debug("getting participants for {}",roomName);
+  log.debug("getting participants for " + roomName);
   Map p=application.getParticipants(roomName);
-  log.debug("getting participants for {}",roomName);
+  log.debug("getting participants for " + roomName);
   Map participants=new HashMap();
   if (p == null) {
     participants.put("count",0);
-    log.debug("partipants of {} is null",roomName);
+    log.debug("partipants of " + roomName + " is null");
   }
  else {
     participants.put("count",p.size());
-    log.debug("number of partipants is {}",p.size());
+    log.debug("number of partipants is " + p.size());
     if (p.size() > 0) {
       Collection pc=p.values();
       Map pm=new HashMap();

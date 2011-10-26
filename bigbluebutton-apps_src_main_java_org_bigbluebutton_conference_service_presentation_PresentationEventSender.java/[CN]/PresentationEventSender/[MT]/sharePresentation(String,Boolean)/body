@@ -1,5 +1,5 @@
 {
-  log.debug("calling sharePresentationCallback {} {}",presentationName,share);
+  log.debug("calling sharePresentationCallback " + presentationName + " "+ share);
   ArrayList list=new ArrayList();
   list.add(presentationName);
   list.add(share);

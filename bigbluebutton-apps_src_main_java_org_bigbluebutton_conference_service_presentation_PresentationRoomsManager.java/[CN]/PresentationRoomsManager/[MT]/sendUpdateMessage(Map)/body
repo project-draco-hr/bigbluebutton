@@ -5,5 +5,5 @@
     r.sendUpdateMessage(message);
     return;
   }
-  log.warn("Sending update message to a non-existing room {}",room);
+  log.warn("Sending update message to a non-existing room " + room);
 }
