@@ -1,4 +1,0 @@
-{
-  log.debug("Starting KonferenceApplication");
-  konfMgr.startup();
-}

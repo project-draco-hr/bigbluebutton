@@ -4,6 +4,6 @@
     r.sendMessage(message);
   }
  else {
-    log.warn("Sending message to a non-existing room {}",room);
+    log.warn("Sending message to a non-existing room " + room);
   }
 }

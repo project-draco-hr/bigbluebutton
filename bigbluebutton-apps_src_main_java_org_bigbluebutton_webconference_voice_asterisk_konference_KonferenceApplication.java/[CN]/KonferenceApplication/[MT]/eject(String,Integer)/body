@@ -1,4 +1,0 @@
-{
-  EjectParticipantCommand epc=new EjectParticipantCommand(room,participant,USER);
-  konfMgr.sendCommand(epc);
-}

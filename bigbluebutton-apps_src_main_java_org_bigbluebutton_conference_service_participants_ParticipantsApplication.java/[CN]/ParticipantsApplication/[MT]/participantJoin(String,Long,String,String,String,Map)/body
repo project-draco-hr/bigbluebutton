@@ -4,9 +4,9 @@
     Participant p=new Participant(userid,username,role,externUserID,status);
     Room room=roomsManager.getRoom(roomName);
     room.addParticipant(p);
-    log.debug(":participant joined room " + roomName);
+    log.debug("participant joined room " + roomName);
     return true;
   }
-  log.debug(":participant failed to join room" + roomName);
+  log.debug("participant failed to join room " + roomName);
   return false;
 }

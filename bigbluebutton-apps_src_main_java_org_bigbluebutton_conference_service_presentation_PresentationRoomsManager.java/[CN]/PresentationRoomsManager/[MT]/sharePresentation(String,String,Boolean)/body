@@ -5,5 +5,5 @@
     r.sharePresentation(presentationName,share);
     return;
   }
-  log.warn("Sharing presentation on a non-existing room {}",room);
+  log.warn("Sharing presentation on a non-existing room " + room);
 }

@@ -1,5 +1,5 @@
 {
-  log.debug("Remove participant {} from {}",userid,roomName);
+  log.debug("Remove participant " + userid + " from "+ roomName);
   Room r=getRoom(roomName);
   if (r != null) {
     if (checkPublisher()) {
@@ -7,5 +7,5 @@
     r.removeParticipant(userid);
     return;
   }
-  log.warn("Removing listener from a non-existing room ${roomName}");
+  log.warn("Removing listener from a non-existing room " + roomName);
 }

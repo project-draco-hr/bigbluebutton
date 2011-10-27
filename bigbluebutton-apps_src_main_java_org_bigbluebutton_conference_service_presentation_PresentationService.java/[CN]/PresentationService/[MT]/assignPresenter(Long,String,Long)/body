@@ -10,7 +10,7 @@
   if (curPresenter != null) {
     long curUserid=(Long)curPresenter.get(0);
     if (curUserid != userid) {
-      log.debug("Changing presenter from {} to {}",curPresenter.get(0),userid);
+      log.debug("Changing presenter from " + curPresenter.get(0) + " to "+ userid);
       participantsApplication.setParticipantStatus(scope.getName(),(Long)curPresenter.get(0),"presenter",false);
     }
   }

@@ -3,6 +3,6 @@
     roomsManager.removePresentation(room,name);
   }
  else {
-    log.warn("Removing presentation from a non-existant room {}",room);
+    log.warn("Removing presentation from a non-existant room " + room);
   }
 }

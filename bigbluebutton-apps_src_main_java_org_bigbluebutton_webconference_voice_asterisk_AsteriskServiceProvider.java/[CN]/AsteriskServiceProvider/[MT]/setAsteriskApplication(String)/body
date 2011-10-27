@@ -1,6 +1,0 @@
-{
-  appDelegate=appsMap.get(appName);
-  if (appDelegate == null) {
-    log.error("There is no conference application with name {}",appName);
-  }
-}

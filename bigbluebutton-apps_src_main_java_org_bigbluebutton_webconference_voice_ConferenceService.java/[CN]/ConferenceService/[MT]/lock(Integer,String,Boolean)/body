@@ -1,6 +1,6 @@
 {
   if (roomMgr.hasParticipant(room,participant)) {
     ParticipantLockedEvent ple=new ParticipantLockedEvent(participant,room,lock);
-    conferenceEventListener.handleConferenceEvent(ple);
+    handleConferenceEvent(ple);
   }
 }
