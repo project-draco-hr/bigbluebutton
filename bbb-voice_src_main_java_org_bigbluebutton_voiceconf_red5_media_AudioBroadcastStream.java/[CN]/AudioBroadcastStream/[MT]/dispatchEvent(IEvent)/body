@@ -2,7 +2,7 @@
   if (event instanceof IRTMPEvent) {
     IRTMPEvent rtmpEvent=(IRTMPEvent)event;
     if (livePipe != null) {
-      msg.setBody(rtmpEvent);
+      RTMPMessage msg=RTMPMessage.build(rtmpEvent);
       if (creationTime == null)       creationTime=(long)rtmpEvent.getTimestamp();
       try {
         livePipe.pushMessage(msg);
