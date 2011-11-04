@@ -10,24 +10,21 @@
   list.add(code);
   list.add(presentationName);
   list.add(messageKey);
+  log.debug("message " + messageKey + "["+ presentationName+ "]");
   if (messageKey.equalsIgnoreCase(OFFICE_DOC_CONVERSION_SUCCESS_KEY) || messageKey.equalsIgnoreCase(OFFICE_DOC_CONVERSION_FAILED_KEY) || messageKey.equalsIgnoreCase(SUPPORTED_DOCUMENT_KEY)|| messageKey.equalsIgnoreCase(UNSUPPORTED_DOCUMENT_KEY)|| messageKey.equalsIgnoreCase(GENERATING_THUMBNAIL_KEY)|| messageKey.equalsIgnoreCase(GENERATED_THUMBNAIL_KEY)|| messageKey.equalsIgnoreCase(PAGE_COUNT_FAILED_KEY)) {
-    log.debug("{}[{}]",messageKey,presentationName);
     so.sendMessage("conversionUpdateMessageCallback",list);
   }
  else   if (messageKey.equalsIgnoreCase(PAGE_COUNT_EXCEEDED_KEY)) {
-    log.debug("{}[{}]",messageKey,presentationName);
     list.add(message.get("numberOfPages"));
     list.add(message.get("maxNumberPages"));
     so.sendMessage("pageCountExceededUpdateMessageCallback",list);
   }
  else   if (messageKey.equalsIgnoreCase(GENERATED_SLIDE_KEY)) {
-    log.debug("{}[{}]",messageKey,presentationName);
     list.add(message.get("numberOfPages"));
     list.add(message.get("pagesCompleted"));
     so.sendMessage("generatedSlideUpdateMessageCallback",list);
   }
  else   if (messageKey.equalsIgnoreCase(CONVERSION_COMPLETED_KEY)) {
-    log.debug("{}[{}]",messageKey,presentationName);
     list.add(message.get("slidesInfo"));
     so.sendMessage("conversionCompletedUpdateMessageCallback",list);
   }

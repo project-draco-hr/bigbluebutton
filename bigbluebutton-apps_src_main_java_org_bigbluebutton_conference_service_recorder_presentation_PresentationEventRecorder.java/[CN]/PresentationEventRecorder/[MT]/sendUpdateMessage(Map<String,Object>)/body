@@ -7,6 +7,6 @@
     handleConversionCompletedEvent(message);
   }
  else {
-    log.error("NOT recording received message {}",messageKey);
+    log.error("NOT recording received message " + messageKey);
   }
 }

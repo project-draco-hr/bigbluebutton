@@ -5,5 +5,5 @@
     r.resizeAndMoveSlide(xOffset,yOffset,widthRatio,heightRatio);
     return;
   }
-  log.warn("resizeAndMoveSlide on a non-existant room {}",room);
+  log.warn("resizeAndMoveSlide on a non-existant room " + room);
 }

@@ -1,5 +1,5 @@
 {
-  log.debug("Adding room {}",room.getName());
+  log.debug("Adding room " + room.getName());
   room.addRoomListener(new ParticipantUpdatingRoomListener(room,messagingService));
   if (checkPublisher()) {
     HashMap<String,String> map=new HashMap<String,String>();

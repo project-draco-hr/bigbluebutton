@@ -2,6 +2,6 @@
   if (roomsManager.hasRoom(room)) {
     return roomsManager.getCurrentPresentation(room);
   }
-  log.warn("Getting current presentation on a non-existant room {}",room);
+  log.warn("Getting current presentation on a non-existant room " + room);
   return null;
 }

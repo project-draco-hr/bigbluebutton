@@ -1,5 +1,4 @@
 {
-  System.out.println("RtmpClientAdapter: TODO Notify client of recording status");
   ArrayList<Object> msg=new ArrayList<Object>();
   if (event instanceof RecordStoppedEvent) {
     msg.add(new String("DESKSHARE_RECORD_STOPPED_EVENT"));
@@ -17,5 +16,4 @@
  else   if (event instanceof RecordErrorEvent) {
     msg.add(new String("DESKSHARE_RECORD_ERROR_EVENT"));
   }
-  so.sendMessage("recordingStatusCallback",msg);
 }

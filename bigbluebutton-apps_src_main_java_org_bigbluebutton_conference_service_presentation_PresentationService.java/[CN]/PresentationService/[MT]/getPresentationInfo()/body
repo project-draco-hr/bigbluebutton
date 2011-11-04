@@ -29,7 +29,7 @@
       presentation.put("widthRatio",presentersSettings.get("widthRatio"));
       presentation.put("heightRatio",presentersSettings.get("heightRatio"));
     }
-    log.debug("Presentation: presentation={} slide={}",currentPresentation,curSlide);
+    log.debug("Presentation: presentation=" + currentPresentation + " slide="+ curSlide);
   }
  else {
     presentation.put("sharing",false);

@@ -1,5 +1,5 @@
 {
-  log.debug("Conversion Completed Event [{}]",(String)message.get("presentationName"));
+  log.debug("Conversion Completed Event [" + message.get("presentationName") + "]");
   ConversionCompletedPresentationRecordEvent event=new ConversionCompletedPresentationRecordEvent();
   event.setMeetingId(session);
   event.setTimestamp(System.currentTimeMillis());

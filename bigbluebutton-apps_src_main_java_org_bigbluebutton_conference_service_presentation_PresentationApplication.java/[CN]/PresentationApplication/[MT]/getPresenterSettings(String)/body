@@ -2,6 +2,6 @@
   if (roomsManager.hasRoom(room)) {
     return roomsManager.getPresenterSettings(room);
   }
-  log.warn("Getting settings information on a non-existant room {}",room);
+  log.warn("Getting settings information on a non-existant room " + room);
   return null;
 }

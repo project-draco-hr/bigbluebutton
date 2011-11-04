@@ -1,4 +1,4 @@
 {
-  log.debug("In ChatRoomsManager remove room {}",name);
+  log.debug("In ChatRoomsManager remove room " + name);
   rooms.remove(name);
 }

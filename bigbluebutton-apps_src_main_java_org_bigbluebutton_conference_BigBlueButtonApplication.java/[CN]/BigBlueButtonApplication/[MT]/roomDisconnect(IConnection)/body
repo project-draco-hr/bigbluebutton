@@ -2,8 +2,8 @@
   String remoteHost=Red5.getConnectionLocal().getRemoteAddress();
   int remotePort=Red5.getConnectionLocal().getRemotePort();
   String clientId=Red5.getConnectionLocal().getClient().getId();
-  log.info("[clientid={}] disconnnected from {}.",clientId,remoteHost + ":" + remotePort);
+  log.info("[clientid=" + clientId + "] disconnnected from "+ remoteHost+ ":"+ remotePort+ ".");
   BigBlueButtonSession bbbSession=(BigBlueButtonSession)Red5.getConnectionLocal().getAttribute(Constants.SESSION);
-  log.info("User [{}] disconnected from room [{}]",bbbSession.getUsername(),bbbSession.getRoom());
+  log.info("User [" + bbbSession.getUsername() + "] disconnected from room ["+ bbbSession.getRoom()+ "]");
   super.roomDisconnect(conn);
 }

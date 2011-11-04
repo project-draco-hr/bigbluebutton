@@ -2,6 +2,6 @@
   if (roomsManager.hasRoom(room)) {
     return roomsManager.getCurrentSlide(room);
   }
-  log.warn("Getting slide on a non-existant room {}",room);
+  log.warn("Getting slide on a non-existant room " + room);
   return -1;
 }
