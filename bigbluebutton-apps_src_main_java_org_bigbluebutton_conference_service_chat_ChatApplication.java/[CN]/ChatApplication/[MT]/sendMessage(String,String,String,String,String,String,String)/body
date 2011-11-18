@@ -1,0 +1,3 @@
+{
+  roomsManager.sendMessage(room,message,username,color,time,language,userid);
+}

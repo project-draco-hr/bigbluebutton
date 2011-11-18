@@ -1,0 +1,7 @@
+String room
+String message
+String username
+String color
+String time
+String language
+String userid
