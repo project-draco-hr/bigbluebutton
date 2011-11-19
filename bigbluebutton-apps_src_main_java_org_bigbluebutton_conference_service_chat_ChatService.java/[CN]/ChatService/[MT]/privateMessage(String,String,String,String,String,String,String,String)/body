@@ -5,6 +5,11 @@
     ArrayList<String> arguments=new ArrayList<String>();
     arguments.add(sender);
     arguments.add(message);
+    arguments.add(username);
+    arguments.add(color);
+    arguments.add(time);
+    arguments.add(language);
+    arguments.add(userid);
     sharedObject.sendMessage("messageReceived",arguments);
   }
  else {
