@@ -3,6 +3,7 @@
   sharing=share;
   if (share) {
     currentPresentation=presentationName;
+    presentationNames.add(presentationName);
   }
  else {
     currentPresentation="";
@@ -10,7 +11,7 @@
   for (Iterator iter=listeners.values().iterator(); iter.hasNext(); ) {
     log.debug("calling on listener");
     IPresentationRoomListener listener=(IPresentationRoomListener)iter.next();
-    log.debug("calling sharePresentation on listener {}",listener.getName());
+    log.debug("calling sharePresentation on listener " + listener.getName());
     listener.sharePresentation(presentationName,share);
   }
 }

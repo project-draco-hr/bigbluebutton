@@ -1,5 +1,5 @@
 {
-  log.debug("Remove room {}",name);
+  log.debug("Remove room " + name);
   Room room=rooms.remove(name);
   if (checkPublisher() && room != null) {
     room.endAndKickAll();
@@ -7,7 +7,7 @@
     map.put("meetingId",room.getName());
     map.put("messageId",MessagingConstants.MEETING_ENDED_EVENT);
     Gson gson=new Gson();
-    publisher.publish(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
+    messagingService.send(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
     log.debug("Notified event listener of conference end");
   }
 }

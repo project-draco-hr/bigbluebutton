@@ -4,5 +4,5 @@
     roomsManager.sharePresentation(room,presentationName,share);
     return;
   }
-  log.warn("Sharing presentation on a non-existant room {}",room);
+  log.warn("Sharing presentation on a non-existant room " + room);
 }

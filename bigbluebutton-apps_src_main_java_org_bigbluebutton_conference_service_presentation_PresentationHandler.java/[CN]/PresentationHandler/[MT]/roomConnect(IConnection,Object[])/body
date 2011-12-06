@@ -1,5 +1,5 @@
 {
-  log.debug("{}:roomConnect",APP);
+  log.debug(APP + ":roomConnect");
   log.debug("In live mode");
   ISharedObject so=getSharedObject(connection.getScope(),PRESENTATION_SO);
   log.debug("Setting up recorder");

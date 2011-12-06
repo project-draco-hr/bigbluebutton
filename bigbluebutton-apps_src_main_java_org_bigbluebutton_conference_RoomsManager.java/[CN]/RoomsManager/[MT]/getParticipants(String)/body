@@ -3,6 +3,6 @@
   if (r != null) {
     return r.getParticipants();
   }
-  log.warn("Getting participants from a non-existing room {}",roomName);
+  log.warn("Getting participants from a non-existing room " + roomName);
   return null;
 }
