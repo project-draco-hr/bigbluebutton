@@ -1,8 +1,7 @@
 {
   String roomName=Red5.getConnectionLocal().getScope().getName();
-  log.debug("getting participants for " + roomName);
+  log.info("Client is requesting for list of participants in [" + roomName + "].");
   Map p=application.getParticipants(roomName);
-  log.debug("getting participants for " + roomName);
   Map participants=new HashMap();
   if (p == null) {
     participants.put("count",0);

@@ -1,7 +1,7 @@
 {
   log.debug("Getting presentation information.");
   IScope scope=Red5.getConnectionLocal().getScope();
-  ArrayList curPresenter=presentationApplication.getCurrentPresenter(scope.getName());
+  ArrayList<String> curPresenter=participantsApplication.getCurrentPresenter(scope.getName());
   int curSlide=presentationApplication.getCurrentSlide(scope.getName());
   Boolean isSharing=presentationApplication.getSharingPresentation(scope.getName());
   String currentPresentation=presentationApplication.getCurrentPresentation(scope.getName());

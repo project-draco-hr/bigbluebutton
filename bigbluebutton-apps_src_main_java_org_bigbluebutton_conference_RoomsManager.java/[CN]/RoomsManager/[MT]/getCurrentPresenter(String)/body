@@ -1,5 +1,5 @@
 {
-  PresentationRoom r=getRoom(room);
+  Room r=getRoom(room);
   if (r != null) {
     return r.getCurrentPresenter();
   }
