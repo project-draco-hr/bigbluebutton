@@ -1,0 +1,3 @@
+ChatObject chatobj
+String sender
+String receiver

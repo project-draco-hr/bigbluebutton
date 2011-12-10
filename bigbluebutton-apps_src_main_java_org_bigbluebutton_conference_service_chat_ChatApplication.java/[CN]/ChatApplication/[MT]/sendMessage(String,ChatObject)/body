@@ -1,0 +1,3 @@
+{
+  roomsManager.sendMessage(room,chatobj);
+}
