@@ -1,8 +1,7 @@
 {
   log.debug("Starting redis pubsub...");
-  final Jedis jedis=new Jedis(this.host,this.port);
+  final Jedis jedis=redisPool.getResource();
   try {
-    jedis.connect();
     pubsubListener=new Runnable(){
       public void run(){
         jedis.psubscribe(new PubSubListener(),MessagingConstants.BIGBLUEBUTTON_PATTERN);
@@ -12,6 +11,6 @@
     exec.execute(pubsubListener);
   }
  catch (  Exception e) {
-    log.error("Cannot connect to [" + host + ":"+ port+ "]");
+    log.error("Error in subscribe: " + e.getMessage());
   }
 }
