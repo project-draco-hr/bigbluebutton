@@ -1,9 +1,9 @@
 String sessionName
-long userid
+long internalUserID
 String username
 String role
 String conference
 String room
 String voiceBridge
 Boolean record
-String externUserID
+String externalUserID
