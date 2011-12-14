@@ -4,7 +4,7 @@
   if (bbbSession == null) {
     log.warn("bbb session is null");
   }
-  Long userid=bbbSession.getUserid();
+  Long userid=bbbSession.getInternalUserID();
   log.debug(APP + ":participantJoin - userid " + userid);
   String username=bbbSession.getUsername();
   log.debug(APP + ":participantJoin - username " + username);

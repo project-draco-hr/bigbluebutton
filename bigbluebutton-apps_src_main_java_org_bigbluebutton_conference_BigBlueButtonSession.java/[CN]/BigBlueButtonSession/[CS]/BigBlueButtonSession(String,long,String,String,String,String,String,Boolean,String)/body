@@ -1,5 +1,5 @@
 {
-  this.userid=userid;
+  this.internalUserID=internalUserID;
   this.sessionName=sessionName;
   this.username=username;
   this.role=role;
@@ -7,5 +7,5 @@
   this.room=room;
   this.voiceBridge=voiceBridge;
   this.record=record;
-  this.externUserID=externUserID;
+  this.externalUserID=externalUserID;
 }

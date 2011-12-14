@@ -1,5 +1,5 @@
 {
   List args=new ArrayList();
-  args.add(userid);
+  args.add(p.getInternalUserID());
   so.sendMessage("participantLeft",args);
 }
