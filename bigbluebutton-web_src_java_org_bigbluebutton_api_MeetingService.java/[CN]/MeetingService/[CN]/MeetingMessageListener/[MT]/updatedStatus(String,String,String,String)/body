@@ -2,7 +2,11 @@
   Meeting m=getMeeting(meetingId);
   if (m != null) {
     User user=m.getUserById(userId);
-    user.setStatus(status,value);
-    log.debug("Setting new status value for participant:" + user.getFullname());
+    if (user != null) {
+      user.setStatus(status,value);
+      log.debug("Setting new status value for participant:" + user.getFullname());
+      return;
+    }
+    log.warn("The participant " + userId + " doesn't exist in the meeting "+ meetingId);
   }
 }
