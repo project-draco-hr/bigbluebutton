@@ -1,7 +1,7 @@
 {
   Meeting m=getMeeting(meetingId);
   if (m != null) {
-    User user=new User(userId,name,role);
+    User user=new User(internalUserId,externalUserId,name,role);
     m.userJoined(user);
     log.debug("New user in meeting:" + user.getFullname());
   }

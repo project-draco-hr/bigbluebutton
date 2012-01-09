@@ -1,11 +1,11 @@
 {
   Meeting m=getMeeting(meetingId);
   if (m != null) {
-    User user=m.userLeft(userId);
+    User user=m.userLeft(internalUserId);
     if (user != null) {
       log.debug("User removed from meeting:" + user.getFullname());
       return;
     }
-    log.warn("The participant " + userId + " doesn't exist in the meeting "+ meetingId);
+    log.warn("The participant " + internalUserId + " doesn't exist in the meeting "+ meetingId);
   }
 }
