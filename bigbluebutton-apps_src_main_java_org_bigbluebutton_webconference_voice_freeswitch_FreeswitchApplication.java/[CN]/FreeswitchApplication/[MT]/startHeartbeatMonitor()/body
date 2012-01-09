@@ -1,0 +1,7 @@
+{
+  if (heartbeatMonitor == null) {
+    heartbeatMonitor=new FreeswitchHeartbeatMonitor(manager,this);
+    this.addObserver(heartbeatMonitor);
+    heartbeatMonitor.start();
+  }
+}
