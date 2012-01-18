@@ -5,6 +5,7 @@
   this.role=role;
   this.conference=conference;
   this.room=room;
+  this.clientID=clientID;
   this.voiceBridge=voiceBridge;
   this.record=record;
   this.externalUserID=externalUserID;
