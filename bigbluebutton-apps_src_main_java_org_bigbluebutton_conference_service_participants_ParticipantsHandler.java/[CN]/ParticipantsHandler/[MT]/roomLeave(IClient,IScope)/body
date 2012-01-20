@@ -5,8 +5,6 @@
     log.debug("roomLeave - session is null");
   }
  else {
-    log.debug("roomLeave - session is NOT null");
+    participantsApplication.participantLeft(bbbSession.getSessionName(),bbbSession.getClientID());
   }
-  Long internalUserID=bbbSession.getInternalUserID();
-  participantsApplication.participantLeft(bbbSession.getSessionName(),internalUserID);
 }

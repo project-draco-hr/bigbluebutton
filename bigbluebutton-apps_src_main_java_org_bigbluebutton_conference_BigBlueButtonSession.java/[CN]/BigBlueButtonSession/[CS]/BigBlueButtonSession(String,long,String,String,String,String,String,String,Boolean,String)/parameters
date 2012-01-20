@@ -1,5 +1,6 @@
 String sessionName
-long internalUserID
+long clientID
+String internalUserID
 String username
 String role
 String conference
