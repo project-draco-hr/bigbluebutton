@@ -1,3 +1,3 @@
 {
-  this.password=pw;
+  this.password=pw.trim();
 }
