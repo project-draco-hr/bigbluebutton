@@ -1,6 +1,4 @@
 {
-  log.debug("Starting userListenSteam");
-  userListenStream.start();
   log.debug("userTalkStream setup");
   userTalkStream.start(broadcastStream,scope);
   log.debug("userTalkStream Started");
