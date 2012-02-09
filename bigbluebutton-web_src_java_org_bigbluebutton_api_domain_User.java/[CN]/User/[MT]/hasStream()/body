@@ -1,0 +1,8 @@
+{
+  String hasStream=this.status.get("hasStream");
+  if (hasStream != null) {
+    String[] a=hasStream.split(",");
+    return (a.length > 0) && (a[0].equalsIgnoreCase("true"));
+  }
+  return false;
+}

@@ -1,0 +1,7 @@
+{
+  String isPresenter=this.status.get("presenter");
+  if (isPresenter != null) {
+    return isPresenter.equalsIgnoreCase("true");
+  }
+  return false;
+}

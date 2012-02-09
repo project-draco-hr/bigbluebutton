@@ -1,0 +1,8 @@
+{
+  if (this.hasStream()) {
+    String str=this.status.get("hasStream");
+    int pos=str.indexOf("stream=");
+    return str.substring(pos + 7,str.length());
+  }
+  return "";
+}
