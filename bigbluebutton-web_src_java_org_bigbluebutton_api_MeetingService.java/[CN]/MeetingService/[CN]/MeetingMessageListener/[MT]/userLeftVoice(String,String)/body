@@ -1,0 +1,14 @@
+{
+  Meeting m=getMeeting(meetingId);
+  if (m != null) {
+    User user=m.getUserByExternalId(externalUserId);
+    if (user != null) {
+      user.setIsListener(false);
+      log.debug("The user " + user.getFullname() + " left the voice meeting in the meeting "+ meetingId);
+      return;
+    }
+    log.warn("The participant " + externalUserId + " doesn't exist in the meeting "+ meetingId);
+    return;
+  }
+  log.warn("The meeting " + meetingId + " doesn't exist");
+}

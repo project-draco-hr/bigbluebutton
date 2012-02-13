@@ -2,5 +2,6 @@ Integer participantId
 String room
 String callerIdNum
 String callerIdName
+String callerIdExternalUserId
 Boolean muted
 Boolean speaking

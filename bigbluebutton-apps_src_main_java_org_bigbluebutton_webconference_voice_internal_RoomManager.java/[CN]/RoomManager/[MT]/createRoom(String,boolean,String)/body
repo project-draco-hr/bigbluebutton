@@ -1,5 +1,6 @@
 {
   log.debug("Creating room: " + name);
   RoomImp r=new RoomImp(name,record,meetingid);
+  r.addRoomListener(new ParticipantUpdatingRoomListener(r,messagingService));
   rooms.putIfAbsent(name,r);
 }

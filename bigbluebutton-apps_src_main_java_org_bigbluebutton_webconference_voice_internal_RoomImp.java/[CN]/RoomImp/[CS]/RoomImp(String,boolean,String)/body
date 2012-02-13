@@ -3,4 +3,5 @@
   this.record=record;
   this.meetingid=meetingid;
   participants=new ConcurrentHashMap<Integer,Participant>();
+  listeners=new ConcurrentHashMap<String,IRoomListener>();
 }

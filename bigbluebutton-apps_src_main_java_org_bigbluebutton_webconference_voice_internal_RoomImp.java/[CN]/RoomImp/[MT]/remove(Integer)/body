@@ -1,4 +1,11 @@
 {
   Participant p=participants.remove(id);
-  if (p != null)   p=null;
+  if (p != null) {
+    for (Iterator it=listeners.values().iterator(); it.hasNext(); ) {
+      IRoomListener listener=(IRoomListener)it.next();
+      log.debug("calling participantLeft on listener " + listener.getName());
+      listener.participantLeft(p);
+    }
+    p=null;
+  }
 }

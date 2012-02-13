@@ -1,3 +1,16 @@
 {
-  return participants.putIfAbsent(p.getId(),p);
+  int key=p.getId();
+  if (!participants.containsKey(key)) {
+    participants.put(key,p);
+    log.debug("Informing roomlisteners " + listeners.size());
+    for (Iterator it=listeners.values().iterator(); it.hasNext(); ) {
+      IRoomListener listener=(IRoomListener)it.next();
+      log.debug("calling participantJoined on listener " + listener.getName());
+      listener.participantJoined(p);
+    }
+    return p;
+  }
+ else {
+    return participants.get(key);
+  }
 }

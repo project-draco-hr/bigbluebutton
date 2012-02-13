@@ -1,0 +1,4 @@
+{
+  this.messagingService=messagingService;
+  this.messagingService.start();
+}

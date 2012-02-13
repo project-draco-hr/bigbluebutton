@@ -26,5 +26,5 @@
     log.debug("Processing UnknownEvent " + event.getClass().getName() + " for room: "+ event.getRoom());
     return;
   }
-  recorder.recordConferenceEvent(event,rm.getMeeting());
+  recorder.recordConferenceEvent(event,rm.getMeetingId());
 }
