@@ -5,5 +5,4 @@
   this.thickness=thickness;
   this.parentWidth=parentWidth;
   this.parentHeight=parentHeight;
-  if (this.type.equalsIgnoreCase(PENCIL))   this.shape=optimizeFreeHand();
 }
