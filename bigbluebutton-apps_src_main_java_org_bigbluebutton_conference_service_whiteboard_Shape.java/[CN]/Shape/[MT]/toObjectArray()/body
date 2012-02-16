@@ -1,10 +1,14 @@
 {
-  Object[] objects=new Object[6];
+  Object[] objects=new Object[10];
   objects[0]=shape;
   objects[1]=type;
   objects[2]=color;
   objects[3]=thickness;
-  objects[4]=parentWidth;
-  objects[5]=parentHeight;
+  objects[4]=width;
+  objects[5]=height;
+  objects[6]=x;
+  objects[7]=y;
+  objects[8]=id;
+  objects[9]=status;
   return objects;
 }
