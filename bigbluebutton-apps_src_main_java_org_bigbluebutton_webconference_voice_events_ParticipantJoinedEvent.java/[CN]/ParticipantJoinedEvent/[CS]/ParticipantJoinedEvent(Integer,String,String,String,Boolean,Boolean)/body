@@ -1,7 +1,6 @@
 {
   super(participantId,room);
   this.callerIdName=callerIdName;
-  this.callerIdExternalUserId=callerIdExternalUserId;
   this.callerIdNum=callerIdNum;
   this.muted=muted;
   this.speaking=speaking;

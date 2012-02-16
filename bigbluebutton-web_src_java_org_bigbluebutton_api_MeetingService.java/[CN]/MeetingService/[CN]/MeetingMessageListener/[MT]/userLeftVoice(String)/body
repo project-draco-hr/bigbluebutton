@@ -1,0 +1,9 @@
+{
+  Meeting m=getMeeting(meetingId);
+  if (m != null) {
+    m.userLeftVoice();
+    log.debug("A user left the voice conference in the meeting " + meetingId);
+    return;
+  }
+  log.warn("The meeting " + meetingId + " doesn't exist");
+}
