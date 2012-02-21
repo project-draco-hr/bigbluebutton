@@ -3,10 +3,6 @@
   this.type=type;
   this.color=color;
   this.thickness=thickness;
-  this.width=width;
-  this.height=height;
-  this.x=x;
-  this.y=y;
   this.id=id;
   this.status=status;
 }

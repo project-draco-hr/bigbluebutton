@@ -2,9 +2,5 @@ double[] shape
 String type
 int color
 int thickness
-double width
-double height
-double x
-double y
 String id
 String status

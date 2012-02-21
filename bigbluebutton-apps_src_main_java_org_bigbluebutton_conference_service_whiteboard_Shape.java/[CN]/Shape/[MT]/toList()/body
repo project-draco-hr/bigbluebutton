@@ -4,10 +4,6 @@
   sendableList.add(type);
   sendableList.add(color);
   sendableList.add(thickness);
-  sendableList.add(width);
-  sendableList.add(height);
-  sendableList.add(x);
-  sendableList.add(y);
   sendableList.add(id);
   sendableList.add(status);
   return sendableList;

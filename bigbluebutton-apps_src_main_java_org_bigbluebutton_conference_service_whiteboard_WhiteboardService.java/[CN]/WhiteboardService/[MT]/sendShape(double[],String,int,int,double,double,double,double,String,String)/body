@@ -1,4 +1,0 @@
-{
-  log.info("WhiteboardApplication - Sending share");
-  application.sendShape(shape,type,color,thickness,width,height,x,y,id,status);
-}
