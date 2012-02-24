@@ -1,12 +1,10 @@
 {
   messagingService.endMeeting(meetingId);
-  if (removeMeetingWhenEnded) {
-    meetings.remove(meetingId);
+  Meeting m=getMeeting(meetingId);
+  if (m != null) {
+    m.setForciblyEnded(true);
   }
  else {
-    Meeting m=getMeeting(meetingId);
-    if (m != null) {
-      m.setForciblyEnded(true);
-    }
+    log.debug("endMeeting - meeting doesn't exist: " + meetingId);
   }
 }
