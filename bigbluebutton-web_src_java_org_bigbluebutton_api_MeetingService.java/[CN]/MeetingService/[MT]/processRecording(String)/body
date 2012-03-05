@@ -1,16 +1,4 @@
 {
   log.debug("Process recording for [{}]",meetingId);
-  Meeting m=getMeeting(meetingId);
-  if (m != null) {
-    int numUsers=m.getNumUsers();
-    if (numUsers == 0) {
-      recordingService.startIngestAndProcessing(meetingId);
-    }
- else {
-      log.debug("Meeting [{}] is not empty with {} users.",meetingId,numUsers);
-    }
-  }
- else {
-    log.warn("Meeting [{}] does not exist.",meetingId);
-  }
+  recordingService.startIngestAndProcessing(meetingId);
 }
