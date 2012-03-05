@@ -1,4 +1,3 @@
 {
-  log.trace("saveAs(filepath:{}, isAppend:{})",filePath,isAppend);
   throw new Error("unimplemented method");
 }
