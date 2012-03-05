@@ -1,5 +1,5 @@
 {
-  Shape newShape=new Shape(shape,type,color,thickness,parentWidth,parentHeight);
+  Shape newShape=new Shape(shape,type,color,thickness,id,status);
   roomManager.getRoom(getLocalScope().getName()).addShape(newShape);
   ISharedObject drawSO=getSharedObject(getLocalScope(),WHITEBOARD_SHARED_OBJECT);
   List<Object> arguments=newShape.toList();
