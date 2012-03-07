@@ -7,9 +7,10 @@
     success=generateThumbnails(thumbsDir,pres);
   }
  catch (  InterruptedException e) {
+    log.warn("Interrupted Exception while generating thumbnails.");
     success=false;
   }
-  if (!success)   createBlankThumbnails(thumbsDir,pres.getNumberOfPages());
-  if (SupportedFileTypes.isImageFile(pres.getFileType()))   renameThumbnails(thumbsDir);
+  createBlankThumbnails(thumbsDir,pres.getNumberOfPages());
+  renameThumbnails(thumbsDir);
   return true;
 }

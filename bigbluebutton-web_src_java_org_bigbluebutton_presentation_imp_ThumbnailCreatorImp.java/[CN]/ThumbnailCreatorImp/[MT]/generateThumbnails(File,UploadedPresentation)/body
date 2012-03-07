@@ -13,11 +13,11 @@
   Process p;
   try {
     p=Runtime.getRuntime().exec(COMMAND);
-    log.debug("begin waiting for... " + source + " "+ dest);
+    log.debug("Waiting for [" + COMMAND + "] to finish.");
     int exitValue=p.waitFor();
-    log.debug("finish waiting for... " + source);
+    log.debug("[" + COMMAND + "] has finished.");
     if (exitValue != 0) {
-      log.warn("Exit Value != 0 while for " + COMMAND);
+      log.warn("FAILED [" + COMMAND + "]");
     }
  else {
       return true;
