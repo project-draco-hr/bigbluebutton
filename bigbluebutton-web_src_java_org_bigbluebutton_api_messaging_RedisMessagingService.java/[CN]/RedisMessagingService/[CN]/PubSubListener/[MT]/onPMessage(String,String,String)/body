@@ -1,5 +1,6 @@
 {
   log.debug("Message Received in channel: " + channel);
+  log.debug("Message: " + message);
   Gson gson=new Gson();
   HashMap<String,String> map=gson.fromJson(message,new TypeToken<Map<String,String>>(){
   }
