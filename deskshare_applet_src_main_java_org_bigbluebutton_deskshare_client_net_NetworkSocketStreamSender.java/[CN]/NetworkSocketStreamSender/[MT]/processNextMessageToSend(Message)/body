@@ -12,6 +12,7 @@
       BlockVideoData bv=new BlockVideoData(room,block.getPosition(),block.getVideoData(),false);
       BlockStreamProtocolEncoder.encodeBlock(bv,dataToSend);
     }
+    BlockStreamProtocolEncoder.encodeDelimiter(dataToSend);
     sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
     sendToStream(dataToSend);
     for (int i=0; i < changedBlocks.length; i++) {
@@ -28,6 +29,7 @@
       ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
       dataToSend.reset();
       BlockStreamProtocolEncoder.encodeEndStreamMessage(room,dataToSend,seqNumGenerator.getNext());
+      BlockStreamProtocolEncoder.encodeDelimiter(dataToSend);
       sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
       sendToStream(dataToSend);
     }

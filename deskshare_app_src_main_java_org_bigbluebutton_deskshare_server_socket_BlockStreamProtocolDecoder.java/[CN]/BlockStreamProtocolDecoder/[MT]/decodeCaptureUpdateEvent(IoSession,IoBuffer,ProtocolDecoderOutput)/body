@@ -13,4 +13,6 @@
     CaptureUpdateBlockEvent event=new CaptureUpdateBlockEvent(room,position,data,isKeyFrame,seqNum);
     out.write(event);
   }
+  byte cr=in.get();
+  byte lf=in.get();
 }

@@ -2,6 +2,7 @@
   ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
   dataToSend.reset();
   BlockStreamProtocolEncoder.encodeMouseLocation(mouseLoc,room,dataToSend,seqNumGenerator.getNext());
+  BlockStreamProtocolEncoder.encodeDelimiter(dataToSend);
   sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
   sendToStream(dataToSend);
 }

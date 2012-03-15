@@ -3,6 +3,8 @@
   if (!"".equals(room)) {
     log.info("CaptureEndEvent for " + room);
     int seqNum=in.getInt();
+    byte cr=in.get();
+    byte lf=in.get();
     CaptureEndBlockEvent event=new CaptureEndBlockEvent(room,seqNum);
     out.write(event);
   }

@@ -18,5 +18,23 @@ decodeMouseLocationEvent(session,in,out);
 break;
 default :
 log.error("Unknown event: " + event);
+throwAwayCorruptedPacket(in);
+Integer numErrors=(Integer)session.getAttribute("NUM_ERRORS",0);
+session.setAttribute("NUM_ERRORS",numErrors++);
+if (numErrors > 50) {
+log.info("Closing session. Too many corrupt packets.");
+int seqNum=0;
+String room=(String)session.getAttribute(ROOM,null);
+if (room != null) {
+log.info("Closing session [" + room + "]. Too many corrupt packets.");
+CaptureEndBlockEvent ceb=new CaptureEndBlockEvent(room,seqNum);
+out.write(ceb);
+}
+ else {
+log.info("Cannot determine session. Too many corrupt packets.");
+}
+CloseFuture future=session.close(true);
+}
+break;
 }
 }
