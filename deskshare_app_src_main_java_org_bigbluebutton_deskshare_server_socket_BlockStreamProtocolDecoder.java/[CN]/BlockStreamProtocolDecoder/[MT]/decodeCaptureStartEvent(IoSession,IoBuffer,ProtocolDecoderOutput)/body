@@ -4,6 +4,8 @@
   int seqNum=in.getInt();
   Dimension blockDim=decodeDimension(in);
   Dimension screenDim=decodeDimension(in);
+  byte cr=in.get();
+  byte lf=in.get();
   log.info("CaptureStartEvent for " + room);
   CaptureStartBlockEvent event=new CaptureStartBlockEvent(room,screenDim,blockDim,seqNum);
   out.write(event);

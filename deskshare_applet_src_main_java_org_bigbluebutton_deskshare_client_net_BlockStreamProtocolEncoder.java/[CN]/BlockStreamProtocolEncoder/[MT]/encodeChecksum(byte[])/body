@@ -1,0 +1,6 @@
+{
+  Adler32 checksum=new Adler32();
+  checksum.reset();
+  checksum.update(data);
+  return longToBytes(checksum.getValue());
+}

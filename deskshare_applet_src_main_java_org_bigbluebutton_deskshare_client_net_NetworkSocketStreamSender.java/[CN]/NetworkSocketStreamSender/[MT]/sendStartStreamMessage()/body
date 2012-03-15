@@ -3,6 +3,7 @@
     ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
     dataToSend.reset();
     BlockStreamProtocolEncoder.encodeStartStreamMessage(room,screenDim,blockDim,dataToSend,seqNumGenerator.getNext());
+    BlockStreamProtocolEncoder.encodeDelimiter(dataToSend);
     sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
     sendToStream(dataToSend);
   }

@@ -3,6 +3,8 @@
   int seqNum=in.getInt();
   int mouseX=in.getInt();
   int mouseY=in.getInt();
+  byte cr=in.get();
+  byte lf=in.get();
   MouseLocationEvent event=new MouseLocationEvent(room,new Point(mouseX,mouseY),seqNum);
   out.write(event);
 }
