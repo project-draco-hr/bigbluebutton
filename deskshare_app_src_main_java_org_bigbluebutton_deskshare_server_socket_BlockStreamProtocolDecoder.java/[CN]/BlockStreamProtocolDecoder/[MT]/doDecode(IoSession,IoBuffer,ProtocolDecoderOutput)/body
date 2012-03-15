@@ -8,9 +8,6 @@
     in.position(start);
     return false;
   }
-  Integer numMsg=(Integer)session.getAttribute("NUM_MSG",0);
-  numMsg++;
-  session.setAttribute("NUM_MSG",numMsg);
   decodeMessage(session,in,out);
   return true;
 }
