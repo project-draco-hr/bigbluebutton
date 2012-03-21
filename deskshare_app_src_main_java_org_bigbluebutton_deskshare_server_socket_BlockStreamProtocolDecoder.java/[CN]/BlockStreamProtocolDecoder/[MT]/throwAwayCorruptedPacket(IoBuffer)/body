@@ -20,5 +20,6 @@
     }
     previous=current;
   }
+  log.warn("Could not find end of corrupted packet.");
   in.position(start);
 }
