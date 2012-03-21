@@ -4,6 +4,7 @@
     for (int i=0; i < pageCount; i++) {
       File thumb=new File(thumbsDir.getAbsolutePath() + File.separator + TEMP_THUMB_NAME+ "-"+ i+ ".png");
       if (!thumb.exists()) {
+        log.info("Copying blank thumbnail for slide " + i);
         copyBlankThumbnail(thumb);
       }
     }

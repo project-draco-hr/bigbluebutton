@@ -1,0 +1,25 @@
+{
+  int start=in.position();
+  byte previous=0;
+  while (in.hasRemaining()) {
+    byte current=in.get();
+    if (previous == CR && current == LF) {
+      int position=in.position();
+      int limit=in.limit();
+      try {
+        in.position(start);
+        in.limit(position);
+        log.info("Throwing corrupted packet.");
+        in.slice();
+      }
+  finally {
+        in.position(position);
+        in.limit(limit);
+      }
+      return;
+    }
+    previous=current;
+  }
+  log.warn("Could not find end of corrupted packet.");
+  in.position(start);
+}

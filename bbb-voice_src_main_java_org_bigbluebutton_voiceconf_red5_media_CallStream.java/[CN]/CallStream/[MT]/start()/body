@@ -11,5 +11,7 @@
   log.debug("Incoming Frame size [" + sipCodec.getIncomingEncodedFrameSize() + ", "+ sipCodec.getIncomingDecodedFrameSize()+ "]");
   userListenStream=new SipToFlashAudioStream(scope,sipToFlashTranscoder,connInfo.getSocket());
   userListenStream.addListenStreamObserver(this);
+  log.debug("Starting userListenStream so that users with no mic can listen.");
+  userListenStream.start();
   userTalkStream=new FlashToSipAudioStream(flashToSipTranscoder,connInfo.getSocket(),connInfo);
 }

@@ -1,7 +1,0 @@
-{
-  List list=new ArrayList();
-  list.add(userid);
-  list.add(status);
-  list.add(value);
-  so.sendMessage("participantStatusChange",list);
-}

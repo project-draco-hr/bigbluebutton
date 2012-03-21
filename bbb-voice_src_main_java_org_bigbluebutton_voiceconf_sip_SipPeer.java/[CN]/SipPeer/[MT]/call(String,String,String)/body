@@ -1,6 +1,6 @@
 {
   if (!registered) {
-    log.warn("Call request for {} but not registered.",id);
+    log.warn("We are not registered to FreeSWITCH. We are not allowing {} to call {}.",callerName,destination);
     return;
   }
   SipPeerProfile callerProfile=SipPeerProfile.copy(registeredProfile);

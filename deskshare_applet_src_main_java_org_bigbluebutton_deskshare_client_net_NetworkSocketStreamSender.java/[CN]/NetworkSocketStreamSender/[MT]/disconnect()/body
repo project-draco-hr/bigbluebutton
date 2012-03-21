@@ -1,17 +1,4 @@
 {
   System.out.println("Disconnecting socket stream");
   if (!processMessages)   return;
-  try {
-    ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
-    dataToSend.reset();
-    BlockStreamProtocolEncoder.encodeEndStreamMessage(room,dataToSend,seqNumGenerator.getNext());
-    sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
-    sendToStream(dataToSend);
-  }
- catch (  IOException e) {
-    e.printStackTrace();
-  }
- finally {
-    processMessages=false;
-  }
 }

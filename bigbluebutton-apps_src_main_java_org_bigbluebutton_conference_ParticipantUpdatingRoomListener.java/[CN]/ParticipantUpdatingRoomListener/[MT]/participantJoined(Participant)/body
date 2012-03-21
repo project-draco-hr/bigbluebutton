@@ -3,7 +3,8 @@
     HashMap<String,String> map=new HashMap<String,String>();
     map.put("meetingId",this.room.getName());
     map.put("messageId",MessagingConstants.USER_JOINED_EVENT);
-    map.put("userid",p.getUserid().toString());
+    map.put("internalUserId",p.getInternalUserID().toString());
+    map.put("externalUserId",p.getExternalUserID());
     map.put("fullname",p.getName());
     map.put("role",p.getRole());
     Gson gson=new Gson();

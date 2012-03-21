@@ -18,5 +18,6 @@ decodeMouseLocationEvent(session,in,out);
 break;
 default :
 log.error("Unknown event: " + event);
+throw new Exception("Unknown event: " + event);
 }
 }

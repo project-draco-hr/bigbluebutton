@@ -1,5 +1,12 @@
 {
-  MuteParticipantCommand mpc=new MuteParticipantCommand(room,participant,mute,USER);
-  String jobId=manager.getESLClient().sendAsyncApiCommand(mpc.getCommand(),mpc.getCommandArgs());
-  log.debug("mute called for room [{}] jobid [{}]",room,jobId);
+  Client c=manager.getESLClient();
+  if (c.canSend()) {
+    MuteParticipantCommand mpc=new MuteParticipantCommand(room,participant,mute,USER);
+    String jobId=c.sendAsyncApiCommand(mpc.getCommand(),mpc.getCommandArgs());
+    log.debug("mute called for room [{}] jobid [{}]",room,jobId);
+  }
+ else {
+    log.warn("Can't send mute request to FreeSWITCH as we are not connected.");
+    startHeartbeatMonitor();
+  }
 }

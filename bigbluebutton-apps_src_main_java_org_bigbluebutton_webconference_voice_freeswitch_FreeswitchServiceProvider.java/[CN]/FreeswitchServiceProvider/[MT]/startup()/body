@@ -1,9 +1,12 @@
 {
   if (connection == null) {
     log.error("Cannot start application as ESL Client has not been set.");
-    return;
+    return false;
   }
   if (connect()) {
-    appDelegate.startup();
+    return appDelegate.startup();
+  }
+ else {
+    return false;
   }
 }

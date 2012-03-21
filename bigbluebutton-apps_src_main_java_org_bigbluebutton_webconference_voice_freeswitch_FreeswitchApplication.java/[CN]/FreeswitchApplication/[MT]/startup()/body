@@ -1,20 +1,20 @@
 {
   Client c=manager.getESLClient();
-  c.addEventListener(this);
-  c.cancelEventSubscriptions();
-  c.setEventSubscriptions("plain","all");
-  c.addEventFilter("Event-Name","heartbeat");
-  c.addEventFilter("Event-Name","custom");
-  c.addEventFilter("Event-Name","background_job");
-  try {
-    Thread.sleep(5000);
+  if (c.canSend()) {
+    c.addEventListener(this);
+    c.cancelEventSubscriptions();
+    c.setEventSubscriptions("plain","all");
+    c.addEventFilter("Event-Name","heartbeat");
+    c.addEventFilter("Event-Name","custom");
+    c.addEventFilter("Event-Name","background_job");
+    try {
+      Thread.sleep(5000);
+    }
+ catch (    InterruptedException ex) {
+      java.util.logging.Logger.getLogger(FreeswitchApplication.class.getName()).log(Level.SEVERE,null,ex);
+      return false;
+    }
   }
- catch (  InterruptedException ex) {
-    java.util.logging.Logger.getLogger(FreeswitchApplication.class.getName()).log(Level.SEVERE,null,ex);
-  }
-  if (heartbeatMonitor == null) {
-    heartbeatMonitor=new FreeswitchHeartbeatMonitor(manager,this);
-    this.addObserver(heartbeatMonitor);
-    heartbeatMonitor.start();
-  }
+  startHeartbeatMonitor();
+  return true;
 }

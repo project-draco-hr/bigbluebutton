@@ -6,23 +6,6 @@
   String OUTPUT_FILE="-sOutputFile=" + DESTINATION;
   String COMMAND=GHOSTSCRIPT_EXEC + SPACE + OPTIONS+ SPACE+ FIRST_PAGE+ SPACE+ LAST_PAGE+ SPACE+ OUTPUT_FILE+ SPACE+ noPdfMarkWorkaround+ SPACE+ presentationFile.getAbsolutePath();
   log.debug(COMMAND);
-  Process process;
-  int exitVal=-1;
-  try {
-    process=Runtime.getRuntime().exec(COMMAND);
-    exitVal=process.waitFor();
-  }
- catch (  InterruptedException e) {
-    log.error("InterruptedException while processing " + COMMAND);
-  }
-catch (  IOException e) {
-    log.error("IOException while processing " + COMMAND);
-  }
-  if (exitVal == 0) {
-    return true;
-  }
- else {
-    log.warn("Exit Value != 0 while for " + COMMAND);
-    return false;
-  }
+  System.out.println(COMMAND);
+  return new ExternalProcessExecutor().exec(COMMAND,60000);
 }

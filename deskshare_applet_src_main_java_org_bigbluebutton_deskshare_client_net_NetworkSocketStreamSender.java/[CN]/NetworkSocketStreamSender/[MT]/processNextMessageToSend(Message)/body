@@ -12,6 +12,7 @@
       BlockVideoData bv=new BlockVideoData(room,block.getPosition(),block.getVideoData(),false);
       BlockStreamProtocolEncoder.encodeBlock(bv,dataToSend);
     }
+    BlockStreamProtocolEncoder.encodeDelimiter(dataToSend);
     sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
     sendToStream(dataToSend);
     for (int i=0; i < changedBlocks.length; i++) {
@@ -21,5 +22,23 @@
  else   if (message.getMessageType() == Message.MessageType.CURSOR) {
     CursorMessage msg=(CursorMessage)message;
     sendCursor(msg.getMouseLocation(),msg.getRoom());
+  }
+ else   if (message.getMessageType() == Message.MessageType.POISON) {
+    System.out.println("Received poison message.");
+    try {
+      ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
+      dataToSend.reset();
+      BlockStreamProtocolEncoder.encodeEndStreamMessage(room,dataToSend,seqNumGenerator.getNext());
+      BlockStreamProtocolEncoder.encodeDelimiter(dataToSend);
+      sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
+      sendToStream(dataToSend);
+    }
+ catch (    IOException e) {
+      e.printStackTrace();
+    }
+ finally {
+      processMessages=false;
+      System.out.println("Disconnected socket stream");
+    }
   }
 }

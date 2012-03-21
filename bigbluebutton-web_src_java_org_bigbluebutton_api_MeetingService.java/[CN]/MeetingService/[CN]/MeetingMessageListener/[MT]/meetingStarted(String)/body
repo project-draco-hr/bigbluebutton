@@ -1,7 +1,15 @@
 {
   Meeting m=getMeeting(meetingId);
   if (m != null) {
-    log.debug("Setting meeting started time");
-    m.setStartTime(System.currentTimeMillis());
+    if (m.getStartTime() == 0) {
+      log.debug("Setting meeting " + meetingId + " started time");
+      m.setStartTime(System.currentTimeMillis());
+    }
+ else {
+      log.debug("The meeting " + meetingId + " has been started again...");
+    }
+    m.setEndTime(0);
+    return;
   }
+  log.warn("The meeting " + meetingId + " doesn't exist");
 }

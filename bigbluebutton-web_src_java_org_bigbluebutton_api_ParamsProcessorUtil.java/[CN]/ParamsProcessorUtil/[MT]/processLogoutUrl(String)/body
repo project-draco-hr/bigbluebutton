@@ -1,6 +1,6 @@
 {
   if (StringUtils.isEmpty(logoutUrl)) {
-    if (StringUtils.isEmpty(defaultLogoutUrl)) {
+    if ((StringUtils.isEmpty(defaultLogoutUrl)) || defaultLogoutUrl.equalsIgnoreCase("default")) {
       return defaultServerUrl;
     }
  else {

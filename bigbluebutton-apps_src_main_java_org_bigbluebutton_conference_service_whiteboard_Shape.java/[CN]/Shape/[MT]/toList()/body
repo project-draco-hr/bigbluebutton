@@ -4,7 +4,7 @@
   sendableList.add(type);
   sendableList.add(color);
   sendableList.add(thickness);
-  sendableList.add(parentWidth);
-  sendableList.add(parentHeight);
+  sendableList.add(id);
+  sendableList.add(status);
   return sendableList;
 }

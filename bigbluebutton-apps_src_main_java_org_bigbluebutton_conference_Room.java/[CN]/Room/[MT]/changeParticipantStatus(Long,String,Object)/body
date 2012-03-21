@@ -1,10 +1,11 @@
 {
   boolean present=false;
+  Participant p=null;
 synchronized (this) {
     present=participants.containsKey(userid);
     if (present) {
       log.debug("change participant status");
-      Participant p=participants.get(userid);
+      p=participants.get(userid);
       p.setStatus(status,value);
     }
   }
@@ -12,7 +13,7 @@ synchronized (this) {
     for (Iterator it=listeners.values().iterator(); it.hasNext(); ) {
       IRoomListener listener=(IRoomListener)it.next();
       log.debug("calling participantStatusChange on listener " + listener.getName());
-      listener.participantStatusChange(userid,status,value);
+      listener.participantStatusChange(p,status,value);
     }
   }
 }

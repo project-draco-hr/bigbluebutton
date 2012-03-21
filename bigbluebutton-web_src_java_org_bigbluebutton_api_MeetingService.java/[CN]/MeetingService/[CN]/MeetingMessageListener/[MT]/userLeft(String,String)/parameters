@@ -1,2 +1,2 @@
 String meetingId
-String userId
+String internalUserId
