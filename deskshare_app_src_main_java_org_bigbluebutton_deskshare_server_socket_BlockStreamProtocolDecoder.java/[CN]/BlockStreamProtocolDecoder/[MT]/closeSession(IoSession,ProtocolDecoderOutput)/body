@@ -1,0 +1,14 @@
+{
+  log.info("Closing session");
+  int seqNum=0;
+  String room=(String)session.getAttribute(ROOM,null);
+  if (room != null) {
+    log.info("Closing session [" + room + "]. ");
+    CaptureEndBlockEvent ceb=new CaptureEndBlockEvent(room,seqNum);
+    out.write(ceb);
+  }
+ else {
+    log.info("Cannot determine session to close.");
+  }
+  CloseFuture future=session.close(true);
+}
