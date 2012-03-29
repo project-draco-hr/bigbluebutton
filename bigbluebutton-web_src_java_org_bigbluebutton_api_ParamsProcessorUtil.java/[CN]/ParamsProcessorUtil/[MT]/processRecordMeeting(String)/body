@@ -1,4 +1,8 @@
 {
+  if (disableRecordingDefault) {
+    log.info("Recording is turned OFF by default.");
+    return false;
+  }
   boolean rec=false;
   if (!StringUtils.isEmpty(record)) {
     try {
