@@ -1,0 +1,13 @@
+{
+  String newdate=olddate;
+  try {
+    SimpleDateFormat sdf=new SimpleDateFormat("EEE MMM d HH:mm:ss z yyyy");
+    Calendar cal=Calendar.getInstance();
+    sdf.setLenient(false);
+    cal.setTime(sdf.parse(olddate));
+    newdate=Long.toString(cal.getTimeInMillis());
+  }
+ catch (  ParseException pe) {
+  }
+  return newdate;
+}
