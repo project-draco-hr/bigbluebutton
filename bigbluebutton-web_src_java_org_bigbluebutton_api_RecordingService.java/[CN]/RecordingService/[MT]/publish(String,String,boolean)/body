@@ -6,7 +6,6 @@
       if (recordings[f].getName().equalsIgnoreCase(recordingId)) {
         Recording r=getRecordingInfo(path,recordingId,format[i]);
         if (r != null) {
-          log.debug("Recording is NOT Null!");
           File dest;
           if (publish) {
             dest=new File(publishedDir + File.separatorChar + format[i]);
