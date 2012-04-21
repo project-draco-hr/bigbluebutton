@@ -2,7 +2,7 @@
   int start=in.position();
   byte[] endFrame=new byte[END_FRAME.length];
   int curpos=0;
-  while (in.remaining() > END_FRAME.length) {
+  while (in.remaining() >= END_FRAME.length) {
     curpos=in.position();
     in.get(endFrame);
     if (Arrays.equals(endFrame,END_FRAME)) {
