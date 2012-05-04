@@ -1,0 +1,16 @@
+{
+  try {
+    Socket socket=new Socket();
+    InetSocketAddress endpoint=new InetSocketAddress(host,port);
+    socket.connect(endpoint,5000);
+    socket.close();
+    return true;
+  }
+ catch (  UnknownHostException e) {
+    System.out.println("Unknown host [" + host + "]");
+  }
+catch (  IOException e) {
+    System.out.println("Cannot connect to [" + host + ":"+ port+ "]");
+  }
+  return false;
+}
