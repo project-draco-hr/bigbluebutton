@@ -2,8 +2,8 @@
   if (message.getMessageType() == Message.MessageType.BLOCK) {
     long start=System.currentTimeMillis();
     Integer[] changedBlocks=((BlockMessage)message).getBlocks();
-    String blockSize="Block length [";
-    String encodeTime="Encode times [";
+    String blockSize="Http[" + id + "] Block length [";
+    String encodeTime="Http[" + id + "]Encode times [";
     long encStart=0;
     long encEnd=0;
     int totalBytes=0;
@@ -25,7 +25,7 @@
       retriever.blockSent((Integer)changedBlocks[i]);
     }
     long end=System.currentTimeMillis();
-    System.out.println("[HTTP Thread " + id + "] Sending "+ changedBlocks.length+ " blocks took "+ (end - start)+ " millis");
+    System.out.println("[HTTP " + id + "] Sending "+ changedBlocks.length+ " blocks took "+ (end - start)+ " millis");
   }
  else   if (message.getMessageType() == Message.MessageType.CURSOR) {
     CursorMessage msg=(CursorMessage)message;

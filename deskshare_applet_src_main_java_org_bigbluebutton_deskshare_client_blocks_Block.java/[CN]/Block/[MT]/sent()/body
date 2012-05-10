@@ -1,3 +1,4 @@
 {
+  sentCount.incrementAndGet();
   dirtyBlock.set(false);
 }
