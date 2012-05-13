@@ -1,3 +1,4 @@
 int pixels[]
 int width
 int height
+boolean grayscale
