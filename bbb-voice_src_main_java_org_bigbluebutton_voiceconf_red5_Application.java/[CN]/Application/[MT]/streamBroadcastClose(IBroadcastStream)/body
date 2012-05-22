@@ -6,7 +6,6 @@
   IConnection conn=Red5.getConnectionLocal();
   String peerId=(String)conn.getAttribute("VOICE_CONF_PEER");
   if (peerId != null) {
-    super.streamPublishStart(stream);
     sipPeerManager.stopTalkStream(peerId,clientId,stream,conn.getScope());
     super.streamBroadcastClose(stream);
   }

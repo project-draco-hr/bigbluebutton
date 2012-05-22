@@ -1,0 +1,10 @@
+{
+  String room=(String)session.getAttribute(ROOM,null);
+  if (room != null) {
+    log.info("Closing session [" + room + "]. ");
+  }
+ else {
+    log.info("Cannot determine session to close.");
+  }
+  CloseFuture future=session.close(true);
+}

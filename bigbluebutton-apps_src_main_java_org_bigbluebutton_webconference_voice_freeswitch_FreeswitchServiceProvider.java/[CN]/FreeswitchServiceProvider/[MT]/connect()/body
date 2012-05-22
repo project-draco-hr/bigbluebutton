@@ -7,5 +7,5 @@
  catch (  InboundConnectionFailure e) {
     log.error("Connect to FreeSwitch ESL socket failed",e);
   }
-  return false;
+  return true;
 }

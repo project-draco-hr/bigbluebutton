@@ -1,0 +1,20 @@
+{
+  try {
+    byte[] header=new byte[HEADER.length];
+    in.get(header,0,HEADER.length);
+    if (!Arrays.equals(header,HEADER)) {
+      log.info("Invalid header. Discarding. {}",header);
+      return;
+    }
+    int messageLength=in.getInt();
+    if (in.remaining() < messageLength) {
+      log.info("Invalid length. Discarding. [{} < {}]",in.remaining(),messageLength);
+      return;
+    }
+    decodeMessage(session,in,out);
+    return;
+  }
+ catch (  Exception e) {
+    log.warn("Failed to parse frame. Discarding.");
+  }
+}
