@@ -1,0 +1,4 @@
+{
+  this.name=name;
+  this.listeners=new ConcurrentHashMap<String,ILayoutRoomListener>();
+}
