@@ -4,7 +4,9 @@
   objects[1]=type;
   objects[2]=color;
   objects[3]=thickness;
-  objects[4]=id;
-  objects[5]=status;
+  objects[4]=fill;
+  objects[5]=transparent;
+  objects[6]=id;
+  objects[7]=status;
   return objects;
 }

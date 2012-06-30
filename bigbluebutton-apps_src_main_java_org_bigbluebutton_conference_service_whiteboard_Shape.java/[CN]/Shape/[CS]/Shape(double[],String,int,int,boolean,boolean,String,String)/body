@@ -3,6 +3,8 @@
   this.type=type;
   this.color=color;
   this.thickness=thickness;
+  this.fill=fill;
+  this.transparent=transparent;
   this.id=id;
   this.status=status;
 }

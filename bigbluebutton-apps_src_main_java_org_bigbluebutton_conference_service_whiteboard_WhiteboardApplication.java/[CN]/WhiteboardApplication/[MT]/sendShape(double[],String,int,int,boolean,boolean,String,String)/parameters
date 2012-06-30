@@ -2,5 +2,7 @@ double[] shape
 String type
 int color
 int thickness
+boolean fill
+boolean transparency
 String id
 String status
