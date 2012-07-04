@@ -1,0 +1,4 @@
+{
+  List<Object[]> graphicsList=roomManager.getRoom(getLocalScope().getName()).getGraphicObjects();
+  return graphicsList;
+}

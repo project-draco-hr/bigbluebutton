@@ -1,5 +1,6 @@
 {
-  Shape newShape=new Shape(shape,type,color,thickness,fill,transparency,id,status);
+  ShapeGraphic newShape=new ShapeGraphic(shape,type,color,thickness,fill,transparency,id,status);
+  newShape.ID=Integer.toString(roomManager.getRoom(getLocalScope().getName()).getUniqueWBGraphicIdentifier());
   roomManager.getRoom(getLocalScope().getName()).addShape(newShape);
   ISharedObject drawSO=getSharedObject(getLocalScope(),WHITEBOARD_SHARED_OBJECT);
   List<Object> arguments=newShape.toList();

@@ -1,0 +1,8 @@
+String text
+int textColor
+int bgColor
+boolean bgColorVisible
+int x
+int y
+String id
+String status

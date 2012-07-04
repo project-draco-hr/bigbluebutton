@@ -1,0 +1,13 @@
+{
+  Object[] objects=new Object[10];
+  objects[0]=graphicType;
+  objects[1]=shape;
+  objects[2]=type;
+  objects[3]=color;
+  objects[4]=thickness;
+  objects[5]=fill;
+  objects[6]=transparent;
+  objects[7]=ID;
+  objects[8]=status;
+  return objects;
+}

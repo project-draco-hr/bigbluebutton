@@ -1,3 +1,4 @@
 {
-  if (shapes.size() > 0)   shapes.remove(shapes.size() - 1);
+  List<String> list=new ArrayList<String>(graphicObjs.keySet());
+  graphicObjs.remove(list.get(list.size() - 1));
 }

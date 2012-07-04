@@ -1,0 +1,7 @@
+{
+  List<Object[]> graphics=new ArrayList<Object[]>();
+  for (  WBGraphic g : graphicObjs.values()) {
+    graphics.add(g.toObjectArray());
+  }
+  return graphics;
+}

@@ -1,0 +1,7 @@
+{
+  List<Object[]> texts=new ArrayList<Object[]>();
+  for (  WBGraphic g : graphicObjs.values()) {
+    if (g.graphicType == Type.TEXT)     texts.add(g.toObjectArray());
+  }
+  return texts;
+}

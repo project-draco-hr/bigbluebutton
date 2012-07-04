@@ -1,3 +1,3 @@
 {
-  shapes.clear();
+  graphicObjs.clear();
 }

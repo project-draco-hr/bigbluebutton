@@ -1,4 +1,4 @@
 {
-  log.info("WhiteboardApplication - Getting number of shapes for page: " + pageNum);
-  return application.getNumShapesOnPage(pageNum);
+  log.info("WhiteboardApplication - Getting number of graphics for page: " + pageNum);
+  return application.getNumGraphicsOnPage(pageNum);
 }
