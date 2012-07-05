@@ -1,8 +1,11 @@
 {
   ShapeGraphic newShape=new ShapeGraphic(shape,type,color,thickness,fill,transparency,id,status);
-  newShape.ID=Integer.toString(roomManager.getRoom(getLocalScope().getName()).getUniqueWBGraphicIdentifier());
-  roomManager.getRoom(getLocalScope().getName()).addShape(newShape);
+  if (status.equals("DRAW_END")) {
+    newShape.ID=Integer.toString(roomManager.getRoom(getLocalScope().getName()).getUniqueWBGraphicIdentifier());
+    roomManager.getRoom(getLocalScope().getName()).addShape(newShape);
+  }
+  System.out.println(roomManager.getRoom(getLocalScope().getName()).getActivePresentation().getActivePage().getNumGraphicsOnPage());
   ISharedObject drawSO=getSharedObject(getLocalScope(),WHITEBOARD_SHARED_OBJECT);
   List<Object> arguments=newShape.toList();
-  drawSO.sendMessage("addSegment",arguments);
+  drawSO.sendMessage("addSegmentNormally",arguments);
 }
