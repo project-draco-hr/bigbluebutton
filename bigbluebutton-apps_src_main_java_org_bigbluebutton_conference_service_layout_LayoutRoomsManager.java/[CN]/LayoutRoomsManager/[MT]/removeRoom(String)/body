@@ -1,0 +1,4 @@
+{
+  log.debug("In LayoutRoomsManager remove room " + name);
+  rooms.remove(name);
+}
