@@ -6,5 +6,5 @@
   }
   ISharedObject drawSO=getSharedObject(getLocalScope(),WHITEBOARD_SHARED_OBJECT);
   List<Object> arguments=newText.toList();
-  drawSO.sendMessage("addTextNormally",arguments);
+  drawSO.sendMessage("addText",arguments);
 }

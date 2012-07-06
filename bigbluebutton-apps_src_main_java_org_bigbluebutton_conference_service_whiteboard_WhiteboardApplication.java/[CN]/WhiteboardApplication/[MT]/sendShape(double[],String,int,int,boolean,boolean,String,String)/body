@@ -7,5 +7,5 @@
   System.out.println(roomManager.getRoom(getLocalScope().getName()).getActivePresentation().getActivePage().getNumGraphicsOnPage());
   ISharedObject drawSO=getSharedObject(getLocalScope(),WHITEBOARD_SHARED_OBJECT);
   List<Object> arguments=newShape.toList();
-  drawSO.sendMessage("addSegmentNormally",arguments);
+  drawSO.sendMessage("addSegment",arguments);
 }
