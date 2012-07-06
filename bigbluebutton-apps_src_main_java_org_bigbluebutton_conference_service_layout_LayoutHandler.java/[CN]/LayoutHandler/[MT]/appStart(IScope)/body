@@ -1,0 +1,4 @@
+{
+  log.debug(APP + ":appStart " + scope.getName());
+  return true;
+}
