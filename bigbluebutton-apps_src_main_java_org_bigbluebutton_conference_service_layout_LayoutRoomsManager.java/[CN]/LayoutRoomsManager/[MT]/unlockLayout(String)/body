@@ -1,0 +1,9 @@
+{
+  LayoutRoom r=getRoom(room);
+  if (r != null) {
+    r.unlockLayout();
+  }
+ else {
+    log.warn("unlockLayout: sending message to a non-existing room " + room);
+  }
+}

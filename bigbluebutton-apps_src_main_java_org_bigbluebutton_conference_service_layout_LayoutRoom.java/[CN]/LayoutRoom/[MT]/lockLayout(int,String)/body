@@ -1,0 +1,6 @@
+{
+  locked=true;
+  modifierId=userId;
+  currentLayout=layout;
+  updateLayout();
+}

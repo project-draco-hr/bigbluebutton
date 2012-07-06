@@ -1,0 +1,5 @@
+{
+  log.debug("Layout unlocked");
+  String roomName=Red5.getConnectionLocal().getScope().getName();
+  application.unlockLayout(roomName);
+}
