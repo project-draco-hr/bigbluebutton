@@ -5,6 +5,7 @@
   this.color=color;
   this.thickness=thickness;
   this.fill=fill;
+  this.fillColor=fillColor;
   this.transparent=transparent;
   this.ID=id;
   this.status=status;

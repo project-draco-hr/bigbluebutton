@@ -6,6 +6,7 @@
   sendableList.add(color);
   sendableList.add(thickness);
   sendableList.add(fill);
+  sendableList.add(fillColor);
   sendableList.add(transparent);
   sendableList.add(ID);
   sendableList.add(status);

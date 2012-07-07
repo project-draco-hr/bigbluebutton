@@ -6,8 +6,9 @@
   objects[3]=color;
   objects[4]=thickness;
   objects[5]=fill;
-  objects[6]=transparent;
-  objects[7]=ID;
-  objects[8]=status;
+  objects[6]=fillColor;
+  objects[7]=transparent;
+  objects[8]=ID;
+  objects[9]=status;
   return objects;
 }

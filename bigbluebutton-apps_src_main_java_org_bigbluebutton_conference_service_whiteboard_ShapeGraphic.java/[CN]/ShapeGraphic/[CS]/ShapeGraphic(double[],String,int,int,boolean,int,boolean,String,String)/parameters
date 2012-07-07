@@ -3,6 +3,7 @@ String type
 int color
 int thickness
 boolean fill
-boolean transparency
+int fillColor
+boolean transparent
 String id
 String status

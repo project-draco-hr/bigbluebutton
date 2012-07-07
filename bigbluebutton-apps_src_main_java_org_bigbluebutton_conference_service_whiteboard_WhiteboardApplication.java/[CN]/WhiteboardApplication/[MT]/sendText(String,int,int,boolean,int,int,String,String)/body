@@ -1,8 +1,11 @@
 {
   TextGraphic newText=new TextGraphic(text,textColor,bgColor,bgColorVisible,x,y,id,status);
-  if (status.equals("textPublished")) {
+  if (!(text.trim().length() > 0))   return;
+  if (status.equals("textCreated")) {
     newText.ID=Integer.toString(roomManager.getRoom(getLocalScope().getName()).getUniqueWBGraphicIdentifier());
     roomManager.getRoom(getLocalScope().getName()).addText(newText);
+  }
+ else {
   }
   ISharedObject drawSO=getSharedObject(getLocalScope(),WHITEBOARD_SHARED_OBJECT);
   List<Object> arguments=newText.toList();
