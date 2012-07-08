@@ -1,0 +1,4 @@
+{
+  activePresentation.getActivePage().modifyTextGraphic(key,text);
+  notifyAddText(activePresentation,text);
+}

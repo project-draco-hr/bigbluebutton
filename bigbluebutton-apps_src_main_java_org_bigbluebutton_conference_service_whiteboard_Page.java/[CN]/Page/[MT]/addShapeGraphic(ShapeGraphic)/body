@@ -1,3 +1,4 @@
 {
   graphicObjs.put(shape.ID,shape);
+  lastGraphicIndex++;
 }

@@ -1,4 +1,4 @@
 {
-  this.graphicObjs=new LinkedHashMap<String,WBGraphic>();
+  this.graphicObjs=new HashMap<String,WBGraphic>();
   this.setPageIndex(pageIndex);
 }
