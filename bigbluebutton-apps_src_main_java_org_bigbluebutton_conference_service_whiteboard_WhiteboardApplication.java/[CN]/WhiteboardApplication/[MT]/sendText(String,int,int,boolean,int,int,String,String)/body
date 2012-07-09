@@ -1,6 +1,5 @@
 {
   TextGraphic newText=new TextGraphic(text,textColor,bgColor,bgColorVisible,x,y,id,status);
-  if (!(text.trim().length() > 0))   return;
   if (status.equals("textCreated")) {
     newText.ID=Integer.toString(roomManager.getRoom(getLocalScope().getName()).getUniqueWBGraphicIdentifier());
     roomManager.getRoom(getLocalScope().getName()).addText(newText);
