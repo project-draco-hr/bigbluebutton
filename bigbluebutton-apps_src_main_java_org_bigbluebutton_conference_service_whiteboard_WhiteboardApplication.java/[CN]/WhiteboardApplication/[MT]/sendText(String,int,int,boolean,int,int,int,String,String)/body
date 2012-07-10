@@ -1,11 +1,10 @@
 {
-  TextGraphic newText=new TextGraphic(text,textColor,bgColor,bgColorVisible,x,y,id,status);
+  TextGraphic newText=new TextGraphic(text,textColor,bgColor,bgColorVisible,x,y,textSize,id,status);
   if (status.equals("textCreated")) {
     newText.ID=Integer.toString(roomManager.getRoom(getLocalScope().getName()).getUniqueWBGraphicIdentifier());
     roomManager.getRoom(getLocalScope().getName()).addText(newText);
   }
  else {
-    System.out.println("Modifying text with ID: " + newText.ID);
     roomManager.getRoom(getLocalScope().getName()).modifyText(newText.ID,newText);
   }
   ISharedObject drawSO=getSharedObject(getLocalScope(),WHITEBOARD_SHARED_OBJECT);

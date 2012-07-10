@@ -6,6 +6,7 @@
   this.bgColorVisible=bgColorVisible;
   this.x=x;
   this.y=y;
+  this.textSize=textSize;
   this.ID=id;
   this.status=status;
 }

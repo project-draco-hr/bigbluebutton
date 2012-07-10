@@ -1,4 +1,3 @@
 {
   graphicObjs.put(text.ID,text);
-  lastGraphicIndex++;
 }

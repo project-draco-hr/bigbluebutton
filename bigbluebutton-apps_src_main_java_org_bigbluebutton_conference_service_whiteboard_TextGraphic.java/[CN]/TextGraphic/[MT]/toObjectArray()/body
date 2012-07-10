@@ -7,7 +7,8 @@
   objects[4]=bgColorVisible;
   objects[5]=x;
   objects[6]=y;
-  objects[7]=ID;
-  objects[8]=status;
+  objects[7]=textSize;
+  objects[8]=ID;
+  objects[9]=status;
   return objects;
 }
