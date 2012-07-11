@@ -1,0 +1,6 @@
+{
+  System.out.println("toggling grid mode ");
+  roomManager.getRoom(getLocalScope().getName()).toggleGrid();
+  ISharedObject drawSO=getSharedObject(getLocalScope(),WHITEBOARD_SHARED_OBJECT);
+  drawSO.sendMessage("toggleGridCallback",new ArrayList<Object>());
+}

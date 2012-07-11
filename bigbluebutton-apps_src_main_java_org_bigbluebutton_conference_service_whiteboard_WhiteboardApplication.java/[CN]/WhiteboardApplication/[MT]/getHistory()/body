@@ -1,5 +1,5 @@
 {
-  List<Object[]> graphicsList=roomManager.getRoom(getLocalScope().getName()).getGraphicObjects();
+  List<Object[]> graphicsList=roomManager.getRoom(getLocalScope().getName()).getHistory();
   for (  Object[] o : graphicsList) {
     System.out.println();
     for (int i=0; i < o.length; i++) {

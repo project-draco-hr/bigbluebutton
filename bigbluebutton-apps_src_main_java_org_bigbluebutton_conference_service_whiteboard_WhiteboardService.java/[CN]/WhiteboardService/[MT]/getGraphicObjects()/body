@@ -1,5 +1,0 @@
-{
-  log.info("WhiteboardApplication - Returning graphics");
-  List<Object[]> graphicObjs=application.getGraphicObjects();
-  return graphicObjs;
-}
