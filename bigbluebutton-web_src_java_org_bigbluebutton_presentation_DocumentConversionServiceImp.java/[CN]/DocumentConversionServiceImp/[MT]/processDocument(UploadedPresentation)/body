@@ -11,7 +11,6 @@
     }
  else     if (SupportedFileTypes.isPdfFile(fileType)) {
       pdfToSwfSlidesGenerationService.generateSlides(pres);
-      pdfToTextFilesGenerationService.generateFiles(pres);
     }
  else     if (SupportedFileTypes.isImageFile(fileType)) {
       imageToSwfSlidesGenerationService.generateSlides(pres);

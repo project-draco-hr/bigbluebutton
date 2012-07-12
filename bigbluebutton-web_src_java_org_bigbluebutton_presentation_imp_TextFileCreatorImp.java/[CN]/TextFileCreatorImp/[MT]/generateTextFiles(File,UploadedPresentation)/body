@@ -1,0 +1,22 @@
+{
+  boolean success=true;
+  String source=pres.getUploadedFile().getAbsolutePath();
+  String dest;
+  String COMMAND="";
+  if (SupportedFileTypes.isImageFile(pres.getFileType())) {
+    log.info("Image not supported for convert to textfile");
+  }
+ else {
+    dest=textfilesDir.getAbsolutePath() + File.separator + "slide-";
+    for (int i=1; i <= pres.getNumberOfPages(); i++) {
+      COMMAND=IMAGEMAGICK_DIR + "/pdftotext -raw -nopgbrk -f " + i+ " -l "+ i+ " "+ source+ " "+ dest+ i+ ".txt";
+      boolean done=new ExternalProcessExecutor().exec(COMMAND,60000);
+      if (!done) {
+        success=false;
+        log.warn("Failed to create textfiles: " + COMMAND);
+        break;
+      }
+    }
+  }
+  return success;
+}
