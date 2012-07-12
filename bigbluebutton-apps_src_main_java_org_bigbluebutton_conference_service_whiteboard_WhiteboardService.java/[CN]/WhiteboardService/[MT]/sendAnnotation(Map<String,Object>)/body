@@ -1,0 +1,15 @@
+{
+  for (  Map.Entry<String,Object> entry : annotation.entrySet()) {
+    String key=entry.getKey();
+    Object value=entry.getValue();
+    if (key.equals("points")) {
+      String points="points=[";
+      ArrayList<Double> v=(ArrayList<Double>)value;
+      log.debug(points + pointsToString(v) + "]");
+    }
+ else {
+      log.debug(key + "=[" + value+ "]");
+    }
+  }
+  application.sendAnnotation(annotation);
+}

@@ -1,4 +1,5 @@
 {
+  annotations=new ArrayList<Map<String,Object>>();
   this.shapes=new ArrayCollection<Shape>();
   this.setPageIndex(pageIndex);
 }

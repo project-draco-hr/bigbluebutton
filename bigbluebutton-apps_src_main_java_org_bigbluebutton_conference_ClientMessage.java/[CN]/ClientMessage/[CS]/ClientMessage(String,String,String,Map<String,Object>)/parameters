@@ -1,0 +1,4 @@
+String type
+String dest
+String messageName
+Map<String,Object> message

@@ -1,0 +1,7 @@
+{
+  ISharedObject drawSO=getSharedObject(getLocalScope(),WHITEBOARD_SHARED_OBJECT);
+  roomManager.getRoom(getLocalScope().getName()).addAnnotation(annotation);
+  List<Object> arguments=new ArrayList<Object>();
+  arguments.add(annotation);
+  drawSO.sendMessage("receiveAnnotation",arguments);
+}
