@@ -1,0 +1,5 @@
+{
+  log.debug("Layout locked");
+  String roomName=Red5.getConnectionLocal().getScope().getName();
+  application.lockLayout(roomName,userId,layout);
+}

@@ -1,0 +1,3 @@
+{
+  roomsManager.lockLayout(room,userId,layout);
+}

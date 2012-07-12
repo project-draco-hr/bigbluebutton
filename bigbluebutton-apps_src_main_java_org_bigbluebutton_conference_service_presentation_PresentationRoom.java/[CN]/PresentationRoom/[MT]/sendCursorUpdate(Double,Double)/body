@@ -1,0 +1,10 @@
+{
+  this.xPercent=xPercent;
+  this.yPercent=yPercent;
+  for (Iterator iter=listeners.values().iterator(); iter.hasNext(); ) {
+    log.debug("calling on listener");
+    IPresentationRoomListener listener=(IPresentationRoomListener)iter.next();
+    log.debug("calling sendCursorUpdate on listener " + listener.getName());
+    listener.sendCursorUpdate(xPercent,yPercent);
+  }
+}

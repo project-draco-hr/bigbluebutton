@@ -1,0 +1,8 @@
+{
+  for (Iterator<ILayoutRoomListener> iter=listeners.values().iterator(); iter.hasNext(); ) {
+    log.debug("calling on listener");
+    ILayoutRoomListener listener=(ILayoutRoomListener)iter.next();
+    log.debug("calling updateLayout on listener " + listener.getName());
+    listener.updateLayout(currentLayout());
+  }
+}
