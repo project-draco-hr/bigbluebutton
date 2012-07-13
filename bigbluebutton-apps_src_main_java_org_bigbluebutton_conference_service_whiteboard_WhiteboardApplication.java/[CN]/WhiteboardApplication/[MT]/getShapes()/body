@@ -1,4 +1,0 @@
-{
-  List<Map<String,Object>> shapesList=roomManager.getRoom(getLocalScope().getName()).getShapes();
-  return shapesList;
-}

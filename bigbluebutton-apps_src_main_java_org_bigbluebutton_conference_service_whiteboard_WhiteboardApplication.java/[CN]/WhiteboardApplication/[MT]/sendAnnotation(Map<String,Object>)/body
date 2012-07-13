@@ -1,7 +1,7 @@
 {
-  ISharedObject drawSO=getSharedObject(getLocalScope(),WHITEBOARD_SHARED_OBJECT);
+  Map<String,Object> message=new HashMap<String,Object>();
   roomManager.getRoom(getLocalScope().getName()).addAnnotation(annotation);
-  List<Object> arguments=new ArrayList<Object>();
-  arguments.add(annotation);
-  drawSO.sendMessage("receiveAnnotation",arguments);
+  message.put("annotation",annotation);
+  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getLocalScope().getName(),"NewAnnotationCommand",annotation);
+  connInvokerService.sendMessage(m);
 }

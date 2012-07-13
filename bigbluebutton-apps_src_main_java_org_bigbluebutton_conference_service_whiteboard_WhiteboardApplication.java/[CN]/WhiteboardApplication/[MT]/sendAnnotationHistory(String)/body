@@ -1,6 +1,8 @@
 {
   Map<String,Object> message=new HashMap<String,Object>();
-  message.put("type","pencil");
-  ClientMessage m=new ClientMessage(ClientMessage.DIRECT,userid,"receiveAnnotationHistory",message);
+  List<Map<String,Object>> annotations=roomManager.getRoom(getLocalScope().getName()).getAnnotations();
+  message.put("count",new Integer(annotations.size()));
+  message.put("annotations",annotations);
+  ClientMessage m=new ClientMessage(ClientMessage.DIRECT,userid,"RequestAnnotationHistoryReply",message);
   connInvokerService.sendMessage(m);
 }

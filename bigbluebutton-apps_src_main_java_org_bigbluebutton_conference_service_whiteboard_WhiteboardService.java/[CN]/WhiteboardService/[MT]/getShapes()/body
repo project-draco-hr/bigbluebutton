@@ -1,5 +1,0 @@
-{
-  log.info("WhiteboardApplication - Returning shapes");
-  List<Map<String,Object>> shapes=application.getShapes();
-  application.sendAnnotationHistory(Red5.getConnectionLocal().getClient().getId());
-}

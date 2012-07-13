@@ -3,6 +3,5 @@
   for (  Double i : points) {
     datapoints+=i + ",";
   }
-  log.debug("Data Point = " + datapoints);
   return datapoints.substring(0,datapoints.length() - 1);
 }
