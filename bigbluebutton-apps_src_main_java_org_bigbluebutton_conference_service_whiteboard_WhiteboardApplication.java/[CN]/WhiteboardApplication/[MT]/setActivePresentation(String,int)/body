@@ -1,5 +1,5 @@
 {
-  WhiteboardRoom room=roomManager.getRoom(getLocalScope().getName());
+  WhiteboardRoom room=roomManager.getRoom(getMeetingId());
   if (room.presentationExists(name)) {
     room.setActivePresentation(name);
   }

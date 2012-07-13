@@ -1,6 +1,6 @@
 {
-  roomManager.getRoom(getLocalScope().getName()).clear();
+  roomManager.getRoom(getMeetingId()).clear();
   Map<String,Object> message=new HashMap<String,Object>();
-  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getLocalScope().getName(),"WhiteboardClearCommand",message);
+  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getMeetingId(),"WhiteboardClearCommand",message);
   connInvokerService.sendMessage(m);
 }

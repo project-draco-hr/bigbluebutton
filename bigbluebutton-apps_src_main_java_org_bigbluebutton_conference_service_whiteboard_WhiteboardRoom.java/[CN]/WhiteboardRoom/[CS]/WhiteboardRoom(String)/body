@@ -1,5 +1,5 @@
 {
-  this.scope=scope;
+  this.id=id;
   this.presentations=new ArrayList<Presentation>();
   listeners=new ConcurrentHashMap<String,IWhiteboardRoomListener>();
 }

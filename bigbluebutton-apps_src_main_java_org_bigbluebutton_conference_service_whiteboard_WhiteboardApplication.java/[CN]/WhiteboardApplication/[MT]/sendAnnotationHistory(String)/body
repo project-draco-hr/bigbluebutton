@@ -1,6 +1,6 @@
 {
   Map<String,Object> message=new HashMap<String,Object>();
-  List<Map<String,Object>> annotations=roomManager.getRoom(getLocalScope().getName()).getAnnotations();
+  List<Map<String,Object>> annotations=roomManager.getRoom(getMeetingId()).getAnnotations();
   message.put("count",new Integer(annotations.size()));
   message.put("annotations",annotations);
   ClientMessage m=new ClientMessage(ClientMessage.DIRECT,userid,"WhiteboardRequestAnnotationHistoryReply",message);
