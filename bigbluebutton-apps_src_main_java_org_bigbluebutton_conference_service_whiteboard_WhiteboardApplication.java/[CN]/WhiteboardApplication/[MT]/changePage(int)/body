@@ -1,0 +1,9 @@
+{
+  Presentation pres=roomManager.getRoom(getLocalScope().getName()).getActivePresentation();
+  pres.setActivePage(pageNum);
+  Map<String,Object> message=new HashMap<String,Object>();
+  message.put("pageNum",pageNum);
+  message.put("numAnnotations",pres.getActivePage().getNumShapesOnPage());
+  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getLocalScope().getName(),"WhiteboardChangePageCommand",message);
+  connInvokerService.sendMessage(m);
+}

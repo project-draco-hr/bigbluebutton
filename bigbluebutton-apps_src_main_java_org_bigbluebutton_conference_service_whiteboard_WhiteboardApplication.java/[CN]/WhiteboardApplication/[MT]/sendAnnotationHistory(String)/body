@@ -3,6 +3,6 @@
   List<Map<String,Object>> annotations=roomManager.getRoom(getLocalScope().getName()).getAnnotations();
   message.put("count",new Integer(annotations.size()));
   message.put("annotations",annotations);
-  ClientMessage m=new ClientMessage(ClientMessage.DIRECT,userid,"RequestAnnotationHistoryReply",message);
+  ClientMessage m=new ClientMessage(ClientMessage.DIRECT,userid,"WhiteboardRequestAnnotationHistoryReply",message);
   connInvokerService.sendMessage(m);
 }

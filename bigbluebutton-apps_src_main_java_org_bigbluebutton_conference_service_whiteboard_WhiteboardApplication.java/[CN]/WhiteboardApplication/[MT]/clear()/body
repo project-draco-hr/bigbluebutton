@@ -1,5 +1,6 @@
 {
   roomManager.getRoom(getLocalScope().getName()).clear();
-  ISharedObject drawSO=getSharedObject(getLocalScope(),WHITEBOARD_SHARED_OBJECT);
-  drawSO.sendMessage("clear",new ArrayList<Object>());
+  Map<String,Object> message=new HashMap<String,Object>();
+  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getLocalScope().getName(),"WhiteboardClearCommand",message);
+  connInvokerService.sendMessage(m);
 }

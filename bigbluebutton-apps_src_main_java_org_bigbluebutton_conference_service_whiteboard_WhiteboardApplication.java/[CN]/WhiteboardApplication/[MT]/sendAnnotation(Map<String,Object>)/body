@@ -2,6 +2,6 @@
   Map<String,Object> message=new HashMap<String,Object>();
   roomManager.getRoom(getLocalScope().getName()).addAnnotation(annotation);
   message.put("annotation",annotation);
-  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getLocalScope().getName(),"NewAnnotationCommand",annotation);
+  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getLocalScope().getName(),"WhiteboardNewAnnotationCommand",annotation);
   connInvokerService.sendMessage(m);
 }

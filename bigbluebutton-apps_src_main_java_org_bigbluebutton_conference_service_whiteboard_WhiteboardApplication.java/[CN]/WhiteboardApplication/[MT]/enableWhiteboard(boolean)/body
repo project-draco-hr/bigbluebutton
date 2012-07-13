@@ -2,6 +2,6 @@
   roomManager.getRoom(getLocalScope().getName()).setWhiteboardEnabled(enabled);
   Map<String,Object> message=new HashMap<String,Object>();
   message.put("enabled",roomManager.getRoom(getLocalScope().getName()).isWhiteboardEnabled());
-  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getLocalScope().getName(),"EnableWhiteboardCommand",message);
+  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getLocalScope().getName(),"WhiteboardEnableWhiteboardCommand",message);
   connInvokerService.sendMessage(m);
 }
