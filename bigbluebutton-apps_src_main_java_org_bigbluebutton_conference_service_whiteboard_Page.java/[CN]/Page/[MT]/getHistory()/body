@@ -6,5 +6,6 @@
   Object[] isGridArray=new Object[1];
   isGridArray[0]=isGrid;
   graphics.add(isGridArray);
+  System.out.println("There are currently " + graphicObjs.size() + " graphical objects on the current page");
   return graphics;
 }
