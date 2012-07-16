@@ -1,4 +1,4 @@
 {
-  log.info("WhiteboardApplication - Deleting last shape");
+  log.info("WhiteboardApplication - Deleting last graphic");
   application.undo();
 }

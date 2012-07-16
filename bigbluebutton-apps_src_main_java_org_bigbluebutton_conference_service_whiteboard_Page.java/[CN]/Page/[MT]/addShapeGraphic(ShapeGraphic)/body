@@ -1,0 +1,4 @@
+{
+  graphicObjs.put(shape.ID,shape);
+  System.out.println("Total shape count: " + graphicObjs.size());
+}

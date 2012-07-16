@@ -1,0 +1,4 @@
+{
+  log.info("WhiteboardApplication - Sending text");
+  application.sendText(text,textColor,bgColor,bgColorVisible,x,y,textSize,id,status);
+}
