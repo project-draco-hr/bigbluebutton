@@ -1,7 +1,7 @@
 {
 synchronized (pixelsLock) {
     try {
-      capturedPixels=ScreenVideoEncoder.getPixels(capturedScreen,getX(),getY(),getWidth(),getHeight());
+      capturedPixels=ScreenVideoEncoder.getPixels(capturedScreen,getX(),getY(),getWidth(),getHeight(),useSVC2);
     }
  catch (    PixelExtractException e) {
       System.out.println(e.toString());
