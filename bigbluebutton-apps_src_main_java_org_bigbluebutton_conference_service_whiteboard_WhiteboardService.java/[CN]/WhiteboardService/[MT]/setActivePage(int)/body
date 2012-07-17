@@ -1,4 +1,0 @@
-{
-  log.info("WhiteboardApplication - Getting number of shapes for page: " + pageNum);
-  application.changePage(pageNum);
-}
