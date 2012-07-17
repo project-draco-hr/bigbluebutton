@@ -4,7 +4,27 @@
   String dest;
   String COMMAND="";
   if (SupportedFileTypes.isImageFile(pres.getFileType())) {
-    log.info("Image not supported for convert to textfile");
+    dest=textfilesDir.getAbsolutePath() + File.separator + "slide-1.txt";
+    String text="No text could be retrieved for the slide";
+    File file=new File(dest);
+    Writer writer=null;
+    try {
+      writer=new BufferedWriter(new FileWriter(file));
+      writer.write(text);
+    }
+ catch (    IOException e) {
+      log.error("Error: " + e.getMessage());
+      success=false;
+    }
+ finally {
+      try {
+        writer.close();
+      }
+ catch (      IOException e) {
+        log.error("Error: " + e.getMessage());
+        success=false;
+      }
+    }
   }
  else {
     dest=textfilesDir.getAbsolutePath() + File.separator + "slide-";
