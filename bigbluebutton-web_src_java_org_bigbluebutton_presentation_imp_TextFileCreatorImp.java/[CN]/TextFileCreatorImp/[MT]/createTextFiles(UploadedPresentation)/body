@@ -1,0 +1,14 @@
+{
+  boolean success=false;
+  File textfilesDir=determineTextfilesDirectory(pres.getUploadedFile());
+  if (!textfilesDir.exists())   textfilesDir.mkdir();
+  cleanDirectory(textfilesDir);
+  try {
+    success=generateTextFiles(textfilesDir,pres);
+  }
+ catch (  InterruptedException e) {
+    log.warn("Interrupted Exception while generating thumbnails.");
+    success=false;
+  }
+  return success;
+}
