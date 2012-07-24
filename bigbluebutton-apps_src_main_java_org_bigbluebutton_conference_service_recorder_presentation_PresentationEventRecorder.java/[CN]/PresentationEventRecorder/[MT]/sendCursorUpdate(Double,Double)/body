@@ -1,0 +1,9 @@
+{
+  log.debug("RECORD module:presentation event:CursorMoveEvent");
+  CursorUpdateRecordEvent event=new CursorUpdateRecordEvent();
+  event.setMeetingId(session);
+  event.setTimestamp(System.currentTimeMillis());
+  event.setXPercent(xPercent.doubleValue());
+  event.setYPercent(yPercent.doubleValue());
+  recorder.record(session,event);
+}
