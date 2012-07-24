@@ -1,7 +1,0 @@
-{
-  Map<String,Object> message=new HashMap<String,Object>();
-  roomManager.getRoom(getMeetingId()).addAnnotation(annotation);
-  message.put("annotation",annotation);
-  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getMeetingId(),"WhiteboardNewAnnotationCommand",annotation);
-  connInvokerService.sendMessage(m);
-}

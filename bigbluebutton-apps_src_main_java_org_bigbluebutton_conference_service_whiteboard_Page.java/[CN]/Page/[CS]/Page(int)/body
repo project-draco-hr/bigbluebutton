@@ -1,5 +1,4 @@
 {
-  annotations=new ArrayList<Map<String,Object>>();
-  this.graphicObjs=new HashMap<String,WBGraphic>();
+  annotations=new ArrayList<Annotation>();
   this.setPageIndex(pageIndex);
 }

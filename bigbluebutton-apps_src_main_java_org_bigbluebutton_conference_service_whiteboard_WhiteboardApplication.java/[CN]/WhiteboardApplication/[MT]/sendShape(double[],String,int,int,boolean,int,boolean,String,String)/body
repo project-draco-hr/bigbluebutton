@@ -1,3 +1,0 @@
-{
-  ShapeGraphic newShape=new ShapeGraphic(shape,type,color,thickness,fill,fillColor,transparency,id,status);
-}

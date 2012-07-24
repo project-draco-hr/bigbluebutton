@@ -1,7 +1,0 @@
-{
-  List<Object[]> shapes=new ArrayList<Object[]>();
-  for (  WBGraphic g : graphicObjs.values()) {
-    if (g.graphicType == Type.SHAPE)     shapes.add(g.toObjectArray());
-  }
-  return shapes;
-}

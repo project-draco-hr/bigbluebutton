@@ -1,3 +1,0 @@
-{
-  activePresentation.getActivePage().addShapeGraphic(shape);
-}

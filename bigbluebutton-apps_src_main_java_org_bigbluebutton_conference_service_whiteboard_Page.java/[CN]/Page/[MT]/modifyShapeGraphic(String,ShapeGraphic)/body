@@ -1,4 +1,0 @@
-{
-  if (graphicObjs.containsKey(shape))   graphicObjs.put(key,shape);
- else   System.out.println("ERROR: MODIFYING NON-EXISTENT KEY");
-}

@@ -1,11 +1,4 @@
 {
-  int foundIndex=-1;
-  for (int i=0; i < annotations.size(); i++) {
-    Map<String,Object> annotation=annotations.get(i);
-    if (annotation.get("id").equals(id)) {
-      foundIndex=i;
-      break;
-    }
-  }
+  int foundIndex=findAnnotation(id);
   if (foundIndex >= 0)   annotations.remove(foundIndex);
 }
