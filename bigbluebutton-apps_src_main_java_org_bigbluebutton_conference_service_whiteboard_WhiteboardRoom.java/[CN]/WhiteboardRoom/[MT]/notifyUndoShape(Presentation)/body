@@ -1,6 +1,4 @@
 {
-  for (Iterator iter=listeners.values().iterator(); iter.hasNext(); ) {
-    IWhiteboardRoomListener listener=(IWhiteboardRoomListener)iter.next();
-    listener.undoShape(presentation);
+  for (Iterator<IWhiteboardRoomListener> iter=listeners.values().iterator(); iter.hasNext(); ) {
   }
 }

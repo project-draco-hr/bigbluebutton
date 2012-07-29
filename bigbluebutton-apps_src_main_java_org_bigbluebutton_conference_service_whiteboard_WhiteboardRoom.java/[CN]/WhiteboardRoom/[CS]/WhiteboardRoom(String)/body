@@ -1,0 +1,6 @@
+{
+  this.id=id;
+  this.presentations=new ArrayList<Presentation>();
+  listeners=new ConcurrentHashMap<String,IWhiteboardRoomListener>();
+  uidGen=new UIDGenerator();
+}
