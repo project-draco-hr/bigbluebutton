@@ -1,0 +1,12 @@
+{
+  super(WBGraphic.Type.TEXT);
+  this.text=text;
+  this.textColor=textColor;
+  this.bgColor=bgColor;
+  this.bgColorVisible=bgColorVisible;
+  this.x=x;
+  this.y=y;
+  this.textSize=textSize;
+  this.ID=id;
+  this.status=status;
+}

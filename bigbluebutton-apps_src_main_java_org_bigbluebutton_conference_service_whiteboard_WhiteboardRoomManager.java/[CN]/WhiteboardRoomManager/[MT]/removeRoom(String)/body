@@ -1,5 +1,3 @@
 {
-  for (int i=0; i < rooms.size(); i++) {
-    if (rooms.get(i).getScope().getName().equals(scopeName))     rooms.remove(i);
-  }
+  rooms.remove(id);
 }

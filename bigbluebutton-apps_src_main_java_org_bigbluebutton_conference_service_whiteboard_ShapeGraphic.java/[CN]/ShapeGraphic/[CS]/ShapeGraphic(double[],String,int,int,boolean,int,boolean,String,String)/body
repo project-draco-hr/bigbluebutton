@@ -1,0 +1,12 @@
+{
+  super(WBGraphic.Type.SHAPE);
+  this.shape=shape;
+  this.type=type;
+  this.color=color;
+  this.thickness=thickness;
+  this.fill=fill;
+  this.fillColor=fillColor;
+  this.transparent=transparent;
+  this.ID=id;
+  this.status=status;
+}

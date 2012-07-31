@@ -1,0 +1,3 @@
+{
+  eventMap.put("bgColor",Integer.toString(bgColor));
+}
