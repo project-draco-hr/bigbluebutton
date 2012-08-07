@@ -1,0 +1,7 @@
+{
+  List<Annotation> a=new ArrayList<Annotation>();
+  for (  Annotation v : annotations) {
+    a.add(v);
+  }
+  return a;
+}

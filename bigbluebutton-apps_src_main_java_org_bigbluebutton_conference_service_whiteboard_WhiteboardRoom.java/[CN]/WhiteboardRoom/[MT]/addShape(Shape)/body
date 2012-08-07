@@ -1,4 +1,0 @@
-{
-  activePresentation.getActivePage().addShape(shape);
-  notifyAddShape(activePresentation,shape);
-}

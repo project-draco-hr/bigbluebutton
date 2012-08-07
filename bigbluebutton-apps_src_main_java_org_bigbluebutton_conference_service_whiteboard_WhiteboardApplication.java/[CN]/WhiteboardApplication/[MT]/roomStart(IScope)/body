@@ -1,4 +1,4 @@
 {
-  roomManager.addRoom(scope);
+  roomManager.addRoom(scope.getName());
   return true;
 }

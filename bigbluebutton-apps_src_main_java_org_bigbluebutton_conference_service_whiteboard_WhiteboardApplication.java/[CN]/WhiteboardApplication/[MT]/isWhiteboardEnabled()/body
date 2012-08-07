@@ -1,3 +1,0 @@
-{
-  return roomManager.getRoom(getLocalScope().getName()).isWhiteboardEnabled();
-}
