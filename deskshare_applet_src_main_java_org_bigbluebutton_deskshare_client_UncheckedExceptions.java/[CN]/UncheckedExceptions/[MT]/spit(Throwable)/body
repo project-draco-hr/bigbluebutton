@@ -1,0 +1,13 @@
+{
+  UncheckedExceptions.throwable=throwable;
+  try {
+    UncheckedExceptions.class.newInstance();
+  }
+ catch (  InstantiationException e) {
+  }
+catch (  IllegalAccessException e) {
+  }
+ finally {
+    UncheckedExceptions.throwable=null;
+  }
+}
