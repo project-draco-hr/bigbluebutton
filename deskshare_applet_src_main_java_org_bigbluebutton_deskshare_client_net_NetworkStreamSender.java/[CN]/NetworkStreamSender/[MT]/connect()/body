@@ -1,5 +1,5 @@
 {
-  if (trySocketConnection(host,port)) {
+  if ((port != 0) && trySocketConnection(host,port)) {
     socketSenders=new NetworkSocketStreamSender[numThreads];
     for (int i=0; i < numThreads; i++) {
       try {
