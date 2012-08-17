@@ -1,9 +1,0 @@
-{
-  data.write(CAPTURE_START_EVENT);
-  encodeRoom(data,room);
-  encodeSequenceNumber(data,seqNum);
-  data.write(intToBytes(block.getWidth()));
-  data.write(intToBytes(block.getHeight()));
-  data.write(intToBytes(screen.getWidth()));
-  data.write(intToBytes(screen.getHeight()));
-}

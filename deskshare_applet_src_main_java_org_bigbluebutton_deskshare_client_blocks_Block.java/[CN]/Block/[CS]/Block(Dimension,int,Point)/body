@@ -1,6 +1,0 @@
-{
-  checksum=new BlockChecksum();
-  this.dim=dim;
-  this.position=position;
-  this.location=location;
-}

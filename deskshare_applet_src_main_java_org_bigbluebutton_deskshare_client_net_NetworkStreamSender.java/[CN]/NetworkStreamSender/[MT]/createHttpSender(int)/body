@@ -1,5 +1,5 @@
 {
-  httpSenders[i]=new NetworkHttpStreamSender(i,this,room,screenDim,blockDim,seqNumGenerator);
+  httpSenders[i]=new NetworkHttpStreamSender(i,this,room,screenDim,blockDim,seqNumGenerator,useSVC2);
   httpSenders[i].addListener(this);
   httpSenders[i].connect(host);
 }
