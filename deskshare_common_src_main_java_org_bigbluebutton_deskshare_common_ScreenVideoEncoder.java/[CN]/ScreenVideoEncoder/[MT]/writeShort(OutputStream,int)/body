@@ -1,0 +1,4 @@
+{
+  outputstream.write(l >> 8 & 0xff);
+  outputstream.write(l & 0xff);
+}

@@ -1,4 +1,0 @@
-{
-  if (isKeyFrame)   return (byte)(FLV_KEYFRAME + SCREEN_VIDEO_CODEC_ID);
-  return (byte)(FLV_INTERFRAME + SCREEN_VIDEO_CODEC_ID);
-}
