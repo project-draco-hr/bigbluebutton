@@ -1,0 +1,6 @@
+{
+  String pollTime=DateFormatUtils.formatUTC(System.currentTimeMillis(),"MM/dd/yy HH:mm");
+  clientSidePoll.set(6,pollTime);
+  poll=new Poll(clientSidePoll);
+  application.savePoll(poll);
+}

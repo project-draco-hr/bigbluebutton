@@ -1,0 +1,32 @@
+{
+  Jedis jedis=PollApplication.dbConnect();
+  String pollKey=poll.room + "-" + poll.title;
+  jedis.hset(pollKey,"title",poll.title);
+  jedis.hset(pollKey,"question",poll.question);
+  jedis.hset(pollKey,"multiple",poll.isMultiple.toString());
+  jedis.hset(pollKey,"room",poll.room);
+  jedis.hset(pollKey,"time",poll.time);
+  for (int i=1; i <= poll.answers.size(); i++) {
+    jedis.hset(pollKey,"answer" + i + "text",poll.answers.toArray()[i - 1].toString());
+    if (poll.votes == null) {
+      jedis.hset(pollKey,"answer" + i,"0");
+    }
+ else {
+      jedis.hset(pollKey,"answer" + i,poll.votes.toArray()[i - 1].toString());
+    }
+  }
+  Integer tv=poll.totalVotes;
+  String totalVotesStr=tv.toString();
+  Integer dnv=poll.didNotVote;
+  String didNotVoteStr=dnv.toString();
+  if (totalVotesStr == null) {
+    jedis.hset(pollKey,"totalVotes","0");
+  }
+ else {
+    jedis.hset(pollKey,"totalVotes",totalVotesStr);
+  }
+  jedis.hset(pollKey,"status",poll.status.toString());
+  jedis.hset(pollKey,"didNotVote",didNotVoteStr);
+  jedis.hset(pollKey,"publishToWeb",poll.publishToWeb.toString());
+  jedis.hset(pollKey,"webKey",poll.webKey);
+}

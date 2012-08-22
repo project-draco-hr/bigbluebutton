@@ -1,0 +1,4 @@
+{
+  roomsManager.addRoom(new PollRoom(name));
+  return true;
+}

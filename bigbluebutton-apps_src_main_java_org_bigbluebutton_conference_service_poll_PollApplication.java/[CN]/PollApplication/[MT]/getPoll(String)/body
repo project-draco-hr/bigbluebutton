@@ -1,0 +1,4 @@
+{
+  PollInvoker pollInvoker=new PollInvoker();
+  return pollInvoker.invoke(pollKey);
+}

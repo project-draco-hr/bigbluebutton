@@ -1,0 +1,3 @@
+{
+  rooms=new ConcurrentHashMap<String,PollRoom>();
+}

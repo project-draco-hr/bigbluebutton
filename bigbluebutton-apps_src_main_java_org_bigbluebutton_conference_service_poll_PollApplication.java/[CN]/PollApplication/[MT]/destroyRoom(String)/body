@@ -1,0 +1,5 @@
+{
+  if (roomsManager.hasRoom(name))   roomsManager.removeRoom(name);
+  destroyPolls(name);
+  return true;
+}

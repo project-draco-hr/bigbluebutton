@@ -1,0 +1,10 @@
+{
+  String nextIndex;
+  if (++index <= MAX_WEBKEYS) {
+    nextIndex=index.toString();
+  }
+ else {
+    nextIndex=MIN_WEBKEYS.toString();
+  }
+  return nextIndex;
+}

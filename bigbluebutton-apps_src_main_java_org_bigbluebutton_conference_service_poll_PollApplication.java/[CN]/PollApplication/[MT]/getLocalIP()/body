@@ -1,0 +1,20 @@
+{
+  File parseFile=new File(BBB_FILE);
+  try {
+    Scanner scanner=new Scanner(new FileReader(parseFile));
+    Boolean found=false;
+    String serverAddress="";
+    while (!found && scanner.hasNextLine()) {
+      serverAddress=processLine(scanner.nextLine());
+      if (!serverAddress.equals("")) {
+        found=true;
+      }
+    }
+    scanner.close();
+    return serverAddress;
+  }
+ catch (  Exception e) {
+    log.error("Error in scanning " + BBB_FILE + " to find server address.");
+  }
+  return null;
+}

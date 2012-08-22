@@ -1,0 +1,10 @@
+{
+  String room=poll.room;
+  PollRoom r=getRoom(room);
+  if (r != null) {
+    r.savePoll(poll);
+  }
+ else {
+    log.warn("Sending message to a non-existing room " + poll.room);
+  }
+}

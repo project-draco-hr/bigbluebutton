@@ -1,0 +1,11 @@
+{
+  Jedis jedis=PollApplication.dbConnect();
+  for (int i=0; i < answerIDs.length; i++) {
+    Integer index=Integer.parseInt(answerIDs[i].toString()) + 1;
+    jedis.hincrBy(pollKey,"answer" + index,1);
+  }
+  if (answerIDs.length > 0) {
+    if (!webVote)     jedis.hincrBy(pollKey,"didNotVote",-1);
+    jedis.hincrBy(pollKey,"totalVotes",1);
+  }
+}
