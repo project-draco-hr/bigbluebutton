@@ -2,8 +2,7 @@
   for (  Map.Entry<String,Object> entry : annotation.entrySet()) {
     String key=entry.getKey();
     if (key.equals("points")) {
-      ArrayList<Double> value=(ArrayList<Double>)entry.getValue();
-      eventMap.put("dataPoints",pointsToString(value));
+      eventMap.put("dataPoints",pointsToString((ArrayList<Object>)entry.getValue()));
     }
  else {
       Object value=entry.getValue();
