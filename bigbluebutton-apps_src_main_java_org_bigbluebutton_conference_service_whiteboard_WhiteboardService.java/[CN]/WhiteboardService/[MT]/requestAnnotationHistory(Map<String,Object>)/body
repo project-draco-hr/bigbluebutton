@@ -1,4 +1,4 @@
 {
   log.info("WhiteboardApplication - requestAnnotationHistory");
-  application.sendAnnotationHistory(Red5.getConnectionLocal().getClient().getId(),(String)message.get("presentationID"),(Integer)message.get("pageNumber"));
+  application.sendAnnotationHistory(getBbbSession().getInternalUserID(),(String)message.get("presentationID"),(Integer)message.get("pageNumber"));
 }
