@@ -1,3 +1,0 @@
-{
-  eventMap.put("textColor",Integer.toString(textColor));
-}

@@ -1,4 +1,0 @@
-{
-  log.info("WhiteboardApplication - requestAnnotationHistory");
-  application.sendAnnotationHistory(Red5.getConnectionLocal().getClient().getId());
-}

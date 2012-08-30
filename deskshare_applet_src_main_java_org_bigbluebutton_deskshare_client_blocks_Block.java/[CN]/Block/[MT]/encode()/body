@@ -3,6 +3,6 @@
 synchronized (pixelsLock) {
     System.arraycopy(capturedPixels,0,pixelsCopy,0,capturedPixels.length);
   }
-  byte[] encodedBlock=ScreenVideoEncoder.encodePixels(pixelsCopy,getWidth(),getHeight(),(sentCount.longValue() < 5));
+  byte[] encodedBlock=useSVC2 ? ScreenVideoEncoder.encodePixelsSVC2(pixelsCopy,getWidth(),getHeight()) : ScreenVideoEncoder.encodePixels(pixelsCopy,getWidth(),getHeight(),(sentCount.longValue() < 5));
   return new EncodedBlockData(position,encodedBlock);
 }
