@@ -1,4 +1,0 @@
-{
-  if (activePresentation == null)   return new ArrayList<Annotation>();
-  return activePresentation.getActivePage().getAnnotations();
-}
