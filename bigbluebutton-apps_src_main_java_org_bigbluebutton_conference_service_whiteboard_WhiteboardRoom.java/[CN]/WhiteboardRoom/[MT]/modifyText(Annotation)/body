@@ -1,0 +1,4 @@
+{
+  activePresentation.getActivePage().modifyText(annotation.getID(),annotation);
+  notifyModifyText(activePresentation,annotation);
+}

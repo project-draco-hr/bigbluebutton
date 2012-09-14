@@ -1,8 +1,0 @@
-{
-  this.shape=shape;
-  this.type=type;
-  this.color=color;
-  this.thickness=thickness;
-  this.id=id;
-  this.status=status;
-}

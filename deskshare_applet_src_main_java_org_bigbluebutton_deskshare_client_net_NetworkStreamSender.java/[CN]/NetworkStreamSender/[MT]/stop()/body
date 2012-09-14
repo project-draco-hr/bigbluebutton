@@ -1,16 +1,28 @@
 {
   stopped=true;
   System.out.println(NAME + "Stopping network sender");
+  if (tunneling) {
+    if (httpSenders == null)     return;
+    if (httpSenders[0] != null)     httpSenders[0].disconnect();
+  }
+  if (socketSenders == null)   return;
   for (int i=0; i < numRunningThreads; i++) {
-    if (tunneling) {
-      httpSenders[i].disconnect();
-    }
- else {
-      if (clearQ) {
-        clearQ=false;
-        blockDataQ.clear();
+    try {
+      if (tunneling) {
+        if (httpSenders[i] != null)         httpSenders[i].stopProcessingBlocks();
       }
-      send(new PoisonMessage());
+ else {
+        if (clearQ) {
+          clearQ=false;
+          blockDataQ.clear();
+        }
+        send(new PoisonMessage());
+        Thread.yield();
+        socketSenders[i].disconnect();
+      }
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
     }
   }
   System.out.println("Shutting down executor");

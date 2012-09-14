@@ -1,0 +1,13 @@
+{
+  String status=annotation.getStatus();
+  if ("textCreated".equals(status) || "DRAW_START".equals(status) || "DRAW_UPDATE".equals(status)|| "DRAW_END".equals(status)) {
+    roomManager.getRoom(getMeetingId()).addAnnotation(annotation);
+  }
+ else {
+    if ("text".equals(annotation.getType())) {
+      roomManager.getRoom(getMeetingId()).modifyText(annotation);
+    }
+  }
+  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getMeetingId(),"WhiteboardNewAnnotationCommand",annotation.getAnnotation());
+  connInvokerService.sendMessage(m);
+}

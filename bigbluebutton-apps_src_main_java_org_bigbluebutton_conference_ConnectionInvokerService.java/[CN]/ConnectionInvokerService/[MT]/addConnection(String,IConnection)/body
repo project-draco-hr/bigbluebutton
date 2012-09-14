@@ -1,0 +1,13 @@
+{
+  if (connections == null) {
+    System.out.println("Connections is null!!!!");
+    return;
+  }
+  if (id == null) {
+    System.out.println("CONN ID IS NULL!!!");
+  }
+  if (conn == null) {
+    System.out.println("CONN IS NULL");
+  }
+  connections.putIfAbsent(id,conn);
+}

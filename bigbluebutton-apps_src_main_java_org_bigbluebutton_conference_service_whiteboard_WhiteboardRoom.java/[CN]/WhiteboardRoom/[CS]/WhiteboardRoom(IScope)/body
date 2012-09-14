@@ -1,5 +1,0 @@
-{
-  this.scope=scope;
-  this.presentations=new ArrayList<Presentation>();
-  listeners=new ConcurrentHashMap<String,IWhiteboardRoomListener>();
-}

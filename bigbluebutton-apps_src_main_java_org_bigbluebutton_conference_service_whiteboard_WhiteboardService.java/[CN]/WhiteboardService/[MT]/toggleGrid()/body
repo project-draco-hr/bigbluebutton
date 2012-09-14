@@ -1,0 +1,4 @@
+{
+  log.info("WhiteboardApplication - Toggling grid mode");
+  application.toggleGrid();
+}

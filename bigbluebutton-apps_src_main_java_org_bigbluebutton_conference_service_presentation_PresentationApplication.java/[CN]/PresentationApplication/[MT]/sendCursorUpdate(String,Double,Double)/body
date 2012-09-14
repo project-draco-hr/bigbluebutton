@@ -1,0 +1,8 @@
+{
+  if (roomsManager.hasRoom(room)) {
+    log.debug("Request to update cursor[" + xPercent + ","+ yPercent+ "]");
+    roomsManager.sendCursorUpdate(room,xPercent,yPercent);
+    return;
+  }
+  log.warn("resizeAndMoveSlide on a non-existant room " + room);
+}

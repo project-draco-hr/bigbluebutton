@@ -6,6 +6,7 @@
     PageConverter pageConverter=determinePageConverter(pres);
     convertImageToSwf(pres,pageConverter);
   }
+  createTextFiles(pres);
   createThumbnails(pres);
   notifier.sendConversionCompletedMessage(pres);
 }
