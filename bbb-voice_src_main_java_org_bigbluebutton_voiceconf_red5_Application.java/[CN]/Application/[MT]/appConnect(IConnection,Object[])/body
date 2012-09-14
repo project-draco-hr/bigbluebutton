@@ -11,5 +11,5 @@
   log.info("{} [clientid={}] has connected to the voice conf app.",username + "[uid=" + userid+ "]",clientId);
   log.info("[clientid={}] connected from {}.",clientId,remoteHost + ":" + remotePort);
   clientConnManager.createClient(clientId,userid,username,(IServiceCapableConnection)Red5.getConnectionLocal());
-  return true;
+  return super.appConnect(conn,params);
 }
