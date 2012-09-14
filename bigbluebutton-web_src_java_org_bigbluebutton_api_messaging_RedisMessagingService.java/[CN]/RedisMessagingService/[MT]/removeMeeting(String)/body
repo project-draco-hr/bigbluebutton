@@ -1,0 +1,10 @@
+{
+  Jedis jedis=redisPool.getResource();
+  try {
+    jedis.del("meeting-" + meetingId);
+    jedis.srem("meetings",meetingId);
+  }
+  finally {
+    redisPool.returnResource(jedis);
+  }
+}

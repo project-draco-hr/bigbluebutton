@@ -1,10 +1,10 @@
 {
   log.debug("Message Received in channel: " + channel);
   Gson gson=new Gson();
-  HashMap<String,String> map=gson.fromJson(message,new TypeToken<Map<String,String>>(){
-  }
-.getType());
   if (channel.equalsIgnoreCase(MessagingConstants.SYSTEM_CHANNEL)) {
+    HashMap<String,String> map=gson.fromJson(message,new TypeToken<Map<String,String>>(){
+    }
+.getType());
     String meetingId=map.get("meetingId");
     String messageId=map.get("messageId");
     if (messageId != null) {
@@ -16,8 +16,13 @@
     }
   }
  else   if (channel.equalsIgnoreCase(MessagingConstants.PRESENTATION_CHANNEL)) {
+    HashMap<String,String> map=gson.fromJson(message,new TypeToken<Map<String,String>>(){
+    }
+.getType());
     for (    MessageListener listener : listeners) {
       listener.presentationUpdates(map);
     }
+  }
+ else   if (channel.equalsIgnoreCase(MessagingConstants.BIGBLUEBUTTON_BRIDGE)) {
   }
 }

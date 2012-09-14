@@ -1,0 +1,3 @@
+{
+  redisPool.returnResource(jedis);
+}
