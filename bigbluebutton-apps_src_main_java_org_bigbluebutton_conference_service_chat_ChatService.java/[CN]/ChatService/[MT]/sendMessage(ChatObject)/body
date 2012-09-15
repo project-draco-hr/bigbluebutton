@@ -1,4 +1,4 @@
 {
   String roomName=Red5.getConnectionLocal().getScope().getName();
-  application.sendMessage(roomName,chatobj);
+  chatBridge.sendMsg(roomName,chatobj);
 }

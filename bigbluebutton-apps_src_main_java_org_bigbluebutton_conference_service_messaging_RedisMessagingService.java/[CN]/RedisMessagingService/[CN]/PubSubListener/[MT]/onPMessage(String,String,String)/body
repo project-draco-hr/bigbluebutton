@@ -59,5 +59,11 @@
         participantsApplication.participantLeft(meetingId,Long.parseLong(entry.getKey().toString()));
       }
     }
+ else     if (messageName.equalsIgnoreCase("msg")) {
+      String username=gson.fromJson(array.get(2),String.class);
+      String chat_message=gson.fromJson(array.get(3),String.class);
+      ChatObject chatobj=new ChatObject(chat_message,username,"0","00:00","en","0");
+      chatApplication.sendMessage(meetingId,chatobj);
+    }
   }
 }
