@@ -4,7 +4,7 @@
   try {
     pubsubListener=new Runnable(){
       public void run(){
-        jedis.psubscribe(new PubSubListener(),MessagingConstants.BIGBLUEBUTTON_PATTERN);
+        jedis.psubscribe(new PubSubListener(),"*");
       }
     }
 ;
