@@ -29,25 +29,28 @@
     String meetingId=gson.fromJson(array.get(0),String.class);
     String messageName=gson.fromJson(array.get(1),String.class);
     if (messageName.equalsIgnoreCase("user list change")) {
-      JsonArray nPartipants=array.get(2).getAsJsonArray();
-      Map<String,Participant> map=participantsApplication.getParticipants(meetingId);
-      Set<String> keys=map.keySet();
-      for (int i=0; i < nPartipants.size(); i++) {
-        JsonObject obj=nPartipants.get(i).getAsJsonObject();
+      JsonArray remoteParticipants=array.get(2).getAsJsonArray();
+      Map<String,Participant> localParticipants=participantsApplication.getParticipants(meetingId);
+      Set<String> keys=localParticipants.keySet();
+      for (int i=0; i < remoteParticipants.size(); i++) {
+        JsonObject obj=remoteParticipants.get(i).getAsJsonObject();
         String nUserId=gson.fromJson(obj.get("id"),String.class);
+        boolean found=false;
         for (        String key : keys) {
-          if (!key.equalsIgnoreCase(nUserId)) {
-            String username=gson.fromJson(obj.get("name"),String.class);
-            String externalUserID=UUID.randomUUID().toString();
-            Map<String,Object> status=new HashMap<String,Object>();
-            status.put("raiseHand",false);
-            status.put("presenter",false);
-            status.put("hasStream",false);
-            participantsApplication.participantJoin(meetingId,Long.parseLong(nUserId),username,"VIEWER",externalUserID,status);
-          }
- else {
+          if (key.equalsIgnoreCase(nUserId)) {
+            found=true;
             keys.remove(key);
+            break;
           }
+        }
+        if (!found) {
+          String username=gson.fromJson(obj.get("name"),String.class);
+          String externalUserID=UUID.randomUUID().toString();
+          Map<String,Object> status=new HashMap<String,Object>();
+          status.put("raiseHand",false);
+          status.put("presenter",false);
+          status.put("hasStream",false);
+          participantsApplication.participantJoin(meetingId,Long.parseLong(nUserId),username,"VIEWER",externalUserID,status);
         }
       }
       for (      String key : keys) {
