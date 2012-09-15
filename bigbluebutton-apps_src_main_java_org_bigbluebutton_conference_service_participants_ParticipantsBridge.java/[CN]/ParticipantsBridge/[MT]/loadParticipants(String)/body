@@ -1,0 +1,18 @@
+{
+  HashMap<Long,Participant> map=new HashMap<Long,Participant>();
+  Jedis jedis=messagingService.createRedisClient();
+  Set<String> userids=jedis.smembers("meeting-" + meetingID + "-users");
+  for (  String userid : userids) {
+    Map<String,String> users=jedis.hgetAll("meeting-" + meetingID + "-user-"+ userid);
+    long internalUserID=Long.parseLong(userid);
+    String externalUserID=UUID.randomUUID().toString();
+    Map<String,Object> status=new HashMap<String,Object>();
+    status.put("raiseHand",false);
+    status.put("presenter",false);
+    status.put("hasStream",false);
+    Participant p=new Participant(internalUserID,users.get("username"),"VIEWER",externalUserID,status);
+    map.put(internalUserID,p);
+  }
+  messagingService.dropRedisClient(jedis);
+  return map;
+}

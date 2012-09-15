@@ -1,0 +1,8 @@
+{
+  Room r=getRoom(roomName);
+  if (r != null) {
+    r.addParticipantsBridge(participantsBridge);
+    return;
+  }
+  log.warn("Adding listener to a non-existing room " + roomName);
+}

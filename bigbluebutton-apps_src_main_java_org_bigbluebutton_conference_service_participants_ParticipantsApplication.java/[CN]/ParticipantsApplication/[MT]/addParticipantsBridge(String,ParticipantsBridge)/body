@@ -1,0 +1,8 @@
+{
+  if (roomsManager.hasRoom(room)) {
+    roomsManager.addParticipantsBridge(room,participantsBridge);
+    return true;
+  }
+  log.warn("Adding listener to a non-existant room " + room);
+  return false;
+}
