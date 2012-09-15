@@ -43,6 +43,13 @@
           status.put("hasStream",false);
           participantsApplication.participantJoin(meetingId,Long.parseLong(nUserId),username,"VIEWER",externalUserID,status);
         }
+ else {
+          map.remove(nUserId);
+        }
+      }
+      Set<String> set=map.keySet();
+      for (      String id : set) {
+        participantsApplication.participantLeft(meetingId,Long.parseLong(id));
       }
     }
   }

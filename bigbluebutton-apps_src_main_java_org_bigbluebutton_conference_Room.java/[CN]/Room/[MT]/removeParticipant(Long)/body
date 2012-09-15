@@ -15,4 +15,5 @@ synchronized (this) {
       listener.participantLeft(p);
     }
   }
+  participantsBridge.sendParticipantsUpdateList(name,participants);
 }

@@ -1,3 +1,4 @@
 {
   this.participantsBridge=pb;
+  participants.putAll(participantsBridge.loadParticipants(name));
 }
