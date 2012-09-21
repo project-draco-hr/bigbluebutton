@@ -1,4 +1,5 @@
 {
   log.debug("VoiceConferenceApplication appStop[" + scope.getName() + "]");
   sipPeerManager.destroyAllSessions();
+  super.appStop(scope);
 }
