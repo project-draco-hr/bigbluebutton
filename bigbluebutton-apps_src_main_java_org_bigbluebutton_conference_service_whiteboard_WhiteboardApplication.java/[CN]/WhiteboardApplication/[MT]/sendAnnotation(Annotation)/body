@@ -1,6 +1,12 @@
 {
   String status=annotation.getStatus();
-  if ("textCreated".equals(status) || "DRAW_START".equals(status) || "DRAW_UPDATE".equals(status)|| "DRAW_END".equals(status)) {
+  if ("textCreated".equals(status)) {
+    roomManager.getRoom(getMeetingId()).addAnnotation(annotation);
+  }
+ else   if (PENCIL_TYPE.equals(annotation.getType()) && "DRAW_START".equals(status)) {
+    roomManager.getRoom(getMeetingId()).addAnnotation(annotation);
+  }
+ else   if ("DRAW_END".equals(status) && (RECTANGLE_TYPE.equals(annotation.getType()) || ELLIPSE_TYPE.equals(annotation.getType()) || TRIANGLE_TYPE.equals(annotation.getType())|| LINE_TYPE.equals(annotation.getType()))) {
     roomManager.getRoom(getMeetingId()).addAnnotation(annotation);
   }
  else {
