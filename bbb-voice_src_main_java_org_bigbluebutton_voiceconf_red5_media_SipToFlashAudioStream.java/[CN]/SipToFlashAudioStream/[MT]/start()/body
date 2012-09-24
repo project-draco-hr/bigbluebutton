@@ -1,13 +1,11 @@
 {
-  if (log.isDebugEnabled())   log.debug("started publishing stream in " + scope.getName());
+  if (log.isDebugEnabled())   log.debug("started publishing stream in scope=[" + scope.getName() + "] path=["+ scope.getPath()+ "]");
   audioBroadcastStream=new AudioBroadcastStream(listenStreamName);
   audioBroadcastStream.setPublishedName(listenStreamName);
   audioBroadcastStream.setScope(scope);
   IContext context=scope.getContext();
   IProviderService providerService=(IProviderService)context.getBean(IProviderService.BEAN_NAME);
   if (providerService.registerBroadcastStream(scope,listenStreamName,audioBroadcastStream)) {
-    IBroadcastScope bScope=(BroadcastScope)providerService.getLiveProviderInput(scope,listenStreamName,true);
-    bScope.setAttribute(IBroadcastScope.STREAM_ATTRIBUTE,audioBroadcastStream);
   }
  else {
     log.error("could not register broadcast stream");

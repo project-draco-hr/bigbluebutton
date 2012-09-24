@@ -4,7 +4,6 @@
   rtpStreamReceiver=new RtpStreamReceiver(socket,transcoder.getIncomingEncodedFrameSize());
   rtpStreamReceiver.setRtpStreamReceiverListener(this);
   listenStreamName="speaker_" + System.currentTimeMillis();
-  scope.setName(listenStreamName);
   mBuffer=IoBuffer.allocate(1024);
   mBuffer=mBuffer.setAutoExpand(true);
   audioData=new AudioData();
