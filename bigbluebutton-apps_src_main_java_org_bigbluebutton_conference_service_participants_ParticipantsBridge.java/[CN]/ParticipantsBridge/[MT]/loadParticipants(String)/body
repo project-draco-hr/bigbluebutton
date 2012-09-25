@@ -6,10 +6,11 @@
     Map<String,String> users=jedis.hgetAll("meeting-" + meetingID + "-user-"+ userid);
     long internalUserID=Long.parseLong(users.get("pubID"));
     String externalUserID=UUID.randomUUID().toString();
+    Map<String,String> status_from_db=jedis.hgetAll("meeting-" + meetingID + "-user-"+ userid+ "-status");
     Map<String,Object> status=new HashMap<String,Object>();
-    status.put("raiseHand",false);
-    status.put("presenter",false);
-    status.put("hasStream",false);
+    status.put("raiseHand",Boolean.parseBoolean(status_from_db.get("raiseHand")));
+    status.put("presenter",Boolean.parseBoolean(status_from_db.get("presenter")));
+    status.put("hasStream",Boolean.parseBoolean(status_from_db.get("hasStream")));
     Participant p=new Participant(internalUserID,users.get("username"),"VIEWER",externalUserID,status);
     map.put(internalUserID,p);
   }

@@ -9,5 +9,10 @@
   temp_user.put("sockets","0");
   temp_user.put("pubID",Long.toString(internalUserID));
   jedis.hmset("meeting-" + meetingID + "-user-"+ internalUserID,temp_user);
+  HashMap<String,String> status=new HashMap<String,String>();
+  status.put("raiseHand","false");
+  status.put("presenter","false");
+  status.put("hasStream","false");
+  jedis.hmset("meeting-" + meetingID + "-user-"+ internalUserID+ "-status",status);
   messagingService.dropRedisClient(jedis);
 }
