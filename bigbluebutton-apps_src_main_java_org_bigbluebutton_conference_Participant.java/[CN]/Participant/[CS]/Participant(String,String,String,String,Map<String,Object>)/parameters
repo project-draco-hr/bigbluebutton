@@ -1,4 +1,4 @@
-Long internalUserID
+String internalUserID
 String name
 String role
 String externalUserID

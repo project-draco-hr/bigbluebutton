@@ -1,5 +1,5 @@
 String roomName
-Long userid
+String userid
 String username
 String role
 String externUserID

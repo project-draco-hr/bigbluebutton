@@ -1,4 +1,4 @@
 String roomName
-Long userid
+String userid
 String status
 Object value

@@ -1,2 +1,2 @@
-int userId
+String userId
 String layout
