@@ -1,7 +1,2 @@
 {
-  log.debug("calling updateCursorCallback[" + xPercent + ","+ yPercent+ "]");
-  ArrayList list=new ArrayList();
-  list.add(xPercent);
-  list.add(yPercent);
-  so.sendMessage("updateCursorCallback",list);
 }
