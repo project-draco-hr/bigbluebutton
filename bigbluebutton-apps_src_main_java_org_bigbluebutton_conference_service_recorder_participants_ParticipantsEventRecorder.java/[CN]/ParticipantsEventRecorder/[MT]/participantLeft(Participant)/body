@@ -1,7 +1,7 @@
 {
   ParticipantLeftRecordEvent ev=new ParticipantLeftRecordEvent();
   ev.setTimestamp(System.currentTimeMillis());
-  ev.setUserId(p.getInternalUserID().toString());
+  ev.setUserId(p.getInternalUserID());
   ev.setMeetingId(session);
   recorder.record(session,ev);
 }

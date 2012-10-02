@@ -2,7 +2,7 @@
   log.debug(APP + ":participantJoin - getting userid");
   BigBlueButtonSession bbbSession=getBbbSession();
   if (bbbSession != null) {
-    Long userid=new Long(bbbSession.getInternalUserID());
+    String userid=bbbSession.getInternalUserID();
     String username=bbbSession.getUsername();
     String role=bbbSession.getRole();
     String room=bbbSession.getRoom();
