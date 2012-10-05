@@ -1,0 +1,8 @@
+{
+  if (an.getType().equalsIgnoreCase(WhiteboardBridge.PENCIL_TYPE)) {
+    ArrayList<Object> updates=new ArrayList<Object>();
+    updates.add(meetingID);
+    updates.add("makeShape");
+    updates.add("line");
+  }
+}
