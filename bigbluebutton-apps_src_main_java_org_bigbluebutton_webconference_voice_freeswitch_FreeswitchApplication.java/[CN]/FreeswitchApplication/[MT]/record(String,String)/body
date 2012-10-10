@@ -5,12 +5,15 @@
   Client c=manager.getESLClient();
   if (c.canSend()) {
     RecordConferenceCommand rcc=new RecordConferenceCommand(room,USER,true,voicePath);
-    log.debug(rcc.getCommand() + rcc.getCommandArgs());
+    log.debug(rcc.getCommand() + " " + rcc.getCommandArgs());
     EslMessage response=manager.getESLClient().sendSyncApiCommand(rcc.getCommand(),rcc.getCommandArgs());
     rcc.handleResponse(response,conferenceEventListener);
   }
  else {
     log.warn("Can't send record request to FreeSWITCH as we are not connected.");
     startHeartbeatMonitor();
+  }
+  if (icecastBroadcast) {
+    broadcastToIcecast(room,meetingid);
   }
 }
