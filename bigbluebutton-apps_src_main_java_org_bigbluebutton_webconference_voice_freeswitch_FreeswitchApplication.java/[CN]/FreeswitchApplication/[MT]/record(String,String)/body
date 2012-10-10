@@ -13,7 +13,4 @@
     log.warn("Can't send record request to FreeSWITCH as we are not connected.");
     startHeartbeatMonitor();
   }
-  if (icecastBroadcast) {
-    broadcastToIcecast(room,meetingid);
-  }
 }
