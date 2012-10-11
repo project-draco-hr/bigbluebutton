@@ -4,3 +4,4 @@ String color
 String time
 String language
 String userid
+String type

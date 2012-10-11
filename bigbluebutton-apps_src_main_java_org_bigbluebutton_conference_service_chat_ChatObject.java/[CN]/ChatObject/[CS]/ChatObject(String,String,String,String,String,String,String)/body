@@ -5,4 +5,5 @@
   this.time=time;
   this.language=language;
   this.userid=userid;
+  this.type=type;
 }
