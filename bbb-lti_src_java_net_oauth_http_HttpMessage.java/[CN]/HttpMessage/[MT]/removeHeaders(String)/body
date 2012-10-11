@@ -1,0 +1,11 @@
+{
+  String value=null;
+  for (Iterator<Map.Entry<String,String>> i=headers.iterator(); i.hasNext(); ) {
+    Map.Entry<String,String> header=i.next();
+    if (equalsIgnoreCase(name,header.getKey())) {
+      value=header.getValue();
+      i.remove();
+    }
+  }
+  return value;
+}

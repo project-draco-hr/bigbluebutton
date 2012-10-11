@@ -1,0 +1,18 @@
+{
+  String line;
+  BufferedReader reader=new BufferedReader(new InputStreamReader(stream));
+  try {
+    while ((line=reader.readLine()) != null) {
+      if (line.indexOf(BEGIN_MARKER) != -1) {
+        beginMarker=line.trim();
+        String endMarker=beginMarker.replace("BEGIN","END");
+        derBytes=readBytes(reader,endMarker);
+        return;
+      }
+    }
+    throw new IOException("Invalid PEM file: no begin marker");
+  }
+  finally {
+    reader.close();
+  }
+}

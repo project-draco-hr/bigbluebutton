@@ -1,0 +1,5 @@
+{
+  this.requestTokenURL=requestTokenURL;
+  this.userAuthorizationURL=userAuthorizationURL;
+  this.accessTokenURL=accessTokenURL;
+}

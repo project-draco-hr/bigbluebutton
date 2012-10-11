@@ -1,0 +1,4 @@
+{
+  this.timestampWindow=timestampWindowMsec;
+  this.maxVersion=maxVersion;
+}

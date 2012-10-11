@@ -1,0 +1,17 @@
+{
+  if (accessor.requestToken != null) {
+    if (parameters == null) {
+      parameters=OAuth.newList(OAuth.OAUTH_TOKEN,accessor.requestToken);
+    }
+ else     if (!OAuth.newMap(parameters).containsKey(OAuth.OAUTH_TOKEN)) {
+      List<Map.Entry> p=new ArrayList<Map.Entry>(parameters);
+      p.add(new OAuth.Parameter(OAuth.OAUTH_TOKEN,accessor.requestToken));
+      parameters=p;
+    }
+  }
+  OAuthMessage response=invoke(accessor,httpMethod,accessor.consumer.serviceProvider.accessTokenURL,parameters);
+  response.requireParameters(OAuth.OAUTH_TOKEN,OAuth.OAUTH_TOKEN_SECRET);
+  accessor.accessToken=response.getParameter(OAuth.OAUTH_TOKEN);
+  accessor.tokenSecret=response.getParameter(OAuth.OAUTH_TOKEN_SECRET);
+  return response;
+}

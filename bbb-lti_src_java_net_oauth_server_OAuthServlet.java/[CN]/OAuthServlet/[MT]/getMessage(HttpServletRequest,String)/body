@@ -1,0 +1,10 @@
+{
+  if (URL == null) {
+    URL=request.getRequestURL().toString();
+  }
+  int q=URL.indexOf('?');
+  if (q >= 0) {
+    URL=URL.substring(0,q);
+  }
+  return new HttpRequestMessage(request,URL);
+}

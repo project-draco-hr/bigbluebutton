@@ -1,0 +1,5 @@
+{
+  response.resetBuffer();
+  response.setContentType(OAuth.FORM_ENCODED + ";charset=" + OAuth.ENCODING);
+  OAuth.formEncode(parameters,response.getOutputStream());
+}

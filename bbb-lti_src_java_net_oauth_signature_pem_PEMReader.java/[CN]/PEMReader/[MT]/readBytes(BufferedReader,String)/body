@@ -1,0 +1,11 @@
+{
+  String line=null;
+  StringBuffer buf=new StringBuffer();
+  while ((line=reader.readLine()) != null) {
+    if (line.indexOf(endMarker) != -1) {
+      return OAuthSignatureMethod.decodeBase64(buf.toString());
+    }
+    buf.append(line.trim());
+  }
+  throw new IOException("Invalid PEM file: No end marker");
+}

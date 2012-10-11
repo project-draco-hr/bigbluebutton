@@ -1,0 +1,11 @@
+{
+  String versionString=message.getParameter(OAuth.OAUTH_VERSION);
+  if (versionString != null) {
+    double version=Double.parseDouble(versionString);
+    if (version < minVersion || maxVersion < version) {
+      OAuthProblemException problem=new OAuthProblemException(OAuth.Problems.VERSION_REJECTED);
+      problem.setParameter(OAuth.Problems.OAUTH_ACCEPTABLE_VERSIONS,minVersion + "-" + maxVersion);
+      throw problem;
+    }
+  }
+}

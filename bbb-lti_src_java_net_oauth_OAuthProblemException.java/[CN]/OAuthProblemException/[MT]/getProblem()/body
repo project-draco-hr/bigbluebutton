@@ -1,0 +1,3 @@
+{
+  return (String)getParameters().get(OAUTH_PROBLEM);
+}

@@ -1,0 +1,16 @@
+{
+  if (parameters != null) {
+    boolean first=true;
+    for (    Map.Entry parameter : parameters) {
+      if (first) {
+        first=false;
+      }
+ else {
+        into.write('&');
+      }
+      into.write(percentEncode(toString(parameter.getKey())).getBytes());
+      into.write('=');
+      into.write(percentEncode(toString(parameter.getValue())).getBytes());
+    }
+  }
+}

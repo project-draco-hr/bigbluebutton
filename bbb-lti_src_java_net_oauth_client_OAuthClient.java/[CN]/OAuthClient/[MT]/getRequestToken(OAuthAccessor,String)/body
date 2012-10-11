@@ -1,0 +1,3 @@
+{
+  getRequestToken(accessor,httpMethod,null);
+}

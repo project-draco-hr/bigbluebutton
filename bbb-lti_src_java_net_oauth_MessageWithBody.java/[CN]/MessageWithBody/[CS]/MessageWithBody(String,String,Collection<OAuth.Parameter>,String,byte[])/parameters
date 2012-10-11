@@ -1,0 +1,5 @@
+String method
+String URL
+Collection<OAuth.Parameter> parameters
+String contentType
+byte[] body
