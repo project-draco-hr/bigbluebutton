@@ -5,7 +5,7 @@
   Client c=manager.getESLClient();
   if (c.canSend()) {
     RecordConferenceCommand rcc=new RecordConferenceCommand(room,USER,true,voicePath);
-    log.debug(rcc.getCommand() + rcc.getCommandArgs());
+    log.debug(rcc.getCommand() + " " + rcc.getCommandArgs());
     EslMessage response=manager.getESLClient().sendSyncApiCommand(rcc.getCommand(),rcc.getCommandArgs());
     rcc.handleResponse(response,conferenceEventListener);
   }
