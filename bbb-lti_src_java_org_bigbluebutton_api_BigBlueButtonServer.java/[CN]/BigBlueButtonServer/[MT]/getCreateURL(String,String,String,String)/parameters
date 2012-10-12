@@ -1,0 +1,4 @@
+String name
+String meetingID
+String attendeePW
+String moderatorPW

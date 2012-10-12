@@ -1,0 +1,22 @@
+{
+  String url="";
+  try {
+    url="name=" + URLEncoder.encode(name,PARAMETERENCODING);
+    url+="&meetingID=" + meetingID;
+    url+="&moderatorPW=" + moderatorPW;
+    url+="&attendeePW=" + attendeePW;
+    url+="&welcome=" + welcome;
+    url+="&logoutURL=" + URLEncoder.encode(logoutURL,PARAMETERENCODING);
+    url+="&maxParticipants=" + maxParticipants;
+    url+="&voiceBridge=" + voiceBridge;
+    url+="&dialNumber=" + dialNumber;
+    url+="&webVoice=" + webVoice;
+    url+="&record=" + record;
+    url+="&duration=" + duration;
+    url+=meta;
+  }
+ catch (  Exception e) {
+  }
+  url+=getCheckSumParameterForQuery(APICALL_CREATE,url);
+  return this.url + API_SERVERPATH + APICALL_CREATE+ "?"+ url;
+}

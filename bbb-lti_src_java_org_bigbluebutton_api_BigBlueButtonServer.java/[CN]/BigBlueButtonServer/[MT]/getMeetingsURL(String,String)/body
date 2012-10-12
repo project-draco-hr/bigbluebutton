@@ -1,0 +1,4 @@
+{
+  String url=getCheckSumParameterForQuery(APICALL_END,"");
+  return this.url + API_SERVERPATH + APICALL_END+ "?"+ url;
+}
