@@ -5,7 +5,7 @@
     url+="&meetingID=" + meetingID;
     url+="&moderatorPW=" + moderatorPW;
     url+="&attendeePW=" + attendeePW;
-    url+="&welcome=" + welcome;
+    url+="&welcome=" + URLEncoder.encode(welcome,PARAMETERENCODING);
     url+="&logoutURL=" + URLEncoder.encode(logoutURL,PARAMETERENCODING);
     url+="&maxParticipants=" + maxParticipants;
     url+="&voiceBridge=" + voiceBridge;
