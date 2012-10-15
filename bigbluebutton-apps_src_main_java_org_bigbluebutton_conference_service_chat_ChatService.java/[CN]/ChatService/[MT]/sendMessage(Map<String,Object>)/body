@@ -1,5 +1,0 @@
-{
-  String roomName=Red5.getConnectionLocal().getScope().getName();
-  ChatObject chatObj=new ChatObject(msg.get("message").toString(),msg.get("username").toString(),msg.get("color").toString(),msg.get("time").toString(),msg.get("language").toString(),msg.get("userid").toString(),msg.get("type").toString());
-  application.sendMessage(roomName,chatObj);
-}

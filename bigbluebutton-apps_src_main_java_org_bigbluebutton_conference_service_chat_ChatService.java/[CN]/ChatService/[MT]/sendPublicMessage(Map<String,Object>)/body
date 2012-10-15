@@ -1,0 +1,11 @@
+{
+  String meetingID=Red5.getConnectionLocal().getScope().getName();
+  ChatMessageVO chatObj=new ChatMessageVO();
+  chatObj.chatType=msg.get("chatType").toString();
+  chatObj.fromUsername=msg.get("fromUsername").toString();
+  chatObj.fromColor=msg.get("fromColor").toString();
+  chatObj.fromTime=msg.get("fromTime").toString();
+  chatObj.fromLang=msg.get("fromLang").toString();
+  chatObj.message=msg.get("message").toString();
+  application.sendPublicMessage(meetingID,chatObj);
+}

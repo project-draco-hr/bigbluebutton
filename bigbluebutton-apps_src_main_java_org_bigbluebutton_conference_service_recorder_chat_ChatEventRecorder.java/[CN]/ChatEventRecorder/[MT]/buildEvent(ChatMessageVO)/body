@@ -2,9 +2,9 @@
   PublicChatRecordEvent ev=new PublicChatRecordEvent();
   ev.setTimestamp(System.currentTimeMillis());
   ev.setMeetingId(session);
-  ev.setSender(chatobj.username);
+  ev.setSender(chatobj.fromUsername);
   ev.setMessage(chatobj.message);
-  ev.setLocale(chatobj.language);
-  ev.setColor(chatobj.color);
+  ev.setLocale(chatobj.fromLang);
+  ev.setColor(chatobj.fromColor);
   return ev;
 }

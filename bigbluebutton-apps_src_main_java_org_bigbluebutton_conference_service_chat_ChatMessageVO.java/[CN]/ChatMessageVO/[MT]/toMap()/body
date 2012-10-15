@@ -1,0 +1,11 @@
+{
+  Map<String,Object> msg=new HashMap<String,Object>();
+  msg.put("fromUserID",fromUserID);
+  msg.put("fromUsername",fromUsername);
+  msg.put("fromColor",fromColor);
+  msg.put("fromTime",fromTime);
+  msg.put("fromLang",fromLang);
+  msg.put("fromTime",fromTime);
+  msg.put("chatType",chatType);
+  return msg;
+}
