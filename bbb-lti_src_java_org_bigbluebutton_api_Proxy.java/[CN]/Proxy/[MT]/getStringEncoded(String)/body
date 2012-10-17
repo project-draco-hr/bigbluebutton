@@ -1,0 +1,9 @@
+{
+  String stringEncoded="";
+  try {
+    stringEncoded=URLEncoder.encode(string,PARAMETERENCODING);
+  }
+ catch (  Exception e) {
+  }
+  return stringEncoded;
+}
