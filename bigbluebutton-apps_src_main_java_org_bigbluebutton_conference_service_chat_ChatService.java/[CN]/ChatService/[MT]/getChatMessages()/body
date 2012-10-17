@@ -1,5 +1,0 @@
-{
-  String roomName=Red5.getConnectionLocal().getScope().getName();
-  List<ChatMessageVO> m=application.getChatMessages(roomName);
-  log.debug("NUM CHAT MSGS = " + m.size());
-}
