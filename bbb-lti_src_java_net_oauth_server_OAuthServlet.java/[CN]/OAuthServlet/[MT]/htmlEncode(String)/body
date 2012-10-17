@@ -1,0 +1,26 @@
+{
+  if (s == null) {
+    return null;
+  }
+  StringBuilder html=new StringBuilder(s.length());
+  for (  char c : s.toCharArray()) {
+switch (c) {
+case '<':
+      html.append("&lt;");
+    break;
+case '>':
+  html.append("&gt;");
+break;
+case '&':
+html.append("&amp;");
+break;
+case '"':
+html.append("&quot;");
+break;
+default :
+html.append(c);
+break;
+}
+}
+return html.toString();
+}

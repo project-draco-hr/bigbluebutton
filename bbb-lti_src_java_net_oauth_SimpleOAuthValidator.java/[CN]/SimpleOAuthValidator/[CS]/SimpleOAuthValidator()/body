@@ -1,0 +1,3 @@
+{
+  this(DEFAULT_TIMESTAMP_WINDOW,Double.parseDouble(OAuth.VERSION_1_0));
+}

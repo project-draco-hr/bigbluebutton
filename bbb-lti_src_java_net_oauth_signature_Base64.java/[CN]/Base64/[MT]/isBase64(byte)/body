@@ -1,0 +1,3 @@
+{
+  return octet == PAD || (octet >= 0 && octet < base64ToInt.length && base64ToInt[octet] != -1);
+}

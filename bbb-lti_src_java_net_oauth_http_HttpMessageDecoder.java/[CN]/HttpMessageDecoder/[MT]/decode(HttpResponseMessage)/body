@@ -1,0 +1,9 @@
+{
+  if (message != null) {
+    String encoding=getEncoding(message);
+    if (encoding != null) {
+      return new HttpMessageDecoder(message,encoding);
+    }
+  }
+  return message;
+}

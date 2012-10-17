@@ -1,0 +1,12 @@
+{
+  message.requireParameters("oauth_signature");
+  String signature=message.getSignature();
+  String baseString=getBaseString(message);
+  if (!isValid(signature,baseString)) {
+    OAuthProblemException problem=new OAuthProblemException("signature_invalid");
+    problem.setParameter("oauth_signature",signature);
+    problem.setParameter("oauth_signature_base_string",baseString);
+    problem.setParameter("oauth_signature_method",message.getSignatureMethod());
+    throw problem;
+  }
+}

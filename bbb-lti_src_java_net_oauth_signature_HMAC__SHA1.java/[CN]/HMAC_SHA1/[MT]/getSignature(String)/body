@@ -1,0 +1,12 @@
+{
+  try {
+    String signature=base64Encode(computeSignature(baseString));
+    return signature;
+  }
+ catch (  GeneralSecurityException e) {
+    throw new OAuthException(e);
+  }
+catch (  UnsupportedEncodingException e) {
+    throw new OAuthException(e);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  InputStream body=getBodyAsStream();
+  return readAll(body,getBodyEncoding());
+}
