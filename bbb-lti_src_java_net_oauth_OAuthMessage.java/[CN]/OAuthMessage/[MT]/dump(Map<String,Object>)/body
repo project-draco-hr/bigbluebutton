@@ -1,0 +1,10 @@
+{
+  into.put("URL",URL);
+  if (parametersAreComplete) {
+    try {
+      into.putAll(getParameterMap());
+    }
+ catch (    Exception ignored) {
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  if (privateKey == null) {
+    throw new IllegalStateException("need to set private key with " + "OAuthConsumer.setProperty when " + "generating RSA-SHA1 signatures.");
+  }
+  Signature signer=Signature.getInstance("SHA1withRSA");
+  signer.initSign(privateKey);
+  signer.update(message);
+  return signer.sign();
+}

@@ -1,0 +1,4 @@
+{
+  if (this.salt != null)   return "&checksum=" + DigestUtils.shaHex(apiCall + queryString + this.salt);
+ else   return "";
+}

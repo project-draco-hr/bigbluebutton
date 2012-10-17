@@ -1,0 +1,11 @@
+{
+  if (s == null) {
+    return "";
+  }
+  try {
+    return URLEncoder.encode(s,ENCODING).replace("+","%20").replace("*","%2A").replace("%7E","~");
+  }
+ catch (  UnsupportedEncodingException wow) {
+    throw new RuntimeException(wow.getMessage(),wow);
+  }
+}

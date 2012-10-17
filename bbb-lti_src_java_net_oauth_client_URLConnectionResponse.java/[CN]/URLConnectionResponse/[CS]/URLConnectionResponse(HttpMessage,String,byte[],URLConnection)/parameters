@@ -1,0 +1,4 @@
+HttpMessage request
+String requestHeaders
+byte[] requestExcerpt
+URLConnection connection

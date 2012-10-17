@@ -1,0 +1,3 @@
+{
+  return BASE64.decode(s.getBytes());
+}

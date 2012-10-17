@@ -1,0 +1,6 @@
+{
+  String url="meetingID=" + meetingID;
+  url+="&password=" + password;
+  url+=getCheckSumParameterForQuery(APICALL_END,url);
+  return this.url + API_SERVERPATH + APICALL_END+ "?"+ url;
+}

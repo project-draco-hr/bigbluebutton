@@ -1,0 +1,5 @@
+{
+  super(request.getMethod(),URL,getParameters(request));
+  this.request=request;
+  copyHeaders(request,getHeaders());
+}

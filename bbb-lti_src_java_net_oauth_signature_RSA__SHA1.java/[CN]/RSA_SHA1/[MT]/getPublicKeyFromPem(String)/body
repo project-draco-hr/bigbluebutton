@@ -1,0 +1,3 @@
+{
+  return getPublicKeyFromDer(decodeBase64(publicKeyObject));
+}

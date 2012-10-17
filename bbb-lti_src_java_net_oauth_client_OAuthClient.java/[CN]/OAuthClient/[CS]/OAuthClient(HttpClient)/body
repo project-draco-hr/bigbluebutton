@@ -1,0 +1,4 @@
+{
+  this.http=http;
+  httpParameters.put(HttpClient.FOLLOW_REDIRECTS,Boolean.FALSE);
+}

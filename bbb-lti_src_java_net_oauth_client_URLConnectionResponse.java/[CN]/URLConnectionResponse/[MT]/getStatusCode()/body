@@ -1,0 +1,6 @@
+{
+  if (connection instanceof HttpURLConnection) {
+    return ((HttpURLConnection)connection).getResponseCode();
+  }
+  return STATUS_OK;
+}

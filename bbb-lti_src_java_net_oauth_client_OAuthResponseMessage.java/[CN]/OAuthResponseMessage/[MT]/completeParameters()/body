@@ -1,0 +1,7 @@
+{
+  super.completeParameters();
+  String body=readBodyAsString();
+  if (body != null) {
+    addParameters(OAuth.decodeForm(body.trim()));
+  }
+}

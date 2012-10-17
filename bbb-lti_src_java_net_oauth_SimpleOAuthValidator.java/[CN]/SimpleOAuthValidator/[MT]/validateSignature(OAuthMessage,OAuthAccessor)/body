@@ -1,0 +1,4 @@
+{
+  message.requireParameters(OAuth.OAUTH_CONSUMER_KEY,OAuth.OAUTH_SIGNATURE_METHOD,OAuth.OAUTH_SIGNATURE);
+  OAuthSignatureMethod.newSigner(message,accessor).validate(message);
+}
