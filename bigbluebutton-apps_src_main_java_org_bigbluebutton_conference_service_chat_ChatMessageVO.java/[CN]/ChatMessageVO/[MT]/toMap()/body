@@ -6,6 +6,7 @@
   msg.put("fromTime",fromTime);
   msg.put("fromLang",fromLang);
   msg.put("fromTime",fromTime);
+  msg.put("fromTimezoneOffset",fromTimezoneOffset);
   msg.put("chatType",chatType);
   msg.put("message",message);
   msg.put("toUserID",toUserID);
