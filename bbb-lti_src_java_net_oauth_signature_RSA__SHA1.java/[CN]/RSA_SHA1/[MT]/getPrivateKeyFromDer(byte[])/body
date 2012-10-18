@@ -1,0 +1,5 @@
+{
+  KeyFactory fac=KeyFactory.getInstance("RSA");
+  EncodedKeySpec privKeySpec=new PKCS8EncodedKeySpec(privateKeyObject);
+  return fac.generatePrivate(privKeySpec);
+}

@@ -1,0 +1,13 @@
+String name
+String meetingID
+String attendeePW
+String moderatorPW
+String welcome
+String dialNumber
+String voiceBridge
+String webVoice
+String logoutURL
+String maxParticipants
+String record
+String duration
+String meta

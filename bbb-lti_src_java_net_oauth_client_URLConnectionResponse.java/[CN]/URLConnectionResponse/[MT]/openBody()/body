@@ -1,0 +1,8 @@
+{
+  try {
+    return connection.getInputStream();
+  }
+ catch (  IOException ohWell) {
+  }
+  return null;
+}

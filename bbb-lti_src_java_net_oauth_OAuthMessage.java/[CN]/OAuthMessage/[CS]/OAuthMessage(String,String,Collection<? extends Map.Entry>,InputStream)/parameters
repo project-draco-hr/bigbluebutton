@@ -1,0 +1,4 @@
+String method
+String URL
+Collection<? extends Map.Entry> parameters
+InputStream bodyAsStream

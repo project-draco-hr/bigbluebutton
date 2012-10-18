@@ -1,0 +1,5 @@
+{
+  Map<String,Object> into=new HashMap<String,Object>();
+  dump(into);
+  return into;
+}

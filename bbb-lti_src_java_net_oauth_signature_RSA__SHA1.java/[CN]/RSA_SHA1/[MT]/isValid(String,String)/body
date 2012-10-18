@@ -1,0 +1,11 @@
+{
+  try {
+    return verify(decodeBase64(signature),baseString.getBytes(OAuth.ENCODING));
+  }
+ catch (  UnsupportedEncodingException e) {
+    throw new OAuthException(e);
+  }
+catch (  GeneralSecurityException e) {
+    throw new OAuthException(e);
+  }
+}

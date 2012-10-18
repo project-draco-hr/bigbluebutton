@@ -1,0 +1,43 @@
+{
+  if (eof) {
+    return;
+  }
+  if (inAvail < 0) {
+    eof=true;
+  }
+  for (int i=0; i < inAvail; i++) {
+    if (buf == null || buf.length - pos < decodeSize) {
+      resizeBuf();
+    }
+    byte b=in[inPos++];
+    if (b == PAD) {
+      x=x << 6;
+switch (modulus) {
+case 2:
+        x=x << 6;
+      buf[pos++]=(byte)((x >> 16) & MASK_8BITS);
+    break;
+case 3:
+  buf[pos++]=(byte)((x >> 16) & MASK_8BITS);
+buf[pos++]=(byte)((x >> 8) & MASK_8BITS);
+break;
+}
+eof=true;
+return;
+}
+ else {
+if (b >= 0 && b < base64ToInt.length) {
+int result=base64ToInt[b];
+if (result >= 0) {
+modulus=(++modulus) % 4;
+x=(x << 6) + result;
+if (modulus == 0) {
+buf[pos++]=(byte)((x >> 16) & MASK_8BITS);
+buf[pos++]=(byte)((x >> 8) & MASK_8BITS);
+buf[pos++]=(byte)(x & MASK_8BITS);
+}
+}
+}
+}
+}
+}

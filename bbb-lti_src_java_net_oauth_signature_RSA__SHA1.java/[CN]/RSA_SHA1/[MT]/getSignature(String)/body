@@ -1,0 +1,12 @@
+{
+  try {
+    byte[] signature=sign(baseString.getBytes(OAuth.ENCODING));
+    return base64Encode(signature);
+  }
+ catch (  UnsupportedEncodingException e) {
+    throw new OAuthException(e);
+  }
+catch (  GeneralSecurityException e) {
+    throw new OAuthException(e);
+  }
+}

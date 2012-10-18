@@ -1,0 +1,28 @@
+{
+  final Map<String,String> pMap=OAuth.newMap(parameters);
+  if (pMap.get(OAuth.OAUTH_TOKEN) == null && accessor.accessToken != null) {
+    addParameter(OAuth.OAUTH_TOKEN,accessor.accessToken);
+  }
+  final OAuthConsumer consumer=accessor.consumer;
+  if (pMap.get(OAuth.OAUTH_CONSUMER_KEY) == null) {
+    addParameter(OAuth.OAUTH_CONSUMER_KEY,consumer.consumerKey);
+  }
+  String signatureMethod=pMap.get(OAuth.OAUTH_SIGNATURE_METHOD);
+  if (signatureMethod == null) {
+    signatureMethod=(String)consumer.getProperty(OAuth.OAUTH_SIGNATURE_METHOD);
+    if (signatureMethod == null) {
+      signatureMethod=OAuth.HMAC_SHA1;
+    }
+    addParameter(OAuth.OAUTH_SIGNATURE_METHOD,signatureMethod);
+  }
+  if (pMap.get(OAuth.OAUTH_TIMESTAMP) == null) {
+    addParameter(OAuth.OAUTH_TIMESTAMP,(System.currentTimeMillis() / 1000) + "");
+  }
+  if (pMap.get(OAuth.OAUTH_NONCE) == null) {
+    addParameter(OAuth.OAUTH_NONCE,System.nanoTime() + "");
+  }
+  if (pMap.get(OAuth.OAUTH_VERSION) == null) {
+    addParameter(OAuth.OAUTH_VERSION,OAuth.VERSION_1_0);
+  }
+  this.sign(accessor);
+}

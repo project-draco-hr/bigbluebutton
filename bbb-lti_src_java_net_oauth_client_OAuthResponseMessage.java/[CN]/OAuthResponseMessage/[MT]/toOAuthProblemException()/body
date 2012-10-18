@@ -1,0 +1,18 @@
+{
+  OAuthProblemException problem=new OAuthProblemException();
+  try {
+    getParameters();
+  }
+ catch (  IOException ignored) {
+  }
+  problem.getParameters().putAll(getDump());
+  try {
+    InputStream b=getBodyAsStream();
+    if (b != null) {
+      b.close();
+    }
+  }
+ catch (  IOException ignored) {
+  }
+  return problem;
+}

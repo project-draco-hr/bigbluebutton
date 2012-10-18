@@ -1,0 +1,12 @@
+{
+  super(method,URL,parameters);
+  this.body=body;
+  Collection<Map.Entry<String,String>> headers=getHeaders();
+  headers.add(new OAuth.Parameter(HttpMessage.ACCEPT_ENCODING,HttpMessageDecoder.ACCEPTED));
+  if (body != null) {
+    headers.add(new OAuth.Parameter(HttpMessage.CONTENT_LENGTH,String.valueOf(body.length)));
+  }
+  if (contentType != null) {
+    headers.add(new OAuth.Parameter(HttpMessage.CONTENT_TYPE,contentType));
+  }
+}

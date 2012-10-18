@@ -1,0 +1,12 @@
+{
+  message.requireParameters(OAuth.OAUTH_TIMESTAMP,OAuth.OAUTH_NONCE);
+  long timestamp=Long.parseLong(message.getParameter(OAuth.OAUTH_TIMESTAMP)) * 1000L;
+  long now=currentTimeMsec();
+  long min=now - timestampWindow;
+  long max=now + timestampWindow;
+  if (timestamp < min || max < timestamp) {
+    OAuthProblemException problem=new OAuthProblemException(OAuth.Problems.TIMESTAMP_REFUSED);
+    problem.setParameter(OAuth.Problems.OAUTH_ACCEPTABLE_TIMESTAMPS,min + "-" + max);
+    throw problem;
+  }
+}

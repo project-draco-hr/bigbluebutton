@@ -1,0 +1,26 @@
+{
+  String msg=super.getMessage();
+  if (msg != null)   return msg;
+  msg=getProblem();
+  if (msg != null)   return msg;
+  Object response=getParameters().get(HttpMessage.RESPONSE);
+  if (response != null) {
+    msg=response.toString();
+    int eol=msg.indexOf("\n");
+    if (eol < 0) {
+      eol=msg.indexOf("\r");
+    }
+    if (eol >= 0) {
+      msg=msg.substring(0,eol);
+    }
+    msg=msg.trim();
+    if (msg.length() > 0) {
+      return msg;
+    }
+  }
+  response=getHttpStatusCode();
+  if (response != null) {
+    return HttpResponseMessage.STATUS_CODE + " " + response;
+  }
+  return null;
+}
