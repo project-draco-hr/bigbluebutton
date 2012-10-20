@@ -1,0 +1,21 @@
+{
+  String source=pres.getUploadedFile().getAbsolutePath();
+  String dest;
+  String COMMAND="";
+  if (SupportedFileTypes.isImageFile(pres.getFileType())) {
+    dest=imagePresentationDir.getAbsolutePath() + File.separator + "slide1.png";
+    COMMAND=IMAGEMAGICK_DIR + "/convert " + source+ " "+ dest;
+  }
+ else {
+    dest=imagePresentationDir.getAbsolutePath() + File.separator + "slide";
+    COMMAND=IMAGEMAGICK_DIR + "/gs -q -sDEVICE=pngalpha -dBATCH -dNOPAUSE -dNOPROMPT -dDOINTERPOLATE -dPDFFitPage -sOutputFile=" + dest+ "%d.png "+ source;
+  }
+  boolean done=new ExternalProcessExecutor().exec(COMMAND,60000);
+  if (done) {
+    return true;
+  }
+ else {
+    log.warn("Failed to create png images: " + COMMAND);
+  }
+  return false;
+}

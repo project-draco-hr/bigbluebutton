@@ -8,5 +8,6 @@
   }
   createTextFiles(pres);
   createThumbnails(pres);
+  createPngImages(pres);
   notifier.sendConversionCompletedMessage(pres);
 }
