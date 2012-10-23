@@ -5,10 +5,19 @@
     for (int i=1; i <= numberOfPages; i++) {
       jedis.rpush("meeting-" + meetingID + "-presentation-"+ presentationName+ "-pages",Integer.toString(i));
       jedis.set("meeting-" + meetingID + "-presentation-"+ presentationName+ "-page-"+ i+ "-image","slide" + i + ".png");
-      jedis.set("meeting-" + meetingID + "-presentation-"+ presentationName+ "-page-"+ i+ "-width","1200");
-      jedis.set("meeting-" + meetingID + "-presentation-"+ presentationName+ "-page-"+ i+ "-height","800");
+      int width=800;
+      int height=600;
+      jedis.set("meeting-" + meetingID + "-presentation-"+ presentationName+ "-page-"+ i+ "-width",Integer.toString(width));
+      jedis.set("meeting-" + meetingID + "-presentation-"+ presentationName+ "-page-"+ i+ "-height",Integer.toString(height));
     }
     jedis.set("meeting-" + meetingID + "-currentpresentation",presentationName);
+    ArrayList viewbox=new ArrayList();
+    viewbox.add(0);
+    viewbox.add(0);
+    viewbox.add(1);
+    viewbox.add(1);
+    Gson gson=new Gson();
+    jedis.set("meeting-" + meetingID + "-viewbox",gson.toJson(viewbox));
   }
   finally {
     redisPool.returnResource(jedis);

@@ -1,0 +1,14 @@
+{
+  Gson gson=new Gson();
+  slideNum=slideNum + 1;
+  String url="bigbluebutton/presentation/" + meetingID + "/"+ meetingID+ "/"+ presentationName+ "/png/"+ "slide"+ slideNum+ ".png";
+  ArrayList<Object> updates=new ArrayList<Object>();
+  updates.add(meetingID);
+  updates.add("changeslide");
+  updates.add(url);
+  messagingService.send(MessagingConstants.BIGBLUEBUTTON_BRIDGE,gson.toJson(updates));
+  ArrayList<Object> clr=new ArrayList<Object>();
+  clr.add(meetingID);
+  clr.add("clrPaper");
+  messagingService.send(MessagingConstants.BIGBLUEBUTTON_BRIDGE,gson.toJson(clr));
+}
