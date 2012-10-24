@@ -1,0 +1,9 @@
+{
+  Document document=getXMLDom(tm);
+  if (document == null)   return null;
+  String retval=documentToString(document,pretty);
+  if (pretty) {
+    retval=prettyPostProcess(retval);
+  }
+  return retval;
+}

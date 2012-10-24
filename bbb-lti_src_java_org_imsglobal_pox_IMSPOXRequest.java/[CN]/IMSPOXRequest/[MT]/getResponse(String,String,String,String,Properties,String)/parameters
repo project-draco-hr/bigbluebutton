@@ -1,0 +1,6 @@
+String description
+String major
+String severity
+String messageId
+Properties minor
+String bodyString

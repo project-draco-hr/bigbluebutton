@@ -1,0 +1,11 @@
+{
+  ArrayList<Map<String,Object>> al=new ArrayList<Map<String,Object>>();
+  if (theMap == null || key == null)   return al;
+  Object obj=theMap.get(key);
+  if (obj instanceof List)   return (List<Map<String,Object>>)obj;
+  Map<String,Object> oneMap=selectFullSubMap(theMap,key);
+  if (oneMap == null)   return al;
+  if (oneMap.isEmpty())   return al;
+  al.add(oneMap);
+  return al;
+}

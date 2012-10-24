@@ -1,0 +1,10 @@
+{
+  try {
+    DocumentBuilder parser=DocumentBuilderFactory.newInstance().newDocumentBuilder();
+    Document document=parser.parse(new ByteArrayInputStream(input.getBytes()));
+    return document;
+  }
+ catch (  Exception e) {
+    return null;
+  }
+}

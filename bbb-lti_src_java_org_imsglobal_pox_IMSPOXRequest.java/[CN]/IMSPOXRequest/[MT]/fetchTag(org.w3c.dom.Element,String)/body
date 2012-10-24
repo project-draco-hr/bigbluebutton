@@ -1,0 +1,16 @@
+{
+  try {
+    org.w3c.dom.NodeList elements=element.getElementsByTagName(tag);
+    int numElements=elements.getLength();
+    if (numElements > 0) {
+      org.w3c.dom.Element e=(org.w3c.dom.Element)elements.item(0);
+      if (e.hasChildNodes()) {
+        return e.getFirstChild().getNodeValue();
+      }
+    }
+  }
+ catch (  Throwable t) {
+    Log.warning(t.getMessage());
+  }
+  return null;
+}

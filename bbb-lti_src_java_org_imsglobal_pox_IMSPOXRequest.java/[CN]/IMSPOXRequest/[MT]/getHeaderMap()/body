@@ -1,0 +1,6 @@
+{
+  if (headerMap != null)   return headerMap;
+  if (headerElement == null)   return null;
+  headerMap=XMLMap.getMap(headerElement);
+  return headerMap;
+}

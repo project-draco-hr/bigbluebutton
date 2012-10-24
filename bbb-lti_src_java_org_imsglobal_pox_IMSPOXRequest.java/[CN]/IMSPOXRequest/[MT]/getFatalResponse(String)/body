@@ -1,0 +1,5 @@
+{
+  Date dt=new Date();
+  String messageId="" + dt.getTime();
+  return String.format(fatalMessage,StringEscapeUtils.escapeXml(messageId),StringEscapeUtils.escapeXml(description));
+}

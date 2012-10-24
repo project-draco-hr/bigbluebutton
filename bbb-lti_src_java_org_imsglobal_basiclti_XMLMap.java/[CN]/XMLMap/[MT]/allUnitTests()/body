@@ -1,0 +1,6 @@
+{
+  if (!unitTest(simpleText,false))   return false;
+  if (!unitTest(sitesText,false))   return false;
+  if (!unitTest(rssText,false))   return false;
+  return true;
+}

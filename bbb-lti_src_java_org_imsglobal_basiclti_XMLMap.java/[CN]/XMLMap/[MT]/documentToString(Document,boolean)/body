@@ -1,0 +1,3 @@
+{
+  return nodeToString(document,pretty);
+}
