@@ -8,7 +8,6 @@
       ArrayList<Object> updates=new ArrayList<Object>();
       updates.add(meetingID);
       ArrayList<Object> data=new ArrayList<Object>();
-      pB=pB + 2;
       data.add(pA / 100);
       data.add(pB / 100);
       if (i == 0) {
