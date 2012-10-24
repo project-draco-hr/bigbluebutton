@@ -1,0 +1,4 @@
+{
+  final Map<String,String> signedMap=signProperties(convertToMap(postProp),url,method,oauth_consumer_key,oauth_consumer_secret,org_id,org_desc,org_url,null,null);
+  return convertToProperties(signedMap);
+}

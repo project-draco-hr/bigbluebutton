@@ -1,0 +1,3 @@
+Properties cleanProperties
+String endpoint
+boolean debug

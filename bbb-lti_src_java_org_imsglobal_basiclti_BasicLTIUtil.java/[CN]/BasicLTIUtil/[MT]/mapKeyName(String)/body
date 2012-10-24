@@ -1,0 +1,16 @@
+{
+  StringBuffer sb=new StringBuffer();
+  if (keyname == null)   return null;
+  keyname=keyname.trim();
+  if (keyname.length() < 1)   return null;
+  for (int i=0; i < keyname.length(); i++) {
+    Character ch=Character.toLowerCase(keyname.charAt(i));
+    if (Character.isLetter(ch) || Character.isDigit(ch)) {
+      sb.append(ch);
+    }
+ else {
+      sb.append('_');
+    }
+  }
+  return sb.toString();
+}

@@ -1,0 +1,11 @@
+{
+  if (descriptor == null)   return null;
+  if (descriptor.indexOf("<basic_lti_link") < 0)   return null;
+  Map<String,Object> tm=XMLMap.getFullMap(descriptor.trim());
+  if (tm == null)   return null;
+  String ltiSecureLaunch=XMLMap.getString(tm,"/basic_lti_link/secure_launch_url");
+  if (ltiSecureLaunch != null && ltiSecureLaunch.trim().length() > 0)   return ltiSecureLaunch;
+  String ltiLaunch=XMLMap.getString(tm,"/basic_lti_link/launch_url");
+  if (ltiLaunch != null && ltiLaunch.trim().length() > 0)   return ltiLaunch;
+  return null;
+}
