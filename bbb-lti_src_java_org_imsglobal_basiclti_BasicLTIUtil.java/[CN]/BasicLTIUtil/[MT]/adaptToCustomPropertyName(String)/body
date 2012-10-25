@@ -1,0 +1,11 @@
+{
+  if (propertyName == null || "".equals(propertyName)) {
+    throw new IllegalArgumentException("propertyName cannot be null");
+  }
+  String customName=propertyName.toLowerCase();
+  customName=CUSTOM_REGEX.matcher(customName).replaceAll(UNDERSCORE);
+  if (!customName.startsWith(CUSTOM_PREFIX)) {
+    customName=CUSTOM_PREFIX + customName;
+  }
+  return customName;
+}

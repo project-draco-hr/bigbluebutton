@@ -1,0 +1,35 @@
+{
+  doDebug(d,"> storeInDom" + key + "@"+ nodePos+ " = "+ value+ " parent="+ nodeToString(parentNode));
+  d++;
+  if (document == null || key == null || value == null)   return;
+  if (parentNode == null)   parentNode=document;
+  doDebug(d,"parentNode I=" + nodeToString(parentNode));
+  String[] newPath=key.split("/");
+  doDebug(d,"newPath = " + outStringArray(newPath));
+  String nodeAttr=null;
+  for (int i=1; i < newPath.length; i++) {
+    String nodeName=newPath[i];
+    if (i == newPath.length - 1) {
+      String[] nodeSplit=nodeName.split("!");
+      if (nodeSplit.length > 1) {
+        nodeName=nodeSplit[0];
+        nodeAttr=nodeSplit[1];
+      }
+      parentNode=getOrAddChildNode(document,parentNode,nodeName,nodePos,d);
+    }
+ else {
+      parentNode=getOrAddChildNode(document,parentNode,nodeName,0,d);
+    }
+  }
+  if (nodeAttr != null) {
+    if (value != null && parentNode instanceof Element) {
+      Element element=(Element)parentNode;
+      element.setAttribute(nodeAttr,value);
+    }
+  }
+ else   if (value != null) {
+    Text newNode=document.createTextNode(value);
+    parentNode.appendChild(newNode);
+  }
+  d--;
+}

@@ -1,0 +1,4 @@
+{
+  Map<String,Object> theMap=XMLMap.getFullMap(input);
+  return XMLMap.getXML(theMap,true);
+}

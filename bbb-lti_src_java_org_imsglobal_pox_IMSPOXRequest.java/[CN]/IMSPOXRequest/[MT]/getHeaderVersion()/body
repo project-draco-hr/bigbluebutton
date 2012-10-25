@@ -1,0 +1,3 @@
+{
+  return getHeaderItem("/imsx_version");
+}

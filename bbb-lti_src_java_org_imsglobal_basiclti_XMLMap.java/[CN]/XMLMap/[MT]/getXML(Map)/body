@@ -1,0 +1,5 @@
+{
+  Document document=getXMLDom(tm);
+  if (document == null)   return null;
+  return documentToString(document,false);
+}

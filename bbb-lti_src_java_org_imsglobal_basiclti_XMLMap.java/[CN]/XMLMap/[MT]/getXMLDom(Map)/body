@@ -1,0 +1,13 @@
+{
+  if (tm == null)   return null;
+  Document document=null;
+  try {
+    DocumentBuilder parser=DocumentBuilderFactory.newInstance().newDocumentBuilder();
+    document=parser.newDocument();
+  }
+ catch (  Exception e) {
+    return null;
+  }
+  iterateMap(document,document.getDocumentElement(),tm,0);
+  return document;
+}

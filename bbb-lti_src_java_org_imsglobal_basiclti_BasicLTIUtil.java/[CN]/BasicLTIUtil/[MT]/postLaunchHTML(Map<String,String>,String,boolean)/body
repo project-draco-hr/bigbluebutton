@@ -1,0 +1,62 @@
+{
+  if (cleanProperties == null || cleanProperties.isEmpty()) {
+    throw new IllegalArgumentException("cleanProperties == null || cleanProperties.isEmpty()");
+  }
+  if (endpoint == null) {
+    throw new IllegalArgumentException("endpoint == null");
+  }
+  Map<String,String> newMap=null;
+  if (debug) {
+    newMap=new TreeMap<String,String>(cleanProperties);
+  }
+ else {
+    newMap=cleanProperties;
+  }
+  StringBuilder text=new StringBuilder();
+  text.append("<div id=\"ltiLaunchFormSubmitArea\">\n");
+  text.append("<form action=\"");
+  text.append(endpoint);
+  text.append("\" name=\"ltiLaunchForm\" id=\"ltiLaunchForm\" method=\"post\" ");
+  text.append(" encType=\"application/x-www-form-urlencoded\" accept-charset=\"utf-8\">\n");
+  for (  Entry<String,String> entry : newMap.entrySet()) {
+    String key=entry.getKey();
+    String value=entry.getValue();
+    if (value == null)     continue;
+    key=htmlspecialchars(key);
+    value=htmlspecialchars(value);
+    if (key.equals(BASICLTI_SUBMIT)) {
+      text.append("<input type=\"submit\" name=\"");
+    }
+ else {
+      text.append("<input type=\"hidden\" name=\"");
+    }
+    text.append(key);
+    text.append("\" value=\"");
+    text.append(value);
+    text.append("\"/>\n");
+  }
+  text.append("</form>\n");
+  text.append("</div>\n");
+  if (debug) {
+    text.append("<pre>\n");
+    text.append("<b>BasicLTI Endpoint</b>\n");
+    text.append(endpoint);
+    text.append("\n\n");
+    text.append("<b>BasicLTI Parameters:</b>\n");
+    for (    Entry<String,String> entry : newMap.entrySet()) {
+      String key=entry.getKey();
+      String value=entry.getValue();
+      if (value == null)       continue;
+      text.append(key);
+      text.append("=");
+      text.append(value);
+      text.append("\n");
+    }
+    text.append("</pre>\n");
+  }
+ else {
+    text.append(" <script language=\"javascript\"> \n" + "    document.getElementById(\"ltiLaunchFormSubmitArea\").style.display = \"none\";\n" + "    nei = document.createElement('input');\n"+ "    nei.setAttribute('type', 'hidden');\n"+ "    nei.setAttribute('name', '" + BASICLTI_SUBMIT + "');\n"+ "    nei.setAttribute('value', '"+ newMap.get(BASICLTI_SUBMIT)+ "');\n"+ "    document.getElementById(\"ltiLaunchForm\").appendChild(nei);\n"+ "    document.ltiLaunchForm.submit(); \n"+ " </script> \n");
+  }
+  String htmltext=text.toString();
+  return htmltext;
+}
