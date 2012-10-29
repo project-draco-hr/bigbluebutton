@@ -1,7 +1,4 @@
 {
   log.debug("roomStop ",scope.getName());
   chatApplication.destroyRoom(scope.getName());
-  if (!hasSharedObject(scope,CHAT_SO)) {
-    clearSharedObjects(scope,CHAT_SO);
-  }
 }
