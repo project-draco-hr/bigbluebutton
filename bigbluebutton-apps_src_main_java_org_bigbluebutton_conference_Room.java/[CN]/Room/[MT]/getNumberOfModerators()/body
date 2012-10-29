@@ -1,7 +1,7 @@
 {
   int sum=0;
-  for (Iterator<Participant> it=participants.values().iterator(); it.hasNext(); ) {
-    Participant part=it.next();
+  for (Iterator<User> it=participants.values().iterator(); it.hasNext(); ) {
+    User part=it.next();
     if (part.isModerator()) {
       sum++;
     }
