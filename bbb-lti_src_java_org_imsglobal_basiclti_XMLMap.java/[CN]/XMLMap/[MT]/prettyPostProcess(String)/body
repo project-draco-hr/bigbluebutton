@@ -1,0 +1,24 @@
+{
+  StringBuffer sb=new StringBuffer();
+  int depth=0;
+  boolean newLine=false;
+  for (int i=0; i < inString.length(); i++) {
+    char ch=inString.charAt(i);
+    char nc=' ';
+    if ((i + 1) < inString.length())     nc=inString.charAt(i + 1);
+    if (ch == '\n') {
+      sb.append('\n');
+      newLine=true;
+      continue;
+    }
+    if (newLine && (ch == ' ' || ch == '\t'))     continue;
+    if (ch == '<' && nc == '/')     depth--;
+    if (newLine) {
+      for (int j=0; j < depth && j < 15; j++)       sb.append("  ");
+      newLine=false;
+    }
+    if (ch == '<' && !(nc == '/' || nc == '?'))     depth++;
+    sb.append(ch);
+  }
+  return sb.toString();
+}

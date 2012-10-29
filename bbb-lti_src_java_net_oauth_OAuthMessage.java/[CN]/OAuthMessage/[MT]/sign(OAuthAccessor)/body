@@ -1,0 +1,3 @@
+{
+  OAuthSignatureMethod.newSigner(this,accessor).sign(this);
+}

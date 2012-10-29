@@ -1,0 +1,10 @@
+Map<String,String> postProp
+String url
+String method
+String oauth_consumer_key
+String oauth_consumer_secret
+String tool_consumer_instance_guid
+String tool_consumer_instance_description
+String tool_consumer_instance_url
+String tool_consumer_instance_name
+String tool_consumer_instance_contact_email

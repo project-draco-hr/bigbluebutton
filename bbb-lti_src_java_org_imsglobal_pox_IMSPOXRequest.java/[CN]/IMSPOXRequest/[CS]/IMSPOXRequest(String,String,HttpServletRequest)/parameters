@@ -1,0 +1,3 @@
+String oauth_consumer_key
+String oauth_secret
+HttpServletRequest request

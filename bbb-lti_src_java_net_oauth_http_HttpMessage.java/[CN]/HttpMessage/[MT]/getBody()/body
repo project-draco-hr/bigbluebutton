@@ -1,0 +1,9 @@
+{
+  if (body == null) {
+    InputStream raw=openBody();
+    if (raw != null) {
+      body=new ExcerptInputStream(raw);
+    }
+  }
+  return body;
+}

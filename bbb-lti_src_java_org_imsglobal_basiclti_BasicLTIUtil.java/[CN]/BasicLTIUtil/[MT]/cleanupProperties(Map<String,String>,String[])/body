@@ -1,0 +1,29 @@
+{
+  final Map<String,String> newProp=new HashMap<String,String>(rawProperties.size());
+  for (  String okey : rawProperties.keySet()) {
+    final String key=okey.trim();
+    if (blackList != null) {
+      boolean blackListed=false;
+      for (      String blackKey : blackList) {
+        if (blackKey.equals(key)) {
+          blackListed=true;
+          break;
+        }
+      }
+      if (blackListed) {
+        continue;
+      }
+    }
+    final String value=rawProperties.get(key);
+    if (value == null || "".equals(value)) {
+      continue;
+    }
+    if (isSpecifiedPropertyName(key)) {
+      newProp.put(key,value);
+    }
+ else {
+      newProp.put(adaptToCustomPropertyName(key),value);
+    }
+  }
+  return newProp;
+}

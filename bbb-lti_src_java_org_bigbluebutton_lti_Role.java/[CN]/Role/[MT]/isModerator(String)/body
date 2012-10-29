@@ -1,0 +1,11 @@
+{
+  boolean response=false;
+  String[] roles=_roles.split(",");
+  for (int i=0; i < roles.length; i++) {
+    if (roles[i].equals(FACULTY) || roles[i].equals(URN_INSTITUTION_ROLE + FACULTY) || roles[i].equals(INSTRUCTOR)|| roles[i].equals(URN_INSTITUTION_ROLE + INSTRUCTOR)|| roles[i].equals(MENTOR)|| roles[i].equals(URN_INSTITUTION_ROLE + MENTOR)|| roles[i].equals(URN_INSTITUTION_ROLE + ADMINISTRATOR)) {
+      response=true;
+      break;
+    }
+  }
+  return response;
+}

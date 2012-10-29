@@ -1,0 +1,14 @@
+{
+  if (mimeType != null) {
+    Matcher m=CHARSET.matcher(mimeType);
+    if (m.find()) {
+      String charset=m.group(1);
+      if (charset.length() >= 2 && charset.charAt(0) == '"' && charset.charAt(charset.length() - 1) == '"') {
+        charset=charset.substring(1,charset.length() - 1);
+        charset=charset.replace("\\\"","\"");
+      }
+      return charset;
+    }
+  }
+  return DEFAULT_CHARSET;
+}

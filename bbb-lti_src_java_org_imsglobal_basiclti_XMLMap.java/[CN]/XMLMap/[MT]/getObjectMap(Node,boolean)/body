@@ -1,0 +1,6 @@
+{
+  if (doc == null)   return null;
+  Map<String,Object> tm=new TreeMap<String,Object>();
+  recurse(tm,"",doc,doFull,0);
+  return tm;
+}

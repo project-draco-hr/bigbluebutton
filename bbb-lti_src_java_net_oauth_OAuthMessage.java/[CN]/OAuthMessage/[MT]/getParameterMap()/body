@@ -1,0 +1,7 @@
+{
+  beforeGetParameter();
+  if (parameterMap == null) {
+    parameterMap=OAuth.newMap(parameters);
+  }
+  return parameterMap;
+}

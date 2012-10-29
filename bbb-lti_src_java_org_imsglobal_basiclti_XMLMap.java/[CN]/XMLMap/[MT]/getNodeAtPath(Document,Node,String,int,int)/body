@@ -1,0 +1,22 @@
+{
+  if (parentNode == null)   parentNode=document;
+  doDebug(d,"> getNodeAtPath path@" + nodePos + "="+ path+ " parentNode="+ nodeToString(parentNode));
+  d++;
+  String[] newPath=path.split("/");
+  for (int i=1; i < newPath.length; i++) {
+    String nodeName=newPath[i];
+    if (i == newPath.length - 1) {
+      String[] nodeSplit=nodeName.split("!");
+      if (nodeSplit.length > 1) {
+        nodeName=nodeSplit[0];
+      }
+      parentNode=getOrAddChildNode(document,parentNode,nodeName,nodePos,d);
+    }
+ else {
+      parentNode=getOrAddChildNode(document,parentNode,nodeName,0,d);
+    }
+  }
+  d--;
+  doDebug(d,"< getNodeAtPath returning=" + nodeToString(parentNode));
+  return parentNode;
+}

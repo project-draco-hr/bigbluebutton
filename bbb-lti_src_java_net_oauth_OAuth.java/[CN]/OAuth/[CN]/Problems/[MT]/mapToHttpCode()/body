@@ -1,0 +1,26 @@
+{
+  Integer badRequest=new Integer(400);
+  Integer unauthorized=new Integer(401);
+  Integer serviceUnavailable=new Integer(503);
+  Map<String,Integer> map=new HashMap<String,Integer>();
+  map.put(Problems.VERSION_REJECTED,badRequest);
+  map.put(Problems.PARAMETER_ABSENT,badRequest);
+  map.put(Problems.PARAMETER_REJECTED,badRequest);
+  map.put(Problems.TIMESTAMP_REFUSED,badRequest);
+  map.put(Problems.SIGNATURE_METHOD_REJECTED,badRequest);
+  map.put(Problems.NONCE_USED,unauthorized);
+  map.put(Problems.TOKEN_USED,unauthorized);
+  map.put(Problems.TOKEN_EXPIRED,unauthorized);
+  map.put(Problems.TOKEN_REVOKED,unauthorized);
+  map.put(Problems.TOKEN_REJECTED,unauthorized);
+  map.put("token_not_authorized",unauthorized);
+  map.put(Problems.SIGNATURE_INVALID,unauthorized);
+  map.put(Problems.CONSUMER_KEY_UNKNOWN,unauthorized);
+  map.put(Problems.CONSUMER_KEY_REJECTED,unauthorized);
+  map.put(Problems.ADDITIONAL_AUTHORIZATION_REQUIRED,unauthorized);
+  map.put(Problems.PERMISSION_UNKNOWN,unauthorized);
+  map.put(Problems.PERMISSION_DENIED,unauthorized);
+  map.put(Problems.USER_REFUSED,serviceUnavailable);
+  map.put(Problems.CONSUMER_KEY_REFUSED,serviceUnavailable);
+  return Collections.unmodifiableMap(map);
+}

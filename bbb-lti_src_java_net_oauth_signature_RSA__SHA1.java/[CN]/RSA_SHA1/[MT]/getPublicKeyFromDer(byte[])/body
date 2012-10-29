@@ -1,0 +1,5 @@
+{
+  KeyFactory fac=KeyFactory.getInstance("RSA");
+  EncodedKeySpec pubKeySpec=new X509EncodedKeySpec(publicKeyObject);
+  return fac.generatePublic(pubKeySpec);
+}

@@ -1,0 +1,3 @@
+Map<String,String> cleanProperties
+String endpoint
+boolean debug

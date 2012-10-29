@@ -1,0 +1,5 @@
+{
+  if (value == null)   return;
+  if (value.trim().length() < 1)   return;
+  props.setProperty(key,value);
+}

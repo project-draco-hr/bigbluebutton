@@ -1,0 +1,18 @@
+{
+  String base=consumerProperties.getProperty(name + ".serviceProvider.baseURL");
+  URL baseURL=(base == null) ? null : new URL(base);
+  OAuthServiceProvider serviceProvider=new OAuthServiceProvider(getURL(baseURL,name + ".serviceProvider.requestTokenURL"),getURL(baseURL,name + ".serviceProvider.userAuthorizationURL"),getURL(baseURL,name + ".serviceProvider.accessTokenURL"));
+  OAuthConsumer consumer=new OAuthConsumer(consumerProperties.getProperty(name + ".callbackURL"),consumerProperties.getProperty(name + ".consumerKey"),consumerProperties.getProperty(name + ".consumerSecret"),serviceProvider);
+  consumer.setProperty("name",name);
+  if (baseURL != null) {
+    consumer.setProperty("serviceProvider.baseURL",baseURL);
+  }
+  for (  Map.Entry prop : consumerProperties.entrySet()) {
+    String propName=(String)prop.getKey();
+    if (propName.startsWith(name + ".consumer.")) {
+      String c=propName.substring(name.length() + 10);
+      consumer.setProperty(c,prop.getValue());
+    }
+  }
+  return consumer;
+}

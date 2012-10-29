@@ -1,0 +1,12 @@
+{
+  String encoding=message.getHeader(CONTENT_ENCODING);
+  if (encoding == null) {
+  }
+ else   if (GZIP.equalsIgnoreCase(encoding) || ("x-" + GZIP).equalsIgnoreCase(encoding)) {
+    return GZIP;
+  }
+ else   if (DEFLATE.equalsIgnoreCase(encoding)) {
+    return DEFLATE;
+  }
+  return null;
+}

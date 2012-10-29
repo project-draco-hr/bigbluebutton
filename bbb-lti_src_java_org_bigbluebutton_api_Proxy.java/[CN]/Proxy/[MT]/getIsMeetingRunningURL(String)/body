@@ -1,0 +1,5 @@
+{
+  String url="meetingID=" + meetingID;
+  url+=getCheckSumParameterForQuery(APICALL_ISMEETINGRUNNING,url);
+  return this.url + API_SERVERPATH + APICALL_ISMEETINGRUNNING+ "?"+ url;
+}
