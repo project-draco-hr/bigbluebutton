@@ -1,6 +1,6 @@
 {
   boolean present=false;
-  Participant p=null;
+  User p=null;
 synchronized (this) {
     present=participants.containsKey(userid);
     if (present) {

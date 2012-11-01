@@ -1,4 +1,0 @@
-{
-  this.name=name;
-  apps=new ConcurrentHashMap<String,Object>();
-}

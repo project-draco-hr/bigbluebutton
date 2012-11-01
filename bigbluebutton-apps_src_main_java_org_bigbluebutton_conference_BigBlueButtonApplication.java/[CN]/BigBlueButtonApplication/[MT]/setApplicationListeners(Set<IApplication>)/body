@@ -1,8 +1,6 @@
 {
-  int count=0;
   Iterator<IApplication> iter=listeners.iterator();
   while (iter.hasNext()) {
     super.addListener((IApplication)iter.next());
-    count++;
   }
 }
