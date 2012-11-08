@@ -1,0 +1,4 @@
+{
+  talking=false;
+  clientConnManager.joinConferenceSuccessNew(clientId,GlobalCall.getGlobalAudioStream(destination));
+}

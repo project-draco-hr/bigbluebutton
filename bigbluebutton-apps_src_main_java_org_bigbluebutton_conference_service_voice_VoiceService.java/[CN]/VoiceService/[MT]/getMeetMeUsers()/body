@@ -2,6 +2,7 @@
   String voiceBridge=getBbbSession().getVoiceBridge();
   log.debug("GetMeetmeUsers request for room[" + voiceBridge + "]");
   ArrayList<Participant> p=conferenceService.getParticipants(voiceBridge);
+  Boolean hasGlobal=false;
   Map participants=new HashMap();
   if (p == null) {
     participants.put("count",0);
@@ -12,6 +13,7 @@
       participants.put("participants",arrayListToMap(p));
     }
   }
-  log.info("MeetMe::service - Sending " + p.size() + " current users...");
+  if (hasGlobal)   log.info("MeetMe::service - Sending " + (p.size() - 1) + " current users...");
+ else   log.info("MeetMe::service - Sending " + p.size() + " current users...");
   return participants;
 }
