@@ -1,5 +1,5 @@
 {
-  SipPeer sipPeer=new SipPeer(peerId,host,sipPort,startRtpPort,stopRtpPort);
+  SipPeer sipPeer=new SipPeer(peerId,clientRtpIp,host,sipPort,startRtpPort,stopRtpPort);
   sipPeer.setClientConnectionManager(clientConnManager);
   sipPeer.setCallStreamFactory(callStreamFactory);
   sipPeers.put(peerId,sipPeer);

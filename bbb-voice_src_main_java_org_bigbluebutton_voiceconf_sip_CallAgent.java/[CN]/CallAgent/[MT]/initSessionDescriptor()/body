@@ -1,6 +1,6 @@
 {
   log.debug("initSessionDescriptor");
-  SessionDescriptor newSdp=SdpUtils.createInitialSdp(userProfile.username,sipProvider.getViaAddress(),userProfile.audioPort,userProfile.videoPort,userProfile.audioCodecsPrecedence);
+  SessionDescriptor newSdp=SdpUtils.createInitialSdp(userProfile.username,this.clientRtpIp,userProfile.audioPort,userProfile.videoPort,userProfile.audioCodecsPrecedence);
   localSession=newSdp.toString();
   log.debug("localSession Descriptor = " + localSession);
 }
