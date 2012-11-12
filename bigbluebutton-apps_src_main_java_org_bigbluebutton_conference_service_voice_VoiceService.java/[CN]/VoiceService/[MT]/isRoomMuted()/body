@@ -1,4 +1,4 @@
 {
-  String conference=getBbbSession().getVoiceBridge();
+  String conference=getBbbSession().getSessionName();
   return conferenceService.isRoomMuted(conference);
 }

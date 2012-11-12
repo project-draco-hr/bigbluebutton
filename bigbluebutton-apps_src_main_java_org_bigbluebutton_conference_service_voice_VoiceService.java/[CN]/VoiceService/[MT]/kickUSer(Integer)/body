@@ -1,5 +1,5 @@
 {
-  String conference=getBbbSession().getVoiceBridge();
+  String conference=getBbbSession().getSessionName();
   log.debug("KickUser " + userid + " from "+ conference);
   conferenceService.eject(userid,conference);
 }

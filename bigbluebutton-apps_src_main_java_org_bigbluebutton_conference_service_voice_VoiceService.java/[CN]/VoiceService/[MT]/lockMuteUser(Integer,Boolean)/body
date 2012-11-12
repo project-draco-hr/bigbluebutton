@@ -1,5 +1,5 @@
 {
-  String conference=getBbbSession().getVoiceBridge();
+  String conference=getBbbSession().getSessionName();
   log.debug("Lock request for user [" + userid + "] in room["+ conference+ "]");
   conferenceService.lock(userid,conference,lock);
 }
