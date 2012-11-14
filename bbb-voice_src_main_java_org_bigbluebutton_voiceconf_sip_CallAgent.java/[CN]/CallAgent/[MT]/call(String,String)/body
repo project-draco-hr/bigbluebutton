@@ -1,5 +1,6 @@
 {
   _callerName=callerName;
+  _destination=destination;
   log.debug("{} making a call to {}",callerName,destination);
   try {
     localSocket=getLocalAudioSocket();

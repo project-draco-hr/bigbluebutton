@@ -1,6 +1,21 @@
 {
   log.debug("SIPUser hangup");
   CallAgent ca=callManager.remove(clientId);
+  String destination;
+  if (ca != null) {
+    destination=ca.getDestination();
+  }
+ else {
+    destination=clientId;
+  }
+  if (ca != null && ca.isTalking() == false)   GlobalCall.removeUser(destination);
+  if (GlobalCall.roomHasGlobalStream(destination) && GlobalCall.getNumberOfUsers(destination) <= 0) {
+    CallAgent caGlobal=callManager.removeGlobal(destination);
+    GlobalCall.removeRoom(destination);
+    if (caGlobal != null) {
+      caGlobal.hangup();
+    }
+  }
   if (ca != null) {
     ca.hangup();
   }

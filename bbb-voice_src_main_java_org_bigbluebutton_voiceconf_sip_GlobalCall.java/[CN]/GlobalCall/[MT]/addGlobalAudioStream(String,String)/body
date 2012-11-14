@@ -1,0 +1,4 @@
+{
+  voiceConference.put(roomName,globalAudioStreamName);
+  numberOfUsers.put(roomName,0);
+}

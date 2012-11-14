@@ -11,6 +11,6 @@
   caGlobal.setClientConnectionManager(clientConnManager);
   caGlobal.setCallStreamFactory(callStreamFactory);
   callManager.add(ca);
-  callManager.add(caGlobal);
+  callManager.addGlobal(caGlobal);
   caGlobal.callGlobal(callerNameGlobal,destination,ca);
 }
