@@ -2,4 +2,5 @@
   Annotation a=new Annotation(annotation);
   application.sendAnnotation(a);
   whiteboardBridge.sendAnnotation(application.getMeetingId(),a);
+  whiteboardBridge.storeAnnotation(application.getMeetingId(),a);
 }

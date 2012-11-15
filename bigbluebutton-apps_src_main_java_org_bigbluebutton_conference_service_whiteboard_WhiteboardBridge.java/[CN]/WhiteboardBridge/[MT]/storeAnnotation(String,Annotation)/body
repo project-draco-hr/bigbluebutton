@@ -1,0 +1,29 @@
+{
+  if (an.getType().equalsIgnoreCase(WhiteboardBridge.PENCIL_TYPE)) {
+    String shapeType="path";
+    String shapeID=Long.toString(System.currentTimeMillis());
+    ArrayList<Object> data=new ArrayList<Object>();
+    Map map=an.getAnnotation();
+    ArrayList points=(ArrayList)map.get("points");
+    String strPoints="";
+    for (int i=0; i < points.size(); i+=2) {
+      String letter="";
+      Double pA=(Double)points.get(i);
+      Double pB=(Double)points.get(i + 1);
+      if (i == 0)       letter="M";
+ else       letter="L";
+      strPoints+=letter + (pA / 100) + ","+ (pB / 100);
+    }
+    Jedis jedis=messagingService.createRedisClient();
+    HashMap<String,String> mapAnn=new HashMap<String,String>();
+    mapAnn.put("shape",shapeType);
+    data.add(strPoints);
+    data.add((Integer.parseInt(map.get("color").toString()) == 0) ? "#000000" : map.get("color"));
+    data.add(map.get("thickness"));
+    Gson gson=new Gson();
+    mapAnn.put("data",gson.toJson(data));
+    jedis.rpush("meeting-" + meetingID + "-presentation-"+ map.get("presentationID")+ "-page-"+ map.get("pageNumber")+ "-currentshapes",shapeID);
+    jedis.hmset("meeting-" + meetingID + "-presentation-"+ map.get("presentationID")+ "-page-"+ map.get("pageNumber")+ "-shape-"+ shapeID,mapAnn);
+    messagingService.dropRedisClient(jedis);
+  }
+}
