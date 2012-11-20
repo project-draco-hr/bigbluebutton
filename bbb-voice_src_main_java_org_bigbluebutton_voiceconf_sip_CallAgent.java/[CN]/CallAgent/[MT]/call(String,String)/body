@@ -1,5 +1,4 @@
 {
-  String destination="125";
   log.debug("{} making a call to {}",callerName,destination);
   try {
     localSocket=getLocalAudioSocket();
