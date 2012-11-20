@@ -1,5 +1,5 @@
 {
-  String shoutPath="shout://" + icecastUsername + ":"+ icecastPassword+ "@"+ icecastHost+ ":"+ icecastPort+ File.separatorChar+ meetingid+ ".mp3";
+  String shoutPath=icecastProtocol + "://" + icecastUsername+ ":"+ icecastPassword+ "@"+ icecastHost+ ":"+ icecastPort+ File.separatorChar+ meetingid+ "."+ icecastStreamExtension;
   if (log.isDebugEnabled())   log.debug("Broadcast to {}",shoutPath);
   log.debug("Broadcast to {}",shoutPath);
   Client c=manager.getESLClient();
