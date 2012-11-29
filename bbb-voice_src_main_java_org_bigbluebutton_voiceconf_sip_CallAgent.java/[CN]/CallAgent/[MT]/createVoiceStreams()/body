@@ -21,7 +21,7 @@
           if (_callerName.contains("GLOBAL_AUDIO") == true) {
             GlobalCall.addGlobalAudioStream(_destination,callStream.getListenStreamName());
             caToInit.returnGlobalStreamName(caToInit.getCallId(),_destination);
-            talking=false;
+            talking=true;
           }
  else {
             talking=true;

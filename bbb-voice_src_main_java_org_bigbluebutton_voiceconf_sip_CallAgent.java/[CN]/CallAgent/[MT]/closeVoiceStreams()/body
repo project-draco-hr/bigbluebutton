@@ -1,6 +1,7 @@
 {
   log.debug("Shutting down the voice streams.");
   if (callStream != null) {
+    System.out.println("FECHANDO AS VOICE STREAMS");
     callStream.stop();
     callStream=null;
   }

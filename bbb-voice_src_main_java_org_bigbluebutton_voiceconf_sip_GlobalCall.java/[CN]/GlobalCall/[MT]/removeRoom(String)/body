@@ -1,4 +1,5 @@
 {
   System.out.println("REMOVENDO A SALA " + roomName);
   voiceConference.remove(roomName);
+  numberOfUsers.remove(roomName);
 }

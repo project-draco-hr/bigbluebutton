@@ -5,6 +5,7 @@
   SipPeerProfile callerProfile=SipPeerProfile.copy(registeredProfile);
   SipPeerProfile callerProfileGlobal=SipPeerProfile.copy(registeredProfile);
   CallAgent ca=new CallAgent(sipProvider,callerProfile,audioconfProvider,clientId);
+  ca.setLocalSocketRelatedToGlobal();
   CallAgent caGlobal=new CallAgent(sipProvider,callerProfileGlobal,audioconfProvider,clientIdGlobal);
   ca.setClientConnectionManager(clientConnManager);
   ca.setCallStreamFactory(callStreamFactory);

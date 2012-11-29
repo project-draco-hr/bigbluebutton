@@ -1,6 +1,5 @@
 {
   if (global == true) {
-    hangup(peerId);
     if (GlobalCall.roomHasGlobalStream(destination) == false) {
       String extension=callExtensionPattern.format(new String[]{destination});
       try {
