@@ -1,0 +1,5 @@
+{
+  String baseString=getBaseString(message);
+  String signature=getSignature(baseString);
+  return signature;
+}

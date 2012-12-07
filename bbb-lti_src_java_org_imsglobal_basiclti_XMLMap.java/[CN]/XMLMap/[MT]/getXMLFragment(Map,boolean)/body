@@ -1,0 +1,8 @@
+{
+  String retval=getXML(tm,pretty);
+  if (retval.startsWith("<?xml")) {
+    int pos=retval.indexOf("<",1);
+    if (pos > 0)     retval=retval.substring(pos);
+  }
+  return retval;
+}

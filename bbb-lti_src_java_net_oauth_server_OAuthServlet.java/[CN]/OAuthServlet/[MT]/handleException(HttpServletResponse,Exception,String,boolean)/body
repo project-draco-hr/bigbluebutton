@@ -1,0 +1,31 @@
+{
+  if (e instanceof OAuthProblemException) {
+    OAuthProblemException problem=(OAuthProblemException)e;
+    Object httpCode=problem.getParameters().get(HttpResponseMessage.STATUS_CODE);
+    if (httpCode == null) {
+      httpCode=PROBLEM_TO_HTTP_CODE.get(problem.getProblem());
+    }
+    if (httpCode == null) {
+      httpCode=SC_FORBIDDEN;
+    }
+    response.reset();
+    response.setStatus(Integer.parseInt(httpCode.toString()));
+    OAuthMessage message=new OAuthMessage(null,null,problem.getParameters().entrySet());
+    response.addHeader("WWW-Authenticate",message.getAuthorizationHeader(realm));
+    if (sendBody) {
+      sendForm(response,message.getParameters());
+    }
+  }
+ else   if (e instanceof IOException) {
+    throw (IOException)e;
+  }
+ else   if (e instanceof ServletException) {
+    throw (ServletException)e;
+  }
+ else   if (e instanceof RuntimeException) {
+    throw (RuntimeException)e;
+  }
+ else {
+    throw new ServletException(e);
+  }
+}

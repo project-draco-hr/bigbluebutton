@@ -21,6 +21,7 @@
   ssi.y=y;
   ssi.httpTunnel=httpTunnel;
   ssi.fullScreen=fullScreen;
+  ssi.useSVC2=useSVC2;
   ssi.sysTrayIcon=sysTrayIcon;
   ssi.enableTrayActions=enableTrayActions;
   return new DeskshareClient(ssi);

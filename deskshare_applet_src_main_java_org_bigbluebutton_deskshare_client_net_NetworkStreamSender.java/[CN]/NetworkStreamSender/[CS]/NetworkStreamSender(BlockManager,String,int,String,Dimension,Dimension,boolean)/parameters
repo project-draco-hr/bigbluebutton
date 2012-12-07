@@ -1,7 +1,0 @@
-BlockManager blockManager
-String host
-int port
-String room
-Dimension screenDim
-Dimension blockDim
-boolean httpTunnel

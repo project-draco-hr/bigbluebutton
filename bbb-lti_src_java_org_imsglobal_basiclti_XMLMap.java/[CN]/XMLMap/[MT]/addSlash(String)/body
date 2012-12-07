@@ -1,0 +1,5 @@
+{
+  if (path == null)   return "/";
+  if (path.trim().equals("/"))   return "/";
+  return path + "/";
+}

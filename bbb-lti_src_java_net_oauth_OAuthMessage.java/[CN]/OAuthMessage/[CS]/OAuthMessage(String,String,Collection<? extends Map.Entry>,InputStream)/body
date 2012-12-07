@@ -1,0 +1,14 @@
+{
+  this.method=method;
+  this.URL=URL;
+  this.bodyAsStream=bodyAsStream;
+  if (parameters == null) {
+    this.parameters=new ArrayList<Map.Entry<String,String>>();
+  }
+ else {
+    this.parameters=new ArrayList<Map.Entry<String,String>>(parameters.size());
+    for (    Map.Entry p : parameters) {
+      this.parameters.add(new OAuth.Parameter(toString(p.getKey()),toString(p.getValue())));
+    }
+  }
+}

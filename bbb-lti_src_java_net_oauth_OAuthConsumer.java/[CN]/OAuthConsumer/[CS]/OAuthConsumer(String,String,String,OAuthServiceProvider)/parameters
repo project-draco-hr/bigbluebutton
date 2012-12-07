@@ -1,0 +1,4 @@
+String callbackURL
+String consumerKey
+String consumerSecret
+OAuthServiceProvider serviceProvider

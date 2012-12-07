@@ -1,0 +1,25 @@
+{
+  changePixelScanFromBottomLeftToTopRight(pixels,width,height);
+  if (paletteIndex == null)   createPaletteIndex();
+  try {
+    ByteArrayOutputStream baos1=new ByteArrayOutputStream();
+    for (int i=0; i < pixels.length; i++) {
+      writeAs15_7(pixels[i],baos1);
+    }
+    ByteArrayOutputStream baos2=new ByteArrayOutputStream();
+    baos2.write(16);
+    Deflater deflater=new Deflater(Deflater.BEST_COMPRESSION);
+    DeflaterOutputStream deflateroutputstream=new DeflaterOutputStream(baos2,deflater);
+    deflateroutputstream.write(baos1.toByteArray());
+    deflateroutputstream.finish();
+    byte dataBuffer[]=baos2.toByteArray();
+    int dataSize=dataBuffer.length;
+    ByteArrayOutputStream baos=new ByteArrayOutputStream();
+    writeShort(((OutputStream)(baos)),dataSize);
+    baos.write(dataBuffer,0,dataSize);
+    return baos.toByteArray();
+  }
+ catch (  IOException e) {
+    throw new RuntimeException(e);
+  }
+}

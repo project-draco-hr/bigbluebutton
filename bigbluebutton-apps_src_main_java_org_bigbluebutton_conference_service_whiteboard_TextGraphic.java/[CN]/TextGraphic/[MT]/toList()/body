@@ -1,0 +1,14 @@
+{
+  ArrayCollection<Object> sendableList=new ArrayCollection<Object>();
+  sendableList.add(graphicType);
+  sendableList.add(text);
+  sendableList.add(textColor);
+  sendableList.add(bgColor);
+  sendableList.add(bgColorVisible);
+  sendableList.add(x);
+  sendableList.add(y);
+  sendableList.add(textSize);
+  sendableList.add(ID);
+  sendableList.add(status);
+  return sendableList;
+}

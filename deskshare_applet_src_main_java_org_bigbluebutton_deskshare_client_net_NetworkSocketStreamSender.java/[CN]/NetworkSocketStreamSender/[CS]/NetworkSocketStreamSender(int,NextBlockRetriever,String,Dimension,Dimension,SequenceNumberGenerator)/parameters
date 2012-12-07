@@ -1,6 +1,0 @@
-int id
-NextBlockRetriever retriever
-String room
-Dimension screenDim
-Dimension blockDim
-SequenceNumberGenerator seqNumGenerator

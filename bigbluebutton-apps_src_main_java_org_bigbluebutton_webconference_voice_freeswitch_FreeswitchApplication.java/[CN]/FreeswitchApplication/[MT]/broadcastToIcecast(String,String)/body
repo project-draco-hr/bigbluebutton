@@ -1,0 +1,16 @@
+{
+  String shoutPath=icecastProtocol + "://" + icecastUsername+ ":"+ icecastPassword+ "@"+ icecastHost+ ":"+ icecastPort+ File.separatorChar+ meetingid+ "."+ icecastStreamExtension;
+  if (log.isDebugEnabled())   log.debug("Broadcast to {}",shoutPath);
+  log.debug("Broadcast to {}",shoutPath);
+  Client c=manager.getESLClient();
+  if (c.canSend()) {
+    BroadcastConferenceCommand rcc=new BroadcastConferenceCommand(room,USER,true,shoutPath);
+    log.debug(rcc.getCommand() + rcc.getCommandArgs());
+    EslMessage response=manager.getESLClient().sendSyncApiCommand(rcc.getCommand(),rcc.getCommandArgs());
+    rcc.handleResponse(response,conferenceEventListener);
+  }
+ else {
+    log.warn("Can't send record request to FreeSWITCH as we are not connected.");
+    startHeartbeatMonitor();
+  }
+}

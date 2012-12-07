@@ -1,5 +1,5 @@
 {
   this.scope=scope;
   listenStreamName="speaker_" + System.currentTimeMillis();
-  scope.setName(listenStreamName);
+  ((Scope)scope).setName(listenStreamName);
 }

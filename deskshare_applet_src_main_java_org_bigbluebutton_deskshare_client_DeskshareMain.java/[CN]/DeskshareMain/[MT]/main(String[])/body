@@ -17,6 +17,7 @@
   CmdLineParser.Option icon=dsMain.addHelp(parser.addStringOption('i',"icon"),"Path to system tray icon file");
   CmdLineParser.Option help=dsMain.addHelp(parser.addBooleanOption('h',"help"),"Show this help message");
   CmdLineParser.Option fullScreen=dsMain.addHelp(parser.addBooleanOption('f',"full-screen"),"Capture the full screen.");
+  CmdLineParser.Option useSVC2=dsMain.addHelp(parser.addBooleanOption('2',"useSVC2"),"Use Screen Video V2.");
   try {
     parser.parse(args);
   }
@@ -44,10 +45,11 @@
   Boolean tunnelValue=(Boolean)parser.getOptionValue(tryHttpTunnel,new Boolean(false));
   String iconValue=(String)parser.getOptionValue(icon,"bbb.gif");
   Boolean fullScreenValue=(Boolean)parser.getOptionValue(fullScreen,new Boolean(false));
+  Boolean useSVC2Value=(Boolean)parser.getOptionValue(useSVC2,new Boolean(false));
   Image image=Toolkit.getDefaultToolkit().getImage(iconValue);
   lifeline=new LifeLine(listenPortValue.intValue(),dsMain);
   lifeline.listen();
-  client=new DeskshareClient.NewBuilder().host(hostValue).port(portValue).room(roomValue).captureWidth(cWidthValue).captureHeight(cHeightValue).scaleWidth(sWidthValue).scaleHeight(sHeightValue).quality(qualityValue).aspectRatio(aspectValue).x(xValue).y(yValue).fullScreen(fullScreenValue).httpTunnel(tunnelValue).trayIcon(image).enableTrayIconActions(true).build();
+  client=new DeskshareClient.NewBuilder().host(hostValue).port(portValue).room(roomValue).captureWidth(cWidthValue).captureHeight(cHeightValue).scaleWidth(sWidthValue).scaleHeight(sHeightValue).quality(qualityValue).aspectRatio(aspectValue).x(xValue).y(yValue).fullScreen(fullScreenValue).useSVC2(useSVC2Value).httpTunnel(tunnelValue).trayIcon(image).enableTrayIconActions(true).build();
   client.addClientListener(dsMain);
   client.start();
   try {

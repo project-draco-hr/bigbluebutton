@@ -1,0 +1,32 @@
+{
+  DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
+  try {
+    DocumentBuilder db=dbf.newDocumentBuilder();
+    postDom=db.parse(new ByteArrayInputStream(postBody.getBytes()));
+  }
+ catch (  Exception e) {
+    errorMessage="Could not parse XML: " + e.getMessage();
+    return;
+  }
+  try {
+    XPath xpath=XPathFactory.newInstance().newXPath();
+    XPathExpression expr=xpath.compile("/imsx_POXEnvelopeRequest/imsx_POXBody/*");
+    Object result=expr.evaluate(postDom,XPathConstants.NODESET);
+    NodeList nodes=(NodeList)result;
+    bodyElement=(Element)nodes.item(0);
+    operation=bodyElement.getNodeName();
+    expr=xpath.compile("/imsx_POXEnvelopeRequest/imsx_POXHeader/*");
+    result=expr.evaluate(postDom,XPathConstants.NODESET);
+    nodes=(NodeList)result;
+    headerElement=(Element)nodes.item(0);
+  }
+ catch (  Exception e) {
+    errorMessage="Could not parse PATH: " + e.getMessage();
+    return;
+  }
+  if (operation == null || bodyElement == null) {
+    errorMessage="Could not find operation";
+    return;
+  }
+  valid=true;
+}

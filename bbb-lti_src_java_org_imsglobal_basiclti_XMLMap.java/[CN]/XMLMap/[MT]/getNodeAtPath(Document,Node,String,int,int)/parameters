@@ -1,0 +1,5 @@
+Document document
+Node parentNode
+String path
+int nodePos
+int d

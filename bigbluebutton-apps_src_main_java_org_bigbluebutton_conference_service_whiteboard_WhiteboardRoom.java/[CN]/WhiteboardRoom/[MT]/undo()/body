@@ -1,4 +1,4 @@
 {
   activePresentation.getActivePage().undo();
-  notifyUndoShape(activePresentation);
+  notifyUndoWBGraphic(activePresentation);
 }

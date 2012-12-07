@@ -1,0 +1,3 @@
+{
+  return getParameter(OAuth.OAUTH_CONSUMER_KEY);
+}

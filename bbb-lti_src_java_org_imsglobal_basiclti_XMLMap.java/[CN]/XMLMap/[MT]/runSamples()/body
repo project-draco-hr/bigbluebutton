@@ -1,0 +1,115 @@
+{
+  System.out.println("Running XMLMap (www.mdom.org) Samples...");
+  debugFlag=false;
+  Map<String,String> tm=XMLMap.getMap(simpleText);
+  Map<String,String> simpleMap=new TreeMap<String,String>();
+  simpleMap.put("/a/b!x","X");
+  simpleMap.put("/a/b","B");
+  simpleMap.put("/a/c/d","D");
+  System.out.println("simpleMap\n" + simpleMap);
+  String simpleXml=XMLMap.getXML(simpleMap,true);
+  System.out.println("simpleXml\n" + simpleXml);
+  unitTest(simpleXml,false);
+  Map<String,String> subMap=XMLMap.selectSubMap(tm,"/a/c");
+  Map<String,Object> joinedMap=new TreeMap<String,Object>();
+  System.out.println("subMap=" + subMap);
+  joinedMap.put("/top/id","1234");
+  joinedMap.put("/top/fun",subMap);
+  System.out.println("joinedMap\n" + joinedMap);
+  String joinedXml=XMLMap.getXML(joinedMap,true);
+  System.out.println("joinedXML\n" + joinedXml);
+  unitTest(joinedXml,false);
+  Map<String,Object> arrayMap=new TreeMap<String,Object>();
+  String[] arrayStr={"first","second","third"};
+  arrayMap.put("/root/stuff",arrayStr);
+  System.out.println("arrayMap\n" + arrayMap);
+  String arrayXml=XMLMap.getXML(arrayMap,true);
+  System.out.println("arrayXml\n" + arrayXml);
+  unitTest(arrayXml,false);
+  Map<String,Object> newMap=new TreeMap<String,Object>();
+  newMap.put("/Root/milton","Root-milton");
+  newMap.put("/Root/joe","Root-joe");
+  Map<String,String> m2=new TreeMap<String,String>();
+  m2.put("/fred/a","fred-a");
+  m2.put("/fred/b","fred-b");
+  newMap.put("/Root/freds",m2);
+  List<Map<String,String>> lm=new ArrayList<Map<String,String>>();
+  Map<String,String> m3=null;
+  m3=new TreeMap<String,String>();
+  m3.put("/key","key-0");
+  m3.put("/val","val-0");
+  lm.add(m3);
+  m3=new TreeMap<String,String>();
+  m3.put("/key","key-1");
+  m3.put("/val","val-1");
+  lm.add(m3);
+  newMap.put("/Root/maps/map",lm);
+  String[] strar={"first","second","third"};
+  newMap.put("/Root/array",strar);
+  List<Map<String,String>> l1=new ArrayList<Map<String,String>>();
+  Map<String,String> m4=new TreeMap<String,String>();
+  m4.put("/","item-1");
+  l1.add(m4);
+  Map<String,String> m5=new TreeMap<String,String>();
+  m5.put("/","item-2");
+  l1.add(m5);
+  newMap.put("/Root/item",l1);
+  newMap.put("/Root/anns/ann[0]","Root-ann[0]");
+  newMap.put("/Root/anns/ann[1]","Root-ann[1]");
+  newMap.put("/Root/bobs/bob[0]/key","Root-bobs-bob[0]-key");
+  newMap.put("/Root/bobs/bob[0]/val","Root-bobs-bob[0]-val");
+  newMap.put("/Root/bobs/bob[1]/key","Root-bobs-bob[1]-key");
+  newMap.put("/Root/bobs/bob[1]/val","Root-bobs-bob[1]-val");
+  String complexXml=null;
+  boolean success=false;
+  debugFlag=false;
+  try {
+    complexXml=XMLMap.getXML(newMap,true);
+    success=true;
+  }
+ catch (  Exception e) {
+    success=false;
+  }
+  if (success) {
+    unitTest(complexXml,false);
+  }
+ else {
+    debugFlag=true;
+    System.out.println("\n MISMATCH AND/OR SOME ERROR HAS OCCURED - REDO in VERBODE MODE");
+    System.out.println("Starting out newMap=" + newMap);
+    complexXml=XMLMap.getXML(newMap,true);
+    unitTest(complexXml,false);
+    debugFlag=false;
+  }
+  System.out.println("\nParsing Sites Structure");
+  for (  Map<String,Object> siteMap : XMLMap.getList(sitesText,"/sites/site")) {
+    System.out.println("Site=" + siteMap);
+    System.out.println("Id=" + XMLMap.getString(siteMap,"/id"));
+    for (    Map<String,Object> toolMap : XMLMap.getList(siteMap,"/tools/tool")) {
+      System.out.println("Tool=" + toolMap);
+      System.out.println("ToolId=" + XMLMap.getString(toolMap,"/toolid"));
+      for (      Map<String,Object> property : XMLMap.getList(toolMap,"/properties/property")) {
+        System.out.println("key=" + XMLMap.getString(property,"/key"));
+        System.out.println("val=" + XMLMap.getString(property,"/val"));
+      }
+    }
+  }
+  debugFlag=false;
+  System.out.println("\nParsing RSS Feed");
+  Map<String,Object> rssFullMap=XMLMap.getFullMap(rssText);
+  System.out.println("RSS Full Map\n" + rssFullMap);
+  System.out.println("Rss Version=" + XMLMap.getString(rssFullMap,"/rss!version"));
+  System.out.println("Chan-desc=" + XMLMap.getString(rssFullMap,"/rss/channel/description"));
+  System.out.println("Chan-title=" + XMLMap.getString(rssFullMap,"/rss/channel/title"));
+  Map<String,String> rssStringMap=XMLMap.flattenMap(rssFullMap);
+  System.out.println("RSS Flat String Only Map\n" + rssStringMap);
+  System.out.println("Rss Version=" + rssStringMap.get("/rss!version"));
+  System.out.println("Chan-desc=" + rssStringMap.get("/rss/channel/description"));
+  System.out.println("Chan-title=" + rssStringMap.get("/rss/channel/title"));
+  for (  Map<String,Object> rssItem : XMLMap.getList(rssFullMap,"/rss/channel/item")) {
+    System.out.println("=== Item ===");
+    System.out.println(" Item-title=" + XMLMap.getString(rssItem,"/title"));
+    System.out.println(" Item-description=" + XMLMap.getString(rssItem,"/description"));
+    System.out.println(" Item-link=" + XMLMap.getString(rssItem,"/link"));
+  }
+}
