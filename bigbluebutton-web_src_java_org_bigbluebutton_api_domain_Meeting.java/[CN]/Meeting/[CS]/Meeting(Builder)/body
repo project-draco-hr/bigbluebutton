@@ -7,7 +7,7 @@
   maxUsers=builder.maxUsers;
   logoutUrl=builder.logoutUrl;
   defaultAvatarURL=builder.defaultAvatarURL;
-  defaultConfigURL=builder.defaultConfigURL;
+  defaultConfig=builder.defaultConfig;
   record=builder.record;
   duration=builder.duration;
   webVoice=builder.webVoice;

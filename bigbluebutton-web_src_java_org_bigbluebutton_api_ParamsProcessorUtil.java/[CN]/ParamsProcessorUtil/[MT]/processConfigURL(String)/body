@@ -1,6 +1,0 @@
-{
-  if (StringUtils.isEmpty(url)) {
-    return defaultConfigURL;
-  }
-  return url;
-}
