@@ -1,4 +1,3 @@
 {
   service.removeExpiredMeetings();
-  service.removeExpiredConfigs();
 }

@@ -7,7 +7,6 @@
   maxUsers=builder.maxUsers;
   logoutUrl=builder.logoutUrl;
   defaultAvatarURL=builder.defaultAvatarURL;
-  defaultConfig=builder.defaultConfig;
   record=builder.record;
   duration=builder.duration;
   webVoice=builder.webVoice;
@@ -17,4 +16,5 @@
   metadata=builder.metadata;
   createdTime=builder.createdTime;
   users=new ConcurrentHashMap<String,User>();
+  configs=new ConcurrentHashMap<String,Config>();
 }

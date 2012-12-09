@@ -1,9 +1,0 @@
-{
-  long now=System.currentTimeMillis();
-  for (  Config c : configs.values()) {
-    if (((now - c.createdOn) / HOUR) > 10) {
-      System.out.println("Removing config [" + c.token + "]");
-      configs.remove(c.token);
-    }
-  }
-}
