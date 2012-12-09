@@ -1,0 +1,4 @@
+{
+  defaultConfigURL=w;
+  return this;
+}

@@ -15,6 +15,8 @@
   int meetingDuration=processMeetingDuration(params.get("duration"));
   String welcomeMessage=processWelcomeMessage(params.get("welcome"));
   welcomeMessage=substituteKeywords(welcomeMessage,dialNumber,telVoice,meetingName);
+  String configURL=processConfigURL(params.get("configURL"));
+  System.out.println("ParamsProc [" + configURL + "]");
   String internalMeetingId=convertToInternalMeetingId(externalMeetingId);
   if (isTestMeeting(telVoice)) {
     internalMeetingId=getIntMeetingIdForTestMeeting(telVoice);
@@ -31,6 +33,6 @@
   }
   long createTime=System.currentTimeMillis();
   internalMeetingId=internalMeetingId + '-' + new Long(createTime).toString();
-  Meeting meeting=new Meeting.Builder(externalMeetingId,internalMeetingId,createTime).withName(meetingName).withMaxUsers(maxUsers).withModeratorPass(modPass).withViewerPass(viewerPass).withRecording(record).withDuration(meetingDuration).withLogoutUrl(logoutUrl).withTelVoice(telVoice).withWebVoice(webVoice).withDialNumber(dialNumber).withDefaultAvatarURL(defaultAvatarURL).withMetadata(meetingInfo).withWelcomeMessage(welcomeMessage).build();
+  Meeting meeting=new Meeting.Builder(externalMeetingId,internalMeetingId,createTime).withName(meetingName).withMaxUsers(maxUsers).withModeratorPass(modPass).withViewerPass(viewerPass).withRecording(record).withDuration(meetingDuration).withLogoutUrl(logoutUrl).withTelVoice(telVoice).withWebVoice(webVoice).withDialNumber(dialNumber).withDefaultAvatarURL(defaultAvatarURL).withDefaultConfigURL(configURL).withMetadata(meetingInfo).withWelcomeMessage(welcomeMessage).build();
   return meeting;
 }
