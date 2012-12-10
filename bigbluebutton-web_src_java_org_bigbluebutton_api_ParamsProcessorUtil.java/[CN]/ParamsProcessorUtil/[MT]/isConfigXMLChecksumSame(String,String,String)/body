@@ -11,7 +11,7 @@
     log.error("Couldn't decode config XML.");
     return false;
   }
-  String cs=DigestUtils.shaHex(decodedConfigXML + securitySalt);
+  String cs=DigestUtils.shaHex(meetingID + decodedConfigXML + securitySalt);
   log.debug("our checksum: [{}], client: [{}]",cs,checksum);
   System.out.println("our checksum: [" + cs + "] client: ["+ checksum+ "]");
   if (cs == null || cs.equals(checksum) == false) {
