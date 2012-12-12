@@ -19,7 +19,7 @@
           callStream.addCallStreamObserver(this);
           callStream.start();
           if (_callerName.contains("GLOBAL_AUDIO") == true) {
-            GlobalCall.addGlobalAudioStream(_destination,callStream.getListenStreamName());
+            GlobalCall.addGlobalAudioStream(_destination,callStream.getListenStreamName(),sipCodec.getCodecName());
             caToInit.returnGlobalStreamName(caToInit.getCallId(),_destination);
             talking=true;
           }
