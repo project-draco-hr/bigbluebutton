@@ -1,5 +1,4 @@
 {
-  System.out.println("FUI CRIADO AGORA");
   this.sipProvider=sipProvider;
   this.userProfile=userProfile;
   this.portProvider=portProvider;

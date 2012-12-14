@@ -8,8 +8,6 @@
   }
  else {
     callState=CallState.UA_IDLE;
-    System.out.println("NAO ESTOU FALANDO");
-    System.out.println(clientId + " eh o usuario que ta indo");
     clientConnManager.leaveConference(clientId);
   }
 }
