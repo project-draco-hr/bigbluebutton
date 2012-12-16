@@ -6,12 +6,26 @@ synchronized (pixelsLock) {
  catch (    PixelExtractException e) {
       System.out.println(e.toString());
     }
-    if (!dirtyBlock.get()) {
-      if ((!checksumSame(capturedPixels)) || sendKeepAliveBlock()) {
-        dirtyBlock.set(true);
+  }
+synchronized (dirtyCount) {
+    if ((!checksumSame(capturedPixels)) || sendKeepAliveBlock()) {
+      if (dirtyCount >= DIRTY_COUNT_LIMIT) {
+        dirtyCount=0;
         return true;
+      }
+ else {
+        dirtyCount++;
+        return false;
+      }
+    }
+ else {
+      if (dirtyCount > 0) {
+        dirtyCount=0;
+        return true;
+      }
+ else {
+        return false;
       }
     }
   }
-  return false;
 }
