@@ -31,6 +31,6 @@
   }
   long createTime=System.currentTimeMillis();
   internalMeetingId=internalMeetingId + '-' + new Long(createTime).toString();
-  Meeting meeting=new Meeting.Builder(externalMeetingId,internalMeetingId,createTime).withName(meetingName).withMaxUsers(maxUsers).withModeratorPass(modPass).withViewerPass(viewerPass).withRecording(record).withDuration(meetingDuration).withLogoutUrl(logoutUrl).withTelVoice(telVoice).withWebVoice(webVoice).withDialNumber(dialNumber).withMetadata(meetingInfo).withWelcomeMessage(welcomeMessage).build();
+  Meeting meeting=new Meeting.Builder(externalMeetingId,internalMeetingId,createTime).withName(meetingName).withMaxUsers(maxUsers).withModeratorPass(modPass).withViewerPass(viewerPass).withRecording(record).withDuration(meetingDuration).withLogoutUrl(logoutUrl).withTelVoice(telVoice).withWebVoice(webVoice).withDialNumber(dialNumber).withDefaultAvatarURL(defaultAvatarURL).withMetadata(meetingInfo).withWelcomeMessage(welcomeMessage).build();
   return meeting;
 }
