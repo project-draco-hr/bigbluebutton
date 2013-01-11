@@ -4,5 +4,8 @@
     x=((int)fullScreenSize.getWidth() - captureWidth) / 2;
     y=((int)fullScreenSize.getHeight() - captureHeight) / 2;
     System.out.println("Info[" + captureWidth + ","+ captureHeight+ "]["+ x+ ","+ y+ "]"+ "["+ fullScreenSize.getWidth()+ ","+ fullScreenSize.getHeight()+ "]");
+    if (aspectRatio) {
+      recalculateScaleDimensionsToMaintainAspectRatio();
+    }
   }
 }
