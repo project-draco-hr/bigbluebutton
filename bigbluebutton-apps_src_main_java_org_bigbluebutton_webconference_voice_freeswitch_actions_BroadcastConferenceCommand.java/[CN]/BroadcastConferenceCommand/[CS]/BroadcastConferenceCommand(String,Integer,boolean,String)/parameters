@@ -1,0 +1,4 @@
+String room
+Integer requesterId
+boolean record
+String icecastPath
