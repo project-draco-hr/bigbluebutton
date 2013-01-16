@@ -14,4 +14,5 @@
   GraphicsEnvironment je=GraphicsEnvironment.getLocalGraphicsEnvironment();
   GraphicsDevice js=je.getDefaultScreenDevice();
   graphicsConfig=js.getDefaultConfiguration();
+  cursorImage=Toolkit.getDefaultToolkit().getImage("/cursor4.png");
 }

@@ -1,7 +1,2 @@
 {
-  Point mouseLocation=getMouseLocation();
-  if (!mouseLocation.equals(oldMouseLocation)) {
-    notifyListeners(getMouseLocation());
-    oldMouseLocation=mouseLocation;
-  }
 }

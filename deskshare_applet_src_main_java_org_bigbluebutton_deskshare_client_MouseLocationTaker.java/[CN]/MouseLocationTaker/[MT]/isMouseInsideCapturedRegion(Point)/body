@@ -1,0 +1,3 @@
+{
+  return (((p.x > captureX) && (p.x < (captureX + captureWidth))) && (p.y > captureY && p.y < captureY + captureHeight));
+}
