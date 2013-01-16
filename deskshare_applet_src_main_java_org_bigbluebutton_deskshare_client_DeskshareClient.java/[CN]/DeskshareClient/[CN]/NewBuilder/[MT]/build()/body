@@ -24,5 +24,6 @@
   ssi.useSVC2=useSVC2;
   ssi.sysTrayIcon=sysTrayIcon;
   ssi.enableTrayActions=enableTrayActions;
+  System.out.println("ScreenShareInfo[captureWidth=" + captureWidth + ",captureHeight="+ captureHeight+ "]["+ x+ ","+ y+ "]"+ "[scaleWidth="+ scaleWidth+ ",scaleHeight="+ scaleHeight+ "]");
   return new DeskshareClient(ssi);
 }

@@ -1,4 +1,8 @@
 {
-  scaleWidth=captureWidth;
-  scaleHeight=captureHeight;
+  if (scaleWidth > 0 && scaleHeight > 0) {
+  }
+ else {
+    scaleWidth=captureWidth;
+    scaleHeight=captureHeight;
+  }
 }
