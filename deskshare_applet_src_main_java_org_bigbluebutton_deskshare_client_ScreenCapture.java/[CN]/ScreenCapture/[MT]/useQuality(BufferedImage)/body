@@ -1,11 +1,7 @@
 {
-  Graphics2D g1=image.createGraphics();
   BufferedImage resultImage=graphicsConfig.createCompatibleImage(scaleWidth,scaleHeight,Transparency.BITMASK);
   resultImage.setAccelerationPriority(1);
   Graphics2D g2=resultImage.createGraphics();
-  Point mouseLoc=getMouseLocation();
-  System.out.println("Drawing cursor at [" + (mouseLoc.x - x) + ","+ (mouseLoc.y - y));
-  g1.drawImage(cursorImage,mouseLoc.x - x,mouseLoc.y - y,cursorImage.getWidth(null),cursorImage.getHeight(null),null);
   if (image.getWidth() < scaleWidth || image.getHeight() < scaleHeight) {
     int imgWidth=image.getWidth();
     int imgHeight=image.getHeight();
