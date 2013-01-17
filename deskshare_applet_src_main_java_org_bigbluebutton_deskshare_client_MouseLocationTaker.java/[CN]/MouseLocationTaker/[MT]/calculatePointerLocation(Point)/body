@@ -31,8 +31,8 @@
         imgHeight=scaleHeight;
         imgWidth=(int)((double)imgHeight * ratio);
         int imgX=(scaleWidth - imgWidth) / 2;
-        double mX=((double)((double)p.x - (double)captureX + imgX) * (double)(ratio));
-        System.out.println("(p.x - captureX)=[" + (p.x - captureX) + "] ** (captureWidth / imgWidth )=["+ (double)((double)captureWidth / (double)imgWidth)+ "] mX=["+ mX+ "]");
+        double mX=((double)((double)p.x - (double)captureX) * (double)((double)imgWidth / (double)captureWidth)) + imgX;
+        System.out.println("(p.x - captureX)=[" + (p.x - captureX) + "] ** (imgWidth  /  captureWidth)=["+ (double)((double)imgWidth / (double)captureWidth)+ "] mX=["+ mX+ "]");
         double mY=((double)((double)p.y - (double)captureY) * (double)((double)scaleHeight / (double)captureHeight));
         System.out.println("m=[" + mX + ","+ mY+ "] p=["+ p.x+ ","+ p.y+ "] capture=["+ captureX+ ","+ captureY+ "]");
         return new Point((int)mX,(int)mY);
