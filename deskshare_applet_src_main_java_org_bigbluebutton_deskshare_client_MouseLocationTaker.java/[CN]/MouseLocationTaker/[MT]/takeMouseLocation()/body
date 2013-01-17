@@ -1,2 +1,8 @@
 {
+  Point mouseLocation=getMouseLocation();
+  if (!mouseLocation.equals(oldMouseLocation)) {
+    System.out.println("Mouse is inside captured region [" + mouseLocation.x + ","+ mouseLocation.y+ "]");
+    notifyListeners(calculatePointerLocation(mouseLocation));
+    oldMouseLocation=mouseLocation;
+  }
 }

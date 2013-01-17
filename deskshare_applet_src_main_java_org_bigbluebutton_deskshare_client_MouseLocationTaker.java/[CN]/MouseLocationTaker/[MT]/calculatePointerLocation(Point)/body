@@ -4,13 +4,13 @@
     int imgWidth=captureWidth;
     int imgHeight=captureHeight;
     if (imgWidth < scaleWidth && imgHeight < scaleHeight) {
-      System.out.println("Capture is smaller than scale dims. Just draw the image.");
+      System.out.println("Capture is smaller than scale dims. Just draw the image. capture=[" + captureWidth + ","+ captureHeight+ "] scale=["+ scaleWidth+ ","+ scaleHeight+ "]");
       int imgX=(scaleWidth - captureWidth) / 2;
       int imgY=(scaleHeight - captureHeight) / 2;
-      int mX=p.x - captureX;
-      int mY=p.y - captureY;
-      System.out.println("imgX=[" + imgX + ","+ imgY+ "] p=["+ p.x+ ","+ p.y+ "] capture=["+ captureX+ ","+ captureY+ "]");
-      return new Point(imgX,imgY);
+      int mX=p.x - captureX + imgX;
+      int mY=p.y - captureY + imgY;
+      System.out.println("m=[" + mX + ","+ mY+ "] p=["+ p.x+ ","+ p.y+ "] capture=["+ captureX+ ","+ captureY+ "]");
+      return new Point(mX,mY);
     }
  else {
       if (imgWidth > scaleWidth) {
