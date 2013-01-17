@@ -6,6 +6,7 @@
     int imgWidth=image.getWidth();
     int imgHeight=image.getHeight();
     if (imgWidth < scaleWidth && imgHeight < scaleHeight) {
+      System.out.println("Screen capture. capture=[" + imgWidth + ","+ imgHeight+ "] scale=["+ resultImage.getWidth()+ ","+ resultImage.getHeight()+ "]");
       g2.drawImage(image,(resultImage.getWidth() - imgWidth) / 2,(resultImage.getHeight() - imgHeight) / 2,imgWidth,imgHeight,null);
     }
  else {
