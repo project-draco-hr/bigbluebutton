@@ -5,7 +5,7 @@
     log.debug("roomLeave - session is null");
   }
  else {
-    participantsBridge.participantLeft(bbbSession.getSessionName(),new Long(bbbSession.getInternalUserID()));
-    participantsApplication.participantLeft(bbbSession.getSessionName(),new Long(bbbSession.getInternalUserID()));
+    participantsBridge.removeParticipant(bbbSession.getSessionName(),new Long(bbbSession.getInternalUserID()));
+    participantsBridge.sendParticipantLeave(bbbSession.getSessionName(),new Long(bbbSession.getInternalUserID()));
   }
 }

@@ -1,0 +1,4 @@
+String meetingID
+Long userid
+String username
+String role

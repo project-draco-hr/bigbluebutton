@@ -9,6 +9,4 @@ synchronized (this) {
     log.debug("calling participantJoined on listener " + listener.getName());
     listener.participantJoined(participant);
   }
-  log.debug("sending update with participants bridge");
-  participantsBridge.sendParticipantsUpdateList(name,participants);
 }

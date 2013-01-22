@@ -2,7 +2,7 @@
   ArrayList<Object> updates=new ArrayList<Object>();
   updates.add(meetingID);
   updates.add("user list change");
-  ArrayList<Participant> arr=new ArrayList<Participant>(participants.values());
+  ArrayList<Participant> arr=new ArrayList<Participant>(loadParticipants(meetingID).values());
   ArrayList<Object> all_participants=new ArrayList<Object>();
   for (int i=0; i < arr.size(); i++) {
     Participant p=arr.get(i);
