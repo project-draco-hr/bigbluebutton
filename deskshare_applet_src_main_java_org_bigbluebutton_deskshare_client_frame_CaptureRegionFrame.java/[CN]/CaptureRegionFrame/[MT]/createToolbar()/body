@@ -1,5 +1,6 @@
 {
   final JPanel panel=new JPanel();
+  panel.setBackground(Color.RED);
   panel.setLayout(new FlowLayout());
   capturing=false;
   btnStartStop=new Button("Start Sharing");
