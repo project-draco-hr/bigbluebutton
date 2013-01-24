@@ -1,5 +1,6 @@
 {
   this.ssi=ssi;
+  calculateScaledCapturedWidthAndHeight();
   captureTaker=new ScreenCaptureTaker(ssi.x,ssi.y,ssi.captureWidth,ssi.captureHeight,ssi.scaleWidth,ssi.scaleHeight,ssi.quality);
   mouseLocTaker=new MouseLocationTaker(ssi.captureWidth,ssi.captureHeight,ssi.scaleWidth,ssi.scaleHeight,ssi.x,ssi.y);
   Dimension screenDim=new Dimension(ssi.scaleWidth,ssi.scaleHeight);
