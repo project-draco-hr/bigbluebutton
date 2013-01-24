@@ -16,7 +16,7 @@
   ssi.scaleWidth=scaleWidth;
   ssi.scaleHeight=scaleHeight;
   ssi.quality=quality;
-  ssi.aspectRatio=aspectRatio;
+  ssi.scale=scale;
   ssi.x=x;
   ssi.y=y;
   ssi.httpTunnel=httpTunnel;
