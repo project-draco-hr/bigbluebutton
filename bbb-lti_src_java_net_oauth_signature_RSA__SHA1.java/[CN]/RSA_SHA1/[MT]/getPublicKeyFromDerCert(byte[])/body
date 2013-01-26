@@ -1,0 +1,6 @@
+{
+  CertificateFactory fac=CertificateFactory.getInstance("X509");
+  ByteArrayInputStream in=new ByteArrayInputStream(certObject);
+  X509Certificate cert=(X509Certificate)fac.generateCertificate(in);
+  return cert.getPublicKey();
+}

@@ -1,0 +1,14 @@
+{
+  if (method == null) {
+    method=(String)this.getProperty("httpMethod");
+    if (method == null) {
+      method=(String)this.consumer.getProperty("httpMethod");
+      if (method == null) {
+        method=OAuthMessage.GET;
+      }
+    }
+  }
+  OAuthMessage message=new OAuthMessage(method,url,parameters,body);
+  message.addRequiredParameters(this);
+  return message;
+}

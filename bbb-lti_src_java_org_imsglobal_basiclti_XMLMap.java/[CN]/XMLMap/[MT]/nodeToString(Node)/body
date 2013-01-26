@@ -1,0 +1,8 @@
+{
+  if (node == null)   return null;
+  String retval=node.getNodeName();
+  while ((node=node.getParentNode()) != null) {
+    retval=node.getNodeName() + "/" + retval;
+  }
+  return "/" + retval;
+}

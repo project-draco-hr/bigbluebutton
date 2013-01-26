@@ -37,26 +37,32 @@
       status.put("raiseHand",false);
       status.put("presenter",false);
       status.put("hasStream",false);
-      participantsApplication.participantJoin(meetingId,Long.parseLong(nUserId),username,role,externalUserID,status);
+      participantsApplication.participantJoin(meetingId,nUserId,username,role,externalUserID,status);
     }
  else     if (messageName.equalsIgnoreCase("user leave")) {
       String nUserId=gson.fromJson(array.get(2),String.class);
-      participantsApplication.participantLeft(meetingId,Long.parseLong(nUserId));
+      participantsApplication.participantLeft(meetingId,nUserId);
     }
  else     if (messageName.equalsIgnoreCase("msg")) {
       String username=gson.fromJson(array.get(2),String.class);
-      String chat_message=gson.fromJson(array.get(3),String.class);
-      Participant p=participantsApplication.getParticipantByUsername(meetingId,username);
-      String userid="0";
-      if (p != null) {
-        userid=p.getInternalUserID().toString();
-      }
-      ChatObject chatobj=new ChatObject(chat_message,username,"0","00:00","en",userid);
-      chatApplication.sendMessage(meetingId,chatobj);
+      String message_text=gson.fromJson(array.get(3),String.class);
+      String userid=gson.fromJson(array.get(4),String.class);
+      ChatMessageVO chatObj=new ChatMessageVO();
+      chatObj.chatType="PUBLIC";
+      chatObj.fromUserID=userid;
+      chatObj.fromUsername=username;
+      chatObj.fromColor="0";
+      chatObj.fromTime=0.0;
+      chatObj.fromTimezoneOffset=(long)0;
+      chatObj.fromLang="en";
+      chatObj.toUserID="";
+      chatObj.toUsername="";
+      chatObj.message=message_text;
+      chatApplication.sendPublicMessage(meetingId,chatObj);
     }
  else     if (messageName.equalsIgnoreCase("setPresenter")) {
       String pubID=gson.fromJson(array.get(2),String.class);
-      Participant p=participantsApplication.getParticipantByUserID(meetingId,Long.parseLong(pubID));
+      User p=participantsApplication.getParticipantByUserID(meetingId,pubID);
       log.debug("new presenter: " + p.getInternalUserID() + " "+ p.getName());
       ArrayList<String> newPresenter=new ArrayList<String>();
       newPresenter.add(pubID);
@@ -68,19 +74,10 @@
         String curUserID=curPresenter.get(0);
         log.debug("previous presenter: " + curUserID + " "+ curPresenter.get(1));
         if (!curUserID.equalsIgnoreCase(pubID)) {
-          participantsApplication.setParticipantStatus(meetingId,Long.parseLong(curUserID),"presenter",false);
+          participantsApplication.setParticipantStatus(meetingId,curUserID,"presenter",false);
         }
       }
       participantsApplication.assignPresenter(meetingId,newPresenter);
-    }
- else     if (messageName.equalsIgnoreCase("mvCur")) {
-      Double xPercent=gson.fromJson(array.get(2),Double.class);
-      Double yPercent=gson.fromJson(array.get(3),Double.class);
-      if (xPercent == null || yPercent == null) {
-        xPercent=0.0;
-        yPercent=0.0;
-      }
-      presentationApplication.sendCursorUpdate(meetingId,xPercent,yPercent);
     }
   }
 }

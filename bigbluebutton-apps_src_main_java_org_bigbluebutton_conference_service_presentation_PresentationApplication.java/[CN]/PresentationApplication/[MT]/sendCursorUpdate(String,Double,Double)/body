@@ -2,7 +2,12 @@
   if (roomsManager.hasRoom(room)) {
     log.debug("Request to update cursor[" + xPercent + ","+ yPercent+ "]");
     roomsManager.sendCursorUpdate(room,xPercent,yPercent);
+    Map<String,Object> message=new HashMap<String,Object>();
+    message.put("xPercent",xPercent);
+    message.put("yPercent",yPercent);
+    ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getMeetingId(),"PresentationCursorUpdateCommand",message);
+    connInvokerService.sendMessage(m);
     return;
   }
-  log.warn("resizeAndMoveSlide on a non-existant room " + room);
+  log.warn("Sending cursor update on a non-existant room " + room);
 }

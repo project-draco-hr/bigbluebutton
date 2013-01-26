@@ -1,8 +1,0 @@
-{
-  Room r=getRoom(roomName);
-  if (r != null) {
-    return r.getParticipantByUsername(username);
-  }
-  log.warn("Getting participant from a non-existing room " + roomName);
-  return null;
-}

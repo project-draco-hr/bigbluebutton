@@ -1,0 +1,4 @@
+{
+  String url=getJoinMeetingURL(fullName,meetingID,password,createTime,userID,"");
+  return url;
+}

@@ -1,0 +1,5 @@
+{
+  if (!debugFlag)   return;
+  for (int i=0; i < d; i++)   System.out.print(" ");
+  System.out.println(str);
+}

@@ -2,7 +2,7 @@
   log.debug(APP + ":participantJoin - getting userid");
   BigBlueButtonSession bbbSession=getBbbSession();
   if (bbbSession != null) {
-    Long userid=new Long(bbbSession.getInternalUserID());
+    String userid=bbbSession.getInternalUserID();
     String username=bbbSession.getUsername();
     String role=bbbSession.getRole();
     String room=bbbSession.getRoom();
@@ -11,7 +11,7 @@
     status.put("raiseHand",false);
     status.put("presenter",false);
     status.put("hasStream",false);
-    participantsBridge.storeParticipant(room,userid,username);
+    participantsBridge.storeParticipant(room,userid,username,role);
     participantsBridge.sendParticipantJoin(room,userid,username,role);
     return true;
   }

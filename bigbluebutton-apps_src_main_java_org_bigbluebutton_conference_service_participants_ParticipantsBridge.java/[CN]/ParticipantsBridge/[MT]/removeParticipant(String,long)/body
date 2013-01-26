@@ -1,6 +1,0 @@
-{
-  Jedis jedis=messagingService.createRedisClient();
-  jedis.srem("meeting-" + meetingID + "-users",Long.toString(internalUserID));
-  jedis.del("meeting-" + meetingID + "-user-"+ internalUserID);
-  messagingService.dropRedisClient(jedis);
-}

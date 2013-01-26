@@ -1,0 +1,5 @@
+{
+  String url="recordID=" + recordID;
+  url+=getCheckSumParameterForQuery(APICALL_PUBLISHRECORDINGS,url);
+  return this.url + API_SERVERPATH + APICALL_PUBLISHRECORDINGS+ "?"+ url;
+}

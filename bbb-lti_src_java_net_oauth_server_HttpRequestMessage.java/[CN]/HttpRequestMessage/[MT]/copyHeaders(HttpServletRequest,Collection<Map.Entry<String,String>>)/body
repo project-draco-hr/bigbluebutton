@@ -1,0 +1,14 @@
+{
+  Enumeration<String> names=request.getHeaderNames();
+  if (names != null) {
+    while (names.hasMoreElements()) {
+      String name=names.nextElement();
+      Enumeration<String> values=request.getHeaders(name);
+      if (values != null) {
+        while (values.hasMoreElements()) {
+          into.add(new OAuth.Parameter(name,values.nextElement()));
+        }
+      }
+    }
+  }
+}

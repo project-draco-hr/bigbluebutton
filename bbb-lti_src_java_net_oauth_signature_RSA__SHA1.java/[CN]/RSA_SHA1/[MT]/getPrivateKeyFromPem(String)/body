@@ -1,0 +1,3 @@
+{
+  return getPrivateKeyFromDer(decodeBase64(privateKeyObject));
+}

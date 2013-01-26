@@ -1,0 +1,6 @@
+{
+  this.value=value;
+  String n=toString(value.getKey());
+  String v=toString(value.getValue());
+  this.key=OAuth.percentEncode(n) + ' ' + OAuth.percentEncode(v);
+}

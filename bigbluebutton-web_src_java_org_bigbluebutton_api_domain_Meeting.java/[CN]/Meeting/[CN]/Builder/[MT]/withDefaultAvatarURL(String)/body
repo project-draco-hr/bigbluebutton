@@ -1,0 +1,4 @@
+{
+  defaultAvatarURL=w;
+  return this;
+}

@@ -1,0 +1,3 @@
+{
+  message.addParameter(new OAuth.Parameter("oauth_signature",getSignature(message)));
+}

@@ -1,0 +1,14 @@
+{
+  Set<String> present=getParameterMap().keySet();
+  List<String> absent=new ArrayList<String>();
+  for (  String required : names) {
+    if (!present.contains(required)) {
+      absent.add(required);
+    }
+  }
+  if (!absent.isEmpty()) {
+    OAuthProblemException problem=new OAuthProblemException(OAuth.Problems.PARAMETER_ABSENT);
+    problem.setParameter(OAuth.Problems.OAUTH_PARAMETERS_ABSENT,OAuth.percentEncode(absent));
+    throw problem;
+  }
+}

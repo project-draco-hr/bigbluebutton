@@ -1,0 +1,4 @@
+{
+  final Map<String,String> map=cleanupProperties(convertToMap(rawProperties),null);
+  return convertToProperties(map);
+}

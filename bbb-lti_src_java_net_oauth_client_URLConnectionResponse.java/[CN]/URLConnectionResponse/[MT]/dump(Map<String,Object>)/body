@@ -1,0 +1,37 @@
+{
+  super.dump(into);
+{
+    StringBuilder request=new StringBuilder(requestHeaders);
+    request.append(EOL);
+    if (requestExcerpt != null) {
+      request.append(new String(requestExcerpt,requestEncoding));
+    }
+    into.put(REQUEST,request.toString());
+  }
+{
+    HttpURLConnection http=(connection instanceof HttpURLConnection) ? (HttpURLConnection)connection : null;
+    StringBuilder response=new StringBuilder();
+    String value;
+    for (int i=0; (value=connection.getHeaderField(i)) != null; ++i) {
+      String name=connection.getHeaderFieldKey(i);
+      if (i == 0 && name != null && http != null) {
+        String firstLine="HTTP " + getStatusCode();
+        String message=http.getResponseMessage();
+        if (message != null) {
+          firstLine+=(" " + message);
+        }
+        response.append(firstLine).append(EOL);
+      }
+      if (name != null) {
+        response.append(name).append(": ");
+        name=name.toLowerCase();
+      }
+      response.append(value).append(EOL);
+    }
+    response.append(EOL);
+    if (body != null) {
+      response.append(new String(((ExcerptInputStream)body).getExcerpt(),getContentCharset()));
+    }
+    into.put(HttpMessage.RESPONSE,response.toString());
+  }
+}

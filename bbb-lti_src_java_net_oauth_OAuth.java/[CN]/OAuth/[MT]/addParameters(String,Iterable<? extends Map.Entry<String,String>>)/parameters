@@ -1,0 +1,2 @@
+String url
+Iterable<? extends Map.Entry<String,String>> parameters

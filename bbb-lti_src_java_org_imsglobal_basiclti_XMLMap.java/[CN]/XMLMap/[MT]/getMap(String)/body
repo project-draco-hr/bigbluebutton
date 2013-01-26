@@ -1,0 +1,6 @@
+{
+  if (str == null)   return null;
+  Document doc=documentFromString(str);
+  if (doc == null)   return null;
+  return getMap(doc);
+}

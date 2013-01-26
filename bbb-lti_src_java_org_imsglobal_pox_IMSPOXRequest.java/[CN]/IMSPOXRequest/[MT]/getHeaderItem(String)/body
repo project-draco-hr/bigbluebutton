@@ -1,0 +1,4 @@
+{
+  if (getHeaderMap() == null)   return null;
+  return headerMap.get(path);
+}

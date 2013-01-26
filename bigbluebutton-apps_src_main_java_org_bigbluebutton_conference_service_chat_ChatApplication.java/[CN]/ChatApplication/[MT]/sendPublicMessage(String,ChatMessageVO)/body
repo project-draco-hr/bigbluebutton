@@ -1,0 +1,5 @@
+{
+  roomsManager.sendMessage(room,chatobj);
+  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,room,"ChatReceivePublicMessageCommand",chatobj.toMap());
+  connInvokerService.sendMessage(m);
+}

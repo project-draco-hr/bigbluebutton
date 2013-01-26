@@ -1,0 +1,14 @@
+{
+  super(http.method,http.url.toExternalForm(),null);
+  this.http=http;
+  getHeaders().addAll(http.headers);
+  for (  Map.Entry<String,String> header : http.headers) {
+    if ("WWW-Authenticate".equalsIgnoreCase(header.getKey())) {
+      for (      OAuth.Parameter parameter : decodeAuthorization(header.getValue())) {
+        if (!"realm".equalsIgnoreCase(parameter.getKey())) {
+          addParameter(parameter);
+        }
+      }
+    }
+  }
+}

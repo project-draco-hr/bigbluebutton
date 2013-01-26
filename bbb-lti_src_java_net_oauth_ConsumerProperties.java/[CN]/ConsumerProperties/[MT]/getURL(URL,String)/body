@@ -1,0 +1,7 @@
+{
+  String url=consumerProperties.getProperty(name);
+  if (base != null) {
+    url=(new URL(base,url)).toExternalForm();
+  }
+  return url;
+}

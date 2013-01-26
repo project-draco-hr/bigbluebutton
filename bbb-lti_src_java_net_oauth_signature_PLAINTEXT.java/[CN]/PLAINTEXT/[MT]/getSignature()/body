@@ -1,0 +1,6 @@
+{
+  if (signature == null) {
+    signature=OAuth.percentEncode(getConsumerSecret()) + '&' + OAuth.percentEncode(getTokenSecret());
+  }
+  return signature;
+}

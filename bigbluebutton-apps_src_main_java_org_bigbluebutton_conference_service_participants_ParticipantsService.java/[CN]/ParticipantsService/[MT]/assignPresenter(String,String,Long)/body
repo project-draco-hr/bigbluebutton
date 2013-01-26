@@ -1,0 +1,17 @@
+{
+  log.info("Receive assignPresenter request from client [" + userid + ","+ name+ ","+ assignedBy+ "]");
+  IScope scope=Red5.getConnectionLocal().getScope();
+  ArrayList<String> curPresenter=application.getCurrentPresenter(scope.getName());
+  String previousPresenter=null;
+  if (curPresenter != null) {
+    String curUserid=(String)curPresenter.get(0);
+    if (!curUserid.equalsIgnoreCase(userid)) {
+      previousPresenter=curUserid;
+    }
+  }
+ else {
+    log.info("No current presenter. So do nothing.");
+  }
+  participantsBridge.storeAssignPresenter(scope.getName(),userid,previousPresenter);
+  participantsBridge.sendAssignPresenter(scope.getName(),userid);
+}

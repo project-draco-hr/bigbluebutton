@@ -1,0 +1,16 @@
+{
+  accessor.accessToken=null;
+  accessor.tokenSecret=null;
+{
+    Object accessorSecret=accessor.getProperty(OAuthConsumer.ACCESSOR_SECRET);
+    if (accessorSecret != null) {
+      List<Map.Entry> p=(parameters == null) ? new ArrayList<Map.Entry>(1) : new ArrayList<Map.Entry>(parameters);
+      p.add(new OAuth.Parameter("oauth_accessor_secret",accessorSecret.toString()));
+      parameters=p;
+    }
+  }
+  OAuthMessage response=invoke(accessor,httpMethod,accessor.consumer.serviceProvider.requestTokenURL,parameters);
+  accessor.requestToken=response.getParameter(OAuth.OAUTH_TOKEN);
+  accessor.tokenSecret=response.getParameter(OAuth.OAUTH_TOKEN_SECRET);
+  response.requireParameters(OAuth.OAUTH_TOKEN,OAuth.OAUTH_TOKEN_SECRET);
+}

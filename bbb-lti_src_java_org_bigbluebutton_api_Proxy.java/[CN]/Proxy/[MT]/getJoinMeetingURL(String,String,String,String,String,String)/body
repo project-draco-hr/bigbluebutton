@@ -1,0 +1,11 @@
+{
+  String url;
+  url="fullName=" + getStringEncoded(fullName);
+  url+="&meetingID=" + meetingID;
+  url+="&password=" + password;
+  url+="".equals(createTime) ? "" : "&createTime=" + createTime;
+  url+="&userID=" + userID;
+  url+="&webVoiceConf=" + webVoiceConf;
+  url+=getCheckSumParameterForQuery(APICALL_JOIN,url);
+  return this.url + API_SERVERPATH + APICALL_JOIN+ "?"+ url;
+}
