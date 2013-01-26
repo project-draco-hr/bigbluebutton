@@ -1,8 +1,6 @@
 {
   this.ssi=ssi;
-  if (!ssi.fullScreen) {
-    calculateScaledCapturedWidthAndHeight();
-  }
+  calculateScaledCapturedWidthAndHeight();
   System.out.println("ScreenSharerRunner[captureWidth=" + ssi.captureWidth + ",captureHeight="+ ssi.captureHeight+ "]["+ ssi.x+ ","+ ssi.y+ "]"+ "[scaleWidth="+ ssi.scaleWidth+ ",scaleHeight="+ ssi.scaleHeight+ "]");
   captureTaker=new ScreenCaptureTaker(ssi.x,ssi.y,ssi.captureWidth,ssi.captureHeight,ssi.scaleWidth,ssi.scaleHeight,ssi.quality);
   mouseLocTaker=new MouseLocationTaker(ssi.captureWidth,ssi.captureHeight,ssi.scaleWidth,ssi.scaleHeight,ssi.x,ssi.y);
