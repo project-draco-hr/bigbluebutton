@@ -1,10 +1,10 @@
 {
-  log.trace("onPipeConnectionEvent(event:{})",event);
+  log.debug("onPipeConnectionEvent(event:{})",event);
 switch (event.getType()) {
 case PipeConnectionEvent.PROVIDER_CONNECT_PUSH:
-    log.trace("PipeConnectionEvent.PROVIDER_CONNECT_PUSH");
+    log.debug("PipeConnectionEvent.PROVIDER_CONNECT_PUSH");
   if (event.getProvider() == this && (event.getParamMap() == null || !event.getParamMap().containsKey("record"))) {
-    log.trace("Creating a live pipe");
+    log.debug("Creating a live pipe");
     System.out.println("Creating a live pipe");
     this.livePipe=(IPipe)event.getSource();
   }
@@ -12,21 +12,21 @@ break;
 case PipeConnectionEvent.PROVIDER_DISCONNECT:
 log.trace("PipeConnectionEvent.PROVIDER_DISCONNECT");
 if (this.livePipe == event.getSource()) {
-log.trace("PipeConnectionEvent.PROVIDER_DISCONNECT - this.mLivePipe = null;");
+log.debug("PipeConnectionEvent.PROVIDER_DISCONNECT - this.mLivePipe = null;");
 System.out.println("PipeConnectionEvent.PROVIDER_DISCONNECT - this.mLivePipe = null;");
 this.livePipe=null;
 }
 break;
 case PipeConnectionEvent.CONSUMER_CONNECT_PUSH:
-log.trace("PipeConnectionEvent.CONSUMER_CONNECT_PUSH");
+log.debug("PipeConnectionEvent.CONSUMER_CONNECT_PUSH");
 System.out.println("PipeConnectionEvent.CONSUMER_CONNECT_PUSH");
 break;
 case PipeConnectionEvent.CONSUMER_DISCONNECT:
-log.trace("PipeConnectionEvent.CONSUMER_DISCONNECT");
+log.debug("PipeConnectionEvent.CONSUMER_DISCONNECT");
 System.out.println("PipeConnectionEvent.CONSUMER_DISCONNECT");
 break;
 default :
-log.trace("PipeConnectionEvent default");
+log.debug("PipeConnectionEvent default");
 System.out.println("PipeConnectionEvent default");
 break;
 }
