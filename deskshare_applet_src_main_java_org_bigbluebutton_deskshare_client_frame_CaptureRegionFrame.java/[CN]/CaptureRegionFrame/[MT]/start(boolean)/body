@@ -1,0 +1,7 @@
+{
+  frame.setToolbar(createToolbar());
+  setVisible(true);
+  if (autoStart) {
+    startCapture();
+  }
+}

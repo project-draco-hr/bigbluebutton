@@ -23,8 +23,6 @@
       BlockVideoData bv=new BlockVideoData(room,block.getPosition(),block.getVideoData(),false);
       BlockStreamProtocolEncoder.encodeBlock(bv,dataToSend);
     }
-    System.out.println(blockSize + "] total=" + totalBytes+ " bytes");
-    System.out.println(encodeTime + "] total=" + totalMillis+ " ms");
     BlockStreamProtocolEncoder.encodeDelimiter(dataToSend);
     sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
     sendToStream(dataToSend);
@@ -32,7 +30,6 @@
       retriever.blockSent((Integer)changedBlocks[i]);
     }
     long end=System.currentTimeMillis();
-    System.out.println("[Socket Thread " + id + "] Sending "+ changedBlocks.length+ " blocks took "+ (end - start)+ " millis");
   }
  else   if (message.getMessageType() == Message.MessageType.CURSOR) {
     CursorMessage msg=(CursorMessage)message;
