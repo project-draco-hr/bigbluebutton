@@ -1,5 +1,5 @@
 {
-  log.debug("Request update cursor[" + xPercent + ","+ yPercent+ "]");
+  log.debug("[HTML5-Debug] Request update cursor[" + xPercent + ","+ yPercent+ "]");
   IScope scope=Red5.getConnectionLocal().getScope();
   bridge.sendCursorUpdate(scope.getName(),xPercent,yPercent);
 }
