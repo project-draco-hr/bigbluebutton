@@ -1,0 +1,11 @@
+{
+  log.debug(APP + ":roomStart " + scope.getName());
+  layoutApplication.createRoom(scope.getName());
+  if (!hasSharedObject(scope,LAYOUT_SO)) {
+    if (createSharedObject(scope,LAYOUT_SO,false)) {
+      return true;
+    }
+  }
+  log.error("Failed to start room " + scope.getName());
+  return false;
+}

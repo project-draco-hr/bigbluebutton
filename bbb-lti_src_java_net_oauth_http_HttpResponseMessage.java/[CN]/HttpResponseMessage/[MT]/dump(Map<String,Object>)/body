@@ -1,0 +1,8 @@
+{
+  super.dump(into);
+  into.put(STATUS_CODE,Integer.valueOf(getStatusCode()));
+  String location=getHeader(LOCATION);
+  if (location != null) {
+    into.put(LOCATION,location);
+  }
+}

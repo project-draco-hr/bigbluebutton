@@ -1,0 +1,8 @@
+{
+  if (sm == null)   return null;
+  selection=selection.trim();
+  if (badSelection(selection))   return null;
+  Map<String,String> retval=new TreeMap<String,String>();
+  selectSubMap(sm,retval,null,null,selection);
+  return retval;
+}

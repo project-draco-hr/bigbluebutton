@@ -1,0 +1,7 @@
+{
+  this.room=room;
+  screenDim=screen;
+  blockDim=block;
+  this.sequenceNum=sequenceNum;
+  this.useSVC2=useSVC2;
+}

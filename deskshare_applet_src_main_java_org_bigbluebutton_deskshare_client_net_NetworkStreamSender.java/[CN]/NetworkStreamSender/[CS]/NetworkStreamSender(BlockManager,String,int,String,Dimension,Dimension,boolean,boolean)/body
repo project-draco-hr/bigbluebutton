@@ -1,0 +1,13 @@
+{
+  this.blockManager=blockManager;
+  this.host=host;
+  this.port=port;
+  this.room=room;
+  this.screenDim=screenDim;
+  this.blockDim=blockDim;
+  this.httpTunnel=httpTunnel;
+  this.useSVC2=useSVC2;
+  numThreads=1;
+  System.out.println(NAME + "Starting up " + numThreads+ " sender threads.");
+  executor=Executors.newFixedThreadPool(numThreads);
+}

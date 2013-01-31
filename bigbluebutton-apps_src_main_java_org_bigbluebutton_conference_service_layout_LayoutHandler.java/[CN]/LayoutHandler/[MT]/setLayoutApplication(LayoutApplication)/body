@@ -1,0 +1,5 @@
+{
+  log.debug("Setting layout application");
+  layoutApplication=a;
+  layoutApplication.handler=this;
+}

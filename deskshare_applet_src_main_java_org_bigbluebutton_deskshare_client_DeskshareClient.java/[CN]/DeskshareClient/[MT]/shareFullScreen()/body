@@ -1,5 +1,5 @@
 {
-  screenSharer=new FullScreenSharer(ssi);
+  screenSharer=new ScreenRegionSharer(ssi);
   screenSharer.addClientListener(listener);
-  screenSharer.start();
+  screenSharer.start(true);
 }

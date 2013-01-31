@@ -1,0 +1,6 @@
+{
+  checkSingleParameters(message);
+  validateVersion(message);
+  validateTimestampAndNonce(message);
+  validateSignature(message,accessor);
+}

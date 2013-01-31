@@ -1,10 +1,12 @@
 {
   this.ssi=ssi;
+  calculateScaledCapturedWidthAndHeight();
+  System.out.println("ScreenSharerRunner[captureWidth=" + ssi.captureWidth + ",captureHeight="+ ssi.captureHeight+ "]["+ ssi.x+ ","+ ssi.y+ "]"+ "[scaleWidth="+ ssi.scaleWidth+ ",scaleHeight="+ ssi.scaleHeight+ "]");
   captureTaker=new ScreenCaptureTaker(ssi.x,ssi.y,ssi.captureWidth,ssi.captureHeight,ssi.scaleWidth,ssi.scaleHeight,ssi.quality);
   mouseLocTaker=new MouseLocationTaker(ssi.captureWidth,ssi.captureHeight,ssi.scaleWidth,ssi.scaleHeight,ssi.x,ssi.y);
   Dimension screenDim=new Dimension(ssi.scaleWidth,ssi.scaleHeight);
   Dimension tileDim=new Dimension(blockWidth,blockHeight);
   blockManager=new BlockManager();
-  blockManager.initialize(screenDim,tileDim);
-  sender=new NetworkStreamSender(blockManager,ssi.host,ssi.port,ssi.room,screenDim,tileDim,ssi.httpTunnel);
+  blockManager.initialize(screenDim,tileDim,ssi.useSVC2);
+  sender=new NetworkStreamSender(blockManager,ssi.host,ssi.port,ssi.room,screenDim,tileDim,ssi.httpTunnel,ssi.useSVC2);
 }

@@ -1,0 +1,10 @@
+{
+  LayoutRoom r=getRoom(room);
+  if (r != null) {
+    return r.currentLayout();
+  }
+ else {
+    log.warn("initLayout: sending message to a non-existing room " + room);
+    return null;
+  }
+}

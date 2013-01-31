@@ -1,0 +1,6 @@
+String fullName
+String meetingID
+String password
+String createTime
+String userID
+String webVoiceConf

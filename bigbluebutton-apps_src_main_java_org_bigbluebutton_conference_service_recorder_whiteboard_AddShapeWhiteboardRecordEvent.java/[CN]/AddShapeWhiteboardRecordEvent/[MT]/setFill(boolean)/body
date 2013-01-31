@@ -1,0 +1,3 @@
+{
+  eventMap.put("fill",Boolean.toString(fill));
+}

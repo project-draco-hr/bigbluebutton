@@ -1,0 +1,6 @@
+{
+  if (roomsManager.hasRoom(name)) {
+    roomsManager.removeRoom(name);
+  }
+  return true;
+}

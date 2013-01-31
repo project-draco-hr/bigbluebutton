@@ -1,5 +1,0 @@
-{
-  Presentation pres=roomManager.getRoom(getLocalScope().getName()).getActivePresentation();
-  pres.setActivePage(pageNum);
-  return pres.getActivePage().getNumShapesOnPage();
-}

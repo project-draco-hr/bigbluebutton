@@ -1,0 +1,8 @@
+{
+  if (roomsManager.hasRoom(room)) {
+    roomsManager.addRoomListener(room,listener);
+    return true;
+  }
+  log.warn("Adding listener to a non-existant room " + room);
+  return false;
+}

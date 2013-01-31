@@ -1,0 +1,9 @@
+double[] shape
+String type
+int color
+int thickness
+boolean fill
+int fillColor
+boolean transparent
+String id
+String status

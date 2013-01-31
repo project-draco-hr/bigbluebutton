@@ -1,0 +1,12 @@
+{
+  if (buf == null) {
+    buf=new byte[8192];
+    pos=0;
+    readPos=0;
+  }
+ else {
+    byte[] b=new byte[buf.length * 2];
+    System.arraycopy(buf,0,b,0,buf.length);
+    buf=b;
+  }
+}

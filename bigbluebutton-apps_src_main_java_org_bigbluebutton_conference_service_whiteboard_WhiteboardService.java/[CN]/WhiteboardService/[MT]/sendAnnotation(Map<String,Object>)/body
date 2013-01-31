@@ -1,0 +1,4 @@
+{
+  Annotation a=new Annotation(annotation);
+  application.sendAnnotation(a);
+}

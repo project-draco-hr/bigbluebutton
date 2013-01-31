@@ -1,0 +1,29 @@
+{
+  if (xmlString == null)   return false;
+  debugFlag=doDebug;
+  if (doDebug) {
+    debugFlag=true;
+    String pretty1=XMLMap.prettyPrint(xmlString);
+    String pretty2=XMLMap.prettyPrint(pretty1);
+    if (pretty1.equals(pretty2))     return true;
+    System.out.println("XMLMap - unit test failed");
+    return false;
+  }
+  debugFlag=false;
+  try {
+    String pretty1=XMLMap.prettyPrint(xmlString);
+    String pretty2=XMLMap.prettyPrint(pretty1);
+    if (pretty1.equals(pretty2))     return true;
+  }
+ catch (  Throwable t) {
+  }
+  System.out.println("XMLMap - unit test failed");
+  System.out.println(xmlString);
+  debugFlag=true;
+  String pretty1=XMLMap.prettyPrint(xmlString);
+  System.out.println("Pretty Print Version pass 1\n" + pretty1);
+  String pretty2=XMLMap.prettyPrint(pretty1);
+  System.out.println("Pretty Print Version pass 2\n" + pretty2);
+  debugFlag=false;
+  return false;
+}

@@ -1,0 +1,7 @@
+{
+  log.debug(APP + ":roomStop " + scope.getName());
+  layoutApplication.destroyRoom(scope.getName());
+  if (!hasSharedObject(scope,LAYOUT_SO)) {
+    clearSharedObjects(scope,LAYOUT_SO);
+  }
+}

@@ -1,5 +1,5 @@
 {
   String action="norecord";
   if (record)   action="record";
-  return getRoom() + SPACE + action+ SPACE+ recordPath;
+  return SPACE + getRoom() + SPACE+ action+ SPACE+ recordPath;
 }

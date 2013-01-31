@@ -1,0 +1,4 @@
+{
+  log.info("WhiteboardApplication - Getting number of shapes for page: " + (Integer)message.get("pageNum"));
+  application.changePage((Integer)message.get("pageNum"));
+}

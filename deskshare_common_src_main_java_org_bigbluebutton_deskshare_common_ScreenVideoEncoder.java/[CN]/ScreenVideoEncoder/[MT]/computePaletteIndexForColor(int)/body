@@ -1,0 +1,12 @@
+{
+  int min=0x7fffffff;
+  int minc=-1;
+  for (int i=0; i < 128; i++) {
+    int diff=chromaDifference(PALETTE[i],rgb);
+    if (diff < min) {
+      min=diff;
+      minc=i;
+    }
+  }
+  return minc;
+}

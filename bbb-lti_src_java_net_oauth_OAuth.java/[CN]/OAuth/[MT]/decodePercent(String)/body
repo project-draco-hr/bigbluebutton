@@ -1,0 +1,8 @@
+{
+  try {
+    return URLDecoder.decode(s,ENCODING);
+  }
+ catch (  java.io.UnsupportedEncodingException wow) {
+    throw new RuntimeException(wow.getMessage(),wow);
+  }
+}

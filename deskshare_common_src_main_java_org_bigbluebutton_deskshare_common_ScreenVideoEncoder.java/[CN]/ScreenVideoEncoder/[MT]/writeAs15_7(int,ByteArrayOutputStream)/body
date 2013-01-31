@@ -1,0 +1,12 @@
+{
+  int c15=((rgb & 0xf80000) >> 9 | (rgb & 0xf800) >> 6 | (rgb & 0xf8) >> 3) & 0x7fff;
+  int d15=chromaDifference(rgb,rgb & 0x00f8f8f8);
+  int c7=paletteIndex[c15];
+  int d7=chromaDifference(rgb,PALETTE[c7]);
+  if (d7 - d15 <= C7_C15_THRESHOLD) {
+    stream.write(c7);
+  }
+ else {
+    writeShort(stream,0x8000 | c15);
+  }
+}

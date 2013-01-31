@@ -16,12 +16,14 @@
   ssi.scaleWidth=scaleWidth;
   ssi.scaleHeight=scaleHeight;
   ssi.quality=quality;
-  ssi.aspectRatio=aspectRatio;
+  ssi.scale=scale;
   ssi.x=x;
   ssi.y=y;
   ssi.httpTunnel=httpTunnel;
   ssi.fullScreen=fullScreen;
+  ssi.useSVC2=useSVC2;
   ssi.sysTrayIcon=sysTrayIcon;
   ssi.enableTrayActions=enableTrayActions;
+  System.out.println("ScreenShareInfo[captureWidth=" + captureWidth + ",captureHeight="+ captureHeight+ "]["+ x+ ","+ y+ "]"+ "[scaleWidth="+ scaleWidth+ ",scaleHeight="+ scaleHeight+ "]");
   return new DeskshareClient(ssi);
 }

@@ -1,6 +1,0 @@
-double[] shape
-String type
-int color
-int thickness
-String id
-String status

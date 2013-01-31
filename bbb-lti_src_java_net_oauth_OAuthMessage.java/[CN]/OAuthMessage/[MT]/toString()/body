@@ -1,0 +1,3 @@
+{
+  return "OAuthMessage(" + method + ", "+ URL+ ", "+ parameters+ ")";
+}

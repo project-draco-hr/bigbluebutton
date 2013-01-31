@@ -1,0 +1,41 @@
+{
+  Iterator<String> iter=null;
+  if (sm != null) {
+    iter=sm.keySet().iterator();
+  }
+ else {
+    iter=om.keySet().iterator();
+  }
+  while (iter.hasNext()) {
+    String key=iter.next();
+    boolean match=false;
+    String newKey=null;
+    if (key.equals(selection)) {
+      match=true;
+      newKey="/";
+    }
+ else     if (selection.endsWith("/") && key.startsWith(selection)) {
+      match=true;
+      newKey=key.substring(selection.length() - 1);
+    }
+ else     if (key.startsWith(selection + "/")) {
+      match=true;
+      newKey=key.substring(selection.length());
+    }
+ else     if (key.startsWith(selection + "!")) {
+      match=true;
+      newKey="/" + key.substring(selection.length());
+    }
+    if (!match)     continue;
+    if (sm != null) {
+      String value=sm.get(key);
+      if (value == null)       continue;
+      sret.put(newKey,value);
+    }
+ else {
+      Object value=om.get(key);
+      if (value == null)       continue;
+      oret.put(newKey,value);
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  String form=formEncode(parameters);
+  if (form == null || form.length() <= 0) {
+    return url;
+  }
+ else {
+    return url + ((url.indexOf("?") < 0) ? '?' : '&') + form;
+  }
+}
