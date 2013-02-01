@@ -2,7 +2,7 @@
   log.debug(APP + ":roomConnect");
   log.debug("In live mode");
   ISharedObject so=getSharedObject(connection.getScope(),VOICE_SO);
-  String voiceBridge=getBbbSession().getSessionName();
+  String voiceBridge=getBbbSession().getVoiceBridge();
   String meetingid=getBbbSession().getConference();
   Boolean record=getBbbSession().getRecord();
   log.debug("Setting up voiceBridge " + voiceBridge);

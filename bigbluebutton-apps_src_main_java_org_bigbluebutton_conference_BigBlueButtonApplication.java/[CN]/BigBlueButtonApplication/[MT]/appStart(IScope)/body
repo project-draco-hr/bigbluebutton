@@ -1,5 +1,5 @@
 {
-  log.debug("Starting BigBlueButton version " + version);
+  log.debug("Starting BigBlueButton ");
   IContext context=app.getContext();
   appCtx=(AbstractApplicationContext)context.getApplicationContext();
   appCtx.addApplicationListener(new ShutdownHookListener());
