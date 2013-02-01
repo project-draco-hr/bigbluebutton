@@ -1,5 +1,5 @@
 {
-  String conference=getBbbSession().getSessionName();
+  String conference=getBbbSession().getVoiceBridge();
   log.debug("Mute all users in room[" + conference + "]");
   conferenceService.mute(conference,mute);
 }
