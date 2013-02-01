@@ -1,6 +1,0 @@
-{
-  this.sipProvider=sipProvider;
-  this.userProfile=userProfile;
-  this.portProvider=portProvider;
-  this.clientId=clientId;
-}

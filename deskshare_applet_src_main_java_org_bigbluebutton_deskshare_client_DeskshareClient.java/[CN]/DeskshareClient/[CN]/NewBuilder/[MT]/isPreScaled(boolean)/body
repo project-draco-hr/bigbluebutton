@@ -1,4 +1,0 @@
-{
-  this.isPreScaled=isPreScaled;
-  return this;
-}

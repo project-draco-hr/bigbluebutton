@@ -1,7 +1,7 @@
 {
-  double mx=((double)p.x / (double)captureWidth) * (double)scaleWidth;
-  double my=((double)p.y / (double)captureHeight) * (double)scaleHeight;
-  mx=mx - captureX;
-  my=my - captureY;
-  return new Point((int)mx,(int)my);
+  int mouseXInCapturedRegion=p.x - captureX;
+  int mouseYInCapturedRegion=p.y - captureY;
+  double scaledMouseX=mouseXInCapturedRegion * (double)((double)scaleWidth / (double)captureWidth);
+  double scaledMouseY=mouseYInCapturedRegion * (double)((double)scaleHeight / (double)captureHeight);
+  return new Point((int)scaledMouseX,(int)scaledMouseY);
 }

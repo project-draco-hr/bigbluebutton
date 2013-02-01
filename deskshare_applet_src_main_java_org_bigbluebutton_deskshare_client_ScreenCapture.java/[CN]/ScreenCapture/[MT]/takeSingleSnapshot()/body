@@ -1,10 +1,7 @@
 {
   BufferedImage capturedImage=robot.createScreenCapture(this.screenBounds);
   if (needToScaleImage()) {
-    if (quality) {
-      return useQuality(capturedImage);
-    }
-    return getScaledInstance(capturedImage,scaleWidth,scaleHeight,RenderingHints.VALUE_INTERPOLATION_BICUBIC,true);
+    return useQuality(capturedImage);
   }
  else {
     return capturedImage;
