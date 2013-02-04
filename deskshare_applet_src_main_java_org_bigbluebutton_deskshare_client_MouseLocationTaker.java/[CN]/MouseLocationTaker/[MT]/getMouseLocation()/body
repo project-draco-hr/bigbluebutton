@@ -11,11 +11,5 @@ catch (  SecurityException e) {
     pInfo=null;
   }
   if (pInfo == null)   return pointerLocation;
-  if (adjustPointerLocationDueToScaling()) {
-    pointerLocation=calculatePointerLocation(pInfo.getLocation());
-  }
- else {
-    pointerLocation=calculatePointerLocation(pInfo.getLocation());
-  }
-  return pointerLocation;
+  return pInfo.getLocation();
 }
