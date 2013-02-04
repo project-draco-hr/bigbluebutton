@@ -1,4 +1,4 @@
 {
-  log.trace("getSaveFilename()");
+  log.debug("getSaveFilename()");
   throw new Error("unimplemented method");
 }
