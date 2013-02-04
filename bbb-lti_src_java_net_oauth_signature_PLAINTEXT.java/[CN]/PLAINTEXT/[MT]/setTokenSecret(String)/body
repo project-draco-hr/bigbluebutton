@@ -1,0 +1,6 @@
+{
+synchronized (this) {
+    signature=null;
+  }
+  super.setTokenSecret(tokenSecret);
+}

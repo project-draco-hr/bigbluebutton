@@ -1,0 +1,12 @@
+{
+  for (  Map.Entry<String,Object> entry : annotation.entrySet()) {
+    String key=entry.getKey();
+    if (key.equals("points")) {
+      eventMap.put("dataPoints",pointsToString((ArrayList<Object>)entry.getValue()));
+    }
+ else {
+      Object value=entry.getValue();
+      eventMap.put(key,value.toString());
+    }
+  }
+}

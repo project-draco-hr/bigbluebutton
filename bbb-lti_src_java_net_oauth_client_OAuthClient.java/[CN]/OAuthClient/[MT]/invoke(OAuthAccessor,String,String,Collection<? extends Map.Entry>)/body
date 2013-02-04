@@ -1,0 +1,10 @@
+{
+  OAuthMessage request=accessor.newRequestMessage(httpMethod,url,parameters);
+  Object accepted=accessor.consumer.getProperty(OAuthConsumer.ACCEPT_ENCODING);
+  if (accepted != null) {
+    request.getHeaders().add(new OAuth.Parameter(HttpMessage.ACCEPT_ENCODING,accepted.toString()));
+  }
+  Object ps=accessor.consumer.getProperty(PARAMETER_STYLE);
+  ParameterStyle style=(ps == null) ? ParameterStyle.BODY : Enum.valueOf(ParameterStyle.class,ps.toString());
+  return invoke(request,style);
+}

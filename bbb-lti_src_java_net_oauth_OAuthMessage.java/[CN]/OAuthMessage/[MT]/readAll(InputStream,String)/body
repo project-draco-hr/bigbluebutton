@@ -1,0 +1,17 @@
+{
+  if (from == null) {
+    return null;
+  }
+  try {
+    StringBuilder into=new StringBuilder();
+    Reader r=new InputStreamReader(from,encoding);
+    char[] s=new char[512];
+    for (int n; 0 < (n=r.read(s)); ) {
+      into.append(s,0,n);
+    }
+    return into.toString();
+  }
+  finally {
+    from.close();
+  }
+}

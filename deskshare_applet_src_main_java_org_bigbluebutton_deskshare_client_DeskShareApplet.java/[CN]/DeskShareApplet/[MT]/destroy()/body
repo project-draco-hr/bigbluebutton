@@ -1,5 +1,10 @@
 {
-  System.out.println("Desktop Sharing Applet Destroy");
-  client.stop();
+  try {
+    AccessController.doPrivileged(this.new DestroyJob());
+  }
+ catch (  PrivilegedActionException e) {
+    System.out.println("Exception during Desktop Sharing Applet Stopping" + e.toString());
+    UncheckedExceptions.spit((Exception)e.getException());
+  }
   super.destroy();
 }

@@ -1,0 +1,3 @@
+String userid
+String name
+Long assignedBy

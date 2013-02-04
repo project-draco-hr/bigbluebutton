@@ -1,4 +1,4 @@
 {
-  log.trace("getProvider()");
+  log.debug("getProvider()");
   return this;
 }

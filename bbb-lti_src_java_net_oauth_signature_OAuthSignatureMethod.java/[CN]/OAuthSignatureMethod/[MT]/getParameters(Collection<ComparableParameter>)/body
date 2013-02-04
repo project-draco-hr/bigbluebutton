@@ -1,0 +1,10 @@
+{
+  if (parameters == null) {
+    return null;
+  }
+  List<Map.Entry> list=new ArrayList<Map.Entry>(parameters.size());
+  for (  ComparableParameter parameter : parameters) {
+    list.add(parameter.value);
+  }
+  return list;
+}

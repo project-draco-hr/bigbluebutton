@@ -1,7 +1,0 @@
-{
-  List<Object[]> shapesCollection=new ArrayList<Object[]>();
-  for (int i=0; i < shapes.size(); i++) {
-    shapesCollection.add(shapes.get(i).toObjectArray());
-  }
-  return shapesCollection;
-}

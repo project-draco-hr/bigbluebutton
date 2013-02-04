@@ -1,0 +1,35 @@
+{
+  boolean repeated=false;
+  Map<String,Collection<String>> nameToValues=new HashMap<String,Collection<String>>();
+  String repeatedParameter="";
+  for (  Map.Entry<String,String> parameter : message.getParameters()) {
+    String name=parameter.getKey();
+    if (SINGLE_PARAMETERS.contains(name)) {
+      Collection<String> values=nameToValues.get(name);
+      if (values == null) {
+        values=new ArrayList<String>();
+        nameToValues.put(name,values);
+      }
+ else {
+        repeated=true;
+        repeatedParameter=name;
+      }
+      values.add(parameter.getValue());
+    }
+  }
+  if (repeated) {
+    Collection<OAuth.Parameter> rejected=new ArrayList<OAuth.Parameter>();
+    for (    Map.Entry<String,Collection<String>> p : nameToValues.entrySet()) {
+      String name=p.getKey();
+      Collection<String> values=p.getValue();
+      if (values.size() > 1) {
+        for (        String value : values) {
+          rejected.add(new OAuth.Parameter(name,value));
+        }
+      }
+    }
+    OAuthProblemException problem=new OAuthProblemException(OAuth.Problems.PARAMETER_REJECTED + ":" + repeatedParameter);
+    problem.setParameter(OAuth.Problems.OAUTH_PARAMETERS_REJECTED,OAuth.formEncode(rejected));
+    throw problem;
+  }
+}

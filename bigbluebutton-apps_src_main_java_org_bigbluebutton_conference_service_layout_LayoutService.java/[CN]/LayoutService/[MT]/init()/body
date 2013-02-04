@@ -1,0 +1,5 @@
+{
+  log.debug("Initializing layout");
+  String roomName=Red5.getConnectionLocal().getScope().getName();
+  return application.currentLayout(roomName);
+}

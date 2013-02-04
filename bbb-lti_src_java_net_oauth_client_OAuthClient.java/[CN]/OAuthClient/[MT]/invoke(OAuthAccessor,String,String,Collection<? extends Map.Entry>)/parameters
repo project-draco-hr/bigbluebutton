@@ -1,0 +1,4 @@
+OAuthAccessor accessor
+String httpMethod
+String url
+Collection<? extends Map.Entry> parameters

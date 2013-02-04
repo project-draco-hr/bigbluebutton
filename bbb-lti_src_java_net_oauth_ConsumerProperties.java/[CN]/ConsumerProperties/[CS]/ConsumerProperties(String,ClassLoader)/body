@@ -1,0 +1,3 @@
+{
+  this(getProperties(getResource(resourceName,loader)));
+}

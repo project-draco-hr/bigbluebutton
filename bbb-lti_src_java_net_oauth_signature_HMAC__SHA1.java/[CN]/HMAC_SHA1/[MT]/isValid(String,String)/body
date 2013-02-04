@@ -1,0 +1,13 @@
+{
+  try {
+    byte[] expected=computeSignature(baseString);
+    byte[] actual=decodeBase64(signature);
+    return Arrays.equals(expected,actual);
+  }
+ catch (  GeneralSecurityException e) {
+    throw new OAuthException(e);
+  }
+catch (  UnsupportedEncodingException e) {
+    throw new OAuthException(e);
+  }
+}

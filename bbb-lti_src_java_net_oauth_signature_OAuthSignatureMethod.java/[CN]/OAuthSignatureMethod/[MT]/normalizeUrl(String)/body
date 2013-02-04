@@ -1,0 +1,17 @@
+{
+  URI uri=new URI(url);
+  String scheme=uri.getScheme().toLowerCase();
+  String authority=uri.getAuthority().toLowerCase();
+  boolean dropPort=(scheme.equals("http") && uri.getPort() == 80) || (scheme.equals("https") && uri.getPort() == 443);
+  if (dropPort) {
+    int index=authority.lastIndexOf(":");
+    if (index >= 0) {
+      authority=authority.substring(0,index);
+    }
+  }
+  String path=uri.getRawPath();
+  if (path == null || path.length() <= 0) {
+    path="/";
+  }
+  return scheme + "://" + authority+ path;
+}

@@ -1,0 +1,8 @@
+{
+  super(request.method,request.url);
+  this.requestHeaders=requestHeaders;
+  this.requestExcerpt=requestExcerpt;
+  this.requestEncoding=request.getContentCharset();
+  this.connection=connection;
+  this.headers.addAll(getHeaders());
+}

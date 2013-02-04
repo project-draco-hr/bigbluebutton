@@ -1,15 +1,14 @@
 {
   MultipartHttpServletRequest multipartRequest=(MultipartHttpServletRequest)request;
-  MultipartFile multipartFile=multipartRequest.getFile("blockdata");
-  long startRx=System.currentTimeMillis();
-  byte[] blockData=multipartFile.getBytes();
   String room=request.getParameterValues("room")[0];
-  String seqNum=request.getParameterValues("sequenceNumber")[0];
-  String keyframe=request.getParameterValues("keyframe")[0];
-  String position=request.getParameterValues("position")[0];
-  if (!hasSessionManager) {
-    sessionManager=getSessionManager();
-    hasSessionManager=true;
+  String keyframe="false";
+  Iterator uploadedFilenames=multipartRequest.getFileNames();
+  while (uploadedFilenames.hasNext()) {
+    String uploadedFilename=(String)uploadedFilenames.next();
+    MultipartFile multipartFile=multipartRequest.getFile(uploadedFilename);
+    String[] uploadedFileInfo=uploadedFilename.split("[_]");
+    String seqNum=uploadedFileInfo[1];
+    String position=uploadedFileInfo[2];
+    sessionManager.updateBlock(room,Integer.valueOf(position),multipartFile.getBytes(),false,Integer.parseInt(seqNum));
   }
-  sessionManager.updateBlock(room,Integer.valueOf(position),blockData,Boolean.parseBoolean(keyframe),Integer.parseInt(seqNum));
 }

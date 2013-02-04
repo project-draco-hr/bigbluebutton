@@ -1,4 +1,4 @@
 {
-  this.shapes=new ArrayCollection<Shape>();
+  annotations=new ArrayList<Annotation>();
   this.setPageIndex(pageIndex);
 }

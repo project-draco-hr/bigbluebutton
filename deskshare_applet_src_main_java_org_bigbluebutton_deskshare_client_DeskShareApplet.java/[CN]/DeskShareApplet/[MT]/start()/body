@@ -1,7 +1,7 @@
 {
   System.out.println("Desktop Sharing Applet Starting");
   super.start();
-  client=new DeskshareClient.NewBuilder().host(hostValue).port(portValue).room(roomValue).captureWidth(cWidthValue).captureHeight(cHeightValue).scaleWidth(sWidthValue).scaleHeight(sHeightValue).quality(qualityValue).aspectRatio(aspectRatioValue).x(xValue).y(yValue).fullScreen(fullScreenValue).httpTunnel(tunnelValue).trayIcon(icon).enableTrayIconActions(false).build();
+  client=new DeskshareClient.NewBuilder().host(hostValue).port(portValue).room(roomValue).captureWidth(cWidthValue).captureHeight(cHeightValue).scaleWidth(sWidthValue).scaleHeight(sHeightValue).quality(qualityValue).x(xValue).y(yValue).fullScreen(fullScreenValue).useSVC2(useSVC2Value).httpTunnel(tunnelValue).trayIcon(icon).enableTrayIconActions(false).build();
   client.addClientListener(this);
   client.start();
 }

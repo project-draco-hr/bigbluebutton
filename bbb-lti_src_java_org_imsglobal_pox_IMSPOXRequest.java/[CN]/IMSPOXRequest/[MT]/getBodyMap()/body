@@ -1,0 +1,6 @@
+{
+  if (bodyMap != null)   return bodyMap;
+  if (bodyElement == null)   return null;
+  bodyMap=XMLMap.getMap(bodyElement);
+  return bodyMap;
+}

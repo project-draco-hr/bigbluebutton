@@ -6,6 +6,7 @@
   moderatorPass=builder.moderatorPass;
   maxUsers=builder.maxUsers;
   logoutUrl=builder.logoutUrl;
+  defaultAvatarURL=builder.defaultAvatarURL;
   record=builder.record;
   duration=builder.duration;
   webVoice=builder.webVoice;

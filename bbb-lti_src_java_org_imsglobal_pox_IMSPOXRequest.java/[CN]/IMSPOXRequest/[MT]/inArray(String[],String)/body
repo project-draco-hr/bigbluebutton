@@ -1,0 +1,7 @@
+{
+  if (theString == null)   return false;
+  for (  String str : theArray) {
+    if (theString.equals(str))     return true;
+  }
+  return false;
+}

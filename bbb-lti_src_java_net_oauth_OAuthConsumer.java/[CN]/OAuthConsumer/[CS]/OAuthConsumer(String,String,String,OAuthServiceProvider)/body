@@ -1,0 +1,6 @@
+{
+  this.callbackURL=callbackURL;
+  this.consumerKey=consumerKey;
+  this.consumerSecret=consumerSecret;
+  this.serviceProvider=serviceProvider;
+}

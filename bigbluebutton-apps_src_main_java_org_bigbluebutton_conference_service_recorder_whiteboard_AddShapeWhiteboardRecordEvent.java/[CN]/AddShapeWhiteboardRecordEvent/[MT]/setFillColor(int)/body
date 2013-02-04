@@ -1,0 +1,3 @@
+{
+  eventMap.put("fillColor",Integer.toString(fillColor));
+}

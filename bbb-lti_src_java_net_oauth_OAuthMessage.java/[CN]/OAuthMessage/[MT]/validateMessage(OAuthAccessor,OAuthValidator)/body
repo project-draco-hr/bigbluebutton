@@ -1,0 +1,3 @@
+{
+  validator.validateMessage(this,accessor);
+}

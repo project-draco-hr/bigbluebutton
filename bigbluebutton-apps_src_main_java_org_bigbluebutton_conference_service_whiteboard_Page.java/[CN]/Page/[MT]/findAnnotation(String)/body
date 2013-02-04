@@ -1,0 +1,11 @@
+{
+  int foundIndex=-1;
+  for (int i=0; i < annotations.size(); i++) {
+    Annotation annotation=annotations.get(i);
+    if (annotation.getID().equals(id)) {
+      foundIndex=i;
+      break;
+    }
+  }
+  return foundIndex;
+}
