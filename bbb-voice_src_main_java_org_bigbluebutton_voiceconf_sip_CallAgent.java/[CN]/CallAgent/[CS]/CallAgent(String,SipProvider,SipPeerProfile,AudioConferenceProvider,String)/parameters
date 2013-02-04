@@ -1,0 +1,5 @@
+String sipClientRtpIp
+SipProvider sipProvider
+SipPeerProfile userProfile
+AudioConferenceProvider portProvider
+String clientId

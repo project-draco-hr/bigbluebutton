@@ -1,0 +1,6 @@
+String peerId
+String clientRtpIp
+String host
+int sipPort
+int startRtpPort
+int stopRtpPort

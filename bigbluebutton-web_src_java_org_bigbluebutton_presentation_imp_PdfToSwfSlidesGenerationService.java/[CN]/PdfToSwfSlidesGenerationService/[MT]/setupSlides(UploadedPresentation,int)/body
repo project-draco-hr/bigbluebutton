@@ -3,6 +3,7 @@
   for (int page=1; page <= numPages; page++) {
     PdfToSwfSlide slide=new PdfToSwfSlide(pres,page);
     slide.setBlankSlide(BLANK_SLIDE);
+    slide.setMaxSwfFileSize(MAX_SWF_FILE_SIZE);
     slide.setPageConverter(pdfToSwfConverter);
     slide.setPdfPageToImageConversionService(imageConvertService);
     slides.add(slide);

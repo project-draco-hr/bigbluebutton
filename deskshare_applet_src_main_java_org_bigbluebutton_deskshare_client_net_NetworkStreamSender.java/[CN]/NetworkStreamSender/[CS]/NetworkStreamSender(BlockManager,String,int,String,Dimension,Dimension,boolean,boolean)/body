@@ -7,7 +7,7 @@
   this.blockDim=blockDim;
   this.httpTunnel=httpTunnel;
   this.useSVC2=useSVC2;
-  numThreads=screenDim.getHeight() / blockDim.getHeight();
+  numThreads=1;
   System.out.println(NAME + "Starting up " + numThreads+ " sender threads.");
   executor=Executors.newFixedThreadPool(numThreads);
 }
