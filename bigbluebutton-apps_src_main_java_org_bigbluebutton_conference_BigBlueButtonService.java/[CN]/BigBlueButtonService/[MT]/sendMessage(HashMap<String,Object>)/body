@@ -1,0 +1,9 @@
+{
+  Map<String,Object> messageToSend=new HashMap<String,Object>();
+  for (Iterator<String> it=params.keySet().iterator(); it.hasNext(); ) {
+    String key=it.next();
+    messageToSend.put(key,params.get(key));
+  }
+  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getMeetingId(),(String)params.get("messageID"),messageToSend);
+  connInvokerService.sendMessage(m);
+}
