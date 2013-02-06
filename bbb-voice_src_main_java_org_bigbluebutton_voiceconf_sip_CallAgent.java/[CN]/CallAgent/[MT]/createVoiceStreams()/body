@@ -19,7 +19,8 @@
           callStream.addCallStreamObserver(this);
           callStream.start();
           if (_callerName.contains("GLOBAL_AUDIO") == true) {
-            GlobalCall.addGlobalAudioStream(_destination,callStream.getListenStreamName(),sipCodec.getCodecName());
+            KeepGlobalAudioAlive globalAudioKeepAlive=new KeepGlobalAudioAlive(connInfo.getSocket(),connInfo,callStream.sipCodec.getCodecId());
+            GlobalCall.addGlobalAudioStream(_destination,callStream.getListenStreamName(),sipCodec.getCodecName(),globalAudioKeepAlive);
             caToInit.returnGlobalStreamName(caToInit.getCallId(),_destination);
             talking=true;
           }

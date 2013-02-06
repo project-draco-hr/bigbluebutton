@@ -3,6 +3,6 @@
     int nUsers=numberOfUsers.get(roomName);
     nUsers-=1;
     numberOfUsers.put(roomName,nUsers);
-    System.out.println("REMOVENDO USUARIO: numero eh de " + nUsers);
+    System.out.println("REMOVING USER: Number of users left is " + nUsers);
   }
 }

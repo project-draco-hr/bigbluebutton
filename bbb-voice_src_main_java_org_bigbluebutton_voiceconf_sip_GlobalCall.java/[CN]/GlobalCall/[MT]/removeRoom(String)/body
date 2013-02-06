@@ -1,6 +1,9 @@
 {
-  System.out.println("REMOVENDO A SALA " + roomName);
+  System.out.println("REMOVING GLOBAL AUDIO FROM ROOM " + roomName);
   voiceConference.remove(roomName);
   numberOfUsers.remove(roomName);
   codecVoiceConference.remove(roomName);
+  KeepGlobalAudioAlive globalAudioKeepAlive=globalAudioKeepAliverMap.get(roomName);
+  globalAudioKeepAlive.halt();
+  globalAudioKeepAliverMap.remove(roomName);
 }
