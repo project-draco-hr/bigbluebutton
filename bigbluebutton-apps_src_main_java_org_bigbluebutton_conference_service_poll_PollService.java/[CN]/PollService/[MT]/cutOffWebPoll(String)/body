@@ -1,0 +1,3 @@
+{
+  application.cutOffWebPoll(pollKey);
+}

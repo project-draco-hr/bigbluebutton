@@ -1,5 +1,4 @@
 {
-  System.out.println("Starting listener on port " + port);
   lifeLineServer=new LifeLineServer();
   lifeLineThread=new Thread(lifeLineServer,"LifeLineServer");
   lifeLineThread.start();

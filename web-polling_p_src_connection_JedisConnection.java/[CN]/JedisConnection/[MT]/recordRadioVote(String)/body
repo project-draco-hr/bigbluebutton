@@ -1,0 +1,6 @@
+{
+  Jedis jedis=dbConnect();
+  jedis.hincrBy(pollKey,"totalVotes",1);
+  jedis.hincrBy(pollKey,"answer" + vote,1);
+  pollsVoted.add(curWebKey);
+}

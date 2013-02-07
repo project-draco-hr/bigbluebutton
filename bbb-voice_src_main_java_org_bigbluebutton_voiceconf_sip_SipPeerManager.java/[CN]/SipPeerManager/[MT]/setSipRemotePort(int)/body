@@ -1,0 +1,5 @@
+{
+  this.sipRemotePort=port;
+  SipStack.init();
+  SipStack.default_port=sipRemotePort;
+}

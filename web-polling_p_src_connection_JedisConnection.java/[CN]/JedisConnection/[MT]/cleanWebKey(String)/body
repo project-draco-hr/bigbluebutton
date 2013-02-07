@@ -1,0 +1,5 @@
+{
+  Pattern p=Pattern.compile("[^\\d]");
+  Matcher m=p.matcher(key);
+  return m.find(0);
+}

@@ -3,7 +3,7 @@
     log.warn("We are not registered to FreeSWITCH. However, we will allow {} to call {}.",callerName,destination);
   }
   SipPeerProfile callerProfile=SipPeerProfile.copy(registeredProfile);
-  CallAgent ca=new CallAgent(sipProvider,callerProfile,audioconfProvider,clientId);
+  CallAgent ca=new CallAgent(this.clientRtpIp,sipProvider,callerProfile,audioconfProvider,clientId);
   ca.setClientConnectionManager(clientConnManager);
   ca.setCallStreamFactory(callStreamFactory);
   callManager.add(ca);
