@@ -1,0 +1,19 @@
+{
+  Jedis jedis=dbConnect();
+  if (jedis.exists(webKey) && jedis.hget(jedis.get(webKey),"title") != null) {
+    curWebKey=webKey;
+    pollKey=jedis.get(webKey);
+    title=jedis.hget(pollKey,"title");
+    question=jedis.hget(pollKey,"question");
+    multiple=jedis.hget(pollKey,"multiple");
+    long pollSize=jedis.hlen(pollKey);
+    int otherFields=10;
+    long numAnswers=(pollSize - otherFields) / 2;
+    answers=new ArrayList<String>();
+    for (int j=1; j <= numAnswers; j++) {
+      answers.add(jedis.hget(pollKey,"answer" + j + "text"));
+    }
+    return true;
+  }
+ else   return false;
+}

@@ -1,0 +1,4 @@
+{
+  log.debug(APP + " Setting poll archive application");
+  recorderApplication=a;
+}

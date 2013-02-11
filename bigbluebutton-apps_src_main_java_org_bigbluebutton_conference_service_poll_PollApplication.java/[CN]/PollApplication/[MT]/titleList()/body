@@ -1,0 +1,5 @@
+{
+  PollInvoker pollInvoker=new PollInvoker();
+  ArrayList titles=pollInvoker.titleList();
+  return titles;
+}

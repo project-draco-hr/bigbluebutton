@@ -1,0 +1,3 @@
+String pollKey
+Object[] answerIDs
+Boolean webVote

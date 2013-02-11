@@ -1,0 +1,4 @@
+{
+  log.debug(APP + "roomJoin " + scope.getName(),scope.getParent().getName());
+  return true;
+}

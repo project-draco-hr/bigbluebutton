@@ -1,0 +1,10 @@
+{
+  String serverIP="127.0.0.1";
+  JedisPool redisPool=new JedisPool(serverIP,6379);
+  try {
+    return redisPool.getResource();
+  }
+ catch (  Exception e) {
+  }
+  return null;
+}
