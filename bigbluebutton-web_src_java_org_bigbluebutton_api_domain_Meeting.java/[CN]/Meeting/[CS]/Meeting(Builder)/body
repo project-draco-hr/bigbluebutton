@@ -15,5 +15,6 @@
   dialNumber=builder.dialNumber;
   metadata=builder.metadata;
   createdTime=builder.createdTime;
+  userCustomData=new HashMap<String,Object>();
   users=new ConcurrentHashMap<String,User>();
 }
