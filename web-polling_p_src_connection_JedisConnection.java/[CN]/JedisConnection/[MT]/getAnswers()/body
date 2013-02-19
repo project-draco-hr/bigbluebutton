@@ -1,0 +1,4 @@
+{
+  String[] temp=new String[answers.size()];
+  return answers.toArray(temp);
+}

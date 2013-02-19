@@ -1,0 +1,5 @@
+{
+  log.debug("Setting chat application");
+  pollApplication=a;
+  pollApplication.handler=this;
+}
