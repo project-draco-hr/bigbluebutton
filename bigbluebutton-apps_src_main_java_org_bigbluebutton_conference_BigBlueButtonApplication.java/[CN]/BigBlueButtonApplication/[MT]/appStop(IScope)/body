@@ -1,4 +1,4 @@
 {
-  log.debug("Stopping BigBlueButton version " + version);
+  log.debug("Stopping BigBlueButton ");
   super.appStop(app);
 }

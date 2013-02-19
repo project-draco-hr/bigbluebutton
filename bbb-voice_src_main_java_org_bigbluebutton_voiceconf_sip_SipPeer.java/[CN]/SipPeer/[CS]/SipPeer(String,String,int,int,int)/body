@@ -1,5 +1,0 @@
-{
-  this.id=id;
-  audioconfProvider=new AudioConferenceProvider(host,sipPort,startAudioPort,stopAudioPort);
-  initSipProvider(host,sipPort);
-}

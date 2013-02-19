@@ -1,0 +1,4 @@
+{
+  savePoll(clientSidePoll);
+  return getPoll(pollKey);
+}

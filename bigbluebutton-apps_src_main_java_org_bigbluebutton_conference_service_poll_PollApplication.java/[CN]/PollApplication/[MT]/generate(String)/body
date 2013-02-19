@@ -1,0 +1,17 @@
+{
+  Jedis jedis=dbConnect();
+  if (!jedis.exists(CURRENTKEY)) {
+    Integer base=MIN_WEBKEYS - 1;
+    jedis.set(CURRENTKEY,base.toString());
+  }
+  ArrayList webInfo=new ArrayList();
+  String nextWebKey=webKeyIncrement(Integer.parseInt(jedis.get(CURRENTKEY)),jedis);
+  jedis.del(nextWebKey);
+  jedis.set(nextWebKey,pollKey);
+  jedis.hset(pollKey,"webKey",nextWebKey);
+  jedis.set(CURRENTKEY,nextWebKey);
+  webInfo.add(nextWebKey);
+  String hostname=getLocalIP();
+  webInfo.add(hostname);
+  return webInfo;
+}
