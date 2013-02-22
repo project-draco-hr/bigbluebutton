@@ -1,0 +1,13 @@
+{
+  Map<String,String> meetingInfo=new HashMap<String,String>();
+  for (  String key : params.keySet()) {
+    if (key.contains("meta") && key.indexOf("meta") == 0) {
+      String[] meta=key.split("_");
+      if (meta.length == 2) {
+        log.debug("Got metadata {} = {}",key,params.get(key));
+        meetingInfo.put(meta[1].toLowerCase(),params.get(key));
+      }
+    }
+  }
+  return meetingInfo;
+}

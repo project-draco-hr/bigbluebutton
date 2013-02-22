@@ -1,0 +1,3 @@
+{
+  return recordingService.filterRecordingsByMetadata(recordings,metadataFilters);
+}
