@@ -4,5 +4,6 @@
   appCtx=(AbstractApplicationContext)context.getApplicationContext();
   appCtx.addApplicationListener(new ShutdownHookListener());
   appCtx.registerShutdownHook();
+  connInvokerService.start();
   return super.appStart(app);
 }

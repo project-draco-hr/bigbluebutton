@@ -1,4 +1,5 @@
 {
   log.debug("Stopping BigBlueButton ");
+  connInvokerService.stop();
   super.appStop(app);
 }
