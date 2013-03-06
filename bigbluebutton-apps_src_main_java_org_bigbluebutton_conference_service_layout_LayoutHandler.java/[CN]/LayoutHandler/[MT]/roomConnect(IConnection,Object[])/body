@@ -1,12 +1,18 @@
 {
   log.debug(APP + ":roomConnect");
-  ISharedObject so=getSharedObject(connection.getScope(),LAYOUT_SO);
-  log.debug("Setting up Listener");
-  LayoutSender sender=new LayoutSender(so);
-  String room=connection.getScope().getName();
-  log.debug("Adding event listener to " + room);
-  log.debug("Adding room listener");
-  layoutApplication.addRoomListener(room,sender);
-  log.debug("Done setting up listener");
-  return true;
+  IScope scope=Red5.getConnectionLocal().getScope();
+  if (!hasSharedObject(scope,LAYOUT_SO)) {
+    if (createSharedObject(scope,LAYOUT_SO,false)) {
+      ISharedObject so=getSharedObject(connection.getScope(),LAYOUT_SO);
+      log.debug("Setting up Listener");
+      LayoutSender sender=new LayoutSender(so);
+      String room=connection.getScope().getName();
+      log.debug("Adding event listener to " + room);
+      log.debug("Adding room listener");
+      layoutApplication.addRoomListener(room,sender);
+      log.debug("Done setting up listener");
+      return true;
+    }
+  }
+  return false;
 }

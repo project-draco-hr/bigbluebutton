@@ -1,12 +1,17 @@
 {
   log.debug(APP + ":roomConnect");
   log.debug("In live mode");
-  ISharedObject so=getSharedObject(connection.getScope(),VOICE_SO);
-  String voiceBridge=getBbbSession().getVoiceBridge();
-  String meetingid=getBbbSession().getConference();
-  Boolean record=getBbbSession().getRecord();
-  log.debug("Setting up voiceBridge " + voiceBridge);
-  clientManager.addSharedObject(connection.getScope().getName(),voiceBridge,so);
-  conferenceService.createConference(voiceBridge,meetingid,record);
+  IScope scope=Red5.getConnectionLocal().getScope();
+  if (!hasSharedObject(scope,VOICE_SO)) {
+    if (createSharedObject(scope,VOICE_SO,false)) {
+      ISharedObject so=getSharedObject(connection.getScope(),VOICE_SO);
+      String voiceBridge=getBbbSession().getVoiceBridge();
+      String meetingid=getBbbSession().getConference();
+      Boolean record=getBbbSession().getRecord();
+      log.debug("Setting up voiceBridge " + voiceBridge);
+      clientManager.addSharedObject(connection.getScope().getName(),voiceBridge,so);
+      conferenceService.createConference(voiceBridge,meetingid,record);
+    }
+  }
   return true;
 }
