@@ -1,5 +1,0 @@
-{
-  log.debug(APP + " - roomStart " + scope.getName());
-  log.error("Failed to start room " + scope.getName());
-  return true;
-}
