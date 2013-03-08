@@ -1,6 +1,5 @@
 {
-  log.debug(APP + ":roomConnect");
-  log.debug("In live mode");
+  log.debug("***** " + APP + " [ "+ " roomConnect [ "+ connection.getScope().getName()+ "] *********");
   IScope scope=Red5.getConnectionLocal().getScope();
   if (!hasSharedObject(scope,PRESENTATION_SO)) {
     if (createSharedObject(scope,PRESENTATION_SO,false)) {

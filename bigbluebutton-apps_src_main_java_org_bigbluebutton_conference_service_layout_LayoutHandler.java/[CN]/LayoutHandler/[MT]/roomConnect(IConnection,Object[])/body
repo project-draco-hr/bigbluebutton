@@ -1,6 +1,5 @@
 {
-  System.out.println("********* " + APP + ":roomConnect");
-  log.debug(APP + ":roomConnect");
+  log.debug("***** " + APP + " [ "+ " roomConnect [ "+ connection.getScope().getName()+ "] *********");
   ISharedObject so=getSharedObject(connection.getScope(),LAYOUT_SO);
   log.debug("Setting up Listener");
   LayoutSender sender=new LayoutSender(so);

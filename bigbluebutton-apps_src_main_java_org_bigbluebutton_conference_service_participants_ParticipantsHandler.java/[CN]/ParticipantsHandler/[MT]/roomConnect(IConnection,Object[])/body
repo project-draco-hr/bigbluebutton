@@ -1,5 +1,5 @@
 {
-  log.debug(APP + ":roomConnect");
+  log.debug("***** " + APP + " [ "+ " roomConnect [ "+ connection.getScope().getName()+ "] *********");
   ISharedObject so=getSharedObject(connection.getScope(),PARTICIPANTS_SO);
   ParticipantsEventSender sender=new ParticipantsEventSender(so);
   ParticipantsEventRecorder recorder=new ParticipantsEventRecorder(connection.getScope().getName(),recorderApplication);

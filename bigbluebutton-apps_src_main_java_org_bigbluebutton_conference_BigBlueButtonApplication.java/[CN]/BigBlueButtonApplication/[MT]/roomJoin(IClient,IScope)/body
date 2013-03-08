@@ -1,4 +1,4 @@
 {
-  log.debug("roomJoin " + scope.getName(),scope.getParent().getName());
-  return true;
+  log.debug("***** " + APP + " [ "+ " roomJoin [ "+ scope.getName()+ "] *********");
+  return super.roomJoin(client,scope);
 }

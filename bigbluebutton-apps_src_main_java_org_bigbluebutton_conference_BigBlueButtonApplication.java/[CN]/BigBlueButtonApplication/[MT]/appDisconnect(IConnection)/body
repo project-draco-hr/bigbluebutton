@@ -1,3 +1,4 @@
 {
-  log.debug("appDisconnect");
+  log.debug("***** " + APP + " [ "+ " appDisconnect *********");
+  super.appDisconnect(conn);
 }

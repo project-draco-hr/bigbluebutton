@@ -1,3 +1,4 @@
 {
+  log.debug("***** " + APP + " [ "+ " roomStart [ "+ scope.getName()+ "] *********");
   return true;
 }

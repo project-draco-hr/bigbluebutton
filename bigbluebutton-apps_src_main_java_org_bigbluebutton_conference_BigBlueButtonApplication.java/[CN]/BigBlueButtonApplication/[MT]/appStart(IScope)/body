@@ -1,5 +1,5 @@
 {
-  log.debug("Starting BigBlueButton ");
+  log.debug("***** " + APP + " [ "+ " appStart [ "+ scope.getName()+ "] *********");
   IContext context=app.getContext();
   appCtx=(AbstractApplicationContext)context.getApplicationContext();
   appCtx.addApplicationListener(new ShutdownHookListener());

@@ -1,2 +1,22 @@
 {
+  log.debug("***** " + APP + " [ "+ " roomConnect [ "+ connection.getScope().getName()+ "] *********");
+  String username=((String)params[0]).toString();
+  String role=((String)params[1]).toString();
+  String conference=((String)params[2]).toString();
+  String sessionName=((String)params[3]).toString();
+  String voiceBridge=((String)params[4]).toString();
+  String room=sessionName;
+  boolean record=(Boolean)params[5];
+  String externalUserID=((String)params[6]).toString();
+  String internalUserID=((String)params[7]).toString();
+  if (record == true) {
+    recorderApplication.createRecordSession(sessionName);
+  }
+  BigBlueButtonSession bbbSession=new BigBlueButtonSession(sessionName,internalUserID,username,role,conference,room,voiceBridge,record,externalUserID);
+  connection.setAttribute(Constants.SESSION,bbbSession);
+  String debugInfo="internalUserID=" + internalUserID + ",username="+ username+ ",role="+ role+ ",conference="+ conference+ ","+ "session="+ sessionName+ ",voiceConf="+ voiceBridge+ ",room="+ room+ ",externalUserid="+ externalUserID;
+  log.debug("User [{}] connected to room [{}]",debugInfo,room);
+  participantsApplication.createRoom(room);
+  connInvokerService.addConnection(bbbSession.getInternalUserID(),connection);
+  return super.roomConnect(connection,params);
 }

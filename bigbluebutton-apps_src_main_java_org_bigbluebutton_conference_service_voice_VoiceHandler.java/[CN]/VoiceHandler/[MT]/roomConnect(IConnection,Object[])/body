@@ -1,6 +1,5 @@
 {
-  log.debug(APP + ":roomConnect");
-  log.debug("In live mode");
+  log.debug("***** " + APP + " [ "+ " roomConnect [ "+ connection.getScope().getName()+ "] *********");
   ISharedObject so=getSharedObject(connection.getScope(),VOICE_SO);
   String voiceBridge=getBbbSession().getVoiceBridge();
   String meetingid=getBbbSession().getConference();

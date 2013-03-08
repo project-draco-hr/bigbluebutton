@@ -1,4 +1,4 @@
 {
-  log.debug("roomStop ",scope.getName());
+  log.debug("***** " + APP + " [ "+ " roomStop [ "+ scope.getName()+ "] *********");
   chatApplication.destroyRoom(scope.getName());
 }
