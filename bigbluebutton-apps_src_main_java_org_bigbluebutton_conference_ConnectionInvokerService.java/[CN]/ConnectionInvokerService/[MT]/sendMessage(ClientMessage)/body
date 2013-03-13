@@ -1,9 +1,3 @@
 {
-  Runnable sender=new Runnable(){
-    public void run(){
-      sendMessageToClient(message);
-    }
-  }
-;
-  exec.execute(sender);
+  messages.offer(message);
 }

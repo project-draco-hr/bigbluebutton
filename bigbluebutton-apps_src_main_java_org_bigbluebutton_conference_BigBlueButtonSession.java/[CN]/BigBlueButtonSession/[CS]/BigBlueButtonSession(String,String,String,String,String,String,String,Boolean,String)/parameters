@@ -1,5 +1,4 @@
 String sessionName
-long clientID
 String internalUserID
 String username
 String role

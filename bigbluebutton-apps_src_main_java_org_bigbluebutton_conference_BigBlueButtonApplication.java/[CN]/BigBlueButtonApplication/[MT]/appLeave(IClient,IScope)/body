@@ -1,3 +1,4 @@
 {
   log.debug("***** " + APP + " [ "+ " appLeave [ "+ scope.getName()+ "] *********");
+  super.appLeave(client,scope);
 }

@@ -1,4 +1,0 @@
-{
-  log.debug(APP + "appConnect");
-  return true;
-}

@@ -1,9 +1,9 @@
 {
-  log.debug(APP + ":roomStop " + scope.getName());
+  log.debug("***** " + APP + " [ "+ " roomStop [ "+ scope.getName()+ "] *********");
   String voiceBridge=getBbbSession().getVoiceBridge();
   conferenceService.destroyConference(voiceBridge);
   clientManager.removeSharedObject(scope.getName());
-  if (!hasSharedObject(scope,VOICE_SO)) {
+  if (hasSharedObject(scope,VOICE_SO)) {
     clearSharedObjects(scope,VOICE_SO);
   }
 }

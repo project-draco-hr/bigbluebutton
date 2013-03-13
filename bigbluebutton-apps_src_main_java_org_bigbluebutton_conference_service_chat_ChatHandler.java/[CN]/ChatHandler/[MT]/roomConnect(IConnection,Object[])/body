@@ -1,4 +1,6 @@
 {
+  log.debug("***** " + APP + " [ "+ " roomConnect [ "+ connection.getScope().getName()+ "] *********");
+  chatApplication.createRoom(connection.getScope().getName());
   ChatEventRecorder recorder=new ChatEventRecorder(connection.getScope().getName(),recorderApplication);
   chatApplication.addRoomListener(connection.getScope().getName(),recorder);
   return true;

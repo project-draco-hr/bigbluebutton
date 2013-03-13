@@ -1,13 +1,9 @@
 {
-  log.debug(APP + ":roomConnect");
-  log.debug("In live mode");
-  ISharedObject so=getSharedObject(connection.getScope(),PRESENTATION_SO);
-  log.debug("Setting up recorder");
+  log.debug("***** " + APP + " [ "+ " roomConnect [ "+ connection.getScope().getName()+ "] *********");
+  ISharedObject so=getSharedObject(connection.getScope(),PRESENTATION_SO,false);
   PresentationEventSender sender=new PresentationEventSender(so);
   PresentationEventRecorder recorder=new PresentationEventRecorder(connection.getScope().getName(),recorderApplication);
-  log.debug("Adding room listener");
   presentationApplication.addRoomListener(connection.getScope().getName(),recorder);
   presentationApplication.addRoomListener(connection.getScope().getName(),sender);
-  log.debug("Done setting up recorder and listener");
   return true;
 }
