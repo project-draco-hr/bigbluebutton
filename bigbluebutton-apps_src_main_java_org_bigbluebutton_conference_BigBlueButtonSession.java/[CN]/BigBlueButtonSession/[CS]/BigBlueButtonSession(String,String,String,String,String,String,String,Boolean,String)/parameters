@@ -1,0 +1,9 @@
+String sessionName
+String internalUserID
+String username
+String role
+String conference
+String room
+String voiceBridge
+Boolean record
+String externalUserID

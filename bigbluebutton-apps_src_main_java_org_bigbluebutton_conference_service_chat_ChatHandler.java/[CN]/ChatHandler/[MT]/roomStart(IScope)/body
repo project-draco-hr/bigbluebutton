@@ -1,5 +1,4 @@
 {
-  log.debug("roomStart " + scope.getName());
-  chatApplication.createRoom(scope.getName());
+  log.debug("***** " + APP + " [ "+ " roomStart [ "+ scope.getName()+ "] *********");
   return true;
 }

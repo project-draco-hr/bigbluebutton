@@ -1,0 +1,11 @@
+{
+  this.internalUserID=internalUserID;
+  this.sessionName=sessionName;
+  this.username=username;
+  this.role=role;
+  this.conference=conference;
+  this.room=room;
+  this.voiceBridge=voiceBridge;
+  this.record=record;
+  this.externalUserID=externalUserID;
+}

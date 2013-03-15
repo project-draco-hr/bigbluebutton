@@ -1,0 +1,5 @@
+{
+  String queryString="meetingID=" + meetingID;
+  queryString+=getCheckSumParameterForQuery(APICALL_GETRECORDINGS,queryString);
+  return this.url + API_SERVERPATH + APICALL_GETRECORDINGS+ "?"+ queryString;
+}

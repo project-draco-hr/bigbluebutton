@@ -1,5 +1,5 @@
 {
-  log.debug(APP + ":roomLeave " + scope.getName());
+  log.debug("***** " + APP + " [ "+ " roomLeave [ "+ scope.getName()+ "] *********");
   BigBlueButtonSession bbbSession=getBbbSession();
   if (bbbSession == null) {
     log.debug("roomLeave - session is null");

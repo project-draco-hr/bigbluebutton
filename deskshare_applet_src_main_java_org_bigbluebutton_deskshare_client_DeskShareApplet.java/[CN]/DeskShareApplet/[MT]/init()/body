@@ -10,5 +10,10 @@
   if (useSVC2 != null)   useSVC2Value=Boolean.parseBoolean(useSVC2);
   String tunnel=getParameter("HTTP_TUNNEL");
   if (tunnel != null)   tunnelValue=Boolean.parseBoolean(tunnel);
-  icon=getImage(getCodeBase(),"bbb.gif");
+  try {
+    URL url=new URL(getCodeBase(),"bbb.gif");
+    icon=ImageIO.read(url);
+  }
+ catch (  IOException e) {
+  }
 }

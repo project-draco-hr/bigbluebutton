@@ -1,5 +1,4 @@
 {
-  log.info("Starting Whiteboard Application");
-  this.scope=app;
+  log.debug("***** " + APP + " [ "+ " appStart [ "+ scope.getName()+ "] *********");
   return true;
 }
