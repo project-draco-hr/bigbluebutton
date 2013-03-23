@@ -1,8 +1,7 @@
 {
   log.debug("***** " + APP + " [ "+ " roomStop [ "+ scope.getName()+ "] *********");
   participantsApplication.destroyRoom(room.getName());
-  BigBlueButtonSession bbbSession=getBbbSession();
-  recorderApplication.destroyRecordSession(bbbSession.getSessionName());
+  recorderApplication.destroyRecordSession(room.getName());
   connInvokerService.removeScope(room.getName());
   super.roomStop(room);
 }
