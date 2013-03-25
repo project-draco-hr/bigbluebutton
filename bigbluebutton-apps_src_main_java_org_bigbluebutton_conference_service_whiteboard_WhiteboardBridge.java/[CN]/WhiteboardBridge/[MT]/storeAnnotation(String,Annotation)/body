@@ -17,4 +17,7 @@
     jedis.hmset("meeting-" + meetingID + "-presentation-"+ map.get("presentationID")+ "-page-"+ map.get("pageNumber")+ "-shape-"+ shapeID,mapAnn);
     messagingService.dropRedisClient(jedis);
   }
+ else {
+    log.debug("checking annotation: " + an.getAnnotation().toString());
+  }
 }
