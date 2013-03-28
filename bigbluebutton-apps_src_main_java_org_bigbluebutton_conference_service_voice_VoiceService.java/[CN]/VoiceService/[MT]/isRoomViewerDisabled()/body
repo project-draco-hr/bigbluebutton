@@ -1,0 +1,4 @@
+{
+  String conference=getBbbSession().getVoiceBridge();
+  return conferenceService.isRoomViewerDisabled(conference);
+}

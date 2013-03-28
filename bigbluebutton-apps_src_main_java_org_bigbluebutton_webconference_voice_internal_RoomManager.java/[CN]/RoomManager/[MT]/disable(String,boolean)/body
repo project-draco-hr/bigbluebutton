@@ -1,0 +1,4 @@
+{
+  RoomImp rm=rooms.get(room);
+  if (rm != null)   rm.disable(lock);
+}

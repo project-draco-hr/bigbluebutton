@@ -1,0 +1,6 @@
+{
+  if (roomMgr.hasRoom(room)) {
+    return roomMgr.isRoomViewerDisabled(room);
+  }
+  return false;
+}
