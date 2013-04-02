@@ -1,5 +1,0 @@
-{
-  String conference=getBbbSession().getVoiceBridge();
-  log.debug("Disable all viewers in room[" + conference + "]");
-  conferenceService.disable(conference,lock);
-}
