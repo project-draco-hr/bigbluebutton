@@ -1,0 +1,3 @@
+{
+  errors.add(new String[]{"configNotFound","We could not find a config for token [" + token + "]."});
+}
