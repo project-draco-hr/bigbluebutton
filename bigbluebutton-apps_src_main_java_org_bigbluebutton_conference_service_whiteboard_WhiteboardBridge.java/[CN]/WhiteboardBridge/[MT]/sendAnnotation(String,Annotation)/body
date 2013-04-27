@@ -16,28 +16,144 @@
     ArrayList<Object> updates=new ArrayList<Object>();
     updates.add(meetingID);
     ArrayList points=(ArrayList)map.get("points");
-    Double pX=(Double)points.get(0);
-    Double pY=(Double)points.get(1);
-    Double pW=(Double)points.get(2);
-    Double pH=(Double)points.get(3);
     ArrayList<Object> data=new ArrayList<Object>();
+    Double pX=Double.parseDouble(points.get(0).toString());
+    Double pY=Double.parseDouble(points.get(1).toString());
+    data.add(pX / 100);
+    data.add(pY / 100);
     if (an.getStatus().equalsIgnoreCase("DRAW_START")) {
       updates.add("makeShape");
-      data.add(pX / 100);
-      data.add(pY / 100);
       data.add(map.get("color"));
       data.add(map.get("thickness"));
     }
  else {
       updates.add("updShape");
-      data.add(pX / 100);
-      data.add(pY / 100);
+      Double pW=Double.parseDouble(points.get(2).toString());
+      Double pH=Double.parseDouble(points.get(3).toString());
       data.add(pW / 100);
       data.add(pH / 100);
     }
     updates.add("rect");
     updates.add(data);
     Gson gson=new Gson();
+    log.debug("sendAnnotation: " + gson.toJson(updates));
+    messagingService.send(MessagingConstants.BIGBLUEBUTTON_BRIDGE,gson.toJson(updates));
+  }
+ else   if (an.getType().equalsIgnoreCase(WhiteboardBridge.ELLIPSE_TYPE)) {
+    Map map=an.getAnnotation();
+    ArrayList<Object> updates=new ArrayList<Object>();
+    updates.add(meetingID);
+    ArrayList points=(ArrayList)map.get("points");
+    ArrayList<Object> data=new ArrayList<Object>();
+    Double pX=Double.parseDouble(points.get(0).toString());
+    Double pY=Double.parseDouble(points.get(1).toString());
+    data.add(pX / 100);
+    data.add(pY / 100);
+    if (an.getStatus().equalsIgnoreCase("DRAW_START")) {
+      updates.add("makeShape");
+      data.add(map.get("color"));
+      data.add(map.get("thickness"));
+    }
+ else {
+      updates.add("updShape");
+      Double vR=Double.parseDouble(points.get(2).toString());
+      Double hR=Double.parseDouble(points.get(3).toString());
+      data.add(vR / 100);
+      data.add(hR / 100);
+    }
+    updates.add("ellipse");
+    updates.add(data);
+    Gson gson=new Gson();
+    log.debug("sendAnnotation: " + gson.toJson(updates));
+    messagingService.send(MessagingConstants.BIGBLUEBUTTON_BRIDGE,gson.toJson(updates));
+  }
+ else   if (an.getType().equalsIgnoreCase(WhiteboardBridge.TRIANGLE_TYPE)) {
+    log.debug("start triangle shape");
+    Map map=an.getAnnotation();
+    log.debug("triangle map: " + map);
+    ArrayList<Object> updates=new ArrayList<Object>();
+    updates.add(meetingID);
+    ArrayList points=(ArrayList)map.get("points");
+    ArrayList<Object> data=new ArrayList<Object>();
+    Double pX=Double.parseDouble(points.get(0).toString());
+    Double pY=Double.parseDouble(points.get(1).toString());
+    data.add(pX / 100);
+    data.add(pY / 100);
+    if (an.getStatus().equalsIgnoreCase("DRAW_START")) {
+      updates.add("makeShape");
+      data.add(map.get("color"));
+      data.add(map.get("thickness"));
+    }
+ else {
+      updates.add("updShape");
+      Double pBase=Double.parseDouble(points.get(2).toString());
+      Double pHeight=Double.parseDouble(points.get(3).toString());
+      data.add(pBase / 100);
+      data.add(pHeight / 100);
+    }
+    updates.add("triangle");
+    updates.add(data);
+    Gson gson=new Gson();
+    log.debug("sendAnnotation: " + gson.toJson(updates));
+    messagingService.send(MessagingConstants.BIGBLUEBUTTON_BRIDGE,gson.toJson(updates));
+  }
+ else   if (an.getType().equalsIgnoreCase(WhiteboardBridge.LINE_TYPE)) {
+    Map map=an.getAnnotation();
+    log.debug("line map: " + map);
+    ArrayList<Object> updates=new ArrayList<Object>();
+    updates.add(meetingID);
+    ArrayList points=(ArrayList)map.get("points");
+    ArrayList<Object> data=new ArrayList<Object>();
+    Double p1X=Double.parseDouble(points.get(0).toString());
+    Double p1Y=Double.parseDouble(points.get(1).toString());
+    data.add(p1X / 100);
+    data.add(p1Y / 100);
+    if (an.getStatus().equalsIgnoreCase("DRAW_START")) {
+      updates.add("makeShape");
+      data.add(map.get("color"));
+      data.add(map.get("thickness"));
+    }
+ else {
+      updates.add("updShape");
+      Double p2X=Double.parseDouble(points.get(2).toString());
+      Double p2Y=Double.parseDouble(points.get(3).toString());
+      data.add(p2X / 100);
+      data.add(p2Y / 100);
+    }
+    updates.add("line");
+    updates.add(data);
+    Gson gson=new Gson();
+    log.debug("sendAnnotation: " + gson.toJson(updates));
+    messagingService.send(MessagingConstants.BIGBLUEBUTTON_BRIDGE,gson.toJson(updates));
+  }
+ else   if (an.getType().equalsIgnoreCase(WhiteboardBridge.TEXT_TYPE)) {
+    Map map=an.getAnnotation();
+    log.debug("text map: " + map);
+    ArrayList<Object> updates=new ArrayList<Object>();
+    updates.add(meetingID);
+    Double pX=Double.parseDouble(map.get("x").toString());
+    Double pY=Double.parseDouble(map.get("y").toString());
+    Double tbWidth=Double.parseDouble(map.get("textBoxWidth").toString());
+    Double tbHeight=Double.parseDouble(map.get("textBoxHeight").toString());
+    ArrayList<Object> data=new ArrayList<Object>();
+    data.add(pX / 100);
+    data.add(pY / 100);
+    data.add(tbWidth);
+    data.add(tbHeight);
+    data.add(map.get("fontColor"));
+    data.add(map.get("fontSize"));
+    data.add(map.get("calcedFontSize"));
+    data.add(map.get("text"));
+    if (an.getStatus().equalsIgnoreCase("textCreated")) {
+      updates.add("makeShape");
+    }
+ else {
+      updates.add("updShape");
+    }
+    updates.add("text");
+    updates.add(data);
+    Gson gson=new Gson();
+    log.debug("sendAnnotation: " + gson.toJson(updates));
     messagingService.send(MessagingConstants.BIGBLUEBUTTON_BRIDGE,gson.toJson(updates));
   }
 }
