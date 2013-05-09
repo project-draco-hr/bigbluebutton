@@ -5,7 +5,7 @@
   callStreamFactory.setScope(scope);
   sipPeerManager.setCallStreamFactory(callStreamFactory);
   sipPeerManager.setClientConnectionManager(clientConnManager);
-  sipPeerManager.createSipPeer("default",sipServerHost,sipPort,startAudioPort,stopAudioPort);
+  sipPeerManager.createSipPeer("default",sipClientRtpIp,sipServerHost,sipPort,startAudioPort,stopAudioPort);
   try {
     sipPeerManager.register("default",username,password);
   }

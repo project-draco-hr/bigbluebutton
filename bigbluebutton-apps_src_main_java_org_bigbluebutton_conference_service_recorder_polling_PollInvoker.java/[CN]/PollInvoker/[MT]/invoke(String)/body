@@ -1,0 +1,36 @@
+{
+  Jedis jedis=PollApplication.dbConnect();
+  if (jedis.exists(pollKey)) {
+    boolean pMultiple=false;
+    boolean pStatus=false;
+    boolean pWebPublish=false;
+    if (jedis.hget(pollKey,"multiple").compareTo("true") == 0)     pMultiple=true;
+    if (jedis.hget(pollKey,"status").compareTo("true") == 0)     pStatus=true;
+    if (jedis.hget(pollKey,"publishToWeb").compareTo("true") == 0)     pWebPublish=true;
+    long pollSize=jedis.hlen(pollKey);
+    long numAnswers=(pollSize - Poll.getOtherFields()) / 2;
+    ArrayList<String> pAnswers=new ArrayList<String>();
+    ArrayList<Integer> pVotes=new ArrayList<Integer>();
+    for (int j=1; j <= numAnswers; j++) {
+      pAnswers.add(jedis.hget(pollKey,"answer" + j + "text"));
+      pVotes.add(Integer.parseInt(jedis.hget(pollKey,"answer" + j)));
+    }
+    ArrayList retrievedPoll=new ArrayList();
+    retrievedPoll.add(jedis.hget(pollKey,"title"));
+    retrievedPoll.add(jedis.hget(pollKey,"room"));
+    retrievedPoll.add(pMultiple);
+    retrievedPoll.add(jedis.hget(pollKey,"question"));
+    retrievedPoll.add(pAnswers);
+    retrievedPoll.add(pVotes);
+    retrievedPoll.add(jedis.hget(pollKey,"time"));
+    retrievedPoll.add(jedis.hget(pollKey,"totalVotes"));
+    retrievedPoll.add(pStatus);
+    retrievedPoll.add(jedis.hget(pollKey,"didNotVote"));
+    retrievedPoll.add(pWebPublish);
+    retrievedPoll.add(jedis.hget(pollKey,"webKey"));
+    Poll poll=new Poll(retrievedPoll);
+    return poll;
+  }
+  log.error("[ERROR] A poll is being invoked that does not exist. Null exception will be thrown.");
+  return null;
+}

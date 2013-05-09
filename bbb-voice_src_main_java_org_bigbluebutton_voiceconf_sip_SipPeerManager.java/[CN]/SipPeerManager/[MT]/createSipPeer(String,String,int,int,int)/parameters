@@ -1,5 +1,0 @@
-String peerId
-String host
-int sipPort
-int startRtpPort
-int stopRtpPort

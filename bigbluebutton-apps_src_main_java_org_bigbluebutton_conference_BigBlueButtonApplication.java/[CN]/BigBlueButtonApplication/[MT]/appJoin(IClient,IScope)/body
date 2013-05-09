@@ -1,0 +1,4 @@
+{
+  log.debug("***** " + APP + " [ "+ " appJoin [ "+ scope.getName()+ "] *********");
+  return super.appJoin(client,scope);
+}

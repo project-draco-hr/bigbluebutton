@@ -1,0 +1,16 @@
+{
+  HttpClient client=new HttpClient();
+  GetMethod get=new GetMethod(url);
+  String configXML="";
+  try {
+    client.executeMethod(get);
+    configXML=get.getResponseBodyAsString();
+  }
+ catch (  HttpException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+  }
+  return configXML;
+}

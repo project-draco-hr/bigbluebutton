@@ -1,4 +1,4 @@
 {
-  log.trace("getName(): {}",publishedStreamName);
+  log.debug("getName(): {}",publishedStreamName);
   return publishedStreamName;
 }

@@ -1,11 +1,10 @@
 {
-  log.debug(APP + ":roomLeave " + scope.getName());
+  log.debug("***** " + APP + " [ "+ " roomLeave [ "+ scope.getName()+ "] *********");
   BigBlueButtonSession bbbSession=getBbbSession();
   if (bbbSession == null) {
     log.debug("roomLeave - session is null");
   }
  else {
-    participantsBridge.removeParticipant(bbbSession.getSessionName(),bbbSession.getInternalUserID());
-    participantsBridge.sendParticipantLeave(bbbSession.getSessionName(),bbbSession.getInternalUserID());
+    participantsApplication.participantLeft(scope.getName(),bbbSession.getInternalUserID());
   }
 }

@@ -2,5 +2,4 @@
   frame=new WindowlessFrame(borderWidth);
   this.client=client;
   frame.setCaptureRegionListener(client);
-  frame.setToolbar(createToolbar());
 }

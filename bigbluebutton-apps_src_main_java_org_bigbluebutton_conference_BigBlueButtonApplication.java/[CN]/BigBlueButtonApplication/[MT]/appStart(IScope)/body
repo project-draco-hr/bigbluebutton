@@ -1,8 +1,10 @@
 {
-  log.debug("Starting BigBlueButton version " + version);
+  log.debug("***** " + APP + " [ "+ " appStart [ "+ scope.getName()+ "] *********");
   IContext context=app.getContext();
   appCtx=(AbstractApplicationContext)context.getApplicationContext();
   appCtx.addApplicationListener(new ShutdownHookListener());
   appCtx.registerShutdownHook();
-  return super.appStart(app);
+  super.appStart(app);
+  connInvokerService.start();
+  return true;
 }

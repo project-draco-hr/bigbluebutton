@@ -1,0 +1,12 @@
+{
+  Client c=manager.getESLClient();
+  if (c.canSend()) {
+    EjectAllUsersCommand mpc=new EjectAllUsersCommand(room,USER);
+    String jobId=c.sendAsyncApiCommand(mpc.getCommand(),mpc.getCommandArgs());
+    log.debug("eject all user from room [{}], jobid [{}]",room,jobId);
+  }
+ else {
+    log.warn("Can't send eject request to FreeSWITCH as we are not connected.");
+    startHeartbeatMonitor();
+  }
+}

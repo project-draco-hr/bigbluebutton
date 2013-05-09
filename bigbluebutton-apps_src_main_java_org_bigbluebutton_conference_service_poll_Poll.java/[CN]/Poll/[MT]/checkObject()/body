@@ -1,0 +1,19 @@
+{
+  if (this != null) {
+    log.debug(LOGNAME + "Running CheckObject on the poll with title " + title);
+    log.debug(LOGNAME + "Room is: " + room);
+    log.debug(LOGNAME + "isMultiple is: " + isMultiple.toString());
+    log.debug(LOGNAME + "Question is: " + question);
+    log.debug(LOGNAME + "Answers are: " + answers);
+    log.debug(LOGNAME + "Votes are: " + votes);
+    log.debug(LOGNAME + "Time is: " + time);
+    log.debug(LOGNAME + "TotalVotes is: " + totalVotes);
+    log.debug(LOGNAME + "Status is: " + status.toString());
+    log.debug(LOGNAME + "DidNotVote is: " + didNotVote);
+    log.debug(LOGNAME + "PublishToWeb is: " + publishToWeb.toString());
+    log.debug(LOGNAME + "WebKey is: " + webKey);
+  }
+ else {
+    log.error(LOGNAME + "This Poll is NULL.");
+  }
+}
