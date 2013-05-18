@@ -1,14 +1,17 @@
 {
-  WhiteboardRoom room=roomManager.getRoom(getMeetingId());
-  if (room.presentationExists(presentationID)) {
-    room.setActivePresentation(presentationID);
-  }
+  String meetingID=getMeetingId();
+  if (rooms.containsKey(meetingID)) {
+    WhiteboardRoom room=rooms.get(meetingID);
+    if (room.presentationExists(presentationID)) {
+      room.setActivePresentation(presentationID);
+    }
  else {
-    room.addPresentation(presentationID,numPages);
+      room.addPresentation(presentationID,numPages);
+    }
+    Map<String,Object> message=new HashMap<String,Object>();
+    message.put("presentationID",presentationID);
+    message.put("numberOfPages",numPages);
+    ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getMeetingId(),"WhiteboardChangePresentationCommand",message);
+    connInvokerService.sendMessage(m);
   }
-  Map<String,Object> message=new HashMap<String,Object>();
-  message.put("presentationID",presentationID);
-  message.put("numberOfPages",numPages);
-  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getMeetingId(),"WhiteboardChangePresentationCommand",message);
-  connInvokerService.sendMessage(m);
 }

@@ -1,3 +1,3 @@
 {
-  roomManager.removeRoom(scope.getName());
+  rooms.remove(scope.getName());
 }

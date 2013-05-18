@@ -1,6 +1,13 @@
 {
-  roomManager.getRoom(getMeetingId()).clear();
-  Map<String,Object> message=new HashMap<String,Object>();
-  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getMeetingId(),"WhiteboardClearCommand",message);
-  connInvokerService.sendMessage(m);
+  String meetingID=getMeetingId();
+  if (rooms.containsKey(meetingID)) {
+    WhiteboardRoom room=rooms.get(meetingID);
+    room.clear();
+    if (room.isRecorded()) {
+      recordingService.clearPage(meetingID,room.getPresentationID(),room.getPageNumber());
+    }
+    Map<String,Object> message=new HashMap<String,Object>();
+    ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,meetingID,"WhiteboardClearCommand",message);
+    connInvokerService.sendMessage(m);
+  }
 }

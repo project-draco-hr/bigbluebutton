@@ -1,4 +1,4 @@
 {
   log.debug("***** " + APP + " [ "+ " appStop [ "+ scope.getName()+ "] *********");
-  roomManager.removeRoom(getMeetingId());
+  rooms.clear();
 }
