@@ -1,0 +1,5 @@
+{
+  if (recordingSessions.containsKey(message.getMeetingID())) {
+    recorder.record(message.getMeetingID(),message);
+  }
+}

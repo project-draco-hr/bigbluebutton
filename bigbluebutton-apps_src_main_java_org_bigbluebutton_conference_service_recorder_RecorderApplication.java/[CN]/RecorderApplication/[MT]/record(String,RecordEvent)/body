@@ -1,5 +1,6 @@
 {
-  if (recordingSessions.containsKey(session)) {
-    recorder.record(session,message);
+  messages.offer(message);
+  if (recordingSessions.containsKey(meetingID)) {
+    recorder.record(meetingID,message);
   }
 }

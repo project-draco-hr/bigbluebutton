@@ -6,6 +6,5 @@
   appCtx.registerShutdownHook();
   super.appStart(app);
   connInvokerService.setAppScope(app);
-  connInvokerService.start();
   return true;
 }
