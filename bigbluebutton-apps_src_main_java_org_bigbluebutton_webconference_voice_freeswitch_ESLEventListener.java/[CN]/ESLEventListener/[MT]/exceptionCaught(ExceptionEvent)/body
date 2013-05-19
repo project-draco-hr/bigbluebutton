@@ -1,4 +1,2 @@
 {
-  setChanged();
-  notifyObservers(e);
 }

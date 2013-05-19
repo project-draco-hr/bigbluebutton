@@ -1,7 +1,5 @@
 {
   if (event.getEventName().equals(FreeswitchHeartbeatMonitor.EVENT_HEARTBEAT)) {
-    setChanged();
-    notifyObservers(event);
     return;
   }
 }
