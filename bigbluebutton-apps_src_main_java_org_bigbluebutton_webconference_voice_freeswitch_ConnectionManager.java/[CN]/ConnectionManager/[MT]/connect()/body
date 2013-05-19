@@ -1,7 +1,17 @@
 {
   try {
-    if (!manager.getESLClient().canSend()) {
+    Client c=manager.getESLClient();
+    if (!c.canSend()) {
+      subscribed=false;
       manager.connect();
+    }
+    if (!subscribed) {
+      c.cancelEventSubscriptions();
+      c.setEventSubscriptions("plain","all");
+      c.addEventFilter(EVENT_NAME,"heartbeat");
+      c.addEventFilter(EVENT_NAME,"custom");
+      c.addEventFilter(EVENT_NAME,"background_job");
+      subscribed=true;
     }
   }
  catch (  InboundConnectionFailure e) {

@@ -8,5 +8,5 @@
     }
   }
 ;
-  connExec.scheduleWithFixedDelay(sender,0,1000,TimeUnit.SECONDS);
+  connExec.scheduleWithFixedDelay(sender,0,5,TimeUnit.SECONDS);
 }
