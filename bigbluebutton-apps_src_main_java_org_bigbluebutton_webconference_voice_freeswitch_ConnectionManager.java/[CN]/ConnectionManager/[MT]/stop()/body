@@ -1,3 +1,5 @@
 {
-  attemptConnect=false;
+  if (connectTask != null) {
+    connectTask.cancel(true);
+  }
 }

@@ -1,3 +1,6 @@
 {
-  String jobId=manager.getESLClient().sendAsyncApiCommand(mpc.getCommand(),mpc.getCommandArgs());
+  Client c=manager.getESLClient();
+  if (c.canSend()) {
+    c.sendAsyncApiCommand(mpc.getCommand(),mpc.getCommandArgs());
+  }
 }
