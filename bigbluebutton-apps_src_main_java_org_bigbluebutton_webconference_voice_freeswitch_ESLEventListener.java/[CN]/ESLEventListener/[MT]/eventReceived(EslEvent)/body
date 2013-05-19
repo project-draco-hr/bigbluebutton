@@ -4,5 +4,4 @@
     notifyObservers(event);
     return;
   }
-  log.debug("eventReceived [{}]",event);
 }

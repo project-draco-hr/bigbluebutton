@@ -1,18 +1,6 @@
 {
   String action=event.getEventHeaders().get("Action");
   if (action == null) {
-    if (debug) {
-      Map<String,String> eventHeaders=event.getEventHeaders();
-      StringBuilder sb=new StringBuilder("\n");
-      for (Iterator it=eventHeaders.entrySet().iterator(); it.hasNext(); ) {
-        Map.Entry entry=(Map.Entry)it.next();
-        sb.append(entry.getKey());
-        sb.append(" => '");
-        sb.append(entry.getValue());
-        sb.append("'\n");
-      }
-      log.debug("NULL Conference Action [{}] Headers:\n{}\nEND",confName,sb.toString());
-    }
     return;
   }
   if (log.isDebugEnabled())   log.debug("Handling conferenceEventRecord " + action);

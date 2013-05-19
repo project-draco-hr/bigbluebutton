@@ -1,0 +1,12 @@
+{
+  sendMessages=true;
+  Runnable sender=new Runnable(){
+    public void run(){
+      while (sendMessages) {
+        connect();
+      }
+    }
+  }
+;
+  connExec.execute(sender);
+}
