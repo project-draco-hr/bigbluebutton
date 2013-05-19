@@ -3,6 +3,7 @@
     Client c=manager.getESLClient();
     if (!c.canSend()) {
       subscribed=false;
+      manager.disconnect();
       manager.connect();
     }
     if (!subscribed) {

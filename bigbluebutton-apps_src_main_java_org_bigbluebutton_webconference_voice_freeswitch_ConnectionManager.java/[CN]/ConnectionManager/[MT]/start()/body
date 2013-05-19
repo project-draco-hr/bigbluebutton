@@ -1,8 +1,8 @@
 {
-  sendMessages=true;
+  attemptConnect=true;
   Runnable sender=new Runnable(){
     public void run(){
-      while (sendMessages) {
+      while (attemptConnect) {
         connect();
       }
     }

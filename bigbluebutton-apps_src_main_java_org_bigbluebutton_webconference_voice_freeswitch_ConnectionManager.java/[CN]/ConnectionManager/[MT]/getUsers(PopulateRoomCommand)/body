@@ -1,0 +1,4 @@
+{
+  EslMessage response=manager.getESLClient().sendSyncApiCommand(prc.getCommand(),prc.getCommandArgs());
+  prc.handleResponse(response,conferenceEventListener);
+}

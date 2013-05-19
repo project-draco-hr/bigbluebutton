@@ -1,20 +1,3 @@
 {
-  Client c=manager.getESLClient();
-  if (c.canSend()) {
-    c.addEventListener(this);
-    c.cancelEventSubscriptions();
-    c.setEventSubscriptions("plain","all");
-    c.addEventFilter("Event-Name","heartbeat");
-    c.addEventFilter("Event-Name","custom");
-    c.addEventFilter("Event-Name","background_job");
-    try {
-      Thread.sleep(5000);
-    }
- catch (    InterruptedException ex) {
-      java.util.logging.Logger.getLogger(FreeswitchApplication.class.getName()).log(Level.SEVERE,null,ex);
-      return false;
-    }
-  }
-  startHeartbeatMonitor();
-  return true;
+  return false;
 }

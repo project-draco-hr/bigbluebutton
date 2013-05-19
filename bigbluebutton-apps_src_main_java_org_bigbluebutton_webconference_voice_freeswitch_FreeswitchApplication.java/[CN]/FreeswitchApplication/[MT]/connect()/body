@@ -1,8 +1,0 @@
-{
-  try {
-    manager.connect();
-  }
- catch (  InboundConnectionFailure e) {
-    e.printStackTrace();
-  }
-}
