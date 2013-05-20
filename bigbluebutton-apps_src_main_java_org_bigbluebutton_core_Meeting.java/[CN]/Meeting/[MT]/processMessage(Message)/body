@@ -1,0 +1,7 @@
+{
+  Iterator<BigBlueButtonApp> iter=apps.iterator();
+  while (iter.hasNext()) {
+    BigBlueButtonApp app=(BigBlueButtonApp)iter.next();
+    app.handleMessage(message);
+  }
+}
