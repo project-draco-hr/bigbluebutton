@@ -1,2 +1,11 @@
 {
+  if (message instanceof CreateMeeting) {
+    processCreateMeetingMessage((CreateMeeting)message);
+  }
+ else {
+    Meeting m=meetings.get(message.getMeetingID());
+    if (m != null) {
+      m.processMessage(message);
+    }
+  }
 }
