@@ -1,0 +1,6 @@
+{
+  if (meetings.containsKey(message.getMeetingID())) {
+    Meeting m=new Meeting(message.getMeetingID());
+    meetings.put(m.getMeetingID(),m);
+  }
+}

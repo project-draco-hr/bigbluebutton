@@ -1,0 +1,19 @@
+{
+  sendMessages=true;
+  Runnable sender=new Runnable(){
+    public void run(){
+      while (sendMessages) {
+        Message message;
+        try {
+          message=messages.take();
+          sendMessage(message);
+        }
+ catch (        InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
+;
+  exec.execute(sender);
+}

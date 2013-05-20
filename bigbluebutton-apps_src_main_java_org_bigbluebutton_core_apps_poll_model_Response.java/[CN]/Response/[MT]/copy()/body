@@ -1,0 +1,8 @@
+{
+  Response resp=new Response(id,response);
+  ArrayList<String> resps=getResponders();
+  for (  String userID : resps) {
+    resp.addResponder(new Responder(userID));
+  }
+  return resp;
+}
