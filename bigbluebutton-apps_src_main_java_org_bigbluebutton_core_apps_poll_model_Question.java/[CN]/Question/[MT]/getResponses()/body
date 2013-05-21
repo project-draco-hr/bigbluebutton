@@ -1,7 +1,0 @@
-{
-  ArrayList<Response> resps=new ArrayList<Response>();
-  for (  Response r : responses.values()) {
-    resps.add(r.copy());
-  }
-  return resps;
-}

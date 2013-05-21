@@ -1,4 +1,0 @@
-{
-  super(meetingID);
-  this.requestBy=requestBy;
-}

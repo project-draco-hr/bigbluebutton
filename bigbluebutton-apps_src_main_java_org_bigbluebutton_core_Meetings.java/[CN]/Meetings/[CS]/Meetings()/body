@@ -1,3 +1,0 @@
-{
-  meetings=new ConcurrentHashMap<String,Meeting>();
-}

@@ -1,7 +1,0 @@
-{
-  ArrayList<String> resps=new ArrayList<String>();
-  for (  Responder r : responders) {
-    resps.add(r.getUserID());
-  }
-  return resps;
-}
