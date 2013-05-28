@@ -1,4 +1,9 @@
 {
-  if (duration == 0)   return false;
+  if (duration == 0 && !isRunning()) {
+    return false;
+  }
+ else   if (duration == 0 && isRunning()) {
+    return true;
+  }
   return (System.currentTimeMillis() - startTime > (duration * MILLIS_IN_A_MINUTE));
 }
