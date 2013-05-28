@@ -1,4 +1,5 @@
 {
+  messages=new LinkedBlockingQueue<RecordEvent>();
   recordingSessions=new ConcurrentHashMap<String,String>();
   log.debug("Instantiated ArchiveApplication");
 }
