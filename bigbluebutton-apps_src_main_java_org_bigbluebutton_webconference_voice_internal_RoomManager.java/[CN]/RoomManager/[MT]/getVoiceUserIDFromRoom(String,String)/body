@@ -1,0 +1,7 @@
+{
+  RoomImp rm=rooms.get(room);
+  if (rm != null) {
+    return rm.getUserWithID(userID);
+  }
+  return -1;
+}
