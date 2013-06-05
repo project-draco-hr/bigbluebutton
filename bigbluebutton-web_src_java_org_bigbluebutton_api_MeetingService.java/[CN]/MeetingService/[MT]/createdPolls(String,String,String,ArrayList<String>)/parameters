@@ -1,0 +1,4 @@
+String meetingId
+String title
+String question
+ArrayList<String> answers

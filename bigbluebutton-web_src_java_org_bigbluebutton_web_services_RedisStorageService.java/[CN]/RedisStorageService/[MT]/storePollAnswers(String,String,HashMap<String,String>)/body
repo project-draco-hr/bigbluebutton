@@ -1,0 +1,7 @@
+{
+  Jedis jedis=jedisPool.getResource();
+  String pattern=getPollRedisPattern(meetingID);
+  HashMap<String,String> pollMap=p.toMap();
+  jedis.hmset(pattern + SEPARATOR + p.getPollID+ SEPARATOR+ POLL_ANSWER+ SEPARATOR+ ID_SEED,pollMap);
+  jedisPool.returnResource(jedis);
+}

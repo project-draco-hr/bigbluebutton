@@ -1,0 +1,3 @@
+String meetingID
+String pollID
+HashMap<String,String> answers
