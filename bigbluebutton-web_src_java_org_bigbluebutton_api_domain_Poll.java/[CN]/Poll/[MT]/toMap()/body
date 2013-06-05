@@ -1,0 +1,10 @@
+{
+  HashMap<String,Object> map=new HashMap<String,Object>();
+  map.put("pollID",pollID);
+  map.put("meetingID",meetingID);
+  map.put("title",title);
+  map.put("question",question);
+  map.put("datetime",datetime);
+  map.put("answers",answers);
+  return map;
+}
