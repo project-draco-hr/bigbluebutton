@@ -1,0 +1,4 @@
+{
+  this.pollId=pollId;
+  this.answer=answer;
+}
