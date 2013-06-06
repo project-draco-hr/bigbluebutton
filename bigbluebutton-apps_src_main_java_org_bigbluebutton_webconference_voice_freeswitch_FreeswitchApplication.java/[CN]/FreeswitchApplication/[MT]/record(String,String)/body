@@ -1,16 +1,6 @@
 {
   String RECORD_DIR="/var/freeswitch/meetings";
   String voicePath=RECORD_DIR + File.separatorChar + meetingid+ "-"+ System.currentTimeMillis()+ ".wav";
-  if (log.isDebugEnabled())   log.debug("Asking Freeswitch to start recording in {}",voicePath);
-  Client c=manager.getESLClient();
-  if (c.canSend()) {
-    RecordConferenceCommand rcc=new RecordConferenceCommand(room,USER,true,voicePath);
-    log.debug(rcc.getCommand() + " " + rcc.getCommandArgs());
-    EslMessage response=manager.getESLClient().sendSyncApiCommand(rcc.getCommand(),rcc.getCommandArgs());
-    rcc.handleResponse(response,conferenceEventListener);
-  }
- else {
-    log.warn("Can't send record request to FreeSWITCH as we are not connected.");
-    startHeartbeatMonitor();
-  }
+  RecordConferenceCommand rcc=new RecordConferenceCommand(room,USER,true,voicePath);
+  manager.record(rcc);
 }
