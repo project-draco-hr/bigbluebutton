@@ -2,8 +2,6 @@
   log.debug("Remove participant " + userid + " from "+ roomName);
   Meeting r=getRoom(roomName);
   if (r != null) {
-    if (checkPublisher()) {
-    }
     r.removeParticipant(userid);
     return;
   }

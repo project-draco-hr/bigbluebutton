@@ -1,4 +1,3 @@
 {
   String answerID=generateAnswerID(this.meetingID);
-  this.answers.put(answerID,answer);
 }

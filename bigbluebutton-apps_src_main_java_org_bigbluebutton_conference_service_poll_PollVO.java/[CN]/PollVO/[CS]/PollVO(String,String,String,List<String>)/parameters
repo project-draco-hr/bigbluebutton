@@ -1,4 +1,4 @@
 String meetingID
 String title
 String question
-List<AnswerVO> answers
+List<String> answers

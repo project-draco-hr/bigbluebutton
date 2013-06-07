@@ -3,5 +3,4 @@
   this.title=title;
   this.question=question;
   this.datetime=Long.toString(System.currentTimeMillis());
-  this.answers=AnswerVO.toAnswerVOList(meetingID,null,answers);
 }
