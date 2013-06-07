@@ -1,7 +1,7 @@
 {
   Room r=getRoom(room);
   if (r != null) {
-    return r.getCurrentPresenter();
+    r.assignPresenter(presenter);
+    return;
   }
-  return null;
 }

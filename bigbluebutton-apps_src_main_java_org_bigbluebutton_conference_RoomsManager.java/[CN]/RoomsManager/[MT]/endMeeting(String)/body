@@ -1,0 +1,6 @@
+{
+  Room room=getRoom(meetingID);
+  if (room != null) {
+    room.endAndKickAll();
+  }
+}

@@ -1,0 +1,15 @@
+{
+  Gson gson=new Gson();
+  HashMap<String,String> map=gson.fromJson(message,new TypeToken<Map<String,String>>(){
+  }
+.getType());
+  if (channel.equalsIgnoreCase(MessagingConstants.SYSTEM_CHANNEL)) {
+    String meetingId=map.get("meetingId");
+    String messageId=map.get("messageId");
+    if (messageId != null) {
+      if (MessagingConstants.END_MEETING_REQUEST_EVENT.equalsIgnoreCase(messageId)) {
+        meetingManager.endMeeting(meetingId);
+      }
+    }
+  }
+}

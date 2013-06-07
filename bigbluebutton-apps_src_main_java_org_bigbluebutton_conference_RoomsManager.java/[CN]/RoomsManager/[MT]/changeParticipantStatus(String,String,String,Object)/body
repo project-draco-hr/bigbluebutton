@@ -1,9 +1,7 @@
 {
-  log.debug("Change participant status " + userid + " - "+ status+ " ["+ value+ "]");
   Room r=getRoom(roomName);
   if (r != null) {
     r.changeParticipantStatus(userid,status,value);
     return;
   }
-  log.warn("Changing participant status on a non-existing room " + roomName);
 }

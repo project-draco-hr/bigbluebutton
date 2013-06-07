@@ -1,0 +1,4 @@
+{
+  PollVO poll=new PollVO(meetingId,title,question,answers);
+  poll.store();
+}

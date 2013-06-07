@@ -1,8 +1,0 @@
-{
-  Room r=getRoom(room);
-  if (r != null) {
-    r.assignPresenter(presenter);
-    return;
-  }
-  log.warn("Assigning presenter to a non-existing room " + room);
-}
