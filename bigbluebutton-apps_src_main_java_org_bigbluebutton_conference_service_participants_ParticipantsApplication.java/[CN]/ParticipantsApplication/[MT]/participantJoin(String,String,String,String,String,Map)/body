@@ -2,7 +2,7 @@
   log.debug("participant joining room " + roomName);
   if (roomsManager.hasRoom(roomName)) {
     User p=new User(userid,username,role,externUserID,status);
-    Room room=roomsManager.getRoom(roomName);
+    Meeting room=roomsManager.getRoom(roomName);
     room.addParticipant(p);
     log.debug("participant joined room " + roomName);
     return true;

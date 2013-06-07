@@ -1,7 +1,7 @@
 {
   if (!roomsManager.hasRoom(name)) {
     log.info("Creating room " + name);
-    roomsManager.addRoom(new Room(name));
+    roomsManager.addRoom(new Meeting(name));
     return true;
   }
   return false;

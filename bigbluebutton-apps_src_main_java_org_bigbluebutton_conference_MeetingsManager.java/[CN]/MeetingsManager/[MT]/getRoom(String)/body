@@ -1,0 +1,4 @@
+{
+  log.debug("Get room " + name);
+  return meetings.get(name);
+}

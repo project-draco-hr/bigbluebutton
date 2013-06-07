@@ -1,8 +1,0 @@
-{
-  log.debug("Remove room " + name);
-  Room room=rooms.remove(name);
-  if (room != null) {
-    room.endAndKickAll();
-    publisher.meetingEnded(name);
-  }
-}

@@ -1,5 +1,0 @@
-{
-  room.addRoomListener(new ParticipantUpdatingRoomListener(room,messagingService));
-  publisher.meetingStarted(room.getName());
-  rooms.put(room.getName(),room);
-}

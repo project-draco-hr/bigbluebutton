@@ -1,7 +1,0 @@
-{
-  Room r=getRoom(room);
-  if (r != null) {
-    r.assignPresenter(presenter);
-    return;
-  }
-}

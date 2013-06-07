@@ -1,0 +1,8 @@
+{
+  log.debug("Add participant " + participant.getName());
+  Meeting r=getRoom(roomName);
+  if (r != null) {
+    r.addParticipant(participant);
+    return;
+  }
+}
