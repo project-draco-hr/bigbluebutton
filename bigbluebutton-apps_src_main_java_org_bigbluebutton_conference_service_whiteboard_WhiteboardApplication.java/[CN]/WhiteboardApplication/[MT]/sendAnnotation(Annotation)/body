@@ -1,19 +1,35 @@
 {
-  String status=annotation.getStatus();
-  if ("textCreated".equals(status)) {
-    roomManager.getRoom(getMeetingId()).addAnnotation(annotation);
-  }
- else   if (PENCIL_TYPE.equals(annotation.getType()) && "DRAW_START".equals(status)) {
-    roomManager.getRoom(getMeetingId()).addAnnotation(annotation);
-  }
- else   if ("DRAW_END".equals(status) && (RECTANGLE_TYPE.equals(annotation.getType()) || ELLIPSE_TYPE.equals(annotation.getType()) || TRIANGLE_TYPE.equals(annotation.getType())|| LINE_TYPE.equals(annotation.getType()))) {
-    roomManager.getRoom(getMeetingId()).addAnnotation(annotation);
-  }
- else {
-    if ("text".equals(annotation.getType())) {
-      roomManager.getRoom(getMeetingId()).modifyText(annotation);
+  String meetingID=getMeetingId();
+  if (rooms.containsKey(meetingID)) {
+    WhiteboardRoom room=rooms.get(meetingID);
+    String status=annotation.getStatus();
+    if ("textCreated".equals(status)) {
+      room.addAnnotation(annotation);
+      if (room.isRecorded()) {
+        recordingService.addAnnotation(meetingID,annotation,room.getPresentationID(),room.getPageNumber());
+      }
     }
+ else     if (PENCIL_TYPE.equals(annotation.getType()) && "DRAW_START".equals(status)) {
+      room.addAnnotation(annotation);
+      if (room.isRecorded()) {
+        recordingService.addAnnotation(meetingID,annotation,room.getPresentationID(),room.getPageNumber());
+      }
+    }
+ else     if ("DRAW_END".equals(status) && (RECTANGLE_TYPE.equals(annotation.getType()) || ELLIPSE_TYPE.equals(annotation.getType()) || TRIANGLE_TYPE.equals(annotation.getType())|| LINE_TYPE.equals(annotation.getType()))) {
+      room.addAnnotation(annotation);
+      if (room.isRecorded()) {
+        recordingService.addAnnotation(meetingID,annotation,room.getPresentationID(),room.getPageNumber());
+      }
+    }
+ else {
+      if ("text".equals(annotation.getType())) {
+        room.modifyText(annotation);
+        if (room.isRecorded()) {
+          recordingService.modifyText(meetingID,annotation,room.getPresentationID(),room.getPageNumber());
+        }
+      }
+    }
+    ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,meetingID,"WhiteboardNewAnnotationCommand",annotation.getAnnotation());
+    connInvokerService.sendMessage(m);
   }
-  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getMeetingId(),"WhiteboardNewAnnotationCommand",annotation.getAnnotation());
-  connInvokerService.sendMessage(m);
 }

@@ -1,0 +1,7 @@
+{
+  Set<IConnection> conns=scope.getClientConnections();
+  for (  IConnection conn : conns) {
+    String connID=(String)conn.getAttribute("INTERNAL_USER_ID");
+    System.out.println("**** ConnID=[" + connID + "]");
+  }
+}

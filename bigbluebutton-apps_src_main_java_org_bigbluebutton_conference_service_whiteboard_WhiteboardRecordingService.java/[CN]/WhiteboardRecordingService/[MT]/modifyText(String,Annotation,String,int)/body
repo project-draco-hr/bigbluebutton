@@ -1,0 +1,9 @@
+{
+  ModifyTextWhiteboardRecordEvent event=new ModifyTextWhiteboardRecordEvent();
+  event.setMeetingId(meetingID);
+  event.setTimestamp(System.currentTimeMillis());
+  event.setPresentation(presentationID);
+  event.setPageNumber(page);
+  event.addAnnotation(text.getAnnotation());
+  recorder.record(meetingID,event);
+}

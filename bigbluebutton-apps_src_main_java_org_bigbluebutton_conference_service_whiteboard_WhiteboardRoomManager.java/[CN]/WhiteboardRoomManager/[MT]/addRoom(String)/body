@@ -1,5 +1,0 @@
-{
-  WhiteboardRoom newRoom=new WhiteboardRoom(id);
-  rooms.put(id,newRoom);
-  return newRoom;
-}

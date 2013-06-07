@@ -1,5 +1,13 @@
 {
   if (message.getType().equals(ClientMessage.BROADCAST)) {
+    IScope meetingScope=bbbAppScope.getContext().resolveScope("bigbluebutton/" + message.getDest());
+    if (meetingScope != null) {
+      System.out.println("***** Found scope [" + meetingScope.getName() + "] meetingID=["+ message.getDest()+ "]");
+      getConnections(meetingScope);
+      if (meetingScope.hasChildScope(ScopeType.SHARED_OBJECT,"presentationSO")) {
+        System.out.println("**** Meeting has Presentation shared object.");
+      }
+    }
     IScope scope=scopes.get(message.getDest());
     if (scope != null) {
       List<Object> params=new ArrayList<Object>();

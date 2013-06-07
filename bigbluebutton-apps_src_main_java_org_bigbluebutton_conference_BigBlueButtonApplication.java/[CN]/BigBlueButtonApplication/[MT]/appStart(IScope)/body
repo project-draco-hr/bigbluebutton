@@ -5,6 +5,6 @@
   appCtx.addApplicationListener(new ShutdownHookListener());
   appCtx.registerShutdownHook();
   super.appStart(app);
-  connInvokerService.start();
+  connInvokerService.setAppScope(app);
   return true;
 }
