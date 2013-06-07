@@ -1,7 +1,7 @@
 {
 synchronized (this) {
     log.debug("adding participant " + participant.getInternalUserID());
-    participants.put(participant.getInternalUserID(),participant);
+    users.put(participant.getInternalUserID(),participant);
   }
   log.debug("Informing roomlisteners " + listeners.size());
   for (Iterator it=listeners.values().iterator(); it.hasNext(); ) {

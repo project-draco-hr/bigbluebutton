@@ -1,3 +1,3 @@
 {
-  return participants.values();
+  return users.values();
 }

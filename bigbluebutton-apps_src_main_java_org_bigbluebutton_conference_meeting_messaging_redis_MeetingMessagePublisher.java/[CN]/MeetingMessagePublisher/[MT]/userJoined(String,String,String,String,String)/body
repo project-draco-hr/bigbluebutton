@@ -1,0 +1,11 @@
+{
+  HashMap<String,String> map=new HashMap<String,String>();
+  map.put("meetingId",meetingID);
+  map.put("messageId",MessagingConstants.USER_JOINED_EVENT);
+  map.put("internalUserId",internalUserID);
+  map.put("externalUserId",externalUserID);
+  map.put("fullname",name);
+  map.put("role",role);
+  Gson gson=new Gson();
+  service.send(MessagingConstants.PARTICIPANTS_CHANNEL,gson.toJson(map));
+}

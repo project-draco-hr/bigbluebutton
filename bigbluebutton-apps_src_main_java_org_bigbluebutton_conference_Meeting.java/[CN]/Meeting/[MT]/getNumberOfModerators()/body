@@ -1,6 +1,6 @@
 {
   int sum=0;
-  for (Iterator<User> it=participants.values().iterator(); it.hasNext(); ) {
+  for (Iterator<User> it=users.values().iterator(); it.hasNext(); ) {
     User part=it.next();
     if (part.isModerator()) {
       sum++;

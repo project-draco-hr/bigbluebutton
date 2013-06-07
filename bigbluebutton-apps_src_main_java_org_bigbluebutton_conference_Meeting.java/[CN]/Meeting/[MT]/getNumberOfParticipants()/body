@@ -1,4 +1,4 @@
 {
-  log.debug("Returning number of participants: " + participants.size());
-  return participants.size();
+  log.debug("Returning number of participants: " + users.size());
+  return users.size();
 }

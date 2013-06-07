@@ -2,10 +2,10 @@
   boolean present=false;
   User p=null;
 synchronized (this) {
-    present=participants.containsKey(userid);
+    present=users.containsKey(userid);
     if (present) {
       log.debug("removing participant");
-      p=participants.remove(userid);
+      p=users.remove(userid);
     }
   }
   if (present) {
