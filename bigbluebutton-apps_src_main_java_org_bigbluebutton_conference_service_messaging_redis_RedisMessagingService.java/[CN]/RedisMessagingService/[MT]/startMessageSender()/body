@@ -1,0 +1,15 @@
+{
+  log.debug("Starting message sender...");
+  final Jedis jedis=redisPool.getResource();
+  try {
+    Runnable messageSender=new Runnable(){
+      public void run(){
+      }
+    }
+;
+    msgSenderExec.execute(messageSender);
+  }
+ catch (  Exception e) {
+    log.error("Error subscribing to channels: " + e.getMessage());
+  }
+}

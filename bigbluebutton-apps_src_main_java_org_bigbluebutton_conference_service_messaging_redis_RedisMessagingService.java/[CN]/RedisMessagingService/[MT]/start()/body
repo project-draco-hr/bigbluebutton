@@ -1,16 +1,5 @@
 {
-  log.debug("Starting redis pubsub...");
-  final Jedis jedis=redisPool.getResource();
-  try {
-    pubsubListener=new Runnable(){
-      public void run(){
-        jedis.psubscribe(new PubSubListener(),MessagingConstants.BIGBLUEBUTTON_PATTERN);
-      }
-    }
-;
-    exec.execute(pubsubListener);
-  }
- catch (  Exception e) {
-    log.error("Error subscribing to channels: " + e.getMessage());
-  }
+  startMessageReceiver();
+  startMessageProcessor();
+  startMessageSender();
 }

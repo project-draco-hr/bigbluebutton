@@ -1,0 +1,5 @@
+{
+  if (handler != null) {
+    handler.notifyListeners(msg.getPattern(),msg.getChannel(),msg.getMessage());
+  }
+}

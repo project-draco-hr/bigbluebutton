@@ -1,0 +1,18 @@
+{
+  try {
+    receiveMessage=true;
+    final Jedis jedis=redisPool.getResource();
+    Runnable messageReceiver=new Runnable(){
+      public void run(){
+        if (receiveMessage) {
+          jedis.psubscribe(new PubSubListener(),MessagingConstants.BIGBLUEBUTTON_PATTERN);
+        }
+      }
+    }
+;
+    msgReceiverExec.execute(messageReceiver);
+  }
+ catch (  Exception e) {
+    log.error("Error subscribing to channels: " + e.getMessage());
+  }
+}

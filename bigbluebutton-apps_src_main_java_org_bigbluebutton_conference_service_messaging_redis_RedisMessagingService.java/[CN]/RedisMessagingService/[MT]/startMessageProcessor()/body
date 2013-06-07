@@ -1,0 +1,23 @@
+{
+  log.debug("Starting message processor...");
+  try {
+    Runnable messageProcessor=new Runnable(){
+      public void run(){
+        while (receiveMessages) {
+          try {
+            ReceivedMessage msg=receivedMessages.take();
+            if (listener != null)             listener.notifyListeners(msg.getPattern(),msg.getChannel(),msg.getMessage());
+          }
+ catch (          InterruptedException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    }
+;
+    msgProcessorExec.execute(messageProcessor);
+  }
+ catch (  Exception e) {
+    log.error("Error subscribing to channels: " + e.getMessage());
+  }
+}

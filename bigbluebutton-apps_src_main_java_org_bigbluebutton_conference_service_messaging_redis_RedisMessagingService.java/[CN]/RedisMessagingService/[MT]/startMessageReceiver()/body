@@ -1,0 +1,19 @@
+{
+  log.debug("Starting message receiver...");
+  final Jedis jedis=redisPool.getResource();
+  try {
+    receiveMessages=true;
+    Runnable pubsubListener=new Runnable(){
+      public void run(){
+        if (receiveMessages) {
+          jedis.psubscribe(new PubSubListener(),MessagingConstants.BIGBLUEBUTTON_PATTERN);
+        }
+      }
+    }
+;
+    msgReceiverExec.execute(pubsubListener);
+  }
+ catch (  Exception e) {
+    log.error("Error subscribing to channels: " + e.getMessage());
+  }
+}
