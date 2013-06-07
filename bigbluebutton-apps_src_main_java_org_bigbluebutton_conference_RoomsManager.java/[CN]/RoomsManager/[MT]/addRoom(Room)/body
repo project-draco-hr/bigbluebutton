@@ -1,13 +1,5 @@
 {
-  log.debug("Adding room " + room.getName());
   room.addRoomListener(new ParticipantUpdatingRoomListener(room,messagingService));
-  if (checkPublisher()) {
-    HashMap<String,String> map=new HashMap<String,String>();
-    map.put("meetingId",room.getName());
-    map.put("messageId",MessagingConstants.MEETING_STARTED_EVENT);
-    Gson gson=new Gson();
-    messagingService.send(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
-    log.debug("Notified event listener of conference start");
-  }
+  publisher.meetingStarted(room.getName());
   rooms.put(room.getName(),room);
 }

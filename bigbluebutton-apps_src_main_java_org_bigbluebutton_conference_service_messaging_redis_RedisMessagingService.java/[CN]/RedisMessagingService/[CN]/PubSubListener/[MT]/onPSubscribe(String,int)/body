@@ -1,3 +1,0 @@
-{
-  log.debug("Subscribed to the pattern: " + pattern);
-}

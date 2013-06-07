@@ -5,5 +5,4 @@
     r.addParticipant(participant);
     return;
   }
-  log.warn("Adding participant to a non-existing room " + roomName);
 }
