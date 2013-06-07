@@ -1,3 +1,5 @@
+String meetingID
 String userID
 String presentationID
 Integer pageNumber
+List<Annotation> annotations

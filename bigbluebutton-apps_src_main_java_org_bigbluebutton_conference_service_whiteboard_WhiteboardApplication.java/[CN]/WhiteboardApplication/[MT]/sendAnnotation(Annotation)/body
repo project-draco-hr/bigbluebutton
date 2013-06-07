@@ -29,7 +29,6 @@
         }
       }
     }
-    ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,meetingID,"WhiteboardNewAnnotationCommand",annotation.getAnnotation());
-    connInvokerService.sendMessage(m);
+    clientSender.sendAnnotation(meetingID,annotation.getAnnotation());
   }
 }

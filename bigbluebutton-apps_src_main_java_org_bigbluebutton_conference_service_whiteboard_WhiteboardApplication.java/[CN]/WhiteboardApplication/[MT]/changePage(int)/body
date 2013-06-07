@@ -4,10 +4,6 @@
     WhiteboardRoom room=rooms.get(meetingID);
     Presentation pres=room.getActivePresentation();
     pres.setActivePage(pageNum);
-    Map<String,Object> message=new HashMap<String,Object>();
-    message.put("pageNum",pageNum);
-    message.put("numAnnotations",pres.getActivePage().getNumShapesOnPage());
-    ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,meetingID,"WhiteboardChangePageCommand",message);
-    connInvokerService.sendMessage(m);
+    clientSender.changePage(meetingID,pageNum,pres.getActivePage().getNumShapesOnPage());
   }
 }

@@ -3,9 +3,6 @@
   if (rooms.containsKey(meetingID)) {
     WhiteboardRoom room=rooms.get(meetingID);
     room.setWhiteboardEnabled(enabled);
-    Map<String,Object> message=new HashMap<String,Object>();
-    message.put("enabled",room.isWhiteboardEnabled());
-    ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,meetingID,"WhiteboardEnableWhiteboardCommand",message);
-    connInvokerService.sendMessage(m);
+    clientSender.enableWhiteboard(meetingID,enabled);
   }
 }

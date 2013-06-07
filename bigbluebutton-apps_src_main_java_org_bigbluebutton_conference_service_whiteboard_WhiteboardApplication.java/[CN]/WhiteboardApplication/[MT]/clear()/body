@@ -6,8 +6,6 @@
     if (room.isRecorded()) {
       recordingService.clearPage(meetingID,room.getPresentationID(),room.getPageNumber());
     }
-    Map<String,Object> message=new HashMap<String,Object>();
-    ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,meetingID,"WhiteboardClearCommand",message);
-    connInvokerService.sendMessage(m);
+    clientSender.clear(meetingID);
   }
 }

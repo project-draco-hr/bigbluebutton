@@ -1,0 +1,3 @@
+String meetingID
+String userID
+boolean enabled

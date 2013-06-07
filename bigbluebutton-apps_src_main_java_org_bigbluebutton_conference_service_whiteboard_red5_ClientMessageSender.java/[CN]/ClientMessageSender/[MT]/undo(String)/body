@@ -1,0 +1,5 @@
+{
+  Map<String,Object> message=new HashMap<String,Object>();
+  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,meetingID,"WhiteboardUndoCommand",message);
+  service.sendMessage(m);
+}

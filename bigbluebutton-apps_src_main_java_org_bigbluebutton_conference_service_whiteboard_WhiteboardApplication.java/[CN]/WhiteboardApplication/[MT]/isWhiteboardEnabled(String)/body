@@ -2,9 +2,6 @@
   String meetingID=getMeetingId();
   if (rooms.containsKey(meetingID)) {
     WhiteboardRoom room=rooms.get(meetingID);
-    Map<String,Object> message=new HashMap<String,Object>();
-    message.put("enabled",room.isWhiteboardEnabled());
-    ClientMessage m=new ClientMessage(ClientMessage.DIRECT,userid,"WhiteboardIsWhiteboardEnabledReply",message);
-    connInvokerService.sendMessage(m);
+    clientSender.isWhiteboardEnabled(meetingID,userID,room.isWhiteboardEnabled());
   }
 }
