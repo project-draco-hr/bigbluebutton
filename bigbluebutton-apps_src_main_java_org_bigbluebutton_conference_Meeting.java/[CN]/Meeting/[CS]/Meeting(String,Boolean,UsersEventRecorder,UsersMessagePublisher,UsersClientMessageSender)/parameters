@@ -1,0 +1,5 @@
+String meetingID
+Boolean recorded
+UsersEventRecorder recorder
+UsersMessagePublisher usersMessagePublisher
+UsersClientMessageSender usersClientMessageSender

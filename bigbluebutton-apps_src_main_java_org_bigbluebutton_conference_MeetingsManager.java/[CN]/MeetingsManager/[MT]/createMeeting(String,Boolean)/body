@@ -1,0 +1,5 @@
+{
+  Meeting room=new Meeting(meetingID,recorded,usersEventRecorder,usersMessagePublisher,usersClientMessageSender);
+  meetings.put(meetingID,room);
+  publisher.meetingStarted(meetingID);
+}

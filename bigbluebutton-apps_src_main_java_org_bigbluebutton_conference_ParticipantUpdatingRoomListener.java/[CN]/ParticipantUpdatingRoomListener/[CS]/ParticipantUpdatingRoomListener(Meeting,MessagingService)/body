@@ -1,4 +1,0 @@
-{
-  this.room=room;
-  this.messagingService=messagingService;
-}

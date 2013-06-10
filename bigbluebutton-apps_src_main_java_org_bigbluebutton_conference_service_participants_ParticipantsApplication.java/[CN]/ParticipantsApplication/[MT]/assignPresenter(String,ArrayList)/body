@@ -1,7 +1,0 @@
-{
-  if (roomsManager.hasRoom(room)) {
-    roomsManager.assignPresenter(room,presenter);
-    return;
-  }
-  log.warn("Assigning presenter on a non-existant room " + room);
-}

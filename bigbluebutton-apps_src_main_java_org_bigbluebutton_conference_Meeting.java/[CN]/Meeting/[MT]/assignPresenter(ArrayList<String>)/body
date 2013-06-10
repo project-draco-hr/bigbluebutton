@@ -1,9 +1,0 @@
-{
-  currentPresenter=presenter;
-  for (Iterator iter=listeners.values().iterator(); iter.hasNext(); ) {
-    log.debug("calling on listener");
-    IRoomListener listener=(IRoomListener)iter.next();
-    log.debug("calling sendUpdateMessage on listener " + listener.getName());
-    listener.assignPresenter(presenter);
-  }
-}

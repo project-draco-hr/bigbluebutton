@@ -1,0 +1,7 @@
+{
+  this.meetingID=meetingID;
+  this.recorded=recorded;
+  usersEventRecorder=recorder;
+  this.usersMessagePublisher=usersMessagePublisher;
+  users=new ConcurrentHashMap<String,User>();
+}

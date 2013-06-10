@@ -7,6 +7,6 @@
   Map<String,Object> messageToSend=new HashMap<String,Object>();
   messageToSend.put("count",new Integer(msgs.size()));
   messageToSend.put("messages",msgs);
-  ClientMessage m=new ClientMessage(ClientMessage.DIRECT,getBbbSession().getInternalUserID(),"ChatRequestMessageHistoryReply",messageToSend);
+  DirectClientMessage m=new DirectClientMessage(getMeetingId(),getBbbSession().getInternalUserID(),"ChatRequestMessageHistoryReply",messageToSend);
   connInvokerService.sendMessage(m);
 }

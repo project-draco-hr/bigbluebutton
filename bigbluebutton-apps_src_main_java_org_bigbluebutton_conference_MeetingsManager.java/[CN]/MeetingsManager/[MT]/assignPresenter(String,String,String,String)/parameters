@@ -1,0 +1,4 @@
+String room
+String newPresenterID
+String newPresenterName
+String assignedBy

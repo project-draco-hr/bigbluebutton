@@ -1,4 +1,0 @@
-{
-  publisher.meetingStarted(room.getName());
-  meetings.put(room.getName(),room);
-}

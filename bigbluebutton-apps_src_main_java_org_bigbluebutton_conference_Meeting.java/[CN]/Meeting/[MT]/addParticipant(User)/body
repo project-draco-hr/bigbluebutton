@@ -1,12 +1,10 @@
 {
 synchronized (this) {
-    log.debug("adding participant " + participant.getInternalUserID());
-    users.put(participant.getInternalUserID(),participant);
+    users.put(user.getInternalUserID(),user);
   }
-  log.debug("Informing roomlisteners " + listeners.size());
-  for (Iterator it=listeners.values().iterator(); it.hasNext(); ) {
-    IRoomListener listener=(IRoomListener)it.next();
-    log.debug("calling participantJoined on listener " + listener.getName());
-    listener.participantJoined(participant);
+  if (recorded) {
+    usersEventRecorder.userJoined(meetingID,user);
   }
+  usersMessagePublisher.participantJoined(meetingID,user);
+  usersClientMessageSender.participantJoined(meetingID,user);
 }

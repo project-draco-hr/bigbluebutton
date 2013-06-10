@@ -4,16 +4,15 @@
 synchronized (this) {
     present=users.containsKey(userid);
     if (present) {
-      log.debug("change participant status");
       p=users.get(userid);
       p.setStatus(status,value);
     }
   }
   if (present) {
-    for (Iterator it=listeners.values().iterator(); it.hasNext(); ) {
-      IRoomListener listener=(IRoomListener)it.next();
-      log.debug("calling participantStatusChange on listener " + listener.getName());
-      listener.participantStatusChange(p,status,value);
+    if (recorded) {
+      usersEventRecorder.userStatusChange(meetingID,p,status,value);
     }
+    usersMessagePublisher.participantStatusChange(meetingID,p,status,value);
+    usersClientMessageSender.participantStatusChange(meetingID,p,status,value);
   }
 }

@@ -1,18 +1,17 @@
 {
   boolean present=false;
-  User p=null;
+  User user=null;
 synchronized (this) {
     present=users.containsKey(userid);
     if (present) {
-      log.debug("removing participant");
-      p=users.remove(userid);
+      user=users.remove(userid);
     }
   }
   if (present) {
-    for (Iterator it=listeners.values().iterator(); it.hasNext(); ) {
-      IRoomListener listener=(IRoomListener)it.next();
-      log.debug("calling participantLeft on listener " + listener.getName());
-      listener.participantLeft(p);
+    if (recorded) {
+      usersEventRecorder.userLeft(meetingID,user);
     }
+    usersMessagePublisher.participantLeft(meetingID,user);
+    usersClientMessageSender.participantLeft(meetingID,user);
   }
 }

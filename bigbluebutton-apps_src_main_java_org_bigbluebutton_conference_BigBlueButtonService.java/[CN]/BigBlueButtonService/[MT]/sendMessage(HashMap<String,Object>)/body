@@ -4,6 +4,6 @@
     String key=it.next();
     messageToSend.put(key,params.get(key));
   }
-  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getMeetingId(),(String)params.get("messageID"),messageToSend);
+  BroadcastClientMessage m=new BroadcastClientMessage(getMeetingId(),(String)params.get("messageID"),messageToSend);
   connInvokerService.sendMessage(m);
 }
