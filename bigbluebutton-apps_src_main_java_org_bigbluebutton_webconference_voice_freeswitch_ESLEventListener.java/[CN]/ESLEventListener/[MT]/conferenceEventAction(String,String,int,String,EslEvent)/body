@@ -1,0 +1,18 @@
+{
+  Integer memberId=this.getMemberIdFromEvent(event);
+  ParticipantTalkingEvent pt;
+  if (action == null) {
+    return;
+  }
+  if (action.equals(START_TALKING_EVENT)) {
+    pt=new ParticipantTalkingEvent(memberId,confName,true);
+    conferenceEventListener.handleConferenceEvent(pt);
+  }
+ else   if (action.equals(STOP_TALKING_EVENT)) {
+    pt=new ParticipantTalkingEvent(memberId,confName,false);
+    conferenceEventListener.handleConferenceEvent(pt);
+  }
+ else {
+    log.debug("Unknown conference Action [{}]",action);
+  }
+}
