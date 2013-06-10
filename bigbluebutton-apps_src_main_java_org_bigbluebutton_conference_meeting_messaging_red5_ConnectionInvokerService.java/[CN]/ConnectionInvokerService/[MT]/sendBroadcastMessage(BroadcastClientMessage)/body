@@ -1,0 +1,9 @@
+{
+  IScope meetingScope=getScope(msg.getMeetingID());
+  if (meetingScope != null) {
+    List<Object> params=new ArrayList<Object>();
+    params.add(msg.getMessageName());
+    params.add(msg.getMessage());
+    ServiceUtils.invokeOnAllScopeConnections(meetingScope,"onMessageFromServer",params.toArray(),null);
+  }
+}

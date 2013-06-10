@@ -1,0 +1,4 @@
+{
+  this.handler=handler;
+  handler.setMessageDistributor(this);
+}

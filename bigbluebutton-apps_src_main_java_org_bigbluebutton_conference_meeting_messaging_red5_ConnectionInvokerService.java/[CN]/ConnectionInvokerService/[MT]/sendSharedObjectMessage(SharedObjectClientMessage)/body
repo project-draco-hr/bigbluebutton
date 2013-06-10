@@ -1,0 +1,11 @@
+{
+  IScope meetingScope=getScope(msg.getMeetingID());
+  if (meetingScope != null) {
+    if (meetingScope.hasChildScope(ScopeType.SHARED_OBJECT,msg.getSharedObjectName())) {
+      System.out.println("**** Meeting has Presentation shared object.");
+      ISharedObject so=getSharedObject(meetingScope,msg.getSharedObjectName());
+      if (so != null) {
+      }
+    }
+  }
+}

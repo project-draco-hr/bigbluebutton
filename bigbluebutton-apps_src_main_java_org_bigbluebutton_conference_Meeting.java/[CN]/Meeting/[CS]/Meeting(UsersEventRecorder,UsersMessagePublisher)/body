@@ -1,0 +1,5 @@
+{
+  usersEventRecorder=recorder;
+  this.usersMessagePublisher=usersMessagePublisher;
+  users=new ConcurrentHashMap<String,User>();
+}

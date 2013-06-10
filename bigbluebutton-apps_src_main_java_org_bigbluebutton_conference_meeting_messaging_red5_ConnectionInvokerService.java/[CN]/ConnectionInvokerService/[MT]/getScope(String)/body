@@ -1,0 +1,9 @@
+{
+  if (bbbAppScope != null) {
+    return bbbAppScope.getContext().resolveScope("bigbluebutton/" + meetingID);
+  }
+ else {
+    log.error("BigBlueButton Scope not initialized. No messages are going to the Flash client!");
+  }
+  return null;
+}

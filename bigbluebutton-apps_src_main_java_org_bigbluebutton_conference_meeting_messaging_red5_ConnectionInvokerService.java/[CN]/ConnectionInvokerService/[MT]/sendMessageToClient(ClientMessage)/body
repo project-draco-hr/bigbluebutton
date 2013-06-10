@@ -1,0 +1,11 @@
+{
+  if (message instanceof BroadcastClientMessage) {
+    sendBroadcastMessage((BroadcastClientMessage)message);
+  }
+ else   if (message instanceof DirectClientMessage) {
+    sendDirectMessage((DirectClientMessage)message);
+  }
+ else   if (message instanceof SharedObjectClientMessage) {
+    sendSharedObjectMessage((SharedObjectClientMessage)message);
+  }
+}
