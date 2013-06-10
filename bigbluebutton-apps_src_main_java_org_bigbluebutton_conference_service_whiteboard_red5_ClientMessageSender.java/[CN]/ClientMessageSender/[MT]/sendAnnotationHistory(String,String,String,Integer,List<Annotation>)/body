@@ -8,6 +8,6 @@
   message.put("presentationID",presentationID);
   message.put("pageNumber",pageNumber);
   message.put("annotations",a);
-  ClientMessage m=new ClientMessage(ClientMessage.DIRECT,userID,"WhiteboardRequestAnnotationHistoryReply",message);
+  DirectClientMessage m=new DirectClientMessage(meetingID,userID,"WhiteboardRequestAnnotationHistoryReply",message);
   service.sendMessage(m);
 }

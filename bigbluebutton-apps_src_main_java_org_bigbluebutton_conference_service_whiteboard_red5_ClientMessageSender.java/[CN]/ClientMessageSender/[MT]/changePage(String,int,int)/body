@@ -2,6 +2,6 @@
   Map<String,Object> message=new HashMap<String,Object>();
   message.put("pageNum",pageNum);
   message.put("numAnnotations",numAnnotations);
-  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,meetingID,"WhiteboardChangePageCommand",message);
+  BroadcastClientMessage m=new BroadcastClientMessage(meetingID,"WhiteboardChangePageCommand",message);
   service.sendMessage(m);
 }

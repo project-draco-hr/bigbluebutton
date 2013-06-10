@@ -1,5 +1,5 @@
 {
-  Map m=new HashMap();
+  Map<String,Object> m=new HashMap<String,Object>();
   m.put("userid",internalUserID);
   m.put("externUserID",externalUserID);
   m.put("name",name);

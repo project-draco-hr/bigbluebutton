@@ -1,7 +1,0 @@
-{
-  ArrayList args=new ArrayList();
-  args.add(p.getInternalUserID());
-  args.add(status);
-  args.add(value);
-  so.sendMessage("participantStatusChange",args);
-}

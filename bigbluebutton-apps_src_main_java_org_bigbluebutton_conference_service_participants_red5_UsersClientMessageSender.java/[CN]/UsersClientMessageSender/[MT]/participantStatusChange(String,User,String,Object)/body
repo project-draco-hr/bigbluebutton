@@ -1,0 +1,9 @@
+{
+  ArrayList<Object> args=new ArrayList<Object>();
+  args.add(p.getInternalUserID());
+  args.add(status);
+  args.add(value);
+  ;
+  SharedObjectClientMessage m=new SharedObjectClientMessage(meetingID,USERS_SO,"participantStatusChange",args);
+  service.sendMessage(m);
+}
