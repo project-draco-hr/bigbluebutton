@@ -1,0 +1,5 @@
+String meetingID
+Boolean recorded
+String userID
+String status
+Object value

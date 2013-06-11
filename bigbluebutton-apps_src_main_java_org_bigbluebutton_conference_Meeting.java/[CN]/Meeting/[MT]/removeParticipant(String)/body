@@ -8,10 +8,7 @@ synchronized (this) {
     }
   }
   if (present) {
-    if (recorded) {
-      usersEventRecorder.userLeft(meetingID,user);
-    }
-    usersMessagePublisher.participantLeft(meetingID,user);
-    usersClientMessageSender.participantLeft(meetingID,user);
+    UserLeftMessage msg=new UserLeftMessage(meetingID,recorded,userid);
+    outMessageGateway.send(msg);
   }
 }

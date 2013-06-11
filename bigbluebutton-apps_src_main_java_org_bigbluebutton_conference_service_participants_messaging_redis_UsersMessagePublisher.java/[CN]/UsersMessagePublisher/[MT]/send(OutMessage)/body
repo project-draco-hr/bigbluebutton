@@ -1,0 +1,11 @@
+{
+  if (msg instanceof UserStatusChangeMessage) {
+    userStatusChange((UserStatusChangeMessage)msg);
+  }
+ else   if (msg instanceof UserJoinedMessage) {
+    userJoined((UserJoinedMessage)msg);
+  }
+ else   if (msg instanceof UserLeftMessage) {
+    userLeft((UserLeftMessage)msg);
+  }
+}

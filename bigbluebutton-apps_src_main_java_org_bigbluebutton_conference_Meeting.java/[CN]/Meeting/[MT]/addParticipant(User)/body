@@ -2,9 +2,6 @@
 synchronized (this) {
     users.put(user.getInternalUserID(),user);
   }
-  if (recorded) {
-    usersEventRecorder.userJoined(meetingID,user);
-  }
-  usersMessagePublisher.participantJoined(meetingID,user);
-  usersClientMessageSender.participantJoined(meetingID,user);
+  UserJoinedMessage msg=new UserJoinedMessage(meetingID,recorded,user.getInternalUserID(),user.getExternalUserID(),user.getName(),user.getRole(),user.getStatus());
+  outMessageGateway.send(msg);
 }

@@ -1,9 +1,0 @@
-{
-  ParticipantStatusChangeRecordEvent ev=new ParticipantStatusChangeRecordEvent();
-  ev.setTimestamp(System.currentTimeMillis());
-  ev.setUserId(p.getInternalUserID());
-  ev.setMeetingId(meetingID);
-  ev.setStatus(status);
-  ev.setValue(value.toString());
-  recorder.record(meetingID,ev);
-}

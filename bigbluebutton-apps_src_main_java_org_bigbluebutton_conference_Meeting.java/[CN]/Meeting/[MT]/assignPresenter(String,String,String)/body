@@ -4,6 +4,6 @@
   presenter.add(newPresenterName);
   presenter.add(assignedBy);
   currentPresenter=presenter;
-  usersEventRecorder.assignPresenter(meetingID,newPresenterID,newPresenterName,assignedBy);
-  usersClientMessageSender.assignPresenter(meetingID,newPresenterID,newPresenterName,assignedBy);
+  AssignPresenterMessage msg=new AssignPresenterMessage(meetingID,recorded,newPresenterID,newPresenterName,assignedBy);
+  outMessageGateway.send(msg);
 }

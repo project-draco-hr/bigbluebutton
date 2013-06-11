@@ -9,10 +9,7 @@ synchronized (this) {
     }
   }
   if (present) {
-    if (recorded) {
-      usersEventRecorder.userStatusChange(meetingID,p,status,value);
-    }
-    usersMessagePublisher.participantStatusChange(meetingID,p,status,value);
-    usersClientMessageSender.participantStatusChange(meetingID,p,status,value);
+    UserStatusChangeMessage msg=new UserStatusChangeMessage(meetingID,recorded,userid,status,value);
+    outMessageGateway.send(msg);
   }
 }

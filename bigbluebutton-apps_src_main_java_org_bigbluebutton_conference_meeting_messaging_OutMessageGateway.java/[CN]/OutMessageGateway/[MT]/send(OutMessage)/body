@@ -1,0 +1,5 @@
+{
+  for (  OutMessageListener listener : listeners) {
+    listener.send(message);
+  }
+}

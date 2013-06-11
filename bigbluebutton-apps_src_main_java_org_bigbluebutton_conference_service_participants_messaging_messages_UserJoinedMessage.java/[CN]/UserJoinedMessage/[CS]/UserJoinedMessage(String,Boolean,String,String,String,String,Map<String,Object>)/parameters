@@ -1,0 +1,7 @@
+String meetingID
+Boolean recorded
+String internalUserID
+String externalUserID
+String name
+String role
+Map<String,Object> status

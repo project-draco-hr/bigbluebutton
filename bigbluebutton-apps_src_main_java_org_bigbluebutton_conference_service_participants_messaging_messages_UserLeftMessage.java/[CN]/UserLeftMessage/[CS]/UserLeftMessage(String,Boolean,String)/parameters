@@ -1,0 +1,3 @@
+String meetingID
+Boolean recorded
+String internalUserID

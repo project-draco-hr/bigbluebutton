@@ -1,7 +1,0 @@
-{
-  HashMap<String,String> map=new HashMap<String,String>();
-  map.put("meetingId",meetingID);
-  map.put("messageId",MessagingConstants.MEETING_STARTED_EVENT);
-  Gson gson=new Gson();
-  service.send(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
-}

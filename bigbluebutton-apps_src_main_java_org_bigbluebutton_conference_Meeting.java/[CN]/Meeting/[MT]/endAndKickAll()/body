@@ -1,6 +1,4 @@
 {
-  if (recorded) {
-    usersEventRecorder.endAndKickAll(meetingID);
-  }
-  usersClientMessageSender.endAndKickAll(meetingID);
+  EndAndKickAllMessage msg=new EndAndKickAllMessage(meetingID,recorded);
+  outMessageGateway.send(msg);
 }

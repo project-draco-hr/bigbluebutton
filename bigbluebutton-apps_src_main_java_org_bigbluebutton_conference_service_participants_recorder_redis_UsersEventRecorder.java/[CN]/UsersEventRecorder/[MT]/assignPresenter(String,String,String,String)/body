@@ -1,9 +1,0 @@
-{
-  AssignPresenterRecordEvent event=new AssignPresenterRecordEvent();
-  event.setMeetingId(meetingID);
-  event.setTimestamp(System.currentTimeMillis());
-  event.setUserId(newPresenterID);
-  event.setName(newPresenterName);
-  event.setAssignedBy(assignedBy);
-  recorder.record(meetingID,event);
-}

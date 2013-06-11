@@ -4,6 +4,6 @@
   m.put("externUserID",externalUserID);
   m.put("name",name);
   m.put("role",role);
-  m.put("status",new HashMap(unmodifiableStatus));
+  m.put("status",new HashMap<String,Object>(unmodifiableStatus));
   return m;
 }

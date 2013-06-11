@@ -1,0 +1,11 @@
+{
+  if (msg.isRecorded()) {
+    ParticipantStatusChangeRecordEvent ev=new ParticipantStatusChangeRecordEvent();
+    ev.setTimestamp(System.currentTimeMillis());
+    ev.setUserId(msg.getUserID());
+    ev.setMeetingId(msg.getMeetingID());
+    ev.setStatus(msg.getStatus());
+    ev.setValue(msg.getValue().toString());
+    recorder.record(msg.getMeetingID(),ev);
+  }
+}

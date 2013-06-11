@@ -1,0 +1,6 @@
+{
+  this.meetingID=meetingID;
+  this.recorded=recorded;
+  this.outMessageGateway=outMessageGateway;
+  users=new ConcurrentHashMap<String,User>();
+}

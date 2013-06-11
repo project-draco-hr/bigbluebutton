@@ -1,0 +1,12 @@
+{
+  if (msg.isRecorded()) {
+    ParticipantJoinRecordEvent ev=new ParticipantJoinRecordEvent();
+    ev.setTimestamp(System.currentTimeMillis());
+    ev.setUserId(msg.getUserID());
+    ev.setName(msg.getName());
+    ev.setMeetingId(msg.getMeetingID());
+    ev.setStatus(msg.getStatus().toString());
+    ev.setRole(msg.getRole());
+    recorder.record(msg.getMeetingID(),ev);
+  }
+}
