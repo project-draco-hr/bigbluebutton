@@ -1,7 +1,0 @@
-{
-  log.debug("A participant has joined " + p.getInternalUserID());
-  ArrayList args=new ArrayList();
-  args.add(p.toMap());
-  log.debug("Sending participantJoined " + p.getExternalUserID() + " to client.");
-  so.sendMessage("participantJoined",args);
-}
