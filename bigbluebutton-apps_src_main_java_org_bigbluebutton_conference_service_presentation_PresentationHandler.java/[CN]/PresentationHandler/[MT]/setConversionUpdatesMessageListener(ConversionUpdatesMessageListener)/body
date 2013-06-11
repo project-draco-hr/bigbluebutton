@@ -1,4 +1,0 @@
-{
-  log.debug("Setting conversionUpdatesMessageListener");
-  conversionUpdatesMessageListener=service;
-}
