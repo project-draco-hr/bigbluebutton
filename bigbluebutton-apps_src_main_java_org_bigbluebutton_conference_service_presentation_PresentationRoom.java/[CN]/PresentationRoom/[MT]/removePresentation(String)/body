@@ -6,12 +6,6 @@
     return;
   }
   presentationNames.remove(index);
-  for (Iterator iter=listeners.values().iterator(); iter.hasNext(); ) {
-    log.debug("calling on listener");
-    IPresentationRoomListener listener=(IPresentationRoomListener)iter.next();
-    log.debug("calling removePresentation on listener " + listener.getName());
-    listener.removePresentation(presentationName);
-  }
   if (currentPresentation == presentationName) {
     sharePresentation(presentationName,false);
   }

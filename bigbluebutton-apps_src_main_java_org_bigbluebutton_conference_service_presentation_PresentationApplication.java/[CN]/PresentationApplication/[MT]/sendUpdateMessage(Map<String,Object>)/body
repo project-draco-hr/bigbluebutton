@@ -1,0 +1,9 @@
+{
+  String room=(String)message.get("room");
+  if (hasRoom(room)) {
+    PresentationRoom r=getRoom(room);
+    r.storePresentationNames(message);
+    return;
+  }
+  log.warn("Sending update message to a non-existant room " + room);
+}

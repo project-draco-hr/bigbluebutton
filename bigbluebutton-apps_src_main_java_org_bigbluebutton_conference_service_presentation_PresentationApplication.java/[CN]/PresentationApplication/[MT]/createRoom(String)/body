@@ -1,4 +1,0 @@
-{
-  roomsManager.addRoom(new PresentationRoom(name));
-  return true;
-}

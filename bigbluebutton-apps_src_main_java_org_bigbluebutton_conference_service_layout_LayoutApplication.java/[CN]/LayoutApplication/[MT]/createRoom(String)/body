@@ -1,5 +1,0 @@
-{
-  LayoutRoom room=new LayoutRoom(meetingID);
-  rooms.put(room.getMeetingID(),room);
-  return true;
-}

@@ -1,0 +1,6 @@
+String meetingID
+Boolean recorded
+String requesterID
+Boolean locked
+String setByUserID
+String layout

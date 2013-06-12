@@ -1,0 +1,8 @@
+{
+  if (msg instanceof GetCurrentLayoutResponseMessage) {
+    sendGetCurrentLayoutResponse((GetCurrentLayoutResponseMessage)msg);
+  }
+ else   if (msg instanceof UpdateLayoutMessage) {
+    updateLayout((UpdateLayoutMessage)msg);
+  }
+}

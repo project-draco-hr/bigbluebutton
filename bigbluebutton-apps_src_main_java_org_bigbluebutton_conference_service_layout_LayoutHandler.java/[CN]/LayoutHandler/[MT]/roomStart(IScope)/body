@@ -1,5 +1,4 @@
 {
   log.debug("***** " + APP + " [ "+ " roomStart [ "+ scope.getName()+ "] *********");
-  layoutApplication.createRoom(scope.getName());
   return true;
 }

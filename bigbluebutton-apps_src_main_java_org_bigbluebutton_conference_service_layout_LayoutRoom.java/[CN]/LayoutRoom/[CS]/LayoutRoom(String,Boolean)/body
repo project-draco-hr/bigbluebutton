@@ -1,0 +1,4 @@
+{
+  this.meetingID=meetingID;
+  this.recorded=recorded;
+}

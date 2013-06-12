@@ -1,0 +1,5 @@
+{
+  PresentationRoom room=new PresentationRoom(name);
+  rooms.put(room.getName(),room);
+  return true;
+}

@@ -3,10 +3,4 @@
   this.yOffset=yOffset;
   this.widthRatio=widthRatio;
   this.heightRatio=heightRatio;
-  for (Iterator iter=listeners.values().iterator(); iter.hasNext(); ) {
-    log.debug("calling on listener");
-    IPresentationRoomListener listener=(IPresentationRoomListener)iter.next();
-    log.debug("calling sendUpdateMessage on listener " + listener.getName());
-    listener.resizeAndMoveSlide(xOffset,yOffset,widthRatio,heightRatio);
-  }
 }

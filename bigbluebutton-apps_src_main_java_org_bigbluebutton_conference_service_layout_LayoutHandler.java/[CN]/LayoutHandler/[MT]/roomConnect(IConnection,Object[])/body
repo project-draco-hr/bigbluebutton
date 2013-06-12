@@ -1,4 +1,5 @@
 {
   log.debug("***** " + APP + " [ "+ " roomConnect [ "+ connection.getScope().getName()+ "] *********");
+  layoutApplication.createRoom(scope.getName(),getBbbSession().getRecord());
   return true;
 }

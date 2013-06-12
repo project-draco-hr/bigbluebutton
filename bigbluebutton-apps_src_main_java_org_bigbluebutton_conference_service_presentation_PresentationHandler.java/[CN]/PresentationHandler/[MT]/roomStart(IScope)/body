@@ -1,6 +1,5 @@
 {
   log.debug("***** " + APP + " [ "+ " roomStart [ "+ scope.getName()+ "] *********");
-  presentationApplication.createRoom(scope.getName());
   log.debug(APP + " - scanning for presentations - " + scope.getName());
   try {
     String folderPath="/var/bigbluebutton/" + scope.getName() + "/"+ scope.getName();
