@@ -1,6 +1,5 @@
 {
   locked=true;
-  modifierId=userId;
+  this.setByUserID=setByUserID;
   currentLayout=layout;
-  updateLayout();
 }

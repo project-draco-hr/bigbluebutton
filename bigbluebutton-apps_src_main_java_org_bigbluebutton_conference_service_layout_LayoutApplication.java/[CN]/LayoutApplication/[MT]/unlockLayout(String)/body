@@ -1,3 +1,7 @@
 {
-  roomsManager.unlockLayout(room);
+  LayoutRoom r=getRoom(meetingID);
+  if (r != null) {
+    r.unlockLayout();
+    sender.updateLayout(r.getMeetingID(),r.isLocked(),r.getSetByUserID(),r.getCurrentLayout());
+  }
 }

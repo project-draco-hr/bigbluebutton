@@ -1,0 +1,8 @@
+{
+  Map<String,Object> message=new HashMap<String,Object>();
+  message.put("locked",locked);
+  message.put("setByUserID",setByUserID);
+  message.put("layout",layout);
+  DirectClientMessage m=new DirectClientMessage(meetingID,requesterID,"getCurrentLayoutResponse",message);
+  service.sendMessage(m);
+}

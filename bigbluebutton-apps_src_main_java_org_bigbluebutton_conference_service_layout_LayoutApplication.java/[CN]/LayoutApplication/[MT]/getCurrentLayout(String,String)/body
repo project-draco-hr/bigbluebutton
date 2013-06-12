@@ -1,0 +1,6 @@
+{
+  LayoutRoom r=getRoom(meetingID);
+  if (r != null) {
+    sender.sendGetCurrentLayoutResponse(r.getMeetingID(),requesterID,r.isLocked(),r.getSetByUserID(),r.getCurrentLayout());
+  }
+}

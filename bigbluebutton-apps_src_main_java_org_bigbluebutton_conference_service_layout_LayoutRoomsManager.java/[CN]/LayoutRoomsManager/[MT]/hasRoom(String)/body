@@ -1,4 +1,0 @@
-{
-  log.debug("In LayoutRoomsManager has Room " + name);
-  return rooms.containsKey(name);
-}

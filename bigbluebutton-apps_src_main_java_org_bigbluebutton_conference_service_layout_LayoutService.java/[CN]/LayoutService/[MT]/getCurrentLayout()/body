@@ -1,0 +1,4 @@
+{
+  String meetingID=Red5.getConnectionLocal().getScope().getName();
+  application.getCurrentLayout(meetingID,getBbbSession().getInternalUserID());
+}

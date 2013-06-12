@@ -1,6 +1,5 @@
 {
   locked=false;
-  modifierId="-1";
+  setByUserID="-1";
   currentLayout="";
-  updateLayout();
 }

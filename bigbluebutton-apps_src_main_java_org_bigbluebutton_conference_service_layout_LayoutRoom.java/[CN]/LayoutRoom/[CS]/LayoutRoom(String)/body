@@ -1,4 +1,3 @@
 {
-  this.name=name;
-  this.listeners=new ConcurrentHashMap<String,ILayoutRoomListener>();
+  this.meetingID=meetingID;
 }
