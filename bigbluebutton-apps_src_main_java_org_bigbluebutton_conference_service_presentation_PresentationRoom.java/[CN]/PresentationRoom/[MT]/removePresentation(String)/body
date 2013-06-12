@@ -1,8 +1,6 @@
 {
-  log.debug("Request remove presentation " + presentationName);
   int index=presentationNames.indexOf(presentationName);
   if (index < 0) {
-    log.warn("Request remove presentation " + presentationName + ". Presentation not found.");
     return;
   }
   presentationNames.remove(index);

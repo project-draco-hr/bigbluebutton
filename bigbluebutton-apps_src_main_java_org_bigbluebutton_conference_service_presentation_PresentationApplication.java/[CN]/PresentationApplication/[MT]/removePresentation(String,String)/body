@@ -2,7 +2,9 @@
   if (hasRoom(room)) {
     PresentationRoom r=getRoom(room);
     if (r != null) {
-      r.removePresentation(name);
+      r.removePresentation(presentationID);
+      RemovePresentationMessage msg=new RemovePresentationMessage(r.getMetingID(),r.isRecorded(),presentationID);
+      outMessageGateway.send(msg);
     }
   }
 }

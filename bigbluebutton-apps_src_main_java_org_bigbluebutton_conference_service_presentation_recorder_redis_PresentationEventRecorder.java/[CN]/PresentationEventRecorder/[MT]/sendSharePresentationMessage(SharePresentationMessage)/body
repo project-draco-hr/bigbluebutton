@@ -1,0 +1,10 @@
+{
+  if (msg.isRecorded()) {
+    SharePresentationPresentationRecordEvent event=new SharePresentationPresentationRecordEvent();
+    event.setMeetingId(msg.getMeetingID());
+    event.setTimestamp(System.currentTimeMillis());
+    event.setPresentationName(msg.getPresentationID());
+    event.setShare(msg.getShare());
+    recorder.record(msg.getMeetingID(),event);
+  }
+}

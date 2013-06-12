@@ -1,4 +1,0 @@
-{
-  log.debug("In PresentationRoomsManager remove room " + name);
-  rooms.remove(name);
-}

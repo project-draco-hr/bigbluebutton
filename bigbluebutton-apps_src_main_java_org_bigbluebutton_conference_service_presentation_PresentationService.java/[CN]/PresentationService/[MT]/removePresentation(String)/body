@@ -1,5 +1,0 @@
-{
-  log.debug("removePresentation " + name);
-  IScope scope=Red5.getConnectionLocal().getScope();
-  presentationApplication.removePresentation(scope.getName(),name);
-}

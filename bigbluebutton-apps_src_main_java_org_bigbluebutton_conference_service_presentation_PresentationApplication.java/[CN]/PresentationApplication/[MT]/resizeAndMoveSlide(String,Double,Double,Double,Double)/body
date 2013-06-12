@@ -1,8 +1,10 @@
 {
-  if (roomsManager.hasRoom(room)) {
-    log.debug("Request to resize and move slide[" + xOffset + ","+ yOffset+ ","+ widthRatio+ ","+ heightRatio+ "]");
-    roomsManager.resizeAndMoveSlide(room,xOffset,yOffset,widthRatio,heightRatio);
-    return;
+  if (hasRoom(room)) {
+    PresentationRoom r=getRoom(room);
+    if (r != null) {
+      r.resizeAndMoveSlide(xOffset,yOffset,widthRatio,heightRatio);
+      ResizeAndMoveSlideMessage msg=new ResizeAndMoveSlideMessage(r.getMetingID(),r.isRecorded(),xOffset,yOffset,widthRatio,heightRatio);
+      outMessageGateway.send(msg);
+    }
   }
-  log.warn("resizeAndMoveSlide on a non-existant room " + room);
 }

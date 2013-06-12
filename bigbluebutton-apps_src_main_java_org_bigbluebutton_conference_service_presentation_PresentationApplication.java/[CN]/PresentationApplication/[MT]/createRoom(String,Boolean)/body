@@ -1,5 +1,5 @@
 {
-  PresentationRoom room=new PresentationRoom(name);
-  rooms.put(room.getName(),room);
+  PresentationRoom room=new PresentationRoom(name,recorded);
+  rooms.put(room.getMetingID(),room);
   return true;
 }

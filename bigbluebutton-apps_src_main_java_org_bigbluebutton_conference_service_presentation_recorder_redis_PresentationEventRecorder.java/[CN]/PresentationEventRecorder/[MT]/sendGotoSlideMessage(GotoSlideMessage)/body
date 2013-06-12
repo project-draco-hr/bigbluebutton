@@ -1,0 +1,9 @@
+{
+  if (msg.isRecorded()) {
+    GotoSlidePresentationRecordEvent event=new GotoSlidePresentationRecordEvent();
+    event.setMeetingId(msg.getMeetingID());
+    event.setTimestamp(System.currentTimeMillis());
+    event.setSlide(msg.getNum());
+    recorder.record(msg.getMeetingID(),event);
+  }
+}

@@ -1,9 +1,0 @@
-{
-  PresentationRoom r=getRoom(room);
-  if (r != null) {
-    log.debug("Request to go to slide " + slide + " for room "+ room);
-    r.gotoSlide(slide);
-    return;
-  }
-  log.warn("Changing slide on a non-existing room " + room);
-}

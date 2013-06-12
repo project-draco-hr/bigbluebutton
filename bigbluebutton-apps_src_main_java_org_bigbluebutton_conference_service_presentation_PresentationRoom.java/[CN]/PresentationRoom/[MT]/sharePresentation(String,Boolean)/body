@@ -1,5 +1,4 @@
 {
-  log.debug("Request share presentation " + presentationName + " "+ share+ " for room "+ name);
   sharing=share;
   if (share) {
     currentPresentation=presentationName;

@@ -1,8 +1,0 @@
-{
-  log.debug("RECORD module:presentation event:update_slide");
-  GotoSlidePresentationRecordEvent event=new GotoSlidePresentationRecordEvent();
-  event.setMeetingId(session);
-  event.setTimestamp(System.currentTimeMillis());
-  event.setSlide(curslide);
-  recorder.record(session,event);
-}

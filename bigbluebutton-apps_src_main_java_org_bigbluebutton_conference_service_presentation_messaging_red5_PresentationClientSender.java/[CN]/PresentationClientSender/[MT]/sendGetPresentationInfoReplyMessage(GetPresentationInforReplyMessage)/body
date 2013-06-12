@@ -1,0 +1,4 @@
+{
+  DirectClientMessage m=new DirectClientMessage(msg.getMeetingID(),msg.getRequesterID(),"getPresentationInfoReply",msg.getInfo());
+  service.sendMessage(m);
+}

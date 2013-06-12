@@ -1,5 +1,0 @@
-{
-  log.debug("Setting room manager");
-  roomsManager=r;
-  log.debug("Done setting room manager");
-}

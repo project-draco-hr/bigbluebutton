@@ -1,0 +1,6 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("pageNum",msg.getNum());
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.getMeetingID(),"gotoSlideCallback",args);
+  service.sendMessage(m);
+}

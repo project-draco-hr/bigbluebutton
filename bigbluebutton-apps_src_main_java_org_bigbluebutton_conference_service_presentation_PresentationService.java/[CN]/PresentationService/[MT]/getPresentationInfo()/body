@@ -1,43 +1,4 @@
 {
-  log.debug("Getting presentation information.");
   IScope scope=Red5.getConnectionLocal().getScope();
-  ArrayList<String> curPresenter=participantsApplication.getCurrentPresenter(scope.getName());
-  int curSlide=presentationApplication.getCurrentSlide(scope.getName());
-  Boolean isSharing=presentationApplication.getSharingPresentation(scope.getName());
-  String currentPresentation=presentationApplication.getCurrentPresentation(scope.getName());
-  Map<String,Object> presentersSettings=presentationApplication.getPresenterSettings(scope.getName());
-  ArrayList<String> presentationNames=presentationApplication.getPresentations(scope.getName());
-  Map<String,Object> presenter=new HashMap<String,Object>();
-  if (curPresenter != null) {
-    presenter.put("hasPresenter",true);
-    presenter.put("user",curPresenter.get(0));
-    presenter.put("name",curPresenter.get(1));
-    presenter.put("assignedBy",curPresenter.get(2));
-    log.debug("Presenter: " + curPresenter.get(0) + " "+ curPresenter.get(1)+ " "+ curPresenter.get(2));
-  }
- else {
-    presenter.put("hasPresenter",false);
-  }
-  Map<String,Object> presentation=new HashMap<String,Object>();
-  if (isSharing.booleanValue()) {
-    presentation.put("sharing",true);
-    presentation.put("slide",curSlide);
-    presentation.put("currentPresentation",currentPresentation);
-    if (presentersSettings != null) {
-      presentation.put("xOffset",presentersSettings.get("xOffset"));
-      presentation.put("yOffset",presentersSettings.get("yOffset"));
-      presentation.put("widthRatio",presentersSettings.get("widthRatio"));
-      presentation.put("heightRatio",presentersSettings.get("heightRatio"));
-    }
-    log.debug("Presentation: presentation=" + currentPresentation + " slide="+ curSlide);
-  }
- else {
-    presentation.put("sharing",false);
-  }
-  Map<String,Object> presentationInfo=new HashMap<String,Object>();
-  presentationInfo.put("presenter",presenter);
-  presentationInfo.put("presentation",presentation);
-  presentationInfo.put("presentations",presentationNames);
-  log.info("getPresentationInfo::service - Sending presentation information...");
-  return presentationInfo;
+  presentationApplication.getPresentationInfo(scope.getName(),getBbbSession().getInternalUserID());
 }

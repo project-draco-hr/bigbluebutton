@@ -1,13 +1,10 @@
 {
-  if (roomsManager.hasRoom(room)) {
-    log.debug("Request to update cursor[" + xPercent + ","+ yPercent+ "]");
-    roomsManager.sendCursorUpdate(room,xPercent,yPercent);
-    Map<String,Object> message=new HashMap<String,Object>();
-    message.put("xPercent",xPercent);
-    message.put("yPercent",yPercent);
-    BroadcastClientMessage m=new BroadcastClientMessage(getMeetingId(),"PresentationCursorUpdateCommand",message);
-    connInvokerService.sendMessage(m);
-    return;
+  if (hasRoom(room)) {
+    PresentationRoom r=getRoom(room);
+    if (r != null) {
+      r.sendCursorUpdate(xPercent,yPercent);
+      PresentationCursorUpdateMessage msg=new PresentationCursorUpdateMessage(r.getMetingID(),r.isRecorded(),xPercent,yPercent);
+      outMessageGateway.send(msg);
+    }
   }
-  log.warn("Sending cursor update on a non-existant room " + room);
 }

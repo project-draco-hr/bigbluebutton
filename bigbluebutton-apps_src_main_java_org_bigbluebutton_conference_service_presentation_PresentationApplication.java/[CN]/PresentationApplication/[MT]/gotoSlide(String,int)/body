@@ -1,8 +1,11 @@
 {
-  if (roomsManager.hasRoom(room)) {
-    log.debug("Request to go to slide " + slide + " for room "+ room);
-    roomsManager.gotoSlide(room,slide);
-    return;
+  if (hasRoom(room)) {
+    PresentationRoom r=getRoom(room);
+    if (r != null) {
+      r.gotoSlide(slide);
+      GotoSlideMessage msg=new GotoSlideMessage(r.getMetingID(),r.isRecorded(),slide);
+      outMessageGateway.send(msg);
+    }
   }
   log.warn("Changing slide on a non-existant room " + room);
 }

@@ -1,0 +1,3 @@
+String meetingID
+Boolean recorded
+Map<String,Object> message

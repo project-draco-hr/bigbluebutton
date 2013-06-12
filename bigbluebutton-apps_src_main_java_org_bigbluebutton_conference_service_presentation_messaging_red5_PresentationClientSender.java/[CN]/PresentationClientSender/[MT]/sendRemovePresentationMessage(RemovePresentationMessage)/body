@@ -1,0 +1,6 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("presentationID",msg.getPresentationID());
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.getMeetingID(),"removePresentationCallback",args);
+  service.sendMessage(m);
+}

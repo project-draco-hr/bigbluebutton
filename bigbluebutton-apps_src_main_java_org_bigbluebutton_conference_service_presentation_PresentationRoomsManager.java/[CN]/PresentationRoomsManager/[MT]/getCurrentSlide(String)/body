@@ -1,8 +1,0 @@
-{
-  PresentationRoom r=getRoom(room);
-  if (r != null) {
-    return r.getCurrentSlide();
-  }
-  log.warn("Getting slide on a non-existing room " + room);
-  return -1;
-}

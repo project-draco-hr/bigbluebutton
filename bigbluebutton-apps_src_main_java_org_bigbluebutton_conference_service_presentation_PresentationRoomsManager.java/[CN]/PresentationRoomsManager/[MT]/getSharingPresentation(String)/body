@@ -1,8 +1,0 @@
-{
-  PresentationRoom r=getRoom(room);
-  if (r != null) {
-    return r.getSharing();
-  }
-  log.warn("Getting sharing from a non-existing room " + room);
-  return null;
-}

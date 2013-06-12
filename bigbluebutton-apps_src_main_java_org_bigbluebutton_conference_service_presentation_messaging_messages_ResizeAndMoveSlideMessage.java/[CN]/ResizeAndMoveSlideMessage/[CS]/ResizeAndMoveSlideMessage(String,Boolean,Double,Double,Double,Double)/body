@@ -1,0 +1,7 @@
+{
+  super(meetingID,recorded);
+  this.xOffset=xOffset;
+  this.yOffset=yOffset;
+  this.widthRatio=widthRatio;
+  this.heightRatio=heightRatio;
+}

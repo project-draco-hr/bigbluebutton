@@ -1,0 +1,9 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("xOffset",msg.getxOffset());
+  args.put("yOffest",msg.getyOffset());
+  args.put("widthRatio",msg.getWidthRatio());
+  args.put("heightRatio",msg.getHeightRatio());
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.getMeetingID(),"moveCallback",args);
+  service.sendMessage(m);
+}

@@ -1,9 +1,0 @@
-{
-  PresentationRoom r=getRoom(room);
-  if (r != null) {
-    log.debug("Request share presentation " + presentationName + " "+ share+ " for room "+ room);
-    r.sharePresentation(presentationName,share);
-    return;
-  }
-  log.warn("Sharing presentation on a non-existing room " + room);
-}

@@ -1,0 +1,4 @@
+String meetingID
+Boolean recorded
+String requesterID
+Map<String,Object> info

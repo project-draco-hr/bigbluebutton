@@ -1,7 +1,9 @@
 {
-  if (roomsManager.hasRoom(room)) {
-    return roomsManager.getCurrentSlide(room);
+  if (hasRoom(room)) {
+    PresentationRoom r=getRoom(room);
+    if (r != null) {
+      return r.currentSlide;
+    }
   }
-  log.warn("Getting slide on a non-existant room " + room);
   return -1;
 }

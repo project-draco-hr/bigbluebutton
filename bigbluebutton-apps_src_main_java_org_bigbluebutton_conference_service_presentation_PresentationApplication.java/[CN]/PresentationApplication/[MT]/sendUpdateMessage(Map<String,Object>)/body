@@ -3,7 +3,7 @@
   if (hasRoom(room)) {
     PresentationRoom r=getRoom(room);
     r.storePresentationNames(message);
-    return;
+    ConversionUpdateMessage msg=new ConversionUpdateMessage(r.getMetingID(),r.isRecorded(),message);
+    outMessageGateway.send(msg);
   }
-  log.warn("Sending update message to a non-existant room " + room);
 }

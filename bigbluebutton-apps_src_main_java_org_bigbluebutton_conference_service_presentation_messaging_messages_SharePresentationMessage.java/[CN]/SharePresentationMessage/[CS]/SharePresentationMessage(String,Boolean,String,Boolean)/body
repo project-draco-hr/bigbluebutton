@@ -1,0 +1,5 @@
+{
+  super(meetingID,recorded);
+  this.presentationID=presentationID;
+  this.share=share;
+}

@@ -1,0 +1,20 @@
+{
+  if (msg instanceof ConversionUpdateMessage) {
+    sendUpdateMessage((ConversionUpdateMessage)msg);
+  }
+ else   if (msg instanceof GotoSlideMessage) {
+    sendGotoSlideMessage((GotoSlideMessage)msg);
+  }
+ else   if (msg instanceof PresentationCursorUpdateMessage) {
+    sendPresentationCursorUpdateMessage((PresentationCursorUpdateMessage)msg);
+  }
+ else   if (msg instanceof RemovePresentationMessage) {
+    sendRemovePresentationMessage((RemovePresentationMessage)msg);
+  }
+ else   if (msg instanceof ResizeAndMoveSlideMessage) {
+    sendResizeAndMoveSlideMessage((ResizeAndMoveSlideMessage)msg);
+  }
+ else   if (msg instanceof SharePresentationMessage) {
+    sendSharePresentationMessage((SharePresentationMessage)msg);
+  }
+}

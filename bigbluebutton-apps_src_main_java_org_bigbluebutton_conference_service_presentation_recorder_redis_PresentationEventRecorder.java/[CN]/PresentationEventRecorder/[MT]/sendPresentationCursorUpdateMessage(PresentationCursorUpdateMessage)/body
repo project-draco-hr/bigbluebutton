@@ -1,0 +1,10 @@
+{
+  if (msg.isRecorded()) {
+    CursorUpdateRecordEvent event=new CursorUpdateRecordEvent();
+    event.setMeetingId(msg.getMeetingID());
+    event.setTimestamp(System.currentTimeMillis());
+    event.setXPercent(msg.getxPercent());
+    event.setYPercent(msg.getyPercent());
+    recorder.record(msg.getMeetingID(),event);
+  }
+}

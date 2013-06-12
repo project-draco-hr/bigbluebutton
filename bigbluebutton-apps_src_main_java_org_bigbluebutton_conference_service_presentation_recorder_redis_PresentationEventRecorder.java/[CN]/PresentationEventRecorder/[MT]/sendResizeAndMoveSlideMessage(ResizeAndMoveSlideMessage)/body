@@ -1,0 +1,12 @@
+{
+  if (msg.isRecorded()) {
+    ResizeAndMoveSlidePresentationRecordEvent event=new ResizeAndMoveSlidePresentationRecordEvent();
+    event.setMeetingId(msg.getMeetingID());
+    event.setTimestamp(System.currentTimeMillis());
+    event.setXOffset(msg.getxOffset());
+    event.setYOffset(msg.getyOffset());
+    event.setWidthRatio(msg.getWidthRatio());
+    event.setHeightRatio(msg.getHeightRatio());
+    recorder.record(msg.getMeetingID(),event);
+  }
+}

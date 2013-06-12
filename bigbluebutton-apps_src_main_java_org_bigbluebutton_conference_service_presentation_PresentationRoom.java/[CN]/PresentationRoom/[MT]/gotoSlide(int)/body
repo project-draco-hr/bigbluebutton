@@ -1,4 +1,3 @@
 {
-  log.debug("Request to go to slide " + curslide + "for room "+ name);
   currentSlide=curslide;
 }

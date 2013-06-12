@@ -3,6 +3,8 @@
     PresentationRoom r=getRoom(room);
     if (r != null) {
       ArrayList<String> pres=r.getPresentationNames();
+      return pres;
     }
   }
+  return null;
 }

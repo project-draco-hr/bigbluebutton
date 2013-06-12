@@ -1,0 +1,4 @@
+{
+  IScope scope=Red5.getConnectionLocal().getScope();
+  presentationApplication.sendCursorUpdate(scope.getName(),(Double)msg.get("xPercent"),(Double)msg.get("yPercent"));
+}

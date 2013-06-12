@@ -1,0 +1,6 @@
+String meetingID
+Boolean recorded
+Double xOffset
+Double yOffset
+Double widthRatio
+Double heightRatio
