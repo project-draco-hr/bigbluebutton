@@ -1,11 +1,12 @@
 {
+  log.info("Ready to handle messages from Redis pubsub!");
   try {
     processMessage=true;
     Runnable messageProcessor=new Runnable(){
       public void run(){
         while (processMessage) {
           try {
-            ReceivedMessage msg=messages.take();
+            ReceivedMessage msg=receivedMessages.take();
             processMessage(msg);
           }
  catch (          InterruptedException e) {

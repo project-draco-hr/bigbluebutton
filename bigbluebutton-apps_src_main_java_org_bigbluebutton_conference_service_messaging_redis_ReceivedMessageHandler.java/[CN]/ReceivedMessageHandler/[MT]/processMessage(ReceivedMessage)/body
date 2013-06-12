@@ -2,4 +2,7 @@
   if (handler != null) {
     handler.notifyListeners(msg.getPattern(),msg.getChannel(),msg.getMessage());
   }
+ else {
+    log.warn("No listeners interested in messages from Redis!");
+  }
 }

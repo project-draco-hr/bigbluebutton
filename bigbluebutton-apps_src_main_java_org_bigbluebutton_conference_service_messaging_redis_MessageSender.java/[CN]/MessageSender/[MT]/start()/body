@@ -1,4 +1,5 @@
 {
+  log.info("Redis message publisher starting!");
   try {
     sendMessage=true;
     Runnable messageSender=new Runnable(){

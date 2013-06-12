@@ -1,4 +1,5 @@
 {
+  log.info("Ready to receive messages from Redis pubsub.");
   try {
     receiveMessage=true;
     final Jedis jedis=redisPool.getResource();
