@@ -1,0 +1,4 @@
+{
+  SharedObjectClientMessage m=new SharedObjectClientMessage(msg.meetingID(),USERS_SO,"logout",new ArrayList<Object>());
+  service.sendMessage(m);
+}

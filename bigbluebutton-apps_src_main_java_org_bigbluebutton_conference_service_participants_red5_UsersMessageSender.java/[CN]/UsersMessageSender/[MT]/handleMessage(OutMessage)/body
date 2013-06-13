@@ -1,0 +1,17 @@
+{
+  if (msg instanceof EndAndKickAll) {
+    endAndKickAll((EndAndKickAll)msg);
+  }
+ else   if (msg instanceof AssignPresenter) {
+    assignPresenter((AssignPresenter)msg);
+  }
+ else   if (msg instanceof UserJoined) {
+    userJoined((UserJoined)msg);
+  }
+ else   if (msg instanceof UserLeft) {
+    userLeft((UserLeft)msg);
+  }
+ else   if (msg instanceof UserStatusChange) {
+    userStatusChange((UserStatusChange)msg);
+  }
+}

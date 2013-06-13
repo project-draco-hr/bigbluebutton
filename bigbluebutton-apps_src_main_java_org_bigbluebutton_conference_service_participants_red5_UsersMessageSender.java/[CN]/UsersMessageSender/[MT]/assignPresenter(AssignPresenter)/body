@@ -1,0 +1,8 @@
+{
+  ArrayList<Object> presenter=new ArrayList<Object>();
+  presenter.add(msg.newPresenterID());
+  presenter.add(msg.newPresenterName());
+  presenter.add(msg.assignedBy());
+  SharedObjectClientMessage m=new SharedObjectClientMessage(msg.meetingID(),USERS_SO,"assignPresenterCallback",presenter);
+  service.sendMessage(m);
+}
