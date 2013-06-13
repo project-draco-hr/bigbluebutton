@@ -7,5 +7,4 @@
       outMessageGateway.send(msg);
     }
   }
-  log.warn("Changing slide on a non-existant room " + room);
 }

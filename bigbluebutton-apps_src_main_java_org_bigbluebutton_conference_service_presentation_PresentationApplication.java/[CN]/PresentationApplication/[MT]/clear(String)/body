@@ -1,0 +1,8 @@
+{
+  if (hasRoom(meetingID)) {
+    PresentationRoom r=getRoom(meetingID);
+    if (r != null) {
+      sharePresentation(meetingID,r.currentPresentation,false);
+    }
+  }
+}

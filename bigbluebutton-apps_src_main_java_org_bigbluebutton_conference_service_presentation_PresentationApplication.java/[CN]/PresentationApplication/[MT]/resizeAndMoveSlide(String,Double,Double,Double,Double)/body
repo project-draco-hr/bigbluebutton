@@ -2,6 +2,7 @@
   if (hasRoom(room)) {
     PresentationRoom r=getRoom(room);
     if (r != null) {
+      System.out.println("** Resize and move [" + xOffset + ","+ yOffset+ "] ["+ widthRatio+ ","+ heightRatio+ "] !!!!!!!!!!!!!!!!!!!!!!");
       r.resizeAndMoveSlide(xOffset,yOffset,widthRatio,heightRatio);
       ResizeAndMoveSlideMessage msg=new ResizeAndMoveSlideMessage(r.getMetingID(),r.isRecorded(),xOffset,yOffset,widthRatio,heightRatio);
       outMessageGateway.send(msg);

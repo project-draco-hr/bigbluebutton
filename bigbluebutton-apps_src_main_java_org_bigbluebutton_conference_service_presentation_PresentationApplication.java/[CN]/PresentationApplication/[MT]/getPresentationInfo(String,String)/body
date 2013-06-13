@@ -27,7 +27,7 @@
       presentation.put("widthRatio",presentersSettings.get("widthRatio"));
       presentation.put("heightRatio",presentersSettings.get("heightRatio"));
     }
-    log.debug("Presentation: presentation=" + currentPresentation + " slide="+ curSlide);
+    System.out.println("** presentersSettings [" + presentersSettings.get("xOffset") + ","+ presentersSettings.get("yOffset")+ "] ["+ presentersSettings.get("widthRatio")+ ","+ presentersSettings.get("heightRatio")+ "] !!!!!!!!!!!!!!!!!!!!!!");
   }
  else {
     presentation.put("sharing",false);

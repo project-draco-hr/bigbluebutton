@@ -1,0 +1,4 @@
+{
+  IScope scope=Red5.getConnectionLocal().getScope();
+  presentationApplication.clear(scope.getName());
+}

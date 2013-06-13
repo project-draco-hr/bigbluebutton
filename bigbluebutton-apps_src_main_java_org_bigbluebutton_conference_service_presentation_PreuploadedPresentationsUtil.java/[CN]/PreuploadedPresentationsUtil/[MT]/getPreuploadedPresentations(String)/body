@@ -1,0 +1,21 @@
+{
+  ArrayList<String> preuploadedPresentations=new ArrayList<String>();
+  try {
+    String folderPath="/var/bigbluebutton/" + meetingID + "/"+ meetingID;
+    File folder=new File(folderPath);
+    if (folder.exists() && folder.isDirectory()) {
+      File[] presentations=folder.listFiles(new FileFilter(){
+        public boolean accept(        File path){
+          return path.isDirectory();
+        }
+      }
+);
+      for (      File presFile : presentations) {
+        preuploadedPresentations.add(presFile.getName());
+      }
+    }
+  }
+ catch (  Exception ex) {
+  }
+  return preuploadedPresentations;
+}

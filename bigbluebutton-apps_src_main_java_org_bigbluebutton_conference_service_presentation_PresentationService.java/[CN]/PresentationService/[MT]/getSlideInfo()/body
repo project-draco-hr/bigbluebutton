@@ -1,0 +1,4 @@
+{
+  IScope scope=Red5.getConnectionLocal().getScope();
+  presentationApplication.getSlideInfo(scope.getName(),getBbbSession().getInternalUserID());
+}
