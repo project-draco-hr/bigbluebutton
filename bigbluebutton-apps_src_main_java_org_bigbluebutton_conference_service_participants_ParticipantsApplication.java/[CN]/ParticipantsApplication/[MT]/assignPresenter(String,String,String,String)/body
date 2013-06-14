@@ -1,6 +1,7 @@
 {
   if (roomsManager.hasRoom(room)) {
     roomsManager.assignPresenter(room,newPresenterID,newPresenterName,assignedBy);
+    bbbInGW.assignPresenter(room,newPresenterID,newPresenterName,assignedBy);
     return;
   }
   log.warn("Assigning presenter on a non-existant room " + room);
