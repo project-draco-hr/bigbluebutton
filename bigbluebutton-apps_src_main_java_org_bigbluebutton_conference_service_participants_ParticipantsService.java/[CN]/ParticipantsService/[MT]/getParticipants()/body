@@ -1,24 +1,4 @@
 {
-  String roomName=Red5.getConnectionLocal().getScope().getName();
-  log.info("Client is requesting for list of participants in [" + roomName + "].");
-  Map p=application.getParticipants(roomName);
-  Map participants=new HashMap();
-  if (p == null) {
-    participants.put("count",0);
-    log.debug("partipants of " + roomName + " is null");
-  }
- else {
-    participants.put("count",p.size());
-    log.debug("number of partipants is " + p.size());
-    if (p.size() > 0) {
-      Collection pc=p.values();
-      Map pm=new HashMap();
-      for (Iterator it=pc.iterator(); it.hasNext(); ) {
-        User ap=(User)it.next();
-        pm.put(ap.getInternalUserID(),ap.toMap());
-      }
-      participants.put("participants",pm);
-    }
-  }
-  return participants;
+  IScope scope=Red5.getConnectionLocal().getScope();
+  application.getUsers(scope.getName(),getBbbSession().getInternalUserID());
 }
