@@ -3,7 +3,7 @@
   if (roomsManager.hasRoom(roomName)) {
     Meeting room=roomsManager.getRoom(roomName);
     log.debug("Removing " + userid + " from room "+ roomName);
-    usersInGW.userLeft(userid,userid);
+    bbbInGW.userLeft(userid,userid);
     room.removeParticipant(userid);
     return true;
   }

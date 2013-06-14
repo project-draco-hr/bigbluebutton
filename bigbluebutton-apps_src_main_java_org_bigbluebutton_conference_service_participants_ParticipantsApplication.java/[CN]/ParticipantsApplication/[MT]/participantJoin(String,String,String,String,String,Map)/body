@@ -4,7 +4,7 @@
     User p=new User(userid,username,role,externUserID,status);
     Meeting room=roomsManager.getRoom(roomName);
     room.addParticipant(p);
-    usersInGW.userJoin(roomName,roomName,username,role,externUserID);
+    bbbInGW.userJoin(roomName,roomName,username,role,externUserID);
     log.debug("participant joined room " + roomName);
     return true;
   }
