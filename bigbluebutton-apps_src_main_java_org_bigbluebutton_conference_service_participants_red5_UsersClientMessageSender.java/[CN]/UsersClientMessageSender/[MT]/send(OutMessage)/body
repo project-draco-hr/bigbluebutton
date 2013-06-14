@@ -1,17 +1,2 @@
 {
-  if (msg instanceof EndAndKickAllMessage) {
-    endAndKickAll((EndAndKickAllMessage)msg);
-  }
- else   if (msg instanceof AssignPresenterMessage) {
-    assignPresenter((AssignPresenterMessage)msg);
-  }
- else   if (msg instanceof UserJoinedMessage) {
-    userJoined((UserJoinedMessage)msg);
-  }
- else   if (msg instanceof UserLeftMessage) {
-    userLeft((UserLeftMessage)msg);
-  }
- else   if (msg instanceof UserStatusChangeMessage) {
-    userStatusChange((UserStatusChangeMessage)msg);
-  }
 }
