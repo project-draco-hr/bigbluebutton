@@ -1,9 +1,4 @@
 {
-  String room=(String)message.get("room");
-  if (hasRoom(room)) {
-    PresentationRoom r=getRoom(room);
-    r.storePresentationNames(message);
-    ConversionUpdateMessage msg=new ConversionUpdateMessage(r.getMetingID(),r.isRecorded(),message);
-    outMessageGateway.send(msg);
-  }
+  String meetingID=(String)message.get("room");
+  bbbInGW.sendUpdateMessage(meetingID,message);
 }

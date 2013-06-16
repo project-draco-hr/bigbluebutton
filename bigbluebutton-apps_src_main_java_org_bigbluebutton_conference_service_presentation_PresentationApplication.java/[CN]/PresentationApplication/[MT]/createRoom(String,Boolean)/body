@@ -2,12 +2,6 @@
   if (!hasRoom(meetingID)) {
     PresentationRoom room=new PresentationRoom(meetingID,recorded);
     rooms.put(room.getMetingID(),room);
-    ArrayList<String> pres=presUtil.getPreuploadedPresentations(meetingID);
-    if (!pres.isEmpty()) {
-      for (      String presFile : pres) {
-        sharePresentation(meetingID,presFile,true);
-      }
-    }
   }
   return true;
 }

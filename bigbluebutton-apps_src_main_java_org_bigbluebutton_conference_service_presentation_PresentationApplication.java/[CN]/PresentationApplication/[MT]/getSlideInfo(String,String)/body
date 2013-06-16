@@ -1,12 +1,3 @@
 {
-  if (hasRoom(meetingID)) {
-    PresentationRoom r=getRoom(meetingID);
-    if (r != null) {
-      Map<String,Double> info=getPresenterSettings(meetingID);
-      if (info != null) {
-        GetSlideInfoReply msg=new GetSlideInfoReply(meetingID,r.isRecorded(),requesterID,r.xOffset,r.yOffset,r.widthRatio,r.heightRatio);
-        outMessageGateway.send(msg);
-      }
-    }
-  }
+  bbbInGW.getSlideInfo(meetingID,requesterID);
 }

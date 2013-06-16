@@ -1,4 +1,4 @@
-String room
+String meetingID
 Double xOffset
 Double yOffset
 Double widthRatio
