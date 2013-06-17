@@ -8,7 +8,7 @@
     String messageId=map.get("messageId");
     if (messageId != null) {
       if (MessagingConstants.END_MEETING_REQUEST_EVENT.equalsIgnoreCase(messageId)) {
-        meetingManager.endMeeting(meetingId);
+        bbbGW.endMeeting(meetingId);
       }
     }
   }
