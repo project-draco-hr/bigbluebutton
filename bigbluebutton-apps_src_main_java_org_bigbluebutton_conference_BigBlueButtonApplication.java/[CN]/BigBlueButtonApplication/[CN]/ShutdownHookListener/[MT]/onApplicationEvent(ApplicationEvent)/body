@@ -1,6 +1,5 @@
 {
   if (event instanceof org.springframework.context.event.ContextStoppedEvent) {
     log.info("Received shutdown event. Red5 is shutting down. Destroying all rooms.");
-    participantsApplication.destroyAllRooms();
   }
 }

@@ -1,7 +1,0 @@
-{
-  Map<String,Object> args=new HashMap<String,Object>();
-  args.put("xPercent",msg.getxPercent());
-  args.put("yPercent",msg.getyPercent());
-  BroadcastClientMessage m=new BroadcastClientMessage(msg.getMeetingID(),"PresentationCursorUpdateCommand",args);
-  service.sendMessage(m);
-}

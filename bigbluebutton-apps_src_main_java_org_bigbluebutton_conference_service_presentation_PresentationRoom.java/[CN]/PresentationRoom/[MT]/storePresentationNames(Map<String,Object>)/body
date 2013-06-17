@@ -1,7 +1,0 @@
-{
-  String presentationName=(String)message.get("presentationName");
-  String messageKey=(String)message.get("messageKey");
-  if (messageKey.equalsIgnoreCase("CONVERSION_COMPLETED")) {
-    presentationNames.add(presentationName);
-  }
-}

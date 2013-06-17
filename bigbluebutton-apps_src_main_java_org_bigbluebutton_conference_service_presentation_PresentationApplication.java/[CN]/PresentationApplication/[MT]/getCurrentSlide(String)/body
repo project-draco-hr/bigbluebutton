@@ -1,9 +1,0 @@
-{
-  if (hasRoom(room)) {
-    PresentationRoom r=getRoom(room);
-    if (r != null) {
-      return r.currentSlide;
-    }
-  }
-  return -1;
-}

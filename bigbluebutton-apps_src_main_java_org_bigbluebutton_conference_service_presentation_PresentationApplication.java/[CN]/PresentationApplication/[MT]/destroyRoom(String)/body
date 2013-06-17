@@ -1,6 +1,0 @@
-{
-  if (hasRoom(name)) {
-    rooms.remove(name);
-  }
-  return true;
-}

@@ -1,11 +1,5 @@
 {
   log.debug("Participant " + userid + " leaving room "+ roomName);
-  if (roomsManager.hasRoom(roomName)) {
-    Meeting room=roomsManager.getRoom(roomName);
-    log.debug("Removing " + userid + " from room "+ roomName);
-    bbbInGW.userLeft(userid,userid);
-    room.removeParticipant(userid);
-    return true;
-  }
-  return false;
+  bbbInGW.userLeft(userid,userid);
+  return true;
 }

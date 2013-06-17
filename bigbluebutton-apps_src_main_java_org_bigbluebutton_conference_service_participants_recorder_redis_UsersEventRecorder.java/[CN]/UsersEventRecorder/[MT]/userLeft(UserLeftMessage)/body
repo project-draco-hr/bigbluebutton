@@ -1,9 +1,0 @@
-{
-  if (msg.isRecorded()) {
-    ParticipantLeftRecordEvent ev=new ParticipantLeftRecordEvent();
-    ev.setTimestamp(System.currentTimeMillis());
-    ev.setUserId(msg.getUserID());
-    ev.setMeetingId(msg.getMeetingID());
-    recorder.record(msg.getMeetingID(),ev);
-  }
-}

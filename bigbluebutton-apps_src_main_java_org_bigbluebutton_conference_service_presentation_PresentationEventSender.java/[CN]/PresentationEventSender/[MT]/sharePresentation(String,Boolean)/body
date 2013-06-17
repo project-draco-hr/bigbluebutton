@@ -1,7 +1,0 @@
-{
-  log.debug("calling sharePresentationCallback " + presentationName + " "+ share);
-  ArrayList list=new ArrayList();
-  list.add(presentationName);
-  list.add(share);
-  so.sendMessage("sharePresentationCallback",list);
-}

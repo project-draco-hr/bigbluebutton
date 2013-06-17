@@ -1,7 +1,0 @@
-{
-  if (!hasRoom(meetingID)) {
-    PresentationRoom room=new PresentationRoom(meetingID,recorded);
-    rooms.put(room.getMetingID(),room);
-  }
-  return true;
-}

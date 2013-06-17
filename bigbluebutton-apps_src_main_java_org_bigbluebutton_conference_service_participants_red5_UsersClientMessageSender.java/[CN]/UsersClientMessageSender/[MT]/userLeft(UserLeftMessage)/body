@@ -1,6 +1,0 @@
-{
-  ArrayList<Object> args=new ArrayList<Object>();
-  args.add(msg.getUserID());
-  SharedObjectClientMessage m=new SharedObjectClientMessage(msg.getMeetingID(),USERS_SO,"participantLeft",args);
-  service.sendMessage(m);
-}

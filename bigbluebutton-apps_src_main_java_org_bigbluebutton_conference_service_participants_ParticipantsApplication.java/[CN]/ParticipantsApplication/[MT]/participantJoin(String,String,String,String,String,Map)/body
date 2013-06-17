@@ -1,13 +1,4 @@
 {
-  log.debug("participant joining room " + roomName);
-  if (roomsManager.hasRoom(roomName)) {
-    User p=new User(userid,username,role,externUserID,status);
-    Meeting room=roomsManager.getRoom(roomName);
-    room.addParticipant(p);
-    bbbInGW.userJoin(roomName,userid,username,role,externUserID);
-    log.debug("participant joined room " + roomName);
-    return true;
-  }
-  log.debug("participant failed to join room " + roomName);
-  return false;
+  bbbInGW.userJoin(roomName,userid,username,role,externUserID);
+  return true;
 }

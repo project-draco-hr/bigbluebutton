@@ -1,4 +1,0 @@
-{
-  this.xPercent=xPercent;
-  this.yPercent=yPercent;
-}

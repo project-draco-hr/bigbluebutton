@@ -1,7 +1,2 @@
 {
-  if (hasRoom(meetingID)) {
-    PresentationRoom r=getRoom(meetingID);
-    if (r != null) {
-    }
-  }
 }

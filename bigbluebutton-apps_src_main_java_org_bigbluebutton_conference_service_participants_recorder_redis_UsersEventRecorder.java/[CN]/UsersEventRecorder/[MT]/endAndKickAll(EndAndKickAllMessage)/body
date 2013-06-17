@@ -1,8 +1,0 @@
-{
-  if (msg.isRecorded()) {
-    ParticipantEndAndKickAllRecordEvent ev=new ParticipantEndAndKickAllRecordEvent();
-    ev.setTimestamp(System.currentTimeMillis());
-    ev.setMeetingId(msg.getMeetingID());
-    recorder.record(msg.getMeetingID(),ev);
-  }
-}

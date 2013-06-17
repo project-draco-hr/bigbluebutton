@@ -1,9 +1,0 @@
-{
-  if (msg.isRecorded()) {
-    RemovePresentationPresentationRecordEvent event=new RemovePresentationPresentationRecordEvent();
-    event.setMeetingId(msg.getMeetingID());
-    event.setTimestamp(System.currentTimeMillis());
-    event.setPresentationName(msg.getPresentationID());
-    recorder.record(msg.getMeetingID(),event);
-  }
-}

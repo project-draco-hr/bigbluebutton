@@ -1,7 +1,0 @@
-{
-  Map<String,Object> args=new HashMap<String,Object>();
-  args.put("presentationID",msg.getPresentationID());
-  args.put("share",msg.getShare());
-  BroadcastClientMessage m=new BroadcastClientMessage(msg.getMeetingID(),"sharePresentationCallback",args);
-  service.sendMessage(m);
-}

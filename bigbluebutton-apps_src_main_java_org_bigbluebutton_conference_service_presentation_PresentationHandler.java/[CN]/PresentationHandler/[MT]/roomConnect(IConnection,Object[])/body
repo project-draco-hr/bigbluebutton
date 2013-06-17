@@ -1,5 +1,4 @@
 {
   log.debug("***** " + APP + " [ "+ " roomConnect [ "+ connection.getScope().getName()+ "] *********");
-  presentationApplication.createRoom(connection.getScope().getName(),getBbbSession().getRecord());
   return true;
 }

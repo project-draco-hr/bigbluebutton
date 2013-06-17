@@ -1,7 +1,0 @@
-{
-  if (!roomsManager.hasRoom(meetingID)) {
-    roomsManager.createMeeting(meetingID,recorded);
-    return true;
-  }
-  return false;
-}

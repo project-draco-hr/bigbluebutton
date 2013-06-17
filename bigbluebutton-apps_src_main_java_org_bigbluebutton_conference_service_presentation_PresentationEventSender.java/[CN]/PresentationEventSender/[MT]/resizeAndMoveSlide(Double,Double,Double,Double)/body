@@ -1,9 +1,0 @@
-{
-  log.debug("calling moveCallback[" + xOffset + ","+ yOffset+ ","+ widthRatio+ ","+ heightRatio+ "]");
-  ArrayList list=new ArrayList();
-  list.add(xOffset);
-  list.add(yOffset);
-  list.add(widthRatio);
-  list.add(heightRatio);
-  so.sendMessage("moveCallback",list);
-}
