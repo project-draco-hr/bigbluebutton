@@ -10,6 +10,9 @@
       if (MessagingConstants.END_MEETING_REQUEST_EVENT.equalsIgnoreCase(messageId)) {
         bbbGW.endMeeting(meetingId);
       }
+      if (messageId.equalsIgnoreCase(KEEP_ALIVE_REQUEST)) {
+        bbbGW.isAliveAudit();
+      }
     }
   }
 }
