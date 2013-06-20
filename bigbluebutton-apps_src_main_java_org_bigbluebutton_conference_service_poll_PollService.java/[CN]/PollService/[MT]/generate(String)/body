@@ -1,5 +1,0 @@
-{
-  ArrayList webInfo=new ArrayList();
-  webInfo=application.generate(pollKey);
-  return webInfo;
-}
