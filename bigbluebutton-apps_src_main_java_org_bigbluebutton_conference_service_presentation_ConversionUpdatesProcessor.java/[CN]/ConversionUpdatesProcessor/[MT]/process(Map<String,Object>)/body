@@ -1,3 +1,4 @@
 {
+  log.debug("Received conversion message from REDIS");
   presentationApplication.sendUpdateMessage(message);
 }

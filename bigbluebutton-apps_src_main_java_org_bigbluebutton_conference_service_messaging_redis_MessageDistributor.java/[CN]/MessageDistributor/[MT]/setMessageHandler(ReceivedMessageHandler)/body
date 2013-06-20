@@ -1,4 +1,6 @@
 {
   this.handler=handler;
-  handler.setMessageDistributor(this);
+  if (handler != null) {
+    handler.setMessageDistributor(this);
+  }
 }
