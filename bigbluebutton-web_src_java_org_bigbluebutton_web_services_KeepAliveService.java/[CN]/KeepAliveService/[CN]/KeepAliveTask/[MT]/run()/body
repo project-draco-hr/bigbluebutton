@@ -1,0 +1,9 @@
+{
+  String aliveId=Long.toString(System.currentTimeMillis());
+  HashMap<String,String> map=new HashMap<String,String>();
+  map.put("messageId",KEEP_ALIVE_MESSAGE);
+  map.put("aliveId",aliveId);
+  Gson gson=new Gson();
+  service.send(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
+  liveMsgs.add(aliveId);
+}

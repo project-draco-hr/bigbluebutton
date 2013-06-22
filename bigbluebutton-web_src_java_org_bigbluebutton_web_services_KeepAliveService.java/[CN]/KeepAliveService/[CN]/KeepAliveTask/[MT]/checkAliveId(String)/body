@@ -1,0 +1,7 @@
+{
+  int count=0;
+  while (count < liveMsgs.size()) {
+    if (liveMsgs.get(count) == id)     liveMsgs.remove(count);
+    count++;
+  }
+}
