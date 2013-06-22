@@ -1,4 +1,0 @@
-{
-  application.vote(pollKey,answerIDs.toArray(),webVote);
-  return getPoll(pollKey);
-}
