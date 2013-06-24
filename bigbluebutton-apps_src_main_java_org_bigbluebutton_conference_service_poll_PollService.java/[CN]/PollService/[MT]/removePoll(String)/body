@@ -1,3 +1,4 @@
 {
   System.out.println("*** PollService:: remove poll \n" + msg + "\n");
+  bbbInGW.removePoll(getMeetingID(),getRequestedID(),msg);
 }
