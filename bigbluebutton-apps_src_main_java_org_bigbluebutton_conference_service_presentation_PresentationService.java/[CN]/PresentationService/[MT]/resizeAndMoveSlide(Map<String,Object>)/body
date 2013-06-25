@@ -31,7 +31,6 @@
  else {
     heightRatio=(Double)msg.get("heightRatio");
   }
-  log.debug("Request to resize and move slide[" + xOffset + ","+ yOffset+ ","+ widthRatio+ ","+ heightRatio);
   IScope scope=Red5.getConnectionLocal().getScope();
   presentationApplication.resizeAndMoveSlide(scope.getName(),xOffset,yOffset,widthRatio,heightRatio);
 }
