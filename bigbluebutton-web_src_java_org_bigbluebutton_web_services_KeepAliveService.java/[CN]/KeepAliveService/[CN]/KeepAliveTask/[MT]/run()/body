@@ -9,6 +9,7 @@
     service.send(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
   }
  else {
+    available=false;
     System.out.println("bbb-apps is down");
   }
 }
