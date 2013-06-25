@@ -1,4 +1,20 @@
 {
   IScope scope=Red5.getConnectionLocal().getScope();
-  presentationApplication.sendCursorUpdate(scope.getName(),(Double)msg.get("xPercent"),(Double)msg.get("yPercent"));
+  Double xPercent;
+  if (msg.get("xPercent") instanceof Integer) {
+    Integer tempXOffset=(Integer)msg.get("xPercent");
+    xPercent=tempXOffset.doubleValue();
+  }
+ else {
+    xPercent=(Double)msg.get("xPercent");
+  }
+  Double yPercent;
+  if (msg.get("yPercent") instanceof Integer) {
+    Integer tempYOffset=(Integer)msg.get("yPercent");
+    yPercent=tempYOffset.doubleValue();
+  }
+ else {
+    yPercent=(Double)msg.get("yPercent");
+  }
+  presentationApplication.sendCursorUpdate(scope.getName(),xPercent,yPercent);
 }
