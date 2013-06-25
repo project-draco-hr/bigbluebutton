@@ -1,7 +1,14 @@
 {
   int count=0;
-  while (count < liveMsgs.size()) {
-    if (liveMsgs.get(count) == id)     liveMsgs.remove(count);
+  boolean found=false;
+  while (count < liveMsgs.size() || !found) {
+    if (liveMsgs.get(count).equals(id)) {
+      liveMsgs.remove(count);
+      found=true;
+    }
     count++;
+  }
+  if (!found) {
+    System.out.println("AliveID was not found:" + id);
   }
 }
