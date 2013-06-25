@@ -1,4 +1,4 @@
 {
   System.out.println("*** PollService:: create poll \n" + msg + "\n");
-  bbbInGW.createPoll(getMeetingID(),getRequestedID(),msg);
+  bbbInGW.createPoll(getMeetingID(),getRequesterID(),msg);
 }
