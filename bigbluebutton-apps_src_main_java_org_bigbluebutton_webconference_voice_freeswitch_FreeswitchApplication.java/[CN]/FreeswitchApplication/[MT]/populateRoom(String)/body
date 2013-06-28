@@ -1,12 +1,4 @@
 {
-  Client c=manager.getESLClient();
-  if (c.canSend()) {
-    PopulateRoomCommand prc=new PopulateRoomCommand(room,USER);
-    EslMessage response=c.sendSyncApiCommand(prc.getCommand(),prc.getCommandArgs());
-    prc.handleResponse(response,conferenceEventListener);
-  }
- else {
-    log.warn("Can't send populate room request to FreeSWITCH as we are not connected.");
-    startHeartbeatMonitor();
-  }
+  PopulateRoomCommand prc=new PopulateRoomCommand(room,USER);
+  manager.getUsers(prc);
 }
