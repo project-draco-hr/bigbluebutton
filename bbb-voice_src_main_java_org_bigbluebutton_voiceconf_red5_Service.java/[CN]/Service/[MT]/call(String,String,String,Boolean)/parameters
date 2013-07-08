@@ -1,0 +1,4 @@
+String peerId
+String callerName
+String destination
+Boolean global

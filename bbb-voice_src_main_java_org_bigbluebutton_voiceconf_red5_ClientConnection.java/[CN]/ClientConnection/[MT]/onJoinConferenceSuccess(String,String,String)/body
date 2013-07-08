@@ -1,4 +1,4 @@
 {
   log.debug("Notify client that {} [{}] has joined the conference.",username,userid);
-  connection.invoke("successfullyJoinedVoiceConferenceCallback",new Object[]{publishName,playName,codec});
+  if (connection.isConnected())   connection.invoke("successfullyJoinedVoiceConferenceCallback",new Object[]{publishName,playName,codec});
 }

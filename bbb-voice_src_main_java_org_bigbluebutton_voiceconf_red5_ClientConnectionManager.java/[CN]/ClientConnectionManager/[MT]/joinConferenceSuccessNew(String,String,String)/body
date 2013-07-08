@@ -1,0 +1,7 @@
+{
+  ClientConnection cc=clients.get(clientId);
+  if (cc != null) {
+    System.out.println("String Global");
+    cc.onJoinConferenceSuccess("",listen,codec);
+  }
+}

@@ -1,0 +1,24 @@
+{
+  if (global == true) {
+    if (GlobalCall.reservePlaceToCreateGlobal(destination) == true) {
+      String extension=callExtensionPattern.format(new String[]{destination});
+      try {
+        sipPeerManager.callGlobal(peerId,destination,"GLOBAL_AUDIO_" + destination,getClientId(),callerName,extension);
+        Red5.getConnectionLocal().setAttribute("VOICE_CONF_PEER",peerId);
+      }
+ catch (      PeerNotFoundException e) {
+        log.error("PeerNotFound {}",peerId);
+        return false;
+      }
+    }
+ else {
+      sipPeerManager.returnGlobalStream(peerId,getClientId(),destination);
+      Red5.getConnectionLocal().setAttribute("VOICE_CONF_PEER",peerId);
+    }
+  }
+ else {
+    Boolean result=call(peerId,callerName,destination);
+    return result;
+  }
+  return true;
+}

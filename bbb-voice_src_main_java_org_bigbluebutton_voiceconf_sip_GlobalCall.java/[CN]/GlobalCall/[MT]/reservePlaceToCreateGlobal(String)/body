@@ -1,0 +1,9 @@
+{
+  if (voiceConference.containsKey(roomName) == false) {
+    voiceConference.put(roomName,"reserved");
+    return true;
+  }
+ else {
+    return false;
+  }
+}

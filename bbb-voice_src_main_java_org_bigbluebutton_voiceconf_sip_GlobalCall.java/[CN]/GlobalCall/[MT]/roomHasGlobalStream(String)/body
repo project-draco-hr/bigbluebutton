@@ -1,0 +1,3 @@
+{
+  return voiceConference.containsKey(roomName);
+}

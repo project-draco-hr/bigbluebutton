@@ -18,7 +18,16 @@
           callStream=callStreamFactory.createCallStream(sipCodec,connInfo);
           callStream.addCallStreamObserver(this);
           callStream.start();
-          notifyListenersOnCallConnected(callStream.getTalkStreamName(),callStream.getListenStreamName());
+          if (_callerName.contains("GLOBAL_AUDIO") == true) {
+            KeepGlobalAudioAlive globalAudioKeepAlive=new KeepGlobalAudioAlive(connInfo.getSocket(),connInfo,sipCodec.getCodecId());
+            GlobalCall.addGlobalAudioStream(_destination,callStream.getListenStreamName(),sipCodec.getCodecName(),globalAudioKeepAlive);
+            caToInit.returnGlobalStreamName(caToInit.getCallId(),_destination);
+            talking=true;
+          }
+ else {
+            talking=true;
+            notifyListenersOnCallConnected(callStream.getTalkStreamName(),callStream.getListenStreamName());
+          }
         }
  catch (        Exception e) {
           log.error("Failed to create Call Stream.");

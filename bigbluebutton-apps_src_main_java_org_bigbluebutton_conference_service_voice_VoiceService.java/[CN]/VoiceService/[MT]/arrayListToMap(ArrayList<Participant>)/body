@@ -9,7 +9,7 @@
     pmap.put("talking",p.isTalking());
     pmap.put("locked",p.isMuteLocked());
     log.debug("[" + p.getId() + ","+ p.getName()+ ","+ p.isMuted()+ ","+ p.isTalking()+ "]");
-    result.put(p.getId(),pmap);
+    if (p.getName().contains("GLOBAL_AUDIO") == false)     result.put(p.getId(),pmap);
   }
   return result;
 }
