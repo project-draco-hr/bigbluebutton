@@ -6,5 +6,15 @@
   map.put("title",title);
   map.put("question",question);
   map.put("answers",gson.toJson(answers));
-  send(MessagingConstants.POLLING_CHANNEL,gson.toJson(map));
+  String pollJson=gson.toJson(map);
+  Jedis jedis=redisPool.getResource();
+  try {
+    jedis.sadd("meeting:" + meetingId + ":polls",pollJson);
+  }
+ catch (  Exception e) {
+    log.warn("Cannot store subscription:" + meetingId,e);
+  }
+ finally {
+    redisPool.returnResource(jedis);
+  }
 }

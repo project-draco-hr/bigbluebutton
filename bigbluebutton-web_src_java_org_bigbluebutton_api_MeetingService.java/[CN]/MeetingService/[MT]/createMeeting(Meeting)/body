@@ -8,4 +8,5 @@
     metadata.put("meetingName",m.getName());
     messagingService.recordMeetingInfo(m.getInternalId(),metadata);
   }
+  messagingService.createMeeting(m.getInternalId(),m.isRecord(),m.getTelVoice());
 }

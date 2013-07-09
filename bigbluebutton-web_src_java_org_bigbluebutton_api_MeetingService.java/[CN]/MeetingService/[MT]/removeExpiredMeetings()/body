@@ -8,11 +8,13 @@
         log.debug("[" + m.getInternalId() + "] is recorded. Process it.");
         processRecording(m.getInternalId());
       }
+      destroyMeeting(m.getInternalId());
       meetings.remove(m.getInternalId());
       continue;
     }
     if (m.wasNeverStarted(defaultMeetingCreateJoinDuration)) {
       log.info("Removing non-joined meeting [{} - {}]",m.getInternalId(),m.getName());
+      destroyMeeting(m.getInternalId());
       meetings.remove(m.getInternalId());
       continue;
     }
