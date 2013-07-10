@@ -23,19 +23,18 @@
       csbuf.append(key);
       csbuf.append("=");
       String encResult;
-      try {
-        encResult=URLEncoder.encode(value,"UTF-8");
-      }
- catch (      UnsupportedEncodingException e) {
-        encResult=value;
-      }
+      encResult=value;
       csbuf.append(encResult);
     }
   }
   csbuf.append(securitySalt);
   String baseString=csbuf.toString();
+  log.debug("POST basestring = [" + baseString + "]");
   String cs=DigestUtils.shaHex(baseString);
+  System.out.println("our checksum: [" + cs + "], client: ["+ checksum+ "]");
+  log.debug("our checksum: [{}], client: [{}]",cs,checksum);
   if (cs == null || cs.equals(checksum) == false) {
+    System.out.println("our checksum: [" + cs + "], client: ["+ checksum+ "]");
     log.info("checksumError: request did not pass the checksum security check");
     return false;
   }
