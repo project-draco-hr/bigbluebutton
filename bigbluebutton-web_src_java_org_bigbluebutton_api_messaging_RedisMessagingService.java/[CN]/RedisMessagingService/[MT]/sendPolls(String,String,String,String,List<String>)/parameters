@@ -1,4 +1,5 @@
 String meetingId
 String title
 String question
-ArrayList<String> answers
+String questionType
+List<String> answers

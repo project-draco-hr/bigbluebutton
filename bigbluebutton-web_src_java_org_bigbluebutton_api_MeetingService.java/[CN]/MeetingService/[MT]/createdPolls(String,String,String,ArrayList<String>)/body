@@ -1,3 +1,0 @@
-{
-  messagingService.sendPolls(meetingId,title,question,answers);
-}
