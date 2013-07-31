@@ -1,2 +1,5 @@
 {
+  log.debug("***** " + APP + " [ "+ " roomStart [ "+ scope.getName()+ "] *********");
+  connInvokerService.addScope(room.getName(),room);
+  return super.roomStart(room);
 }

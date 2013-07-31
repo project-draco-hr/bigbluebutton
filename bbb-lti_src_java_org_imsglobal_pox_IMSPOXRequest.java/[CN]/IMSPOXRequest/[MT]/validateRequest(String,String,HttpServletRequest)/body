@@ -1,0 +1,21 @@
+{
+  valid=false;
+  OAuthMessage oam=OAuthServlet.getMessage(request,null);
+  OAuthValidator oav=new SimpleOAuthValidator();
+  OAuthConsumer cons=new OAuthConsumer("about:blank#OAuth+CallBack+NotUsed",oauth_consumer_key,oauth_secret,null);
+  OAuthAccessor acc=new OAuthAccessor(cons);
+  try {
+    base_string=OAuthSignatureMethod.getBaseString(oam);
+  }
+ catch (  Exception e) {
+    base_string=null;
+  }
+  try {
+    oav.validateMessage(oam,acc);
+  }
+ catch (  Exception e) {
+    errorMessage="Launch fails OAuth validation: " + e.getMessage();
+    return;
+  }
+  valid=true;
+}

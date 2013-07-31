@@ -1,5 +1,5 @@
 {
-  BufferedImage resultImage=graphicsConfig.createCompatibleImage(scaleWidth,scaleHeight,image.getType());
+  BufferedImage resultImage=graphicsConfig.createCompatibleImage(scaleWidth,scaleHeight,Transparency.BITMASK);
   resultImage.setAccelerationPriority(1);
   Graphics2D g2=resultImage.createGraphics();
   Image scaledImage=image.getScaledInstance(scaleWidth,scaleHeight,Image.SCALE_AREA_AVERAGING);

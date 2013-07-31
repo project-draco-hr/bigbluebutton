@@ -1,0 +1,3 @@
+{
+  appDelegate.ejectAll(room);
+}

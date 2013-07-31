@@ -1,0 +1,5 @@
+Document doc
+Node parentNode
+String nodeName
+int whichNode
+int d

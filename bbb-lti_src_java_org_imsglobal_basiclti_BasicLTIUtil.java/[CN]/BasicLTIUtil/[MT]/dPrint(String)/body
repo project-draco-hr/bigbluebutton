@@ -1,0 +1,4 @@
+{
+  if (verbosePrint)   System.out.println(str);
+  M_log.fine(str);
+}

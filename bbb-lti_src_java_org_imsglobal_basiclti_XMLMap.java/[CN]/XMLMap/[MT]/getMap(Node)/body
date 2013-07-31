@@ -1,0 +1,5 @@
+{
+  Map<String,Object> tm=getObjectMap(doc,false);
+  if (tm == null)   return null;
+  return flattenMap(tm);
+}

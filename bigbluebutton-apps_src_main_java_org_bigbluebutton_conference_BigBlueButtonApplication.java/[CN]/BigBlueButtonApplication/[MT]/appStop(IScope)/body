@@ -1,4 +1,5 @@
 {
-  log.debug("Stopping BigBlueButton version " + version);
+  log.debug("***** " + APP + " [ "+ " appStop [ "+ scope.getName()+ "] *********");
+  connInvokerService.stop();
   super.appStop(app);
 }

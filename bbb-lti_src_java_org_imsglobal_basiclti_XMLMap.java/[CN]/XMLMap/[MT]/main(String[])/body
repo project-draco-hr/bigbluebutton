@@ -1,0 +1,6 @@
+{
+  System.out.println("Running XMLMap (www.mdom.org) unit tests..");
+  if (!allUnitTests())   return;
+  System.out.println("Unit tests passed...");
+  runSamples();
+}

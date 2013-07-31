@@ -1,0 +1,7 @@
+{
+  if (selection == null)   return true;
+  if (selection.equals("/"))   return true;
+  if (selection.length() < 2)   return true;
+  if (!selection.startsWith("/"))   return true;
+  return false;
+}

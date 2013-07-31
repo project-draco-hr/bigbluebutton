@@ -1,0 +1,9 @@
+{
+  this.id=id;
+  this.retriever=retriever;
+  this.room=room;
+  this.screenDim=screenDim;
+  this.blockDim=blockDim;
+  this.seqNumGenerator=seqNumGenerator;
+  this.useSVC2=useSVC2;
+}

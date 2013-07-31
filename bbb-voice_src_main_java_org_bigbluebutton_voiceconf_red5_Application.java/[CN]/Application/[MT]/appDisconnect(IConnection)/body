@@ -17,4 +17,5 @@
       e.printStackTrace();
     }
   }
+  super.appDisconnect(conn);
 }

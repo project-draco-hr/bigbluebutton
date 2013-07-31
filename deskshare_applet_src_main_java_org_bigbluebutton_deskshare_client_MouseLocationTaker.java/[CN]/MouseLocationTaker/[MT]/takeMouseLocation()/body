@@ -1,3 +1,7 @@
 {
-  notifyListeners(getMouseLocation());
+  Point mouseLocation=getMouseLocation();
+  if (!mouseLocation.equals(oldMouseLocation) && isMouseInsideCapturedRegion(mouseLocation)) {
+    notifyListeners(calculatePointerLocation(mouseLocation));
+    oldMouseLocation=mouseLocation;
+  }
 }

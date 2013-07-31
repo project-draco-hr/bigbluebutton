@@ -1,0 +1,9 @@
+{
+  Map m=new HashMap();
+  m.put("userid",internalUserID);
+  m.put("externUserID",externalUserID);
+  m.put("name",name);
+  m.put("role",role);
+  m.put("status",new HashMap(unmodifiableStatus));
+  return m;
+}

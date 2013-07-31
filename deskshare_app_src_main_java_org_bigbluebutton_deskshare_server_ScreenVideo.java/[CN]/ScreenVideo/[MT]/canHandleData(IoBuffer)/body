@@ -1,6 +1,6 @@
 {
-  byte first=data.get();
-  boolean result=((first & 0x0f) == FLV_CODEC_SCREEN);
+  int first=data.get() & 0x0f;
+  boolean result=(first == FLV_CODEC_SCREEN || first == FLV_CODEC_SCREEN_V2);
   data.rewind();
   return result;
 }

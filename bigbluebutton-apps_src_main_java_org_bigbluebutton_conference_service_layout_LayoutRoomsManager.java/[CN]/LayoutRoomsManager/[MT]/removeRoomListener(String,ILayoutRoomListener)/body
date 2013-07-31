@@ -1,0 +1,8 @@
+{
+  LayoutRoom r=getRoom(roomName);
+  if (r != null) {
+    r.removeRoomListener(listener);
+    return;
+  }
+  log.warn("Removing listener to a non-existing room " + roomName);
+}

@@ -1,0 +1,4 @@
+{
+  EjectAllUsersCommand mpc=new EjectAllUsersCommand(room,USER);
+  manager.ejectAll(mpc);
+}

@@ -1,0 +1,3 @@
+{
+  return buf != null ? pos - readPos : 0;
+}

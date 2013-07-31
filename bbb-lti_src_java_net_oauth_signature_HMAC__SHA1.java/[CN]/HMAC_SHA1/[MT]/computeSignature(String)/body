@@ -1,0 +1,15 @@
+{
+  SecretKey key=null;
+synchronized (this) {
+    if (this.key == null) {
+      String keyString=OAuth.percentEncode(getConsumerSecret()) + '&' + OAuth.percentEncode(getTokenSecret());
+      byte[] keyBytes=keyString.getBytes(ENCODING);
+      this.key=new SecretKeySpec(keyBytes,MAC_NAME);
+    }
+    key=this.key;
+  }
+  Mac mac=Mac.getInstance(MAC_NAME);
+  mac.init(key);
+  byte[] text=baseString.getBytes(ENCODING);
+  return mac.doFinal(text);
+}

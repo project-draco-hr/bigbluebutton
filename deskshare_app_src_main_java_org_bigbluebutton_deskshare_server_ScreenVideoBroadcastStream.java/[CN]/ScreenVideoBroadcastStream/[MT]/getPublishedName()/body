@@ -1,4 +1,4 @@
 {
-  log.trace("getPublishedName()");
+  log.debug("getPublishedName()");
   return publishedStreamName;
 }

@@ -1,0 +1,13 @@
+{
+  boolean found=false;
+  if (propertyName.startsWith(BasicLTIConstants.CUSTOM_PREFIX))   return true;
+  if (propertyName.startsWith(BasicLTIConstants.EXTENSION_PREFIX))   return true;
+  if (propertyName.startsWith(BasicLTIConstants.OAUTH_PREFIX))   return true;
+  for (  String key : BasicLTIConstants.validPropertyNames) {
+    if (key.equals(propertyName)) {
+      found=true;
+      break;
+    }
+  }
+  return found;
+}

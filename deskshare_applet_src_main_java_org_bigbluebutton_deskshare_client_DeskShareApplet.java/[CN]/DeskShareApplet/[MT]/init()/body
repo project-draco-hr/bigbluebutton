@@ -6,7 +6,14 @@
   roomValue=getParameter("ROOM");
   String captureFullScreen=getParameter("FULL_SCREEN");
   if (captureFullScreen != null)   fullScreenValue=Boolean.parseBoolean(captureFullScreen);
+  String useSVC2=getParameter("SVC2");
+  if (useSVC2 != null)   useSVC2Value=Boolean.parseBoolean(useSVC2);
   String tunnel=getParameter("HTTP_TUNNEL");
   if (tunnel != null)   tunnelValue=Boolean.parseBoolean(tunnel);
-  icon=getImage(getCodeBase(),"bbb.gif");
+  try {
+    URL url=new URL(getCodeBase(),"bbb.gif");
+    icon=ImageIO.read(url);
+  }
+ catch (  IOException e) {
+  }
 }

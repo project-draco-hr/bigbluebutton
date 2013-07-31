@@ -1,0 +1,6 @@
+{
+  if (!listeners.containsKey(listener.getName())) {
+    log.debug("adding room listener");
+    listeners.put(listener.getName(),listener);
+  }
+}

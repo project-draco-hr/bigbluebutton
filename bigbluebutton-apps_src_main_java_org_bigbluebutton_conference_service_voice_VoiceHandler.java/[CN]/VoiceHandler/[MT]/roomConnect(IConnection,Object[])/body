@@ -1,10 +1,12 @@
 {
-  log.debug(APP + ":roomConnect");
-  log.debug("In live mode");
-  ISharedObject so=getSharedObject(connection.getScope(),VOICE_SO);
+  log.debug("***** " + APP + " [ "+ " roomConnect [ "+ connection.getScope().getName()+ "] *********");
+  ISharedObject so=getSharedObject(connection.getScope(),VOICE_SO,false);
   String voiceBridge=getBbbSession().getVoiceBridge();
-  String meetingid=getBbbSession().getConference();
+  String meetingid=getBbbSession().getRoom();
   Boolean record=getBbbSession().getRecord();
+  if (!connection.getScope().hasAttribute(VOICE_BRIDGE)) {
+    connection.getScope().setAttribute(VOICE_BRIDGE,getBbbSession().getVoiceBridge());
+  }
   log.debug("Setting up voiceBridge " + voiceBridge);
   clientManager.addSharedObject(connection.getScope().getName(),voiceBridge,so);
   conferenceService.createConference(voiceBridge,meetingid,record);

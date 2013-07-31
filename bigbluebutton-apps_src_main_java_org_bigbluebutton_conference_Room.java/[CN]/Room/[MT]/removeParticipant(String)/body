@@ -1,0 +1,18 @@
+{
+  boolean present=false;
+  User p=null;
+synchronized (this) {
+    present=participants.containsKey(userid);
+    if (present) {
+      log.debug("removing participant");
+      p=participants.remove(userid);
+    }
+  }
+  if (present) {
+    for (Iterator it=listeners.values().iterator(); it.hasNext(); ) {
+      IRoomListener listener=(IRoomListener)it.next();
+      log.debug("calling participantLeft on listener " + listener.getName());
+      listener.participantLeft(p);
+    }
+  }
+}

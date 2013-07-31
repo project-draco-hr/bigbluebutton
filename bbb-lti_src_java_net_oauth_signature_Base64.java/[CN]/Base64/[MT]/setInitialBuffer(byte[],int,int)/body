@@ -1,0 +1,7 @@
+{
+  if (out != null && out.length == outAvail) {
+    buf=out;
+    pos=outPos;
+    readPos=outPos;
+  }
+}
