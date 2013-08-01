@@ -1,0 +1,10 @@
+{
+  int voiceUserID=roomMgr.getVoiceUserIDFromRoom(voiceBridge,userID);
+  if (voiceUserID > -1) {
+    log.info("Hanging up user [" + voiceUserID + "] from ["+ voiceBridge+ "]");
+    confProvider.eject(voiceBridge,voiceUserID);
+  }
+ else {
+    log.info("Cannot hangup user. Could not find user=[" + userID + "] in ["+ voiceBridge+ "]");
+  }
+}
