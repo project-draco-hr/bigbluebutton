@@ -25,6 +25,7 @@
       updates.add("makeShape");
       data.add(map.get("color"));
       data.add(map.get("thickness"));
+      data.add(map.get("square"));
     }
  else {
       updates.add("updShape");
@@ -32,6 +33,7 @@
       Double pH=Double.parseDouble(points.get(3).toString());
       data.add(pW / 100);
       data.add(pH / 100);
+      data.add(map.get("square"));
     }
     updates.add("rect");
     updates.add(data);
