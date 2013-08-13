@@ -1,4 +1,5 @@
 {
   log.info("WhiteboardApplication - Clearing board");
   application.clear();
+  whiteboardBridge.clear(application.getMeetingId());
 }
