@@ -7,6 +7,16 @@
       jedis.set("meeting-" + meetingID + "-presentation-"+ presentationName+ "-page-"+ i+ "-image","slide" + i + ".png");
       int width=800;
       int height=600;
+      try {
+        BufferedImage bimg=ImageIO.read(new File("/var/bigbluebutton/" + meetingID + "/"+ meetingID+ "/"+ presentationName+ "/pngs/slide"+ i+ ".png"));
+        width=bimg.getWidth();
+        height=bimg.getHeight();
+      }
+ catch (      IOException e) {
+        width=800;
+        height=600;
+        log.error(e.toString());
+      }
       jedis.set("meeting-" + meetingID + "-presentation-"+ presentationName+ "-page-"+ i+ "-width",Integer.toString(width));
       jedis.set("meeting-" + meetingID + "-presentation-"+ presentationName+ "-page-"+ i+ "-height",Integer.toString(height));
     }
