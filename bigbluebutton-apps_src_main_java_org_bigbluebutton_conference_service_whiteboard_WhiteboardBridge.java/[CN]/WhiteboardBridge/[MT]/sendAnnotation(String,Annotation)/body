@@ -62,6 +62,7 @@
       Double hR=Double.parseDouble(points.get(3).toString());
       data.add(vR / 100);
       data.add(hR / 100);
+      data.add(map.get("circle"));
     }
     updates.add("ellipse");
     updates.add(data);
