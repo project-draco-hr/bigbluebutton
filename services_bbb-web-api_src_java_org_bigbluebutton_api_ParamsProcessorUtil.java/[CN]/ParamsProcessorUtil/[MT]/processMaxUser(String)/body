@@ -1,0 +1,10 @@
+{
+  int mUsers=-1;
+  try {
+    mUsers=Integer.parseInt(maxUsers);
+  }
+ catch (  Exception ex) {
+    mUsers=defaultMaxUsers;
+  }
+  return mUsers;
+}

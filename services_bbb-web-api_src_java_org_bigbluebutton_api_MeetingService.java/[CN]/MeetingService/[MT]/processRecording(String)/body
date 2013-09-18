@@ -1,0 +1,4 @@
+{
+  log.debug("Process recording for [{}]",meetingId);
+  recordingService.startIngestAndProcessing(meetingId);
+}

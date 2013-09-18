@@ -1,0 +1,43 @@
+{
+  if (StringUtils.isEmpty(securitySalt)) {
+    log.warn("Security is disabled in this service. Make sure this is intentional.");
+    return true;
+  }
+  StringBuffer csbuf=new StringBuffer();
+  csbuf.append(apiCall);
+  SortedSet<String> keys=new TreeSet<String>(params.keySet());
+  boolean first=true;
+  String checksum=null;
+  for (  String key : keys) {
+    if (key.equals("checksum")) {
+      checksum=params.get(key)[0];
+      continue;
+    }
+    for (    String value : params.get(key)) {
+      if (first) {
+        first=false;
+      }
+ else {
+        csbuf.append("&");
+      }
+      csbuf.append(key);
+      csbuf.append("=");
+      String encResult;
+      encResult=value;
+      csbuf.append(encResult);
+    }
+  }
+  csbuf.append(securitySalt);
+  String baseString=csbuf.toString();
+  log.debug("POST basestring = [" + baseString + "]");
+  String cs=DigestUtils.shaHex(baseString);
+  System.out.println("our checksum: [" + cs + "], client: ["+ checksum+ "]");
+  log.debug("our checksum: [{}], client: [{}]",cs,checksum);
+  if (cs == null || cs.equals(checksum) == false) {
+    System.out.println("our checksum: [" + cs + "], client: ["+ checksum+ "]");
+    log.info("checksumError: request did not pass the checksum security check");
+    return false;
+  }
+  log.debug("checksum ok: request passed the checksum security check");
+  return true;
+}

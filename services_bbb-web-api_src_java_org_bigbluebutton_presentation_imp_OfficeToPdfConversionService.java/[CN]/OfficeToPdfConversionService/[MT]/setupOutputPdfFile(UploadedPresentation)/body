@@ -1,0 +1,5 @@
+{
+  File presentationFile=pres.getUploadedFile();
+  String filenameWithoutExt=presentationFile.getAbsolutePath().substring(0,presentationFile.getAbsolutePath().lastIndexOf("."));
+  return new File(filenameWithoutExt + ".pdf");
+}

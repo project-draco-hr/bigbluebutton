@@ -1,0 +1,37 @@
+{
+  int numPages=0;
+  String COMMAND=SWFTOOLS_DIR + "/pdf2swf -I " + presentationFile.getAbsolutePath();
+  Timer timer=null;
+  Process p=null;
+  try {
+    timer=new Timer(true);
+    InterruptTimerTask interrupter=new InterruptTimerTask(Thread.currentThread());
+    timer.schedule(interrupter,60000);
+    p=Runtime.getRuntime().exec(COMMAND);
+    BufferedReader stdInput=new BufferedReader(new InputStreamReader(p.getInputStream()));
+    BufferedReader stdError=new BufferedReader(new InputStreamReader(p.getErrorStream()));
+    String info;
+    Matcher matcher;
+    while ((info=stdInput.readLine()) != null) {
+      matcher=PAGE_NUMBER_PATTERN.matcher(info);
+      if (matcher.matches()) {
+        numPages=Integer.valueOf(matcher.group(1).trim()).intValue();
+      }
+    }
+    while ((info=stdError.readLine()) != null) {
+      log.error(info);
+    }
+    stdInput.close();
+    stdError.close();
+    p.waitFor();
+  }
+ catch (  Exception e) {
+    log.info("TIMEDOUT excuting : " + COMMAND);
+    p.destroy();
+  }
+ finally {
+    timer.cancel();
+    Thread.interrupted();
+  }
+  return numPages;
+}

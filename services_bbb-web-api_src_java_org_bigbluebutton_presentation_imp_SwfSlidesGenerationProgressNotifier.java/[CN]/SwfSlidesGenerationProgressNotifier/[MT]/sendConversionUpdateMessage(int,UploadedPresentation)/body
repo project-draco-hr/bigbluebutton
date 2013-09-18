@@ -1,0 +1,7 @@
+{
+  MessageBuilder builder=new ConversionUpdateMessage.MessageBuilder(pres);
+  builder.messageKey(ConversionMessageConstants.GENERATED_SLIDE_KEY);
+  builder.numberOfPages(pres.getNumberOfPages());
+  builder.pagesCompleted(slidesCompleted);
+  notifyProgressListener(builder.build().getMessage());
+}

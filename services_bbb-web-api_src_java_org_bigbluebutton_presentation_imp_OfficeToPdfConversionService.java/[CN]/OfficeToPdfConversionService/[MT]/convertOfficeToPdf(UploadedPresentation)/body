@@ -1,0 +1,14 @@
+{
+  initialize(pres);
+  if (SupportedFileTypes.isOfficeFile(pres.getFileType())) {
+    File pdfOutput=setupOutputPdfFile(pres);
+    if (convertOfficeDocToPdf(pres,pdfOutput)) {
+      log.info("Successfully converted office file to pdf.");
+      makePdfTheUploadedFileAndSetStepAsSuccess(pres,pdfOutput);
+    }
+ else {
+      log.warn("Failed to convert " + pres.getUploadedFile().getAbsolutePath() + " to Pdf.");
+    }
+  }
+  return pres;
+}

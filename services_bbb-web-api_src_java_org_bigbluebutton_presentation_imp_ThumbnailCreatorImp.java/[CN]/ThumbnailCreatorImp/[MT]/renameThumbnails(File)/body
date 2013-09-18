@@ -1,0 +1,21 @@
+{
+  if (dir.list().length > 1) {
+    File[] files=dir.listFiles();
+    Matcher matcher;
+    for (int i=0; i < files.length; i++) {
+      matcher=PAGE_NUMBER_PATTERN.matcher(files[i].getAbsolutePath());
+      if (matcher.matches()) {
+        int pageNum=Integer.valueOf(matcher.group(2).trim()).intValue();
+        String newFilename="thumb-" + (pageNum + 1) + ".png";
+        File renamedFile=new File(dir.getAbsolutePath() + File.separator + newFilename);
+        files[i].renameTo(renamedFile);
+      }
+    }
+  }
+ else   if (dir.list().length == 1) {
+    File oldFilename=new File(dir.getAbsolutePath() + File.separator + dir.list()[0]);
+    String newFilename="thumb-1.png";
+    File renamedFile=new File(oldFilename.getParent() + File.separator + newFilename);
+    oldFilename.renameTo(renamedFile);
+  }
+}

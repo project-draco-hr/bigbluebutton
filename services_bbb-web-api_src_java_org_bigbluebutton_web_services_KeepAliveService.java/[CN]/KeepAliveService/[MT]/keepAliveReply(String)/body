@@ -1,0 +1,7 @@
+{
+  System.out.println("Message received: " + aliveId);
+  if (task != null) {
+    System.out.println("let's check aliveId:" + aliveId);
+    task.checkAliveId(aliveId);
+  }
+}

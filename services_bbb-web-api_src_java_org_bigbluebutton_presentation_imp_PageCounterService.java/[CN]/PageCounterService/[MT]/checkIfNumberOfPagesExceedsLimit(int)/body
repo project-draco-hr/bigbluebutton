@@ -1,0 +1,7 @@
+{
+  if (numberOfPages > maxNumPages) {
+    log.warn("Number of pages greater than maximum [" + numberOfPages + ">"+ maxNumPages);
+    return true;
+  }
+  return false;
+}

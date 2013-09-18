@@ -1,0 +1,7 @@
+{
+  String fileType=pres.getFileType().toUpperCase();
+  if (("JPEG".equals(fileType)) || ("JPG".equals(fileType))) {
+    return jpgToSwfConverter;
+  }
+  return pngToSwfConverter;
+}
