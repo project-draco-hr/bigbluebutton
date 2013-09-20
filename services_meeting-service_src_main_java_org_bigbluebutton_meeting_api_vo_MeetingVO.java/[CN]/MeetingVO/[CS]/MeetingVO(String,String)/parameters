@@ -1,4 +1,2 @@
-String internalID
 String externalID
 String name
-String role
