@@ -1,3 +1,0 @@
-{
-  errors.add(new String[]{"noConfigFound","We could not find a config for this request."});
-}

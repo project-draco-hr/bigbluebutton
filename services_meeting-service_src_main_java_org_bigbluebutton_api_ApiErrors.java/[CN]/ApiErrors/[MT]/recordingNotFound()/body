@@ -1,3 +1,0 @@
-{
-  errors.add(new String[]{"recordingNotFound","We could not find a recording with that recordID."});
-}
