@@ -1,0 +1,11 @@
+{
+  int duration;
+  try {
+    duration=(int)Math.ceil((Long.parseLong(end) - Long.parseLong(start)) / 60000.0);
+  }
+ catch (  Exception e) {
+    log.debug(e.getMessage());
+    duration=0;
+  }
+  return duration;
+}

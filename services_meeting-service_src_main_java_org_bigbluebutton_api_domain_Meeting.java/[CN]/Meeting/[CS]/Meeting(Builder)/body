@@ -1,0 +1,21 @@
+{
+  name=builder.name;
+  extMeetingId=builder.externalId;
+  intMeetingId=builder.internalId;
+  viewerPass=builder.viewerPass;
+  moderatorPass=builder.moderatorPass;
+  maxUsers=builder.maxUsers;
+  logoutUrl=builder.logoutUrl;
+  defaultAvatarURL=builder.defaultAvatarURL;
+  record=builder.record;
+  duration=builder.duration;
+  webVoice=builder.webVoice;
+  telVoice=builder.telVoice;
+  welcomeMsg=builder.welcomeMsg;
+  dialNumber=builder.dialNumber;
+  metadata=builder.metadata;
+  createdTime=builder.createdTime;
+  userCustomData=new HashMap<String,Object>();
+  users=new ConcurrentHashMap<String,User>();
+  configs=new ConcurrentHashMap<String,Config>();
+}
