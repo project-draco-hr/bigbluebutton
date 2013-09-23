@@ -1,0 +1,9 @@
+{
+  if (StringUtils.isEmpty(params.get("checksum"))) {
+    errors.missingParamError("checksum");
+  }
+  String externalMeetingId=params.get("meetingID");
+  if (StringUtils.isEmpty(externalMeetingId)) {
+    errors.missingParamError("meetingID");
+  }
+}

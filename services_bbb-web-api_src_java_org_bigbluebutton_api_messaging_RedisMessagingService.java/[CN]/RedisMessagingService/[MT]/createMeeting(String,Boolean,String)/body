@@ -1,0 +1,9 @@
+{
+  HashMap<String,Object> map=new HashMap<String,Object>();
+  map.put("messageId",MessagingConstants.CREATE_MEETING_REQUEST_EVENT);
+  map.put("meetingID",meetingID);
+  map.put("record",recorded);
+  map.put("voiceBridge",voiceBridge);
+  Gson gson=new Gson();
+  send(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
+}

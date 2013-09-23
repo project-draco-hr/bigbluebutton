@@ -1,0 +1,3 @@
+ExceptionType type
+int pageCount
+int maxNumberOfPages

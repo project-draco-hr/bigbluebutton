@@ -1,0 +1,4 @@
+{
+  pres.setUploadedFile(pdf);
+  pres.setLastStepSuccessful(true);
+}

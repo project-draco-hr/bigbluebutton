@@ -1,0 +1,5 @@
+{
+  this.format=format;
+  this.url=url;
+  this.length=length;
+}

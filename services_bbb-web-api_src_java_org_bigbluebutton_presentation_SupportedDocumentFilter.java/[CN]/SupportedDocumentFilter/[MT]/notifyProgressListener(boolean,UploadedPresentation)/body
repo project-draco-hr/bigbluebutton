@@ -1,0 +1,18 @@
+{
+  MessageBuilder builder=new ConversionUpdateMessage.MessageBuilder(pres);
+  if (supported) {
+    builder.messageKey(ConversionMessageConstants.SUPPORTED_DOCUMENT_KEY);
+  }
+ else {
+    builder.messageKey(ConversionMessageConstants.UNSUPPORTED_DOCUMENT_KEY);
+  }
+  if (messagingService != null) {
+    Gson gson=new Gson();
+    String updateMsg=gson.toJson(builder.build().getMessage());
+    log.debug("sending: " + updateMsg);
+    messagingService.send(MessagingConstants.PRESENTATION_CHANNEL,updateMsg);
+  }
+ else {
+    log.warn("MessagingService has not been set!");
+  }
+}

@@ -1,0 +1,4 @@
+{
+  meetings=new ConcurrentHashMap<String,Meeting>();
+  sessions=new ConcurrentHashMap<String,UserSession>();
+}

@@ -1,0 +1,14 @@
+{
+  ArrayList<Recording> recs=new ArrayList<Recording>();
+  String[] format=getPlaybackFormats(path);
+  for (int i=0; i < format.length; i++) {
+    File[] recordings=getDirectories(path + File.separatorChar + format[i]);
+    for (int f=0; f < recordings.length; f++) {
+      if (recordings[f].getName().startsWith(meetingId)) {
+        Recording r=getRecordingInfo(path,recordings[f].getName(),format[i]);
+        if (r != null)         recs.add(r);
+      }
+    }
+  }
+  return recs;
+}
