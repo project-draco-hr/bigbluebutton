@@ -15,4 +15,7 @@ synchronized (this) {
       listener.participantLeft(p);
     }
   }
+  if (participants.isEmpty() && recording) {
+    changeRecordingStatus(p,false);
+  }
 }
