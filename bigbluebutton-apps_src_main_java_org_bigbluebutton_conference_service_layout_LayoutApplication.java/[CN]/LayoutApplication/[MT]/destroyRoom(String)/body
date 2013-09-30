@@ -1,6 +1,0 @@
-{
-  if (hasRoom(meetingID)) {
-    removeRoom(meetingID);
-  }
-  return true;
-}

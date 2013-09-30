@@ -1,8 +1,0 @@
-{
-  LayoutRoom r=getRoom(meetingID);
-  if (r != null) {
-    r.unlockLayout();
-    UpdateLayoutMessage msg=new UpdateLayoutMessage(r.getMeetingID(),r.isRecorded(),r.isLocked(),r.getSetByUserID(),r.getCurrentLayout());
-    outMessageGateway.send(msg);
-  }
-}
