@@ -1,6 +1,0 @@
-{
-  super(meetingID,recorded);
-  this.locked=locked;
-  this.setByUserID=setByUserID;
-  this.layout=layout;
-}

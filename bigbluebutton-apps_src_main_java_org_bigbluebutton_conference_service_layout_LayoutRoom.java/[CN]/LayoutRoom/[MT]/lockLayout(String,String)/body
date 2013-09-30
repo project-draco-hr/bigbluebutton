@@ -1,5 +1,0 @@
-{
-  locked=true;
-  this.setByUserID=setByUserID;
-  currentLayout=layout;
-}
