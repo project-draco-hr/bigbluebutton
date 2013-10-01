@@ -1,6 +1,0 @@
-{
-  DirectClientMessage m=new DirectClientMessage(getMeetingId(),chatobj.toUserID,"ChatReceivePrivateMessageCommand",chatobj.toMap());
-  connInvokerService.sendMessage(m);
-  DirectClientMessage m2=new DirectClientMessage(getMeetingId(),chatobj.fromUserID,"ChatReceivePrivateMessageCommand",chatobj.toMap());
-  connInvokerService.sendMessage(m2);
-}

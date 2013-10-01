@@ -1,4 +1,0 @@
-{
-  log.debug("In ChatRoomsManager get room " + name);
-  return rooms.get(name);
-}

@@ -1,0 +1,3 @@
+{
+  bbbInGW.sendPrivateMessage(meetingID,requesterID,message);
+}

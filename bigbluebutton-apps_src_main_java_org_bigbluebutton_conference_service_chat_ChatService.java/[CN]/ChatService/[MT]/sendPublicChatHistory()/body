@@ -1,4 +1,5 @@
 {
   String meetingID=Red5.getConnectionLocal().getScope().getName();
-  application.sendPublicChatHistory(meetingID);
+  String requesterID=getBbbSession().getInternalUserID();
+  application.sendPublicChatHistory(meetingID,requesterID);
 }

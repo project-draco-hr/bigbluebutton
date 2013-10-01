@@ -1,0 +1,3 @@
+{
+  bbbInGW.sendPublicMessage(meetingID,requesterID,message);
+}

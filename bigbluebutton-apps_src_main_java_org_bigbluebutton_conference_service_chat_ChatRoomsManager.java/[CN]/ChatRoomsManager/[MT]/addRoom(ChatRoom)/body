@@ -1,6 +1,0 @@
-{
-  log.debug("In ChatRoomsManager adding room " + room.getName());
-  if (!hasRoom(room.getName())) {
-    rooms.put(room.getName(),room);
-  }
-}
