@@ -1,4 +1,7 @@
 {
   log.info("WhiteboardApplication - Setting whiteboard enabled: " + (Boolean)message.get("enabled"));
-  application.enableWhiteboard((Boolean)message.get("enabled"));
+  String meetingID=getMeetingId();
+  String requesterID=getBbbSession().getInternalUserID();
+  Boolean enable=(Boolean)message.get("enabled");
+  application.setWhiteboardEnable(meetingID,requesterID,enable);
 }

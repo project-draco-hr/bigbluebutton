@@ -1,0 +1,3 @@
+{
+  bbbInGW.requestWhiteboardAnnotationHistory(meetingID,requesterID,presentationID,pageNum);
+}

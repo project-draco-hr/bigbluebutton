@@ -1,4 +1,8 @@
 {
   log.info("WhiteboardApplication - Setting active presentation: " + (String)message.get("presentationID"));
-  application.setActivePresentation((String)message.get("presentationID"),(Integer)message.get("numberOfSlides"));
+  String meetingID=getMeetingId();
+  String requesterID=getBbbSession().getInternalUserID();
+  String presentationID=(String)message.get("presentationID");
+  Integer numPages=(Integer)message.get("numberOfSlides");
+  application.setWhiteboardActivePresentation(meetingID,requesterID,presentationID,numPages);
 }

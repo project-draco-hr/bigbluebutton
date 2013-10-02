@@ -1,0 +1,3 @@
+{
+  bbbInGW.enableWhiteboard(meetingID,requesterID,enable);
+}
