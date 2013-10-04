@@ -1,5 +1,0 @@
-{
-  if (!annotations.isEmpty()) {
-    annotations.remove(annotations.size() - 1);
-  }
-}

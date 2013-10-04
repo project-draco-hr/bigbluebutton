@@ -1,9 +1,0 @@
-{
-  ToggleGridWhiteboardRecordEvent event=new ToggleGridWhiteboardRecordEvent();
-  event.setMeetingId(meetingID);
-  event.setTimestamp(System.currentTimeMillis());
-  event.setPresentation(presentationID);
-  event.setPageNumber(page);
-  event.setGridEnabled(enabled);
-  recorder.record(meetingID,event);
-}

@@ -1,4 +1,0 @@
-{
-  annotations=new ArrayList<Annotation>();
-  this.setPageIndex(pageIndex);
-}

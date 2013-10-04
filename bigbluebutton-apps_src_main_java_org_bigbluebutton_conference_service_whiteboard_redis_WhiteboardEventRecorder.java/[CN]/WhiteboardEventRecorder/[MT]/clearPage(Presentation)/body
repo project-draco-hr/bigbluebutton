@@ -1,8 +1,0 @@
-{
-  ClearPageWhiteboardRecordEvent event=new ClearPageWhiteboardRecordEvent();
-  event.setMeetingId(session);
-  event.setTimestamp(System.currentTimeMillis());
-  event.setPresentation(presentation.getName());
-  event.setPageNumber(presentation.getActivePage().getPageIndex());
-  recorder.record(session,event);
-}

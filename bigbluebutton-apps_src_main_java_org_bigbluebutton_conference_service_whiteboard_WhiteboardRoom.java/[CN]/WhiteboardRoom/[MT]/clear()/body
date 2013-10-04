@@ -1,4 +1,0 @@
-{
-  activePresentation.getActivePage().clear();
-  notifyClearPage(activePresentation);
-}

@@ -1,9 +1,0 @@
-String text
-int textColor
-int bgColor
-boolean bgColorVisible
-int x
-int y
-int textSize
-String id
-String status

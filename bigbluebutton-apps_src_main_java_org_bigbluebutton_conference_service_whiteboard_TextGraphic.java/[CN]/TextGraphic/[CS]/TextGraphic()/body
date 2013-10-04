@@ -1,3 +1,0 @@
-{
-  super(WBGraphic.Type.TEXT);
-}
