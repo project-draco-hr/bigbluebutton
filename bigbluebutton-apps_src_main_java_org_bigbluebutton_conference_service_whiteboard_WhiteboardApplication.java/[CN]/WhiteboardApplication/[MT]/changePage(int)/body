@@ -1,9 +1,0 @@
-{
-  String meetingID=getMeetingId();
-  if (rooms.containsKey(meetingID)) {
-    WhiteboardRoom room=rooms.get(meetingID);
-    Presentation pres=room.getActivePresentation();
-    pres.setActivePage(pageNum);
-    clientSender.changePage(meetingID,pageNum,pres.getActivePage().getNumShapesOnPage());
-  }
-}

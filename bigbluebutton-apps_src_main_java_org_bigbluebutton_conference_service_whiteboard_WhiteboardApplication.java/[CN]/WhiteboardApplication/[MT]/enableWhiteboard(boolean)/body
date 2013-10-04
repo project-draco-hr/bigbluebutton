@@ -1,8 +1,0 @@
-{
-  String meetingID=getMeetingId();
-  if (rooms.containsKey(meetingID)) {
-    WhiteboardRoom room=rooms.get(meetingID);
-    room.setWhiteboardEnabled(enabled);
-    clientSender.enableWhiteboard(meetingID,enabled);
-  }
-}

@@ -1,5 +1,3 @@
 {
-  rooms=new ConcurrentHashMap<String,WhiteboardRoom>();
-  log.debug("***** " + APP + " [ "+ " appStart [ "+ scope.getName()+ "] *********");
   return true;
 }

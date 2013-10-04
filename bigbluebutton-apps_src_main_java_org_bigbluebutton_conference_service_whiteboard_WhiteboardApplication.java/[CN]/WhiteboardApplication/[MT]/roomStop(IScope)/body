@@ -1,3 +1,2 @@
 {
-  rooms.remove(scope.getName());
 }
