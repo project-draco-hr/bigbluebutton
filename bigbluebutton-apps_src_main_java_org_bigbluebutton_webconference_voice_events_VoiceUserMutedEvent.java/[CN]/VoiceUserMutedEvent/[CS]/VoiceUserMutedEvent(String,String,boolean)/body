@@ -1,0 +1,5 @@
+{
+  super(room);
+  this.muted=muted;
+  this.userId=userId;
+}

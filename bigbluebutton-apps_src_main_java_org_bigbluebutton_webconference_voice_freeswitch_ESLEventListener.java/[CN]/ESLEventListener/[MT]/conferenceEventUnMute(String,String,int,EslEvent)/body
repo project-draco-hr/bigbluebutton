@@ -1,5 +1,5 @@
 {
   Integer memberId=this.getMemberIdFromEvent(event);
-  ParticipantMutedEvent pm=new ParticipantMutedEvent(memberId,confName,false);
+  VoiceUserMutedEvent pm=new VoiceUserMutedEvent(memberId.toString(),confName,false);
   conferenceEventListener.handleConferenceEvent(pm);
 }

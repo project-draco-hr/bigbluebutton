@@ -3,7 +3,7 @@
   Runnable sender=new Runnable(){
     public void run(){
       while (sendMessages) {
-        ConferenceEvent message;
+        VoiceConferenceEvent message;
         try {
           message=messages.take();
           sendMessageToBigBlueButton(message);

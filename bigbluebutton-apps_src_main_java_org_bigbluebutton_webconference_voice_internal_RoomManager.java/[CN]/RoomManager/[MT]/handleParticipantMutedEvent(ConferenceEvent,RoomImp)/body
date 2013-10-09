@@ -1,6 +1,0 @@
-{
-  log.debug("Processing ParticipantMutedEvent for room: " + event.getRoom());
-  ParticipantMutedEvent pme=(ParticipantMutedEvent)event;
-  ParticipantImp p=(ParticipantImp)rm.getParticipant(event.getParticipantId());
-  if (p != null)   p.setMuted(pme.isMuted());
-}

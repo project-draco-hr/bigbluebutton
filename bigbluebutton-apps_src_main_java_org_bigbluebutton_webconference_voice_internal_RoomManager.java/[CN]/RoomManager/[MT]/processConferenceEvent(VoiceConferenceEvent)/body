@@ -1,0 +1,30 @@
+{
+  log.debug("Processing event for room: " + event.getRoom());
+  RoomImp rm=rooms.get(event.getRoom());
+  if (rm == null) {
+    log.warn("Processing event for non-existing room: " + event.getRoom());
+    return;
+  }
+  if (event instanceof VoiceUserJoinedEvent) {
+    handleParticipantJoinedEvent(event,rm);
+  }
+ else   if (event instanceof VoiceUserLeftEvent) {
+    handleParticipantLeftEvent(event,rm);
+  }
+ else   if (event instanceof VoiceUserMutedEvent) {
+    handleParticipantMutedEvent(event,rm);
+  }
+ else   if (event instanceof VoiceUserTalkingEvent) {
+    handleParticipantTalkingEvent(event,rm);
+  }
+ else   if (event instanceof VoiceUserLockedEvent) {
+    handleParticipantLockedEvent(event,rm);
+  }
+ else   if (event instanceof VoiceStartRecordingEvent) {
+  }
+ else {
+    log.debug("Processing UnknownEvent " + event.getClass().getName() + " for room: "+ event.getRoom());
+    return;
+  }
+  recorder.recordConferenceEvent(event,rm.getMeeting());
+}

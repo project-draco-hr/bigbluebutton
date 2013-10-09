@@ -1,15 +1,15 @@
 {
   Integer memberId=this.getMemberIdFromEvent(event);
-  ParticipantTalkingEvent pt;
+  VoiceUserTalkingEvent pt;
   if (action == null) {
     return;
   }
   if (action.equals(START_TALKING_EVENT)) {
-    pt=new ParticipantTalkingEvent(memberId,confName,true);
+    pt=new VoiceUserTalkingEvent(memberId.toString(),confName,true);
     conferenceEventListener.handleConferenceEvent(pt);
   }
  else   if (action.equals(STOP_TALKING_EVENT)) {
-    pt=new ParticipantTalkingEvent(memberId,confName,false);
+    pt=new VoiceUserTalkingEvent(memberId.toString(),confName,false);
     conferenceEventListener.handleConferenceEvent(pt);
   }
  else {
