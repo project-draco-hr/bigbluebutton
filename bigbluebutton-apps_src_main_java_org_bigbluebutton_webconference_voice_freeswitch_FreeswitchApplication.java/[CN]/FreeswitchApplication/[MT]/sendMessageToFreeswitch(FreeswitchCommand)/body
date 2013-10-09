@@ -1,0 +1,20 @@
+{
+  if (command instanceof PopulateRoomCommand) {
+    manager.getUsers((PopulateRoomCommand)command);
+  }
+ else   if (command instanceof MuteParticipantCommand) {
+    manager.mute((MuteParticipantCommand)command);
+  }
+ else   if (command instanceof EjectParticipantCommand) {
+    manager.eject((EjectParticipantCommand)command);
+  }
+ else   if (command instanceof EjectAllUsersCommand) {
+    manager.ejectAll((EjectAllUsersCommand)command);
+  }
+ else   if (command instanceof RecordConferenceCommand) {
+    manager.record((RecordConferenceCommand)command);
+  }
+ else   if (command instanceof BroadcastConferenceCommand) {
+    manager.broadcast((BroadcastConferenceCommand)command);
+  }
+}

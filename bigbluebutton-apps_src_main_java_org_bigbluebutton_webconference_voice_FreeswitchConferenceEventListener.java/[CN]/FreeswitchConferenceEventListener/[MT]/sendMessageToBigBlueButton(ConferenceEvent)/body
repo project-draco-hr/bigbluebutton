@@ -1,0 +1,22 @@
+{
+  if (event instanceof ParticipantJoinedEvent) {
+    ParticipantJoinedEvent evt=(ParticipantJoinedEvent)event;
+    bbbInGW.voiceUserJoined(evt.getParticipantId(),evt.getRoom(),evt.getCallerIdNum(),evt.getCallerIdName(),evt.getMuted(),evt.getSpeaking());
+  }
+ else   if (event instanceof ParticipantLeftEvent) {
+    ParticipantLeftEvent evt=(ParticipantLeftEvent)event;
+    bbbInGW.voiceUserLeft(evt.getParticipantId(),evt.getRoom());
+  }
+ else   if (event instanceof ParticipantMutedEvent) {
+    ParticipantMutedEvent evt=(ParticipantMutedEvent)event;
+    bbbInGW.voiceUserMuted(evt.getParticipantId(),evt.getRoom(),evt.isMuted());
+  }
+ else   if (event instanceof ParticipantTalkingEvent) {
+    ParticipantTalkingEvent evt=(ParticipantTalkingEvent)event;
+    bbbInGW.voiceUserTalking(evt.getParticipantId(),evt.getRoom(),evt.isTalking());
+  }
+ else   if (event instanceof StartRecordingEvent) {
+    StartRecordingEvent evt=(StartRecordingEvent)event;
+    bbbInGW.voiceStartedRecording(evt.getRoom(),evt.getRecordingFilename(),evt.getTimestamp(),evt.startRecord());
+  }
+}

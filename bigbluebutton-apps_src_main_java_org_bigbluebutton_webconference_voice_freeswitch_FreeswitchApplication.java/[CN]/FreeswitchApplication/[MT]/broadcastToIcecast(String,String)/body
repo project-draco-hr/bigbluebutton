@@ -1,5 +1,5 @@
 {
   String shoutPath=icecastProtocol + "://" + icecastUsername+ ":"+ icecastPassword+ "@"+ icecastHost+ ":"+ icecastPort+ File.separatorChar+ meetingid+ "."+ icecastStreamExtension;
   BroadcastConferenceCommand rcc=new BroadcastConferenceCommand(room,USER,true,shoutPath);
-  manager.broadcast(rcc);
+  queueMessage(rcc);
 }

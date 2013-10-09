@@ -1,0 +1,19 @@
+{
+  sendMessages=true;
+  Runnable sender=new Runnable(){
+    public void run(){
+      while (sendMessages) {
+        ConferenceEvent message;
+        try {
+          message=messages.take();
+          sendMessageToBigBlueButton(message);
+        }
+ catch (        InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
+;
+  msgSenderExec.execute(sender);
+}
