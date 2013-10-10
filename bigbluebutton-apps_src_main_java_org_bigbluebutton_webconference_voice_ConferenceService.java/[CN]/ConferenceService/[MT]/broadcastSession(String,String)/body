@@ -1,3 +1,0 @@
-{
-  confProvider.broadcast(room,meetingid);
-}

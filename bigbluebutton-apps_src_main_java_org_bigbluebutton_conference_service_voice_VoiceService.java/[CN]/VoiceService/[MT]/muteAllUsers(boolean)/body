@@ -1,5 +1,5 @@
 {
-  String conference=getBbbSession().getVoiceBridge();
-  log.debug("Mute all users in room[" + conference + "]");
-  conferenceService.mute(conference,mute);
+  String meetingID=Red5.getConnectionLocal().getScope().getName();
+  String requesterID=getBbbSession().getInternalUserID();
+  bbbInGW.muteAllUsers(meetingID,requesterID,mute);
 }

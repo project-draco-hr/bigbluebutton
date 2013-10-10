@@ -1,3 +1,0 @@
-{
-  confProvider.record(room,meetingid);
-}

@@ -3,6 +3,6 @@
   evt.setMeetingId(room);
   evt.setTimestamp(System.currentTimeMillis());
   evt.setBridge(event.getRoom());
-  evt.setParticipant(event.getUserId().toString());
+  evt.setParticipant(((VoiceUserLeftEvent)event).getUserId().toString());
   recorder.record(room,evt);
 }

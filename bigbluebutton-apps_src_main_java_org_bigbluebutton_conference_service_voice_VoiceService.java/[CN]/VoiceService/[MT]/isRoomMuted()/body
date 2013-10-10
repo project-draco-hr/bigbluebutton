@@ -1,4 +1,5 @@
 {
-  String conference=getBbbSession().getVoiceBridge();
-  return conferenceService.isRoomMuted(conference);
+  String meetingID=Red5.getConnectionLocal().getScope().getName();
+  String requesterID=getBbbSession().getInternalUserID();
+  bbbInGW.isMeetingMuted(meetingID,requesterID);
 }

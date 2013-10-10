@@ -1,6 +1,0 @@
-{
-  if (roomMgr.hasParticipant(room,participant)) {
-    VoiceUserLockedEvent ple=new VoiceUserLockedEvent(participant.toString(),room,lock);
-    handleConferenceEvent(ple);
-  }
-}

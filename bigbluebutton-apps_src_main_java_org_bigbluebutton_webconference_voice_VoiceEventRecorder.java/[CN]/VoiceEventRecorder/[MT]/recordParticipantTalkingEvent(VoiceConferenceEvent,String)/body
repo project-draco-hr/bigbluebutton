@@ -4,7 +4,7 @@
   evt.setMeetingId(room);
   evt.setTimestamp(System.currentTimeMillis());
   evt.setBridge(event.getRoom());
-  evt.setParticipant(event.getUserId().toString());
+  evt.setParticipant(((VoiceUserTalkingEvent)event).getUserId().toString());
   evt.setTalking(pte.isTalking());
   recorder.record(room,evt);
 }

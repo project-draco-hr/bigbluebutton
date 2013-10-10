@@ -1,5 +1,0 @@
-{
-  String conference=getBbbSession().getVoiceBridge();
-  log.debug("MuteUnmute request for user [" + userid + "] in room["+ conference+ "]");
-  conferenceService.mute(userid.toString(),conference,mute);
-}
