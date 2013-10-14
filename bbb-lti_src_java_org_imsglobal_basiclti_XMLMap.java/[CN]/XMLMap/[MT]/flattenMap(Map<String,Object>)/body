@@ -1,0 +1,14 @@
+{
+  if (theMap == null)   return null;
+  TreeMap<String,String> retval=new TreeMap<String,String>();
+  Iterator<String> iter=theMap.keySet().iterator();
+  while (iter.hasNext()) {
+    String key=iter.next();
+    Object value=theMap.get(key);
+    if (value instanceof String) {
+      String svalue=(String)value;
+      if (value != null)       retval.put(key,svalue);
+    }
+  }
+  return retval;
+}

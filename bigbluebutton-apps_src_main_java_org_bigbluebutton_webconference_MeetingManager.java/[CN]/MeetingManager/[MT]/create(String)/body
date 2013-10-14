@@ -1,0 +1,4 @@
+{
+  Meeting m=new Meeting(id);
+  meetings.put(id,m);
+}

@@ -1,0 +1,5 @@
+{
+  String action="norecord";
+  if (record)   action="record";
+  return SPACE + getRoom() + SPACE+ action+ SPACE+ icecastPath;
+}

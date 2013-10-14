@@ -1,0 +1,6 @@
+{
+  message.requireParameters(OAuth.OAUTH_SIGNATURE_METHOD);
+  OAuthSignatureMethod signer=newMethod(message.getSignatureMethod(),accessor);
+  signer.setTokenSecret(accessor.tokenSecret);
+  return signer;
+}

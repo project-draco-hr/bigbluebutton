@@ -1,17 +1,47 @@
 {
   if (message.getMessageType() == Message.MessageType.BLOCK) {
+    long start=System.currentTimeMillis();
     Integer[] changedBlocks=((BlockMessage)message).getBlocks();
-    for (int i=0; i < changedBlocks.length; i++) {
-      EncodedBlockData block=retriever.getBlockToSend((Integer)changedBlocks[i]);
-      BlockVideoData bv=new BlockVideoData(room,block.getPosition(),block.getVideoData(),false);
-      sendBlockData(bv);
+    String blockSize="Http[" + id + "] Block length [";
+    String encodeTime="Http[" + id + "]Encode times [";
+    long encStart=0;
+    long encEnd=0;
+    int totalBytes=0;
+    long totalMillis=0;
+    ClientHttpRequest chr;
+    try {
+      System.out.println(getTimeStamp() + " Http[" + id+ "] Open connection. In sendBlockData");
+      openConnection();
+      chr=new ClientHttpRequest(conn);
+      chr.setParameter(ROOM,room);
+      chr.setParameter(EVENT,CaptureEvents.CAPTURE_UPDATE.getEvent());
+      for (int i=0; i < changedBlocks.length; i++) {
+        EncodedBlockData block=retriever.getBlockToSend((Integer)changedBlocks[i]);
+        String changed_blocks_upload_filename=BLOCKGROUP + "_" + seqNumGenerator.getNext()+ "_"+ block.getPosition();
+        chr.setParameter(changed_blocks_upload_filename,"block" + i,new ByteArrayInputStream(block.getVideoData()));
+      }
+      chr.post();
+      System.out.println(blockSize + "] total=" + totalBytes+ " bytes");
+      System.out.println(encodeTime + "] total=" + totalMillis+ " ms");
+      for (int i=0; i < changedBlocks.length; i++) {
+        retriever.blockSent((Integer)changedBlocks[i]);
+      }
+      long end=System.currentTimeMillis();
+      System.out.println("[HTTP " + id + "] Sending "+ changedBlocks.length+ " blocks took "+ (end - start)+ " millis");
     }
-    for (int i=0; i < changedBlocks.length; i++) {
-      retriever.blockSent((Integer)changedBlocks[i]);
+ catch (    IOException e) {
+      e.printStackTrace();
+    }
+catch (    ConnectionException e) {
+      System.out.println("ERROR: Failed to send block data.");
     }
   }
  else   if (message.getMessageType() == Message.MessageType.CURSOR) {
     CursorMessage msg=(CursorMessage)message;
-    sendCursor(msg.getMouseLocation(),msg.getRoom());
+    if (!msg.getMouseLocation().equals(previousMouseLocation)) {
+      System.out.println("SEND MOUSE: old=" + previousMouseLocation + " new="+ msg.getMouseLocation());
+      previousMouseLocation=msg.getMouseLocation();
+      sendCursor(previousMouseLocation,msg.getRoom());
+    }
   }
 }

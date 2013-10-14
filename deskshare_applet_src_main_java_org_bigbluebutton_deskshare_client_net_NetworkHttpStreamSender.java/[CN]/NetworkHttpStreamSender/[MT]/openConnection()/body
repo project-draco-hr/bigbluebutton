@@ -1,4 +1,5 @@
 {
+  long start=System.currentTimeMillis();
   try {
     url=new URL("http://" + host + SCREEN_CAPTURE__URL);
     conn=url.openConnection();
@@ -11,4 +12,6 @@ catch (  IOException e) {
     e.printStackTrace();
     throw new ConnectionException("IOException while connecting to " + url.toString());
   }
+  long end=System.currentTimeMillis();
+  System.out.println("Http[" + id + "] Open connection took ["+ (end - start)+ " ms]");
 }

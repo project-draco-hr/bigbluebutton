@@ -1,0 +1,4 @@
+{
+  Jedis jedis=PollApplication.dbConnect();
+  jedis.hset(pollKey,"status",status.toString());
+}

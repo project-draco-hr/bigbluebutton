@@ -1,0 +1,9 @@
+{
+  if (publicKey == null) {
+    throw new IllegalStateException("need to set public key with " + " OAuthConsumer.setProperty when " + "verifying RSA-SHA1 signatures.");
+  }
+  Signature verifier=Signature.getInstance("SHA1withRSA");
+  verifier.initVerify(publicKey);
+  verifier.update(message);
+  return verifier.verify(signature);
+}

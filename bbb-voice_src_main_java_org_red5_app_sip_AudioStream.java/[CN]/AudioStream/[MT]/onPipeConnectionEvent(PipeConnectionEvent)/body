@@ -12,24 +12,19 @@ if (event.getProvider() == this && (event.getParamMap() == null || !event.getPar
 break;
 case PipeConnectionEvent.PROVIDER_DISCONNECT:
 log.trace("PipeConnectionEvent.PROVIDER_DISCONNECT");
-System.out.println("PipeConnectionEvent.PROVIDER_DISCONNECT");
 if (this.livePipe == event.getSource()) {
 log.trace("PipeConnectionEvent.PROVIDER_DISCONNECT - this.mLivePipe = null;");
-System.out.println("PipeConnectionEvent.PROVIDER_DISCONNECT - this.mLivePipe = null;");
 this.livePipe=null;
 }
 break;
 case PipeConnectionEvent.CONSUMER_CONNECT_PUSH:
 log.trace("PipeConnectionEvent.CONSUMER_CONNECT_PUSH");
-System.out.println("PipeConnectionEvent.CONSUMER_CONNECT_PUSH");
 break;
 case PipeConnectionEvent.CONSUMER_DISCONNECT:
 log.trace("PipeConnectionEvent.CONSUMER_DISCONNECT");
-System.out.println("PipeConnectionEvent.CONSUMER_DISCONNECT");
 break;
 default :
 log.trace("PipeConnectionEvent default");
-System.out.println("PipeConnectionEvent default");
 break;
 }
 }

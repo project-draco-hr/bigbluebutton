@@ -4,7 +4,7 @@
     if (m.hasExpired(defaultMeetingExpireDuration)) {
       log.info("Removing expired meeting [id={} , name={}]",m.getInternalId(),m.getName());
       log.info("Expired meeting [start={} , end={}]",m.getStartTime(),m.getEndTime());
-      if (m.isRecord()) {
+      if (m.isRecord() && m.getNumUsers() == 0) {
         log.debug("[" + m.getInternalId() + "] is recorded. Process it.");
         processRecording(m.getInternalId());
       }
@@ -18,7 +18,6 @@
     }
     if (m.hasExceededDuration()) {
       log.info("Forcibly ending meeting [{} - {}]",m.getInternalId(),m.getName());
-      m.setForciblyEnded(true);
       endMeeting(m.getInternalId());
     }
   }

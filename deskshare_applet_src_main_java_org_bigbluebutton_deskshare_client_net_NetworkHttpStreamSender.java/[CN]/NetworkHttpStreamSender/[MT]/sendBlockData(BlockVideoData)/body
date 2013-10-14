@@ -1,6 +1,8 @@
 {
+  long start=System.currentTimeMillis();
   ClientHttpRequest chr;
   try {
+    System.out.println(getTimeStamp() + " Http[" + id+ "] Open connection. In sendBlockData");
     openConnection();
     chr=new ClientHttpRequest(conn);
     chr.setParameter(ROOM,blockData.getRoom());
@@ -18,4 +20,6 @@
 catch (  ConnectionException e) {
     System.out.println("ERROR: Failed to send block data.");
   }
+  long end=System.currentTimeMillis();
+  System.out.println(getTimeStamp() + " [HTTP " + id+ "] Sending "+ blockData.getVideoData().length+ " bytes took "+ (end - start)+ " ms");
 }

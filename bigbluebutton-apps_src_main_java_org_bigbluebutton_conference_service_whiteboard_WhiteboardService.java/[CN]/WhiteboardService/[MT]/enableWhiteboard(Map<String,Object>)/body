@@ -1,0 +1,4 @@
+{
+  log.info("WhiteboardApplication - Setting whiteboard enabled: " + (Boolean)message.get("enabled"));
+  application.enableWhiteboard((Boolean)message.get("enabled"));
+}

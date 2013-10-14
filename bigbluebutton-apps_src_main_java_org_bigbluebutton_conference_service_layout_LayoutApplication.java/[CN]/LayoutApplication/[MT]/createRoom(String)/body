@@ -1,0 +1,4 @@
+{
+  roomsManager.addRoom(new LayoutRoom(name));
+  return true;
+}

@@ -1,0 +1,11 @@
+{
+  InputStream input=source.openStream();
+  try {
+    Properties p=new Properties();
+    p.load(input);
+    return p;
+  }
+  finally {
+    input.close();
+  }
+}

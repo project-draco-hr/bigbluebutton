@@ -1,0 +1,6 @@
+Document document
+Node parentNode
+String key
+String value
+int nodePos
+int d

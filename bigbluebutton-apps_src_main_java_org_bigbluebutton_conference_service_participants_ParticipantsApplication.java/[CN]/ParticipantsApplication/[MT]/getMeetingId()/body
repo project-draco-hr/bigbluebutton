@@ -1,0 +1,3 @@
+{
+  return Red5.getConnectionLocal().getScope().getName();
+}

@@ -1,54 +1,44 @@
 {
-  socketSenders=new NetworkSocketStreamSender[numThreads];
-  int failedAttempts=0;
-  for (int i=0; i < numThreads; i++) {
-    try {
-      createSender(i);
-      numRunningThreads++;
-    }
- catch (    ConnectionException e) {
-      failedAttempts++;
-    }
-  }
-  if ((failedAttempts == numThreads) && httpTunnel) {
-    System.out.println(NAME + "Trying http tunneling");
-    failedAttempts=0;
-    numRunningThreads=0;
-    if (tryHttpTunneling()) {
-      tunneling=true;
-      System.out.println(NAME + "Will use http tunneling");
-      httpSenders=new NetworkHttpStreamSender[numThreads];
-      for (int i=0; i < numThreads; i++) {
-        try {
-          createHttpSender(i);
-          numRunningThreads++;
-        }
- catch (        ConnectionException e) {
-          failedAttempts++;
-        }
-      }
-      if (failedAttempts == numThreads) {
-        return false;
-      }
- else {
-        return true;
-      }
-    }
-  }
- else {
-    if (numRunningThreads != numThreads) {
+  if ((port != 0) && trySocketConnection(host,port)) {
+    socketSenders=new NetworkSocketStreamSender[numThreads];
+    for (int i=0; i < numThreads; i++) {
       try {
-        stop();
+        createSender(i);
+        numRunningThreads++;
       }
  catch (      ConnectionException e) {
-        e.printStackTrace();
+        System.out.println("Failed to connect using socket.");
       }
-      return false;
-    }
- else {
-      return true;
     }
   }
-  System.out.println(NAME + "Http tunneling failed.");
-  return false;
+ else {
+    if (httpTunnel) {
+      System.out.println(NAME + "Trying http tunneling");
+      numRunningThreads=0;
+      if (tryHttpTunneling()) {
+        tunneling=true;
+        System.out.println(NAME + "Will use http tunneling");
+        httpSenders=new NetworkHttpStreamSender[numThreads];
+        for (int i=0; i < numThreads; i++) {
+          try {
+            createHttpSender(i);
+            numRunningThreads++;
+          }
+ catch (          ConnectionException e) {
+            System.out.println("Failed to connect using http.");
+          }
+        }
+      }
+    }
+  }
+  if (numRunningThreads != numThreads) {
+    try {
+      stop();
+    }
+ catch (    ConnectionException e) {
+      System.out.println("Failed to stop deskshare applet.");
+    }
+    return false;
+  }
+  return true;
 }

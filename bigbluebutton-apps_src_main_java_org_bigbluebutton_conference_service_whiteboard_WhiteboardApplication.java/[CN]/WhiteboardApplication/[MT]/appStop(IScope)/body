@@ -1,3 +1,4 @@
 {
-  roomManager.removeRoom(getLocalScope().getName());
+  log.debug("***** " + APP + " [ "+ " appStop [ "+ scope.getName()+ "] *********");
+  roomManager.removeRoom(getMeetingId());
 }

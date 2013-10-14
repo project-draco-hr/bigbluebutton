@@ -1,0 +1,10 @@
+{
+  Presentation p=getPresentation(presentationID);
+  if (p != null) {
+    Page pg=p.getPage(pageNumber.intValue());
+    if (pg != null) {
+      return pg.getAnnotations();
+    }
+  }
+  return new ArrayList<Annotation>();
+}

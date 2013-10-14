@@ -1,10 +1,4 @@
 {
-  log.debug(APP + " - roomStart " + scope.getName());
-  if (!hasSharedObject(scope,VOICE_SO)) {
-    if (createSharedObject(scope,VOICE_SO,false)) {
-      return true;
-    }
-  }
-  log.error("Failed to start room " + scope.getName());
-  return false;
+  log.debug("***** " + APP + " [ "+ " roomStart [ "+ scope.getName()+ "] *********");
+  return true;
 }

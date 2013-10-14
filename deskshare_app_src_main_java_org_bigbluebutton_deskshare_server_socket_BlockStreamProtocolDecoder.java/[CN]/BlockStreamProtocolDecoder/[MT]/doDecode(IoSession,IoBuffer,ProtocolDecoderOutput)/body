@@ -1,13 +1,26 @@
 {
-  if (in.remaining() < 10)   return false;
-  byte[] header=new byte[HEADER.length];
   int start=in.position();
-  in.get(header,0,HEADER.length);
-  int messageLength=in.getInt();
-  if (in.remaining() < messageLength) {
-    in.position(start);
-    return false;
+  byte[] endFrame=new byte[END_FRAME.length];
+  int curpos=0;
+  while (in.remaining() >= END_FRAME.length) {
+    curpos=in.position();
+    in.get(endFrame);
+    if (Arrays.equals(endFrame,END_FRAME)) {
+      int position=in.position();
+      int limit=in.limit();
+      try {
+        in.position(start);
+        in.limit(position);
+        parseFrame(session,in.slice(),out);
+      }
+  finally {
+        in.position(position);
+        in.limit(limit);
+      }
+      return true;
+    }
+    in.position(curpos + 1);
   }
-  decodeMessage(session,in,out);
-  return true;
+  in.position(start);
+  return false;
 }

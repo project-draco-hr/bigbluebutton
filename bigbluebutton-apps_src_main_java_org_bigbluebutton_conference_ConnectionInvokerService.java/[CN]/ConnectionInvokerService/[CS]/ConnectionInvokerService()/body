@@ -1,0 +1,5 @@
+{
+  messages=new LinkedBlockingQueue<ClientMessage>();
+  connections=new ConcurrentHashMap<String,IConnection>();
+  scopes=new ConcurrentHashMap<String,IScope>();
+}

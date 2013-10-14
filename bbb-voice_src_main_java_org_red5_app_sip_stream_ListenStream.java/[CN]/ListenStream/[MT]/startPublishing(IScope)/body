@@ -6,8 +6,6 @@
   IContext context=aScope.getContext();
   IProviderService providerService=(IProviderService)context.getBean(IProviderService.BEAN_NAME);
   if (providerService.registerBroadcastStream(aScope,listenStreamName,broadcastStream)) {
-    IBroadcastScope bScope=(BroadcastScope)providerService.getLiveProviderInput(aScope,listenStreamName,true);
-    bScope.setAttribute(IBroadcastScope.STREAM_ATTRIBUTE,broadcastStream);
   }
  else {
     log.error("could not register broadcast stream");

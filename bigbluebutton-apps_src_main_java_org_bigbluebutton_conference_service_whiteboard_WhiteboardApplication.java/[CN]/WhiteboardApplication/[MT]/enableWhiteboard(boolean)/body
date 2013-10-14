@@ -1,7 +1,7 @@
 {
-  roomManager.getRoom(getLocalScope().getName()).setWhiteboardEnabled(enabled);
-  ISharedObject drawSO=getSharedObject(getLocalScope(),WHITEBOARD_SHARED_OBJECT);
-  List<Boolean> arguments=new ArrayList<Boolean>();
-  arguments.add(enabled);
-  drawSO.sendMessage("modifyEnabledCallback",arguments);
+  roomManager.getRoom(getMeetingId()).setWhiteboardEnabled(enabled);
+  Map<String,Object> message=new HashMap<String,Object>();
+  message.put("enabled",roomManager.getRoom(getMeetingId()).isWhiteboardEnabled());
+  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getMeetingId(),"WhiteboardEnableWhiteboardCommand",message);
+  connInvokerService.sendMessage(m);
 }

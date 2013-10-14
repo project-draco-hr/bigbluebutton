@@ -1,0 +1,19 @@
+{
+  OAuthConsumer consumer;
+synchronized (pool) {
+    consumer=pool.get(name);
+  }
+  if (consumer == null) {
+    consumer=newConsumer(name);
+  }
+synchronized (pool) {
+    OAuthConsumer first=pool.get(name);
+    if (first == null) {
+      pool.put(name,consumer);
+    }
+ else {
+      consumer=first;
+    }
+  }
+  return consumer;
+}

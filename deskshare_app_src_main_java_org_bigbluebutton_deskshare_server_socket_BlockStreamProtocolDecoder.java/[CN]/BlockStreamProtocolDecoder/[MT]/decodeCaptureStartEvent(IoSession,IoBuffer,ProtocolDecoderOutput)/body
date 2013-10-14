@@ -1,10 +1,16 @@
 {
   String room=decodeRoom(session,in);
+  if ("".equals(room)) {
+    log.warn("Empty meeting name in decoding capture start event.");
+    throw new Exception("Empty meeting name in decoding capture start event.");
+  }
   session.setAttribute(ROOM,room);
   int seqNum=in.getInt();
   Dimension blockDim=decodeDimension(in);
   Dimension screenDim=decodeDimension(in);
+  boolean useSVC2=(in.get() == 1);
+  in.get(new byte[END_FRAME.length]);
   log.info("CaptureStartEvent for " + room);
-  CaptureStartBlockEvent event=new CaptureStartBlockEvent(room,screenDim,blockDim,seqNum);
+  CaptureStartBlockEvent event=new CaptureStartBlockEvent(room,screenDim,blockDim,seqNum,useSVC2);
   out.write(event);
 }

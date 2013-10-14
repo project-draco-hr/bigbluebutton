@@ -1,0 +1,7 @@
+{
+  List<Object> args=new ArrayList<Object>();
+  args.add(locked);
+  args.add(modifierId);
+  args.add(currentLayout);
+  return args;
+}

@@ -1,0 +1,3 @@
+{
+  return getCharset(getHeader(CONTENT_TYPE));
+}

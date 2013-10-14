@@ -1,5 +1,9 @@
 {
   String room=decodeRoom(session,in);
+  if ("".equals(room)) {
+    log.warn("Empty meeting name in decoding capture start event.");
+    throw new Exception("Empty meeting name in decoding capture start event.");
+  }
   int seqNum=in.getInt();
   int numBlocks=in.getShort();
   String blocksStr="Blocks changed ";
@@ -13,4 +17,5 @@
     CaptureUpdateBlockEvent event=new CaptureUpdateBlockEvent(room,position,data,isKeyFrame,seqNum);
     out.write(event);
   }
+  in.get(new byte[END_FRAME.length]);
 }

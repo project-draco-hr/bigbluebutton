@@ -1,22 +1,35 @@
 {
   if (message.getMessageType() == Message.MessageType.BLOCK) {
+    long start=System.currentTimeMillis();
     ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
     dataToSend.reset();
     BlockStreamProtocolEncoder.encodeRoomAndSequenceNumber(room,seqNumGenerator.getNext(),dataToSend);
     Integer[] changedBlocks=((BlockMessage)message).getBlocks();
     BlockStreamProtocolEncoder.numBlocksChanged(changedBlocks.length,dataToSend);
-    String blocksStr="Encoding ";
+    String blockSize="Block length [";
+    String encodeTime="Encode times [";
+    long encStart=0;
+    long encEnd=0;
+    int totalBytes=0;
+    long totalMillis=0;
     for (int i=0; i < changedBlocks.length; i++) {
-      blocksStr+=" " + (Integer)changedBlocks[i];
+      encStart=System.currentTimeMillis();
       EncodedBlockData block=retriever.getBlockToSend((Integer)changedBlocks[i]);
+      totalBytes+=block.getVideoData().length;
+      blockSize+=block.getVideoData().length + ",";
+      encEnd=System.currentTimeMillis();
+      totalMillis+=(encEnd - encStart);
+      encodeTime+=(encEnd - encStart) + ",";
       BlockVideoData bv=new BlockVideoData(room,block.getPosition(),block.getVideoData(),false);
       BlockStreamProtocolEncoder.encodeBlock(bv,dataToSend);
     }
+    BlockStreamProtocolEncoder.encodeDelimiter(dataToSend);
     sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
     sendToStream(dataToSend);
     for (int i=0; i < changedBlocks.length; i++) {
       retriever.blockSent((Integer)changedBlocks[i]);
     }
+    long end=System.currentTimeMillis();
   }
  else   if (message.getMessageType() == Message.MessageType.CURSOR) {
     CursorMessage msg=(CursorMessage)message;
@@ -28,6 +41,7 @@
       ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
       dataToSend.reset();
       BlockStreamProtocolEncoder.encodeEndStreamMessage(room,dataToSend,seqNumGenerator.getNext());
+      BlockStreamProtocolEncoder.encodeDelimiter(dataToSend);
       sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
       sendToStream(dataToSend);
     }

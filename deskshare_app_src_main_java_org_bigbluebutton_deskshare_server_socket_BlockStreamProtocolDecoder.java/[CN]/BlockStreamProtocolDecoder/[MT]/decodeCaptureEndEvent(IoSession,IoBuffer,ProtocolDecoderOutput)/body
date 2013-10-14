@@ -1,12 +1,12 @@
 {
   String room=decodeRoom(session,in);
-  if (!"".equals(room)) {
-    log.info("CaptureEndEvent for " + room);
-    int seqNum=in.getInt();
-    CaptureEndBlockEvent event=new CaptureEndBlockEvent(room,seqNum);
-    out.write(event);
+  if ("".equals(room)) {
+    log.warn("Empty meeting name in decoding capture end event.");
+    throw new Exception("Empty meeting name in decoding capture end event.");
   }
- else {
-    log.warn("Room is empty.");
-  }
+  log.info("CaptureEndEvent for " + room);
+  int seqNum=in.getInt();
+  in.get(new byte[END_FRAME.length]);
+  CaptureEndBlockEvent event=new CaptureEndBlockEvent(room,seqNum);
+  out.write(event);
 }

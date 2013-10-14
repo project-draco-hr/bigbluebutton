@@ -1,0 +1,53 @@
+{
+  StringBuffer internalError=new StringBuffer();
+  if (major == null)   major=MAJOR_FAILURE;
+  if (severity == null && MAJOR_PROCESSING.equals(major))   severity=SEVERITY_STATUS;
+  if (severity == null && MAJOR_SUCCESS.equals(major))   severity=SEVERITY_STATUS;
+  if (severity == null)   severity=SEVERITY_ERROR;
+  if (messageId == null) {
+    Date dt=new Date();
+    messageId="" + dt.getTime();
+  }
+  StringBuffer sb=new StringBuffer();
+  if (minor != null && minor.size() > 0) {
+    for (    Object okey : minor.keySet()) {
+      String key=(String)okey;
+      String value=minor.getProperty(key);
+      if (key == null || value == null)       continue;
+      if (!inArray(validMinor,value)) {
+        if (internalError.length() > 0)         sb.append(", ");
+        internalError.append("Invalid imsx_codeMinorFieldValue=" + major);
+        continue;
+      }
+      if (sb.length() == 0)       sb.append("\n        <imsx_codeMinor>\n");
+      sb.append("          <imsx_codeMinorField>\n            <imsx_codeMinorFieldName>");
+      sb.append(key);
+      sb.append("</imsx_codeMinorFieldName>\n            <imsx_codeMinorFieldValue>");
+      sb.append(StringEscapeUtils.escapeXml(value));
+      sb.append("</imsx_codeMinorFieldValue>\n          </imsx_codeMinorField>\n");
+    }
+    if (sb.length() > 0)     sb.append("        </imsx_codeMinor>");
+  }
+  String minorString=sb.toString();
+  if (!inArray(validMajor,major)) {
+    if (internalError.length() > 0)     sb.append(", ");
+    internalError.append("Invalid imsx_codeMajor=" + major);
+  }
+  if (!inArray(validSeverity,severity)) {
+    if (internalError.length() > 0)     sb.append(", ");
+    internalError.append("Invalid imsx_severity=" + major);
+  }
+  if (internalError.length() > 0) {
+    description=description + " (Internal error: " + internalError.toString()+ ")";
+    Log.warning(internalError.toString());
+  }
+  if (bodyString == null)   bodyString="";
+  if (bodyString.startsWith("<?xml")) {
+    int pos=bodyString.indexOf("<",1);
+    if (pos > 0)     bodyString=bodyString.substring(pos);
+  }
+  bodyString=bodyString.trim();
+  String newLine="";
+  if (bodyString.length() > 0)   newLine="\n";
+  return String.format(responseMessage,StringEscapeUtils.escapeXml(messageId),StringEscapeUtils.escapeXml(major),StringEscapeUtils.escapeXml(severity),StringEscapeUtils.escapeXml(description),StringEscapeUtils.escapeXml(getHeaderMessageIdentifier()),StringEscapeUtils.escapeXml(operation),StringEscapeUtils.escapeXml(minorString),bodyString,newLine);
+}

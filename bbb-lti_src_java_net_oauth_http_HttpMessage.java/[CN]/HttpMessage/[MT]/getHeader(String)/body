@@ -1,0 +1,9 @@
+{
+  String value=null;
+  for (  Map.Entry<String,String> header : headers) {
+    if (equalsIgnoreCase(name,header.getKey())) {
+      value=header.getValue();
+    }
+  }
+  return value;
+}

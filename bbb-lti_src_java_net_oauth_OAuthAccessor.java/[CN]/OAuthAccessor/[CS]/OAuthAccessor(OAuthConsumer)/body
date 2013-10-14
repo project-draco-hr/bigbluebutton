@@ -1,0 +1,6 @@
+{
+  this.consumer=consumer;
+  this.requestToken=null;
+  this.accessToken=null;
+  this.tokenSecret=null;
+}

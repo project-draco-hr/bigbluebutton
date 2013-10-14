@@ -1,0 +1,4 @@
+{
+  if (x == null)   return y == null;
+ else   return x.equalsIgnoreCase(y);
+}

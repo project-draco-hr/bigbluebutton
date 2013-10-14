@@ -9,6 +9,7 @@
     String blockInfo=Integer.toString(block.getWidth()) + "x" + Integer.toString(block.getHeight());
     chr.setParameter(BLOCK,blockInfo);
     chr.setParameter(EVENT,CaptureEvents.CAPTURE_START.getEvent());
+    chr.setParameter(USE_SVC2,Boolean.toString(useSVC2));
     chr.post();
   }
  catch (  IOException e) {

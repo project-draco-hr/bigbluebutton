@@ -1,0 +1,27 @@
+{
+  if (tm == null)   return;
+  selection=selection.trim();
+  if (badSelection(selection))   return;
+  selection=selection.trim();
+  String childSel=selection;
+  String attrSel=selection;
+  if (!selection.endsWith("/")) {
+    childSel=selection + "/";
+    attrSel=selection + "!";
+  }
+  Set<String> delSet=new HashSet<String>();
+  Iterator iter=tm.keySet().iterator();
+  while (iter.hasNext()) {
+    Object key=iter.next();
+    if (!(key instanceof String))     continue;
+    String strKey=(String)key;
+    if (strKey.equals(selection) || strKey.startsWith(childSel) || strKey.startsWith(attrSel)) {
+      delSet.add(strKey);
+    }
+  }
+  Iterator<String> setIter=delSet.iterator();
+  while (setIter.hasNext()) {
+    String key=setIter.next();
+    tm.remove(key);
+  }
+}

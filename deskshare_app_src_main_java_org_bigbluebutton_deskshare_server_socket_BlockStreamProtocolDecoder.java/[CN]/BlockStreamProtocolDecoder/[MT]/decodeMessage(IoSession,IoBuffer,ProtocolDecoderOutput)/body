@@ -2,15 +2,14 @@
   byte event=in.get();
 switch (event) {
 case CAPTURE_START_EVENT:
-    System.out.println("Decoding CAPTURE_START_EVENT");
+    log.info("Decoding CAPTURE_START_EVENT");
   decodeCaptureStartEvent(session,in,out);
 break;
 case CAPTURE_UPDATE_EVENT:
 decodeCaptureUpdateEvent(session,in,out);
 break;
 case CAPTURE_END_EVENT:
-log.warn("Got CAPTURE_END_EVENT event: " + event);
-System.out.println("Got CAPTURE_END_EVENT event: " + event);
+log.info("Got CAPTURE_END_EVENT event: " + event);
 decodeCaptureEndEvent(session,in,out);
 break;
 case MOUSE_LOCATION_EVENT:
@@ -18,5 +17,6 @@ decodeMouseLocationEvent(session,in,out);
 break;
 default :
 log.error("Unknown event: " + event);
+throw new Exception("Unknown event: " + event);
 }
 }

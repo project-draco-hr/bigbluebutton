@@ -1,6 +1,0 @@
-double[] shape
-String type
-int color
-int thickness
-double parentWidth
-double parentHeight

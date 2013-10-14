@@ -1,3 +1,4 @@
 {
+  confProvider.ejectAll(room);
   roomMgr.destroyRoom(room);
 }

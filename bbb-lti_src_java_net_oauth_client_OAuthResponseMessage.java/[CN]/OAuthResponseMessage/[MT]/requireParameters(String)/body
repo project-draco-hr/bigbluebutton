@@ -1,0 +1,9 @@
+{
+  try {
+    super.requireParameters(names);
+  }
+ catch (  OAuthProblemException problem) {
+    problem.getParameters().putAll(getDump());
+    throw problem;
+  }
+}

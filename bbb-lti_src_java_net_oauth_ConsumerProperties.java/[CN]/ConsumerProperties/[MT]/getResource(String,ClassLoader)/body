@@ -1,0 +1,7 @@
+{
+  URL resource=loader.getResource(name);
+  if (resource == null) {
+    throw new IOException("resource not found: " + name);
+  }
+  return resource;
+}

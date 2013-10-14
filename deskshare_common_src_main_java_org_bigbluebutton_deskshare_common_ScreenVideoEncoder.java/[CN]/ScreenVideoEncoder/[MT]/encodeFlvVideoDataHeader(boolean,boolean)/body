@@ -1,0 +1,3 @@
+{
+  return (byte)((isKeyFrame ? FLV_KEYFRAME : FLV_INTERFRAME) + (useSVC2 ? SCREEN_VIDEO_CODEC_V2_ID : SCREEN_VIDEO_CODEC_ID));
+}

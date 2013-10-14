@@ -1,0 +1,7 @@
+{
+  Set<String> s=new HashSet<String>();
+  for (  String p : new String[]{OAuth.OAUTH_CONSUMER_KEY,OAuth.OAUTH_TOKEN,OAuth.OAUTH_TOKEN_SECRET,OAuth.OAUTH_CALLBACK,OAuth.OAUTH_SIGNATURE_METHOD,OAuth.OAUTH_SIGNATURE,OAuth.OAUTH_TIMESTAMP,OAuth.OAUTH_NONCE,OAuth.OAUTH_VERSION}) {
+    s.add(p);
+  }
+  return Collections.unmodifiableSet(s);
+}

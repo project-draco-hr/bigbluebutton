@@ -1,0 +1,20 @@
+{
+  List<Parameter> list=new ArrayList<Parameter>();
+  if (!isEmpty(form)) {
+    for (    String nvp : form.split("\\&")) {
+      int equals=nvp.indexOf('=');
+      String name;
+      String value;
+      if (equals < 0) {
+        name=decodePercent(nvp);
+        value=null;
+      }
+ else {
+        name=decodePercent(nvp.substring(0,equals));
+        value=decodePercent(nvp.substring(equals + 1));
+      }
+      list.add(new Parameter(name,value));
+    }
+  }
+  return list;
+}

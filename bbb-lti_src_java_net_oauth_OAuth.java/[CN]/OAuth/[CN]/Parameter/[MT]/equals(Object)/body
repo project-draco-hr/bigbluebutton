@@ -1,0 +1,15 @@
+{
+  if (this == obj)   return true;
+  if (obj == null)   return false;
+  if (getClass() != obj.getClass())   return false;
+  final Parameter that=(Parameter)obj;
+  if (key == null) {
+    if (that.key != null)     return false;
+  }
+ else   if (!key.equals(that.key))   return false;
+  if (value == null) {
+    if (that.value != null)     return false;
+  }
+ else   if (!value.equals(that.value))   return false;
+  return true;
+}

@@ -1,0 +1,4 @@
+{
+  activePresentation.getActivePage().addAnnotation(annotation);
+  notifyAddShape(activePresentation,annotation);
+}

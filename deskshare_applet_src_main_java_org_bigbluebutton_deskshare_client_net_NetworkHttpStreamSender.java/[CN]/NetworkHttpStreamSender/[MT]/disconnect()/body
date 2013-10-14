@@ -1,5 +1,6 @@
 {
   try {
+    System.out.println("Http[" + id + "] Open connection. In disconnect");
     openConnection();
     sendCaptureEndEvent();
   }

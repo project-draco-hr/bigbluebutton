@@ -1,0 +1,14 @@
+{
+  paletteIndex=new int[32768];
+  for (int r=4; r < 256; r+=8) {
+    for (int g=4; g < 256; g+=8) {
+      for (int b=4; b < 256; b+=8) {
+        int rgb=b | (g << 8) | (r << 16);
+        int c15=(b >> 3) | ((g & 0xf8) << 2) | ((r & 0xf8) << 7);
+        int index=computePaletteIndexForColor(rgb);
+        paletteIndex[c15]=index;
+      }
+    }
+  }
+  return 0;
+}

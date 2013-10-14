@@ -1,5 +1,6 @@
 {
   try {
+    System.out.println("Http[" + id + "] Open connection. In sendStartStreamMessage");
     openConnection();
     sendCaptureStartEvent(screenDim,blockDim);
   }

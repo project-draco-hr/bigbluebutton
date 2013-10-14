@@ -1,8 +1,13 @@
 {
   String room=decodeRoom(session,in);
+  if ("".equals(room)) {
+    log.warn("Empty meeting name in decoding mouse location.");
+    throw new Exception("Empty meeting name in decoding mouse location.");
+  }
   int seqNum=in.getInt();
   int mouseX=in.getInt();
   int mouseY=in.getInt();
+  in.get(new byte[END_FRAME.length]);
   MouseLocationEvent event=new MouseLocationEvent(room,new Point(mouseX,mouseY),seqNum);
   out.write(event);
 }

@@ -1,6 +1,7 @@
 {
   ClientHttpRequest chr;
   try {
+    System.out.println("Http[" + id + "] Open connection. In sendCursor");
     openConnection();
     chr=new ClientHttpRequest(conn);
     chr.setParameter(ROOM,room);

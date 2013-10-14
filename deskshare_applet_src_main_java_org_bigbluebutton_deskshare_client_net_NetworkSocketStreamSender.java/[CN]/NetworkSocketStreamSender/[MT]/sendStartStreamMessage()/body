@@ -2,7 +2,8 @@
   try {
     ByteArrayOutputStream dataToSend=new ByteArrayOutputStream();
     dataToSend.reset();
-    BlockStreamProtocolEncoder.encodeStartStreamMessage(room,screenDim,blockDim,dataToSend,seqNumGenerator.getNext());
+    BlockStreamProtocolEncoder.encodeStartStreamMessage(room,screenDim,blockDim,dataToSend,seqNumGenerator.getNext(),useSVC2);
+    BlockStreamProtocolEncoder.encodeDelimiter(dataToSend);
     sendHeader(BlockStreamProtocolEncoder.encodeHeaderAndLength(dataToSend));
     sendToStream(dataToSend);
   }

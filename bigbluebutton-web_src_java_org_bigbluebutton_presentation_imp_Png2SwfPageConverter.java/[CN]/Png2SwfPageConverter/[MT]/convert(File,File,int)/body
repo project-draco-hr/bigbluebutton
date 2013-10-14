@@ -1,20 +1,7 @@
 {
   String COMMAND=SWFTOOLS_DIR + "/png2swf -o " + output.getAbsolutePath()+ " "+ presentationFile.getAbsolutePath();
-  Process process;
-  try {
-    process=Runtime.getRuntime().exec(COMMAND);
-    int exitValue=process.waitFor();
-    if (exitValue != 0) {
-      log.warn("Exit Value != 0 while for " + COMMAND);
-    }
-  }
- catch (  IOException e) {
-    log.error("IOException while processing " + COMMAND);
-  }
-catch (  InterruptedException e) {
-    log.error("InterruptedException while processing " + COMMAND);
-  }
-  if (output.exists()) {
+  boolean done=new ExternalProcessExecutor().exec(COMMAND,60000);
+  if (done && output.exists()) {
     return true;
   }
  else {
