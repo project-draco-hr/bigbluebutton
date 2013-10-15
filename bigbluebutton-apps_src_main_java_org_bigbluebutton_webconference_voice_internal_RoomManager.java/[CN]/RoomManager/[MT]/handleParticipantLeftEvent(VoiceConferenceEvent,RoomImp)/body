@@ -1,9 +1,5 @@
 {
-  log.debug("Processing ParticipantLeftEvent for room: " + event.getRoom());
-  rm.remove(event.getUserId());
   if ((rm.numParticipants() == 0) && (rm.record())) {
-    log.debug("Stopping recording of voice conference");
-    log.warn(" ** WARNING: Prototyping only. Works only with FreeSWITCH for now. We need to come up with a generic way to trigger recording for both Asterisk and FreeSWITCH.");
     rm.recording(false);
   }
 }

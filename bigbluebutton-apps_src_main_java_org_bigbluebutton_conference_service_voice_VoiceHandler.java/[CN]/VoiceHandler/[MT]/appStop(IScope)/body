@@ -1,4 +1,3 @@
 {
   log.debug("***** " + APP + " [ "+ " appStop [ "+ scope.getName()+ "] *********");
-  conferenceService.shutdown();
 }

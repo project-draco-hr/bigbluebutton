@@ -1,5 +1,4 @@
 {
-  log.debug("Creating room: " + name);
   RoomImp r=new RoomImp(name,record,meetingid);
   rooms.putIfAbsent(name,r);
 }
