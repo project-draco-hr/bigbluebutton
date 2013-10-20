@@ -1,0 +1,4 @@
+{
+  JOptionPane.showMessageDialog(this,warning,"Java Version Error",JOptionPane.ERROR_MESSAGE);
+  stop();
+}

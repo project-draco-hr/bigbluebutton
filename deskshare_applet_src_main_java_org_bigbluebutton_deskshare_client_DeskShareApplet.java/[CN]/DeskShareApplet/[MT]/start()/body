@@ -1,7 +1,19 @@
 {
   System.out.println("Desktop Sharing Applet Starting");
   super.start();
-  client=new DeskshareClient.NewBuilder().host(hostValue).port(portValue).room(roomValue).captureWidth(cWidthValue).captureHeight(cHeightValue).scaleWidth(sWidthValue).scaleHeight(sHeightValue).quality(qualityValue).autoScale(0.8).x(xValue).y(yValue).fullScreen(fullScreenValue).useSVC2(useSVC2Value).httpTunnel(tunnelValue).trayIcon(icon).enableTrayIconActions(false).build();
-  client.addClientListener(this);
-  client.start();
+  System.out.println("**** JAVA VERSION = [" + getJavaVersionRuntime() + "]");
+  Pattern p=Pattern.compile(JAVA_VERSION_PATTERN);
+  Matcher matcher=p.matcher(getJavaVersionRuntime());
+  if (matcher.matches()) {
+    int jreVersion=Integer.valueOf(matcher.group(1).trim()).intValue();
+    if (jreVersion < MIN_JRE_VERSION) {
+      displayJavaWarning("You don't have the minimum java version required to run this applet.");
+    }
+ else {
+      allowDesktopSharing();
+    }
+  }
+ else {
+    displayJavaWarning("Cannot determine java version.");
+  }
 }
