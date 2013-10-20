@@ -7,13 +7,13 @@
   if (matcher.matches()) {
     int jreVersion=Integer.valueOf(matcher.group(1).trim()).intValue();
     if (jreVersion < MIN_JRE_VERSION) {
-      displayJavaWarning("You don't have the minimum java version required to run this applet.");
+      displayJavaWarning(VERSION_ERROR_MSG);
     }
  else {
       allowDesktopSharing();
     }
   }
  else {
-    displayJavaWarning("Cannot determine java version.");
+    displayJavaWarning(VERSION_ERROR_MSG);
   }
 }
