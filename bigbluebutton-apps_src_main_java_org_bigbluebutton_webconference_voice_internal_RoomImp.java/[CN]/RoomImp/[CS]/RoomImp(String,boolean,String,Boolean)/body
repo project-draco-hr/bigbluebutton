@@ -1,0 +1,7 @@
+{
+  this.name=name;
+  this.record=record;
+  this.meetingid=meetingid;
+  this.muted=muted;
+  participants=new ConcurrentHashMap<Integer,Participant>();
+}

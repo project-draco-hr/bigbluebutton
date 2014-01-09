@@ -1,0 +1,9 @@
+{
+  if (roomMgr.hasRoom(room)) {
+    roomMgr.mute(room,mute);
+    ArrayList<Participant> p=getParticipants(room);
+    for (    Participant o : p) {
+      if (dontMuteThese == null || !dontMuteThese.contains(o.getId()))       muteParticipant(o.getId(),room,mute);
+    }
+  }
+}
