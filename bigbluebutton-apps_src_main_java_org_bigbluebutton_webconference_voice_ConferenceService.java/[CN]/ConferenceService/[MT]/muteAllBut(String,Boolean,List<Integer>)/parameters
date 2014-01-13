@@ -1,0 +1,3 @@
+String room
+Boolean mute
+List<Integer> dontMuteThese

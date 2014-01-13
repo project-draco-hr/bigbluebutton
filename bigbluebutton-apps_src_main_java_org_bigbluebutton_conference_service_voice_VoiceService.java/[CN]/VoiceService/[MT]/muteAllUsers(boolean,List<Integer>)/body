@@ -1,0 +1,5 @@
+{
+  String conference=getBbbSession().getVoiceBridge();
+  log.debug("Mute all users in room[" + conference + "], dontLockThese list size = "+ dontMuteThese.size());
+  conferenceService.muteAllBut(conference,mute,dontMuteThese);
+}

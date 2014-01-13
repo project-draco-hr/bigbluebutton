@@ -7,14 +7,31 @@
   boolean record=(Boolean)params[4];
   String externalUserID=((String)params[5]).toString();
   String internalUserID=((String)params[6]).toString();
+  Boolean locked=false;
+  if (params.length >= 7 && ((Boolean)params[7])) {
+    locked=true;
+  }
+  Boolean muted=false;
+  if (params.length >= 8 && ((Boolean)params[8])) {
+    muted=true;
+  }
+  Map<String,Boolean> lsMap=null;
+  if (params.length >= 9) {
+    try {
+      lsMap=(Map<String,Boolean>)params[9];
+    }
+ catch (    Exception e) {
+      lsMap=new HashMap<String,Boolean>();
+    }
+  }
   if (record == true) {
     recorderApplication.createRecordSession(room);
   }
-  BigBlueButtonSession bbbSession=new BigBlueButtonSession(room,internalUserID,username,role,voiceBridge,record,externalUserID);
+  BigBlueButtonSession bbbSession=new BigBlueButtonSession(room,internalUserID,username,role,voiceBridge,record,externalUserID,muted);
   connection.setAttribute(Constants.SESSION,bbbSession);
   String debugInfo="internalUserID=" + internalUserID + ",username="+ username+ ",role="+ role+ ","+ ",voiceConf="+ voiceBridge+ ",room="+ room+ ",externalUserid="+ externalUserID;
   log.debug("User [{}] connected to room [{}]",debugInfo,room);
-  participantsApplication.createRoom(room);
+  participantsApplication.createRoom(room,locked,new LockSettings(lsMap));
   connInvokerService.addConnection(bbbSession.getInternalUserID(),connection);
   return super.roomConnect(connection,params);
 }

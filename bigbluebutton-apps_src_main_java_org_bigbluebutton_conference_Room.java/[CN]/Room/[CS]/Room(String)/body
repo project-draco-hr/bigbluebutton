@@ -1,5 +1,0 @@
-{
-  this.name=name;
-  participants=new ConcurrentHashMap<String,User>();
-  listeners=new ConcurrentHashMap<String,IRoomListener>();
-}

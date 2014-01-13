@@ -1,0 +1,21 @@
+{
+  log.debug("setAllUsersLock ({}, {})",new Object[]{lock,dontLockTheseUsers});
+  String roomID=getBbbSession().getRoom();
+  RoomsManager rm=application.getRoomsManager();
+  Room room=rm.getRoom(roomID);
+  room.setLocked(lock);
+  Map<String,User> roomUserMap=application.getParticipants(roomID);
+  Collection<User> allUsers=roomUserMap.values();
+  for (  User user : allUsers) {
+    if (lock && user.isModerator() && !room.getLockSettings().getAllowModeratorLocking()) {
+      log.debug("setAllUsersLock::Will not set lock for user " + user.getInternalUserID() + " because it's a moderator and allowModeratorLocking is false");
+      continue;
+    }
+    if (lock && dontLockTheseUsers.contains(user.getInternalUserID())) {
+      log.debug("setAllUsersLock::Will not lock user " + user.getInternalUserID());
+      continue;
+    }
+    log.debug("setAllUsersLock::Will lock user " + user.getInternalUserID());
+    application.setParticipantStatus(roomID,user.getInternalUserID(),"locked",lock);
+  }
+}

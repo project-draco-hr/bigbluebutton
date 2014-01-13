@@ -1,0 +1,7 @@
+{
+  this.name=name;
+  this.locked=locked;
+  this.lockSettings=lockSettings;
+  participants=new ConcurrentHashMap<String,User>();
+  listeners=new ConcurrentHashMap<String,IRoomListener>();
+}
