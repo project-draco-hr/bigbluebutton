@@ -1,0 +1,8 @@
+{
+  this.lockSettings=lockSettings;
+  for (Iterator it=listeners.values().iterator(); it.hasNext(); ) {
+    IRoomListener listener=(IRoomListener)it.next();
+    log.debug("calling setLockSettings on listener " + listener.getName());
+    listener.lockSettingsChange(lockSettings.toMap());
+  }
+}

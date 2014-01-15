@@ -1,7 +1,0 @@
-String room
-String internalUserID
-String username
-String role
-String voiceBridge
-Boolean record
-String externalUserID

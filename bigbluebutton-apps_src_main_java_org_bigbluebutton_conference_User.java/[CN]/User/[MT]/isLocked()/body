@@ -1,0 +1,3 @@
+{
+  return ((Boolean)getStatus().get("locked"));
+}

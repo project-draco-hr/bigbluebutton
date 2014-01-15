@@ -1,8 +1,18 @@
 {
   log.debug("participant joining room " + roomName);
   if (roomsManager.hasRoom(roomName)) {
-    User p=new User(userid,username,role,externUserID,status);
     Room room=roomsManager.getRoom(roomName);
+    Boolean userLocked=false;
+    LockSettings ls=room.getLockSettings();
+    if (room.isLocked()) {
+      if (!"MODERATOR".equals(role))       userLocked=true;
+ else {
+        if (ls.getAllowModeratorLocking()) {
+          userLocked=true;
+        }
+      }
+    }
+    User p=new User(userid,username,role,externUserID,status,userLocked);
     room.addParticipant(p);
     log.debug("participant joined room " + roomName);
     return true;

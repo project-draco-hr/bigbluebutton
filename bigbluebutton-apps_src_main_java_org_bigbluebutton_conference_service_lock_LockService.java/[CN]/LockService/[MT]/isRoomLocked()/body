@@ -1,0 +1,6 @@
+{
+  String roomID=getBbbSession().getRoom();
+  RoomsManager rm=application.getRoomsManager();
+  Room room=rm.getRoom(roomID);
+  return room.isLocked();
+}
