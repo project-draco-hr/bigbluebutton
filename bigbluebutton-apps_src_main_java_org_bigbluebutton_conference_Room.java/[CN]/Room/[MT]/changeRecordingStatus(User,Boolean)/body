@@ -1,0 +1,9 @@
+{
+  log.debug("Changed recording status to " + recording);
+  this.recording=recording;
+  for (Iterator it=listeners.values().iterator(); it.hasNext(); ) {
+    IRoomListener listener=(IRoomListener)it.next();
+    log.debug("calling recordingStatusChange on listener " + listener.getName());
+    listener.recordingStatusChange(p,recording);
+  }
+}

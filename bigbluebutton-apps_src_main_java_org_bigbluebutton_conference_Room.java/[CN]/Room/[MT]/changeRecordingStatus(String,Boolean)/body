@@ -1,0 +1,13 @@
+{
+  boolean present=false;
+  User p=null;
+synchronized (this) {
+    present=participants.containsKey(userid);
+    if (present) {
+      p=participants.get(userid);
+    }
+  }
+  if (present && recording != this.recording) {
+    changeRecordingStatus(p,recording);
+  }
+}

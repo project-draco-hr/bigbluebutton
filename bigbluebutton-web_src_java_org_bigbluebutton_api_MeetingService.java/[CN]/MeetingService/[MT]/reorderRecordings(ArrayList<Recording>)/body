@@ -8,13 +8,13 @@
       r.setMeetingID(mid);
       r.setName(name);
       ArrayList<Playback> plays=new ArrayList<Playback>();
-      plays.add(new Playback(r.getPlaybackFormat(),r.getPlaybackLink(),getDurationRecording(r.getEndTime(),r.getStartTime())));
+      plays.add(new Playback(r.getPlaybackFormat(),r.getPlaybackLink(),getDurationRecording(r.getPlaybackDuration(),r.getEndTime(),r.getStartTime())));
       r.setPlaybacks(plays);
       map.put(r.getId(),r);
     }
  else {
       Recording rec=map.get(r.getId());
-      rec.getPlaybacks().add(new Playback(r.getPlaybackFormat(),r.getPlaybackLink(),getDurationRecording(r.getEndTime(),r.getStartTime())));
+      rec.getPlaybacks().add(new Playback(r.getPlaybackFormat(),r.getPlaybackLink(),getDurationRecording(r.getPlaybackDuration(),r.getEndTime(),r.getStartTime())));
     }
   }
   return map;
