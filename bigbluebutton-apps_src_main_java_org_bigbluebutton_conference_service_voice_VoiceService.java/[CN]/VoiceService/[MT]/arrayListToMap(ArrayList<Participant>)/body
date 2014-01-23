@@ -7,7 +7,6 @@
     pmap.put("name",p.getName());
     pmap.put("muted",p.isMuted());
     pmap.put("talking",p.isTalking());
-    pmap.put("locked",p.isMuteLocked());
     log.debug("[" + p.getId() + ","+ p.getName()+ ","+ p.isMuted()+ ","+ p.isTalking()+ "]");
     result.put(p.getId(),pmap);
   }

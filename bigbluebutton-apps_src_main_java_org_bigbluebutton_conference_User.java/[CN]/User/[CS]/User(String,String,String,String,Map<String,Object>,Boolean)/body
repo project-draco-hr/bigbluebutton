@@ -1,0 +1,9 @@
+{
+  this.internalUserID=internalUserID;
+  this.name=name;
+  this.role=role;
+  this.externalUserID=externalUserID;
+  this.status=new ConcurrentHashMap<String,Object>(status);
+  unmodifiableStatus=Collections.unmodifiableMap(status);
+  setStatus("locked",locked);
+}

@@ -1,0 +1,9 @@
+{
+  HashMap<String,Boolean> lsMap=new HashMap<String,Boolean>();
+  lsMap.put("allowModeratorLocking",allowModeratorLocking);
+  lsMap.put("disableCam",disableCam);
+  lsMap.put("disableMic",disableMic);
+  lsMap.put("disablePrivateChat",disablePrivateChat);
+  lsMap.put("disablePublicChat",disablePublicChat);
+  return lsMap;
+}

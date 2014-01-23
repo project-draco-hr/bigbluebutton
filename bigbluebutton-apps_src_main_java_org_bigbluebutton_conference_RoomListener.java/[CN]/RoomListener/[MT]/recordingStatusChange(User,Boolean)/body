@@ -1,0 +1,6 @@
+{
+  List list=new ArrayList();
+  list.add(p.getInternalUserID());
+  list.add(recording);
+  so.sendMessage("recordingStatusChange",list);
+}

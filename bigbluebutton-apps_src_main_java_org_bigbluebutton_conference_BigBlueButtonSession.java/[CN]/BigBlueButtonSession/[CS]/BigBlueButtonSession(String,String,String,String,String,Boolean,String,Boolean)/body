@@ -1,0 +1,10 @@
+{
+  this.internalUserID=internalUserID;
+  this.username=username;
+  this.role=role;
+  this.room=room;
+  this.voiceBridge=voiceBridge;
+  this.record=record;
+  this.externalUserID=externalUserID;
+  this.startAsMuted=startAsMuted;
+}
