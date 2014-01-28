@@ -1,0 +1,5 @@
+{
+  cleanupTimer=new Timer("keep-alive-task",true);
+  task=new KeepAliveTask();
+  cleanupTimer.scheduleAtFixedRate(task,5000,runEvery);
+}

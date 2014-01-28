@@ -1,0 +1,6 @@
+{
+  int numPages=pres.getNumberOfPages();
+  ImageToSwfSlide[] slides=setupSlides(pres,numPages,pageConverter);
+  generateSlides(slides);
+  handleSlideGenerationResult(pres,slides);
+}

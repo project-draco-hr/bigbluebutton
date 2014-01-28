@@ -13,10 +13,18 @@
     responseBody=responseBody.trim().replaceFirst("^([\\W]+)<","<");
     ByteArrayInputStream bs=new ByteArrayInputStream(responseBody.getBytes());
     sp.parse(bs,confXML);
-    ParticipantJoinedEvent pj;
+    VoiceUserJoinedEvent pj;
     for (    ConferenceMember member : confXML.getConferenceList()) {
       log.debug("conf list member [{}] for room [{}].",member.getId(),confXML.getConferenceRoom());
-      pj=new ParticipantJoinedEvent(member.getId(),confXML.getConferenceRoom(),member.getCallerId(),member.getCallerIdName(),member.getMuted(),member.getSpeaking());
+      String callerId=member.getCallerId();
+      String callerIdName=member.getCallerIdName();
+      String voiceUserId=callerIdName;
+      Matcher matcher=CALLERNAME_PATTERN.matcher(callerIdName);
+      if (matcher.matches()) {
+        voiceUserId=matcher.group(1).trim();
+        callerIdName=matcher.group(2).trim();
+      }
+      pj=new VoiceUserJoinedEvent(voiceUserId,member.getId().toString(),confXML.getConferenceRoom(),callerId,callerIdName,member.getMuted(),member.getSpeaking());
       eventListener.handleConferenceEvent(pj);
     }
   }

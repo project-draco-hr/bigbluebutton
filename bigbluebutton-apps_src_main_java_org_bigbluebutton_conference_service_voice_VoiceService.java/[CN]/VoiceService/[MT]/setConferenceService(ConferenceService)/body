@@ -1,5 +1,0 @@
-{
-  log.debug("Setting voice server");
-  conferenceService=s;
-  log.debug("Setting voice server DONE");
-}

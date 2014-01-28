@@ -1,0 +1,3 @@
+{
+  return StringUtils.isEmpty(pass) ? RandomStringUtils.randomAlphanumeric(8) : pass;
+}

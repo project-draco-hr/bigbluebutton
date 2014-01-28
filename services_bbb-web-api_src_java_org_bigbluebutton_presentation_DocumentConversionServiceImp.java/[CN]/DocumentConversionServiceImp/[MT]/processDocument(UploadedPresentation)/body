@@ -1,0 +1,23 @@
+{
+  SupportedDocumentFilter sdf=new SupportedDocumentFilter(messagingService);
+  if (sdf.isSupported(pres)) {
+    String fileType=pres.getFileType();
+    if (SupportedFileTypes.isOfficeFile(fileType)) {
+      officeToPdfConversionService.convertOfficeToPdf(pres);
+      OfficeToPdfConversionSuccessFilter ocsf=new OfficeToPdfConversionSuccessFilter(messagingService);
+      if (ocsf.didConversionSucceed(pres)) {
+        processDocument(pres);
+      }
+    }
+ else     if (SupportedFileTypes.isPdfFile(fileType)) {
+      pdfToSwfSlidesGenerationService.generateSlides(pres);
+    }
+ else     if (SupportedFileTypes.isImageFile(fileType)) {
+      imageToSwfSlidesGenerationService.generateSlides(pres);
+    }
+ else {
+    }
+  }
+ else {
+  }
+}

@@ -1,0 +1,43 @@
+{
+  long MAXWAIT=MAX_CONVERSION_TIME * 60 * 1000;
+  List<FutureTask<PdfToSwfSlide>> tasks=new ArrayList<FutureTask<PdfToSwfSlide>>(slides.size());
+  for (  final PdfToSwfSlide slide : slides) {
+    Callable<PdfToSwfSlide> c=new Callable<PdfToSwfSlide>(){
+      public PdfToSwfSlide call(){
+        return slide.createSlide();
+      }
+    }
+;
+    FutureTask<PdfToSwfSlide> task=new FutureTask<PdfToSwfSlide>(c);
+    tasks.add(task);
+    completionService.submit(c);
+  }
+  int slidesCompleted=0;
+  for (  final PdfToSwfSlide slide : slides) {
+    Future<PdfToSwfSlide> future=null;
+    try {
+      future=completionService.poll(MAXWAIT,TimeUnit.MILLISECONDS);
+      if (future != null) {
+        PdfToSwfSlide s=future.get();
+        slidesCompleted++;
+        notifier.sendConversionUpdateMessage(slidesCompleted,pres);
+      }
+ else {
+        log.info("Timedout waiting for page to finish conversion.");
+      }
+    }
+ catch (    InterruptedException e) {
+      log.error("InterruptedException while creating slide " + pres.getName());
+    }
+catch (    ExecutionException e) {
+      log.error("ExecutionException while creating slide " + pres.getName());
+    }
+  }
+  for (  final PdfToSwfSlide slide : slides) {
+    if (!slide.isDone()) {
+      log.warn("Creating blank slide for " + slide.getPageNumber());
+      slide.generateBlankSlide();
+      notifier.sendConversionUpdateMessage(slidesCompleted++,pres);
+    }
+  }
+}

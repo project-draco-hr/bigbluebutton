@@ -1,0 +1,3 @@
+{
+  bbbInGW.setActivePresentation(meetingID,requesterID,presentationID,numPages);
+}

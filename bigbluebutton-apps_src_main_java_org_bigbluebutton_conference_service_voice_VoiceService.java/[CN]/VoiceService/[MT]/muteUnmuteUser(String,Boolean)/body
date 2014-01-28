@@ -1,0 +1,5 @@
+{
+  String meetingID=Red5.getConnectionLocal().getScope().getName();
+  String requesterID=getBbbSession().getInternalUserID();
+  bbbInGW.muteUser(meetingID,requesterID,userid,mute);
+}

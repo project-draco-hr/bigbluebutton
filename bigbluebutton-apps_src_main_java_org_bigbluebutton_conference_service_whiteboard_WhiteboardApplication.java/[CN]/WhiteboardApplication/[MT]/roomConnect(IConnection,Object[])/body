@@ -1,11 +1,3 @@
 {
-  boolean record=getBbbSession().getRecord();
-  if (record) {
-    String meetingID=connection.getScope().getName();
-    if (rooms.containsKey(meetingID)) {
-      WhiteboardRoom wbMeeting=rooms.get(meetingID);
-      wbMeeting.record(record);
-    }
-  }
   return true;
 }

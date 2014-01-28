@@ -1,0 +1,10 @@
+{
+  Meeting m=getMeeting(meetingId);
+  if (m != null) {
+    User user=new User(internalUserId,externalUserId,name,role);
+    m.userJoined(user);
+    log.debug("New user in meeting " + meetingId + ":"+ user.getFullname());
+    return;
+  }
+  log.warn("The meeting " + meetingId + " doesn't exist");
+}

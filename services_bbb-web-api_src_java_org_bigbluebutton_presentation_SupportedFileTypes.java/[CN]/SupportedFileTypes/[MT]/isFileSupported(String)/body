@@ -1,0 +1,3 @@
+{
+  return SUPPORTED_FILE_LIST.contains(fileExtension.toLowerCase());
+}

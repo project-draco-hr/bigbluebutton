@@ -1,0 +1,6 @@
+String room
+String participant
+String name
+Boolean muted
+Boolean talking
+Boolean locked

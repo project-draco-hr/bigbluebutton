@@ -1,0 +1,23 @@
+{
+  if (event instanceof VoiceUserJoinedEvent) {
+    recordParticipantJoinedEvent(event,room);
+  }
+ else   if (event instanceof VoiceUserLeftEvent) {
+    recordParticipantLeftEvent(event,room);
+  }
+ else   if (event instanceof VoiceUserMutedEvent) {
+    recordParticipantMutedEvent(event,room);
+  }
+ else   if (event instanceof VoiceUserTalkingEvent) {
+    recordParticipantTalkingEvent(event,room);
+  }
+ else   if (event instanceof VoiceUserLockedEvent) {
+    recordParticipantLockedEvent(event,room);
+  }
+ else   if (event instanceof VoiceStartRecordingEvent) {
+    recordStartRecordingEvent(event,room);
+  }
+ else {
+    log.debug("Processing UnknownEvent " + event.getClass().getName() + " for room: "+ event.getRoom());
+  }
+}

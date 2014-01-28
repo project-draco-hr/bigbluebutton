@@ -1,6 +1,0 @@
-Integer participantId
-String room
-String callerIdNum
-String callerIdName
-Boolean muted
-Boolean speaking

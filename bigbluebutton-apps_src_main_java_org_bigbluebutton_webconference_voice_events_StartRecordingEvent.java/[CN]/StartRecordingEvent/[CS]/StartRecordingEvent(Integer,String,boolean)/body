@@ -1,4 +1,0 @@
-{
-  super(participantId,room);
-  this.record=record;
-}

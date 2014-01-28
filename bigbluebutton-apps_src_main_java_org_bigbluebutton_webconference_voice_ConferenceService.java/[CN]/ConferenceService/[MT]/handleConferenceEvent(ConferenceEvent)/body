@@ -1,4 +1,0 @@
-{
-  roomMgr.processConferenceEvent(event);
-  clientManager.handleConferenceEvent(event);
-}

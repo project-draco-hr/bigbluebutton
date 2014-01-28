@@ -1,0 +1,3 @@
+{
+  bbbInGW.getChatHistory(meetingID,requesterID);
+}

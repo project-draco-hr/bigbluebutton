@@ -1,0 +1,11 @@
+{
+  VoiceStartRecordingEvent sre=(VoiceStartRecordingEvent)event;
+  StartRecordingVoiceRecordEvent evt=new StartRecordingVoiceRecordEvent(sre.startRecord());
+  evt.setMeetingId(room);
+  evt.setTimestamp(System.currentTimeMillis());
+  evt.setBridge(event.getRoom());
+  evt.setRecordingTimestamp(sre.getTimestamp());
+  evt.setFilename(sre.getRecordingFilename());
+  System.out.println("*** Recording voice " + sre.startRecord() + " timestamp: "+ evt.toMap().get("recordingTimestamp")+ " file: "+ evt.toMap().get("filename"));
+  recorder.record(room,evt);
+}

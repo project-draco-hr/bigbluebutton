@@ -1,0 +1,3 @@
+{
+  bbbInGW.isWhiteboardEnabled(meetingID,requesterID);
+}

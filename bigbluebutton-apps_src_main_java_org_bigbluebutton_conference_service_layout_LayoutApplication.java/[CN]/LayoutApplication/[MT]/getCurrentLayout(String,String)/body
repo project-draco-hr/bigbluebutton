@@ -1,7 +1,3 @@
 {
-  LayoutRoom r=getRoom(meetingID);
-  if (r != null) {
-    GetCurrentLayoutResponseMessage msg=new GetCurrentLayoutResponseMessage(meetingID,r.isRecorded(),requesterID,r.isLocked(),r.getSetByUserID(),r.getCurrentLayout());
-    outMessageGateway.send(msg);
-  }
+  bbbInGW.getCurrentLayout(meetingID,requesterID);
 }

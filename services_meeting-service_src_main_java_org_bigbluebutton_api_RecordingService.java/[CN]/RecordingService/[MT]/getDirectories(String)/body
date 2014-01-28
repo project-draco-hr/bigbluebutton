@@ -1,0 +1,10 @@
+{
+  File dir=new File(path);
+  FileFilter fileFilter=new FileFilter(){
+    public boolean accept(    File file){
+      return file.isDirectory();
+    }
+  }
+;
+  return dir.listFiles(fileFilter);
+}

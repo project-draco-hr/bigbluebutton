@@ -1,0 +1,3 @@
+{
+  bbbInGW.unlockLayout(meetingID,requesterID);
+}

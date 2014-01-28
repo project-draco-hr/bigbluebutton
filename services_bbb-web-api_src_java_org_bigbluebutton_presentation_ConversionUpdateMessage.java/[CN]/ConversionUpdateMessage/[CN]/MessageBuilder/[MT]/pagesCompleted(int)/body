@@ -1,0 +1,4 @@
+{
+  message.put("pagesCompleted",pagesCompleted);
+  return this;
+}

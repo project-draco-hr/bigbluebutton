@@ -1,3 +1,0 @@
-{
-  if (roomMgr.hasParticipant(room,participant))   muteParticipant(participant,room,mute);
-}

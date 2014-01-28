@@ -1,0 +1,4 @@
+{
+  super(room);
+  this.userId=userId;
+}

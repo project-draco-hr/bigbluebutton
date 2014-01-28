@@ -1,3 +1,0 @@
-{
-  confProvider.mute(room,participant,mute);
-}

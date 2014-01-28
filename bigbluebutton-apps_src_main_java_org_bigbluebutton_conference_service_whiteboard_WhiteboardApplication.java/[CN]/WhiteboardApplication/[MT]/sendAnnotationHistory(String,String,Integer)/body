@@ -1,8 +1,0 @@
-{
-  String meetingID=getMeetingId();
-  if (rooms.containsKey(meetingID)) {
-    WhiteboardRoom room=rooms.get(meetingID);
-    List<Annotation> annotations=room.getAnnotations(presentationID,pageNumber);
-    clientSender.sendAnnotationHistory(meetingID,userID,presentationID,pageNumber,annotations);
-  }
-}

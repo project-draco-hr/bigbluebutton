@@ -1,4 +1,0 @@
-{
-  log.debug("In ChatRoomsManager constructor");
-  rooms=new ConcurrentHashMap<String,ChatRoom>();
-}

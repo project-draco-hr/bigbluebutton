@@ -1,8 +1,0 @@
-{
-  Map<String,Object> message=new HashMap<String,Object>();
-  message.put("locked",msg.isLocked());
-  message.put("setByUserID",msg.getSetByUserID());
-  message.put("layout",msg.getLayout());
-  BroadcastClientMessage m=new BroadcastClientMessage(msg.getMeetingID(),"remoteUpdateLayout",message);
-  service.sendMessage(m);
-}

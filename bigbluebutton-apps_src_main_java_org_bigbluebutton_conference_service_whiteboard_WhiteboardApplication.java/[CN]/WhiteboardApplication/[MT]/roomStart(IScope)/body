@@ -1,6 +1,3 @@
 {
-  String meetingID=scope.getName();
-  WhiteboardRoom newRoom=new WhiteboardRoom(meetingID,false);
-  rooms.put(meetingID,newRoom);
   return true;
 }

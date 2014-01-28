@@ -3,5 +3,5 @@
   if (rm != null) {
     return rm.getUserWithID(userID);
   }
-  return -1;
+  return "";
 }

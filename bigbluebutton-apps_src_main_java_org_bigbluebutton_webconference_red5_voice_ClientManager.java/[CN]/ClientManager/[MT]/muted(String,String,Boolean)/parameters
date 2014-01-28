@@ -1,0 +1,3 @@
+String room
+String participant
+Boolean muted

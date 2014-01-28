@@ -1,0 +1,10 @@
+{
+  try {
+    counterService.determineNumberOfPages(pres);
+    return true;
+  }
+ catch (  CountingPageException e) {
+    sendFailedToCountPageMessage(e,pres);
+  }
+  return false;
+}

@@ -1,7 +1,0 @@
-{
-  super(participantId,room);
-  this.callerIdName=callerIdName;
-  this.callerIdNum=callerIdNum;
-  this.muted=muted;
-  this.speaking=speaking;
-}

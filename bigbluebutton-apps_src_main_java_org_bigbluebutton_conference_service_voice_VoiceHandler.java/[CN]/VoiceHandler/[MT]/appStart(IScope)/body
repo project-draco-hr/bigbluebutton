@@ -1,4 +1,4 @@
 {
   log.debug("***** " + APP + " [ "+ " appStart [ "+ scope.getName()+ "] *********");
-  return conferenceService.startup();
+  return true;
 }

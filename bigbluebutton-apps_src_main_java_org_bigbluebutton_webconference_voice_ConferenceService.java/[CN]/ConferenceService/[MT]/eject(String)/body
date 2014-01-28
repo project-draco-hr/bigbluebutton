@@ -1,8 +1,0 @@
-{
-  if (roomMgr.hasRoom(room)) {
-    ArrayList<Participant> p=getParticipants(room);
-    for (    Participant o : p) {
-      ejectParticipant(room,o.getId());
-    }
-  }
-}

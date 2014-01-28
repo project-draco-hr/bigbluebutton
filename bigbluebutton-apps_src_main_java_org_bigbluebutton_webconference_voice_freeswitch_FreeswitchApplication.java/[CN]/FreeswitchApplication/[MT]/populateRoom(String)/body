@@ -1,4 +1,4 @@
 {
   PopulateRoomCommand prc=new PopulateRoomCommand(room,USER);
-  manager.getUsers(prc);
+  queueMessage(prc);
 }

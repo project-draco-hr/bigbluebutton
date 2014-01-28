@@ -1,9 +1,0 @@
-{
-  AddShapeWhiteboardRecordEvent event=new AddShapeWhiteboardRecordEvent();
-  event.setMeetingId(meetingID);
-  event.setTimestamp(System.currentTimeMillis());
-  event.setPresentation(presentationID);
-  event.setPageNumber(page);
-  event.addAnnotation(annotation.getAnnotation());
-  recorder.record(meetingID,event);
-}

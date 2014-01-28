@@ -1,4 +1,2 @@
 {
-  log.debug("***** " + APP + " [ "+ " appStop [ "+ scope.getName()+ "] *********");
-  rooms.clear();
 }

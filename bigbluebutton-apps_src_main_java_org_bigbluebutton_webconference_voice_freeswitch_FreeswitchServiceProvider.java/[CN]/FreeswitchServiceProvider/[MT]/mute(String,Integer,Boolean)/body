@@ -1,3 +1,0 @@
-{
-  appDelegate.mute(room,participant,mute);
-}

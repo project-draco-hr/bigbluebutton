@@ -1,0 +1,7 @@
+{
+  RoomImp rm=rooms.get(room);
+  if (rm != null) {
+    ParticipantImp p=(ParticipantImp)rm.getParticipant(participant);
+    if (p != null)     p.setLock(lock);
+  }
+}

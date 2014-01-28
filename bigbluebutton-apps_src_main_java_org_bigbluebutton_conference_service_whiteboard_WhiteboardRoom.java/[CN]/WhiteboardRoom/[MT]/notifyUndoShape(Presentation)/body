@@ -1,4 +1,0 @@
-{
-  for (Iterator<IWhiteboardRoomListener> iter=listeners.values().iterator(); iter.hasNext(); ) {
-  }
-}

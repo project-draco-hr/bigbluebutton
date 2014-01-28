@@ -1,7 +1,0 @@
-{
-  for (int i=0; i < presentations.size(); i++) {
-    Presentation pres=presentations.get(i);
-    if (pres.getName().equals(name))     return pres;
-  }
-  return null;
-}

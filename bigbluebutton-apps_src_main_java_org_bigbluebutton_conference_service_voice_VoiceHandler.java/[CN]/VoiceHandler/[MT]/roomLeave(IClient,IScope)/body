@@ -5,6 +5,5 @@
     String voiceBridge=(String)scope.getAttribute(VOICE_BRIDGE);
     String userID=getBbbSession().getExternUserID();
     log.info("User has left the meeting. Try to hangup user=[" + userID + "] from ["+ voiceBridge+ "] ");
-    conferenceService.hangupUser(userID,voiceBridge);
   }
 }

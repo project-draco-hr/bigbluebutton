@@ -1,0 +1,3 @@
+String meetingID
+String requesterID
+Map<String,String> message

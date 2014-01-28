@@ -1,0 +1,22 @@
+{
+  if (event instanceof VoiceUserJoinedEvent) {
+    VoiceUserJoinedEvent pje=(VoiceUserJoinedEvent)event;
+    joined(pje.getRoom(),pje.getUserId(),pje.getCallerIdName(),pje.getMuted(),pje.getSpeaking(),pje.isLocked());
+  }
+ else   if (event instanceof VoiceUserLeftEvent) {
+    VoiceUserLeftEvent vule=(VoiceUserLeftEvent)event;
+    left(event.getRoom(),vule.getUserId());
+  }
+ else   if (event instanceof VoiceUserMutedEvent) {
+    VoiceUserMutedEvent pme=(VoiceUserMutedEvent)event;
+    muted(pme.getRoom(),pme.getUserId(),pme.isMuted());
+  }
+ else   if (event instanceof VoiceUserTalkingEvent) {
+    VoiceUserTalkingEvent pte=(VoiceUserTalkingEvent)event;
+    talking(pte.getRoom(),pte.getUserId(),pte.isTalking());
+  }
+ else   if (event instanceof VoiceUserLockedEvent) {
+    VoiceUserLockedEvent ple=(VoiceUserLockedEvent)event;
+    locked(ple.getRoom(),ple.getUserId(),ple.isLocked());
+  }
+}

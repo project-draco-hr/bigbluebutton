@@ -1,4 +1,5 @@
 {
-  Annotation a=new Annotation(annotation);
-  application.sendAnnotation(a);
+  String meetingID=getMeetingId();
+  String requesterID=getBbbSession().getInternalUserID();
+  application.sendWhiteboardAnnotation(meetingID,requesterID,annotation);
 }

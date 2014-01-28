@@ -1,0 +1,15 @@
+{
+  if (StringUtils.isEmpty(securitySalt)) {
+    log.warn("Security is disabled in this service. Make sure this is intentional.");
+    return true;
+  }
+  String cs=DigestUtils.shaHex(meetingID + configXML + securitySalt);
+  log.debug("our checksum: [{}], client: [{}]",cs,checksum);
+  System.out.println("our checksum: [" + cs + "] client: ["+ checksum+ "]");
+  if (cs == null || cs.equals(checksum) == false) {
+    log.info("checksumError: request did not pass the checksum security check");
+    return false;
+  }
+  log.debug("checksum ok: request passed the checksum security check");
+  return true;
+}

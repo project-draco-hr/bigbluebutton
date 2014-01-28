@@ -1,0 +1,3 @@
+{
+  VoiceUserTalkingEvent pte=(VoiceUserTalkingEvent)event;
+}
