@@ -1,15 +1,4 @@
 {
   log.debug("setUserLock ({}, {}, {})",new Object[]{lock,internalUserID});
-  String roomID=getBbbSession().getRoom();
-  Map<String,User> roomUserMap=application.getParticipants(roomID);
-  User user=null;
-  if ((user=roomUserMap.get(internalUserID)) != null) {
-    RoomsManager rm=application.getRoomsManager();
-    Room room=rm.getRoom(roomID);
-    if (lock && user.isModerator() && !room.getLockSettings().getAllowModeratorLocking()) {
-      log.debug("setUserLock::Will not set lock for user " + user.getInternalUserID() + " because it's a moderator and allowModeratorLocking is false");
-      return;
-    }
-    application.setParticipantStatus(roomID,user.getInternalUserID(),"locked",lock);
-  }
+  log.error("TODO: Need to implement!");
 }

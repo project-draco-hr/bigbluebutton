@@ -1,2 +1,4 @@
 {
+  bbbInGW.userJoin(roomName,userid,username,role,externUserID);
+  return true;
 }

@@ -3,5 +3,5 @@
   this.record=record;
   this.meetingid=meetingid;
   this.muted=muted;
-  participants=new ConcurrentHashMap<Integer,Participant>();
+  participants=new ConcurrentHashMap<String,Participant>();
 }

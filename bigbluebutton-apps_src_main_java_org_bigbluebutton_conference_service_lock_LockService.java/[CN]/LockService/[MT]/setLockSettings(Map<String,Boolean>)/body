@@ -1,6 +1,4 @@
 {
   String roomID=getBbbSession().getRoom();
-  RoomsManager rm=application.getRoomsManager();
-  Room room=rm.getRoom(roomID);
-  room.setLockSettings(new LockSettings(newSettings));
+  log.error("TODO: Need to implement!");
 }

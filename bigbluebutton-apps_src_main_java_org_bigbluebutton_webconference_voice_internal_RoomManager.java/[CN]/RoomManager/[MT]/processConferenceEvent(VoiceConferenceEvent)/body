@@ -1,2 +1,27 @@
 {
+  RoomImp rm=rooms.get(event.getRoom());
+  if (rm == null) {
+    return;
+  }
+  if (event instanceof VoiceUserJoinedEvent) {
+    handleParticipantJoinedEvent(event,rm);
+  }
+ else   if (event instanceof VoiceUserLeftEvent) {
+    handleParticipantLeftEvent(event,rm);
+  }
+ else   if (event instanceof VoiceUserMutedEvent) {
+    handleParticipantMutedEvent(event,rm);
+  }
+ else   if (event instanceof VoiceUserTalkingEvent) {
+    handleParticipantTalkingEvent(event,rm);
+  }
+ else   if (event instanceof VoiceUserLockedEvent) {
+    handleParticipantLockedEvent(event,rm);
+  }
+ else   if (event instanceof VoiceStartRecordingEvent) {
+  }
+ else {
+    return;
+  }
+  recorder.recordConferenceEvent(event,rm.getMeeting());
 }
