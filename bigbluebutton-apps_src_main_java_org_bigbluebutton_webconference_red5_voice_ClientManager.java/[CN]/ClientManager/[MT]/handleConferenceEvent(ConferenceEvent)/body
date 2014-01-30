@@ -1,7 +1,7 @@
 {
   if (event instanceof ParticipantJoinedEvent) {
     ParticipantJoinedEvent pje=(ParticipantJoinedEvent)event;
-    joined(pje.getRoom(),pje.getParticipantId(),pje.getCallerIdName(),pje.getMuted(),pje.getSpeaking(),pje.isLocked());
+    joined(pje.getRoom(),pje.getParticipantId(),pje.getCallerIdName(),pje.getMuted(),pje.getSpeaking());
   }
  else   if (event instanceof ParticipantLeftEvent) {
     left(event.getRoom(),event.getParticipantId());
@@ -13,9 +13,5 @@
  else   if (event instanceof ParticipantTalkingEvent) {
     ParticipantTalkingEvent pte=(ParticipantTalkingEvent)event;
     talking(pte.getRoom(),pte.getParticipantId(),pte.isTalking());
-  }
- else   if (event instanceof ParticipantLockedEvent) {
-    ParticipantLockedEvent ple=(ParticipantLockedEvent)event;
-    locked(ple.getRoom(),ple.getParticipantId(),ple.isLocked());
   }
 }

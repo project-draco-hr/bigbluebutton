@@ -1,0 +1,14 @@
+{
+  log.debug("Participant " + name + "joining room "+ room);
+  RoomInfo soi=voiceRooms.get(room);
+  if (soi != null) {
+    List<Object> list=new ArrayList<Object>();
+    list.add(participant);
+    list.add(name);
+    list.add(name);
+    list.add(muted);
+    list.add(talking);
+    log.debug("Sending join to client " + name);
+    soi.getSharedObject().sendMessage("userJoin",list);
+  }
+}

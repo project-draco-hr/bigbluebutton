@@ -17,9 +17,6 @@
  else   if (event instanceof ParticipantTalkingEvent) {
     handleParticipantTalkingEvent(event,rm);
   }
- else   if (event instanceof ParticipantLockedEvent) {
-    handleParticipantLockedEvent(event,rm);
-  }
  else   if (event instanceof StartRecordingEvent) {
   }
  else {

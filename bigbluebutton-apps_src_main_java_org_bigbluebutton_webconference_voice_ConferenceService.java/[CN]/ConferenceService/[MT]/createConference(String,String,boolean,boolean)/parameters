@@ -1,0 +1,4 @@
+String room
+String meetingid
+boolean record
+boolean muted
