@@ -1,4 +1,5 @@
 {
-  String roomID=getBbbSession().getRoom();
-  return null;
+  String meetingId=getBbbSession().getRoom();
+  String userId=getMyUserId();
+  bbbInGW.getLockSettings(meetingId,userId);
 }

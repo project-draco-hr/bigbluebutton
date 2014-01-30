@@ -1,3 +1,5 @@
 {
-  return false;
+  String meetingId=getBbbSession().getRoom();
+  String userId=getMyUserId();
+  bbbInGW.isMeetingLocked(meetingId,userId);
 }

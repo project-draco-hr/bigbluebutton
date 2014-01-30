@@ -1,5 +1,5 @@
 {
   String roomName=Red5.getConnectionLocal().getScope().getName();
   log.info("Client is requesting the recording status in [" + roomName + "].");
-  return application.getRecordingStatus(roomName);
+  application.getRecordingStatus(roomName,getMyUserId());
 }
