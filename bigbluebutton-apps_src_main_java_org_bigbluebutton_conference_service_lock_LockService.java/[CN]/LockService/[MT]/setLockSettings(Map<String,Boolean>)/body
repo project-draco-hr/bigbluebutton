@@ -1,4 +1,4 @@
 {
-  String roomID=getBbbSession().getRoom();
-  log.error("TODO: Need to implement!");
+  String meetingId=getBbbSession().getRoom();
+  bbbInGW.sendLockSettings(meetingId,newSettings);
 }

@@ -1,5 +1,5 @@
 {
-  String roomID=getBbbSession().getRoom();
-  log.error("TODO: Need to implement!");
-  return null;
+  String meetingId=getBbbSession().getRoom();
+  String userId=getMyUserId();
+  bbbInGW.getLockSettings(meetingId,userId);
 }

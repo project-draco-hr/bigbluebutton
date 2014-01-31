@@ -1,4 +1,5 @@
 {
   log.debug("setUserLock ({}, {}, {})",new Object[]{lock,internalUserID});
-  log.error("TODO: Need to implement!");
+  String meetingId=getBbbSession().getRoom();
+  bbbInGW.lockUser(meetingId,lock,internalUserID);
 }

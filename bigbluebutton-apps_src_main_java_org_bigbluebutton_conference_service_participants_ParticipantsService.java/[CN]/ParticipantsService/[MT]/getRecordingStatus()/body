@@ -1,5 +1,5 @@
 {
   String roomName=Red5.getConnectionLocal().getScope().getName();
-  log.error("TODO: Client is requesting the recording status in [" + roomName + "].");
-  return false;
+  log.info("Client is requesting the recording status in [" + roomName + "].");
+  application.getRecordingStatus(roomName,getMyUserId());
 }
