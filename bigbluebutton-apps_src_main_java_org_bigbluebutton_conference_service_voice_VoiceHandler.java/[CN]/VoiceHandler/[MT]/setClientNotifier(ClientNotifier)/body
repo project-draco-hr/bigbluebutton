@@ -1,4 +1,0 @@
-{
-  log.debug("Setting voice application");
-  clientManager=c;
-}
