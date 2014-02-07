@@ -1,5 +1,5 @@
 String messageKey
-String conference
+String meetingId
 String code
 String presentation
-String slidesInfo
+int numberOfPages

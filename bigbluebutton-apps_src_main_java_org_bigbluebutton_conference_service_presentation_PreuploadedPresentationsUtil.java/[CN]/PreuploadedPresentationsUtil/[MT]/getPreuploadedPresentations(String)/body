@@ -1,5 +1,5 @@
 {
-  ArrayList<String> preuploadedPresentations=new ArrayList<String>();
+  ArrayList<PreuploadedPresentation> preuploadedPresentations=new ArrayList<PreuploadedPresentation>();
   try {
     String folderPath="/var/bigbluebutton/" + meetingID + "/"+ meetingID;
     File folder=new File(folderPath);
@@ -11,7 +11,9 @@
       }
 );
       for (      File presFile : presentations) {
-        preuploadedPresentations.add(presFile.getName());
+        int numPages=getNumPages(presFile);
+        PreuploadedPresentation p=new PreuploadedPresentation(presFile.getName(),numPages);
+        preuploadedPresentations.add(p);
       }
     }
   }

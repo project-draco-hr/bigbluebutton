@@ -2,4 +2,4 @@ String messageKey
 String conference
 String code
 String presentation
-String slidesInfo
+Integer numberOfPages

@@ -8,5 +8,6 @@
   MessageBuilder builder=new ConversionUpdateMessage.MessageBuilder(pres);
   builder.messageKey(ConversionMessageConstants.CONVERSION_COMPLETED_KEY);
   builder.slidesInfo(escape_xml);
+  builder.numberOfPages(pres.getNumberOfPages());
   notifyProgressListener(builder.build().getMessage());
 }
