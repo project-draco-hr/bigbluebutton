@@ -1,4 +1,0 @@
-{
-  String meetingID=(String)message.get("room");
-  bbbInGW.sendUpdateMessage(meetingID,message);
-}

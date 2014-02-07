@@ -1,0 +1,3 @@
+{
+  bbbInGW.sendSlideGenerated(messageKey,meetingId,code,presentationId,numberOfPages,pagesCompleted);
+}
