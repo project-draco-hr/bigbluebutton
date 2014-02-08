@@ -1,5 +1,6 @@
 {
   Integer slideNum=(Integer)msg.get("pageNumber");
   IScope scope=Red5.getConnectionLocal().getScope();
-  presentationApplication.gotoSlide(scope.getName(),slideNum);
+  log.debug("Got GotoSlide for meeting [{}] page=[{}]",scope.getName(),slideNum);
+  presentationApplication.gotoSlide(scope.getName(),slideNum + 1);
 }
