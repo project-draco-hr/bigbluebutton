@@ -6,6 +6,7 @@
   boolean muted=headers.get("Speak").equals("true") ? false : true;
   boolean speaking=headers.get("Talking").equals("true") ? true : false;
   String voiceUserId=callerIdName;
+  System.out.println("Received Conference Join Event from FreeSWITCH user[" + callerIdName + "]");
   Matcher matcher=CALLERNAME_PATTERN.matcher(callerIdName);
   if (matcher.matches()) {
     voiceUserId=matcher.group(1).trim();
