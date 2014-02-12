@@ -1,0 +1,4 @@
+{
+  String roomName=Red5.getConnectionLocal().getScope().getName();
+  application.setRecordingStatus(roomName,(String)msg.get("userId"),(Boolean)msg.get("recording"));
+}

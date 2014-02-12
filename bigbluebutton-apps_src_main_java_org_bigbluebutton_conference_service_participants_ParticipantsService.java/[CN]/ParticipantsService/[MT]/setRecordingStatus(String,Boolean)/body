@@ -1,4 +1,0 @@
-{
-  String roomName=Red5.getConnectionLocal().getScope().getName();
-  log.error("TODO: Setting recording status " + roomName + " "+ userid+ " "+ recording);
-}
