@@ -1,5 +1,4 @@
 {
-  log.debug("Checking message: " + pattern + " "+ channel+ " "+ message);
   if (channel.equalsIgnoreCase(MessagingConstants.SYSTEM_CHANNEL)) {
     Gson gson=new Gson();
     HashMap<String,String> map=gson.fromJson(message,new TypeToken<Map<String,String>>(){

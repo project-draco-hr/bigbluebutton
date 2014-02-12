@@ -1,5 +1,4 @@
 {
-  log.debug("Checking message: " + pattern + " "+ channel+ " "+ message);
   if (channel.equalsIgnoreCase(MessagingConstants.POLLING_CHANNEL)) {
     Gson gson=new Gson();
     JsonParser parser=new JsonParser();
