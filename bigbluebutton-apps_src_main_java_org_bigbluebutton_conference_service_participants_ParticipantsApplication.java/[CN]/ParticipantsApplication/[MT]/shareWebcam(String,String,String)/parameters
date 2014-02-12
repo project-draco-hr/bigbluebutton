@@ -1,0 +1,3 @@
+String meetingId
+String userId
+String stream

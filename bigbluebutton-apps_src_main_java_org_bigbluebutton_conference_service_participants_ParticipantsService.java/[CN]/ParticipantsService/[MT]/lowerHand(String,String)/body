@@ -1,0 +1,4 @@
+{
+  IScope scope=Red5.getConnectionLocal().getScope();
+  application.lowerHand(scope.getName(),userId,loweredBy);
+}
