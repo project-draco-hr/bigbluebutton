@@ -1,4 +1,0 @@
-{
-  BroadcastClientMessage m=new BroadcastClientMessage(meetingID,"WhiteboardNewAnnotationCommand",annotation);
-  service.sendMessage(m);
-}

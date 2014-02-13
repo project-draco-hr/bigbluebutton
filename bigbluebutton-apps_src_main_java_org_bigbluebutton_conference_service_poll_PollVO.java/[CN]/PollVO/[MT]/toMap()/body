@@ -1,9 +1,0 @@
-{
-  HashMap<String,String> map=new HashMap<String,String>();
-  map.put("pollID",pollID);
-  map.put("meetingID",meetingID);
-  map.put("title",title);
-  map.put("question",question);
-  map.put("datetime",datetime);
-  return map;
-}

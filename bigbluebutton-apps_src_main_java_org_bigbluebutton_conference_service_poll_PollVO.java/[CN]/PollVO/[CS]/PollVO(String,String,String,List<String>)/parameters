@@ -1,4 +1,0 @@
-String meetingID
-String title
-String question
-List<String> answers

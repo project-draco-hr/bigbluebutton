@@ -1,4 +1,0 @@
-{
-  log.debug(APP + "roomStop ",scope.getName());
-  pollApplication.destroyRoom(scope.getName());
-}

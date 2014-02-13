@@ -1,6 +1,0 @@
-{
-  Map<String,Object> message=new HashMap<String,Object>();
-  message.put("enabled",enabled);
-  BroadcastClientMessage m=new BroadcastClientMessage(meetingID,"WhiteboardEnableWhiteboardCommand",message);
-  service.sendMessage(m);
-}

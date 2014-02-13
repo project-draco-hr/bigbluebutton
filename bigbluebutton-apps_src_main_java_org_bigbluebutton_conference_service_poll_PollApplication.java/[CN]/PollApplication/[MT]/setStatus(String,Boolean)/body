@@ -1,4 +1,0 @@
-{
-  PollRecorder pollRecorder=new PollRecorder();
-  pollRecorder.setStatus(pollKey,status);
-}

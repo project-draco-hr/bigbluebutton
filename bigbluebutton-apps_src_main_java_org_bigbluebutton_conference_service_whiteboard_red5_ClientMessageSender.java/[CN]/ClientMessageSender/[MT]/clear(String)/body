@@ -1,5 +1,0 @@
-{
-  Map<String,Object> message=new HashMap<String,Object>();
-  BroadcastClientMessage m=new BroadcastClientMessage(meetingID,"WhiteboardClearCommand",message);
-  service.sendMessage(m);
-}
