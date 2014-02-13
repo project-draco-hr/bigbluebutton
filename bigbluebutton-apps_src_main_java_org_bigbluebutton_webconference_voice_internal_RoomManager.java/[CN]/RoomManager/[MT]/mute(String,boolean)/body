@@ -1,4 +1,0 @@
-{
-  RoomImp rm=rooms.get(room);
-  if (rm != null)   rm.mute(mute);
-}

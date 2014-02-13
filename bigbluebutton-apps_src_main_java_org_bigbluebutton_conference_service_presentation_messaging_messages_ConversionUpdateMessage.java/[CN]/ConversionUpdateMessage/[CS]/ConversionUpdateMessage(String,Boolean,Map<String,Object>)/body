@@ -1,4 +1,0 @@
-{
-  super(meetingID,recorded);
-  this.message=message;
-}

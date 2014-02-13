@@ -1,4 +1,0 @@
-{
-  RoomImp r=new RoomImp(name,record,meetingid,muted);
-  rooms.putIfAbsent(name,r);
-}

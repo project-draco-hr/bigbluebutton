@@ -1,5 +1,0 @@
-{
-  List args=new ArrayList();
-  args.add(p.toMap());
-  so.sendMessage("participantJoined",args);
-}

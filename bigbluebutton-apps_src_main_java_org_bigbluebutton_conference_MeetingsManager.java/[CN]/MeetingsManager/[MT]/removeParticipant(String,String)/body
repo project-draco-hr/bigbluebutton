@@ -1,9 +1,0 @@
-{
-  log.debug("Remove participant " + userid + " from "+ roomName);
-  Meeting r=getRoom(roomName);
-  if (r != null) {
-    r.removeParticipant(userid);
-    return;
-  }
-  log.warn("Removing listener from a non-existing room " + roomName);
-}

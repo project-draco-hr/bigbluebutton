@@ -1,6 +1,0 @@
-String internalUserID
-String name
-String role
-String externalUserID
-Map<String,Object> status
-Boolean locked

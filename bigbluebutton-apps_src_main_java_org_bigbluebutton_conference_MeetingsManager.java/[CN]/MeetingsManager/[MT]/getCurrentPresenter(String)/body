@@ -1,7 +1,0 @@
-{
-  Meeting r=getRoom(room);
-  if (r != null) {
-    return r.getCurrentPresenter();
-  }
-  return null;
-}

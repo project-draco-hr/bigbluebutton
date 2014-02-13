@@ -1,9 +1,0 @@
-{
-  ArrayList<String> presenter=new ArrayList<String>();
-  presenter.add(newPresenterID);
-  presenter.add(newPresenterName);
-  presenter.add(assignedBy);
-  currentPresenter=presenter;
-  AssignPresenterMessage msg=new AssignPresenterMessage(meetingID,recorded,newPresenterID,newPresenterName,assignedBy);
-  outMessageGateway.send(msg);
-}

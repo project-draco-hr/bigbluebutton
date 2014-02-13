@@ -1,7 +1,0 @@
-{
-  Meeting r=getRoom(roomName);
-  if (r != null) {
-    r.changeParticipantStatus(userid,status,value);
-    return;
-  }
-}

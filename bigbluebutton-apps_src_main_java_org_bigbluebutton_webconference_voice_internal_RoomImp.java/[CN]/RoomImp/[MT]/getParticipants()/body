@@ -1,6 +1,0 @@
-{
-  Map<String,Participant> p=Collections.unmodifiableMap(participants);
-  ArrayList<Participant> pa=new ArrayList<Participant>();
-  pa.addAll(p.values());
-  return pa;
-}

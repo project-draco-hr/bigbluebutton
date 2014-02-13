@@ -1,6 +1,0 @@
-{
-  Meeting room=new Meeting(meetingID,recorded,outMessageGateway);
-  meetings.put(meetingID,room);
-  MeetingStartedMessage msg=new MeetingStartedMessage(meetingID,recorded);
-  outMessageGateway.send(msg);
-}

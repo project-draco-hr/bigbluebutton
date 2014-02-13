@@ -1,3 +1,0 @@
-{
-  return meetings.containsKey(name);
-}

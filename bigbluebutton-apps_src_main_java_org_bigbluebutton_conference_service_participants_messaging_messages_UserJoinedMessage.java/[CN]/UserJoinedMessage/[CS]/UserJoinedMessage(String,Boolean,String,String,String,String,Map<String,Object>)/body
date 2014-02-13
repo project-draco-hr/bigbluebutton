@@ -1,8 +1,0 @@
-{
-  super(meetingID,recorded);
-  this.userID=internalUserID;
-  this.externalUserID=externalUserID;
-  this.name=name;
-  this.role=role;
-  this.status=status;
-}

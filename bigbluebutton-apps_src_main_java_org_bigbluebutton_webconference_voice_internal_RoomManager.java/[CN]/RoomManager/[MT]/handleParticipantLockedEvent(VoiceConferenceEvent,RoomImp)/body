@@ -1,4 +1,0 @@
-{
-  VoiceUserLockedEvent ple=(VoiceUserLockedEvent)event;
-  lockParticipant(ple.getRoom(),ple.getUserId(),ple.isLocked());
-}

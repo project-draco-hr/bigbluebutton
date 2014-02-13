@@ -1,6 +1,0 @@
-{
-  for (  Map.Entry<String,Meeting> entry : meetings.entrySet()) {
-    Meeting room=entry.getValue();
-    room.endAndKickAll();
-  }
-}

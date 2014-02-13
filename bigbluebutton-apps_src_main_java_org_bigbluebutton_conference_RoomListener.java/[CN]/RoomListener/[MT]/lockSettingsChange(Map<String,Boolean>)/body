@@ -1,5 +1,0 @@
-{
-  List list=new ArrayList();
-  list.add(lockSettings);
-  so.sendMessage("lockSettingsChange",list);
-}

@@ -1,5 +1,0 @@
-{
-  this.webRoom=webRoom;
-  this.voiceRoom=voiceRoom;
-  this.sharedObject=sharedObject;
-}

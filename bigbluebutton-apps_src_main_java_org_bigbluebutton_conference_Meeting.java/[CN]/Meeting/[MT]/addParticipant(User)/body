@@ -1,7 +1,0 @@
-{
-synchronized (this) {
-    users.put(user.getInternalUserID(),user);
-  }
-  UserJoinedMessage msg=new UserJoinedMessage(meetingID,recorded,user.getInternalUserID(),user.getExternalUserID(),user.getName(),user.getRole(),user.getStatus());
-  outMessageGateway.send(msg);
-}

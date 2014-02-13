@@ -1,6 +1,0 @@
-{
-  super(meetingID,recorded);
-  this.newPresenterID=newPresenterID;
-  this.newPresenterName=newPresenterName;
-  this.assignedBy=assignedBy;
-}

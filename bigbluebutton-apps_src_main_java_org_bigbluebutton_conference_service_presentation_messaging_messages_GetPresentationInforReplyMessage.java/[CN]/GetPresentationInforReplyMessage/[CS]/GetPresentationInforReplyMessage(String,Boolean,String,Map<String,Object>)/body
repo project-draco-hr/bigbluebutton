@@ -1,5 +1,0 @@
-{
-  super(meetingID,recorded);
-  this.requesterID=requesterID;
-  this.info=info;
-}

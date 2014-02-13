@@ -1,6 +1,0 @@
-{
-  super(meetingID,recorded);
-  this.userID=userID;
-  this.status=status;
-  this.value=value;
-}

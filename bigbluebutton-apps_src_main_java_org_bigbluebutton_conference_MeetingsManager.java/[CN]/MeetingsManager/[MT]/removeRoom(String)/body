@@ -1,9 +1,0 @@
-{
-  log.debug("Remove room " + name);
-  Meeting room=meetings.remove(name);
-  if (room != null) {
-    room.endAndKickAll();
-    MeetingEndedMessage msg=new MeetingEndedMessage(room.getMeetingID(),room.isRecorded());
-    outMessageGateway.send(msg);
-  }
-}

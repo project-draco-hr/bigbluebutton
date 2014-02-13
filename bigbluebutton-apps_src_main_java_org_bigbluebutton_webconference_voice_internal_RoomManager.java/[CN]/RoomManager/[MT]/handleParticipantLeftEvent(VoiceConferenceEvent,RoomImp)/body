@@ -1,5 +1,0 @@
-{
-  if ((rm.numParticipants() == 0) && (rm.record())) {
-    rm.recording(false);
-  }
-}

@@ -1,9 +1,0 @@
-{
-  for (  Map.Entry<String,Participant> entry : participants.entrySet()) {
-    Participant u=entry.getValue();
-    if (userID.equals(u.getUserID())) {
-      return u.getId();
-    }
-  }
-  return "";
-}

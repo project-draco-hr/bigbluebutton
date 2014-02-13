@@ -1,4 +1,0 @@
-{
-  voiceRooms=new ConcurrentHashMap<String,RoomInfo>();
-  webRooms=new ConcurrentHashMap<String,RoomInfo>();
-}

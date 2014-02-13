@@ -1,4 +1,0 @@
-{
-  RoomImp r=rooms.remove(name);
-  if (r != null)   r=null;
-}

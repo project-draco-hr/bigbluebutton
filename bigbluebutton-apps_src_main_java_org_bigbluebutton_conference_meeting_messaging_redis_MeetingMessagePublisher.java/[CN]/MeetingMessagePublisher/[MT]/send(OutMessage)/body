@@ -1,8 +1,0 @@
-{
-  if (msg instanceof MeetingStartedMessage) {
-    meetingStarted((MeetingStartedMessage)msg);
-  }
- else   if (msg instanceof MeetingEndedMessage) {
-    meetingEnded((MeetingEndedMessage)msg);
-  }
-}
