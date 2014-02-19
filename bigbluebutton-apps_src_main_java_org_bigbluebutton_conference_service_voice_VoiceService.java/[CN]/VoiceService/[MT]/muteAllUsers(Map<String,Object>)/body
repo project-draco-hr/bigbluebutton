@@ -1,5 +1,6 @@
 {
   String meetingID=Red5.getConnectionLocal().getScope().getName();
   String requesterID=getBbbSession().getInternalUserID();
-  bbbInGW.ejectUser(meetingID,requesterID,userID);
+  Boolean mute=(Boolean)msg.get("mute");
+  bbbInGW.muteAllUsers(meetingID,requesterID,mute);
 }
