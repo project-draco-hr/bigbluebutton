@@ -1,6 +1,3 @@
 {
   log.debug("***** " + APP + " [ "+ " roomStop [ "+ scope.getName()+ "] *********");
-  if (hasSharedObject(scope,PARTICIPANTS_SO)) {
-    clearSharedObjects(scope,PARTICIPANTS_SO);
-  }
 }

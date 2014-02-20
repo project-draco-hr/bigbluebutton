@@ -1,5 +1,4 @@
 {
   log.debug("***** " + APP + " [ "+ " roomConnect [ "+ connection.getScope().getName()+ "] *********");
-  ISharedObject so=getSharedObject(connection.getScope(),PARTICIPANTS_SO,false);
   return true;
 }

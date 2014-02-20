@@ -1,0 +1,4 @@
+{
+  bbbInGW.registerUser(roomName,userid,username,role,externUserID);
+  return true;
+}
