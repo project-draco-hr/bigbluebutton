@@ -1,3 +1,0 @@
-{
-  bbbInGW.sendConversionUpdate(messageKey,meetingId,code,presentationId);
-}

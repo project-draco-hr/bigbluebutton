@@ -1,3 +1,0 @@
-{
-  bbbInGW.sendPageCountError(messageKey,meetingId,code,presentationId,numberOfPages,maxNumberPages);
-}

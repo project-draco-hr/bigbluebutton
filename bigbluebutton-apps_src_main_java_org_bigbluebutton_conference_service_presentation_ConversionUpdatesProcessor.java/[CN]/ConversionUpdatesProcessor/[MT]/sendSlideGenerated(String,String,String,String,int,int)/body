@@ -1,3 +1,0 @@
-{
-  presentationApplication.sendSlideGenerated(messageKey,conference,code,presentationId,numberOfPages,pagesCompleted);
-}

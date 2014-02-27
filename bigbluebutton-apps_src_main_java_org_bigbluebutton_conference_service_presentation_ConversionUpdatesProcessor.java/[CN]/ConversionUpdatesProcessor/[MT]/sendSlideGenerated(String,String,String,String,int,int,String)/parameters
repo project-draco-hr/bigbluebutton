@@ -1,0 +1,7 @@
+String messageKey
+String conference
+String code
+String presId
+int numberOfPages
+int pagesCompleted
+String presName

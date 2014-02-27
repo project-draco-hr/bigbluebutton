@@ -1,3 +1,0 @@
-{
-  conversionUpdatesProcessor.sendSlideGenerated(messageKey,conference,code,presentation,numberOfPages,pagesCompleted);
-}
