@@ -3,4 +3,5 @@ String conference
 String code
 String presId
 Integer numberOfPages
-String presName
+String filename
+String presBaseUrl

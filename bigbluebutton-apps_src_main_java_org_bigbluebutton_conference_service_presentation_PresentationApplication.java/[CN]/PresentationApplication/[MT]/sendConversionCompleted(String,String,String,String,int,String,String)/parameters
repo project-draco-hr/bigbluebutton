@@ -4,3 +4,4 @@ String code
 String presentation
 int numberOfPages
 String presName
+String presBaseUrl

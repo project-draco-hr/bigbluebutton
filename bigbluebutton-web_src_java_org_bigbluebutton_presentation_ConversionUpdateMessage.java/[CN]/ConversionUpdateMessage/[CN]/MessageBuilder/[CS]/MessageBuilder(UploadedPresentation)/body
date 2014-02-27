@@ -2,7 +2,7 @@
   message.put("conference",pres.getMeetingId());
   message.put("room",pres.getMeetingId());
   message.put("returnCode","CONVERT");
-  message.put("presentationName",pres.getPresentationId());
-  message.put("presentationId",pres.getPresentationId());
-  message.put("filename",pres.getPresentationName());
+  message.put("presentationName",pres.getId());
+  message.put("presentationId",pres.getId());
+  message.put("filename",pres.getName());
 }
