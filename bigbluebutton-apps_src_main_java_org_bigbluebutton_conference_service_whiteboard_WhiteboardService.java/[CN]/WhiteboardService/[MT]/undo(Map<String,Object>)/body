@@ -2,5 +2,8 @@
   log.info("WhiteboardApplication - Deleting last graphic");
   String meetingID=getMeetingId();
   String requesterID=getBbbSession().getInternalUserID();
-  application.undoWhiteboard(meetingID,requesterID);
+  String wbId=(String)message.get(WB_ID);
+  if (wbId != null) {
+    application.undoWhiteboard(meetingID,requesterID,wbId);
+  }
 }
