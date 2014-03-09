@@ -3,5 +3,6 @@
   map.put("messageId",MessagingConstants.DESTROY_MEETING_REQUEST_EVENT);
   map.put("meetingID",meetingID);
   Gson gson=new Gson();
+  log.info("Sending destroy meeting [{}]",meetingID);
   send(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
 }

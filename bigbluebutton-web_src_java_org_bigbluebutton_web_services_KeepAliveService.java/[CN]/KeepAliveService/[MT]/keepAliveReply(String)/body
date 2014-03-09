@@ -1,7 +1,6 @@
 {
-  System.out.println("Message received: " + aliveId);
+  log.debug("Received keep alive msg reply from bbb-apps. id [{}]",aliveId);
   if (task != null) {
-    System.out.println("let's check aliveId:" + aliveId);
     task.checkAliveId(aliveId);
   }
 }
