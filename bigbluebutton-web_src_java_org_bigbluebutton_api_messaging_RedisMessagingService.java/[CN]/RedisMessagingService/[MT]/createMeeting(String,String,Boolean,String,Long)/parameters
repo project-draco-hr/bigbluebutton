@@ -1,3 +1,5 @@
 String meetingID
+String meetingName
 Boolean recorded
 String voiceBridge
+Long duration
