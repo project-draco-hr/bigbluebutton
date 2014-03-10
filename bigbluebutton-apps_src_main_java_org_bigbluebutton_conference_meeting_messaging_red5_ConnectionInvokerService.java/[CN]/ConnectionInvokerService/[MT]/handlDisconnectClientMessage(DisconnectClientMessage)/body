@@ -1,0 +1,12 @@
+{
+  IScope meetingScope=getScope(msg.getMeetingId());
+  if (meetingScope != null) {
+    IConnection conn=getConnection(meetingScope,msg.getUserId());
+    if (conn != null) {
+      if (conn.isConnected()) {
+        log.info("Disconnecting user=[{}] from meeting=[{}]",msg.getUserId(),msg.getMeetingId());
+        conn.close();
+      }
+    }
+  }
+}

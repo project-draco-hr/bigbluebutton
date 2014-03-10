@@ -1,4 +1,5 @@
 {
+  log.info("Received EndMeeting request from the API for meeting=[{}]",meetingId);
   messagingService.endMeeting(meetingId);
   Meeting m=getMeeting(meetingId);
   if (m != null) {
@@ -8,6 +9,7 @@
         log.debug("Removing forcibly ended meeting [{}]. Process the recording.",m.getInternalId());
         processRecording(m.getInternalId());
       }
+      destroyMeeting(m.getInternalId());
       meetings.remove(m.getInternalId());
     }
   }

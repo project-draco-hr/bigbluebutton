@@ -12,6 +12,13 @@
       meetings.remove(m.getInternalId());
       continue;
     }
+ else {
+      log.debug("Meeting id=[" + m.getInternalId() + "] has not expired yet.");
+    }
+    if (m.isForciblyEnded()) {
+      log.info("Meeting id[{}] has been forcefully ended. Destroying.",m.getInternalId());
+      destroyMeeting(m.getInternalId());
+    }
     if (m.wasNeverStarted(defaultMeetingCreateJoinDuration)) {
       log.info("Removing non-joined meeting [{} - {}]",m.getInternalId(),m.getName());
       destroyMeeting(m.getInternalId());

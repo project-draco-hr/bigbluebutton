@@ -1,5 +1,4 @@
 {
-  log.debug("Received in channel [{}] message [{}]",channel,message);
   Gson gson=new Gson();
   if (channel.equalsIgnoreCase(MessagingConstants.SYSTEM_CHANNEL)) {
     HashMap<String,String> map=gson.fromJson(message,new TypeToken<Map<String,String>>(){
@@ -18,6 +17,10 @@
  else       if (MessagingConstants.KEEP_ALIVE_REPLY_EVENT.equalsIgnoreCase(messageId)) {
         String aliveId=map.get("aliveID");
         listener.keepAliveReply(aliveId);
+      }
+ else       if (MessagingConstants.MEETING_DESTROYED_EVENT.equalsIgnoreCase(messageId)) {
+        String meetingId=map.get("meetingID");
+        log.info("Received a meeting destroyed message for meeting id=[{}]",meetingId);
       }
     }
   }

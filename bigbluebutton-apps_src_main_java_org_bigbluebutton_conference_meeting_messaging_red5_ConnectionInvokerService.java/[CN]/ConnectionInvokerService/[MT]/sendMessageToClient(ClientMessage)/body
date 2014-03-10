@@ -8,4 +8,10 @@
  else   if (message instanceof SharedObjectClientMessage) {
     sendSharedObjectMessage((SharedObjectClientMessage)message);
   }
+ else   if (message instanceof DisconnectClientMessage) {
+    handlDisconnectClientMessage((DisconnectClientMessage)message);
+  }
+ else   if (message instanceof DisconnectAllClientsMessage) {
+    handleDisconnectAllClientsMessage((DisconnectAllClientsMessage)message);
+  }
 }
