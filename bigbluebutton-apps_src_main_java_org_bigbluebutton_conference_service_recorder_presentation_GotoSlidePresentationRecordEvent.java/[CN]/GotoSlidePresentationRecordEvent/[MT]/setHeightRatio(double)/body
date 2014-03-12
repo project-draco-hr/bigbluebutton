@@ -1,0 +1,3 @@
+{
+  eventMap.put("heightRatio",Double.toString(ratio));
+}
