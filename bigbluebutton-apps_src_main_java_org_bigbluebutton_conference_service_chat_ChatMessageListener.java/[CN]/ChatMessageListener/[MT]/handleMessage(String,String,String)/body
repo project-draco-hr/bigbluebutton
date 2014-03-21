@@ -1,0 +1,14 @@
+{
+  if (channel.equalsIgnoreCase(MessagingConstants.ANTON_CHANNEL)) {
+    System.out.println("AntonChannel=" + channel);
+    System.out.println("AntonMessage=" + message + "\n\n\n");
+    Gson gson=new Gson();
+    HashMap<String,String> map=gson.fromJson(message,new TypeToken<Map<String,String>>(){
+    }
+.getType());
+    String toUsername=(String)map.get("toUsername");
+    String chatMessage=(String)map.get("message");
+    System.out.println("ANTON toUsername = " + toUsername);
+    System.out.println("ANTON chatMessage = " + chatMessage);
+  }
+}
