@@ -1,3 +1,4 @@
 {
-  this.url=url;
+  if (url.substring(url.length() - 1).equals("/"))   this.url=url.substring(0,url.length() - 1);
+ else   this.url=url;
 }
