@@ -1,5 +1,3 @@
 {
-  if (recordingSessions.containsKey(message.getMeetingID())) {
-    recorder.record(message.getMeetingID(),message);
-  }
+  recorder.record(message.getMeetingID(),message);
 }
