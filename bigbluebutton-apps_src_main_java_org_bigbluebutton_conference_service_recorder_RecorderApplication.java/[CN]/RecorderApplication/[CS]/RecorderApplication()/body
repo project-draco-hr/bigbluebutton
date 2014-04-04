@@ -1,4 +1,3 @@
 {
   messages=new LinkedBlockingQueue<RecordEvent>();
-  recordingSessions=new ConcurrentHashMap<String,String>();
 }
