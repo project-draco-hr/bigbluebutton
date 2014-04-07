@@ -4,11 +4,23 @@
     JsonParser parser=new JsonParser();
     JsonObject obj=(JsonObject)parser.parse(message);
     JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
     String eventName=(String)header.get("name").toString();
     eventName=eventName.replace("\"","");
     System.out.println("eventName=" + eventName);
     if (eventName.equalsIgnoreCase("user_joined_event")) {
       System.out.println("I'm in the case for joined_event");
+      JsonObject user=(JsonObject)payload.get("user");
+      JsonObject meeting=(JsonObject)payload.get("meeting");
+      String meetingID=(String)meeting.get("id").toString().replace("\"","");
+      String userid=(String)user.get("id").toString().replace("\"","");
+      String username=(String)user.get("name").toString().replace("\"","");
+      String role=(String)user.get("role").toString().replace("\"","");
+      String externUserID=(String)user.get("external_id").toString().replace("\"","");
+      System.out.println("4");
+      System.out.println("\nmeetingID=" + meetingID + ", "+ "userid = "+ userid+ ", username="+ username+ ", role="+ role+ "external_id="+ externUserID);
+      bbbGW.userJoin(meetingID,userid,username,role,externUserID);
+      System.out.println("5");
     }
  else     if (eventName.equalsIgnoreCase("user_left_event")) {
       System.out.println("I'm in the case for left_event");
