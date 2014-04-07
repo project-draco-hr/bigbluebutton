@@ -1,14 +1,17 @@
 {
   if (channel.equalsIgnoreCase(MessagingConstants.ANTON_CHANNEL)) {
-    System.out.println("AntonChannel=(chatlistener)" + channel);
+    System.out.println("AntonChannel=(participants)" + channel);
     JsonParser parser=new JsonParser();
     JsonObject obj=(JsonObject)parser.parse(message);
     JsonObject header=(JsonObject)obj.get("header");
     String eventName=(String)header.get("name").toString();
     eventName=eventName.replace("\"","");
     System.out.println("eventName=" + eventName);
-    if (eventName.equalsIgnoreCase("public_chat_message_event")) {
-      System.out.println("I'm in the case for public_chat_message_event");
+    if (eventName.equalsIgnoreCase("user_joined_event")) {
+      System.out.println("I'm in the case for joined_event");
+    }
+ else     if (eventName.equalsIgnoreCase("user_left_event")) {
+      System.out.println("I'm in the case for left_event");
     }
   }
 }
