@@ -23,7 +23,6 @@
       log.info("Removing non-joined meeting [{} - {}]",m.getInternalId(),m.getName());
       destroyMeeting(m.getInternalId());
       meetings.remove(m.getInternalId());
-      messagingService.removeMeeting(m.getInternalId());
       continue;
     }
     if (m.hasExceededDuration()) {

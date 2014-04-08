@@ -11,7 +11,6 @@
       }
       destroyMeeting(m.getInternalId());
       meetings.remove(m.getInternalId());
-      messagingService.removeMeeting(m.getInternalId());
     }
   }
  else {
