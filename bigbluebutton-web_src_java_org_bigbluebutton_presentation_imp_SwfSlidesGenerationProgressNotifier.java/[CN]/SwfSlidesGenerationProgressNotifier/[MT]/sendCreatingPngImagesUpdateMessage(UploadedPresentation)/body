@@ -1,0 +1,5 @@
+{
+  MessageBuilder builder=new ConversionUpdateMessage.MessageBuilder(pres);
+  builder.messageKey(ConversionMessageConstants.GENERATING_PNGIMAGES_KEY);
+  notifyProgressListener(builder.build().getMessage());
+}

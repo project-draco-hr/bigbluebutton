@@ -1,0 +1,14 @@
+{
+  Jedis jedis=redisPool.getResource();
+  try {
+    HashMap<String,String> map=new HashMap<String,String>();
+    map.put("meetingID",meetingID);
+    map.put("externalID",externalID);
+    map.put("name",name);
+    jedis.hmset("meeting-" + meetingID,map);
+    jedis.sadd("meetings",meetingID);
+  }
+  finally {
+    redisPool.returnResource(jedis);
+  }
+}

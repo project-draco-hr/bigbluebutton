@@ -1,0 +1,10 @@
+{
+  Jedis jedis=messagingService.createRedisClient();
+  jedis.hset("meeting-" + meetingID + "-user-"+ userid+ "-status","presenter","true");
+  if (previousPresenter != null)   jedis.hset("meeting-" + meetingID + "-user-"+ previousPresenter+ "-status","presenter","false");
+  HashMap<String,String> params=new HashMap<String,String>();
+  params.put("sessionID","0");
+  params.put("publicID",userid);
+  jedis.hmset("meeting-" + meetingID + "-presenter",params);
+  messagingService.dropRedisClient(jedis);
+}

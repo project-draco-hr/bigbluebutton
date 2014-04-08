@@ -1,0 +1,11 @@
+{
+  Jedis jedis=messagingService.createRedisClient();
+  HashMap<String,String> map=new HashMap<String,String>();
+  long messageid=System.currentTimeMillis();
+  map.put("message",chatobj.message);
+  map.put("username",chatobj.fromUsername);
+  map.put("userID",chatobj.fromUserID);
+  jedis.hmset("meeting-" + meetingID + "-message-"+ messageid,map);
+  jedis.rpush("meeting-" + meetingID + "-messages",Long.toString(messageid));
+  messagingService.dropRedisClient(jedis);
+}

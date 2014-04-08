@@ -1,0 +1,5 @@
+String meetingID
+Double xOffset
+Double yOffset
+Double widthRatio
+Double heightRatio
