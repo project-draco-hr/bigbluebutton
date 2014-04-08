@@ -1,0 +1,19 @@
+{
+  dispatchEvents=true;
+  Runnable sender=new Runnable(){
+    public void run(){
+      while (dispatchEvents) {
+        String message;
+        try {
+          message=messages.take();
+          saveMessage(message);
+        }
+ catch (        InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
+;
+  exec.execute(sender);
+}
