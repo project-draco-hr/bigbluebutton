@@ -4,8 +4,4 @@
   if (bbbSession == null) {
     log.debug("roomLeave - session is null");
   }
- else {
-    participantsBridge.removeParticipant(bbbSession.getRoom(),bbbSession.getInternalUserID());
-    participantsBridge.sendParticipantLeave(bbbSession.getRoom(),bbbSession.getInternalUserID());
-  }
 }

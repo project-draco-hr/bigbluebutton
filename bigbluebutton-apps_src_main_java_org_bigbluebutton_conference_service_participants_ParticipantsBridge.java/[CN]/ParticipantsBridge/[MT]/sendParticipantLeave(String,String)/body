@@ -1,8 +1,0 @@
-{
-  ArrayList<Object> updates=new ArrayList<Object>();
-  updates.add(meetingID);
-  updates.add("user leave");
-  updates.add(userid);
-  Gson gson=new Gson();
-  messagingService.send(MessagingConstants.BIGBLUEBUTTON_BRIDGE,gson.toJson(updates));
-}
