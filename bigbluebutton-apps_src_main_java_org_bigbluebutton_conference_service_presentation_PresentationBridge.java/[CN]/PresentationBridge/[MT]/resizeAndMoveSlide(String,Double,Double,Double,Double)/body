@@ -1,0 +1,11 @@
+{
+  ArrayList<Object> updates=new ArrayList<Object>();
+  updates.add(meetingID);
+  updates.add("move_and_zoom");
+  updates.add(xOffset);
+  updates.add(yOffset);
+  updates.add(widthRatio);
+  updates.add(heightRatio);
+  Gson gson=new Gson();
+  messagingService.send(MessagingConstants.BIGBLUEBUTTON_BRIDGE,gson.toJson(updates));
+}

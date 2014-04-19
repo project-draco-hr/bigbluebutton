@@ -1,0 +1,14 @@
+{
+  if (channel.equalsIgnoreCase(MessagingConstants.ANTON_CHANNEL)) {
+    System.out.println("AntonChannel=(chatlistener)" + channel);
+    JsonParser parser=new JsonParser();
+    JsonObject obj=(JsonObject)parser.parse(message);
+    JsonObject header=(JsonObject)obj.get("header");
+    String eventName=(String)header.get("name").toString();
+    eventName=eventName.replace("\"","");
+    System.out.println("eventName=" + eventName);
+    if (eventName.equalsIgnoreCase("public_chat_message_event")) {
+      System.out.println("I'm in the case for public_chat_message_event");
+    }
+  }
+}
