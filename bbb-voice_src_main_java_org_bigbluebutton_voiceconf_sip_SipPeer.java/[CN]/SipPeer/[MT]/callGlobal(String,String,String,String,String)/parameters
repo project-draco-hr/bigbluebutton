@@ -1,0 +1,5 @@
+String clientIdGlobal
+String callerNameGlobal
+String clientId
+String callerName
+String destination
