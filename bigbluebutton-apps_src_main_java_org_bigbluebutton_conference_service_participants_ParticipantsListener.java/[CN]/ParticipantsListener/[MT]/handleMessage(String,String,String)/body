@@ -1,30 +1,46 @@
 {
   if (channel.equalsIgnoreCase(MessagingConstants.ANTON_CHANNEL)) {
-    if (false) {
-      System.out.println("AntonChannel=(participants)" + channel);
-      JsonParser parser=new JsonParser();
-      JsonObject obj=(JsonObject)parser.parse(message);
-      JsonObject header=(JsonObject)obj.get("header");
-      JsonObject payload=(JsonObject)obj.get("payload");
-      String eventName=(String)header.get("name").toString();
-      eventName=eventName.replace("\"","");
-      System.out.println("eventName=" + eventName);
-      JsonObject user=(JsonObject)payload.get("user");
-      JsonObject meeting=(JsonObject)payload.get("meeting");
-      String meetingid=(String)meeting.get("id").toString().replace("\"","");
-      String userid=(String)user.get("id").toString().replace("\"","");
-      String username=(String)user.get("name").toString().replace("\"","");
-      String role=(String)user.get("role").toString().replace("\"","");
-      String externuserid=(String)user.get("external_id").toString().replace("\"","");
-      if (eventName.equalsIgnoreCase("user_joined_event")) {
-        System.out.println("I'm in the case for joined_event");
-        System.out.println("\nmeetingid=" + meetingid + ", "+ "userid = "+ userid+ ", username="+ username+ ", role="+ role+ "external_id="+ externuserid);
-        bbbGW.userJoin(meetingid,userid,username,role,externuserid);
+    System.out.println("AntonChannel=(participants)" + channel);
+    JsonParser parser=new JsonParser();
+    JsonObject obj=(JsonObject)parser.parse(message);
+    JsonObject headerObject=(JsonObject)obj.get("header");
+    JsonObject payloadObject=(JsonObject)obj.get("payload");
+    JsonObject messageObject=(JsonObject)payloadObject.get("message");
+    String eventName=headerObject.get("name").toString().replace("\"","");
+    if (eventName.equalsIgnoreCase("register_user_request") || eventName.equalsIgnoreCase("participant_left") || eventName.equalsIgnoreCase("get_users_request")|| eventName.equalsIgnoreCase("raise_user_hand_request")) {
+      String roomName=payloadObject.get("meeting_id").toString().replace("\"","");
+      if (eventName.equalsIgnoreCase("register_user_request")) {
+        String userid=payloadObject.get("user_id").toString().replace("\"","");
+        String username=payloadObject.get("name").toString().replace("\"","");
+        String role=payloadObject.get("role").toString().replace("\"","");
+        String externUserID=payloadObject.get("external_user_id").toString().replace("\"","");
+        bbbInGW.registerUser(roomName,userid,username,role,externUserID);
       }
- else       if (eventName.equalsIgnoreCase("user_left_event")) {
-        System.out.println("I'm in the case for left_event");
-        System.out.println("\nmeetingid=" + meetingid + ", "+ "userid = "+ userid);
-        bbbGW.userLeft(meetingid,userid);
+ else       if (eventName.equalsIgnoreCase("participant_left")) {
+        String userid=payloadObject.get("user_id").toString().replace("\"","");
+        bbbInGW.userLeft(roomName,userid);
+      }
+ else       if (eventName.equalsIgnoreCase("participant_join")) {
+        String userid=payloadObject.get("user_id").toString().replace("\"","");
+        String username=payloadObject.get("name").toString().replace("\"","");
+        String role=payloadObject.get("role").toString().replace("\"","");
+        String externUserID=payloadObject.get("external_user_id").toString().replace("\"","");
+        bbbInGW.userJoin(roomName,userid,username,role,externUserID);
+      }
+ else       if (eventName.equalsIgnoreCase("get_users_request")) {
+        String requester_id=payloadObject.get("requester_id").toString().replace("\"","");
+        bbbInGW.getUsers(roomName,requester_id);
+      }
+ else       if (eventName.equalsIgnoreCase("raise_user_hand_request")) {
+        String user_id=payloadObject.get("user_id").toString().replace("\"","");
+        boolean raise=Boolean.parseBoolean(payloadObject.get("raise").toString().replace("\"",""));
+        if (raise) {
+          bbbInGW.userRaiseHand(roomName,user_id);
+        }
+ else {
+          String requester_id=payloadObject.get("requester_id").toString().replace("\"","");
+          bbbInGW.lowerHand(roomName,user_id,requester_id);
+        }
       }
     }
   }
