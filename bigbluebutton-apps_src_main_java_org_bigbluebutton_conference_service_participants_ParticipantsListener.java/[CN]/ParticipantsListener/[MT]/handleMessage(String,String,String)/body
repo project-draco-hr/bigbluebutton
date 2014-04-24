@@ -7,7 +7,7 @@
     JsonObject payloadObject=(JsonObject)obj.get("payload");
     JsonObject messageObject=(JsonObject)payloadObject.get("message");
     String eventName=headerObject.get("name").toString().replace("\"","");
-    if (eventName.equalsIgnoreCase("register_user_request") || eventName.equalsIgnoreCase("participant_left") || eventName.equalsIgnoreCase("get_users_request")|| eventName.equalsIgnoreCase("raise_user_hand_request")) {
+    if (eventName.equalsIgnoreCase("register_user_request") || eventName.equalsIgnoreCase("participant_left") || eventName.equalsIgnoreCase("participant_join")|| eventName.equalsIgnoreCase("get_users_request")|| eventName.equalsIgnoreCase("raise_user_hand_request")) {
       String roomName=payloadObject.get("meeting_id").toString().replace("\"","");
       if (eventName.equalsIgnoreCase("register_user_request")) {
         String userid=payloadObject.get("user_id").toString().replace("\"","");

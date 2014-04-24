@@ -40,6 +40,10 @@
         System.out.println("I'm in the case for a private chat message");
         bbbGW.sendPrivateMessage(meeting_id,requester_id,map);
       }
+ else       if (eventName.equalsIgnoreCase("get_chat_history")) {
+        System.out.println("I'm in the case for a requesting chat history");
+        bbbGW.getChatHistory(meeting_id,requester_id);
+      }
     }
   }
 }
