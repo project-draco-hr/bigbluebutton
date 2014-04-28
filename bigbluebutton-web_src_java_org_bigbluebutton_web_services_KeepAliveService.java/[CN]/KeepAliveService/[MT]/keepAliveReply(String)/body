@@ -1,6 +1,5 @@
 {
   log.debug("Received keep alive msg reply from bbb-apps. id [{}]",aliveId);
-  if (task != null) {
-    task.checkAliveId(aliveId);
-  }
+  KeepAlivePong pong=new KeepAlivePong(aliveId);
+  queueMessage(pong);
 }

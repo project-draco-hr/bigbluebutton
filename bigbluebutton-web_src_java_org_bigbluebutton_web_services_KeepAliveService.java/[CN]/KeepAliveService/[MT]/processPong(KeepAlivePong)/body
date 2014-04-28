@@ -2,13 +2,13 @@
   int count=0;
   boolean found=false;
   while (count < liveMsgs.size() || !found) {
-    if (liveMsgs.get(count).equals(id)) {
+    if (liveMsgs.get(count).equals(msg.getId())) {
       liveMsgs.remove(count);
       found=true;
     }
     count++;
   }
   if (!found) {
-    log.info("Received invalid keep alive response from bbb-apps:" + id);
+    log.info("Received invalid keep alive response from bbb-apps:" + msg.getId());
   }
 }
