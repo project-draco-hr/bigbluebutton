@@ -10,36 +10,36 @@
     if (eventName.equalsIgnoreCase("register_user_request") || eventName.equalsIgnoreCase("participant_left") || eventName.equalsIgnoreCase("participant_join")|| eventName.equalsIgnoreCase("get_users_request")|| eventName.equalsIgnoreCase("raise_user_hand_request")) {
       String roomName=payloadObject.get("meeting_id").toString().replace("\"","");
       if (eventName.equalsIgnoreCase("register_user_request")) {
-        String userid=payloadObject.get("user_id").toString().replace("\"","");
+        String userID=payloadObject.get("user_id").toString().replace("\"","");
         String username=payloadObject.get("name").toString().replace("\"","");
         String role=payloadObject.get("role").toString().replace("\"","");
         String externUserID=payloadObject.get("external_user_id").toString().replace("\"","");
-        bbbInGW.registerUser(roomName,userid,username,role,externUserID);
+        bbbInGW.registerUser(roomName,userID,username,role,externUserID);
       }
  else       if (eventName.equalsIgnoreCase("participant_left")) {
-        String userid=payloadObject.get("user_id").toString().replace("\"","");
-        bbbInGW.userLeft(roomName,userid);
+        String userID=payloadObject.get("user_id").toString().replace("\"","");
+        bbbInGW.userLeft(roomName,userID);
       }
  else       if (eventName.equalsIgnoreCase("participant_join")) {
-        String userid=payloadObject.get("user_id").toString().replace("\"","");
+        String userID=payloadObject.get("user_id").toString().replace("\"","");
         String username=payloadObject.get("name").toString().replace("\"","");
         String role=payloadObject.get("role").toString().replace("\"","");
         String externUserID=payloadObject.get("external_user_id").toString().replace("\"","");
-        bbbInGW.userJoin(roomName,userid,username,role,externUserID);
+        bbbInGW.userJoin(roomName,userID,username,role,externUserID);
       }
  else       if (eventName.equalsIgnoreCase("get_users_request")) {
-        String requester_id=payloadObject.get("requester_id").toString().replace("\"","");
-        bbbInGW.getUsers(roomName,requester_id);
+        String requesterID=payloadObject.get("requester_id").toString().replace("\"","");
+        bbbInGW.getUsers(roomName,requesterID);
       }
  else       if (eventName.equalsIgnoreCase("raise_user_hand_request")) {
-        String user_id=payloadObject.get("user_id").toString().replace("\"","");
+        String userID=payloadObject.get("user_id").toString().replace("\"","");
         boolean raise=Boolean.parseBoolean(payloadObject.get("raise").toString().replace("\"",""));
         if (raise) {
-          bbbInGW.userRaiseHand(roomName,user_id);
+          bbbInGW.userRaiseHand(roomName,userID);
         }
  else {
-          String requester_id=payloadObject.get("requester_id").toString().replace("\"","");
-          bbbInGW.lowerHand(roomName,user_id,requester_id);
+          String requesterID=payloadObject.get("requester_id").toString().replace("\"","");
+          bbbInGW.lowerHand(roomName,userID,requesterID);
         }
       }
     }
