@@ -1,9 +1,14 @@
 {
   int count=0;
   boolean found=false;
-  while (count < liveMsgs.size() || !found) {
-    if (liveMsgs.get(count).equals(msg.getId())) {
-      liveMsgs.remove(count);
+  while (count < pingMessages.size() || !found) {
+    if (pingMessages.get(count).equals(msg.getId())) {
+      pingMessages.remove(count);
+      if (!available) {
+        available=true;
+        pingMessages.clear();
+        log.info("Received Keep Alive Reply. BBB-Apps has recovered.");
+      }
       found=true;
     }
     count++;
