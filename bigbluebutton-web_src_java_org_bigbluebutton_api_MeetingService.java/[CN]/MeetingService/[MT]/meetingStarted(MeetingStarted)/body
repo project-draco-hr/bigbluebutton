@@ -1,0 +1,16 @@
+{
+  Meeting m=getMeeting(message.meetingId);
+  if (m != null) {
+    if (m.getStartTime() == 0) {
+      long now=System.currentTimeMillis();
+      log.info("Meeting [{}] has started on [{}]",message.meetingId,now);
+      m.setStartTime(now);
+    }
+ else {
+      log.debug("The meeting [{}] has been started again...",message.meetingId);
+    }
+    m.setEndTime(0);
+    return;
+  }
+  log.warn("The meeting [{}] doesn't exist",message.meetingId);
+}

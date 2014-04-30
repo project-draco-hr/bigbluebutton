@@ -1,15 +1,3 @@
 {
-  boolean unsubscribed=true;
-  Jedis jedis=redisPool.getResource();
-  try {
-    jedis.hset("meeting:" + meetingId + ":subscription:"+ subscriptionId,"active","false");
-  }
- catch (  Exception e) {
-    log.warn("Cannot rmove subscription:" + meetingId,e);
-    unsubscribed=false;
-  }
- finally {
-    redisPool.returnResource(jedis);
-  }
-  return unsubscribed;
+  return storeService.removeSubscription(meetingId,subscriptionId);
 }

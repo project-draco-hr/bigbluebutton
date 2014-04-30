@@ -1,0 +1,23 @@
+{
+  try {
+    processMessage=true;
+    Runnable messageReceiver=new Runnable(){
+      public void run(){
+        if (processMessage) {
+          try {
+            IMessage msg=receivedMessages.take();
+            processMessage(msg);
+          }
+ catch (          InterruptedException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    }
+;
+    msgProcessorExec.execute(messageReceiver);
+  }
+ catch (  Exception e) {
+    log.error("Error PRocessing Message");
+  }
+}

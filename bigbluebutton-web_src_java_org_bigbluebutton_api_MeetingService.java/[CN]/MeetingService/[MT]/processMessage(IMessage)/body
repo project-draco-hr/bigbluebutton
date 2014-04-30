@@ -1,0 +1,19 @@
+{
+  if (message instanceof MeetingDestroyed) {
+  }
+ else   if (message instanceof MeetingStarted) {
+    meetingStarted((MeetingStarted)message);
+  }
+ else   if (message instanceof MeetingEnded) {
+    meetingEnded((MeetingEnded)message);
+  }
+ else   if (message instanceof UserJoined) {
+    userJoined((UserJoined)message);
+  }
+ else   if (message instanceof UserLeft) {
+    userLeft((UserLeft)message);
+  }
+ else   if (message instanceof UserStatusChanged) {
+    updatedStatus((UserStatusChanged)message);
+  }
+}

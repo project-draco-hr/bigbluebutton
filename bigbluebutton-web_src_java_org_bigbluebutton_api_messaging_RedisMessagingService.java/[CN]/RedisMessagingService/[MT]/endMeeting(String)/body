@@ -4,5 +4,5 @@
   map.put("meetingId",meetingId);
   Gson gson=new Gson();
   log.info("Sending end meeting [{}]",meetingId);
-  send(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
+  sender.send(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
 }

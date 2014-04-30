@@ -1,0 +1,10 @@
+{
+  Meeting m=getMeeting(message.meetingId);
+  if (m != null) {
+    long now=System.currentTimeMillis();
+    log.debug("Meeting [{}] end time [{}].",message.meetingId,now);
+    m.setEndTime(now);
+    return;
+  }
+  log.warn("The meeting " + message.meetingId + " doesn't exist");
+}

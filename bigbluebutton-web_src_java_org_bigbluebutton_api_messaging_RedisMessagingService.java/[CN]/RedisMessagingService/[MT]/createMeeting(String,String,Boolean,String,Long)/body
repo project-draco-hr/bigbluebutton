@@ -8,5 +8,5 @@
   map.put("duration",duration);
   Gson gson=new Gson();
   log.info("Sending create meeting [{}] - [{}]",meetingID,voiceBridge);
-  send(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
+  sender.send(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
 }

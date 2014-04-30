@@ -1,0 +1,14 @@
+{
+  Meeting m=getMeeting(message.meetingId);
+  if (m != null) {
+    User user=m.getUserById(message.userId);
+    if (user != null) {
+      user.setStatus(message.status,message.value);
+      log.debug("Setting new status value in meeting " + message.meetingId + " for participant:"+ user.getFullname());
+      return;
+    }
+    log.warn("The participant " + message.userId + " doesn't exist in the meeting "+ message.meetingId);
+    return;
+  }
+  log.warn("The meeting " + message.meetingId + " doesn't exist");
+}
