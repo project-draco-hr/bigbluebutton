@@ -1,0 +1,16 @@
+{
+  if (pingMessages.size() < maxLives) {
+    HashMap<String,String> map=new HashMap<String,String>();
+    map.put("messageId",KEEP_ALIVE_REQUEST);
+    map.put("aliveId",msg.getId());
+    Gson gson=new Gson();
+    pingMessages.add(msg.getId());
+    log.debug("Sending keep alive message to bbb-apps. keep-alive id [{}]",msg.getId());
+    service.send(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
+  }
+ else {
+    available=false;
+    pingMessages.clear();
+    log.warn("bbb-apps is down!");
+  }
+}

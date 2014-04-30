@@ -1,3 +1,0 @@
-{
-  conversionUpdatesProcessor.sendPageCountError(messageKey,conference,code,presId,numberOfPages,maxNumberPages,filename);
-}
