@@ -1,0 +1,12 @@
+{
+  log.debug("Storing Meeting with internal id:" + m.getInternalId());
+  meetings.put(m.getInternalId(),m);
+  if (m.isRecord()) {
+    Map<String,String> metadata=new LinkedHashMap<String,String>();
+    metadata.putAll(m.getMetadata());
+    metadata.put("meetingId",m.getExternalId());
+    metadata.put("meetingName",m.getName());
+    messagingService.recordMeetingInfo(m.getInternalId(),metadata);
+  }
+  messagingService.createMeeting(m.getInternalId(),m.getName(),m.isRecord(),m.getTelVoice(),m.getDuration());
+}
