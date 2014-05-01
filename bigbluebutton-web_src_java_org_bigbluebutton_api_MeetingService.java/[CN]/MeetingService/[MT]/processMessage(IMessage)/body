@@ -16,4 +16,13 @@
  else   if (message instanceof UserStatusChanged) {
     updatedStatus((UserStatusChanged)message);
   }
+ else   if (message instanceof RemoveExpiredMeetings) {
+    checkAndRemoveExpiredMeetings();
+  }
+ else   if (message instanceof CreateMeeting) {
+    processCreateMeeting((CreateMeeting)message);
+  }
+ else   if (message instanceof EndMeeting) {
+    processEndMeeting((EndMeeting)message);
+  }
 }

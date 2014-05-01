@@ -1,0 +1,33 @@
+{
+  log.info("Cleaning up expired meetings");
+  for (  Meeting m : meetings.values()) {
+    if (m.hasExpired(defaultMeetingExpireDuration)) {
+      log.info("Removing expired meeting [id={} , name={}]",m.getInternalId(),m.getName());
+      log.info("Expired meeting [start={} , end={}]",m.getStartTime(),m.getEndTime());
+      if (m.isRecord() && m.getNumUsers() == 0) {
+        log.debug("[" + m.getInternalId() + "] is recorded. Process it.");
+        processRecording(m.getInternalId());
+      }
+      destroyMeeting(m.getInternalId());
+      meetings.remove(m.getInternalId());
+      continue;
+    }
+ else {
+      log.debug("Meeting id=[" + m.getInternalId() + "] has not expired yet.");
+    }
+    if (m.isForciblyEnded()) {
+      log.info("Meeting id[{}] has been forcefully ended. Destroying.",m.getInternalId());
+      destroyMeeting(m.getInternalId());
+    }
+    if (m.wasNeverStarted(defaultMeetingCreateJoinDuration)) {
+      log.info("Removing non-joined meeting [{} - {}]",m.getInternalId(),m.getName());
+      destroyMeeting(m.getInternalId());
+      meetings.remove(m.getInternalId());
+      continue;
+    }
+    if (m.hasExceededDuration()) {
+      log.info("Forcibly ending meeting [{} - {}]",m.getInternalId(),m.getName());
+      endMeeting(m.getInternalId());
+    }
+  }
+}
