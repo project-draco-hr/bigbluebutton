@@ -1,5 +1,5 @@
 {
-  if (channel.equalsIgnoreCase(MessagingConstants.ANTON_CHANNEL)) {
+  if (channel.equalsIgnoreCase(MessagingConstants.TO_USERS_CHANNEL)) {
     System.out.println("AntonChannel=(participants)" + channel);
     JsonParser parser=new JsonParser();
     JsonObject obj=(JsonObject)parser.parse(message);
