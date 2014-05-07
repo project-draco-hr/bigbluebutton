@@ -1,3 +1,4 @@
 {
-  bbbInGW.getSlideInfo(meetingID,requesterID,meetingID + "/" + requesterID);
+  String replyTo=meetingID + "/" + requesterID;
+  bbbInGW.getSlideInfo(meetingID,requesterID,replyTo);
 }

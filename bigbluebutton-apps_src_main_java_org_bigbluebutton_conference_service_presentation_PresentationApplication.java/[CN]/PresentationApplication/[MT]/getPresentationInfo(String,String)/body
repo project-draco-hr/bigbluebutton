@@ -1,3 +1,4 @@
 {
-  bbbInGW.getPresentationInfo(meetingID,requesterID,meetingID + "/" + requesterID);
+  String replyTo=meetingID + "/" + requesterID;
+  bbbInGW.getPresentationInfo(meetingID,requesterID,replyTo);
 }
