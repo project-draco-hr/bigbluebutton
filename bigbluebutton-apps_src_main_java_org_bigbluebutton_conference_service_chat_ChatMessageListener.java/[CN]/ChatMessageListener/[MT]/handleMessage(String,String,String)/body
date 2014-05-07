@@ -42,7 +42,8 @@
       }
  else       if (eventName.equalsIgnoreCase("get_chat_history")) {
         System.out.println("I'm in the case for a requesting chat history");
-        bbbGW.getChatHistory(meetingID,requesterID);
+        String replyTo=meetingID + "/" + requesterID;
+        bbbGW.getChatHistory(meetingID,requesterID,replyTo);
       }
     }
   }
