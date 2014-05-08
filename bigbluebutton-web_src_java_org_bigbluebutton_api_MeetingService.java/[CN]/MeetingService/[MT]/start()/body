@@ -1,9 +1,10 @@
 {
+  log.info("Starting Meeting Service.");
   try {
     processMessage=true;
     Runnable messageReceiver=new Runnable(){
       public void run(){
-        if (processMessage) {
+        while (processMessage) {
           try {
             IMessage msg=receivedMessages.take();
             processMessage(msg);

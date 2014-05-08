@@ -5,12 +5,15 @@
     meetingStarted((MeetingStarted)message);
   }
  else   if (message instanceof MeetingEnded) {
+    log.info("Processing meeting ended request.");
     meetingEnded((MeetingEnded)message);
   }
  else   if (message instanceof UserJoined) {
+    log.info("Processing user joined message.");
     userJoined((UserJoined)message);
   }
  else   if (message instanceof UserLeft) {
+    log.info("Processing user left message.");
     userLeft((UserLeft)message);
   }
  else   if (message instanceof UserStatusChanged) {
@@ -23,6 +26,7 @@
     processCreateMeeting((CreateMeeting)message);
   }
  else   if (message instanceof EndMeeting) {
+    log.info("Processing end meeting request.");
     processEndMeeting((EndMeeting)message);
   }
 }
