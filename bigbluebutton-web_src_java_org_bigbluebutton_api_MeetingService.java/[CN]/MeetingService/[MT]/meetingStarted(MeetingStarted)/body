@@ -1,4 +1,5 @@
 {
+  log.debug("Meeting [{}] has started.",message.meetingId);
   Meeting m=getMeeting(message.meetingId);
   if (m != null) {
     if (m.getStartTime() == 0) {

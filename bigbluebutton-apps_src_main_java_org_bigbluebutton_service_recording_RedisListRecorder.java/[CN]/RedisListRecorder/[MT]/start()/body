@@ -1,0 +1,19 @@
+{
+  recordEvents=true;
+  Runnable sender=new Runnable(){
+    public void run(){
+      while (recordEvents) {
+        RecordEvent message;
+        try {
+          message=messages.take();
+          recordEvent(message);
+        }
+ catch (        InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
+;
+  exec.execute(sender);
+}

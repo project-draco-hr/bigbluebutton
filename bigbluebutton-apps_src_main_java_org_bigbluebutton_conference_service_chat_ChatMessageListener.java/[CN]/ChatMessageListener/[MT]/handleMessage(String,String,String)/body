@@ -1,5 +1,5 @@
 {
-  if (channel.equalsIgnoreCase(MessagingConstants.ANTON_CHANNEL)) {
+  if (channel.equalsIgnoreCase(MessagingConstants.TO_CHAT_CHANNEL)) {
     System.out.println("AntonChannel=(chatlistener)" + channel);
     JsonParser parser=new JsonParser();
     JsonObject obj=(JsonObject)parser.parse(message);
@@ -42,7 +42,8 @@
       }
  else       if (eventName.equalsIgnoreCase("get_chat_history")) {
         System.out.println("I'm in the case for a requesting chat history");
-        bbbGW.getChatHistory(meetingID,requesterID);
+        String replyTo=meetingID + "/" + requesterID;
+        bbbGW.getChatHistory(meetingID,requesterID,replyTo);
       }
     }
   }

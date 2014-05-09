@@ -1,4 +1,5 @@
 {
+  log.debug("Meeting [{}] has ended.",message.meetingId);
   Meeting m=getMeeting(message.meetingId);
   if (m != null) {
     long now=System.currentTimeMillis();
