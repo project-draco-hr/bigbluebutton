@@ -29,6 +29,7 @@
   }
   csbuf.append(securitySalt);
   String baseString=csbuf.toString();
+  System.out.println("POST basestring = [" + baseString + "]");
   log.debug("POST basestring = [" + baseString + "]");
   String cs=DigestUtils.shaHex(baseString);
   System.out.println("our checksum: [" + cs + "], client: ["+ checksum+ "]");
