@@ -1,0 +1,4 @@
+{
+  String id=payload.get(Constants.KEEP_ALIVE_ID).getAsString();
+  return new KeepAliveMessage(id);
+}

@@ -5,6 +5,7 @@
   payload.put(Constants.USER_ID,message.internalUserId);
   payload.put(Constants.ROLE,message.role);
   payload.put(Constants.EXT_USER_ID,message.externUserID);
+  payload.put(Constants.AUTH_TOKEN,message.authToken);
   java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(RegisterUserMessage.REGISTER_USER,message.VERSION,null);
   return MessageBuilder.buildJson(header,payload);
 }
