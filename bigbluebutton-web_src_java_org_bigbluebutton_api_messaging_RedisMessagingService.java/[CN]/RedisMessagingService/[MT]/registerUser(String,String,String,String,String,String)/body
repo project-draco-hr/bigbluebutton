@@ -1,0 +1,5 @@
+{
+  RegisterUserMessage msg=new RegisterUserMessage(meetingID,internalUserId,fullname,role,externUserID,authToken);
+  String json=MessageToJson.registerUserToJson(msg);
+  sender.send(MessagingConstants.TO_MEETING_CHANNEL,json);
+}

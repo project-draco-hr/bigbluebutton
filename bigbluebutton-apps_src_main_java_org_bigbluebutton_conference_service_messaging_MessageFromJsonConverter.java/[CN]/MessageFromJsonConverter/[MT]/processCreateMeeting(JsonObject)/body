@@ -1,0 +1,8 @@
+{
+  String id=payload.get(Constants.MEETING_ID).getAsString();
+  String name=payload.get(Constants.MEETING_ID).getAsString();
+  Boolean record=payload.get(Constants.RECORDED).getAsBoolean();
+  String voiceBridge=payload.get(Constants.VOICE_CONF).getAsString();
+  Long duration=payload.get(Constants.DURATION).getAsLong();
+  return new CreateMeetingMessage(id,name,record,voiceBridge,duration);
+}

@@ -14,7 +14,6 @@
         String username=payloadObject.get("name").toString().replace("\"","");
         String role=payloadObject.get("role").toString().replace("\"","");
         String externUserID=payloadObject.get("external_user_id").toString().replace("\"","");
-        bbbInGW.registerUser(roomName,userID,username,role,externUserID);
       }
  else       if (eventName.equalsIgnoreCase("participant_left")) {
         String userID=payloadObject.get("user_id").toString().replace("\"","");

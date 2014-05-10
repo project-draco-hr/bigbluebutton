@@ -1,0 +1,5 @@
+String roomName
+String userid
+String username
+String role
+String externUserID
