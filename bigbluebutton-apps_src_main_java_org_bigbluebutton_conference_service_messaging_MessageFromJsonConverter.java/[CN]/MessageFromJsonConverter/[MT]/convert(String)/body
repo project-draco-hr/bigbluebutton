@@ -15,6 +15,8 @@ case EndMeetingMessage.END_MEETING_REQUEST_EVENT:
     return processEndMeetingMessage(payload);
 case KeepAliveMessage.KEEP_ALIVE_REQUEST:
   return processKeepAlive(payload);
+case ValidateAuthTokenMessage.VALIDATE_AUTH_TOKEN:
+return processValidateAuthTokenMessage(header,payload);
 }
 }
 }

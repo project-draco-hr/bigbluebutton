@@ -1,5 +1,5 @@
 {
-  log.debug("Checking message: " + pattern + " "+ channel+ " "+ message);
+  System.out.println("Checking message: " + pattern + " "+ channel+ " "+ message);
   if (channel.equalsIgnoreCase(MessagingConstants.TO_MEETING_CHANNEL)) {
     IMessage msg=MessageFromJsonConverter.convert(message);
     if (msg != null) {
