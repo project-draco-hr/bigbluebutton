@@ -1,12 +1,5 @@
 {
-  HashMap<String,Object> map=new HashMap<String,Object>();
-  map.put("messageId",MessagingConstants.CREATE_MEETING_REQUEST_EVENT);
-  map.put("meetingID",meetingID);
-  map.put("meetingName",meetingName);
-  map.put("record",recorded);
-  map.put("voiceBridge",voiceBridge);
-  map.put("duration",duration);
-  Gson gson=new Gson();
-  log.info("Sending create meeting [{}] - [{}]",meetingID,voiceBridge);
-  sender.send(MessagingConstants.TO_MEETING_CHANNEL,gson.toJson(map));
+  CreateMeetingMessage msg=new CreateMeetingMessage(meetingID,meetingName,recorded,voiceBridge,duration);
+  String json=MessageToJson.createMeetingMessageToJson(msg);
+  sender.send(MessagingConstants.TO_MEETING_CHANNEL,json);
 }
