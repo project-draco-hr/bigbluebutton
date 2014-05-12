@@ -1,8 +1,4 @@
 {
-  SipPeerProfile callerProfile=SipPeerProfile.copy(registeredProfile);
-  CallAgent ca=new CallAgent(this.clientRtpIp,sipProvider,callerProfile,audioconfProvider,clientId);
-  ca.setClientConnectionManager(clientConnManager);
-  ca.setCallStreamFactory(callStreamFactory);
-  callManager.add(ca);
+  CallAgent ca=createCallAgent(clientId);
   ca.returnGlobalStreamName(clientId,destination);
 }

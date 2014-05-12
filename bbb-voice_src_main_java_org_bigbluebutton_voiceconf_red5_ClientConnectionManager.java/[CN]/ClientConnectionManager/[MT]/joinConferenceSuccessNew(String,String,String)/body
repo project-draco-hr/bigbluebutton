@@ -1,6 +1,0 @@
-{
-  ClientConnection cc=clients.get(clientId);
-  if (cc != null) {
-    cc.onJoinConferenceSuccess("",listen,codec);
-  }
-}

@@ -1,6 +1,6 @@
 String peerId
-String GlobalClientId
-String GlobalCallerName
 String clientId
 String callerName
 String destination
+String clientIdGlobal
+String callerNameGlobal
