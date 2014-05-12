@@ -1,0 +1,8 @@
+{
+  if (numberOfUsers.containsKey(roomName)) {
+    int nUsers=numberOfUsers.get(roomName);
+    nUsers-=1;
+    numberOfUsers.put(roomName,nUsers);
+    log.debug("REMOVING USER: Number of users left is " + nUsers);
+  }
+}

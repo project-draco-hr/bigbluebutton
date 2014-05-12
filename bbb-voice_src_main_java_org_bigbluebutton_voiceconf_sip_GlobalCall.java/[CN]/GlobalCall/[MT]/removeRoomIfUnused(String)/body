@@ -1,0 +1,9 @@
+{
+  if (numberOfUsers.containsKey(roomName) && numberOfUsers.get(roomName) <= 0) {
+    removeRoom(roomName);
+    return true;
+  }
+ else {
+    return false;
+  }
+}

@@ -1,0 +1,9 @@
+{
+  if (roomToStreamMap.containsKey(roomName)) {
+    return false;
+  }
+ else {
+    roomToStreamMap.put(roomName,"reserved");
+    return true;
+  }
+}

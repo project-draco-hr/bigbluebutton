@@ -1,0 +1,13 @@
+{
+  try {
+    while (!stop) {
+      byte array[]=new byte[]{0,0,0,0};
+      sendAudio(array,startTimestamp);
+      startTimestamp++;
+      Thread.sleep(DELTA_TIME_TO_SEND_KEEPALIVE);
+    }
+  }
+ catch (  InterruptedException e) {
+    log.error("Failed to sleep time in keepAlive");
+  }
+}

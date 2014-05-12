@@ -1,0 +1,5 @@
+{
+  int nUsers=numberOfUsers.get(roomName);
+  nUsers+=1;
+  numberOfUsers.put(roomName,nUsers);
+}
