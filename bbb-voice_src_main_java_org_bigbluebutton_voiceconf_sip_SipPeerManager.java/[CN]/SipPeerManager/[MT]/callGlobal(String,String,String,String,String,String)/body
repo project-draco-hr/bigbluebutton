@@ -1,5 +1,0 @@
-{
-  SipPeer sipPeer=sipPeers.get(peerId);
-  if (sipPeer == null)   throw new PeerNotFoundException("Can't find sip peer " + peerId);
-  sipPeer.callGlobal(clientId,callerName,destination,clientIdGlobal,callerNameGlobal);
-}

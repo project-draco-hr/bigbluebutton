@@ -5,11 +5,6 @@
     CallAgent ca=(CallAgent)iter.next();
     ca.hangup();
   }
-  calls=callManager.getAllGlobal();
-  for (Iterator<CallAgent> iter=calls.iterator(); iter.hasNext(); ) {
-    CallAgent ca=(CallAgent)iter.next();
-    ca.hangup();
-  }
   if (registerAgent != null) {
     registerAgent.unregister();
     registerAgent=null;

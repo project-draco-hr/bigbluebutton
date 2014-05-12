@@ -1,3 +1,0 @@
-{
-  return numberOfUsers.get(roomName);
-}

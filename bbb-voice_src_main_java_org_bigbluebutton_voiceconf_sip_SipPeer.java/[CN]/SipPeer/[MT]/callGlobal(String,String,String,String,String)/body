@@ -1,9 +1,0 @@
-{
-  if (!registered) {
-    log.warn("We are not registered to FreeSWITCH. However, we will allow {} to call {}.",callerName,destination);
-  }
-  CallAgent ca=createCallAgent(clientId);
-  ca.setLocalSocketRelatedToGlobal();
-  CallAgent caGlobal=createCallAgent(clientIdGlobal);
-  caGlobal.callGlobal(callerNameGlobal,destination,ca);
-}

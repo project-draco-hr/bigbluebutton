@@ -1,6 +1,6 @@
 {
-  voiceConference.put(roomName,globalAudioStreamName);
-  codecVoiceConference.put(roomName,codecName);
+  roomToStreamMap.put(roomName,globalAudioStreamName);
+  roomToCodecMap.put(roomName,codecName);
   numberOfUsers.put(roomName,0);
   globalAudioKeepAliverMap.put(roomName,globalAudioKeepAlive);
   globalAudioKeepAlive.start();

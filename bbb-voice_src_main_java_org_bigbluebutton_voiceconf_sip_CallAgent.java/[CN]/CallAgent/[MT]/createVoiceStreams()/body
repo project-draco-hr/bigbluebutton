@@ -18,14 +18,11 @@
           callStream=callStreamFactory.createCallStream(sipCodec,connInfo);
           callStream.addCallStreamObserver(this);
           callStream.start();
-          if (_callerName.contains("GLOBAL_AUDIO") == true) {
+          if (_callerName.startsWith("GLOBAL_AUDIO_")) {
             KeepGlobalAudioAlive globalAudioKeepAlive=new KeepGlobalAudioAlive(connInfo.getSocket(),connInfo,sipCodec.getCodecId());
             GlobalCall.addGlobalAudioStream(_destination,callStream.getListenStreamName(),sipCodec.getCodecName(),globalAudioKeepAlive);
-            caToInit.returnGlobalStreamName(caToInit.getCallId(),_destination);
-            talking=true;
           }
  else {
-            talking=true;
             notifyListenersOnCallConnected(callStream.getTalkStreamName(),callStream.getListenStreamName());
           }
         }

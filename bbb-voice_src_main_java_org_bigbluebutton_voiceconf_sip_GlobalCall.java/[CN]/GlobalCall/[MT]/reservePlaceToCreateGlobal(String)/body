@@ -1,9 +1,9 @@
 {
-  if (voiceConference.containsKey(roomName)) {
+  if (roomToStreamMap.containsKey(roomName)) {
     return false;
   }
  else {
-    voiceConference.put(roomName,"reserved");
+    roomToStreamMap.put(roomName,"reserved");
     return true;
   }
 }

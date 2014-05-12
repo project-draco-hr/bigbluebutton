@@ -1,13 +1,13 @@
 {
   log.debug("hangup");
-  if (talking) {
+  if (listeningToGlobal) {
+    callState=CallState.UA_IDLE;
+    clientConnManager.leaveConference(clientId);
+  }
+ else {
     if (callState == CallState.UA_IDLE)     return;
     closeVoiceStreams();
     if (call != null)     call.hangup();
     callState=CallState.UA_IDLE;
-  }
- else {
-    callState=CallState.UA_IDLE;
-    clientConnManager.leaveConference(clientId);
   }
 }

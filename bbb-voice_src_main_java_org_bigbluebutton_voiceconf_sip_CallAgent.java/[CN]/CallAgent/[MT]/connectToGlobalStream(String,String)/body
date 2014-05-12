@@ -1,5 +1,5 @@
 {
-  talking=false;
+  listeningToGlobal=true;
   _destination=destination;
   String globalAudioStreamName=GlobalCall.getGlobalAudioStream(destination);
   while (globalAudioStreamName.equals("reserved")) {

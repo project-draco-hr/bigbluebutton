@@ -1,6 +1,7 @@
 {
+  log.debug("Closing local audio port {}",localSocket.getLocalPort());
   if (localSocket != null) {
-    if (talking == true) {
+    if (!listeningToGlobal) {
       localSocket.close();
     }
   }

@@ -1,0 +1,4 @@
+{
+  CallAgent ca=createCallAgent(clientId);
+  ca.connectToGlobalStream(clientId,destination);
+}
