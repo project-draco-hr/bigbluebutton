@@ -1,8 +1,10 @@
 {
   if (roomToStreamMap.containsKey(roomName)) {
+    log.debug("There's already a global audio stream for room {}, no need to create a new one",roomName);
     return false;
   }
  else {
+    log.debug("Reserving the place to create a global audio stream for room {}",roomName);
     roomToStreamMap.put(roomName,"reserved");
     return true;
   }
