@@ -1,4 +1,5 @@
 {
+  if (callState == CallState.UA_IDLE)   return;
   log.debug("notifyListenersOfOnCallClosed for {}",clientId);
   clientConnManager.leaveConference(clientId);
   cleanup();

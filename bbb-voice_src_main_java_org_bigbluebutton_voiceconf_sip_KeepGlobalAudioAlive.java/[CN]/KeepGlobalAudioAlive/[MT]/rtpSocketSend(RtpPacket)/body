@@ -1,0 +1,8 @@
+{
+  try {
+    rtpSocket.send(rtpPacket);
+  }
+ catch (  IOException e) {
+    throw new StreamException("Failed to send data to server.");
+  }
+}

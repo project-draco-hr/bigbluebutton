@@ -1,0 +1,9 @@
+{
+  log.debug("Removing global audio stream of room {}",roomName);
+  roomToStreamMap.remove(roomName);
+  numberOfUsers.remove(roomName);
+  roomToCodecMap.remove(roomName);
+  KeepGlobalAudioAlive globalAudioKeepAlive=globalAudioKeepAliverMap.get(roomName);
+  globalAudioKeepAlive.halt();
+  globalAudioKeepAliverMap.remove(roomName);
+}
