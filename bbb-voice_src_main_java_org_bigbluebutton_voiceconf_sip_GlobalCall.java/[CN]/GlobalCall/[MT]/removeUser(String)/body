@@ -3,6 +3,6 @@
     int nUsers=numberOfUsers.get(roomName);
     nUsers-=1;
     numberOfUsers.put(roomName,nUsers);
-    log.debug("REMOVING USER: Number of users left is " + nUsers);
+    log.debug("Removing user from room {}, current number of users on global stream is {}",roomName,nUsers);
   }
 }

@@ -1,5 +1,5 @@
 {
-  log.debug("REMOVING GLOBAL AUDIO FROM ROOM " + roomName);
+  log.debug("Removing global audio stream of room {}",roomName);
   roomToStreamMap.remove(roomName);
   numberOfUsers.remove(roomName);
   roomToCodecMap.remove(roomName);

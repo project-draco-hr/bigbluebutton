@@ -1,3 +1,0 @@
-{
-  return roomToStreamMap.containsKey(roomName);
-}

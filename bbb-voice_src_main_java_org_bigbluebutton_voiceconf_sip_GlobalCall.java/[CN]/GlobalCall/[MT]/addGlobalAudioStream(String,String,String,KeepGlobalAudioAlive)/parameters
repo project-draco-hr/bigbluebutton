@@ -1,4 +1,0 @@
-String roomName
-String globalAudioStreamName
-String codecName
-KeepGlobalAudioAlive globalAudioKeepAlive

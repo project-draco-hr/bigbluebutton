@@ -11,5 +11,7 @@
     globalAudioStreamName=GlobalCall.getGlobalAudioStream(destination);
   }
   GlobalCall.addUser(_destination);
-  clientConnManager.joinConferenceSuccess(clientId,"",globalAudioStreamName,GlobalCall.getRoomCodec(destination));
+  sipCodec=GlobalCall.getRoomCodec(destination);
+  callState=CallState.UA_ONCALL;
+  notifyListenersOnCallConnected("",globalAudioStreamName);
 }
