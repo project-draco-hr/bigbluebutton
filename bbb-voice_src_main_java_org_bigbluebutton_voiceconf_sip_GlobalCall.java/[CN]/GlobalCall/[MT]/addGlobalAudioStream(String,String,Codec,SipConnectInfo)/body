@@ -1,9 +1,9 @@
 {
-  log.debug("Adding a global audio stream to room {}",roomName);
-  roomToStreamMap.put(roomName,globalAudioStreamName);
-  roomToCodecMap.put(roomName,sipCodec);
-  numberOfUsers.put(roomName,0);
+  log.debug("Adding a global audio stream to room {}",voiceConf);
+  roomToStreamMap.put(voiceConf,globalAudioStreamName);
+  roomToCodecMap.put(voiceConf,sipCodec);
+  voiceConfToListenOnlyUsersMap.put(voiceConf,new VoiceConfToListenOnlyUsersMap(voiceConf));
   KeepGlobalAudioAlive globalAudioKeepAlive=new KeepGlobalAudioAlive(connInfo.getSocket(),connInfo,sipCodec.getCodecId());
-  globalAudioKeepAliverMap.put(roomName,globalAudioKeepAlive);
+  globalAudioKeepAliverMap.put(voiceConf,globalAudioKeepAlive);
   globalAudioKeepAlive.start();
 }

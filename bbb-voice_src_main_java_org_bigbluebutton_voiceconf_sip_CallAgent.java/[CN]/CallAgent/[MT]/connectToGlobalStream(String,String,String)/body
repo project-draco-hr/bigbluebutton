@@ -10,8 +10,9 @@
     }
     globalAudioStreamName=GlobalCall.getGlobalAudioStream(destination);
   }
-  GlobalCall.addUser(_destination);
+  GlobalCall.addUser(clientId,callerIdName,_destination);
   sipCodec=GlobalCall.getRoomCodec(destination);
   callState=CallState.UA_ONCALL;
   notifyListenersOnCallConnected("",globalAudioStreamName);
+  log.info("User is has connected to global audio, user=[" + callerIdName + "] voiceConf = ["+ destination+ "]");
 }

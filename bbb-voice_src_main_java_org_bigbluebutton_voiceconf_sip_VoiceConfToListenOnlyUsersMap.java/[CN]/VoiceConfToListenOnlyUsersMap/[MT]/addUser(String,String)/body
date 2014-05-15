@@ -1,0 +1,3 @@
+{
+  listenOnlyUsers.put(clientId,new ListenOnlyUser(clientId,callerIdName,voiceConf));
+}
