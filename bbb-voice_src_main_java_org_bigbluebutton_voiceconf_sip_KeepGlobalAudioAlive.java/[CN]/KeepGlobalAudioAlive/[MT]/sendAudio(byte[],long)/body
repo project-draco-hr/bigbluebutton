@@ -1,0 +1,23 @@
+{
+  byte[] transcodedAudioDataBuffer=new byte[audioData.length + RTP_HEADER_SIZE];
+  System.arraycopy(audioData,0,transcodedAudioDataBuffer,RTP_HEADER_SIZE,audioData.length);
+  RtpPacket rtpPacket=new RtpPacket(transcodedAudioDataBuffer,transcodedAudioDataBuffer.length);
+  if (!marked) {
+    rtpPacket.setMarker(true);
+    marked=true;
+    startTimestamp=System.currentTimeMillis();
+  }
+  rtpPacket.setPadding(false);
+  rtpPacket.setExtension(false);
+  rtpPacket.setPayloadType(codecId);
+  rtpPacket.setSeqNum(sequenceNum++);
+  rtpPacket.setTimestamp(timestamp);
+  rtpPacket.setPayloadLength(audioData.length);
+  try {
+    rtpSocketSend(rtpPacket);
+  }
+ catch (  StreamException e) {
+    e.printStackTrace();
+    log.error("Failed to send data to server.");
+  }
+}

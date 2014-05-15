@@ -1,4 +1,6 @@
 {
   log.debug("Notify client that {} [{}] failed to join the conference.",username,userid);
-  connection.invoke("failedToJoinVoiceConferenceCallback",new Object[]{"onUaCallFailed"});
+  if (connection.isConnected()) {
+    connection.invoke("failedToJoinVoiceConferenceCallback",new Object[]{"onUaCallFailed"});
+  }
 }

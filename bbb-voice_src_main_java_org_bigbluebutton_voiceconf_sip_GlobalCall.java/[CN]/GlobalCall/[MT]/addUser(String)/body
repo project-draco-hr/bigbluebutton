@@ -1,0 +1,6 @@
+{
+  int nUsers=numberOfUsers.get(roomName);
+  nUsers+=1;
+  numberOfUsers.put(roomName,nUsers);
+  log.debug("Adding new user to room {}, current number of users on global stream is {}",roomName,nUsers);
+}
