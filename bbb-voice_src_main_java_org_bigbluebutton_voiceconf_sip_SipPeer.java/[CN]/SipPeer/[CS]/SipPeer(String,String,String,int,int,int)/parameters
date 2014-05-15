@@ -1,6 +1,0 @@
-String id
-String sipClientRtpIp
-String host
-int sipPort
-int startAudioPort
-int stopAudioPort

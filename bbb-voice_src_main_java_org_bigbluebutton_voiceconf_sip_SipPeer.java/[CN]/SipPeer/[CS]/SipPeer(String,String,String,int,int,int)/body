@@ -1,6 +1,0 @@
-{
-  this.id=id;
-  this.clientRtpIp=sipClientRtpIp;
-  audioconfProvider=new AudioConferenceProvider(host,sipPort,startAudioPort,stopAudioPort);
-  initSipProvider(host,sipPort);
-}
