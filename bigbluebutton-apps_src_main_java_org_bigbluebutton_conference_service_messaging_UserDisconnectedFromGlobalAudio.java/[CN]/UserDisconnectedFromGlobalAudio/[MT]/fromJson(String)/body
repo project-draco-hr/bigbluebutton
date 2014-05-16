@@ -6,7 +6,7 @@
     JsonObject payload=(JsonObject)obj.get("payload");
     if (header.has("name")) {
       String messageName=header.get("name").getAsString();
-      if (messageName == USER_DISCONNECTED_FROM_GLOBAL_AUDIO) {
+      if (USER_DISCONNECTED_FROM_GLOBAL_AUDIO.equals(messageName)) {
         if (payload.has(Constants.VOICE_CONF) && payload.has(Constants.USER_ID) && payload.has(Constants.NAME)) {
           String voiceConf=payload.get(Constants.VOICE_CONF).getAsString();
           String userid=payload.get(Constants.USER_ID).getAsString();
@@ -16,5 +16,6 @@
       }
     }
   }
+  System.out.println("Failed to parse UserDisconnectedFromGlobalAudio");
   return null;
 }
