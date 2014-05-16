@@ -1,6 +1,6 @@
 {
-  if (numberOfUsers.containsKey(roomName) && numberOfUsers.get(roomName) <= 0) {
-    removeRoom(roomName);
+  if (voiceConfToListenOnlyUsersMap.containsKey(voiceConf) && voiceConfToListenOnlyUsersMap.get(voiceConf).numUsers() <= 0) {
+    removeRoom(voiceConf);
     return true;
   }
  else {

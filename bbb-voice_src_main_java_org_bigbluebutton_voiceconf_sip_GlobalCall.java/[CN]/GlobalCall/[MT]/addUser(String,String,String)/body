@@ -1,0 +1,8 @@
+{
+  if (voiceConfToListenOnlyUsersMap.containsKey(voiceConf)) {
+    VoiceConfToListenOnlyUsersMap map=voiceConfToListenOnlyUsersMap.get(voiceConf);
+    map.addUser(clientId,callerIdName);
+    int numUsers=map.numUsers();
+    log.debug("Adding new user to voiceConf [{}], current number of users on global stream is {}",voiceConf,numUsers);
+  }
+}

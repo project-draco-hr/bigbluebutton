@@ -1,0 +1,21 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (USER_DISCONNECTED_FROM_GLOBAL_AUDIO.equals(messageName)) {
+        if (payload.has(Constants.VOICE_CONF) && payload.has(Constants.USER_ID) && payload.has(Constants.NAME)) {
+          String voiceConf=payload.get(Constants.VOICE_CONF).getAsString();
+          String userid=payload.get(Constants.USER_ID).getAsString();
+          String name=payload.get(Constants.NAME).getAsString();
+          return new UserDisconnectedFromGlobalAudio(voiceConf,userid,name);
+        }
+      }
+    }
+  }
+  System.out.println("Failed to parse UserDisconnectedFromGlobalAudio");
+  return null;
+}

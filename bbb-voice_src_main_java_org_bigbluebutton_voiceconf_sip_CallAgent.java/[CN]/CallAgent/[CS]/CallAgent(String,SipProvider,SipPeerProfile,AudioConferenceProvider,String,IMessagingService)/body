@@ -1,0 +1,8 @@
+{
+  this.sipProvider=sipProvider;
+  this.clientRtpIp=sipClientRtpIp;
+  this.userProfile=userProfile;
+  this.portProvider=portProvider;
+  this.clientId=clientId;
+  this.messagingService=messagingService;
+}
