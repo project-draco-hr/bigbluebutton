@@ -1,4 +1,3 @@
 {
-  System.out.println("meetingIdd=[" + intMeetingId + "] started=["+ hasStarted()+ "] notRunning=["+ !isRunning()+ "] expired=["+ didExpire(expiry)+ "]");
-  return (hasStarted() && !isRunning() && didExpire(expiry));
+  return (hasStarted() && userHasJoined && isEmpty()&& hasBeenEmptyFor(expiry));
 }
