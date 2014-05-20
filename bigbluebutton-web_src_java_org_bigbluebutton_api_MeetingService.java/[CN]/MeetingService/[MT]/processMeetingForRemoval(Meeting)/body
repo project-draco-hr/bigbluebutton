@@ -1,0 +1,5 @@
+{
+  kickOffProcessingOfRecording(m);
+  destroyMeeting(m.getInternalId());
+  meetings.remove(m.getInternalId());
+}

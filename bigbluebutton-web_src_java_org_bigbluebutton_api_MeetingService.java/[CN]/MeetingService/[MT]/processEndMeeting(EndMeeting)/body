@@ -5,12 +5,7 @@
   if (m != null) {
     m.setForciblyEnded(true);
     if (removeMeetingWhenEnded) {
-      if (m.isRecord()) {
-        log.debug("Removing forcibly ended meeting [{}]. Process the recording.",m.getInternalId());
-        processRecording(m.getInternalId());
-      }
-      destroyMeeting(m.getInternalId());
-      meetings.remove(m.getInternalId());
+      processMeetingForRemoval(m);
     }
   }
  else {
