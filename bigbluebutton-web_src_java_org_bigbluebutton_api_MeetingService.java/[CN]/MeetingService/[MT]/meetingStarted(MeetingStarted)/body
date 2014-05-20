@@ -10,7 +10,6 @@
  else {
       log.debug("The meeting [{}] has been started again...",message.meetingId);
     }
-    m.setEndTime(0);
     return;
   }
   log.warn("The meeting [{}] doesn't exist",message.meetingId);

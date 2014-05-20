@@ -1,4 +1,4 @@
 {
-  log.info("Trigger cleaning up expired meetings");
+  log.debug("Trigger cleaning up expired meetings");
   handle(new RemoveExpiredMeetings());
 }
