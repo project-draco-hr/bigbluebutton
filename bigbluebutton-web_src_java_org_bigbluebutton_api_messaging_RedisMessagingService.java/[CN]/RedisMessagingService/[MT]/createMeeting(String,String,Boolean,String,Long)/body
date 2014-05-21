@@ -1,5 +1,6 @@
 {
   CreateMeetingMessage msg=new CreateMeetingMessage(meetingID,meetingName,recorded,voiceBridge,duration);
   String json=MessageToJson.createMeetingMessageToJson(msg);
+  log.info("Sending create meeting message to bbb-apps:[{}]",json);
   sender.send(MessagingConstants.TO_MEETING_CHANNEL,json);
 }

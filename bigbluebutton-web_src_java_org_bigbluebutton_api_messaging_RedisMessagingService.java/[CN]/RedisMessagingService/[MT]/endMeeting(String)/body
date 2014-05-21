@@ -1,5 +1,6 @@
 {
   EndMeetingMessage msg=new EndMeetingMessage(meetingId);
   String json=MessageToJson.endMeetingMessageToJson(msg);
+  log.info("Sending end meeting message to bbb-apps:[{}]",json);
   sender.send(MessagingConstants.TO_MEETING_CHANNEL,json);
 }

@@ -11,6 +11,9 @@
  catch (        InterruptedException e) {
           e.printStackTrace();
         }
+catch (        Exception e) {
+          log.error("Catching exception [{}]",e.toString());
+        }
       }
     }
   }
