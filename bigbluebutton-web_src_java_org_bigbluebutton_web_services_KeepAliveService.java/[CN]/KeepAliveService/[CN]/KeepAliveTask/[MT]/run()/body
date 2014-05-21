@@ -1,16 +1,5 @@
 {
-  if (liveMsgs.size() < maxLives) {
-    String aliveId=Long.toString(System.currentTimeMillis());
-    HashMap<String,String> map=new HashMap<String,String>();
-    map.put("messageId",KEEP_ALIVE_REQUEST);
-    map.put("aliveId",aliveId);
-    Gson gson=new Gson();
-    liveMsgs.add(aliveId);
-    log.info("Sending keep alive message to bbb-apps. keep-alive id [{}]",aliveId);
-    service.send(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
-  }
- else {
-    available=false;
-    log.warn("bbb-apps is down!");
-  }
+  String aliveId=Long.toString(System.currentTimeMillis());
+  KeepAlivePing ping=new KeepAlivePing(aliveId);
+  queueMessage(ping);
 }

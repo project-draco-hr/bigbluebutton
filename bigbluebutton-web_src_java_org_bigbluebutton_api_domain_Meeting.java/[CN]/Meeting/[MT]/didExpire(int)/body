@@ -1,5 +1,0 @@
-{
-  long now=System.currentTimeMillis();
-  System.out.println("Expiry " + now + " endTime="+ endTime+ " expiry="+ (expiry * MILLIS_IN_A_MINUTE));
-  return (System.currentTimeMillis() - endTime > (expiry * MILLIS_IN_A_MINUTE));
-}

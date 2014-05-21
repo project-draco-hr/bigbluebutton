@@ -1,0 +1,6 @@
+{
+  if (message instanceof KeepAliveReply) {
+    KeepAliveReply msg=(KeepAliveReply)message;
+    keepAliveReply(msg.pongId);
+  }
+}

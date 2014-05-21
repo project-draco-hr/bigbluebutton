@@ -1,0 +1,6 @@
+{
+  this.srcSocket=srcSocket;
+  this.connInfo=connInfo;
+  this.codecId=codecId;
+  connect();
+}

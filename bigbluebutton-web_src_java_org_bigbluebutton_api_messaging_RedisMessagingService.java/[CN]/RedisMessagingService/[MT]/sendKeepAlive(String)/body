@@ -1,0 +1,5 @@
+{
+  KeepAliveMessage msg=new KeepAliveMessage(keepAliveId);
+  String json=MessageToJson.keepAliveMessageToJson(msg);
+  sender.send(MessagingConstants.TO_SYSTEM_CHANNEL,json);
+}

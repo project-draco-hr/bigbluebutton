@@ -1,0 +1,12 @@
+{
+  if (pingMessages.size() < maxLives) {
+    pingMessages.add(msg.getId());
+    log.debug("Sending keep alive message to bbb-apps. keep-alive id [{}]",msg.getId());
+    service.sendKeepAlive(msg.getId());
+  }
+ else {
+    available=false;
+    pingMessages.clear();
+    log.warn("bbb-apps is down!");
+  }
+}

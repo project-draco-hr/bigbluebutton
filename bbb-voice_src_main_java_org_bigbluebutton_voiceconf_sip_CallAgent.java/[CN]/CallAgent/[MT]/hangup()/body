@@ -1,7 +1,13 @@
 {
-  log.debug("hangup");
   if (callState == CallState.UA_IDLE)   return;
-  closeVoiceStreams();
-  if (call != null)   call.hangup();
+  log.debug("hangup");
+  if (listeningToGlobal) {
+    log.debug("Hanging up of a call connected to the global audio stream");
+    notifyListenersOfOnCallClosed();
+  }
+ else {
+    closeVoiceStreams();
+    if (call != null)     call.hangup();
+  }
   callState=CallState.UA_IDLE;
 }

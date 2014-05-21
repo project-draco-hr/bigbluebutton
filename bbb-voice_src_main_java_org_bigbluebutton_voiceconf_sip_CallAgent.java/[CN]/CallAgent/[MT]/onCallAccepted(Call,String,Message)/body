@@ -1,7 +1,6 @@
 {
   log.debug("Received 200/OK. So user has successfully joined the conference.");
   if (!isCurrentCall(call))   return;
-  log.debug("ACCEPTED/CALL.");
   callState=CallState.UA_ONCALL;
   setupSdpAndCodec(sdp);
   if (userProfile.noOffer) {

@@ -1,0 +1,6 @@
+{
+  if (voiceConfToListenOnlyUsersMap.containsKey(voiceConf)) {
+    return voiceConfToListenOnlyUsersMap.get(voiceConf).removeUser(clientId);
+  }
+  return null;
+}

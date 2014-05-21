@@ -1,5 +1,5 @@
 {
-  if (channel.equalsIgnoreCase(MessagingConstants.PRESENTATION_CHANNEL)) {
+  if (channel.equalsIgnoreCase(MessagingConstants.TO_PRESENTATION_CHANNEL)) {
     Gson gson=new Gson();
     HashMap<String,String> map=gson.fromJson(message,new TypeToken<Map<String,String>>(){
     }

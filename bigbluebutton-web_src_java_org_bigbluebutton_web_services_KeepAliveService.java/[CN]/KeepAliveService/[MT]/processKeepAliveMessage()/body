@@ -1,0 +1,19 @@
+{
+  processMessages=true;
+  Runnable sender=new Runnable(){
+    public void run(){
+      while (processMessages) {
+        KeepAliveMessage message;
+        try {
+          message=messages.take();
+          processMessage(message);
+        }
+ catch (        InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
+;
+  msgSenderExec.execute(sender);
+}

@@ -1,4 +1,5 @@
 {
-  if (duration == 0)   return false;
-  return (System.currentTimeMillis() - startTime > (duration * MILLIS_IN_A_MINUTE));
+  if (meetingInfinite())   return false;
+  long now=System.currentTimeMillis();
+  return (now - startTime > (duration * MILLIS_IN_A_MINUTE));
 }

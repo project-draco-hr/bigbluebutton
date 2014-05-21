@@ -1,0 +1,24 @@
+{
+  log.info("Starting Meeting Service.");
+  try {
+    processMessage=true;
+    Runnable messageReceiver=new Runnable(){
+      public void run(){
+        while (processMessage) {
+          try {
+            IMessage msg=receivedMessages.take();
+            processMessage(msg);
+          }
+ catch (          InterruptedException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    }
+;
+    msgProcessorExec.execute(messageReceiver);
+  }
+ catch (  Exception e) {
+    log.error("Error PRocessing Message");
+  }
+}

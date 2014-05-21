@@ -1,0 +1,9 @@
+{
+  log.debug("Removing global audio stream of room {}",voiceConf);
+  roomToStreamMap.remove(voiceConf);
+  voiceConfToListenOnlyUsersMap.remove(voiceConf);
+  roomToCodecMap.remove(voiceConf);
+  KeepGlobalAudioAlive globalAudioKeepAlive=globalAudioKeepAliverMap.get(voiceConf);
+  globalAudioKeepAlive.halt();
+  globalAudioKeepAliverMap.remove(voiceConf);
+}

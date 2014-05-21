@@ -1,0 +1,14 @@
+{
+  log.info("Received EndMeeting request from the API for meeting=[{}]",message.meetingId);
+  messagingService.endMeeting(message.meetingId);
+  Meeting m=getMeeting(message.meetingId);
+  if (m != null) {
+    m.setForciblyEnded(true);
+    if (removeMeetingWhenEnded) {
+      processMeetingForRemoval(m);
+    }
+  }
+ else {
+    log.debug("endMeeting - meeting doesn't exist: " + message.meetingId);
+  }
+}
