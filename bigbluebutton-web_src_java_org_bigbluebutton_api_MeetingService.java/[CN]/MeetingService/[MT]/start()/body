@@ -12,6 +12,9 @@
  catch (          InterruptedException e) {
             e.printStackTrace();
           }
+catch (          Exception e) {
+            log.error("Handling unexpected exception [{}]",e.toString());
+          }
         }
       }
     }

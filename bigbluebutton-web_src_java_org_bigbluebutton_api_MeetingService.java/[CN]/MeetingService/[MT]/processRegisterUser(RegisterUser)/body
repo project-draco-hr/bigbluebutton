@@ -1,0 +1,3 @@
+{
+  messagingService.registerUser(message.meetingID,message.internalUserId,message.fullname,message.role,message.externUserID,message.authToken);
+}
