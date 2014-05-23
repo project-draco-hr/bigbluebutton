@@ -1,0 +1,11 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(Constants.MEETING_ID,meetingID);
+  payload.put(Constants.INTERNAL_USER_ID,internalUserId);
+  payload.put(Constants.NAME,fullname);
+  payload.put(Constants.ROLE,role);
+  payload.put(Constants.EXT_USER_ID,externUserID);
+  payload.put(Constants.AUTH_TOKEN,authToken);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(REGISTER_USER,VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}

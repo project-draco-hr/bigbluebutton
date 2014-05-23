@@ -1,0 +1,23 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (REGISTER_USER.equals(messageName)) {
+        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.NAME) && payload.has(Constants.ROLE)&& payload.has(Constants.EXT_USER_ID)&& payload.has(Constants.AUTH_TOKEN)) {
+          String meetingID=payload.get(Constants.MEETING_ID).getAsString();
+          String fullname=payload.get(Constants.NAME).getAsString();
+          String role=payload.get(Constants.ROLE).getAsString();
+          String externUserID=payload.get(Constants.EXT_USER_ID).getAsString();
+          String authToken=payload.get(Constants.AUTH_TOKEN).getAsString();
+          return new RegisterUserMessage(meetingID,externUserID,fullname,role,externUserID,authToken);
+        }
+      }
+    }
+  }
+  System.out.println("Failed to parse RegisterUserMessage");
+  return null;
+}

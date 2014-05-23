@@ -15,6 +15,9 @@ case EndMeetingMessage.END_MEETING_REQUEST_EVENT:
     return processEndMeetingMessage(payload);
 case KeepAliveMessage.KEEP_ALIVE_REQUEST:
   return processKeepAlive(payload);
+case RegisterUserMessage.REGISTER_USER:
+System.out.println("Registering a user");
+return RegisterUserMessage.fromJson(message);
 case ValidateAuthTokenMessage.VALIDATE_AUTH_TOKEN:
 return processValidateAuthTokenMessage(header,payload);
 case UserConnectedToGlobalAudio.USER_CONNECTED_TO_GLOBAL_AUDIO:
