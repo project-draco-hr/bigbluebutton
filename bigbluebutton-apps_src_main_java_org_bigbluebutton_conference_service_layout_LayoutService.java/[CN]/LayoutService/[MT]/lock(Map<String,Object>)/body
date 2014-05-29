@@ -1,4 +1,0 @@
-{
-  String meetingID=Red5.getConnectionLocal().getScope().getName();
-  application.lockLayout(meetingID,(String)message.get("setByUserID"),(String)message.get("layout"));
-}
