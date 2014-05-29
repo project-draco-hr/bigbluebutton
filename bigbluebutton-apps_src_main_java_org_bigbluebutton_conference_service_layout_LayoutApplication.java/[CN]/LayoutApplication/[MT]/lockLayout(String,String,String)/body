@@ -1,3 +1,0 @@
-{
-  bbbInGW.lockLayout(meetingID,requesterID,layoutID);
-}

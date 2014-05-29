@@ -1,0 +1,4 @@
+{
+  String meetingID=Red5.getConnectionLocal().getScope().getName();
+  application.broadcastLayout(meetingID,(String)message.get("setByUserID"),(String)message.get("layout"),(Boolean)message.get("locked"));
+}
