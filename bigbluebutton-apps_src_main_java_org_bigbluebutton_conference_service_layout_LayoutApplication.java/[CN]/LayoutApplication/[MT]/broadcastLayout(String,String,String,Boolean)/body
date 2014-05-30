@@ -1,3 +1,0 @@
-{
-  bbbInGW.broadcastLayout(meetingID,requesterID,layoutID,locked);
-}
