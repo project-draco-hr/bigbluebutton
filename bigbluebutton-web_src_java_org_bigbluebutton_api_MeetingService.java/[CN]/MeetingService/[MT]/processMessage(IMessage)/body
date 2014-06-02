@@ -29,4 +29,7 @@
     log.info("Processing end meeting request.");
     processEndMeeting((EndMeeting)message);
   }
+ else   if (message instanceof RegisterUser) {
+    processRegisterUser((RegisterUser)message);
+  }
 }

@@ -1,4 +1,4 @@
 {
-  meetings=new ConcurrentHashMap<String,Meeting>();
-  sessions=new ConcurrentHashMap<String,UserSession>();
+  meetings=new ConcurrentHashMap<String,Meeting>(8,0.9f,1);
+  sessions=new ConcurrentHashMap<String,UserSession>(8,0.9f,1);
 }

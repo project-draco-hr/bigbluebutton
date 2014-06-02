@@ -1,5 +1,6 @@
 {
   log.debug("Participant " + userid + " leaving room "+ roomName);
+  System.out.println("\n\n\n\n participantLeft is being used \n\n\n");
   bbbInGW.userLeft(roomName,userid);
   return true;
 }
