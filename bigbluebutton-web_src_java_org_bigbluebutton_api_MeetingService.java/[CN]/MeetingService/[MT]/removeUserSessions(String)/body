@@ -1,0 +1,16 @@
+{
+  log.debug("Cleaning up user sessions for meeting [" + meetingId + "]");
+  Iterator<Map.Entry<String,UserSession>> iterator=sessions.entrySet().iterator();
+  while (iterator.hasNext()) {
+    Map.Entry<String,UserSession> entry=iterator.next();
+    UserSession userSession=entry.getValue();
+    log.debug("Got user [" + userSession.fullname + "] from meeting ["+ userSession.conferencename+ "]");
+    if (userSession.meetingID.equals(meetingId)) {
+      log.debug("Removing user [" + userSession.fullname + "] from meeting ["+ userSession.conferencename+ "]");
+      iterator.remove();
+    }
+ else {
+      log.debug("Not Removing user [" + userSession.fullname + "] from meeting ["+ userSession.conferencename+ "]");
+    }
+  }
+}
