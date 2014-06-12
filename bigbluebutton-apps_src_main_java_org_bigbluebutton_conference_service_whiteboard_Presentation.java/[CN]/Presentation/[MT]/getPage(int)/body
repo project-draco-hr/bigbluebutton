@@ -1,7 +1,0 @@
-{
-  for (int i=0; i < pages.size(); i++) {
-    Page p=pages.get(i);
-    if (p.getPageIndex() == pageNumber)     return p;
-  }
-  return null;
-}

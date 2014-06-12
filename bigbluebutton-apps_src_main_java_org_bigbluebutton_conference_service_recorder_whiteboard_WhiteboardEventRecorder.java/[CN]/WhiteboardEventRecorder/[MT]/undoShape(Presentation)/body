@@ -1,6 +1,0 @@
-{
-  UndoShapeWhiteboardRecordEvent event=new UndoShapeWhiteboardRecordEvent();
-  event.setMeetingId(session);
-  event.setTimestamp(System.currentTimeMillis());
-  recorder.record(session,event);
-}

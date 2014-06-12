@@ -1,0 +1,3 @@
+{
+  bbbInGW.lowerHand(meetingId,userId,loweredBy);
+}

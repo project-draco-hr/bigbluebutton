@@ -1,5 +1,0 @@
-{
-  this.name=name;
-  listeners=new ConcurrentHashMap<String,IChatRoomListener>();
-  this.messages=new ArrayList<ChatMessageVO>();
-}

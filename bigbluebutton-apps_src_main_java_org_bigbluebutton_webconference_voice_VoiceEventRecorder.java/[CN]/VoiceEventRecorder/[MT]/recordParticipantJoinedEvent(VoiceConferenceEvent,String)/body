@@ -1,0 +1,13 @@
+{
+  VoiceUserJoinedEvent pje=(VoiceUserJoinedEvent)event;
+  ParticipantJoinedVoiceRecordEvent evt=new ParticipantJoinedVoiceRecordEvent();
+  evt.setMeetingId(room);
+  evt.setTimestamp(System.currentTimeMillis());
+  evt.setBridge(event.getRoom());
+  evt.setParticipant(pje.getUserId().toString());
+  evt.setCallerName(pje.getCallerIdName());
+  evt.setCallerNumber(pje.getCallerIdName());
+  evt.setMuted(pje.getMuted());
+  evt.setTalking(pje.getSpeaking());
+  recorder.record(room,evt);
+}

@@ -1,9 +1,0 @@
-{
-  PresentationRoom r=getRoom(room);
-  if (r != null) {
-    r.removePresentation(name);
-  }
- else {
-    log.warn("Removing presentation from a non-existing room " + room);
-  }
-}

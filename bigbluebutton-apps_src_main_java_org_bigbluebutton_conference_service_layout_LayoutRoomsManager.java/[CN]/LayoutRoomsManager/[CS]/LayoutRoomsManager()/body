@@ -1,4 +1,0 @@
-{
-  log.debug("In LayoutRoomsManager constructor");
-  rooms=new ConcurrentHashMap<String,LayoutRoom>();
-}

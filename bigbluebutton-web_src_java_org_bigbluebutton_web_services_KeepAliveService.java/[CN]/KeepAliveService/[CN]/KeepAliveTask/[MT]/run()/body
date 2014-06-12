@@ -1,0 +1,5 @@
+{
+  String aliveId=Long.toString(System.currentTimeMillis());
+  KeepAlivePing ping=new KeepAlivePing(aliveId);
+  queueMessage(ping);
+}

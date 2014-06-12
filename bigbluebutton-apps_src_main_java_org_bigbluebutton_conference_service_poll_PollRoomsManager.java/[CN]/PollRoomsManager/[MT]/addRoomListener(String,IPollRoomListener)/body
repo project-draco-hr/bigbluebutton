@@ -1,8 +1,0 @@
-{
-  PollRoom r=getRoom(roomName);
-  if (r != null) {
-    r.addRoomListener(listener);
-    return;
-  }
-  log.warn("Adding listener to a non-existing room " + roomName);
-}

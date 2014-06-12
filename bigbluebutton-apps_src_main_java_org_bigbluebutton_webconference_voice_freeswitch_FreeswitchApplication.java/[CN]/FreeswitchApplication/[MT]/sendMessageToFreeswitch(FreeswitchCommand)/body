@@ -1,0 +1,29 @@
+{
+  if (command instanceof PopulateRoomCommand) {
+    PopulateRoomCommand cmd=(PopulateRoomCommand)command;
+    log.debug("Sending PopulateRoomCommand for conference = [" + cmd.getRoom() + "]");
+    manager.getUsers(cmd);
+  }
+ else   if (command instanceof MuteParticipantCommand) {
+    MuteParticipantCommand cmd=(MuteParticipantCommand)command;
+    log.debug("Sending MuteParticipantCommand for conference = [" + cmd.getRoom() + "]");
+    System.out.println("Sending MuteParticipantCommand for conference = [" + cmd.getRoom() + "]");
+    manager.mute(cmd);
+  }
+ else   if (command instanceof EjectParticipantCommand) {
+    EjectParticipantCommand cmd=(EjectParticipantCommand)command;
+    log.debug("Sending EjectParticipantCommand for conference = [" + cmd.getRoom() + "]");
+    manager.eject(cmd);
+  }
+ else   if (command instanceof EjectAllUsersCommand) {
+    EjectAllUsersCommand cmd=(EjectAllUsersCommand)command;
+    log.debug("Sending EjectAllUsersCommand for conference = [" + cmd.getRoom() + "]");
+    manager.ejectAll(cmd);
+  }
+ else   if (command instanceof RecordConferenceCommand) {
+    manager.record((RecordConferenceCommand)command);
+  }
+ else   if (command instanceof BroadcastConferenceCommand) {
+    manager.broadcast((BroadcastConferenceCommand)command);
+  }
+}

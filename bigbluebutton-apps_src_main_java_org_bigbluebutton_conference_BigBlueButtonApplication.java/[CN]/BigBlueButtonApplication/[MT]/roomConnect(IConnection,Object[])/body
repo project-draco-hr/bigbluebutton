@@ -29,9 +29,10 @@
   }
   BigBlueButtonSession bbbSession=new BigBlueButtonSession(room,internalUserID,username,role,voiceBridge,record,externalUserID,muted);
   connection.setAttribute(Constants.SESSION,bbbSession);
+  connection.setAttribute("INTERNAL_USER_ID",internalUserID);
   String debugInfo="internalUserID=" + internalUserID + ",username="+ username+ ",role="+ role+ ","+ ",voiceConf="+ voiceBridge+ ",room="+ room+ ",externalUserid="+ externalUserID;
   log.debug("User [{}] connected to room [{}]",debugInfo,room);
-  participantsApplication.createRoom(room,locked,new LockSettings(lsMap));
+  bbbGW.initLockSettings(room,locked,lsMap);
   connInvokerService.addConnection(bbbSession.getInternalUserID(),connection);
   return super.roomConnect(connection,params);
 }

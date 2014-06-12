@@ -1,6 +1,0 @@
-{
-  log.debug(APP + " roomStart " + scope.getName());
-  pollApplication.createRoom(scope.getName());
-  log.debug(APP + " inside roomStart startin room");
-  return true;
-}

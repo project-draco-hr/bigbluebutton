@@ -1,5 +1,0 @@
-{
-  log.debug("Request update cursor[" + xPercent + ","+ yPercent+ "]");
-  IScope scope=Red5.getConnectionLocal().getScope();
-  presentationApplication.sendCursorUpdate(scope.getName(),xPercent,yPercent);
-}

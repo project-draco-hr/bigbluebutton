@@ -1,8 +1,0 @@
-{
-  Room r=getRoom(roomName);
-  if (r != null) {
-    return r.getRecordingStatus();
-  }
-  log.warn("Getting recording status from a non-existing room " + roomName);
-  return null;
-}

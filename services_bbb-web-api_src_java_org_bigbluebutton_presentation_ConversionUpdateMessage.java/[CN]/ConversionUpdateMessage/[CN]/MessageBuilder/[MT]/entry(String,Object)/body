@@ -1,0 +1,4 @@
+{
+  message.put(key,value);
+  return this;
+}

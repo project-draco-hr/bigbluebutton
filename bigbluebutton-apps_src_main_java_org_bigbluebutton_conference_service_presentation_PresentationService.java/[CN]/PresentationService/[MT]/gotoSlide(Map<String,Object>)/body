@@ -1,0 +1,6 @@
+{
+  String pageId=(String)msg.get("page");
+  IScope scope=Red5.getConnectionLocal().getScope();
+  log.debug("Got GotoSlide for meeting [{}] page=[{}]",scope.getName(),pageId);
+  presentationApplication.gotoSlide(scope.getName(),pageId);
+}

@@ -1,0 +1,5 @@
+{
+  this.clientId=clientId;
+  this.callerIdName=callerIdName;
+  this.voiceConf=voiceConf;
+}

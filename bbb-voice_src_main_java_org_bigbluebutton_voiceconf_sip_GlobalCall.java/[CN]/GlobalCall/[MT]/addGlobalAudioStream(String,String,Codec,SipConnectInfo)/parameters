@@ -1,0 +1,4 @@
+String voiceConf
+String globalAudioStreamName
+Codec sipCodec
+SipConnectInfo connInfo

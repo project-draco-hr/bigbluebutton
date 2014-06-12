@@ -1,0 +1,3 @@
+String meetingID
+String messageName
+Map<String,Object> message

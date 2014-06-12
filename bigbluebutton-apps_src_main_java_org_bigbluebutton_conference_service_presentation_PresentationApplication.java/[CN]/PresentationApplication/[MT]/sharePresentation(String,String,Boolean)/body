@@ -1,8 +1,3 @@
 {
-  if (roomsManager.hasRoom(room)) {
-    log.debug("Request to share presentation " + presentationName + " "+ share+ " for room "+ room);
-    roomsManager.sharePresentation(room,presentationName,share);
-    return;
-  }
-  log.warn("Sharing presentation on a non-existant room " + room);
+  bbbInGW.sharePresentation(meetingID,presentationID,share);
 }

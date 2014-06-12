@@ -1,7 +1,0 @@
-{
-  if (roomsManager.hasRoom(room)) {
-    return roomsManager.getSharingPresentation(room);
-  }
-  log.warn("Getting share information on a non-existant room " + room);
-  return null;
-}

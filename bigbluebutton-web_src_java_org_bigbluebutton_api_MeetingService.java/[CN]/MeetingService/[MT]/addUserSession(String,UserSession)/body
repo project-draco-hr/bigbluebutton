@@ -1,3 +1,4 @@
 {
+  log.debug("Adding user [" + user.fullname + "] token=["+ token+ "] to meeting ["+ user.meetingID+ "]");
   sessions.put(token,user);
 }

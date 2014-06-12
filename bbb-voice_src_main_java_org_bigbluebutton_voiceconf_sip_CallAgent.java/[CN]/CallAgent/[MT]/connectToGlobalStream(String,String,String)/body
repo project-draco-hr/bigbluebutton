@@ -1,0 +1,19 @@
+{
+  listeningToGlobal=true;
+  _destination=voiceConf;
+  String globalAudioStreamName=GlobalCall.getGlobalAudioStream(voiceConf);
+  while (globalAudioStreamName.equals("reserved")) {
+    try {
+      Thread.sleep(100);
+    }
+ catch (    Exception e) {
+    }
+    globalAudioStreamName=GlobalCall.getGlobalAudioStream(voiceConf);
+  }
+  GlobalCall.addUser(clientId,callerIdName,_destination);
+  sipCodec=GlobalCall.getRoomCodec(voiceConf);
+  callState=CallState.UA_ONCALL;
+  notifyListenersOnCallConnected("",globalAudioStreamName);
+  log.info("User is has connected to global audio, user=[" + callerIdName + "] voiceConf = ["+ voiceConf+ "]");
+  messagingService.userConnectedToGlobalAudio(voiceConf,callerIdName);
+}

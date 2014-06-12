@@ -1,0 +1,4 @@
+String meetingID
+String sharedObjectName
+String messageName
+ArrayList<Object> message

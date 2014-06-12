@@ -1,5 +1,0 @@
-{
-  if (!listeners.containsKey(listener.getName())) {
-    listeners.put(listener.getName(),listener);
-  }
-}

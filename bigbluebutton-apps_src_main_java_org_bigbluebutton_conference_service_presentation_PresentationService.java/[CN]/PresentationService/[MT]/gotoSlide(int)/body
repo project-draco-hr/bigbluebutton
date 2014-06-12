@@ -1,5 +1,0 @@
-{
-  log.debug("Request to go to slide " + slideNum);
-  IScope scope=Red5.getConnectionLocal().getScope();
-  presentationApplication.gotoSlide(scope.getName(),slideNum);
-}

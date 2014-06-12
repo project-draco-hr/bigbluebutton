@@ -1,4 +1,0 @@
-{
-  activePresentation.getActivePage().toggleGrid();
-  notifyToggleGrid(activePresentation.getActivePage().isGrid(),activePresentation);
-}

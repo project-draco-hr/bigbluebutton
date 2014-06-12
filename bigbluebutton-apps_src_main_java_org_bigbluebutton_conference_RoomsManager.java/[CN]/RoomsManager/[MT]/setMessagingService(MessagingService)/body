@@ -1,5 +1,0 @@
-{
-  this.messagingService=messagingService;
-  this.messagingService.addListener(new RoomsManagerListener());
-  this.messagingService.start();
-}

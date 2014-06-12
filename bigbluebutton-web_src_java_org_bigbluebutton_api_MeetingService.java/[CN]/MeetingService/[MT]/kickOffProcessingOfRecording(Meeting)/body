@@ -1,0 +1,6 @@
+{
+  if (m.isRecord() && m.getNumUsers() == 0) {
+    log.info("Kick-off processing of recording for meeting [id={} , name={}]",m.getInternalId(),m.getName());
+    processRecording(m.getInternalId());
+  }
+}

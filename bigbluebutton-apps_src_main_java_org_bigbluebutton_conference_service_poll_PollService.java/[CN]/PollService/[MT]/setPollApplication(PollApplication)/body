@@ -1,4 +1,0 @@
-{
-  log.debug(LOGNAME + "Setting Poll Applications");
-  application=a;
-}

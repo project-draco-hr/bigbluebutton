@@ -1,7 +1,0 @@
-{
-  boolean exists=false;
-  for (int i=0; i < presentations.size(); i++) {
-    if (presentations.get(i).getName().equals(name))     exists=true;
-  }
-  return exists;
-}

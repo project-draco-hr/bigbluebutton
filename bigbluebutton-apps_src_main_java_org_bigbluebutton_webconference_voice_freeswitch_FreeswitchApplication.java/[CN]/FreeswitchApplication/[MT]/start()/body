@@ -1,0 +1,19 @@
+{
+  sendMessages=true;
+  Runnable sender=new Runnable(){
+    public void run(){
+      while (sendMessages) {
+        FreeswitchCommand message;
+        try {
+          message=messages.take();
+          sendMessageToFreeswitch(message);
+        }
+ catch (        InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
+;
+  msgSenderExec.execute(sender);
+}

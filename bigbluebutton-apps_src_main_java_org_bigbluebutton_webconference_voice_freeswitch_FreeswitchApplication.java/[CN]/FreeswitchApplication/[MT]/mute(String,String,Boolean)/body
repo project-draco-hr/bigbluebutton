@@ -1,0 +1,4 @@
+{
+  MuteParticipantCommand mpc=new MuteParticipantCommand(room,participant,mute,USER);
+  queueMessage(mpc);
+}

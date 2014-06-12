@@ -1,5 +1,0 @@
-{
-  PollRecorder recorder=new PollRecorder();
-  Poll poll=getPoll(pollKey);
-  recorder.vote(pollKey,poll,answerIDs,webVote);
-}

@@ -1,6 +1,0 @@
-{
-  roomManager.getRoom(getMeetingId()).clear();
-  Map<String,Object> message=new HashMap<String,Object>();
-  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getMeetingId(),"WhiteboardClearCommand",message);
-  connInvokerService.sendMessage(m);
-}

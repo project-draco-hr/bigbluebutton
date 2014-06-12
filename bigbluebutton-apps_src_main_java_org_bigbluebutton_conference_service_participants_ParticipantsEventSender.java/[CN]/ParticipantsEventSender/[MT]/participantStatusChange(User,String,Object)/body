@@ -1,8 +1,0 @@
-{
-  log.debug("A participant's status has changed " + p.getInternalUserID() + " "+ status+ " "+ value);
-  ArrayList args=new ArrayList();
-  args.add(p.getInternalUserID());
-  args.add(status);
-  args.add(value);
-  so.sendMessage("participantStatusChange",args);
-}

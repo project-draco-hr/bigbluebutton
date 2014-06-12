@@ -1,9 +1,0 @@
-{
-  log.debug("Add participant " + participant.getName());
-  Room r=getRoom(roomName);
-  if (r != null) {
-    r.addParticipant(participant);
-    return;
-  }
-  log.warn("Adding participant to a non-existing room " + roomName);
-}

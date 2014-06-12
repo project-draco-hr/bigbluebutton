@@ -1,4 +1,0 @@
-{
-  System.out.println("Toggling grid mode on page " + pageIndex);
-  isGrid=!isGrid;
-}

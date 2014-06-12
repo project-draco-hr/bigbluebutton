@@ -1,9 +1,3 @@
 {
   log.debug("***** " + APP + " [ "+ " roomStop [ "+ scope.getName()+ "] *********");
-  String voiceBridge=(String)scope.getAttribute(VOICE_BRIDGE);
-  conferenceService.destroyConference(voiceBridge);
-  clientManager.removeSharedObject(scope.getName());
-  if (hasSharedObject(scope,VOICE_SO)) {
-    clearSharedObjects(scope,VOICE_SO);
-  }
 }

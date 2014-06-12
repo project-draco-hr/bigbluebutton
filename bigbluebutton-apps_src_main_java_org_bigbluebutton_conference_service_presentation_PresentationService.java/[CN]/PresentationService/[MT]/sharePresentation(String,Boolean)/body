@@ -1,5 +1,0 @@
-{
-  log.debug("Request to go to sharePresentation " + presentationName + " "+ share);
-  IScope scope=Red5.getConnectionLocal().getScope();
-  presentationApplication.sharePresentation(scope.getName(),presentationName,share);
-}

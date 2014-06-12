@@ -1,17 +1,4 @@
 {
-  messagingService.endMeeting(meetingId);
-  Meeting m=getMeeting(meetingId);
-  if (m != null) {
-    m.setForciblyEnded(true);
-    if (removeMeetingWhenEnded) {
-      if (m.isRecord()) {
-        log.debug("[" + m.getInternalId() + "] is recorded. Process it.");
-        processRecording(m.getInternalId());
-      }
-      meetings.remove(m.getInternalId());
-    }
-  }
- else {
-    log.debug("endMeeting - meeting doesn't exist: " + meetingId);
-  }
+  log.info("Received request to end meeting=[{}]",meetingId);
+  handle(new EndMeeting(meetingId));
 }

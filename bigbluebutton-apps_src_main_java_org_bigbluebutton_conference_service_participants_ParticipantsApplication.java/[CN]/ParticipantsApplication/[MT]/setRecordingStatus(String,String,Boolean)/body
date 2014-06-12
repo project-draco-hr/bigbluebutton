@@ -1,3 +1,3 @@
 {
-  roomsManager.changeRecordingStatus(room,userid,recording);
+  bbbInGW.setRecordingStatus(meetingId,userId,recording);
 }

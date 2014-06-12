@@ -1,4 +1,0 @@
-{
-  processMessages=false;
-  executor.shutdown();
-}

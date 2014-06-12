@@ -1,2 +1,2 @@
-String room
-String name
+String meetingID
+String presentationID

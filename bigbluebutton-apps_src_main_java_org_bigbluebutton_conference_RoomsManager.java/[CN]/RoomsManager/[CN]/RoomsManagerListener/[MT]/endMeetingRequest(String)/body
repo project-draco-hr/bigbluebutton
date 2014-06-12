@@ -1,6 +1,0 @@
-{
-  log.debug("End meeting request for room: " + meetingId);
-  Room room=getRoom(meetingId);
-  if (room != null)   room.endAndKickAll();
- else   log.debug("Could not find room " + meetingId);
-}

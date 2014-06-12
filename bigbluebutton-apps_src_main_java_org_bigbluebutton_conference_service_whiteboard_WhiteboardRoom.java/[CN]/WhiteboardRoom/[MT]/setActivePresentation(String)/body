@@ -1,6 +1,0 @@
-{
-  Presentation p=getPresentation(name);
-  if (p != null) {
-    this.activePresentation=p;
-  }
-}

@@ -1,0 +1,7 @@
+{
+  String id=payload.get(Constants.MEETING_ID).getAsString();
+  String userid=payload.get(Constants.USER_ID).getAsString();
+  String authToken=payload.get(Constants.AUTH_TOKEN).getAsString();
+  String replyTo=header.get(Constants.REPLY_TO).getAsString();
+  return new ValidateAuthTokenMessage(id,userid,authToken,replyTo);
+}

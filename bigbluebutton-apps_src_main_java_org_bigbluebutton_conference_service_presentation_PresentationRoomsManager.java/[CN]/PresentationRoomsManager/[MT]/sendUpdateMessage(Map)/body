@@ -1,9 +1,0 @@
-{
-  String room=(String)message.get("room");
-  PresentationRoom r=getRoom(room);
-  if (r != null) {
-    r.sendUpdateMessage(message);
-    return;
-  }
-  log.warn("Sending update message to a non-existing room " + room);
-}

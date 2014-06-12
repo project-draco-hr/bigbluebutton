@@ -1,3 +1,0 @@
-{
-  recorder.record(session,buildEvent(chatobj));
-}

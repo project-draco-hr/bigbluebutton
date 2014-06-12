@@ -1,4 +1,0 @@
-{
-  log.debug("removing room listener");
-  listeners.remove(listener);
-}

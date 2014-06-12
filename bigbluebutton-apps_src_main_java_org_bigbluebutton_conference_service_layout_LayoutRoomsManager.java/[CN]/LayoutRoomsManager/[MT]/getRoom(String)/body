@@ -1,4 +1,0 @@
-{
-  log.debug("In LayoutRoomsManager get room " + name);
-  return rooms.get(name);
-}

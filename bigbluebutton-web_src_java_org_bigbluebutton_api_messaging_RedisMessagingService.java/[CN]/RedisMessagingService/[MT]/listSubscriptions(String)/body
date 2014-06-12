@@ -1,0 +1,3 @@
+{
+  return storeService.listSubscriptions(meetingId);
+}

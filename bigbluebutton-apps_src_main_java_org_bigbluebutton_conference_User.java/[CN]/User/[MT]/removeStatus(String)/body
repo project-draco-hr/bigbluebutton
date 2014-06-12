@@ -1,6 +1,0 @@
-{
-synchronized (this) {
-    status.remove(statusName);
-    unmodifiableStatus=Collections.unmodifiableMap(status);
-  }
-}

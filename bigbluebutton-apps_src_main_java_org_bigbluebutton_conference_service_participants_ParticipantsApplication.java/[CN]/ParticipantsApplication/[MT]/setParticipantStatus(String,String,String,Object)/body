@@ -1,3 +1,3 @@
 {
-  roomsManager.changeParticipantStatus(room,userid,status,value);
+  bbbInGW.setUserStatus(room,userid,status,value);
 }

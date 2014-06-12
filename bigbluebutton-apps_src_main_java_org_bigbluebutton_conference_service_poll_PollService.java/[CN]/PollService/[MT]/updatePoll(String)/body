@@ -1,0 +1,4 @@
+{
+  System.out.println("*** PollService:: update poll \n" + msg + "\n");
+  bbbInGW.updatePoll(getMeetingID(),getRequesterID(),msg);
+}

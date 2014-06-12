@@ -1,0 +1,5 @@
+{
+  cleaner=c;
+  cleaner.setMeetingService(this);
+  cleaner.start();
+}

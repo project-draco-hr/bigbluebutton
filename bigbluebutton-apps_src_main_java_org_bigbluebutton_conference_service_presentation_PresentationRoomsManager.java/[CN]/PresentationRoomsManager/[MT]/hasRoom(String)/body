@@ -1,4 +1,0 @@
-{
-  log.debug("In PresentationRoomsManager has Room " + name);
-  return rooms.containsKey(name);
-}

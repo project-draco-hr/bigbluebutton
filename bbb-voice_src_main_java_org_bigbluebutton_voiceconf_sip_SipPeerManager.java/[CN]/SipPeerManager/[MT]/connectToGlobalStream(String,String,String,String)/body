@@ -1,0 +1,6 @@
+{
+  SipPeer sipUser=sipPeers.get(peerId);
+  if (sipUser != null) {
+    sipUser.connectToGlobalStream(clientId,callerIdName,destination);
+  }
+}

@@ -1,6 +1,5 @@
 {
-  String roomID=getBbbSession().getRoom();
-  RoomsManager rm=application.getRoomsManager();
-  Room room=rm.getRoom(roomID);
-  room.setLockSettings(new LockSettings(newSettings));
+  String meetingId=getBbbSession().getRoom();
+  String userId=getMyUserId();
+  bbbInGW.sendLockSettings(meetingId,userId,newSettings);
 }

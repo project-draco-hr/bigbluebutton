@@ -1,7 +1,6 @@
 {
-  HashMap<String,String> map=new HashMap<String,String>();
-  map.put("messageId",MessagingConstants.END_MEETING_REQUEST_EVENT);
-  map.put("meetingId",meetingId);
-  Gson gson=new Gson();
-  send(MessagingConstants.SYSTEM_CHANNEL,gson.toJson(map));
+  EndMeetingMessage msg=new EndMeetingMessage(meetingId);
+  String json=MessageToJson.endMeetingMessageToJson(msg);
+  log.info("Sending end meeting message to bbb-apps:[{}]",json);
+  sender.send(MessagingConstants.TO_MEETING_CHANNEL,json);
 }

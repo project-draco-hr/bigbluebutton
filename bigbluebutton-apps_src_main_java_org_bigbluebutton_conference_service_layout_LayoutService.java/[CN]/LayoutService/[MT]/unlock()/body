@@ -1,5 +1,4 @@
 {
-  log.debug("Layout unlocked");
-  String roomName=Red5.getConnectionLocal().getScope().getName();
-  application.unlockLayout(roomName);
+  String meetingID=Red5.getConnectionLocal().getScope().getName();
+  application.unlockLayout(meetingID,getBbbSession().getInternalUserID());
 }

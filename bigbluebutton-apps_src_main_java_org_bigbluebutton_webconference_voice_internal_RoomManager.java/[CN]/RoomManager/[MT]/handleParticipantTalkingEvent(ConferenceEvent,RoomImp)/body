@@ -1,6 +1,0 @@
-{
-  log.debug("Processing ParticipantTalkingEvent for room: " + event.getRoom());
-  ParticipantTalkingEvent pte=(ParticipantTalkingEvent)event;
-  ParticipantImp p=(ParticipantImp)rm.getParticipant(event.getParticipantId());
-  if (p != null)   p.setTalking(pte.isTalking());
-}

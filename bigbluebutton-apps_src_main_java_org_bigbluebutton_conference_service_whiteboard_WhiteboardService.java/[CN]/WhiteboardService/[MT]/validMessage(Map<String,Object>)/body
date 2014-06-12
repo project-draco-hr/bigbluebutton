@@ -1,0 +1,4 @@
+{
+  if (shp.containsKey(COR_ID) && shp.containsKey(TYPE) && shp.containsKey(STATUS)&& shp.containsKey(WB_ID))   return true;
+  return false;
+}

@@ -1,4 +1,3 @@
 {
-  roomManager.addRoom(scope.getName());
   return true;
 }

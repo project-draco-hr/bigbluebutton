@@ -1,0 +1,4 @@
+{
+  String replyTo=meetingID + "/" + requesterID;
+  bbbInGW.getChatHistory(meetingID,requesterID,replyTo);
+}

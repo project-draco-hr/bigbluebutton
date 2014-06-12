@@ -1,0 +1,4 @@
+{
+  message.put("presentationBaseUrl",generateBasePresUrl(pres));
+  return this;
+}

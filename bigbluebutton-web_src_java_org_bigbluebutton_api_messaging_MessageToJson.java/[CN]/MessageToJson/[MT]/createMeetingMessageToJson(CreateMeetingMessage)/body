@@ -1,0 +1,10 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(Constants.MEETING_ID,msg.id);
+  payload.put(Constants.NAME,msg.name);
+  payload.put(Constants.RECORDED,msg.record);
+  payload.put(Constants.VOICE_CONF,msg.voiceBridge);
+  payload.put(Constants.DURATION,msg.duration);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(CreateMeetingMessage.CREATE_MEETING_REQUEST_EVENT,CreateMeetingMessage.VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}

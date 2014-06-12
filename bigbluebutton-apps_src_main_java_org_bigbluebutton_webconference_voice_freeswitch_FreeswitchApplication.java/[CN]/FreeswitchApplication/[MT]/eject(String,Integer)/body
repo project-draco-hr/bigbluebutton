@@ -1,4 +1,0 @@
-{
-  EjectParticipantCommand mpc=new EjectParticipantCommand(room,participant,USER);
-  manager.eject(mpc);
-}

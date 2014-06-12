@@ -1,0 +1,4 @@
+{
+  System.out.println("*** PollService:: stop poll \n" + msg + "\n");
+  bbbInGW.stopPoll(getMeetingID(),getRequesterID(),msg);
+}

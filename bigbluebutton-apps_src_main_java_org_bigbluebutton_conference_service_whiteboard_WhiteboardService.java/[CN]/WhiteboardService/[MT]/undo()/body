@@ -1,4 +1,0 @@
-{
-  log.info("WhiteboardApplication - Deleting last graphic");
-  application.undo();
-}

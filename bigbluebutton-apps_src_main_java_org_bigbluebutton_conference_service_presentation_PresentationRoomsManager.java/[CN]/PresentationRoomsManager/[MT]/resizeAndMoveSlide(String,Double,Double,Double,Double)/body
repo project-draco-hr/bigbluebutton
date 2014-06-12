@@ -1,9 +1,0 @@
-{
-  PresentationRoom r=getRoom(room);
-  if (r != null) {
-    log.debug("Request to resize and move slide[" + xOffset + ","+ yOffset+ ","+ widthRatio+ ","+ heightRatio+ "]");
-    r.resizeAndMoveSlide(xOffset,yOffset,widthRatio,heightRatio);
-    return;
-  }
-  log.warn("resizeAndMoveSlide on a non-existant room " + room);
-}

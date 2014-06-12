@@ -1,8 +1,0 @@
-{
-  if (roomsManager.hasRoom(room)) {
-    log.debug("Request to go to slide " + slide + " for room "+ room);
-    roomsManager.gotoSlide(room,slide);
-    return;
-  }
-  log.warn("Changing slide on a non-existant room " + room);
-}

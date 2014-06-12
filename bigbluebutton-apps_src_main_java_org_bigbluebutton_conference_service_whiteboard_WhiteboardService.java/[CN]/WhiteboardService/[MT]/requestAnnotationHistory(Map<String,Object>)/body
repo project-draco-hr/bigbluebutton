@@ -1,4 +1,9 @@
 {
   log.info("WhiteboardApplication - requestAnnotationHistory");
-  application.sendAnnotationHistory(getBbbSession().getInternalUserID(),(String)message.get("presentationID"),(Integer)message.get("pageNumber"));
+  String meetingID=getMeetingId();
+  String requesterID=getBbbSession().getInternalUserID();
+  String wbId=(String)message.get(WB_ID);
+  if (wbId != null) {
+    application.requestAnnotationHistory(meetingID,requesterID,wbId);
+  }
 }

@@ -1,5 +1,0 @@
-{
-  if (roomMgr.hasRoom(room))   return;
-  roomMgr.createRoom(room,record,meetingid,muted);
-  confProvider.populateRoom(room);
-}

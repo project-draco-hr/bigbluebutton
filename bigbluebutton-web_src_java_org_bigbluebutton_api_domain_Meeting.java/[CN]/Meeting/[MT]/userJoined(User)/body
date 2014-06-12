@@ -1,3 +1,4 @@
 {
+  userHasJoined=true;
   this.users.put(user.getInternalUserId(),user);
 }

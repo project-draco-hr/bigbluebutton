@@ -1,0 +1,4 @@
+{
+  this.id=externalID;
+  this.name=name;
+}

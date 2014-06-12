@@ -1,0 +1,7 @@
+{
+  this.internalID=internalID;
+  this.externalID=externalID;
+  this.name=name;
+  this.role=role;
+  this.status=new ConcurrentHashMap<String,String>();
+}

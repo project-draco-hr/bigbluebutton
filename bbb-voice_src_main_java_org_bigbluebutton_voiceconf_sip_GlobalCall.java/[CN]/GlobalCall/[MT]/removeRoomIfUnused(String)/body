@@ -1,0 +1,9 @@
+{
+  if (voiceConfToListenOnlyUsersMap.containsKey(voiceConf) && voiceConfToListenOnlyUsersMap.get(voiceConf).numUsers() <= 0) {
+    removeRoom(voiceConf);
+    return true;
+  }
+ else {
+    return false;
+  }
+}

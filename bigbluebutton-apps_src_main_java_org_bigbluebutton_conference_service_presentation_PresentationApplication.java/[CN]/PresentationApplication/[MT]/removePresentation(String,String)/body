@@ -1,8 +1,3 @@
 {
-  if (roomsManager.hasRoom(room)) {
-    roomsManager.removePresentation(room,name);
-  }
- else {
-    log.warn("Removing presentation from a non-existant room " + room);
-  }
+  bbbInGW.removePresentation(meetingID,presentationID);
 }

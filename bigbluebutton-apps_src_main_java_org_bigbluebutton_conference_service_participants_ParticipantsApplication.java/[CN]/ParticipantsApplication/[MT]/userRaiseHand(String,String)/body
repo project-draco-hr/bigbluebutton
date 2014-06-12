@@ -1,0 +1,3 @@
+{
+  bbbInGW.userRaiseHand(meetingId,userId);
+}

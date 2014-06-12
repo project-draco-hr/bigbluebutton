@@ -1,0 +1,5 @@
+{
+  log.debug("Received keep alive msg reply from bbb-apps. id [{}]",aliveId);
+  KeepAlivePong pong=new KeepAlivePong(aliveId);
+  queueMessage(pong);
+}

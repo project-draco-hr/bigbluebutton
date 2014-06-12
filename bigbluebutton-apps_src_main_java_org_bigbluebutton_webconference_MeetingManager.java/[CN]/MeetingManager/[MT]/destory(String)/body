@@ -1,6 +1,0 @@
-{
-  Meeting m=meetings.remove(id);
-  if (m != null) {
-    m.end();
-  }
-}

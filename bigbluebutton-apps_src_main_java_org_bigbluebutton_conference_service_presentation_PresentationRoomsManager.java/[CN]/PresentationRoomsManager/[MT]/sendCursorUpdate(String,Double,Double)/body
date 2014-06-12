@@ -1,9 +1,0 @@
-{
-  PresentationRoom r=getRoom(room);
-  if (r != null) {
-    log.debug("Request to update cursor[" + xPercent + ","+ yPercent+ "]");
-    r.sendCursorUpdate(xPercent,yPercent);
-    return;
-  }
-  log.warn("resizeAndMoveSlide on a non-existant room " + room);
-}

@@ -1,6 +1,0 @@
-{
-  for (Iterator iter=listeners.values().iterator(); iter.hasNext(); ) {
-    IPollRoomListener listener=(IPollRoomListener)iter.next();
-    listener.savePoll(poll);
-  }
-}

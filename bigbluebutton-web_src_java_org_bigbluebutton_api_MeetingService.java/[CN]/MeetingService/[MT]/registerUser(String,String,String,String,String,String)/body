@@ -1,0 +1,3 @@
+{
+  handle(new RegisterUser(meetingID,internalUserId,fullname,role,externUserID,authToken));
+}

@@ -1,0 +1,14 @@
+{
+  String basePresUrl=generateBasePresUrl(pres);
+  ArrayList<Map<String,String>> pages=new ArrayList<Map<String,String>>();
+  for (int i=1; i <= pres.getNumberOfPages(); i++) {
+    Map<String,String> page=new HashMap<String,String>();
+    page.put("num",new Integer(i).toString());
+    page.put("thumb",basePresUrl + "/thumbnail/" + i);
+    page.put("swf",basePresUrl + "/slide/" + i);
+    page.put("text",basePresUrl + "/textfiles/slide-" + i+ ".txt");
+    pages.add(page);
+  }
+  message.put("pages",pages);
+  return this;
+}

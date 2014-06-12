@@ -1,0 +1,9 @@
+{
+  log.info("WhiteboardApplication - Clearing board");
+  String meetingID=getMeetingId();
+  String requesterID=getBbbSession().getInternalUserID();
+  String wbId=(String)message.get(WB_ID);
+  if (wbId != null) {
+    application.clearWhiteboard(meetingID,requesterID,wbId);
+  }
+}

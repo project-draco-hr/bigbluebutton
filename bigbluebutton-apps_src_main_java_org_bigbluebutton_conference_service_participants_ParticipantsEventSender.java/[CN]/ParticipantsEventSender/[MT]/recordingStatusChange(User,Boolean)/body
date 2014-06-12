@@ -1,7 +1,0 @@
-{
-  log.debug("The recording status has changed " + p.getInternalUserID() + " "+ recording);
-  ArrayList args=new ArrayList();
-  args.add(p.getInternalUserID());
-  args.add(recording);
-  so.sendMessage("recordingStatusChange",args);
-}

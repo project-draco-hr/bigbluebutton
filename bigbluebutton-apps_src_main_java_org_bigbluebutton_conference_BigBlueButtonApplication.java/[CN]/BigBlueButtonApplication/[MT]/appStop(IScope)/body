@@ -1,5 +1,4 @@
 {
   log.debug("***** " + APP + " [ "+ " appStop [ "+ scope.getName()+ "] *********");
-  connInvokerService.stop();
   super.appStop(app);
 }

@@ -1,5 +1,0 @@
-{
-  roomsManager.sendMessage(room,chatobj);
-  ClientMessage m=new ClientMessage(ClientMessage.BROADCAST,getMeetingId(),"ChatReceivePublicMessageCommand",chatobj.toMap());
-  connInvokerService.sendMessage(m);
-}

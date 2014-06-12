@@ -1,0 +1,6 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(Constants.KEEP_ALIVE_ID,msg.keepAliveId);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(KeepAliveMessage.KEEP_ALIVE_REQUEST,KeepAliveMessage.VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}

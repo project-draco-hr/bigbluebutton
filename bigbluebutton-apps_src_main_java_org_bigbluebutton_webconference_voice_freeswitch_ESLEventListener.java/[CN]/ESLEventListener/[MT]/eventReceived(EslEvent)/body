@@ -1,5 +1,3 @@
 {
-  if (event.getEventName().equals(FreeswitchHeartbeatMonitor.EVENT_HEARTBEAT)) {
-    return;
-  }
+  System.out.println("ESL Event Listener received event=[" + event.getEventName() + "]");
 }

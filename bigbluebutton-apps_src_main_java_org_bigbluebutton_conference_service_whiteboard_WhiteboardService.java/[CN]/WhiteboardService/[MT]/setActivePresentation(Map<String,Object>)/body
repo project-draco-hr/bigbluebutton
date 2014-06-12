@@ -1,4 +1,0 @@
-{
-  log.info("WhiteboardApplication - Setting active presentation: " + (String)message.get("presentationID"));
-  application.setActivePresentation((String)message.get("presentationID"),(Integer)message.get("numberOfSlides"));
-}

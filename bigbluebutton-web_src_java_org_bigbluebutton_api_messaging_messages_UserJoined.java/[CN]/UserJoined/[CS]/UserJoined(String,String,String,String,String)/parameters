@@ -1,0 +1,5 @@
+String meetingId
+String userId
+String externalUserId
+String name
+String role

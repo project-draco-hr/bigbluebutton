@@ -1,6 +1,0 @@
-{
-  ParticipantEndAndKickAllRecordEvent ev=new ParticipantEndAndKickAllRecordEvent();
-  ev.setTimestamp(System.currentTimeMillis());
-  ev.setMeetingId(session);
-  recorder.record(session,ev);
-}

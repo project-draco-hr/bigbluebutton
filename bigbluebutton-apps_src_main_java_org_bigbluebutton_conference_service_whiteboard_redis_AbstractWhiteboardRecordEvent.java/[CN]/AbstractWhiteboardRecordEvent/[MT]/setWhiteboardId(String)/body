@@ -1,0 +1,3 @@
+{
+  eventMap.put("whiteboardId",id);
+}

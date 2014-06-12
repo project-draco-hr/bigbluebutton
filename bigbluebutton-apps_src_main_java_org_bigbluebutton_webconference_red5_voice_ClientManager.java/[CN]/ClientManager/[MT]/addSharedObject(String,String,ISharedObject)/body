@@ -1,6 +1,0 @@
-{
-  log.debug("Adding SO for [" + webRoom + ","+ voiceRoom+ "]");
-  RoomInfo soi=new RoomInfo(webRoom,voiceRoom,so);
-  voiceRooms.putIfAbsent(voiceRoom,soi);
-  webRooms.putIfAbsent(webRoom,soi);
-}

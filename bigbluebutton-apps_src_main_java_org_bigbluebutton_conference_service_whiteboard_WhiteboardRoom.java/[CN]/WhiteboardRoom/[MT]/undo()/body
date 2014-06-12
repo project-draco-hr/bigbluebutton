@@ -1,4 +1,0 @@
-{
-  activePresentation.getActivePage().undo();
-  notifyUndoWBGraphic(activePresentation);
-}

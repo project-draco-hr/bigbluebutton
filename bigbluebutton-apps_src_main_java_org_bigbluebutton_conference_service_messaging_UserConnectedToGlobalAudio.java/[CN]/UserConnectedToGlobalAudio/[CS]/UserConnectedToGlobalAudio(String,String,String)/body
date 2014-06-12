@@ -1,0 +1,5 @@
+{
+  this.voiceConf=voiceConf;
+  this.userid=userid;
+  this.name=name;
+}

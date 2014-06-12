@@ -1,8 +1,0 @@
-{
-  if (!roomsManager.hasRoom(name)) {
-    log.info("Creating room " + name);
-    roomsManager.addRoom(new Room(name,locked,lockSettings));
-    return true;
-  }
-  return false;
-}

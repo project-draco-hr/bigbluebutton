@@ -1,6 +1,0 @@
-{
-  this.type=type;
-  this.dest=dest;
-  this.message=message;
-  this.messageName=messageName;
-}

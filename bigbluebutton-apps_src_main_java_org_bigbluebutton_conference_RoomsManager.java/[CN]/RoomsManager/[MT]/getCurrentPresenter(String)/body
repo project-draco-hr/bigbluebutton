@@ -1,8 +1,0 @@
-{
-  Room r=getRoom(room);
-  if (r != null) {
-    return r.getCurrentPresenter();
-  }
-  log.warn("Getting presenter from a non-existing room " + room);
-  return null;
-}

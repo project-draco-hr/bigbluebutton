@@ -1,8 +1,0 @@
-{
-  log.debug("RECORD module:presentation event:remove_presentation");
-  RemovePresentationPresentationRecordEvent event=new RemovePresentationPresentationRecordEvent();
-  event.setMeetingId(session);
-  event.setTimestamp(System.currentTimeMillis());
-  event.setPresentationName(name);
-  recorder.record(session,event);
-}

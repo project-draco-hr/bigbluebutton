@@ -1,0 +1,7 @@
+{
+  cleanupTimer=new Timer("keep-alive-task",true);
+  task=new KeepAliveTask();
+  pingMessages=new ArrayList<String>();
+  cleanupTimer.scheduleAtFixedRate(task,5000,runEvery);
+  processKeepAliveMessage();
+}

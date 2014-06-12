@@ -1,0 +1,4 @@
+{
+  if (expiry == 0)   return false;
+  return (System.currentTimeMillis() - createdTime) > (expiry * MILLIS_IN_A_MINUTE);
+}

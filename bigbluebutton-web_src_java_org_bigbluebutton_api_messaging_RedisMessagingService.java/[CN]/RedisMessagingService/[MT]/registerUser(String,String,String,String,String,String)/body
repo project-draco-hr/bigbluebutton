@@ -1,0 +1,6 @@
+{
+  RegisterUserMessage msg=new RegisterUserMessage(meetingID,internalUserId,fullname,role,externUserID,authToken);
+  String json=MessageToJson.registerUserToJson(msg);
+  log.info("Sending register user message to bbb-apps:[{}]",json);
+  sender.send(MessagingConstants.TO_MEETING_CHANNEL,json);
+}

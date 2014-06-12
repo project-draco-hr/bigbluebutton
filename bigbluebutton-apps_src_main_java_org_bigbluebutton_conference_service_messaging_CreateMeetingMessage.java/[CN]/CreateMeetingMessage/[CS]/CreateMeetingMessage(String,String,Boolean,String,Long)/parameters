@@ -1,0 +1,5 @@
+String id
+String name
+Boolean record
+String voiceBridge
+Long duration

@@ -1,4 +1,0 @@
-{
-  log.debug("Get room " + name);
-  return rooms.get(name);
-}

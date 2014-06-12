@@ -1,8 +1,3 @@
 {
-  if (roomsManager.hasRoom(room)) {
-    log.debug("Request to resize and move slide[" + xOffset + ","+ yOffset+ ","+ widthRatio+ ","+ heightRatio+ "]");
-    roomsManager.resizeAndMoveSlide(room,xOffset,yOffset,widthRatio,heightRatio);
-    return;
-  }
-  log.warn("resizeAndMoveSlide on a non-existant room " + room);
+  bbbInGW.resizeAndMoveSlide(meetingID,xOffset,yOffset,widthRatio,heightRatio);
 }

@@ -1,0 +1,6 @@
+{
+  this.meetingID=meetingID;
+  this.userID=userID;
+  this.message=message;
+  this.messageName=messageName;
+}

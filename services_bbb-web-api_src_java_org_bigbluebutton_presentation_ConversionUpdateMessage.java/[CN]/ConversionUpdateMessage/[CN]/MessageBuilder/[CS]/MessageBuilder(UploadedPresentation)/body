@@ -1,0 +1,6 @@
+{
+  message.put("conference",pres.getConference());
+  message.put("room",pres.getRoom());
+  message.put("returnCode","CONVERT");
+  message.put("presentationName",pres.getName());
+}

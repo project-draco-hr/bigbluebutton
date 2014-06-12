@@ -1,5 +1,0 @@
-{
-  this.name=name;
-  listeners=new ConcurrentHashMap<String,IPollRoomListener>();
-  this.messages=new ArrayList<String>();
-}

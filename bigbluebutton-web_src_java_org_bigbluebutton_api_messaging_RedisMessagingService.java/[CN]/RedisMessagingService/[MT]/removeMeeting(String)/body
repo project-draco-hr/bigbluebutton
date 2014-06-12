@@ -1,0 +1,3 @@
+{
+  storeService.removeMeeting(meetingId);
+}

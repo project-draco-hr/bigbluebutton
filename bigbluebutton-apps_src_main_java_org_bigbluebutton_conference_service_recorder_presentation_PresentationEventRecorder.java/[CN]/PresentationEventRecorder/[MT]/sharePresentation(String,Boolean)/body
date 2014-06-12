@@ -1,9 +1,0 @@
-{
-  log.debug("RECORD module:presentation event:share_presentation");
-  SharePresentationPresentationRecordEvent event=new SharePresentationPresentationRecordEvent();
-  event.setMeetingId(session);
-  event.setTimestamp(System.currentTimeMillis());
-  event.setPresentationName(presentationName);
-  event.setShare(share.booleanValue());
-  recorder.record(session,event);
-}
