@@ -2,7 +2,7 @@
   VoiceUserLockedEvent ple=(VoiceUserLockedEvent)event;
   ParticipantLockedVoiceRecordEvent evt=new ParticipantLockedVoiceRecordEvent();
   evt.setMeetingId(room);
-  evt.setTimestamp(System.currentTimeMillis());
+  evt.setTimestamp(genTimestamp());
   evt.setBridge(event.getRoom());
   evt.setParticipant(((VoiceUserLockedEvent)event).getUserId().toString());
   evt.setLocked(ple.isLocked());

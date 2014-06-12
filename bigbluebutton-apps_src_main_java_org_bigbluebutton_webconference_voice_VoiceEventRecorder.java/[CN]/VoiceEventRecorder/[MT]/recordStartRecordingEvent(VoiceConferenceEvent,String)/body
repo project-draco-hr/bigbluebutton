@@ -2,7 +2,7 @@
   VoiceStartRecordingEvent sre=(VoiceStartRecordingEvent)event;
   StartRecordingVoiceRecordEvent evt=new StartRecordingVoiceRecordEvent(sre.startRecord());
   evt.setMeetingId(room);
-  evt.setTimestamp(System.currentTimeMillis());
+  evt.setTimestamp(genTimestamp());
   evt.setBridge(event.getRoom());
   evt.setRecordingTimestamp(sre.getTimestamp());
   evt.setFilename(sre.getRecordingFilename());

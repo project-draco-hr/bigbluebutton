@@ -2,7 +2,7 @@
   VoiceUserTalkingEvent pte=(VoiceUserTalkingEvent)event;
   ParticipantTalkingVoiceRecordEvent evt=new ParticipantTalkingVoiceRecordEvent();
   evt.setMeetingId(room);
-  evt.setTimestamp(System.currentTimeMillis());
+  evt.setTimestamp(genTimestamp());
   evt.setBridge(event.getRoom());
   evt.setParticipant(((VoiceUserTalkingEvent)event).getUserId().toString());
   evt.setTalking(pte.isTalking());
