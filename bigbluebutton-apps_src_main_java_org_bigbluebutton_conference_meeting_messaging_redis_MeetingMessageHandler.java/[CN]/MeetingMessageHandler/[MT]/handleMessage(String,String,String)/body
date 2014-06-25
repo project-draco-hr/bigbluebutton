@@ -29,13 +29,18 @@
       }
  else       if (msg instanceof UserConnectedToGlobalAudio) {
         UserConnectedToGlobalAudio emm=(UserConnectedToGlobalAudio)msg;
-        log.info("Received UserConnectedToGlobalAudio toekn request. user id [{}]",emm.name);
+        log.info("Received UserConnectedToGlobalAudio token request. user id [{}]",emm.name);
         bbbGW.userConnectedToGlobalAudio(emm.voiceConf,emm.userid,emm.name);
       }
  else       if (msg instanceof UserDisconnectedFromGlobalAudio) {
         UserDisconnectedFromGlobalAudio emm=(UserDisconnectedFromGlobalAudio)msg;
-        log.info("Received UserDisconnectedFromGlobalAudio toekn request. Meeting id [{}]",emm.name);
+        log.info("Received UserDisconnectedFromGlobalAudio token request. Meeting id [{}]",emm.name);
         bbbGW.userConnectedToGlobalAudio(emm.voiceConf,emm.userid,emm.name);
+      }
+ else       if (msg instanceof GetAllMeetingsRequest) {
+        GetAllMeetingsRequest emm=(GetAllMeetingsRequest)msg;
+        log.info("Received GetAllMeetingsRequest");
+        bbbGW.getAllMeetings("no_need_of_a_meeting_id");
       }
     }
   }
