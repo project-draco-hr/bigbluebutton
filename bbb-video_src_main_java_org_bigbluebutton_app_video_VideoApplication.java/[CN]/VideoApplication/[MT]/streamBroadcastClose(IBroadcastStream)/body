@@ -10,7 +10,7 @@
     log.info("streamBroadcastClose " + stream.getPublishedName() + " "+ System.currentTimeMillis()+ " "+ conn.getScope().getName());
     Map<String,String> event=new HashMap<String,String>();
     event.put("module","WEBCAM");
-    event.put("timestamp",new Long(System.currentTimeMillis()).toString());
+    event.put("timestamp",genTimestamp().toString());
     event.put("meetingId",conn.getScope().getName());
     event.put("stream",stream.getPublishedName());
     event.put("duration",new Long(publishDuration).toString());

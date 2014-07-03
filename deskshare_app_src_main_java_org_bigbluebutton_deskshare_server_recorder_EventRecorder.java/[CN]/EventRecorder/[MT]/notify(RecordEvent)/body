@@ -1,6 +1,6 @@
 {
   if ((event instanceof RecordStoppedEvent) || (event instanceof RecordStartedEvent)) {
-    event.setTimestamp(System.currentTimeMillis());
+    event.setTimestamp(genTimestamp());
     event.setMeetingId(((AbstractDeskshareRecordEvent)event).getSession());
     record(((AbstractDeskshareRecordEvent)event).getSession(),event);
   }

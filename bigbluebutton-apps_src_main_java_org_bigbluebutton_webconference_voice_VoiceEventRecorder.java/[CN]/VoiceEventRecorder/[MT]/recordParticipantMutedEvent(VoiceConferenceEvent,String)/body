@@ -2,7 +2,7 @@
   VoiceUserMutedEvent pme=(VoiceUserMutedEvent)event;
   ParticipantMutedVoiceRecordEvent evt=new ParticipantMutedVoiceRecordEvent();
   evt.setMeetingId(room);
-  evt.setTimestamp(System.currentTimeMillis());
+  evt.setTimestamp(genTimestamp());
   evt.setBridge(event.getRoom());
   evt.setParticipant(((VoiceUserMutedEvent)event).getUserId().toString());
   evt.setMuted(pme.isMuted());
