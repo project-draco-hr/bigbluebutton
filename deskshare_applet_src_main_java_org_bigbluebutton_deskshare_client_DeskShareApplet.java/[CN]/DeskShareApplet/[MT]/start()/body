@@ -3,6 +3,6 @@
   super.start();
   System.out.println("**** JAVA VERSION = [" + getJavaVersionRuntime() + "]");
   System.out.println("Validate min JRE version");
-  if (validateMinJREVersion())   allowDesktopSharing();
+  if (VersionCheckUtil.validateMinJREVersion(getJavaVersionRuntime(),MIN_JRE_VERSION))   allowDesktopSharing();
  else   displayJavaWarning(VERSION_ERROR_MSG);
 }
