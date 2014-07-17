@@ -1,4 +1,5 @@
 {
+  log.debug("Received broadcast layout request");
   String meetingID=Red5.getConnectionLocal().getScope().getName();
   String newlayout=(String)message.get("layout");
   if (newlayout == null || newlayout.isEmpty()) {
