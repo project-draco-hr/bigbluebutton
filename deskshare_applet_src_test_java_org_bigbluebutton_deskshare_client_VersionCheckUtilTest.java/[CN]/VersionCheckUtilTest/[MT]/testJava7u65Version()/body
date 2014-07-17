@@ -1,0 +1,4 @@
+{
+  boolean passed=VersionCheckUtil.validateMinJREVersion("1.7.0_65","1.7.0_51");
+  Assert.assertTrue(passed,"The version check should pass.");
+}
