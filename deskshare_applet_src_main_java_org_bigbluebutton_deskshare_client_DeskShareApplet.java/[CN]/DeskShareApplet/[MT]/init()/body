@@ -1,5 +1,7 @@
 {
   System.out.println("Desktop Sharing Applet Initializing");
+  String javaVersion=getParameter("JavaVersion");
+  if (javaVersion != null && javaVersion != "")   minJreVersion=javaVersion;
   hostValue=getParameter("IP");
   String port=getParameter("PORT");
   if (port != null)   portValue=Integer.parseInt(port);

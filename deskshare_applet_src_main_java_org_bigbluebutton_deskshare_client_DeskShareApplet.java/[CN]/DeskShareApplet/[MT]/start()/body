@@ -1,8 +1,8 @@
 {
   System.out.println("Desktop Sharing Applet Starting");
   super.start();
-  System.out.println("**** JAVA VERSION = [" + getJavaVersionRuntime() + "]");
-  System.out.println("Validate min JRE version");
-  if (VersionCheckUtil.validateMinJREVersion(getJavaVersionRuntime(),MIN_JRE_VERSION))   allowDesktopSharing();
- else   displayJavaWarning(VERSION_ERROR_MSG);
+  String javaRuntimeVersion=getJavaVersionRuntime();
+  System.out.println("**** JAVA VERSION = [" + javaRuntimeVersion + "]");
+  if (VersionCheckUtil.validateMinJREVersion(javaRuntimeVersion,minJreVersion))   allowDesktopSharing();
+ else   displayJavaWarning("Unsupported Java version [" + javaRuntimeVersion + "]. Minimum version required ["+ minJreVersion+ "]");
 }
