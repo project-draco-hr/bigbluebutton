@@ -1,3 +1,9 @@
 {
-  handler.handleMessage(pattern,channel,message);
+  Runnable task=new Runnable(){
+    public void run(){
+      handler.handleMessage(pattern,channel,message);
+    }
+  }
+;
+  runExec.execute(task);
 }
