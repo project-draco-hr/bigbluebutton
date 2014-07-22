@@ -1,11 +1,17 @@
 {
-  Jedis jedis=redisPool.getResource();
-  try {
-    String key="bbb:recording:" + message.getMeetingID();
-    Gson gson=new Gson();
-    jedis.rpush(key,gson.toJson(message.toMap()));
-  }
+  Runnable task=new Runnable(){
+    public void run(){
+      Jedis jedis=redisPool.getResource();
+      try {
+        String key="bbb:recording:" + message.getMeetingID();
+        Gson gson=new Gson();
+        jedis.rpush(key,gson.toJson(message.toMap()));
+      }
   finally {
-    redisPool.returnResource(jedis);
+        redisPool.returnResource(jedis);
+      }
+    }
   }
+;
+  runExec.execute(task);
 }
