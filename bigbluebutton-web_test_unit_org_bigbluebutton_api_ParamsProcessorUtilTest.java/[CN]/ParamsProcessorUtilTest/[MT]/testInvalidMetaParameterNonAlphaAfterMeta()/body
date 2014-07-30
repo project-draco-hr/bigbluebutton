@@ -1,0 +1,4 @@
+{
+  boolean failed=ParamsProcessorUtil.isMetaValid("meta_1");
+  Assert.assertFalse(failed,"The meta check should fail due to 1 char.");
+}

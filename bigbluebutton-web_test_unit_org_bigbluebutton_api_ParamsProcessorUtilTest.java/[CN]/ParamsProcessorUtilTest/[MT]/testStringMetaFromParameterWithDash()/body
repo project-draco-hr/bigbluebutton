@@ -1,0 +1,4 @@
+{
+  String result=ParamsProcessorUtil.removeMetaString("meta_foo-bar");
+  Assert.assertEquals(result,"foo-bar");
+}

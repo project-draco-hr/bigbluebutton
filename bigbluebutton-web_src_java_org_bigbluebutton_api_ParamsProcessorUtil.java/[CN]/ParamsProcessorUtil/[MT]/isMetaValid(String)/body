@@ -1,0 +1,7 @@
+{
+  Matcher metaMatcher=META_VAR_PATTERN.matcher(param);
+  if (metaMatcher.matches()) {
+    return true;
+  }
+  return false;
+}

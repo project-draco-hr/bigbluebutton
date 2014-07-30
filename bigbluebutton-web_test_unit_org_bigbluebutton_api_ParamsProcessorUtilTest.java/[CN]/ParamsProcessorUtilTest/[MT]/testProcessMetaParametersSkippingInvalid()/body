@@ -1,0 +1,8 @@
+{
+  Map<String,String> params=new HashMap<String,String>();
+  params.put("meta_foo","foo");
+  params.put("meta_bar","bar");
+  params.put("invalid_meta","discarded");
+  Map<String,String> metas=ParamsProcessorUtil.processMetaParam(params);
+  Assert.assertEquals(metas.size(),2);
+}
