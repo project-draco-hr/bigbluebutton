@@ -6,9 +6,7 @@
       if (!available) {
         available=true;
         removeOldPingMessages(msg.getId());
-        log.info("Received Keep Alive Reply. BBB-Apps has recovered.");
       }
-      log.debug("Found ping message [" + msg.getId() + "]");
       found=true;
       break;
     }
