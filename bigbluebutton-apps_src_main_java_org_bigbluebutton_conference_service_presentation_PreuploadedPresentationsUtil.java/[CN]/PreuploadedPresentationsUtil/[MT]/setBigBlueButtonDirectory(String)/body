@@ -1,0 +1,4 @@
+{
+  if (dir.endsWith("/"))   bbbDir=dir;
+ else   bbbDir=dir + "/";
+}

@@ -1,9 +1,14 @@
 {
-  if (handler != null) {
-    log.debug("Let's process this message: " + msg.getMessage());
-    handler.notifyListeners(msg.getPattern(),msg.getChannel(),msg.getMessage());
-  }
+  Runnable task=new Runnable(){
+    public void run(){
+      if (handler != null) {
+        handler.notifyListeners(msg.getPattern(),msg.getChannel(),msg.getMessage());
+      }
  else {
-    log.warn("No listeners interested in messages from Redis!");
+        log.warn("No listeners interested in messages from Redis!");
+      }
+    }
   }
+;
+  runExec.execute(task);
 }

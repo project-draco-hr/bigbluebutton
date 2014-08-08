@@ -1,5 +1,4 @@
 {
-  System.out.println("\n\n\n\n registerUser is being used \n\n\n");
   bbbInGW.registerUser(roomName,userid,username,role,externUserID,userid);
   return true;
 }

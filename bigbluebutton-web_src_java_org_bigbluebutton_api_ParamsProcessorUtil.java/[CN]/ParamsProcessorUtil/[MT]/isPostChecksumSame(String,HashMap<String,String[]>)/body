@@ -24,6 +24,12 @@
       csbuf.append("=");
       String encResult;
       encResult=value;
+      try {
+        encResult=URLEncoder.encode(value,"UTF-8");
+      }
+ catch (      UnsupportedEncodingException e) {
+        encResult=value;
+      }
       csbuf.append(encResult);
     }
   }

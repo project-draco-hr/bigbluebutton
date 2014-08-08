@@ -1,5 +1,4 @@
 {
-  System.out.println("****** Setting layout application ********");
   log.debug("Setting layout application");
   layoutApplication=a;
 }
