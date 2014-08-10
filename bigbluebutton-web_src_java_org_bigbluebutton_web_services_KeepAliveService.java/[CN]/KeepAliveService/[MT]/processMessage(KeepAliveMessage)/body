@@ -1,8 +1,14 @@
 {
-  if (msg instanceof KeepAlivePing) {
-    processPing((KeepAlivePing)msg);
+  Runnable task=new Runnable(){
+    public void run(){
+      if (msg instanceof KeepAlivePing) {
+        processPing((KeepAlivePing)msg);
+      }
+ else       if (msg instanceof KeepAlivePong) {
+        processPong((KeepAlivePong)msg);
+      }
+    }
   }
- else   if (msg instanceof KeepAlivePong) {
-    processPong((KeepAlivePong)msg);
-  }
+;
+  runExec.execute(task);
 }

@@ -1,0 +1,8 @@
+{
+  if (meetingId == null)   return Collections.<Meeting>emptySet();
+  Collection<Meeting> m=new HashSet<Meeting>();
+  for (  String key : meetings.keySet()) {
+    if (key.startsWith(meetingId))     m.add(meetings.get(key));
+  }
+  return m;
+}

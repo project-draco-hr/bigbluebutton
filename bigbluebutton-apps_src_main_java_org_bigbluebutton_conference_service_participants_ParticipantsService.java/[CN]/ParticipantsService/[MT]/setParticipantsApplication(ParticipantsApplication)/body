@@ -1,4 +1,3 @@
 {
-  log.debug("Setting Participants Applications");
   application=a;
 }
