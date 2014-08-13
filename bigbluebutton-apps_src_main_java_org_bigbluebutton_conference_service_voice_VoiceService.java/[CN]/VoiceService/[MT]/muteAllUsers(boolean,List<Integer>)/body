@@ -1,5 +1,0 @@
-{
-  String conference=getBbbSession().getVoiceBridge();
-  log.debug("Mute all users in room[" + conference + "], dontLockThese list size = "+ dontMuteThese.size());
-  log.error("TODO: Implement this");
-}
