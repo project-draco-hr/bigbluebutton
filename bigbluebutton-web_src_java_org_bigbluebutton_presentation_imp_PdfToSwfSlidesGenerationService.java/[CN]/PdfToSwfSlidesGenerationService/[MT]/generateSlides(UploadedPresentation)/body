@@ -1,7 +1,7 @@
 {
   log.debug("Generating slides");
   determineNumberOfPages(pres);
-  log.debug("Determined number of pages " + pres.getNumberOfPages());
+  log.info("Determined number of pages. MeetingId=[" + pres.getMeetingId() + "], presId=["+ pres.getId()+ "], name=["+ pres.getName()+ "], numPages=["+ pres.getNumberOfPages()+ "]");
   if (pres.getNumberOfPages() > 0) {
     convertPdfToSwf(pres);
     createTextFiles(pres);

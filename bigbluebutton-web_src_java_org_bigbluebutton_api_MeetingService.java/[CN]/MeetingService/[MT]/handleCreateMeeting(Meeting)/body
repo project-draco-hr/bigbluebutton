@@ -1,6 +1,5 @@
 {
-  log.debug("Storing Meeting with internal id:" + m.getInternalId());
-  log.debug(" ******************* Storing Meeting with internal id:" + m.getInternalId());
+  log.info("Storing Meeting with internalId=[" + m.getInternalId() + "], externalId=["+ m.getExternalId()+ "], name=["+ m.getName()+ "], duration=["+ m.getDuration()+ "], record=["+ m.isRecord()+ "]");
   meetings.put(m.getInternalId(),m);
   if (m.isRecord()) {
     Map<String,String> metadata=new LinkedHashMap<String,String>();
