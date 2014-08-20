@@ -1,17 +1,15 @@
 {
-  int count=0;
   boolean found=false;
-  while (count < pingMessages.size() || !found) {
+  for (int count=0; count < pingMessages.size(); count++) {
     if (pingMessages.get(count).equals(msg.getId())) {
       pingMessages.remove(count);
       if (!available) {
         available=true;
-        pingMessages.clear();
-        log.info("Received Keep Alive Reply. BBB-Apps has recovered.");
+        removeOldPingMessages(msg.getId());
       }
       found=true;
+      break;
     }
-    count++;
   }
   if (!found) {
     log.info("Received invalid keep alive response from bbb-apps:" + msg.getId());

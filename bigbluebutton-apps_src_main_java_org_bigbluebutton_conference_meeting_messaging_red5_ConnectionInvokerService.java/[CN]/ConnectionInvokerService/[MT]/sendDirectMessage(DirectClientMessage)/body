@@ -1,14 +1,20 @@
 {
-  IScope meetingScope=getScope(msg.getMeetingID());
-  if (meetingScope != null) {
-    IConnection conn=getConnection(meetingScope,msg.getUserID());
-    if (conn != null) {
-      if (conn.isConnected()) {
-        List<Object> params=new ArrayList<Object>();
-        params.add(msg.getMessageName());
-        params.add(msg.getMessage());
-        ServiceUtils.invokeOnConnection(conn,"onMessageFromServer",params.toArray());
+  Runnable sender=new Runnable(){
+    public void run(){
+      IScope meetingScope=getScope(msg.getMeetingID());
+      if (meetingScope != null) {
+        IConnection conn=getConnection(meetingScope,msg.getUserID());
+        if (conn != null) {
+          if (conn.isConnected()) {
+            List<Object> params=new ArrayList<Object>();
+            params.add(msg.getMessageName());
+            params.add(msg.getMessage());
+            ServiceUtils.invokeOnConnection(conn,"onMessageFromServer",params.toArray());
+          }
+        }
       }
     }
   }
+;
+  runExec.execute(sender);
 }

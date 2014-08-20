@@ -2,7 +2,7 @@
   VoiceUserJoinedEvent pje=(VoiceUserJoinedEvent)event;
   ParticipantJoinedVoiceRecordEvent evt=new ParticipantJoinedVoiceRecordEvent();
   evt.setMeetingId(room);
-  evt.setTimestamp(System.currentTimeMillis());
+  evt.setTimestamp(genTimestamp());
   evt.setBridge(event.getRoom());
   evt.setParticipant(pje.getUserId().toString());
   evt.setCallerName(pje.getCallerIdName());

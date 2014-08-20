@@ -1,6 +1,5 @@
 {
   log.debug("Participant " + userid + " joining room "+ roomName);
-  System.out.println("\n\n\n\n participantJoin is being used \n\n\n");
   bbbInGW.userJoin(roomName,userid);
   return true;
 }

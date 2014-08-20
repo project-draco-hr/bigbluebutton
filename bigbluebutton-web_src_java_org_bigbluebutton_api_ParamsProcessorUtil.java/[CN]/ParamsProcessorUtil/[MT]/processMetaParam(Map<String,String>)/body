@@ -1,0 +1,10 @@
+{
+  Map<String,String> metas=new HashMap<String,String>();
+  for (  String key : params.keySet()) {
+    if (isMetaValid(key)) {
+      String metaName=removeMetaString(key);
+      metas.put(metaName,params.get(key));
+    }
+  }
+  return metas;
+}

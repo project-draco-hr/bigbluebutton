@@ -1,4 +1,23 @@
 {
+  log.debug("Received lock layout request");
   String meetingID=Red5.getConnectionLocal().getScope().getName();
-  application.lockLayout(meetingID,(String)message.get("setByUserID"),(String)message.get("layout"));
+  String newlayout=(String)message.get("layout");
+  Boolean lock=(Boolean)message.get("lock");
+  Boolean viewersOnly=(Boolean)message.get("viewersOnly");
+  Option<String> layout;
+  if (newlayout == null || newlayout.isEmpty()) {
+    layout=Option.empty();
+  }
+ else {
+    layout=scala.Option.apply(newlayout);
+  }
+  if (lock == null) {
+    log.error("Invalid Lock Layout message. lock in null.");
+    return;
+  }
+  if (viewersOnly == null) {
+    log.error("Invalid Lock Layout message. viewersOnly is null");
+    return;
+  }
+  application.lockLayout(meetingID,getBbbSession().getInternalUserID(),lock,viewersOnly,layout);
 }

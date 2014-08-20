@@ -1,5 +1,6 @@
 {
   SupportedDocumentFilter sdf=new SupportedDocumentFilter(messagingService);
+  log.info("Start presentation conversion. MeetingId=[" + pres.getMeetingId() + "], presId=["+ pres.getId()+ "], name=["+ pres.getName()+ "], timestamp=["+ System.currentTimeMillis()+ "]");
   if (sdf.isSupported(pres)) {
     String fileType=pres.getFileType();
     if (SupportedFileTypes.isOfficeFile(fileType)) {
@@ -20,4 +21,5 @@
   }
  else {
   }
+  log.info("End presentation conversion. MeetingId=[" + pres.getMeetingId() + "], presId=["+ pres.getId()+ "], name=["+ pres.getName()+ "], timestamp=["+ System.currentTimeMillis()+ "]");
 }

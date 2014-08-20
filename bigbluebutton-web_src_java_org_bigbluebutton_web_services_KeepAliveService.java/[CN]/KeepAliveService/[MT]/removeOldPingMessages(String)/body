@@ -1,0 +1,9 @@
+{
+  long ts=Long.parseLong(pingId);
+  for (int i=0; i < pingMessages.size(); i++) {
+    String pm=pingMessages.get(i);
+    if (ts > Long.parseLong(pm)) {
+      pingMessages.remove(i);
+    }
+  }
+}

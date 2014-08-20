@@ -16,6 +16,5 @@
       }
     }
   }
-  System.out.println("Failed to parse UserDisconnectedFromGlobalAudio");
   return null;
 }

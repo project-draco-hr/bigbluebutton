@@ -1,3 +1,0 @@
-{
-  bbbInGW.syncLayout(meetingID,requesterID,layoutID);
-}
