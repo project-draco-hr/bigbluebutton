@@ -8,14 +8,14 @@
     VoiceStartRecordingEvent sre=new VoiceStartRecordingEvent(confName,true);
     sre.setRecordingFilename(getRecordFilenameFromEvent(event));
     sre.setTimestamp(genTimestamp().toString());
-    if (log.isDebugEnabled())     log.debug("Processing conference event - action: {} time: {} file: {}",new Object[]{action,sre.getTimestamp(),sre.getRecordingFilename()});
+    if (log.isDebugEnabled())     log.debug("******************** Processing conference event - action: {} time: {} file: {}",new Object[]{action,sre.getTimestamp(),sre.getRecordingFilename()});
     conferenceEventListener.handleConferenceEvent(sre);
   }
  else   if (action.equals(STOP_RECORDING_EVENT)) {
     VoiceStartRecordingEvent srev=new VoiceStartRecordingEvent(confName,false);
     srev.setRecordingFilename(getRecordFilenameFromEvent(event));
     srev.setTimestamp(genTimestamp().toString());
-    if (log.isDebugEnabled())     log.debug("Processing conference event - action: {} time: {} file: {}",new Object[]{action,srev.getTimestamp(),srev.getRecordingFilename()});
+    if (log.isDebugEnabled())     log.debug("******************** Processing conference event - action: {} time: {} file: {}",new Object[]{action,srev.getTimestamp(),srev.getRecordingFilename()});
     conferenceEventListener.handleConferenceEvent(srev);
   }
  else {
