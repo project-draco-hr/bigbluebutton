@@ -1,6 +1,0 @@
-{
-  String userid=(String)msg.get("userId");
-  String meetingID=Red5.getConnectionLocal().getScope().getName();
-  String requesterID=getBbbSession().getInternalUserID();
-  bbbInGW.ejectUser(meetingID,requesterID,userid);
-}
