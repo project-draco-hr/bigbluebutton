@@ -1,6 +1,6 @@
 {
   Integer memberId=this.getMemberIdFromEvent(event);
-  System.out.println("Received Conference Muted Event from FreeSWITCH user[" + memberId.toString() + "]");
+  System.out.println("******************** Received Conference Muted Event from FreeSWITCH user[" + memberId.toString() + "]");
   VoiceUserMutedEvent pm=new VoiceUserMutedEvent(memberId.toString(),confName,true);
   conferenceEventListener.handleConferenceEvent(pm);
 }
