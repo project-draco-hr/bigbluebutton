@@ -21,6 +21,9 @@
         chr.setParameter(changed_blocks_upload_filename,"block" + i,new ByteArrayInputStream(block.getVideoData()));
       }
       chr.post();
+      HttpURLConnection httpConnection=(HttpURLConnection)chr.connection;
+      int status=httpConnection.getResponseCode();
+      System.out.println("******* POST status = [" + status + "] ***************");
       System.out.println(blockSize + "] total=" + totalBytes+ " bytes");
       System.out.println(encodeTime + "] total=" + totalMillis+ " ms");
       for (int i=0; i < changedBlocks.length; i++) {

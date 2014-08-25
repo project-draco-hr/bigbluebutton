@@ -7,6 +7,10 @@
  else   if (message instanceof CaptureUpdateBlockEvent) {
     CaptureUpdateBlockEvent event=(CaptureUpdateBlockEvent)message;
     sessionManager.updateBlock(event.getRoom(),event.getPosition(),event.getVideoData(),event.isKeyFrame(),event.getSequenceNum());
+    if (sessionManager.isSharingStopped(event.getRoom())) {
+      log.info("Sharing has stopped for meeting [" + event.getRoom() + "]. Closing connection.");
+      session.close(true);
+    }
   }
  else   if (message instanceof CaptureEndBlockEvent) {
     CaptureEndBlockEvent event=(CaptureEndBlockEvent)message;
