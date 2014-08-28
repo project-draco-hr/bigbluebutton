@@ -1,0 +1,66 @@
+{
+  String contentType=request.getContentType();
+  if (!"application/json".equals(contentType)) {
+    errorMessage="Content Type must be application/json";
+    Log.info(errorMessage + "\n" + contentType);
+    return;
+  }
+  header=request.getHeader("Authorization");
+  System.out.println("Header: " + header);
+  oauth_body_hash=null;
+  if (header != null) {
+    if (header.startsWith("OAuth "))     header=header.substring(5);
+    String[] parms=header.split(",");
+    for (    String parm : parms) {
+      parm=parm.trim();
+      if (parm.startsWith("oauth_body_hash=")) {
+        String[] pieces=parm.split("\"");
+        oauth_body_hash=URLDecoder.decode(pieces[1]);
+      }
+      if (parm.startsWith("oauth_consumer_key=")) {
+        String[] pieces=parm.split("\"");
+        oauth_consumer_key=URLDecoder.decode(pieces[1]);
+      }
+    }
+  }
+  if (oauth_body_hash == null) {
+    errorMessage="Did not find oauth_body_hash";
+    Log.info(errorMessage + "\n" + header);
+    return;
+  }
+  System.out.println("OBH=" + oauth_body_hash);
+  final char[] buffer=new char[0x10000];
+  try {
+    StringBuilder out=new StringBuilder();
+    Reader in=request.getReader();
+    int read;
+    do {
+      read=in.read(buffer,0,buffer.length);
+      if (read > 0) {
+        out.append(buffer,0,read);
+      }
+    }
+ while (read >= 0);
+    postBody=out.toString();
+  }
+ catch (  Exception e) {
+    errorMessage="Could not read message body:" + e.getMessage();
+    return;
+  }
+  try {
+    MessageDigest md=MessageDigest.getInstance("SHA1");
+    md.update(postBody.getBytes());
+    byte[] output=Base64.encode(md.digest());
+    String hash=new String(output);
+    System.out.println("HASH=" + hash);
+    if (!hash.equals(oauth_body_hash)) {
+      errorMessage="Body hash does not match header";
+      return;
+    }
+  }
+ catch (  Exception e) {
+    errorMessage="Could not compute body hash";
+    return;
+  }
+  valid=true;
+}

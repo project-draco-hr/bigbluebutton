@@ -1,0 +1,5 @@
+{
+  loadFromRequest(request);
+  if (!valid)   return;
+  validateRequest(oauth_consumer_key,oauth_secret,request);
+}
