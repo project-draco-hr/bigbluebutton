@@ -1,3 +1,11 @@
 {
+  if (taken < excerpt.length) {
+    final int mark=Math.min(given,taken);
+    given=Integer.MAX_VALUE;
+    while (taken < excerpt.length) {
+      read(excerpt,taken,LIMIT - taken);
+    }
+    given=mark;
+  }
   return excerpt;
 }

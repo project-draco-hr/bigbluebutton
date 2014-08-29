@@ -1,0 +1,4 @@
+{
+  byte[] b=new byte[1];
+  return (read(b) <= 0) ? -1 : unsigned(b[0]);
+}
