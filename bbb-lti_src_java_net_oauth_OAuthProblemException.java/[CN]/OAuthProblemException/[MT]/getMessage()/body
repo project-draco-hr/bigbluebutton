@@ -20,7 +20,7 @@
   }
   response=getHttpStatusCode();
   if (response != null) {
-    return HttpResponseMessage.STATUS_CODE + " " + response;
+    return HttpMessage.STATUS_CODE + " " + response;
   }
   return null;
 }
