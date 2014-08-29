@@ -3,13 +3,15 @@
   if (realm != null) {
     into.append(" realm=\"").append(OAuth.percentEncode(realm)).append('"');
   }
+ else {
+    into.append(" realm=\"\"");
+  }
   beforeGetParameter();
   if (parameters != null) {
     for (    Map.Entry parameter : parameters) {
       String name=toString(parameter.getKey());
       if (name.startsWith("oauth_")) {
         if (into.length() > 0)         into.append(",");
-        into.append(" ");
         into.append(OAuth.percentEncode(name)).append("=\"");
         into.append(OAuth.percentEncode(toString(parameter.getValue()))).append('"');
       }

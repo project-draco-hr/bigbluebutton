@@ -1,0 +1,3 @@
+{
+  return getStatus(desc,CODE_MAJOR_UNSUPPORTED);
+}
