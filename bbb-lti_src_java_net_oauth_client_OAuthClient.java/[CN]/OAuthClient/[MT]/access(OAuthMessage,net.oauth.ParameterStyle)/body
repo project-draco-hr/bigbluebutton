@@ -1,0 +1,6 @@
+{
+  HttpMessage httpRequest=HttpMessage.newRequest(request,style);
+  HttpResponseMessage httpResponse=http.execute(httpRequest,httpParameters);
+  httpResponse=HttpMessageDecoder.decode(httpResponse);
+  return new OAuthResponseMessage(httpResponse);
+}

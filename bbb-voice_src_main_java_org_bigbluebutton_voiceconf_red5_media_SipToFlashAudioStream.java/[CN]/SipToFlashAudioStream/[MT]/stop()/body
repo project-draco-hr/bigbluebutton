@@ -9,6 +9,9 @@
     audioBroadcastStream.close();
     if (log.isDebugEnabled())     log.debug("Closed audioBroadcastStream for {}",listenStreamName);
   }
- else   if (log.isDebugEnabled())   log.debug("audioBroadcastStream is null, couldn't stop");
+ else {
+    if (log.isDebugEnabled())     log.debug("audioBroadcastStream is null, couldn't stop");
+  }
   if (log.isDebugEnabled())   log.debug("Stream(s) stopped");
+  if (observer != null)   observer.onStreamStopped();
 }

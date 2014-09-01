@@ -1,0 +1,28 @@
+{
+  this.method=method;
+  this.URL=URL;
+  if (parameters == null) {
+    this.parameters=new ArrayList<Map.Entry<String,String>>();
+  }
+ else {
+    this.parameters=new ArrayList<Map.Entry<String,String>>(parameters.size());
+    for (    Map.Entry p : parameters) {
+      this.parameters.add(new OAuth.Parameter(toString(p.getKey()),toString(p.getValue())));
+    }
+  }
+  ByteArrayInputStream bais=null;
+  byte[] body=null;
+  if (bodyAsStream != null) {
+    try {
+      body=getBodyAsByteArray(bodyAsStream);
+      Collection<Map.Entry<String,String>> headers=getHeaders();
+      headers.add(new OAuth.Parameter(HttpMessage.CONTENT_LENGTH,String.valueOf(body.length)));
+      headers.add(new OAuth.Parameter(HttpMessage.CONTENT_TYPE,contentType != null ? contentType : "null"));
+      bais=new ByteArrayInputStream(body);
+    }
+ catch (    Exception e) {
+    }
+  }
+  this.bodyAsStream=bais;
+  this.bodyAsByteArray=body;
+}

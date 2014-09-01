@@ -32,5 +32,4 @@
     }
   }
   log.debug("Rtp Receiver stopped. Packet Received = " + packetReceivedCounter + ".");
-  if (listener != null)   listener.onStoppedReceiving();
 }
