@@ -5,7 +5,10 @@
   if (m != null) {
     m.setForciblyEnded(true);
     if (removeMeetingWhenEnded) {
-      processMeetingForRemoval(m);
+      processRecording(m.getInternalId());
+      destroyMeeting(m.getInternalId());
+      meetings.remove(m.getInternalId());
+      removeUserSessions(m.getInternalId());
     }
   }
  else {
