@@ -1,0 +1,7 @@
+{
+  OAuthResponseMessage response=access(request,style);
+  if ((response.getHttpResponse().getStatusCode() / 100) != 2) {
+    throw response.toOAuthProblemException();
+  }
+  return response;
+}

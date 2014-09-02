@@ -1,3 +1,18 @@
 {
-  return getPublicKeyFromDer(decodeBase64(publicKeyObject));
+  InputStream stream=new ByteArrayInputStream(pem.getBytes("UTF-8"));
+  PEMReader reader=new PEMReader(stream);
+  byte[] bytes=reader.getDerBytes();
+  PublicKey pubKey;
+  if (PEMReader.PUBLIC_X509_MARKER.equals(reader.getBeginMarker())) {
+    KeySpec keySpec=new X509EncodedKeySpec(bytes);
+    KeyFactory fac=KeyFactory.getInstance("RSA");
+    pubKey=fac.generatePublic(keySpec);
+  }
+ else   if (PEMReader.CERTIFICATE_X509_MARKER.equals(reader.getBeginMarker())) {
+    pubKey=getPublicKeyFromDerCert(bytes);
+  }
+ else {
+    throw new IOException("Invalid PEM fileL: Unknown marker for " + " public key or cert " + reader.getBeginMarker());
+  }
+  return pubKey;
 }

@@ -2,4 +2,7 @@
   if (callStream != null) {
     callStream.stopTalkStream(broadcastStream,scope);
   }
+ else {
+    log.info("Can't stop talk stream as stream may have already stopped.");
+  }
 }

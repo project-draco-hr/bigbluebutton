@@ -1,0 +1,29 @@
+{
+  PublicKey publicKey;
+  if (publicKeyObject instanceof PublicKey) {
+    publicKey=(PublicKey)publicKeyObject;
+  }
+ else   if (publicKeyObject instanceof X509Certificate) {
+    publicKey=((X509Certificate)publicKeyObject).getPublicKey();
+  }
+ else   if (publicKeyObject instanceof String) {
+    try {
+      publicKey=getPublicKeyFromPem((String)publicKeyObject);
+    }
+ catch (    IOException e) {
+      if (isCert)       throw e;
+      publicKey=getPublicKeyFromDer(decodeBase64((String)publicKeyObject));
+    }
+  }
+ else   if (publicKeyObject instanceof byte[]) {
+    if (isCert)     publicKey=getPublicKeyFromDerCert((byte[])publicKeyObject);
+ else     publicKey=getPublicKeyFromDer((byte[])publicKeyObject);
+  }
+ else {
+    String source;
+    if (isCert)     source="RSA_SHA1.X509_CERTIFICATE";
+ else     source="RSA_SHA1.PUBLIC_KEY";
+    throw new IllegalArgumentException("Public key or certificate set through " + source + " must be of "+ "type PublicKey, String or byte[], and not "+ publicKeyObject.getClass().getName());
+  }
+  return publicKey;
+}

@@ -1,0 +1,15 @@
+{
+  ByteArrayOutputStream baos=new ByteArrayOutputStream();
+  int reads;
+  try {
+    reads=bodyAsStream.read();
+    while (reads != -1) {
+      baos.write(reads);
+      reads=bodyAsStream.read();
+    }
+  }
+  finally {
+    bodyAsStream.close();
+  }
+  return baos.toByteArray();
+}

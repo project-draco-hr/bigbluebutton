@@ -24,5 +24,8 @@
   if (pMap.get(OAuth.OAUTH_VERSION) == null) {
     addParameter(OAuth.OAUTH_VERSION,OAuth.VERSION_1_0);
   }
+  if (pMap.get(OAuth.OAUTH_BODY_HASH) == null && bodyAsStream != null) {
+    addParameter(OAuth.OAUTH_BODY_HASH,getBodyHash());
+  }
   this.sign(accessor);
 }
