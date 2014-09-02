@@ -1,3 +1,4 @@
 {
-  eventMap.put("pageNumber",page);
+  Integer num=new Integer(page);
+  eventMap.put("pageNumber",new Integer(num - 1).toString());
 }
