@@ -1,5 +1,6 @@
 {
-  if (meetingInfinite())   return false;
+  if (expiry == 0)   return false;
   long now=System.currentTimeMillis();
+  log.debug("nobodyJoined - !userHasJoined=[" + !userHasJoined + "] && (now - createdTime)=["+ (now - createdTime)+ "] > (expiry * MILLIS_IN_A_MINUTE)="+ (expiry * MILLIS_IN_A_MINUTE));
   return (!userHasJoined && (now - createdTime) > (expiry * MILLIS_IN_A_MINUTE));
 }

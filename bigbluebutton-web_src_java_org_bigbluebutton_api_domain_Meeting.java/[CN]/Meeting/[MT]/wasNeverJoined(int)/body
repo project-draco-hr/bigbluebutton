@@ -1,3 +1,4 @@
 {
+  log.debug("WasNeverJoined - hasStarted=[" + hasStarted() + "] && !hasEnded()=["+ !hasEnded()+ "] && nobodyJoined("+ expiry+ ")="+ nobodyJoined(expiry));
   return (hasStarted() && !hasEnded() && nobodyJoined(expiry));
 }
