@@ -1,0 +1,34 @@
+{
+  int total=0;
+  if (given < taken) {
+    final int e=Math.min(length,taken - given);
+    System.arraycopy(excerpt,given,b,offset,e);
+    total+=e;
+    given+=e;
+    if (given < taken) {
+      return total;
+    }
+    given=Integer.MAX_VALUE;
+    offset+=e;
+    length-=e;
+  }
+  final int r=super.read(b,offset,length);
+  if (r > 0) {
+    total+=r;
+    final int e=Math.min(r,LIMIT - taken);
+    if (e >= 0) {
+      System.arraycopy(b,offset,excerpt,taken,e);
+      taken+=e;
+      if (taken >= LIMIT) {
+        System.arraycopy(ELLIPSIS,0,excerpt,LIMIT,ELLIPSIS.length);
+        taken=excerpt.length;
+      }
+    }
+  }
+ else   if (taken < excerpt.length) {
+    byte[] complete=new byte[taken];
+    System.arraycopy(excerpt,0,complete,0,taken);
+    excerpt=complete;
+  }
+  return (total > 0) ? total : r;
+}

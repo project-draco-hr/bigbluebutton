@@ -1,7 +1,7 @@
 {
   Integer memberId=this.getMemberIdFromEvent(event);
   VoiceUserTalkingEvent pt;
-  System.out.println("Receive conference Action [" + action + "]");
+  System.out.println("******************** Receive conference Action [" + action + "]");
   if (action == null) {
     return;
   }

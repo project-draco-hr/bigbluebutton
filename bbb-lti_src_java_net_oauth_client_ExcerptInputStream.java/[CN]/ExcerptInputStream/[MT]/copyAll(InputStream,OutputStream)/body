@@ -1,0 +1,5 @@
+{
+  final ExcerptInputStream ex=new ExcerptInputStream(from);
+  ex.copyAll(into);
+  return ex.getExcerpt();
+}

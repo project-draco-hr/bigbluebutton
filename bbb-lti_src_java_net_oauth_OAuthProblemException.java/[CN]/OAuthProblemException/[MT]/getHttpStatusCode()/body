@@ -1,5 +1,5 @@
 {
-  Object code=getParameters().get(HttpResponseMessage.STATUS_CODE);
+  Object code=getParameters().get(HttpMessage.STATUS_CODE);
   if (code == null) {
     return 200;
   }

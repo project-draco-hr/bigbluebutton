@@ -1,0 +1,6 @@
+{
+  super.close();
+  byte[] complete=new byte[taken];
+  System.arraycopy(excerpt,0,complete,0,taken);
+  excerpt=complete;
+}
