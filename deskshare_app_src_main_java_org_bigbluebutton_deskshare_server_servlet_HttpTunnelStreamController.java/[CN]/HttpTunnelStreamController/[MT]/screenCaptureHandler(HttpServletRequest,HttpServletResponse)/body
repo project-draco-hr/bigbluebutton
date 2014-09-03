@@ -6,6 +6,9 @@
   }
  else   if (1 == captureRequest) {
     handleCaptureUpdateRequest(request,response);
+    if (isSharingStopped(request,response)) {
+      response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+    }
   }
  else   if (2 == captureRequest) {
     handleCaptureEndRequest(request,response);

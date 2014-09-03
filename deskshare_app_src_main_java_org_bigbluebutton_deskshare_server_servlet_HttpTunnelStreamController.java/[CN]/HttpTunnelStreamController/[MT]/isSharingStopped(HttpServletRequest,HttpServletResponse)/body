@@ -1,0 +1,4 @@
+{
+  String room=request.getParameterValues("room")[0];
+  return sessionManager.isSharingStopped(room);
+}

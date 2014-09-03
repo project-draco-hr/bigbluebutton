@@ -1,55 +1,25 @@
 {
   super.initialize(name,accessor);
-  Object privateKeyObject=accessor.consumer.getProperty(PRIVATE_KEY);
   try {
+    Object privateKeyObject=accessor.consumer.getProperty(PRIVATE_KEY);
     if (privateKeyObject != null) {
-      if (privateKeyObject instanceof PrivateKey) {
-        privateKey=(PrivateKey)privateKeyObject;
-      }
- else       if (privateKeyObject instanceof String) {
-        privateKey=getPrivateKeyFromPem((String)privateKeyObject);
-      }
- else       if (privateKeyObject instanceof byte[]) {
-        privateKey=getPrivateKeyFromDer((byte[])privateKeyObject);
-      }
- else {
-        throw new IllegalArgumentException("Private key set through RSA_SHA1.PRIVATE_KEY must be of " + "type PrivateKey, String, or byte[], and not " + privateKeyObject.getClass().getName());
-      }
+      privateKey=loadPrivateKey(privateKeyObject);
     }
     Object publicKeyObject=accessor.consumer.getProperty(PUBLIC_KEY);
     if (publicKeyObject != null) {
-      if (publicKeyObject instanceof PublicKey) {
-        publicKey=(PublicKey)publicKeyObject;
-      }
- else       if (publicKeyObject instanceof String) {
-        publicKey=getPublicKeyFromPem((String)publicKeyObject);
-      }
- else       if (publicKeyObject instanceof byte[]) {
-        publicKey=getPublicKeyFromDer((byte[])publicKeyObject);
-      }
- else {
-        throw new IllegalArgumentException("Public key set through RSA_SHA1.PRIVATE_KEY must be of " + "type PublicKey, String, or byte[], and not " + publicKeyObject.getClass().getName());
-      }
+      publicKey=loadPublicKey(publicKeyObject,false);
     }
  else {
       Object certObject=accessor.consumer.getProperty(X509_CERTIFICATE);
       if (certObject != null) {
-        if (certObject instanceof X509Certificate) {
-          publicKey=((X509Certificate)certObject).getPublicKey();
-        }
- else         if (certObject instanceof String) {
-          publicKey=getPublicKeyFromPemCert((String)certObject);
-        }
- else         if (certObject instanceof byte[]) {
-          publicKey=getPublicKeyFromDerCert((byte[])certObject);
-        }
- else {
-          throw new IllegalArgumentException("X509Certificate set through RSA_SHA1.X509_CERTIFICATE" + " must be of type X509Certificate, String, or byte[]," + " and not "+ certObject.getClass().getName());
-        }
+        publicKey=loadPublicKey(certObject,true);
       }
     }
   }
  catch (  GeneralSecurityException e) {
+    throw new OAuthException(e);
+  }
+catch (  IOException e) {
     throw new OAuthException(e);
   }
 }

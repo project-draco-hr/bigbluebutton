@@ -1,0 +1,6 @@
+{
+  Map retval=new LinkedHashMap();
+  retval.put(STATUS_CODE,major);
+  retval.put(STATUS_DESCRIPTION,description);
+  return retval;
+}

@@ -6,7 +6,7 @@
   boolean muted=headers.get("Speak").equals("true") ? false : true;
   boolean speaking=headers.get("Talking").equals("true") ? true : false;
   String voiceUserId=callerIdName;
-  System.out.println("Received Conference Join Event from FreeSWITCH user[" + callerIdName + "]");
+  log.info("User joined voice conference, user=[" + callerIdName + "], conf=["+ confName+ "]");
   Matcher gapMatcher=GLOBAL_AUDION_PATTERN.matcher(callerIdName);
   if (gapMatcher.matches()) {
     log.debug("Ignoring GLOBAL AUDIO USER [{}]",callerIdName);

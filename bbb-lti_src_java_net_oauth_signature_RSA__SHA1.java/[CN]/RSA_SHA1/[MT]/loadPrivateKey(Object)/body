@@ -1,0 +1,21 @@
+{
+  PrivateKey privateKey;
+  if (privateKeyObject instanceof PrivateKey) {
+    privateKey=(PrivateKey)privateKeyObject;
+  }
+ else   if (privateKeyObject instanceof String) {
+    try {
+      privateKey=getPrivateKeyFromPem((String)privateKeyObject);
+    }
+ catch (    IOException e) {
+      privateKey=getPrivateKeyFromDer(decodeBase64((String)privateKeyObject));
+    }
+  }
+ else   if (privateKeyObject instanceof byte[]) {
+    privateKey=getPrivateKeyFromDer((byte[])privateKeyObject);
+  }
+ else {
+    throw new IllegalArgumentException("Private key set through RSA_SHA1.PRIVATE_KEY must be of " + "type PrivateKey, String or byte[] and not " + privateKeyObject.getClass().getName());
+  }
+  return privateKey;
+}
