@@ -1,3 +1,6 @@
 {
-  return getConfig(defaultConfigURL);
+  if (defaultConfigXML == null) {
+    defaultConfigXML=getConfig(defaultConfigURL);
+  }
+  return defaultConfigXML;
 }
