@@ -1,0 +1,12 @@
+{
+  final OffsetLocator moveBarOffsetLocator=new OffsetLocator(){
+    @Override public int getTopOffset(){
+      return (mOverallSize.height + mBorderWidth - (moveBar.getHeight() / 2) - moveBar.getHeight()) / 2 - 50;
+    }
+    @Override public int getLeftOffset(){
+      return (mOverallSize.width + mBorderWidth - (moveBar.getWidth())) / 2;
+    }
+  }
+;
+  mMoveBarFrame=new MoveBarFrame(mWindowFrame,moveBarOffsetLocator,moveBar);
+}

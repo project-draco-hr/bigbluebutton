@@ -7,7 +7,13 @@
   mTopBorder.removeMouseMotionListener(resizingAdapter);
   mBottomBorder.removeMouseListener(resizingAdapter);
   mBottomBorder.removeMouseMotionListener(resizingAdapter);
+  mResizeBarFrame.removeMouseListener(resizingAdapter);
+  mResizeBarFrame.removeMouseMotionListener(resizingAdapter);
+  mMoveBarFrame.removeMouseListener(movingAdapter);
+  mMoveBarFrame.removeMouseMotionListener(movingAdapter);
   repaint();
   System.out.println("Removing listeners......................");
   mToolbarFrame.setVisible(false);
+  mResizeBarFrame.setVisible(false);
+  mMoveBarFrame.setVisible(false);
 }
