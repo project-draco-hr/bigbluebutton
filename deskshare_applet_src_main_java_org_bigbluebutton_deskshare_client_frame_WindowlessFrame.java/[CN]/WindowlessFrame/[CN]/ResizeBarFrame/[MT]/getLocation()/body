@@ -1,0 +1,3 @@
+{
+  return new Point(mTopLeft.x + mOffsetLocator.getLeftOffset(),mTopLeft.y + mOffsetLocator.getTopOffset());
+}

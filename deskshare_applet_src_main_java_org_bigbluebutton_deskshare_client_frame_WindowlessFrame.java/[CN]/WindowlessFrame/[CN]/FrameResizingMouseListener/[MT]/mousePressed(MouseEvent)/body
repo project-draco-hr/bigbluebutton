@@ -1,0 +1,14 @@
+{
+  final Point mouse=e.getLocationOnScreen();
+  mActionOffset=new Point(mouse.x - mTopLeft.x,mouse.y - mTopLeft.y);
+  mOriginalSize=new Dimension(mOverallSize);
+  if (isBorder) {
+    mCorner=nearCorner(mouse);
+    if (mCorner != null) {
+      mResizing.set(true);
+    }
+  }
+ else {
+    mResizing.set(true);
+  }
+}
