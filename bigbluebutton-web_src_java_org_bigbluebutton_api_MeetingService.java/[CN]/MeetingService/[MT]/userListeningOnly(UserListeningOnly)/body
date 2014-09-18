@@ -1,0 +1,19 @@
+{
+  Meeting m=getMeeting(message.meetingId);
+  if (m != null) {
+    User user=m.getUserById(message.userId);
+    if (user != null) {
+      user.setListeningOnly(message.listenOnly);
+      if (message.listenOnly) {
+        log.info("User {} started to listen only in the meeting {}",user.getFullname(),message.meetingId);
+      }
+ else {
+        log.info("User {} stopped to listen only in the meeting {}",user.getFullname(),message.meetingId);
+      }
+      return;
+    }
+    log.warn("The participant " + message.userId + " doesn't exist in the meeting "+ message.meetingId);
+    return;
+  }
+  log.warn("The meeting " + message.meetingId + " doesn't exist");
+}
