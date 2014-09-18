@@ -1,0 +1,11 @@
+{
+  for (  Map.Entry<String,String> filter : metadataFilters.entrySet()) {
+    String metadataValue=recording.getMetadata().get(filter.getKey());
+    if (metadataValue != null && metadataValue.equals(filter.getValue())) {
+    }
+ else {
+      return false;
+    }
+  }
+  return true;
+}
