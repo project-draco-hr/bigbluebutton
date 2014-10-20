@@ -4,4 +4,6 @@
   this.record=record;
   this.voiceBridge=voiceBridge;
   this.duration=duration;
+  this.autoStartRecording=autoStartRecording;
+  this.allowStartStopRecording=allowStartStopRecording;
 }

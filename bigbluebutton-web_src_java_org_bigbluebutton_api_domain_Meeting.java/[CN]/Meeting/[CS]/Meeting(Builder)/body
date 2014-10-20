@@ -8,6 +8,8 @@
   logoutUrl=builder.logoutUrl;
   defaultAvatarURL=builder.defaultAvatarURL;
   record=builder.record;
+  autoStartRecording=builder.autoStartRecording;
+  allowStartStopRecording=builder.allowStartStopRecording;
   duration=builder.duration;
   webVoice=builder.webVoice;
   telVoice=builder.telVoice;
