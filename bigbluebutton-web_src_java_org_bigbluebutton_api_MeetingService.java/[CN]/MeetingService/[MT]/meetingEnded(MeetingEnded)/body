@@ -5,6 +5,17 @@
     long now=System.currentTimeMillis();
     log.debug("Meeting [{}] end time [{}].",message.meetingId,now);
     m.setEndTime(now);
+    Map<String,Object> logData=new HashMap<String,Object>();
+    logData.put("meetingId",m.getInternalId());
+    logData.put("externalMeetingId",m.getExternalId());
+    logData.put("name",m.getName());
+    logData.put("duration",m.getDuration());
+    logData.put("record",m.isRecord());
+    logData.put("event","meeting_ended");
+    logData.put("description","Meeting has ended.");
+    Gson gson=new Gson();
+    String logStr=gson.toJson(logData);
+    log.info("Meeting ended: data={}",logStr);
     return;
   }
   log.warn("The meeting " + message.meetingId + " doesn't exist");
