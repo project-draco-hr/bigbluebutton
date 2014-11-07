@@ -1,4 +1,4 @@
 {
-  log.info("oflaDemo appConnect");
+  log.info("BBB Video appConnect");
   return super.appConnect(conn,params);
 }
