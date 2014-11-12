@@ -22,5 +22,9 @@
     in.position(curpos + 1);
   }
   in.position(start);
+  if (tryToParsePolicyRequest(session,in,out)) {
+    return true;
+  }
+  in.position(start);
   return false;
 }
