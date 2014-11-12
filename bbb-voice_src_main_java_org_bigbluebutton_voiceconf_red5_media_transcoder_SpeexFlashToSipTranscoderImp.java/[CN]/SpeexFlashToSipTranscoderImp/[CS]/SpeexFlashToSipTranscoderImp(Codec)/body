@@ -1,4 +1,5 @@
 {
+  audioDataQ=new LinkedBlockingQueue<SpeexRtpAudioData>();
   this.audioCodec=audioCodec;
   Random rgen=new Random();
   timestamp=rgen.nextInt(1000);
