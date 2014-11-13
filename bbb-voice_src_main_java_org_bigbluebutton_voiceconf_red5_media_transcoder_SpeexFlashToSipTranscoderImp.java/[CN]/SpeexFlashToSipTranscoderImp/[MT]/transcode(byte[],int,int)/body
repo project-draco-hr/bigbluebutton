@@ -1,5 +1,11 @@
 {
   byte[] transcodedAudio=new byte[length];
   System.arraycopy(audioData,startOffset,transcodedAudio,0,length);
-  transcodedAudioListener.handleTranscodedAudioData(transcodedAudio,timestamp+=TS_INCREMENT);
+  SpeexRtpAudioData srad=new SpeexRtpAudioData(transcodedAudio,timestamp+=TS_INCREMENT);
+  try {
+    audioDataQ.offer(srad,100,TimeUnit.MILLISECONDS);
+  }
+ catch (  InterruptedException e) {
+    log.warn("Failed to add speex audio data into queue.");
+  }
 }
