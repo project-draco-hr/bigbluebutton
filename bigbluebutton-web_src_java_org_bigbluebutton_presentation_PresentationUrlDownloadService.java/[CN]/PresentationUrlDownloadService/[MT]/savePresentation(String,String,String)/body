@@ -1,0 +1,25 @@
+{
+  String finalUrl=followRedirect(meetingId,urlString,0,urlString);
+  if (finalUrl == null)   return false;
+  boolean success=false;
+  GetMethod method=new GetMethod(finalUrl);
+  HttpClient client=new HttpClient();
+  try {
+    int statusCode=client.executeMethod(method);
+    if (statusCode == HttpStatus.SC_OK) {
+      FileUtils.copyInputStreamToFile(method.getResponseBodyAsStream(),new File(filename));
+      log.info("Downloaded presentation at [{}]",finalUrl);
+      success=true;
+    }
+  }
+ catch (  HttpException e) {
+    log.error("HttpException while downloading presentation at [{}]",finalUrl);
+  }
+catch (  IOException e) {
+    log.error("IOException while downloading presentation at [{}]",finalUrl);
+  }
+ finally {
+    method.releaseConnection();
+  }
+  return success;
+}

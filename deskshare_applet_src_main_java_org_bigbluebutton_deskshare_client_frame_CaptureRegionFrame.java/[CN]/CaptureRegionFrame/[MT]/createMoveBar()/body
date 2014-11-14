@@ -1,0 +1,15 @@
+{
+  final CirclePanel movePanel=new CirclePanel();
+  movePanel.setPreferredSize(new Dimension(MOVE_BAR_SIZE,MOVE_BAR_SIZE));
+  movePanel.setLayout(new GridBagLayout());
+  BufferedImage moveCursorImage=null;
+  try {
+    moveCursorImage=ImageIO.read(getClass().getResourceAsStream("/images/move-cursor.png"));
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+  JLabel movePicLabel=new JLabel(new ImageIcon(moveCursorImage));
+  movePanel.add(movePicLabel);
+  return movePanel;
+}

@@ -34,6 +34,22 @@
   log.debug("User [{}] connected to room [{}]",debugInfo,room);
   bbbGW.initLockSettings(room,locked,lsMap);
   connInvokerService.addConnection(bbbSession.getInternalUserID(),connection);
-  log.info("User connected: sessionId=[" + Red5.getConnectionLocal().getSessionId() + "], encoding=["+ Red5.getConnectionLocal().getType()+ "(persistent=RTMP,polling=RTMPT)], meetingId= ["+ bbbSession.getRoom()+ "], userId=["+ bbbSession.getInternalUserID()+ "] username=["+ bbbSession.getUsername()+ "]");
+  String meetingId=bbbSession.getRoom();
+  String userId=bbbSession.getInternalUserID();
+  String connType=getConnectionType(Red5.getConnectionLocal().getType());
+  String userFullname=bbbSession.getUsername();
+  String connId=Red5.getConnectionLocal().getSessionId();
+  log.info("User connected: sessionId=[" + connId + "], encoding=["+ connType+ "(persistent=RTMP,polling=RTMPT)], meetingId= ["+ meetingId+ "], userId=["+ userId+ "] username=["+ userFullname+ "]");
+  Map<String,Object> logData=new HashMap<String,Object>();
+  logData.put("meetingId",meetingId);
+  logData.put("connType",connType);
+  logData.put("connId",connId);
+  logData.put("userId",userId);
+  logData.put("username",userFullname);
+  logData.put("event","user_joining_bbb_apps");
+  logData.put("description","User joining BBB Apps.");
+  Gson gson=new Gson();
+  String logStr=gson.toJson(logData);
+  log.info("User joining bbbb-aps: data={}",logStr);
   return super.roomConnect(connection,params);
 }

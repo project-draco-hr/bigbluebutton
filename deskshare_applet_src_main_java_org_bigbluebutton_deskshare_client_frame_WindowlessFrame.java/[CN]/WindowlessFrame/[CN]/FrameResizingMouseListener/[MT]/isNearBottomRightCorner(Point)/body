@@ -1,0 +1,6 @@
+{
+  int xToBotLeft=Math.abs(mTopLeft.x + (int)mOverallSize.getWidth() - mouse.x);
+  int yToBotLeft=Math.abs(mTopLeft.y + (int)mOverallSize.getHeight() - mouse.y);
+  ;
+  return (xToBotLeft < CORNER_SIZE && yToBotLeft < CORNER_SIZE);
+}

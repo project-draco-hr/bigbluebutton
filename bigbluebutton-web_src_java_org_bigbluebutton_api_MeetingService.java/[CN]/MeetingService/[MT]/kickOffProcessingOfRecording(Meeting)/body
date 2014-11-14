@@ -1,6 +1,15 @@
 {
   if (m.isRecord() && m.getNumUsers() == 0) {
     log.info("Kick-off processing of recording for meeting [id={} , name={}]",m.getInternalId(),m.getName());
+    Map<String,Object> logData=new HashMap<String,Object>();
+    logData.put("meetingId",m.getInternalId());
+    logData.put("externalMeetingId",m.getExternalId());
+    logData.put("name",m.getName());
+    logData.put("event","kick_off_ingest_and_processing");
+    logData.put("description","Start processing of recording.");
+    Gson gson=new Gson();
+    String logStr=gson.toJson(logData);
+    log.info("Initiate recording processing: data={}",logStr);
     processRecording(m.getInternalId());
   }
 }

@@ -5,6 +5,19 @@
     User user=m.userLeft(message.userId);
     if (user != null) {
       log.info("User removed from meeting [" + message.meetingId + "] user ["+ user.getFullname()+ "]");
+      Map<String,Object> logData=new HashMap<String,Object>();
+      logData.put("meetingId",m.getInternalId());
+      logData.put("externalMeetingId",m.getExternalId());
+      logData.put("name",m.getName());
+      logData.put("userId",message.userId);
+      logData.put("externalUserId",user.getExternalUserId());
+      logData.put("username",user.getFullname());
+      logData.put("role",user.getRole());
+      logData.put("event","user_joined_meeting");
+      logData.put("description","User had joined the meeting.");
+      Gson gson=new Gson();
+      String logStr=gson.toJson(logData);
+      log.info("User left meeting: data={}",logStr);
       return;
     }
     log.warn("The participant " + message.userId + " doesn't exist in the meeting "+ message.meetingId);

@@ -1,0 +1,4 @@
+{
+  this.audioData=audioData;
+  this.timestamp=timestamp;
+}
