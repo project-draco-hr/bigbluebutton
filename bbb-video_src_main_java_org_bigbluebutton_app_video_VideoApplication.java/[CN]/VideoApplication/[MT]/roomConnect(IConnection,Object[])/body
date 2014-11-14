@@ -1,0 +1,20 @@
+{
+  log.info("BBB Video roomConnect");
+  String meetingId=((String)params[0]).toString();
+  String userId=((String)params[1]).toString();
+  Red5.getConnectionLocal().setAttribute("MEETING_ID",meetingId);
+  Red5.getConnectionLocal().setAttribute("USERID",userId);
+  String connType=getConnectionType(Red5.getConnectionLocal().getType());
+  String connId=Red5.getConnectionLocal().getSessionId();
+  Map<String,Object> logData=new HashMap<String,Object>();
+  logData.put("meetingId",meetingId);
+  logData.put("userId",userId);
+  logData.put("connType",connType);
+  logData.put("connId",connId);
+  logData.put("event","user_joining_bbb_video");
+  logData.put("description","User joining BBB Video.");
+  Gson gson=new Gson();
+  String logStr=gson.toJson(logData);
+  log.info("User joining bbb-video: data={}",logStr);
+  return super.roomConnect(conn,params);
+}

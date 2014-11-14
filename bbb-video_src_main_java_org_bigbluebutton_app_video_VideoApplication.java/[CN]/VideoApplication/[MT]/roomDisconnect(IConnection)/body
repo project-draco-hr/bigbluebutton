@@ -1,8 +1,5 @@
 {
-  log.info("BBB Video appDisconnect");
-  if (appScope == conn.getScope() && serverStream != null) {
-    serverStream.close();
-  }
+  log.info("BBB Video roomDisconnect");
   String connType=getConnectionType(Red5.getConnectionLocal().getType());
   String connId=Red5.getConnectionLocal().getSessionId();
   Map<String,Object> logData=new HashMap<String,Object>();
@@ -15,5 +12,5 @@
   Gson gson=new Gson();
   String logStr=gson.toJson(logData);
   log.info("User leaving bbb-video: data={}",logStr);
-  super.appDisconnect(conn);
+  super.roomDisconnect(conn);
 }

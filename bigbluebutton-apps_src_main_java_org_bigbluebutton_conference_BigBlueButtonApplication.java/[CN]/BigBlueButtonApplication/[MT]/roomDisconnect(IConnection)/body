@@ -6,7 +6,20 @@
   log.info("***** " + APP + "[clientid="+ clientId+ "] disconnnected from "+ remoteHost+ ":"+ remotePort+ ".");
   connInvokerService.removeConnection(getBbbSession().getInternalUserID());
   BigBlueButtonSession bbbSession=(BigBlueButtonSession)Red5.getConnectionLocal().getAttribute(Constants.SESSION);
-  log.info("User disconnected: sessionId=[" + Red5.getConnectionLocal().getSessionId() + "], encoding=["+ Red5.getConnectionLocal().getType()+ "(persistent=RTMP,polling=RTMPT)], meetingId= ["+ bbbSession.getRoom()+ "], userId=["+ bbbSession.getInternalUserID()+ "] username=["+ bbbSession.getUsername()+ "]");
+  String meetingId=bbbSession.getRoom();
+  String userId=bbbSession.getInternalUserID();
+  String connType=getConnectionType(Red5.getConnectionLocal().getType());
+  String userFullname=bbbSession.getUsername();
+  String connId=Red5.getConnectionLocal().getSessionId();
+  log.info("User disconnected: sessionId=[" + connId + "], encoding=["+ connType+ "(persistent=RTMP,polling=RTMPT)], meetingId= ["+ meetingId+ "], userId=["+ userId+ "] username=["+ userFullname+ "]");
+  Map<String,Object> logData=new HashMap<String,Object>();
+  logData.put("meetingId",meetingId);
+  logData.put("connType",connType);
+  logData.put("connId",connId);
+  logData.put("userId",userId);
+  logData.put("username",userFullname);
+  logData.put("event","user_leaving_bbb_apps");
+  logData.put("description","User leaving BBB Apps.");
   bbbGW.userLeft(bbbSession.getRoom(),getBbbSession().getInternalUserID());
   super.roomDisconnect(conn);
 }
