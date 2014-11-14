@@ -1,7 +1,7 @@
 {
   super.appStart(app);
-  log.info("oflaDemo appStart");
-  System.out.println("oflaDemo appStart");
+  log.info("BBB Video appStart");
+  System.out.println("BBB Video appStart");
   appScope=app;
   return true;
 }
