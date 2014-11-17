@@ -5,6 +5,19 @@
     User user=new User(message.userId,message.externalUserId,message.name,message.role);
     m.userJoined(user);
     log.info("New user in meeting [" + message.meetingId + "] user ["+ user.getFullname()+ "]");
+    Map<String,Object> logData=new HashMap<String,Object>();
+    logData.put("meetingId",m.getInternalId());
+    logData.put("externalMeetingId",m.getExternalId());
+    logData.put("name",m.getName());
+    logData.put("userId",message.userId);
+    logData.put("externalUserId",user.getExternalUserId());
+    logData.put("username",user.getFullname());
+    logData.put("role",user.getRole());
+    logData.put("event","user_joined_meeting");
+    logData.put("description","User had joined the meeting.");
+    Gson gson=new Gson();
+    String logStr=gson.toJson(logData);
+    log.info("User joined meeting: data={}",logStr);
     return;
   }
   log.warn("The meeting " + message.meetingId + " doesn't exist");

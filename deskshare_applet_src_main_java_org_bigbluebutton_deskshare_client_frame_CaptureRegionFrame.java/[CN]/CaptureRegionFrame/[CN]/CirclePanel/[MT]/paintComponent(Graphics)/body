@@ -1,0 +1,3 @@
+{
+  g.drawOval(0,0,g.getClipBounds().width,g.getClipBounds().height);
+}

@@ -1,4 +1,6 @@
 {
   if (mToolbarFrame != null)   pc.changeOn(mToolbarFrame);
+  if (mResizeBarFrame != null)   pc.changeOn(mResizeBarFrame);
+  if (mMoveBarFrame != null)   pc.changeOn(mMoveBarFrame);
   changeBarFrames(pc,repaint);
 }

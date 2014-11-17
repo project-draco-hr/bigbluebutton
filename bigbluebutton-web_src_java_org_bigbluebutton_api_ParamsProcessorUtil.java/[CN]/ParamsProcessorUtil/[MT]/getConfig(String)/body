@@ -3,14 +3,22 @@
   GetMethod get=new GetMethod(url);
   String configXML="";
   try {
-    client.executeMethod(get);
-    configXML=get.getResponseBodyAsString();
+    int status=client.executeMethod(get);
+    if (status == 200) {
+      configXML=get.getResponseBodyAsString();
+    }
+ else {
+      return null;
+    }
   }
  catch (  HttpException e) {
-    e.printStackTrace();
+    return null;
   }
 catch (  IOException e) {
-    e.printStackTrace();
+    return null;
+  }
+ finally {
+    get.releaseConnection();
   }
   return configXML;
 }

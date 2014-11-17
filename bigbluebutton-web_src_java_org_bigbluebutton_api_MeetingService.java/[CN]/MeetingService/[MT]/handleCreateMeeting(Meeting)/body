@@ -8,5 +8,16 @@
     metadata.put("meetingName",m.getName());
     messagingService.recordMeetingInfo(m.getInternalId(),metadata);
   }
-  messagingService.createMeeting(m.getInternalId(),m.getName(),m.isRecord(),m.getTelVoice(),m.getDuration());
+  Map<String,Object> logData=new HashMap<String,Object>();
+  logData.put("meetingId",m.getInternalId());
+  logData.put("externalMeetingId",m.getExternalId());
+  logData.put("name",m.getName());
+  logData.put("duration",m.getDuration());
+  logData.put("record",m.isRecord());
+  logData.put("event","create_meeting");
+  logData.put("description","Create meeting.");
+  Gson gson=new Gson();
+  String logStr=gson.toJson(logData);
+  log.info("Create meeting: data={}",logStr);
+  messagingService.createMeeting(m.getInternalId(),m.getName(),m.isRecord(),m.getTelVoice(),m.getDuration(),m.getAutoStartRecording(),m.getAllowStartStopRecording());
 }
