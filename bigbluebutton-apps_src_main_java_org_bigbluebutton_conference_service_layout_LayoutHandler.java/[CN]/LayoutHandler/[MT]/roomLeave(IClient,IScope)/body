@@ -1,3 +1,0 @@
-{
-  log.debug("***** " + APP + " [ "+ " roomLeave [ "+ scope.getName()+ "] *********");
-}

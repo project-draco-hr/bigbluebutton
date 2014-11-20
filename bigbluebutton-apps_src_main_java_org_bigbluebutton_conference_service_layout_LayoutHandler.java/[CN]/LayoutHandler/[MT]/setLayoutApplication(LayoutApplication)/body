@@ -1,4 +1,0 @@
-{
-  log.debug("Setting layout application");
-  layoutApplication=a;
-}
