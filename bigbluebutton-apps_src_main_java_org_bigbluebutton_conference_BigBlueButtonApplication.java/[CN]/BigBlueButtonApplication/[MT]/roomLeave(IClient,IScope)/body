@@ -1,4 +1,3 @@
 {
-  log.debug("***** " + APP + " [ "+ " roomLeave [ "+ scope.getName()+ "] *********");
   super.roomLeave(client,scope);
 }

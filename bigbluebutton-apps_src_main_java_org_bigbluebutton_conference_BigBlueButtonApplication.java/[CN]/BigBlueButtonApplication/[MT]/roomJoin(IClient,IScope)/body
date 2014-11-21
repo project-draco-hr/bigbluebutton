@@ -1,4 +1,3 @@
 {
-  log.debug("***** " + APP + " [ "+ " roomJoin [ "+ scope.getName()+ "] *********");
   return super.roomJoin(client,scope);
 }
