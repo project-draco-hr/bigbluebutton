@@ -6,9 +6,31 @@
       long now=System.currentTimeMillis();
       log.info("Meeting [{}] has started on [{}]",message.meetingId,now);
       m.setStartTime(now);
+      Map<String,Object> logData=new HashMap<String,Object>();
+      logData.put("meetingId",m.getInternalId());
+      logData.put("externalMeetingId",m.getExternalId());
+      logData.put("name",m.getName());
+      logData.put("duration",m.getDuration());
+      logData.put("record",m.isRecord());
+      logData.put("event","meeting_started");
+      logData.put("description","Meeting has started.");
+      Gson gson=new Gson();
+      String logStr=gson.toJson(logData);
+      log.info("Meeting started: data={}",logStr);
     }
  else {
       log.debug("The meeting [{}] has been started again...",message.meetingId);
+      Map<String,Object> logData=new HashMap<String,Object>();
+      logData.put("meetingId",m.getInternalId());
+      logData.put("externalMeetingId",m.getExternalId());
+      logData.put("name",m.getName());
+      logData.put("duration",m.getDuration());
+      logData.put("record",m.isRecord());
+      logData.put("event","meeting_restarted");
+      logData.put("description","Meeting has restarted.");
+      Gson gson=new Gson();
+      String logStr=gson.toJson(logData);
+      log.info("Meeting restarted: data={}",logStr);
     }
     return;
   }

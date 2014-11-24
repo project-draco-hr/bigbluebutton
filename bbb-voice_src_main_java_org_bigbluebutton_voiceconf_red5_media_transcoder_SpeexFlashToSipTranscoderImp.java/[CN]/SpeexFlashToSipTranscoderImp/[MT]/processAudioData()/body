@@ -1,0 +1,12 @@
+{
+  while (processAudioData) {
+    SpeexRtpAudioData srad;
+    try {
+      srad=audioDataQ.take();
+      transcodedAudioListener.handleTranscodedAudioData(srad.audioData,srad.timestamp);
+    }
+ catch (    InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+}

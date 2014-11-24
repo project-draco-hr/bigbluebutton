@@ -1,15 +1,31 @@
 {
-  String userid=((String)params[0]).toString();
-  String username=((String)params[1]).toString();
+  String meetingId=((String)params[0]).toString();
+  String userId=((String)params[1]).toString();
+  String username=((String)params[2]).toString();
   String clientId=Red5.getConnectionLocal().getClient().getId();
   String remoteHost=Red5.getConnectionLocal().getRemoteAddress();
   int remotePort=Red5.getConnectionLocal().getRemotePort();
-  if ((userid == null) || ("".equals(userid)))   userid="unknown-userid";
+  if ((userId == null) || ("".equals(userId)))   userId="unknown-userid";
   if ((username == null) || ("".equals(username)))   username="UNKNOWN-CALLER";
-  Red5.getConnectionLocal().setAttribute("USERID",userid);
+  Red5.getConnectionLocal().setAttribute("MEETING_ID",meetingId);
+  Red5.getConnectionLocal().setAttribute("USERID",userId);
   Red5.getConnectionLocal().setAttribute("USERNAME",username);
-  log.info("{} [clientid={}] has connected to the voice conf app.",username + "[uid=" + userid+ "]",clientId);
+  log.info("{} [clientid={}] has connected to the voice conf app.",username + "[uid=" + userId+ "]",clientId);
   log.info("[clientid={}] connected from {}.",clientId,remoteHost + ":" + remotePort);
-  clientConnManager.createClient(clientId,userid,username,(IServiceCapableConnection)Red5.getConnectionLocal());
+  String connType=getConnectionType(Red5.getConnectionLocal().getType());
+  String userFullname=username;
+  String connId=Red5.getConnectionLocal().getSessionId();
+  Map<String,Object> logData=new HashMap<String,Object>();
+  logData.put("meetingId",meetingId);
+  logData.put("connType",connType);
+  logData.put("connId",connId);
+  logData.put("userId",userId);
+  logData.put("username",userFullname);
+  logData.put("event","user_joining_bbb_voice");
+  logData.put("description","User joining BBB Voice.");
+  Gson gson=new Gson();
+  String logStr=gson.toJson(logData);
+  log.info("User joining bbb-voice: data={}",logStr);
+  clientConnManager.createClient(clientId,userId,username,(IServiceCapableConnection)Red5.getConnectionLocal());
   return super.appConnect(conn,params);
 }

@@ -1,4 +1,4 @@
 {
   processMessages=false;
-  cleanupTimer.cancel();
+  scheduledThreadPool.shutdownNow();
 }

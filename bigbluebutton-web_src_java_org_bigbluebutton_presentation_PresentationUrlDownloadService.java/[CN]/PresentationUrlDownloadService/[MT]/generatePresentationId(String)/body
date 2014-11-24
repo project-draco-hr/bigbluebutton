@@ -1,0 +1,4 @@
+{
+  long timestamp=System.currentTimeMillis();
+  return DigestUtils.shaHex(name) + "-" + timestamp;
+}

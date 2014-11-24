@@ -1,16 +1,30 @@
 {
   String clientId=Red5.getConnectionLocal().getClient().getId();
-  String userid=getUserId();
+  String userId=getUserId();
   String username=getUsername();
   String remoteHost=Red5.getConnectionLocal().getRemoteAddress();
   int remotePort=Red5.getConnectionLocal().getRemotePort();
   log.info("[clientid={}] disconnnected from {}.",clientId,remoteHost + ":" + remotePort);
-  log.debug("{} [clientid={}] is leaving the voice conf app. Removing from ConnectionManager.",username + "[uid=" + userid+ "]",clientId);
+  log.debug("{} [clientid={}] is leaving the voice conf app. Removing from ConnectionManager.",username + "[uid=" + userId+ "]",clientId);
+  String connType=getConnectionType(Red5.getConnectionLocal().getType());
+  String userFullname=username;
+  String connId=Red5.getConnectionLocal().getSessionId();
+  Map<String,Object> logData=new HashMap<String,Object>();
+  logData.put("meetingId",getMeetingId());
+  logData.put("connType",connType);
+  logData.put("connId",connId);
+  logData.put("userId",userId);
+  logData.put("username",userFullname);
+  logData.put("event","user_leaving_bbb_voice");
+  logData.put("description","User leaving BBB Voice.");
+  Gson gson=new Gson();
+  String logStr=gson.toJson(logData);
+  log.info("User leaving bbb-voice: data={}",logStr);
   clientConnManager.removeClient(clientId);
   String peerId=(String)Red5.getConnectionLocal().getAttribute("VOICE_CONF_PEER");
   if (peerId != null) {
     try {
-      log.debug("Forcing hang up {} [clientid={}] in case the user is still in the conference.",username + "[uid=" + userid+ "]",clientId);
+      log.debug("Forcing hang up {} [clientid={}] in case the user is still in the conference.",username + "[uid=" + userId+ "]",clientId);
       sipPeerManager.hangup(peerId,clientId);
     }
  catch (    PeerNotFoundException e) {
