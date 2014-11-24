@@ -1,4 +1,0 @@
-{
-  log.debug("***** " + APP + " [ "+ " roomJoin [ "+ scope.getName()+ "] *********");
-  return true;
-}

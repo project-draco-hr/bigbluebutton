@@ -1,5 +1,4 @@
 {
-  log.debug("***** " + APP + " [ "+ " roomDisconnect [ "+ conn.getScope().getName()+ "] *********");
   String remoteHost=Red5.getConnectionLocal().getRemoteAddress();
   int remotePort=Red5.getConnectionLocal().getRemotePort();
   String clientId=Red5.getConnectionLocal().getClient().getId();
@@ -11,7 +10,7 @@
   String connType=getConnectionType(Red5.getConnectionLocal().getType());
   String userFullname=bbbSession.getUsername();
   String connId=Red5.getConnectionLocal().getSessionId();
-  log.info("User disconnected: sessionId=[" + connId + "], encoding=["+ connType+ "(persistent=RTMP,polling=RTMPT)], meetingId= ["+ meetingId+ "], userId=["+ userId+ "] username=["+ userFullname+ "]");
+  log.info("User disconnected: sessionId=[" + connId + "], encoding=["+ connType+ "], meetingId= ["+ meetingId+ "], userId=["+ userId+ "] username=["+ userFullname+ "]");
   Map<String,Object> logData=new HashMap<String,Object>();
   logData.put("meetingId",meetingId);
   logData.put("connType",connType);

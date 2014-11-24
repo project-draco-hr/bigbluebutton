@@ -1,5 +1,4 @@
 {
-  log.debug(APP + ":roomJoin " + scope.getName()+ " - "+ scope.getParent().getName());
   registerUser();
   return true;
 }

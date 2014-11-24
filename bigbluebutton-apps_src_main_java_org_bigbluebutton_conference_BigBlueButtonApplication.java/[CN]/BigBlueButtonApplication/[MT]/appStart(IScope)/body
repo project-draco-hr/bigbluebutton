@@ -1,9 +1,4 @@
 {
-  log.debug("***** " + APP + " [ "+ " appStart [ "+ scope.getName()+ "] *********");
-  IContext context=app.getContext();
-  appCtx=(AbstractApplicationContext)context.getApplicationContext();
-  appCtx.addApplicationListener(new ShutdownHookListener());
-  appCtx.registerShutdownHook();
   super.appStart(app);
   connInvokerService.setAppScope(app);
   return true;
