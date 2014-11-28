@@ -1,7 +1,0 @@
-String meetingID
-String meetingName
-Boolean recorded
-String voiceBridge
-Long duration
-Boolean autoStartRecording
-Boolean allowStartStopRecording

@@ -1,4 +1,0 @@
-{
-  log.debug("***** " + APP + " [ "+ " roomConnect [ "+ connection.getScope().getName()+ "] *********");
-  return true;
-}
