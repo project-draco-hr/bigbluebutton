@@ -1,7 +1,0 @@
-String id
-String name
-Boolean record
-String voiceBridge
-Long duration
-Boolean autoStartRecording
-Boolean allowStartStopRecording

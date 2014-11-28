@@ -1,0 +1,8 @@
+String id
+String externalId
+String name
+Boolean record
+String voiceBridge
+Long duration
+Boolean autoStartRecording
+Boolean allowStartStopRecording
