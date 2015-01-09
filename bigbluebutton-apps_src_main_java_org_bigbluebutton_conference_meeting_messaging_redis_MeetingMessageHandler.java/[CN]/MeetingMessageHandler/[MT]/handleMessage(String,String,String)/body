@@ -53,6 +53,11 @@
         log.info("User disconnected from global audio: data={}",logStr);
         bbbGW.userDisconnectedFromGlobalAudio(emm.voiceConf,emm.userid,emm.name);
       }
+ else       if (msg instanceof GetAllMeetingsRequest) {
+        GetAllMeetingsRequest emm=(GetAllMeetingsRequest)msg;
+        log.info("Received GetAllMeetingsRequest");
+        bbbGW.getAllMeetings("no_need_of_a_meeting_id");
+      }
     }
   }
  else   if (channel.equalsIgnoreCase(MessagingConstants.TO_SYSTEM_CHANNEL)) {

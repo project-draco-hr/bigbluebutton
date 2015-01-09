@@ -6,6 +6,9 @@
     convertPdfToSwf(pres);
     createTextFiles(pres);
     createThumbnails(pres);
+    if (pngImagesRequired) {
+      createPngImages(pres);
+    }
     notifier.sendConversionCompletedMessage(pres);
   }
 }
