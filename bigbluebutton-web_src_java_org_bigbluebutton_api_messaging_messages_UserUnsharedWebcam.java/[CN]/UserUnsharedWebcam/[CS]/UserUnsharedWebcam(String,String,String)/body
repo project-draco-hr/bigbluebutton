@@ -1,0 +1,5 @@
+{
+  this.meetingId=meetingId;
+  this.userId=userId;
+  this.stream=stream;
+}

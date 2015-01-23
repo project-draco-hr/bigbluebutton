@@ -1,0 +1,14 @@
+{
+  Meeting m=getMeeting(message.meetingId);
+  if (m != null) {
+    User user=m.getUserById(message.userId);
+    if (user != null) {
+      user.setVoiceJoined(true);
+      log.info("User {} joined the voice conference in the meeting {}",user.getFullname(),message.meetingId);
+      return;
+    }
+    log.warn("The participant " + message.userId + " doesn't exist in the meeting "+ message.meetingId);
+    return;
+  }
+  log.warn("The meeting " + message.meetingId + " doesn't exist");
+}
