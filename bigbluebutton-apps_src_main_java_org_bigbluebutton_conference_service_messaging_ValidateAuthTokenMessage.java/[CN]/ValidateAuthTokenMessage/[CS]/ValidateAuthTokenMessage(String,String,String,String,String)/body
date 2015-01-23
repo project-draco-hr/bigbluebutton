@@ -3,4 +3,5 @@
   this.userId=userId;
   this.token=token;
   this.replyTo=replyTo;
+  this.sessionId=sessionId;
 }
