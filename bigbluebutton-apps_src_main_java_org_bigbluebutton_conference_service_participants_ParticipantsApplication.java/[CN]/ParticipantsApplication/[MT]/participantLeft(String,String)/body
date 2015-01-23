@@ -1,5 +1,0 @@
-{
-  log.debug("Participant " + userid + " leaving room "+ roomName);
-  bbbInGW.userLeft(roomName,userid);
-  return true;
-}
