@@ -1,5 +1,0 @@
-{
-  log.debug("Participant " + userid + " joining room "+ roomName);
-  bbbInGW.userJoin(roomName,userid);
-  return true;
-}
