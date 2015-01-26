@@ -1,4 +1,0 @@
-{
-  connections+=1;
-  return connections;
-}
