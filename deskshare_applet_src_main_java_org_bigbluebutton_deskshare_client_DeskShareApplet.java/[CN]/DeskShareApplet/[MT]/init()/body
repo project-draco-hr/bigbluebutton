@@ -20,11 +20,4 @@
   }
  catch (  IOException e) {
   }
-  try {
-    JSObject window=JSObject.getWindow(this);
-    window.call("appletStartupCallback",new Object[]{});
-  }
- catch (  JSException jse) {
-    jse.printStackTrace();
-  }
 }
