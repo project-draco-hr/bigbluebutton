@@ -3,5 +3,4 @@
   this.userID=userID;
   this.message=message;
   this.messageName=messageName;
-  this.sessionId=sessionId;
 }

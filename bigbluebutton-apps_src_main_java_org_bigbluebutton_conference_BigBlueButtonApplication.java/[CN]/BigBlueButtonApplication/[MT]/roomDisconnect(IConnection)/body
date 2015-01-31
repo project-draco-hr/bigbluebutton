@@ -9,7 +9,7 @@
   String connType=getConnectionType(Red5.getConnectionLocal().getType());
   String userFullname=bbbSession.getUsername();
   String connId=Red5.getConnectionLocal().getSessionId();
-  String sessionId=CONN + connId + "-"+ userId;
+  String sessionId=CONN + userId;
   log.info("User disconnected: sessionId=[" + sessionId + "], encoding=["+ connType+ "], meetingId= ["+ meetingId+ "], userId=["+ userId+ "] username=["+ userFullname+ "]");
   Map<String,Object> logData=new HashMap<String,Object>();
   logData.put("meetingId",meetingId);

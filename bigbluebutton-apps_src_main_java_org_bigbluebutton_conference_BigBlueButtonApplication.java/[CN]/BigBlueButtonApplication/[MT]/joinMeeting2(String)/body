@@ -7,7 +7,7 @@
     String meetingId=bbbSession.getRoom();
     log.debug(APP + ":joinMeeting - [" + meetingId+ "] ["+ userid+ ", "+ username+ ", "+ role+ "]");
     String connId=Red5.getConnectionLocal().getSessionId();
-    String sessionId=CONN + connId + "-"+ userId;
+    String sessionId=CONN + userId;
     Map<String,Object> logData=new HashMap<String,Object>();
     logData.put("meetingId",meetingId);
     logData.put("connId",connId);

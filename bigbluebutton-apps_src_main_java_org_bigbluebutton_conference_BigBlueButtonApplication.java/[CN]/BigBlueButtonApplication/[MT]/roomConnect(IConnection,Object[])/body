@@ -37,7 +37,7 @@
   String connType=getConnectionType(Red5.getConnectionLocal().getType());
   String userFullname=bbbSession.getUsername();
   String connId=Red5.getConnectionLocal().getSessionId();
-  String sessionId=CONN + connId + "-"+ userId;
+  String sessionId=CONN + userId;
   connInvokerService.addConnection(sessionId,connection);
   log.info("User connected: sessionId=[" + sessionId + "], encoding=["+ connType+ "], meetingId= ["+ meetingId+ "], userId=["+ userId+ "] username=["+ userFullname+ "]");
   Map<String,Object> logData=new HashMap<String,Object>();

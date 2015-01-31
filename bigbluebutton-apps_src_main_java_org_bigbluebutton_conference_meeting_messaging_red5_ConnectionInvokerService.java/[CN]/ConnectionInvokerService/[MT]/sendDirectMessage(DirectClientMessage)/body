@@ -3,7 +3,8 @@
     public void run(){
       IScope meetingScope=getScope(msg.getMeetingID());
       if (meetingScope != null) {
-        IConnection conn=getConnection(meetingScope,msg.getUserID());
+        String sessionId=CONN + msg.getUserID();
+        IConnection conn=getConnection(meetingScope,sessionId);
         if (conn != null) {
           if (conn.isConnected()) {
             List<Object> params=new ArrayList<Object>();
