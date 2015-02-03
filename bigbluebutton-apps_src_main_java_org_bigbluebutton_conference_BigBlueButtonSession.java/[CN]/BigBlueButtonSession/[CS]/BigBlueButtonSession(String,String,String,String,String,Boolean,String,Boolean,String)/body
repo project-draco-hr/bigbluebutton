@@ -7,4 +7,5 @@
   this.record=record;
   this.externalUserID=externalUserID;
   this.startAsMuted=startAsMuted;
+  this.sessionId=sessionId;
 }
