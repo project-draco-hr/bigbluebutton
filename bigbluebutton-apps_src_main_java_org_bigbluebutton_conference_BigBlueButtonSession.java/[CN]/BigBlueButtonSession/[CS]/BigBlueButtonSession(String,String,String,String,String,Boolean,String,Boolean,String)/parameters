@@ -6,3 +6,4 @@ String voiceBridge
 Boolean record
 String externalUserID
 Boolean startAsMuted
+String sessionId
