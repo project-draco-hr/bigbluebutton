@@ -2,3 +2,4 @@ String meetingId
 String userId
 String token
 String replyTo
+String sessionId
