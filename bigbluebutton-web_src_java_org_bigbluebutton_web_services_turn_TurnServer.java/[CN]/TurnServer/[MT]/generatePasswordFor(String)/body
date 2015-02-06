@@ -1,0 +1,13 @@
+{
+  TurnEntry turn=null;
+  try {
+    Long timestamp=System.currentTimeMillis();
+    String username=timestamp + COLON + userId;
+    String password=calculateRFC2104HMAC(username,secretKey);
+    turn=new TurnEntry(username,password,ttl,url);
+  }
+ catch (  SignatureException e) {
+    e.printStackTrace();
+  }
+  return turn;
+}
