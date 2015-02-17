@@ -1,0 +1,6 @@
+{
+  this.username=username;
+  this.url=url;
+  this.password=password;
+  this.ttl=ttl;
+}
