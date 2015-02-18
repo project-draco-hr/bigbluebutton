@@ -23,7 +23,6 @@
   Gson gson=new Gson();
   String logStr=gson.toJson(logData);
   log.info("User leaving bbb-apps: data={}",logStr);
-  connInvokerService.removeConnection(sessionId);
   bbbGW.userLeft(bbbSession.getRoom(),getBbbSession().getInternalUserID(),sessionId);
   super.roomDisconnect(conn);
 }
