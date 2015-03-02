@@ -1,0 +1,10 @@
+{
+  Set<TurnEntry> turns=new HashSet<TurnEntry>();
+  for (  TurnServer ts : turnServers) {
+    TurnEntry entry=ts.generatePasswordFor(userId);
+    if (entry != null) {
+      turns.add(entry);
+    }
+  }
+  return turns;
+}
