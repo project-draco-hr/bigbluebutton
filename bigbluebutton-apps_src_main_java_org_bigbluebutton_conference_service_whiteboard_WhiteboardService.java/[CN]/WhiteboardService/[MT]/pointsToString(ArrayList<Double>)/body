@@ -1,7 +1,0 @@
-{
-  String datapoints="";
-  for (  Double i : points) {
-    datapoints+=i + ",";
-  }
-  return datapoints.substring(0,datapoints.length() - 1);
-}

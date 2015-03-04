@@ -3,5 +3,5 @@
   String userid=(String)msg.get("userId");
   String meetingID=Red5.getConnectionLocal().getScope().getName();
   String requesterID=getBbbSession().getInternalUserID();
-  bbbInGW.lockUser(meetingID,requesterID,userid,lock);
+  bbbInGW.lockMuteUser(meetingID,requesterID,userid,lock);
 }
