@@ -1,0 +1,8 @@
+{
+  String meetingID=Red5.getConnectionLocal().getScope().getName();
+  String requesterID=getBbbSession().getInternalUserID();
+  Boolean lock=(Boolean)msg.get("lock");
+  String userId=(String)msg.get("userId");
+  log.info("setUserLock ({}, {})",new Object[]{lock,userId});
+  bbbInGW.lockUser(meetingID,requesterID,lock,userId);
+}
