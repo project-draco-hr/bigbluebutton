@@ -7,4 +7,8 @@
   this.duration=duration;
   this.autoStartRecording=autoStartRecording;
   this.allowStartStopRecording=allowStartStopRecording;
+  this.moderatorPass=moderatorPass;
+  this.viewerPass=viewerPass;
+  this.createTime=createTime;
+  this.createDate=createDate;
 }
