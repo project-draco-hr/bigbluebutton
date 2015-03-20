@@ -19,5 +19,5 @@
   Gson gson=new Gson();
   String logStr=gson.toJson(logData);
   log.info("Create meeting: data={}",logStr);
-  messagingService.createMeeting(m.getInternalId(),m.getExternalId(),m.getName(),m.isRecord(),m.getTelVoice(),m.getDuration(),m.getAutoStartRecording(),m.getAllowStartStopRecording());
+  messagingService.createMeeting(m.getInternalId(),m.getExternalId(),m.getName(),m.isRecord(),m.getTelVoice(),m.getDuration(),m.getAutoStartRecording(),m.getAllowStartStopRecording(),m.getModeratorPassword(),m.getViewerPassword(),m.getCreateTime(),formatPrettyDate(m.getCreateTime()));
 }
