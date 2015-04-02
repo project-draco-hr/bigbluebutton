@@ -1,0 +1,4 @@
+{
+  this.removeMouseListener(mouseAdapter);
+  this.removeMouseMotionListener(mouseAdapter);
+}
