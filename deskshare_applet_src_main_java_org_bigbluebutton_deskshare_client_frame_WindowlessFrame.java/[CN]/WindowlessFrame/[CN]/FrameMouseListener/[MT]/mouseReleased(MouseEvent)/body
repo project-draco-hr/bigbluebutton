@@ -1,0 +1,7 @@
+{
+  mMoving.set(false);
+  mResizing.set(false);
+  mActionOffset=null;
+  mOriginalSize=null;
+  mCorner=null;
+}
