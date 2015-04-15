@@ -5,11 +5,11 @@
   mOffsetLocator=ol;
   add(content);
   pack();
-  moveMouseAdapter=createMoveBarMovingMouseListener();
+  mouseAdapter=createMoveBarMouseListener();
   changeMovingBarFrame(new PropertyChanger(){
     @Override public void changeOn(    Component component){
-      component.addMouseListener(moveMouseAdapter);
-      component.addMouseMotionListener(moveMouseAdapter);
+      component.addMouseListener(mouseAdapter);
+      component.addMouseMotionListener(mouseAdapter);
     }
   }
 );
