@@ -21,14 +21,11 @@
   }
 );
   mLeftBorder=new VerticalBarFrame(mWindowFrame,new StaticOffsetLocator(0,0));
-  movingAdapter=createMovingMouseListener();
-  resizingAdapter=createResizingMouseListener();
+  mouseAdapter=createMouseListener();
   changeBarFrames(new PropertyChanger(){
     @Override public void changeOn(    Component component){
-      component.addMouseListener(resizingAdapter);
-      component.addMouseMotionListener(resizingAdapter);
-      component.addMouseListener(movingAdapter);
-      component.addMouseMotionListener(movingAdapter);
+      component.addMouseListener(mouseAdapter);
+      component.addMouseMotionListener(mouseAdapter);
     }
   }
 ,false);
