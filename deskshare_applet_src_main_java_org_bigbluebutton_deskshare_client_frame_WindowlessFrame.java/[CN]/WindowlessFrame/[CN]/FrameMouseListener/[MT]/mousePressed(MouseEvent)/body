@@ -1,0 +1,19 @@
+{
+  final Point mouse=e.getLocationOnScreen();
+  mActionOffset=new Point(mouse.x - mTopLeft.x,mouse.y - mTopLeft.y);
+  mOriginalSize=new Dimension(mOverallSize);
+  mCorner=nearCorner(mouse);
+  if (isResizable && (isResizeBar || (isBorder && mCorner != null))) {
+    mMoving.set(false);
+    mResizing.set(true);
+    e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR));
+  }
+ else   if (!isResizable || isMoveBar || (isBorder && mCorner == null)) {
+    mMoving.set(true);
+    mResizing.set(false);
+    e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+  }
+ else {
+    e.getComponent().setCursor(Cursor.getDefaultCursor());
+  }
+}

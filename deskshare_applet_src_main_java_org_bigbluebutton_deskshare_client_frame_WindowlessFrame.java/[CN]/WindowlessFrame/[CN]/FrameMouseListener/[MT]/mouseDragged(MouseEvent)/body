@@ -1,0 +1,98 @@
+{
+  int changeInX=e.getLocationOnScreen().x - mActionOffset.x - mTopLeft.x;
+  int changeInY=e.getLocationOnScreen().y - mActionOffset.y - mTopLeft.y;
+  Toolkit tk=Toolkit.getDefaultToolkit();
+  Dimension d=tk.getScreenSize();
+  if (mMoving.get()) {
+    if (false == mScreen.isMultiScreen()) {
+      if (mTopLeft.x < 1 && changeInX < 0) {
+        mTopLeft.x=0;
+        changeInX=0;
+      }
+      if (mTopLeft.y < 1 && changeInY < 0) {
+        mTopLeft.y=0;
+        changeInY=0;
+      }
+      if (mTopLeft.x + mOverallSize.width > (d.width - 6) && changeInX > 0) {
+        mTopLeft.x=d.width - mOverallSize.width - 5;
+        changeInX=0;
+      }
+      if (mTopLeft.y + mOverallSize.height > (d.height - 6) && changeInY > 0) {
+        mTopLeft.y=d.height - mOverallSize.height - 5;
+        changeInY=0;
+      }
+    }
+ else {
+      if (mTopLeft.x < mScreen.minX + 1 && changeInX < 0) {
+        mTopLeft.x=mScreen.minX;
+        changeInX=0;
+      }
+      if (mTopLeft.y < 1 && changeInY < 0) {
+        mTopLeft.y=0;
+        changeInY=0;
+      }
+      if (mTopLeft.x + mOverallSize.width > (mScreen.totalWidth - 6) && changeInX > 0) {
+        mTopLeft.x=mScreen.totalWidth - mOverallSize.width - 5;
+        changeInX=0;
+      }
+      if (mTopLeft.y + mOverallSize.height > (d.height - 6) && changeInY > 0) {
+        mTopLeft.y=d.height - mOverallSize.height - 5;
+        changeInY=0;
+      }
+    }
+    if (mMoving.get() && !e.isConsumed()) {
+      WindowlessFrame.this.setLocation(changeInX + mTopLeft.x,changeInY + mTopLeft.y);
+    }
+  }
+ else   if (mResizing.get()) {
+    int newH=mOriginalSize.height;
+    int newW=mOriginalSize.width;
+    if (isBorder && Corner.SOUTHEAST != mCorner) {
+    }
+ else {
+      if (e.getLocationOnScreen().x < mTopLeft.x + 5) {
+        newW=5;
+      }
+ else {
+        newW+=changeInX;
+      }
+      if (e.getLocationOnScreen().y < mTopLeft.y + 5) {
+        newH=5;
+      }
+ else {
+        newH+=changeInY;
+      }
+    }
+    if (newH + mTopLeft.y > d.height - 5) {
+      newH=d.height - mTopLeft.y - 5;
+    }
+    if (false == mScreen.isMultiScreen()) {
+      if (newW + mTopLeft.x > d.width - 5) {
+        newW=d.width - mTopLeft.x - 5;
+      }
+    }
+ else {
+      int mWidth=0;
+      if (mTopLeft.x > mScreen.curWidth) {
+        mWidth=mScreen.totalWidth;
+      }
+ else {
+        mWidth=d.width;
+      }
+      if (newW + mTopLeft.x > mWidth - 5 && mTopLeft.x >= 0) {
+        newW=mWidth - mTopLeft.x - 5;
+      }
+ else       if (mTopLeft.x < 0 && mTopLeft.x + newW > -5) {
+        newW=-mTopLeft.x - 5;
+      }
+    }
+    if (newH < MIN_WINDOW_SIZE) {
+      newH=MIN_WINDOW_SIZE;
+    }
+    if (newW < MIN_WINDOW_SIZE) {
+      newW=MIN_WINDOW_SIZE;
+    }
+    WindowlessFrame.this.setSize(newH,newW);
+    e.consume();
+  }
+}
