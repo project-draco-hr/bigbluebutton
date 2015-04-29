@@ -1,3 +1,5 @@
 {
-  return users.remove(userid);
+  User u=(User)users.remove(userid);
+  if (users.isEmpty())   lastUserLeftOn=System.currentTimeMillis();
+  return u;
 }

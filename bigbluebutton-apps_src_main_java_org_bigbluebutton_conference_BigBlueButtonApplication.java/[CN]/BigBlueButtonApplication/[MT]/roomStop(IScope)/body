@@ -1,5 +1,4 @@
 {
   recorderApplication.destroyRecordSession(room.getName());
-  connInvokerService.removeScope(room.getName());
   super.roomStop(room);
 }

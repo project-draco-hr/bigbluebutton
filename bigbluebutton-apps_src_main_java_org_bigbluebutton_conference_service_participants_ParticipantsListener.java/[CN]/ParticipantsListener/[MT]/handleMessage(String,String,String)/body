@@ -9,7 +9,9 @@
       String roomName=payloadObject.get("meeting_id").toString().replace("\"","");
       String userID=payloadObject.get("userid").toString().replace("\"","");
       if (eventName.equalsIgnoreCase("user_leaving_request")) {
-        bbbInGW.userLeft(roomName,userID);
+        log.warn("TODO: Need to pass sessionId on user_leaving_request message.");
+        String sessionId="tobeimplemented";
+        bbbInGW.userLeft(roomName,userID,sessionId);
       }
  else       if (eventName.equalsIgnoreCase("user_raised_hand_message")) {
         bbbInGW.userRaiseHand(roomName,userID);

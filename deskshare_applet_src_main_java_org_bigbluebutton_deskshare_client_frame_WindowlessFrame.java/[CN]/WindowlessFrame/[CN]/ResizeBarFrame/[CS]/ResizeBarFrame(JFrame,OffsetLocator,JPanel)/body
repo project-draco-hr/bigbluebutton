@@ -6,11 +6,11 @@
   mOffsetLocator=ol;
   add(content);
   pack();
-  resizeMouseAdapter=createResizeBarResizingMouseListener();
+  mouseAdapter=createResizeBarMouseListener();
   changeResizeBarFrame(new PropertyChanger(){
     @Override public void changeOn(    Component component){
-      component.addMouseListener(resizeMouseAdapter);
-      component.addMouseMotionListener(resizeMouseAdapter);
+      component.addMouseListener(mouseAdapter);
+      component.addMouseMotionListener(mouseAdapter);
     }
   }
 );
