@@ -1,5 +1,4 @@
 {
-  Gson gson=new Gson();
   JsonParser parser=new JsonParser();
   JsonObject obj=(JsonObject)parser.parse(message);
   if (channel.equalsIgnoreCase(MessagingConstants.FROM_MEETING_CHANNEL)) {
@@ -84,6 +83,51 @@
           String userid=user.get("userid").getAsString();
           for (          MessageListener listener : listeners) {
             listener.handle(new UserLeft(meetingId,userid));
+          }
+        }
+ else         if (MessagingConstants.USER_JOINED_VOICE_EVENT.equalsIgnoreCase(messageName)) {
+          System.out.println("Handling [" + messageName + "] message.");
+          String meetingId=payload.get("meeting_id").getAsString();
+          JsonObject user=(JsonObject)payload.get("user");
+          String userid=user.get("userid").getAsString();
+          for (          MessageListener listener : listeners) {
+            listener.handle(new UserJoinedVoice(meetingId,userid));
+          }
+        }
+ else         if (MessagingConstants.USER_LEFT_VOICE_EVENT.equalsIgnoreCase(messageName)) {
+          System.out.println("Handling [" + messageName + "] message.");
+          String meetingId=payload.get("meeting_id").getAsString();
+          JsonObject user=(JsonObject)payload.get("user");
+          String userid=user.get("userid").getAsString();
+          for (          MessageListener listener : listeners) {
+            listener.handle(new UserLeftVoice(meetingId,userid));
+          }
+        }
+ else         if (MessagingConstants.USER_LISTEN_ONLY_EVENT.equalsIgnoreCase(messageName)) {
+          System.out.println("Handling [" + messageName + "] message.");
+          String meetingId=payload.get("meeting_id").getAsString();
+          String userid=payload.get("userid").getAsString();
+          Boolean listenOnly=payload.get("listen_only").getAsBoolean();
+          for (          MessageListener listener : listeners) {
+            listener.handle(new UserListeningOnly(meetingId,userid,listenOnly));
+          }
+        }
+ else         if (MessagingConstants.USER_SHARE_WEBCAM_EVENT.equalsIgnoreCase(messageName)) {
+          System.out.println("Handling [" + messageName + "] message.");
+          String meetingId=payload.get("meeting_id").getAsString();
+          String userid=payload.get("userid").getAsString();
+          String stream=payload.get("stream").getAsString();
+          for (          MessageListener listener : listeners) {
+            listener.handle(new UserSharedWebcam(meetingId,userid,stream));
+          }
+        }
+ else         if (MessagingConstants.USER_UNSHARE_WEBCAM_EVENT.equalsIgnoreCase(messageName)) {
+          System.out.println("Handling [" + messageName + "] message.");
+          String meetingId=payload.get("meeting_id").getAsString();
+          String userid=payload.get("userid").getAsString();
+          String stream=payload.get("stream").getAsString();
+          for (          MessageListener listener : listeners) {
+            listener.handle(new UserUnsharedWebcam(meetingId,userid,stream));
           }
         }
       }
