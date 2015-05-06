@@ -1,6 +1,16 @@
 {
+  this.useTLS=useTLS;
   System.out.println("NetworkSocketStreamSender: connecting to " + host + ":"+ port);
   try {
+    if (useTLS) {
+      sslsocketfactory=(SSLSocketFactory)SSLSocketFactory.getDefault();
+      SSLsocket=(SSLSocket)sslsocketfactory.createSocket(host,port);
+      outstream=new DataOutputStream(SSLsocket.getOutputStream());
+    }
+ else {
+      socket=new Socket(host,port);
+      outstream=new DataOutputStream(socket.getOutputStream());
+    }
     socket=new Socket(host,port);
     outstream=new DataOutputStream(socket.getOutputStream());
   }

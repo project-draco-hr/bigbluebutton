@@ -10,6 +10,7 @@
   ScreenShareInfo ssi=new ScreenShareInfo();
   ssi.host=host;
   ssi.port=port;
+  ssi.useTLS=useTLS;
   ssi.room=room;
   ssi.captureWidth=captureWidth;
   ssi.captureHeight=captureHeight;

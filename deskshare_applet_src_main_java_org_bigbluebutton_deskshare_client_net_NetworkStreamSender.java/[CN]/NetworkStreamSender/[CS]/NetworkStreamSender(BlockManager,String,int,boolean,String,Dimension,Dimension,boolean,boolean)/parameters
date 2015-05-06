@@ -1,6 +1,7 @@
 BlockManager blockManager
 String host
 int port
+boolean useTLS
 String room
 Dimension screenDim
 Dimension blockDim
