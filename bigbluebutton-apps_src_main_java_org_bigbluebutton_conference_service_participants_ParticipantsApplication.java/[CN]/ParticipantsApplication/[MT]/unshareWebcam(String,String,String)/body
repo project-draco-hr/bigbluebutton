@@ -1,0 +1,3 @@
+{
+  bbbInGW.unshareWebcam(meetingId,userId,stream);
+}
