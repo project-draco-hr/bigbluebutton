@@ -8,6 +8,9 @@
   roomValue=getParameter("ROOM");
   String getUseTls=getParameter("useTLS");
   if (getUseTls != null)   useTLS=Boolean.parseBoolean(getUseTls);
+  if (useTLS) {
+    portValue=443;
+  }
   String scaleValue=getParameter("SCALE");
   if (scaleValue != null)   scale=Double.parseDouble(scaleValue);
   String captureFullScreen=getParameter("FULL_SCREEN");
