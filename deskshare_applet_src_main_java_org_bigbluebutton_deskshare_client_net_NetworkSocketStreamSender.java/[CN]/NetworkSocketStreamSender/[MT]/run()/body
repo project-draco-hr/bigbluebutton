@@ -19,7 +19,7 @@ catch (    IOException e) {
     outstream.close();
     outstream=null;
     if (this.useTLS) {
-      SSLsocket.close();
+      sslSocket.close();
     }
  else {
       socket.close();

@@ -6,8 +6,8 @@
   String port=getParameter("PORT");
   if (port != null)   portValue=Integer.parseInt(port);
   roomValue=getParameter("ROOM");
-  String getUseTls=getParameter("useTLS");
-  if (getUseTls != null)   useTLS=Boolean.parseBoolean(getUseTls);
+  String getUseTLS=getParameter("useTLS");
+  if (getUseTLS != null)   useTLS=Boolean.parseBoolean(getUseTLS);
   if (useTLS) {
     portValue=443;
   }

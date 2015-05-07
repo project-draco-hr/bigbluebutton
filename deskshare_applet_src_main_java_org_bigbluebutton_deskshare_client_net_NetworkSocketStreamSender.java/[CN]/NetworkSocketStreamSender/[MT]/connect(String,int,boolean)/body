@@ -4,9 +4,9 @@
   try {
     if (useTLS) {
       System.out.println("Connecting over TLS");
-      sslsocketfactory=(SSLSocketFactory)SSLSocketFactory.getDefault();
-      SSLsocket=(SSLSocket)sslsocketfactory.createSocket(host,port);
-      outstream=new DataOutputStream(SSLsocket.getOutputStream());
+      sslSocketFactory=(SSLSocketFactory)SSLSocketFactory.getDefault();
+      sslSocket=(SSLSocket)sslSocketFactory.createSocket(host,port);
+      outstream=new DataOutputStream(sslSocket.getOutputStream());
     }
  else {
       socket=new Socket(host,port);
