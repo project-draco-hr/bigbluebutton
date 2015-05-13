@@ -1,0 +1,5 @@
+{
+  for (  MessageHandler listener : listeners) {
+    listener.handleMessage(pattern,channel,message);
+  }
+}

@@ -1,0 +1,21 @@
+{
+  try {
+    sendMessage=true;
+    Runnable messageSender=new Runnable(){
+      public void run(){
+        while (sendMessage) {
+          try {
+            MessageToSend msg=messages.take();
+            publish(msg.getChannel(),msg.getMessage());
+          }
+ catch (          InterruptedException e) {
+          }
+        }
+      }
+    }
+;
+    msgSenderExec.execute(messageSender);
+  }
+ catch (  Exception e) {
+  }
+}

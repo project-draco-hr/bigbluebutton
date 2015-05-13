@@ -1,0 +1,31 @@
+{
+  Runnable task=new Runnable(){
+    public void run(){
+      if (command instanceof PopulateRoomCommand) {
+        PopulateRoomCommand cmd=(PopulateRoomCommand)command;
+        manager.getUsers(cmd);
+      }
+ else       if (command instanceof MuteParticipantCommand) {
+        MuteParticipantCommand cmd=(MuteParticipantCommand)command;
+        System.out.println("Sending MuteParticipantCommand for conference = [" + cmd.getRoom() + "]");
+        manager.mute(cmd);
+      }
+ else       if (command instanceof EjectParticipantCommand) {
+        EjectParticipantCommand cmd=(EjectParticipantCommand)command;
+        manager.eject(cmd);
+      }
+ else       if (command instanceof EjectAllUsersCommand) {
+        EjectAllUsersCommand cmd=(EjectAllUsersCommand)command;
+        manager.ejectAll(cmd);
+      }
+ else       if (command instanceof RecordConferenceCommand) {
+        manager.record((RecordConferenceCommand)command);
+      }
+ else       if (command instanceof BroadcastConferenceCommand) {
+        manager.broadcast((BroadcastConferenceCommand)command);
+      }
+    }
+  }
+;
+  runExec.execute(task);
+}

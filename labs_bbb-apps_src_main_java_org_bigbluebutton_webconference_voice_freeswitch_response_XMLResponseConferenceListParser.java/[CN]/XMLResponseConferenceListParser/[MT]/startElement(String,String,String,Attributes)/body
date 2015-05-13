@@ -1,0 +1,14 @@
+{
+  inFlags=false;
+  tempVal="";
+  if (qName.equalsIgnoreCase("member")) {
+    tempMember=new ConferenceMember();
+  }
+  if (qName.equalsIgnoreCase("flags")) {
+    tempFlags=new ConferenceMemberFlags();
+    inFlags=true;
+  }
+  if (qName.equalsIgnoreCase("conference")) {
+    room=attributes.getValue("name");
+  }
+}

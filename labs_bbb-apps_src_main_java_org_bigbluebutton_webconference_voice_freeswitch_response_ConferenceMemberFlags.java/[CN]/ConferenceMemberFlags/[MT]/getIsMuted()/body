@@ -1,0 +1,6 @@
+{
+  if (canSpeak == true) {
+    return false;
+  }
+  return true;
+}

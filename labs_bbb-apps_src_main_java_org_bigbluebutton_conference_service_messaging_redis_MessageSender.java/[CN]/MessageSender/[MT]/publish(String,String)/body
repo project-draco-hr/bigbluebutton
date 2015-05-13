@@ -1,0 +1,17 @@
+{
+  Runnable task=new Runnable(){
+    public void run(){
+      Jedis jedis=redisPool.getResource();
+      try {
+        jedis.publish(channel,message);
+      }
+ catch (      Exception e) {
+      }
+ finally {
+        redisPool.returnResource(jedis);
+      }
+    }
+  }
+;
+  runExec.execute(task);
+}

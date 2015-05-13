@@ -1,0 +1,5 @@
+{
+  super(room,requesterId);
+  this.record=record;
+  this.icecastPath=icecastPath;
+}

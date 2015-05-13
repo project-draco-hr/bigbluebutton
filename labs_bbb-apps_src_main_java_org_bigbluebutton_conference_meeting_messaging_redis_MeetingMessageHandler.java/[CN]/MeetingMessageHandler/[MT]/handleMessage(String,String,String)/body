@@ -1,0 +1,65 @@
+{
+  if (channel.equalsIgnoreCase(MessagingConstants.TO_MEETING_CHANNEL)) {
+    IMessage msg=MessageFromJsonConverter.convert(message);
+    if (msg != null) {
+      if (msg instanceof EndMeetingMessage) {
+        EndMeetingMessage emm=(EndMeetingMessage)msg;
+        bbbGW.endMeeting(emm.meetingId);
+      }
+ else       if (msg instanceof CreateMeetingMessage) {
+        CreateMeetingMessage emm=(CreateMeetingMessage)msg;
+        bbbGW.createMeeting2(emm.id,emm.externalId,emm.name,emm.record,emm.voiceBridge,emm.duration,emm.autoStartRecording,emm.allowStartStopRecording,emm.moderatorPass,emm.viewerPass,emm.createTime,emm.createDate);
+      }
+ else       if (msg instanceof RegisterUserMessage) {
+        RegisterUserMessage emm=(RegisterUserMessage)msg;
+        bbbGW.registerUser(emm.meetingID,emm.internalUserId,emm.fullname,emm.role,emm.externUserID,emm.authToken);
+      }
+ else       if (msg instanceof DestroyMeetingMessage) {
+        DestroyMeetingMessage emm=(DestroyMeetingMessage)msg;
+        bbbGW.destroyMeeting(emm.meetingId);
+      }
+ else       if (msg instanceof ValidateAuthTokenMessage) {
+        ValidateAuthTokenMessage emm=(ValidateAuthTokenMessage)msg;
+        String sessionId="tobeimplemented";
+        bbbGW.validateAuthToken(emm.meetingId,emm.userId,emm.token,emm.replyTo,sessionId);
+      }
+ else       if (msg instanceof UserConnectedToGlobalAudio) {
+        UserConnectedToGlobalAudio emm=(UserConnectedToGlobalAudio)msg;
+        Map<String,Object> logData=new HashMap<String,Object>();
+        logData.put("voiceConf",emm.voiceConf);
+        logData.put("userId",emm.userid);
+        logData.put("username",emm.name);
+        logData.put("event","user_connected_to_global_audio");
+        logData.put("description","User connected to global audio.");
+        Gson gson=new Gson();
+        String logStr=gson.toJson(logData);
+        bbbGW.userConnectedToGlobalAudio(emm.voiceConf,emm.userid,emm.name);
+      }
+ else       if (msg instanceof UserDisconnectedFromGlobalAudio) {
+        UserDisconnectedFromGlobalAudio emm=(UserDisconnectedFromGlobalAudio)msg;
+        Map<String,Object> logData=new HashMap<String,Object>();
+        logData.put("voiceConf",emm.voiceConf);
+        logData.put("userId",emm.userid);
+        logData.put("username",emm.name);
+        logData.put("event","user_disconnected_from_global_audio");
+        logData.put("description","User disconnected from global audio.");
+        Gson gson=new Gson();
+        String logStr=gson.toJson(logData);
+        bbbGW.userDisconnectedFromGlobalAudio(emm.voiceConf,emm.userid,emm.name);
+      }
+ else       if (msg instanceof GetAllMeetingsRequest) {
+        GetAllMeetingsRequest emm=(GetAllMeetingsRequest)msg;
+        bbbGW.getAllMeetings("no_need_of_a_meeting_id");
+      }
+    }
+  }
+ else   if (channel.equalsIgnoreCase(MessagingConstants.TO_SYSTEM_CHANNEL)) {
+    IMessage msg=MessageFromJsonConverter.convert(message);
+    if (msg != null) {
+      if (msg instanceof KeepAliveMessage) {
+        KeepAliveMessage emm=(KeepAliveMessage)msg;
+        bbbGW.isAliveAudit(emm.keepAliveId);
+      }
+    }
+  }
+}
