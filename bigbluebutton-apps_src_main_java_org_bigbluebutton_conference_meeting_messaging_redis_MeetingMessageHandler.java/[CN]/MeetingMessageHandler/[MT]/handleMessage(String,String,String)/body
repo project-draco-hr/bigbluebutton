@@ -10,7 +10,7 @@
  else       if (msg instanceof CreateMeetingMessage) {
         CreateMeetingMessage emm=(CreateMeetingMessage)msg;
         log.info("Received create meeting request. Meeting id [{}]",emm.id);
-        bbbGW.createMeeting2(emm.id,emm.externalId,emm.name,emm.record,emm.voiceBridge,emm.duration,emm.autoStartRecording,emm.allowStartStopRecording);
+        bbbGW.createMeeting2(emm.id,emm.externalId,emm.name,emm.record,emm.voiceBridge,emm.duration,emm.autoStartRecording,emm.allowStartStopRecording,emm.moderatorPass,emm.viewerPass,emm.createTime,emm.createDate);
       }
  else       if (msg instanceof RegisterUserMessage) {
         RegisterUserMessage emm=(RegisterUserMessage)msg;

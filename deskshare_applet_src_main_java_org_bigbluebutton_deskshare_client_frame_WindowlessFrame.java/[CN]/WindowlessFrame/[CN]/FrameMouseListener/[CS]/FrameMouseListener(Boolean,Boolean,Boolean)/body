@@ -1,0 +1,5 @@
+{
+  this.isBorder=isBorder;
+  this.isMoveBar=isMoveBar;
+  this.isResizeBar=isResizeBar;
+}
