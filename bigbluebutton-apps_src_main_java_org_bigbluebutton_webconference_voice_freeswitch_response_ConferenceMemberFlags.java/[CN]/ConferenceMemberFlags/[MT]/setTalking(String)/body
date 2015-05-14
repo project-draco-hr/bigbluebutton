@@ -1,3 +1,0 @@
-{
-  talking=tempVal.equals("true") ? true : false;
-}

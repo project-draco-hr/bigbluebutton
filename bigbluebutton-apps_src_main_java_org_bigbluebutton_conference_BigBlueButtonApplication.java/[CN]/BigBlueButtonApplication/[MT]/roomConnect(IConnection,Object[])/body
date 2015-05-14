@@ -20,7 +20,6 @@
     }
   }
   if (record == true) {
-    recorderApplication.createRecordSession(room);
   }
   String userId=internalUserID;
   String sessionId=CONN + userId;

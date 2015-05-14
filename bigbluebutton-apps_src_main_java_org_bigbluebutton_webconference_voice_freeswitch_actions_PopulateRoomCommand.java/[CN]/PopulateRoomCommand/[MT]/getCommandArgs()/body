@@ -1,3 +1,0 @@
-{
-  return getRoom() + SPACE + "xml_list";
-}

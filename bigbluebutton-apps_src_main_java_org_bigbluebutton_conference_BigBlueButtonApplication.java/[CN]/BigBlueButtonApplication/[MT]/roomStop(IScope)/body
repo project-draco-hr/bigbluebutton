@@ -1,4 +1,3 @@
 {
-  recorderApplication.destroyRecordSession(room.getName());
   super.roomStop(room);
 }

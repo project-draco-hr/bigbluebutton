@@ -1,3 +1,0 @@
-{
-  eventMap.put(QUESTION_PATTERN + SEPARATOR + questionID+ SEPARATOR+ RESPONSE_PATTERN+ SEPARATOR+ responseID+ RESPONSE_TEXT,response);
-}

@@ -1,8 +1,0 @@
-{
-  try {
-    messages.offer(event,5,TimeUnit.SECONDS);
-  }
- catch (  InterruptedException e) {
-    e.printStackTrace();
-  }
-}

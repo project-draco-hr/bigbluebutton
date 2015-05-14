@@ -1,4 +1,0 @@
-{
-  EjectAllUsersCommand mpc=new EjectAllUsersCommand(room,USER);
-  queueMessage(mpc);
-}

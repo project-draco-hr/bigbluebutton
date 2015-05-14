@@ -1,5 +1,0 @@
-{
-  super();
-  if (record)   setEvent("StartRecordingEvent");
- else   setEvent("StopRecordingEvent");
-}

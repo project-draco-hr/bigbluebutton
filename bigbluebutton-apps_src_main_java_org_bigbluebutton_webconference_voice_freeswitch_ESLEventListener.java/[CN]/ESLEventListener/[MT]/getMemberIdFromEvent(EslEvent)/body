@@ -1,3 +1,0 @@
-{
-  return new Integer(e.getEventHeaders().get("Member-ID"));
-}
