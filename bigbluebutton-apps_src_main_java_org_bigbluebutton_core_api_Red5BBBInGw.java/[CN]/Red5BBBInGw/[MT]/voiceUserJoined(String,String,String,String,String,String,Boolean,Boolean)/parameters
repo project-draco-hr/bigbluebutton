@@ -1,0 +1,8 @@
+String meetingId
+String userId
+String webUserId
+String conference
+String callerIdNum
+String callerIdName
+Boolean muted
+Boolean speaking

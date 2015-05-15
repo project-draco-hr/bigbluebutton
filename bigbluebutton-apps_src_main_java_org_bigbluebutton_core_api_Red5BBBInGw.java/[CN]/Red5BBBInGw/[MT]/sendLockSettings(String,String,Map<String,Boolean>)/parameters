@@ -1,0 +1,3 @@
+String meetingID
+String userId
+Map<String,Boolean> settings

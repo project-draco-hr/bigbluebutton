@@ -1,0 +1,7 @@
+String messageKey
+String meetingId
+String code
+String presId
+int numberOfPages
+int maxNumberPages
+String presName
