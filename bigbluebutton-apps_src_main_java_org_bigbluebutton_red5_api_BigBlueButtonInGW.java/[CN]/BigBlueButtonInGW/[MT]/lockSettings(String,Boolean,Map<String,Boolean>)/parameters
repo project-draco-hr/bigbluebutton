@@ -1,0 +1,3 @@
+String meetingID
+Boolean locked
+Map<String,Boolean> lockSettigs
