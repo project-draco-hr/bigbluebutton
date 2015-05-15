@@ -1,0 +1,8 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(Constants.VOICE_CONF,voiceConf);
+  payload.put(Constants.USER_ID,userid);
+  payload.put(Constants.NAME,name);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(USER_CONNECTED_TO_GLOBAL_AUDIO,VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}

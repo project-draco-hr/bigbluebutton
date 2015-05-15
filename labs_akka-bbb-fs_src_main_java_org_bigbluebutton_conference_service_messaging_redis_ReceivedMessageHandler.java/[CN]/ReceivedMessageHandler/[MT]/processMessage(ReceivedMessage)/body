@@ -1,0 +1,13 @@
+{
+  Runnable task=new Runnable(){
+    public void run(){
+      if (handler != null) {
+        handler.notifyListeners(msg.getPattern(),msg.getChannel(),msg.getMessage());
+      }
+ else {
+      }
+    }
+  }
+;
+  runExec.execute(task);
+}
