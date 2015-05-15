@@ -4,12 +4,12 @@
   String newlayout=(String)message.get("layout");
   Boolean lock=(Boolean)message.get("lock");
   Boolean viewersOnly=(Boolean)message.get("viewersOnly");
-  Option<String> layout;
+  String layout;
   if (newlayout == null || newlayout.isEmpty()) {
-    layout=Option.empty();
+    layout=null;
   }
  else {
-    layout=scala.Option.apply(newlayout);
+    layout=newlayout;
   }
   if (lock == null) {
     log.error("Invalid Lock Layout message. lock in null.");

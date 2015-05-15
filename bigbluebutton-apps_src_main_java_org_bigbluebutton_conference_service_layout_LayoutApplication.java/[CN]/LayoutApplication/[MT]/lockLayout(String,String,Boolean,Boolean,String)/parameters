@@ -2,4 +2,4 @@ String meetingId
 String setById
 Boolean lock
 Boolean viewersOnly
-Option<String> layout
+String layout
