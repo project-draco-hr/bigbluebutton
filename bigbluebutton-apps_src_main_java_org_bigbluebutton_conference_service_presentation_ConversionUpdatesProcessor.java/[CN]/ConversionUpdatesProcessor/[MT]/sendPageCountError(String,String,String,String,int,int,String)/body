@@ -1,3 +1,0 @@
-{
-  presentationApplication.sendPageCountError(messageKey,conference,code,presId,numberOfPages,maxNumberPages,presName);
-}

@@ -1,3 +1,0 @@
-{
-  bbbInGW.removePresentation(meetingID,presentationID);
-}

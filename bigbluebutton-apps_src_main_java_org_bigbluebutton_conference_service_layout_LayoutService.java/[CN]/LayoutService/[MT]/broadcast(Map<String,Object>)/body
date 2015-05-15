@@ -6,5 +6,5 @@
     log.error("Invalid Broadcast Layout message. layout is null or empty.");
     return;
   }
-  application.broadcastLayout(meetingID,getBbbSession().getInternalUserID(),newlayout);
+  bbbInGW.broadcastLayout(meetingID,getBbbSession().getInternalUserID(),newlayout);
 }

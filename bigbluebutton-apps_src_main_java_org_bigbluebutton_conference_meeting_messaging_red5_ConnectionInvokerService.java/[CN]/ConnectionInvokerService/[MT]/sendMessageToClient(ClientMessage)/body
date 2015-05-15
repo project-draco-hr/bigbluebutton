@@ -5,9 +5,6 @@
  else   if (message instanceof DirectClientMessage) {
     sendDirectMessage((DirectClientMessage)message);
   }
- else   if (message instanceof SharedObjectClientMessage) {
-    sendSharedObjectMessage((SharedObjectClientMessage)message);
-  }
  else   if (message instanceof DisconnectClientMessage) {
     handlDisconnectClientMessage((DisconnectClientMessage)message);
   }

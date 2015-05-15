@@ -2,5 +2,5 @@
   String presentationID=(String)msg.get("presentationID");
   Boolean share=(Boolean)msg.get("share");
   IScope scope=Red5.getConnectionLocal().getScope();
-  presentationApplication.sharePresentation(scope.getName(),presentationID,share);
+  bbbInGW.sharePresentation(scope.getName(),presentationID,share);
 }

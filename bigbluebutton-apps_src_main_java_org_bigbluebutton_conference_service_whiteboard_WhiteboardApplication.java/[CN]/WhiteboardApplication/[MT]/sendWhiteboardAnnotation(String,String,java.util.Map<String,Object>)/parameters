@@ -1,3 +1,0 @@
-String meetingID
-String requesterID
-java.util.Map<String,Object> shape

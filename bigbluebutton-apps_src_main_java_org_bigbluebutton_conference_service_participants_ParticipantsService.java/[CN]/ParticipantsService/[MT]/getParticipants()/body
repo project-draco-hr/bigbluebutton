@@ -1,6 +1,5 @@
 {
   IScope scope=Red5.getConnectionLocal().getScope();
   String connId=Red5.getConnectionLocal().getSessionId();
-  String sessionId=CONN + connId + "-"+ getBbbSession().getInternalUserID();
-  application.getUsers(scope.getName(),getBbbSession().getInternalUserID(),sessionId);
+  bbbInGW.getUsers(scope.getName(),getBbbSession().getInternalUserID());
 }

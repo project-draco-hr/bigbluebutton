@@ -4,6 +4,6 @@
   String requesterID=getBbbSession().getInternalUserID();
   String wbId=(String)message.get(WB_ID);
   if (wbId != null) {
-    application.undoWhiteboard(meetingID,requesterID,wbId);
+    bbbInGW.undoWhiteboard(meetingID,requesterID,wbId);
   }
 }

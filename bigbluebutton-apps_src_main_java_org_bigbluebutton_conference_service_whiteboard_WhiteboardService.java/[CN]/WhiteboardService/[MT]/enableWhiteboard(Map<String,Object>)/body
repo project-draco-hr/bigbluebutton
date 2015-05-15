@@ -3,5 +3,5 @@
   String meetingID=getMeetingId();
   String requesterID=getBbbSession().getInternalUserID();
   Boolean enable=(Boolean)message.get("enabled");
-  application.setWhiteboardEnable(meetingID,requesterID,enable);
+  bbbInGW.enableWhiteboard(meetingID,requesterID,enable);
 }

@@ -20,5 +20,5 @@
   message.put(ChatKeyUtil.MESSAGE,chatText);
   String meetingID=Red5.getConnectionLocal().getScope().getName();
   String requesterID=getBbbSession().getInternalUserID();
-  application.sendPublicMessage(meetingID,requesterID,message);
+  bbbInGW.sendPublicMessage(meetingID,requesterID,message);
 }
