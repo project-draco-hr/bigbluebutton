@@ -1,0 +1,17 @@
+{
+  if (channel.equalsIgnoreCase(MessagingConstants.FROM_CHAT_CHANNEL)) {
+    handleChatMessage(message);
+  }
+ else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_PRESENTATION_CHANNEL)) {
+    handlePresentationMessage(message);
+  }
+ else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_MEETING_CHANNEL)) {
+    handleMeetingMessage(message);
+  }
+ else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_USERS_CHANNEL)) {
+    handleUsersMessage(message);
+  }
+ else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_WHITEBOARD_CHANNEL)) {
+    handleWhiteboarMessage(message);
+  }
+}

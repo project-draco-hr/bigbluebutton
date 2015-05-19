@@ -1,0 +1,4 @@
+String meetingId
+String recordingFile
+String timestamp
+Boolean recording
