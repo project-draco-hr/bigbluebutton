@@ -2,6 +2,7 @@
   this.blockManager=blockManager;
   this.host=host;
   this.port=port;
+  this.useTLS=useTLS;
   this.room=room;
   this.screenDim=screenDim;
   this.blockDim=blockDim;
