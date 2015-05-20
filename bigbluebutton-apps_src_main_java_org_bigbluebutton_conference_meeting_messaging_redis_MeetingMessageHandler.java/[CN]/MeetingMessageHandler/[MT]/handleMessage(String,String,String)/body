@@ -1,5 +1,6 @@
 {
   if (channel.equalsIgnoreCase(MessagingConstants.TO_MEETING_CHANNEL)) {
+    System.out.println("Meeting message: " + channel + " "+ message);
     IMessage msg=MessageFromJsonConverter.convert(message);
     if (msg != null) {
       if (msg instanceof EndMeetingMessage) {

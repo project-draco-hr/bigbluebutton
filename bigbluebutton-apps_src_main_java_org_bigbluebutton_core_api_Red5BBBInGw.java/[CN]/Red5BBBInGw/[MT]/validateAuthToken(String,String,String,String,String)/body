@@ -1,2 +1,4 @@
 {
+  ValidateAuthTokenMessage msg=new ValidateAuthTokenMessage(meetingId,userId,token,correlationId,sessionId);
+  sender.send(MessagingConstants.TO_MEETING_CHANNEL,msg.toJson());
 }
