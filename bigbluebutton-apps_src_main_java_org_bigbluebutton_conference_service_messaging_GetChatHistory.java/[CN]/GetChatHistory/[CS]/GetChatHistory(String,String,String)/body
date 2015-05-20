@@ -1,0 +1,7 @@
+{
+  this.meetingId=meetingId;
+  this.replyTo=replyTo;
+  this.requesterId=requesterId;
+  System.out.println("GetChatHistory constructor" + replyTo);
+  System.out.println("GetChatHistory requesterId" + requesterId);
+}
