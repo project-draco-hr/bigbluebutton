@@ -8,8 +8,15 @@
 switch (messageName) {
 case ValidateAuthTokenReplyMessage.VALIDATE_AUTH_TOKEN_REPLY:
         ValidateAuthTokenReplyMessage m=ValidateAuthTokenReplyMessage.fromJson(message);
-      processValidateAuthTokenReply(m);
+      if (m != null) {
+        processValidateAuthTokenReply(m);
+      }
+case UserLeftMessage.USER_LEFT:
+    UserLeftMessage ulm=UserLeftMessage.fromJson(message);
+  if (ulm != null) {
+    processUserLeftMessage(ulm);
   }
+}
 }
 }
 }
