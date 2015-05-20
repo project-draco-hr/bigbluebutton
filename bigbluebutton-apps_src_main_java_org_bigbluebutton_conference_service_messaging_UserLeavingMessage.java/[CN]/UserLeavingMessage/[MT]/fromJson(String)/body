@@ -10,7 +10,7 @@
         if (payload.has(Constants.MEETING_ID) && payload.has(Constants.USER_ID)) {
           String meetingID=payload.get(Constants.MEETING_ID).getAsString();
           String userid=payload.get(Constants.USER_ID).getAsString();
-          return new UserLeftMessage(meetingID,userid);
+          return new UserLeavingMessage(meetingID,userid);
         }
       }
     }
