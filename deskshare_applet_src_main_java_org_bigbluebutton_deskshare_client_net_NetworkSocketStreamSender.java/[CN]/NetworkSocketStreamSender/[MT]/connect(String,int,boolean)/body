@@ -1,0 +1,24 @@
+{
+  this.useTLS=useTLS;
+  System.out.println("NetworkSocketStreamSender: connecting to " + host + ":"+ port);
+  try {
+    if (useTLS) {
+      System.out.println("Connecting over TLS");
+      sslSocketFactory=(SSLSocketFactory)SSLSocketFactory.getDefault();
+      sslSocket=(SSLSocket)sslSocketFactory.createSocket(host,port);
+      outstream=new DataOutputStream(sslSocket.getOutputStream());
+    }
+ else {
+      socket=new Socket(host,port);
+      outstream=new DataOutputStream(socket.getOutputStream());
+    }
+  }
+ catch (  UnknownHostException e) {
+    e.printStackTrace();
+    throw new ConnectionException("UnknownHostException: " + host);
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+    throw new ConnectionException("IOException: " + host + ":"+ port);
+  }
+}
