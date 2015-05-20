@@ -1,0 +1,10 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(Constants.REPLY_TO,replyTo);
+  payload.put(Constants.VALID,valid);
+  payload.put(Constants.USER_ID,userId);
+  payload.put(Constants.AUTH_TOKEN,token);
+  payload.put(Constants.MEETING_ID,meetingId);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(VALIDATE_AUTH_TOKEN_REPLY,VERSION,replyTo);
+  return MessageBuilder.buildJson(header,payload);
+}

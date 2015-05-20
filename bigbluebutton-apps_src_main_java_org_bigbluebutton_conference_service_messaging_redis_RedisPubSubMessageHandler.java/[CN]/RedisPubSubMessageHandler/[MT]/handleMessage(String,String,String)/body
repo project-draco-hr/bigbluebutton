@@ -1,4 +1,5 @@
 {
+  System.out.println("RedisPubSubMessageHandler message: " + pattern + " "+ channel+ " "+ message);
   if (channel.equalsIgnoreCase(MessagingConstants.FROM_CHAT_CHANNEL)) {
     handleChatMessage(message);
   }
