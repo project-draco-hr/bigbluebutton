@@ -1,4 +1,4 @@
 {
   String replyTo=meetingID + "/" + requesterID;
-  Red5BBBInGw.getChatHistory(meetingID,requesterID,replyTo);
+  bbbInGW.getChatHistory(meetingID,requesterID,replyTo);
 }
