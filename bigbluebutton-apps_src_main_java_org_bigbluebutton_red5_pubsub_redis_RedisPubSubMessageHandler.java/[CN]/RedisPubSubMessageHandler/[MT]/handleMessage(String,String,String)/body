@@ -1,5 +1,4 @@
 {
-  System.out.println("RedisPubSubMessageHandler message: " + pattern + " "+ channel+ " "+ message);
   if (channel.equalsIgnoreCase(MessagingConstants.FROM_CHAT_CHANNEL)) {
     handleChatMessage(message);
   }
@@ -10,6 +9,7 @@
     handleMeetingMessage(message);
   }
  else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_USERS_CHANNEL)) {
+    System.out.println("RedisPubSubMessageHandler message: " + pattern + " "+ channel+ " "+ message);
     handleUsersMessage(message);
   }
  else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_WHITEBOARD_CHANNEL)) {

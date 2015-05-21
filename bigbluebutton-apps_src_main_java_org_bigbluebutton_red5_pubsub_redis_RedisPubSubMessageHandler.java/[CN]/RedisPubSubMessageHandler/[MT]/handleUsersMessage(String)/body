@@ -11,11 +11,12 @@ case ValidateAuthTokenReplyMessage.VALIDATE_AUTH_TOKEN_REPLY:
       if (m != null) {
         processValidateAuthTokenReply(m);
       }
+    break;
 case UserLeftMessage.USER_LEFT:
-    UserLeftMessage ulm=UserLeftMessage.fromJson(message);
-  if (ulm != null) {
-    processUserLeftMessage(ulm);
-  }
+  UserLeftMessage ulm=UserLeftMessage.fromJson(message);
+if (ulm != null) {
+}
+break;
 }
 }
 }

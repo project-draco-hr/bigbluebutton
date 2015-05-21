@@ -20,7 +20,7 @@ System.out.println("Registering a user");
 return RegisterUserMessage.fromJson(message);
 case ValidateAuthTokenMessage.VALIDATE_AUTH_TOKEN:
 System.out.println("Process ValidateAuthTokenMessage.VALIDATE_AUTH_TOKEN");
-return ValidateAuthTokenMessage.fromJson(message);
+return processValidateAuthTokenMessage(header,payload);
 case UserConnectedToGlobalAudio.USER_CONNECTED_TO_GLOBAL_AUDIO:
 return UserConnectedToGlobalAudio.fromJson(message);
 case UserDisconnectedFromGlobalAudio.USER_DISCONNECTED_FROM_GLOBAL_AUDIO:

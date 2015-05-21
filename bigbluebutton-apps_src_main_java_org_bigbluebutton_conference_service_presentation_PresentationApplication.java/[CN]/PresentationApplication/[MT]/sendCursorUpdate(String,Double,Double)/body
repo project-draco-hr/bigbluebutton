@@ -1,3 +1,4 @@
 {
-  bbbInGW.sendCursorUpdate(meetingID,xPercent,yPercent);
+  System.out.println("----sendCursorUpdate----");
+  red5BBBInGW.sendCursorUpdate(meetingID,xPercent,yPercent);
 }

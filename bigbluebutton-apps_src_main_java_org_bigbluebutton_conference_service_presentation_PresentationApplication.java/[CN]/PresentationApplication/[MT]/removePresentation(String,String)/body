@@ -1,3 +1,4 @@
 {
-  bbbInGW.removePresentation(meetingID,presentationID);
+  System.out.println("----removePresentation----");
+  red5BBBInGW.removePresentation(meetingID,presentationID);
 }

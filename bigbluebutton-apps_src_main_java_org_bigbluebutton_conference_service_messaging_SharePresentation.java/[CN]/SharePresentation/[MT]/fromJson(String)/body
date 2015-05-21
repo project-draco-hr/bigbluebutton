@@ -1,0 +1,21 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (SHARE_PRESENTATION.equals(messageName)) {
+        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.PRESENTATION_ID) && payload.has(Constants.SHARE)) {
+          String meetingId=payload.get(Constants.MEETING_ID).getAsString();
+          String presentationId=payload.get(Constants.PRESENTATION_ID).getAsString();
+          boolean share=payload.get(Constants.SHARE).getAsBoolean();
+          System.out.println("SharePresentation fromJson");
+          return new SharePresentation(meetingId,presentationId,share);
+        }
+      }
+    }
+  }
+  return null;
+}
