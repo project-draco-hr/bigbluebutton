@@ -1,2 +1,5 @@
 {
+  System.out.println("~~sendSlideGenerated in Red5BBBInGw");
+  SendSlideGenerated msg=new SendSlideGenerated(messageKey,meetingId,code,presId,numberOfPages,pagesCompleted,presName);
+  sender.send(MessagingConstants.TO_PRESENTATION_CHANNEL,msg.toJson());
 }
