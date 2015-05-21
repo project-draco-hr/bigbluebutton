@@ -1,2 +1,5 @@
 {
+  SendCursorUpdate msg=new SendCursorUpdate(meetingID,xPercent,yPercent);
+  System.out.println("~~SendCursorUpdate in Red5BBBInGw");
+  sender.send(MessagingConstants.TO_PRESENTATION_CHANNEL,msg.toJson());
 }

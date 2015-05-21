@@ -1,5 +1,5 @@
 {
   String replyTo=meetingID + "/" + requesterID;
   System.out.println("----getPresentationInfo----");
-  bbbInGW.getPresentationInfo(meetingID,requesterID,replyTo);
+  red5BBBInGW.getPresentationInfo(meetingID,requesterID,replyTo);
 }

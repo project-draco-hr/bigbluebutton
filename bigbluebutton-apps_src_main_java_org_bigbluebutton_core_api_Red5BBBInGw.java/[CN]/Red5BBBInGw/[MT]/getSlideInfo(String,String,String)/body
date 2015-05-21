@@ -1,2 +1,5 @@
 {
+  System.out.println("~~getSlideInfo in Red5BBBInGw");
+  GetSlideInfo msg=new GetSlideInfo(meetingID,requesterID,replyTo);
+  sender.send(MessagingConstants.TO_PRESENTATION_CHANNEL,msg.toJson());
 }

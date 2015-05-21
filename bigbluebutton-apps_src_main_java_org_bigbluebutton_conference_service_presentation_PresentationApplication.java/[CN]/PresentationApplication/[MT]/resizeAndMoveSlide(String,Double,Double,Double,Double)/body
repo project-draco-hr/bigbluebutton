@@ -1,4 +1,4 @@
 {
   System.out.println("-----resizeAndMoveSlide---");
-  bbbInGW.resizeAndMoveSlide(meetingID,xOffset,yOffset,widthRatio,heightRatio);
+  red5BBBInGW.resizeAndMoveSlide(meetingID,xOffset,yOffset,widthRatio,heightRatio);
 }

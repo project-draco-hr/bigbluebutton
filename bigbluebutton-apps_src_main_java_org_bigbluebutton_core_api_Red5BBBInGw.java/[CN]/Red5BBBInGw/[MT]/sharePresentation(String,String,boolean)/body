@@ -1,2 +1,5 @@
 {
+  System.out.println("~~sharePresentation in Red5BBBInGw");
+  SharePresentation msg=new SharePresentation(meetingID,presentationID,share);
+  sender.send(MessagingConstants.TO_PRESENTATION_CHANNEL,msg.toJson());
 }

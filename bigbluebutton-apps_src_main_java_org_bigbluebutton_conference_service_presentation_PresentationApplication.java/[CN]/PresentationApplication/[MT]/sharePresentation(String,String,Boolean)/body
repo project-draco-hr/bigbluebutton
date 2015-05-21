@@ -1,4 +1,4 @@
 {
   System.out.println("-----sharePresentation---");
-  bbbInGW.sharePresentation(meetingID,presentationID,share);
+  red5BBBInGW.sharePresentation(meetingID,presentationID,share);
 }
