@@ -1,4 +1,5 @@
 {
+  System.out.println("~~sendPublicMessage in Red5BBBInGw");
   SendPublicChatMessage msg=new SendPublicChatMessage(meetingID,requesterID,message);
   sender.send(MessagingConstants.TO_CHAT_CHANNEL,msg.toJson());
 }

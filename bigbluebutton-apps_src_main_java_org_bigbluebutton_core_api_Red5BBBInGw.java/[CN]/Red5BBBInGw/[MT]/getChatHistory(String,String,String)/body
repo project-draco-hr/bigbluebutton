@@ -1,4 +1,5 @@
 {
+  System.out.println("~~getChatHistory in Red5BBBInGw");
   GetChatHistory msg=new GetChatHistory(meetingID,requesterID,replyTo);
   sender.send(MessagingConstants.TO_CHAT_CHANNEL,msg.toJson());
 }
