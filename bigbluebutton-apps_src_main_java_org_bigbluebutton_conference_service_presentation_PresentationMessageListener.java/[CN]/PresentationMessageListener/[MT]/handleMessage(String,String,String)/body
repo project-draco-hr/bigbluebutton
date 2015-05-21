@@ -1,11 +1,13 @@
 {
-  if (channel.equalsIgnoreCase(MessagingConstants.TO_CHAT_CHANNEL)) {
+  if (channel.equalsIgnoreCase(MessagingConstants.TO_PRESENTATION_CHANNEL)) {
+    System.out.println("__message:" + message);
     JsonParser parser=new JsonParser();
     JsonObject obj=(JsonObject)parser.parse(message);
     if (obj.has("header") && obj.has("payload")) {
       JsonObject header=(JsonObject)obj.get("header");
       if (header.has("name")) {
         String messageName=header.get("name").getAsString();
+        System.out.println("\n\n\n\n" + messageName + "\n\n\n");
         if (SendConversionUpdate.SEND_CONVERSION_UPDATE.equals(messageName)) {
           SendConversionUpdate msg=SendConversionUpdate.fromJson(message);
           System.out.println("in messageHandler - sendConversionCompleted");
@@ -25,8 +27,51 @@
  else         if (SendConversionCompleted.SEND_CONVERSION_COMPLETED.equals(messageName)) {
           System.out.println("in messageHandler - sendConversionCompleted");
           SendConversionCompleted msg=SendConversionCompleted.fromJson(message);
+          sendConversionCompleted(msg.messageKey,msg.meetingId,msg.code,msg.presId,msg.numPages,msg.presName,msg.presBaseUrl);
           bbbInGW.sendConversionCompleted(msg.messageKey,msg.meetingId,msg.code,msg.presId,msg.numPages,msg.presName,msg.presBaseUrl);
         }
+ else         if (SendPageCountError.SEND_PAGE_COUNT_ERROR.equals(messageName)) {
+          System.out.println("in messageHandler - sendPageCountError");
+          SendPageCountError msg=SendPageCountError.fromJson(message);
+          sendPageCountError(msg.messageKey,msg.meetingId,msg.code,msg.presId,msg.numberOfPages,msg.maxNumberPages,msg.presName);
+          bbbInGW.sendPageCountError(msg.messageKey,msg.meetingId,msg.code,msg.presId,msg.numberOfPages,msg.maxNumberPages,msg.presName);
+        }
+ else         if (SendPageCountError.SEND_PAGE_COUNT_ERROR.equals(messageName)) {
+          System.out.println("in messageHandler - sendPageCountError");
+          SendPageCountError msg=SendPageCountError.fromJson(message);
+          sendPageCountError(msg.messageKey,msg.meetingId,msg.code,msg.presId,msg.numberOfPages,msg.maxNumberPages,msg.presName);
+          bbbInGW.sendPageCountError(msg.messageKey,msg.meetingId,msg.code,msg.presId,msg.numberOfPages,msg.maxNumberPages,msg.presName);
+        }
+      }
+    }
+ else {
+      System.out.println("\n\n\nOOOOOOOOOOOOOOO:" + message + "\n\n");
+      Gson gson=new Gson();
+      HashMap<String,String> map=gson.fromJson(message,new TypeToken<Map<String,String>>(){
+      }
+.getType());
+      String code=(String)map.get("returnCode");
+      String presId=(String)map.get("presentationId");
+      String filename=(String)map.get("filename");
+      String conference=(String)map.get("conference");
+      String messageKey=(String)map.get("messageKey");
+      if (messageKey.equalsIgnoreCase(OFFICE_DOC_CONVERSION_SUCCESS_KEY) || messageKey.equalsIgnoreCase(OFFICE_DOC_CONVERSION_FAILED_KEY) || messageKey.equalsIgnoreCase(SUPPORTED_DOCUMENT_KEY)|| messageKey.equalsIgnoreCase(UNSUPPORTED_DOCUMENT_KEY)|| messageKey.equalsIgnoreCase(GENERATING_THUMBNAIL_KEY)|| messageKey.equalsIgnoreCase(GENERATED_THUMBNAIL_KEY)|| messageKey.equalsIgnoreCase(PAGE_COUNT_FAILED_KEY)) {
+        sendConversionUpdate(messageKey,conference,code,presId,filename);
+      }
+ else       if (messageKey.equalsIgnoreCase(PAGE_COUNT_EXCEEDED_KEY)) {
+        Integer numberOfPages=new Integer((String)map.get("numberOfPages"));
+        Integer maxNumberPages=new Integer((String)map.get("maxNumberPages"));
+        sendPageCountError(messageKey,conference,code,presId,numberOfPages,maxNumberPages,filename);
+      }
+ else       if (messageKey.equalsIgnoreCase(GENERATED_SLIDE_KEY)) {
+        Integer numberOfPages=new Integer((String)map.get("numberOfPages"));
+        Integer pagesCompleted=new Integer((String)map.get("pagesCompleted"));
+        sendSlideGenerated(messageKey,conference,code,presId,numberOfPages,pagesCompleted,filename);
+      }
+ else       if (messageKey.equalsIgnoreCase(CONVERSION_COMPLETED_KEY)) {
+        Integer numberOfPages=new Integer((String)map.get("numberOfPages"));
+        String presBaseUrl=(String)map.get("presentationBaseUrl");
+        sendConversionCompleted(messageKey,conference,code,presId,numberOfPages,filename,presBaseUrl);
       }
     }
   }

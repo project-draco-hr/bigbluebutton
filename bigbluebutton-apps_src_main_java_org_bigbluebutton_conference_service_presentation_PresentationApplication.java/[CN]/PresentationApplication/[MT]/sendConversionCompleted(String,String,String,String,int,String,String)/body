@@ -1,4 +1,4 @@
 {
   System.out.println("-----sendConversionCompleted---");
-  Red5BBBInGw.sendConversionCompleted(messageKey,meetingId,code,presentation,numberOfPages,presName,presBaseUrl);
+  bbbInGW.sendConversionCompleted(messageKey,meetingId,code,presentation,numberOfPages,presName,presBaseUrl);
 }
