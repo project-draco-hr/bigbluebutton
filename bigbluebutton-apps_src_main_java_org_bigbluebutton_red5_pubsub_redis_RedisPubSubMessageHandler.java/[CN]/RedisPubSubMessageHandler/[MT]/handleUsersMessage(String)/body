@@ -12,10 +12,16 @@ case ValidateAuthTokenReplyMessage.VALIDATE_AUTH_TOKEN_REPLY:
         processValidateAuthTokenReply(m);
       }
     break;
+case ValidateAuthTokenTimeoutMessage.VALIDATE_AUTH_TOKEN_TIMEOUT:
+  ValidateAuthTokenTimeoutMessage vattm=ValidateAuthTokenTimeoutMessage.fromJson(message);
+if (vattm != null) {
+  processValidateAuthTokenTimeoutMessage(vattm);
+}
+break;
 case UserLeftMessage.USER_LEFT:
-  UserLeftMessage ulm=UserLeftMessage.fromJson(message);
+UserLeftMessage ulm=UserLeftMessage.fromJson(message);
 if (ulm != null) {
-  processUserLeftMessage(ulm);
+processUserLeftMessage(ulm);
 }
 break;
 case UserJoinedMessage.USER_JOINED:
@@ -34,6 +40,18 @@ case UserStatusChangedMessage.USER_STATUS_CHANGED:
 UserStatusChangedMessage usm=UserStatusChangedMessage.fromJson(message);
 if (usm != null) {
 processUserStatusChangedMessage(usm);
+}
+break;
+case UserRaisedHandMessage.USER_RAISED_HAND:
+UserRaisedHandMessage urhm=UserRaisedHandMessage.fromJson(message);
+if (urhm != null) {
+processUserRaisedHandMessage(urhm);
+}
+break;
+case UserLoweredHandMessage.USER_LOWERED_HAND:
+UserLoweredHandMessage ulhm=UserLoweredHandMessage.fromJson(message);
+if (ulhm != null) {
+processUserLoweredHandMessage(ulhm);
 }
 break;
 }
