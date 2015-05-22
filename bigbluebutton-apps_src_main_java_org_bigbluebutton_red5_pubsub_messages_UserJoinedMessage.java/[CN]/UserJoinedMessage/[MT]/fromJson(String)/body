@@ -6,19 +6,19 @@
     JsonObject payload=(JsonObject)obj.get("payload");
     if (header.has("name")) {
       String messageName=header.get("name").getAsString();
-      if (USER_LEFT.equals(messageName)) {
+      if (USER_JOINED.equals(messageName)) {
         if (payload.has(Constants.MEETING_ID) && payload.has(Constants.USER)) {
           String meetingID=payload.get(Constants.MEETING_ID).getAsString();
           JsonObject user=(JsonObject)payload.get(Constants.USER);
           Util util=new Util();
           Map<String,Object> userMap=util.extractUser(user);
           if (userMap != null) {
-            return new UserLeftMessage(meetingID,userMap);
+            return new UserJoinedMessage(meetingID,userMap);
           }
         }
       }
     }
   }
-  System.out.println("Failed to parse UserLeftMessage");
+  System.out.println("Failed to parse UserJoinedMessage");
   return null;
 }

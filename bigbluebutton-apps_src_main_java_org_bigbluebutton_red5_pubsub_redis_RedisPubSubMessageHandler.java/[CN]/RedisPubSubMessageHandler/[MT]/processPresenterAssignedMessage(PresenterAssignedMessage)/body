@@ -1,0 +1,12 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("newPresenterID",msg.newPresenterId);
+  args.put("newPresenterName",msg.newPresenterName);
+  args.put("assignedBy",msg.assignedBy);
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args));
+  System.out.println("RedisPubSubMessageHandler - processPresenterAssignedMessage \n" + message.get("msg") + "\n");
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"assignPresenterCallback",message);
+  service.sendMessage(m);
+}
