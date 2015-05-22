@@ -1,0 +1,10 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("status","Meeting has been ended.");
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args));
+  System.out.println("RedisPubSubMessageHandler - handleMeetingEnded \n" + message.get("msg") + "\n");
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"meetingEnded",message);
+  service.sendMessage(m);
+}

@@ -1,0 +1,5 @@
+{
+  System.out.println("RedisPubSubMessageHandler - handleDisconnectUser mid=[" + msg.meetingId + "], uid=["+ msg.userId+ "]\n");
+  DisconnectClientMessage m=new DisconnectClientMessage(msg.meetingId,msg.userId);
+  service.sendMessage(m);
+}
