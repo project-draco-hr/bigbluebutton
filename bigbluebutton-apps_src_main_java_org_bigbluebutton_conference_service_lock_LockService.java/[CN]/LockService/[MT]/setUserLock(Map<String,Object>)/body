@@ -4,5 +4,5 @@
   Boolean lock=(Boolean)msg.get("lock");
   String userId=(String)msg.get("userId");
   log.info("setUserLock ({}, {})",new Object[]{lock,userId});
-  bbbInGW.lockUser(meetingID,requesterID,lock,userId);
+  red5BBBInGW.lockUser(meetingID,requesterID,lock,userId);
 }

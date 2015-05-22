@@ -1,5 +1,5 @@
 {
-  GetPresentationInfo msg=new GetPresentationInfo(meetingID,requesterID,replyTo);
+  GetPresentationInfoMessage msg=new GetPresentationInfoMessage(meetingID,requesterID,replyTo);
   System.out.println("~~getPresentationInfo in Red5BBBInGw");
   sender.send(MessagingConstants.TO_PRESENTATION_CHANNEL,msg.toJson());
 }
