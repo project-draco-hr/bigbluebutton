@@ -1,5 +1,5 @@
 {
   String meetingId=getBbbSession().getRoom();
   String userId=getMyUserId();
-  bbbInGW.getLockSettings(meetingId,userId);
+  red5BBBInGW.getLockSettings(meetingId,userId);
 }

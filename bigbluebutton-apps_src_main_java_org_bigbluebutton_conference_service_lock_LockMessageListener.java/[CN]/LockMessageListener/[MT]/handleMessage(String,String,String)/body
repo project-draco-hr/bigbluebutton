@@ -1,0 +1,25 @@
+{
+  if (channel.equalsIgnoreCase(MessagingConstants.TO_MEETING_CHANNEL)) {
+    JsonParser parser=new JsonParser();
+    JsonObject obj=(JsonObject)parser.parse(message);
+    if (obj.has("header") && obj.has("payload")) {
+      JsonObject header=(JsonObject)obj.get("header");
+      if (header.has("name")) {
+        String messageName=header.get("name").getAsString();
+        if (GetLockSettings.GET_LOCK_SETTINGS.equals(messageName)) {
+          GetLockSettings msg=GetLockSettings.fromJson(message);
+          bbbGW.getLockSettings(msg.meetingId,msg.userId);
+        }
+ else         if (LockUser.LOCK_USER.equals(messageName)) {
+          LockUser msg=LockUser.fromJson(message);
+          bbbGW.lockUser(msg.meetingId,msg.requesterId,msg.lock,msg.internalUserId);
+        }
+ else         if (SendLockSettings.SEND_LOCK_SETTINGS.equals(messageName)) {
+          SendLockSettings msg=SendLockSettings.fromJson(message);
+          System.out.println("\n\n((" + message);
+          bbbGW.sendLockSettings(msg.meetingId,msg.userId,msg.newSettings);
+        }
+      }
+    }
+  }
+}

@@ -1,2 +1,5 @@
 {
+  SendLockSettings msg=new SendLockSettings(meetingID,userId,settings);
+  System.out.println("~~~sendLockSettings in Red5BBBInGw");
+  sender.send(MessagingConstants.TO_MEETING_CHANNEL,msg.toJson());
 }

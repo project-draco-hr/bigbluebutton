@@ -11,7 +11,6 @@
           String meetingId=payload.get(Constants.MEETING_ID).getAsString();
           double xPercent=payload.get(Constants.X_PERCENT).getAsDouble();
           double yPercent=payload.get(Constants.Y_PERCENT).getAsDouble();
-          System.out.println("SendCursorUpdate fromJson");
           return new SendCursorUpdate(meetingId,xPercent,yPercent);
         }
       }

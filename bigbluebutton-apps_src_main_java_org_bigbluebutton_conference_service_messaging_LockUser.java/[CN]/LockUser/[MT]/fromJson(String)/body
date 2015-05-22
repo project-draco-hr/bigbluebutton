@@ -1,0 +1,22 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (LOCK_USER.equals(messageName)) {
+        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.REQUESTER_ID) && payload.has(Constants.LOCK)&& payload.has(Constants.INTERNAL_USER_ID)) {
+          String meetingId=payload.get(Constants.MEETING_ID).getAsString();
+          String requesterId=payload.get(Constants.REQUESTER_ID).getAsString();
+          boolean lock=payload.get(Constants.LOCK).getAsBoolean();
+          String internalUserId=payload.get(Constants.INTERNAL_USER_ID).getAsString();
+          System.out.println("LockUser fromJson");
+          return new LockUser(meetingId,requesterId,lock,internalUserId);
+        }
+      }
+    }
+  }
+  return null;
+}
