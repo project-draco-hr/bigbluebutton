@@ -1,3 +1,6 @@
 {
   this.service=s;
+  userMessageSender=new UserClientMessageSender(service);
+  meetingMessageSender=new MeetingClientMessageSender(service);
+  chatMessageSender=new ChatClientMessageSender(service);
 }

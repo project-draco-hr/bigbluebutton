@@ -1,0 +1,120 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+switch (messageName) {
+case ValidateAuthTokenReplyMessage.VALIDATE_AUTH_TOKEN_REPLY:
+        ValidateAuthTokenReplyMessage m=ValidateAuthTokenReplyMessage.fromJson(message);
+      if (m != null) {
+        processValidateAuthTokenReply(m);
+      }
+    break;
+case ValidateAuthTokenTimeoutMessage.VALIDATE_AUTH_TOKEN_TIMEOUT:
+  ValidateAuthTokenTimeoutMessage vattm=ValidateAuthTokenTimeoutMessage.fromJson(message);
+if (vattm != null) {
+  processValidateAuthTokenTimeoutMessage(vattm);
+}
+break;
+case UserLeftMessage.USER_LEFT:
+UserLeftMessage ulm=UserLeftMessage.fromJson(message);
+if (ulm != null) {
+processUserLeftMessage(ulm);
+}
+break;
+case UserJoinedMessage.USER_JOINED:
+UserJoinedMessage ujm=UserJoinedMessage.fromJson(message);
+if (ujm != null) {
+processUserJoinedMessage(ujm);
+}
+break;
+case PresenterAssignedMessage.PRESENTER_ASSIGNED:
+PresenterAssignedMessage pam=PresenterAssignedMessage.fromJson(message);
+if (pam != null) {
+processPresenterAssignedMessage(pam);
+}
+break;
+case UserStatusChangedMessage.USER_STATUS_CHANGED:
+UserStatusChangedMessage usm=UserStatusChangedMessage.fromJson(message);
+if (usm != null) {
+processUserStatusChangedMessage(usm);
+}
+break;
+case UserRaisedHandMessage.USER_RAISED_HAND:
+UserRaisedHandMessage urhm=UserRaisedHandMessage.fromJson(message);
+if (urhm != null) {
+processUserRaisedHandMessage(urhm);
+}
+break;
+case UserListeningOnlyMessage.USER_LISTENING_ONLY:
+UserListeningOnlyMessage ulom=UserListeningOnlyMessage.fromJson(message);
+if (ulom != null) {
+processUserListeningOnlyMessage(ulom);
+}
+break;
+case UserLoweredHandMessage.USER_LOWERED_HAND:
+UserLoweredHandMessage ulhm=UserLoweredHandMessage.fromJson(message);
+if (ulhm != null) {
+processUserLoweredHandMessage(ulhm);
+}
+break;
+case UserSharedWebcamMessage.USER_SHARED_WEBCAM:
+UserSharedWebcamMessage uswm=UserSharedWebcamMessage.fromJson(message);
+if (uswm != null) {
+processUserSharedWebcamMessage(uswm);
+}
+break;
+case UserUnsharedWebcamMessage.USER_UNSHARED_WEBCAM:
+UserUnsharedWebcamMessage uuwm=UserUnsharedWebcamMessage.fromJson(message);
+if (uuwm != null) {
+processUserUnsharedWebcamMessage(uuwm);
+}
+break;
+case UserJoinedVoiceMessage.USER_JOINED_VOICE:
+UserJoinedVoiceMessage ujvm=UserJoinedVoiceMessage.fromJson(message);
+if (ujvm != null) {
+processUserJoinedVoiceMessage(ujvm);
+}
+break;
+case UserLeftVoiceMessage.USER_LEFT_VOICE:
+UserLeftVoiceMessage ulvm=UserLeftVoiceMessage.fromJson(message);
+if (ulvm != null) {
+processUserLeftVoiceMessage(ulvm);
+}
+break;
+case UserVoiceMutedMessage.USER_VOICE_MUTED:
+UserVoiceMutedMessage uvmm=UserVoiceMutedMessage.fromJson(message);
+if (uvmm != null) {
+processUserVoiceMutedMessage(uvmm);
+}
+break;
+case UserVoiceTalkingMessage.USER_VOICE_TALKING:
+UserVoiceTalkingMessage uvtm=UserVoiceTalkingMessage.fromJson(message);
+if (uvtm != null) {
+processUserVoiceTalkingMessage(uvtm);
+}
+break;
+case RecordingStatusChangedMessage.RECORDING_STATUS_CHANGED:
+RecordingStatusChangedMessage rscm=RecordingStatusChangedMessage.fromJson(message);
+if (rscm != null) {
+processRecordingStatusChangedMessage(rscm);
+}
+break;
+case GetRecordingStatusReplyMessage.Get_RECORDING_STATUS_REPLY:
+GetRecordingStatusReplyMessage grsrm=GetRecordingStatusReplyMessage.fromJson(message);
+if (grsrm != null) {
+processGetRecordingStatusReplyMessage(grsrm);
+}
+break;
+case GetUsersReplyMessage.GET_USERS_REPLY:
+GetUsersReplyMessage gurm=GetUsersReplyMessage.fromJson(message);
+if (gurm != null) {
+processGetUsersReplyMessage(gurm);
+}
+break;
+}
+}
+}
+}
