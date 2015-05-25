@@ -6,11 +6,11 @@
     handlePresentationMessage(message);
   }
  else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_MEETING_CHANNEL)) {
-    handleMeetingMessage(message);
+    meetingMessageSender.handleMeetingMessage(message);
   }
  else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_USERS_CHANNEL)) {
     System.out.println("RedisPubSubMessageHandler message: " + pattern + " "+ channel+ " "+ message);
-    handleUsersMessage(message);
+    userMessageSender.handleUsersMessage(message);
   }
  else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_WHITEBOARD_CHANNEL)) {
     handleWhiteboarMessage(message);
