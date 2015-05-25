@@ -1,0 +1,14 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("meetingID",msg.meetingId);
+  args.put("userId",msg.user.get("userId"));
+  Map<String,Object> vuMap=(Map<String,Object>)msg.user.get("voiceUser");
+  args.put("voiceUserId",(String)vuMap.get("userId"));
+  args.put("muted",(Boolean)vuMap.get("muted"));
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args));
+  System.out.println("RedisPubSubMessageHandler - processUserVoiceMutedMessage \n" + message.get("msg") + "\n");
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"voiceUserMuted",message);
+  service.sendMessage(m);
+}

@@ -66,6 +66,18 @@ if (uuwm != null) {
 processUserUnsharedWebcamMessage(uuwm);
 }
 break;
+case UserJoinedVoiceMessage.USER_JOINED_VOICE:
+UserJoinedVoiceMessage ujvm=UserJoinedVoiceMessage.fromJson(message);
+if (ujvm != null) {
+processUserJoinedVoiceMessage(ujvm);
+}
+break;
+case UserVoiceMutedMessage.USER_VOICE_MUTED:
+UserVoiceMutedMessage uvmm=UserVoiceMutedMessage.fromJson(message);
+if (uvmm != null) {
+processUserVoiceMutedMessage(uvmm);
+}
+break;
 }
 }
 }
