@@ -48,6 +48,12 @@ if (urhm != null) {
 processUserRaisedHandMessage(urhm);
 }
 break;
+case UserListeningOnlyMessage.USER_LISTENING_ONLY:
+UserListeningOnlyMessage ulom=UserListeningOnlyMessage.fromJson(message);
+if (ulom != null) {
+processUserListeningOnlyMessage(ulom);
+}
+break;
 case UserLoweredHandMessage.USER_LOWERED_HAND:
 UserLoweredHandMessage ulhm=UserLoweredHandMessage.fromJson(message);
 if (ulhm != null) {
@@ -72,10 +78,22 @@ if (ujvm != null) {
 processUserJoinedVoiceMessage(ujvm);
 }
 break;
+case UserLeftVoiceMessage.USER_LEFT_VOICE:
+UserLeftVoiceMessage ulvm=UserLeftVoiceMessage.fromJson(message);
+if (ulvm != null) {
+processUserLeftVoiceMessage(ulvm);
+}
+break;
 case UserVoiceMutedMessage.USER_VOICE_MUTED:
 UserVoiceMutedMessage uvmm=UserVoiceMutedMessage.fromJson(message);
 if (uvmm != null) {
 processUserVoiceMutedMessage(uvmm);
+}
+break;
+case UserVoiceTalkingMessage.USER_VOICE_TALKING:
+UserVoiceTalkingMessage uvtm=UserVoiceTalkingMessage.fromJson(message);
+if (uvtm != null) {
+processUserVoiceTalkingMessage(uvtm);
 }
 break;
 }
