@@ -54,6 +54,18 @@ if (ulhm != null) {
 processUserLoweredHandMessage(ulhm);
 }
 break;
+case UserSharedWebcamMessage.USER_SHARED_WEBCAM:
+UserSharedWebcamMessage uswm=UserSharedWebcamMessage.fromJson(message);
+if (uswm != null) {
+processUserSharedWebcamMessage(uswm);
+}
+break;
+case UserUnsharedWebcamMessage.USER_UNSHARED_WEBCAM:
+UserUnsharedWebcamMessage uuwm=UserUnsharedWebcamMessage.fromJson(message);
+if (uuwm != null) {
+processUserUnsharedWebcamMessage(uuwm);
+}
+break;
 }
 }
 }
