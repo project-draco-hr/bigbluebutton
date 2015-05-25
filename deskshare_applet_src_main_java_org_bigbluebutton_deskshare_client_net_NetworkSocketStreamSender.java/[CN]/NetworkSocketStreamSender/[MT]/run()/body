@@ -18,7 +18,12 @@ catch (    IOException e) {
   try {
     outstream.close();
     outstream=null;
-    socket.close();
+    if (this.useTLS) {
+      sslSocket.close();
+    }
+ else {
+      socket.close();
+    }
   }
  catch (  IOException e) {
     e.printStackTrace();
