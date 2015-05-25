@@ -1,0 +1,13 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("count",msg.users.size());
+  args.put("users",msg.users);
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args));
+  System.out.println("*************************************************************************************\n");
+  System.out.println("RedisPubSubMessageHandler - processGetUsersReplyMessage \n" + message.get("msg") + "\n");
+  System.out.println("*************************************************************************************\n");
+  DirectClientMessage m=new DirectClientMessage(msg.meetingId,msg.requesterId,"getUsersReply",message);
+  service.sendMessage(m);
+}
