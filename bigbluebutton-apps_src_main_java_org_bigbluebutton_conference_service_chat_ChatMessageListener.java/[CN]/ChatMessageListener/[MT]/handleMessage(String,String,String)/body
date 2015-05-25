@@ -6,8 +6,8 @@
       JsonObject header=(JsonObject)obj.get("header");
       if (header.has("name")) {
         String messageName=header.get("name").getAsString();
-        if (GetChatHistory.GET_CHAT_HISTORY_REQUEST.equals(messageName)) {
-          GetChatHistory msg=GetChatHistory.fromJson(message);
+        if (GetChatHistoryRequestMessage.GET_CHAT_HISTORY_REQUEST.equals(messageName)) {
+          GetChatHistoryRequestMessage msg=GetChatHistoryRequestMessage.fromJson(message);
           bbbGW.getChatHistory(msg.meetingId,msg.requesterId,msg.replyTo);
         }
  else         if (SendPublicChatMessage.SEND_PUBLIC_CHAT_MESSAGE.equals(messageName)) {

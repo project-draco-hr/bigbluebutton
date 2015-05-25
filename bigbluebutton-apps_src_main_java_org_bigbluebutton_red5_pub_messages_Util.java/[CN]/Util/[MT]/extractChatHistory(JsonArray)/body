@@ -1,0 +1,13 @@
+{
+  ArrayList<Map<String,Object>> collection=new ArrayList<Map<String,Object>>();
+  Iterator<JsonElement> historyIter=history.iterator();
+  while (historyIter.hasNext()) {
+    JsonElement chat=historyIter.next();
+    Map<String,Object> chatMap=extractChat((JsonObject)chat);
+    if (chatMap != null) {
+      collection.add(chatMap);
+    }
+  }
+  System.out.println("extractChatHistory-----------------------");
+  return collection;
+}
