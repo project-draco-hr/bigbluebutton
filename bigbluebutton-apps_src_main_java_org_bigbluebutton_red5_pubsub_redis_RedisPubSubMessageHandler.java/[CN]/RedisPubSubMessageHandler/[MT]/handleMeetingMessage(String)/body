@@ -36,6 +36,12 @@ if (msm != null) {
 processMeetingStateMessage(msm);
 }
 break;
+case NewPermissionsSettingMessage.NEW_PERMISSIONS_SETTING:
+NewPermissionsSettingMessage npsm=NewPermissionsSettingMessage.fromJson(message);
+if (npsm != null) {
+processNewPermissionsSettingMessage(npsm);
+}
+break;
 case MeetingMutedMessage.MEETING_MUTED:
 MeetingMutedMessage mmm=MeetingMutedMessage.fromJson(message);
 if (mmm != null) {
