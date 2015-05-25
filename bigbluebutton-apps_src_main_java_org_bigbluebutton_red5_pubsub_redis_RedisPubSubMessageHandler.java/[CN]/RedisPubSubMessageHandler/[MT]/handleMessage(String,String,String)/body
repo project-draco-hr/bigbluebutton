@@ -1,5 +1,6 @@
 {
   if (channel.equalsIgnoreCase(MessagingConstants.FROM_CHAT_CHANNEL)) {
+    System.out.println("FROM CHAT CHANNEL:" + message);
     handleChatMessage(message);
   }
  else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_PRESENTATION_CHANNEL)) {

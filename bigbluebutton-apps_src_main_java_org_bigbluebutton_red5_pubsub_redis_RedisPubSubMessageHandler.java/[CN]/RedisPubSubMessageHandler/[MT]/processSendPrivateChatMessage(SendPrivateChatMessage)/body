@@ -1,0 +1,15 @@
+{
+  Map<String,Object> messageInfo=new HashMap<String,Object>();
+  messageInfo.put(ChatKeyUtil.CHAT_TYPE,msg.messageInfo.get(ChatKeyUtil.CHAT_TYPE));
+  messageInfo.put(ChatKeyUtil.FROM_USERID,msg.messageInfo.get(ChatKeyUtil.FROM_USERID));
+  messageInfo.put(ChatKeyUtil.FROM_USERNAME,msg.messageInfo.get(ChatKeyUtil.FROM_USERNAME));
+  messageInfo.put(ChatKeyUtil.TO_USERID,msg.messageInfo.get(ChatKeyUtil.TO_USERID));
+  messageInfo.put(ChatKeyUtil.TO_USERNAME,msg.messageInfo.get(ChatKeyUtil.TO_USERNAME));
+  messageInfo.put(ChatKeyUtil.FROM_TIME,msg.messageInfo.get(ChatKeyUtil.FROM_TIME));
+  messageInfo.put(ChatKeyUtil.FROM_TZ_OFFSET,msg.messageInfo.get(ChatKeyUtil.FROM_TZ_OFFSET));
+  messageInfo.put(ChatKeyUtil.FROM_COLOR,msg.messageInfo.get(ChatKeyUtil.FROM_COLOR));
+  messageInfo.put(ChatKeyUtil.MESSAGE,msg.messageInfo.get(ChatKeyUtil.MESSAGE));
+  System.out.println("RedisPubSubMessageHandler - processSendPrivateChatMessage \n" + messageInfo.toString() + "\n");
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"ChatReceivePrivateMessageCommand",messageInfo);
+  service.sendMessage(m);
+}
