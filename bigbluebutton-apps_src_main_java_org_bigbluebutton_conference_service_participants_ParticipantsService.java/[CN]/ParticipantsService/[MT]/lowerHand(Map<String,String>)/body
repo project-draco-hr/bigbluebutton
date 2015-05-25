@@ -1,6 +1,7 @@
 {
+  IScope scope=Red5.getConnectionLocal().getScope();
+  String meetingId=scope.getName();
   String userId=(String)msg.get("userId");
   String loweredBy=(String)msg.get("loweredBy");
-  IScope scope=Red5.getConnectionLocal().getScope();
-  application.lowerHand(scope.getName(),userId,loweredBy);
+  bbbInGW.lowerHand(meetingId,userId,loweredBy);
 }

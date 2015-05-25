@@ -1,4 +1,7 @@
 {
-  String roomName=Red5.getConnectionLocal().getScope().getName();
-  application.setRecordingStatus(roomName,(String)msg.get("userId"),(Boolean)msg.get("recording"));
+  IScope scope=Red5.getConnectionLocal().getScope();
+  String meetingId=scope.getName();
+  String userId=(String)msg.get("userId");
+  Boolean recording=(Boolean)msg.get("recording");
+  bbbInGW.setRecordingStatus(meetingId,userId,recording);
 }

@@ -1,4 +1,8 @@
 {
-  String roomName=Red5.getConnectionLocal().getScope().getName();
-  application.setParticipantStatus(roomName,(String)msg.get("userID"),(String)msg.get("status"),(Object)msg.get("value"));
+  IScope scope=Red5.getConnectionLocal().getScope();
+  String meetingId=scope.getName();
+  String userId=(String)msg.get("userID");
+  String status=(String)msg.get("status");
+  Object value=(Object)msg.get("value");
+  bbbInGW.setUserStatus(meetingId,userId,status,value);
 }

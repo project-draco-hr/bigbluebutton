@@ -1,4 +1,8 @@
 {
   IScope scope=Red5.getConnectionLocal().getScope();
-  application.assignPresenter(scope.getName(),(String)msg.get("newPresenterID"),(String)msg.get("newPresenterName"),(String)msg.get("assignedBy"));
+  String meetingId=scope.getName();
+  String newPresenterID=(String)msg.get("newPresenterID");
+  String newPresenterName=(String)msg.get("newPresenterName");
+  String assignedBy=(String)msg.get("assignedBy");
+  bbbInGW.assignPresenter(meetingId,newPresenterID,newPresenterName,assignedBy);
 }
