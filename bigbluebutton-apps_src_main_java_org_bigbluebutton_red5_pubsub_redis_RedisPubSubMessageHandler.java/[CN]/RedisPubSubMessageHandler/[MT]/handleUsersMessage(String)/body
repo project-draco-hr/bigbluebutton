@@ -96,6 +96,18 @@ if (uvtm != null) {
 processUserVoiceTalkingMessage(uvtm);
 }
 break;
+case RecordingStatusChangedMessage.RECORDING_STATUS_CHANGED:
+RecordingStatusChangedMessage rscm=RecordingStatusChangedMessage.fromJson(message);
+if (rscm != null) {
+processRecordingStatusChangedMessage(rscm);
+}
+break;
+case GetRecordingStatusReplyMessage.Get_RECORDING_STATUS_REPLY:
+GetRecordingStatusReplyMessage grsrm=GetRecordingStatusReplyMessage.fromJson(message);
+if (grsrm != null) {
+processGetRecordingStatusReplyMessage(grsrm);
+}
+break;
 }
 }
 }

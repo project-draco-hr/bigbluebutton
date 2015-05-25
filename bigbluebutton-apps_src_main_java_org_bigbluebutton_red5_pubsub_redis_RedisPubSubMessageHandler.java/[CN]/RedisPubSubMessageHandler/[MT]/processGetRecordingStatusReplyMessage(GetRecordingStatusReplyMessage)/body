@@ -1,0 +1,11 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("userId",msg.userId);
+  args.put("recording",msg.recording);
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args));
+  System.out.println("RedisPubSubMessageHandler - processGetRecordingStatusReplyMessage \n" + message.get("msg") + "\n");
+  DirectClientMessage m=new DirectClientMessage(msg.meetingId,msg.userId,"getRecordingStatusReply",message);
+  service.sendMessage(m);
+}

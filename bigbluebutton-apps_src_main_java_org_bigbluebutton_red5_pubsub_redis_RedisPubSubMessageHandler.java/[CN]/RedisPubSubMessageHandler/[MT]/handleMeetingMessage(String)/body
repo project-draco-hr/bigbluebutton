@@ -42,6 +42,12 @@ if (mmm != null) {
 processMeetingMutedMessage(mmm);
 }
 break;
+case UserLockedMessage.USER_LOCKED:
+UserLockedMessage ulm=UserLockedMessage.fromJson(message);
+if (ulm != null) {
+processUserLockedMessage(ulm);
+}
+break;
 }
 }
 }

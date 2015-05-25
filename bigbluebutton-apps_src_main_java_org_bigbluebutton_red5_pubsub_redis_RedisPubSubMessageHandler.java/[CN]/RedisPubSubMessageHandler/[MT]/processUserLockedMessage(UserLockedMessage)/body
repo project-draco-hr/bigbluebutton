@@ -1,0 +1,12 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("meetingID",msg.meetingId);
+  args.put("user",msg.userId);
+  args.put("lock",msg.locked);
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args));
+  System.out.println("RedisPubSubMessageHandler - processUserLockedMessage \n" + message.get("msg") + "\n");
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"userLocked",message);
+  service.sendMessage(m);
+}
