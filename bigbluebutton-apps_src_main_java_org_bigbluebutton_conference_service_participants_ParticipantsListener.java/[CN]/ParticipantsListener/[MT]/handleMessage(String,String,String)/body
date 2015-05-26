@@ -42,6 +42,12 @@ break;
 case GetUsersRequestMessage.GET_USERS_REQUEST:
 processGetUsersRequestMessage(message);
 break;
+case InitPermissionsSettingMessage.INIT_PERMISSIONS_SETTING:
+processInitPermissionsSettingMessage(message);
+break;
+case InitAudioSettingsMessage.INIT_AUDIO_SETTING:
+processInitAudioSettingsMessage(message);
+break;
 }
 }
 }
