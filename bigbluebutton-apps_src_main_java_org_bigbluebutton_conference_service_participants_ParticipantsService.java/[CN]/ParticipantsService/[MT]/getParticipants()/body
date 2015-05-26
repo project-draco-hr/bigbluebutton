@@ -2,5 +2,5 @@
   IScope scope=Red5.getConnectionLocal().getScope();
   String meetingId=scope.getName();
   String userId=getBbbSession().getInternalUserID();
-  bbbInGW.getUsers(meetingId,userId);
+  red5InGW.getUsers(meetingId,userId);
 }

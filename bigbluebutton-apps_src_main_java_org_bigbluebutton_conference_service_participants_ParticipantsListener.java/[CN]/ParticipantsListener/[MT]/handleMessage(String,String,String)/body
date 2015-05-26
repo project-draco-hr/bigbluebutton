@@ -39,6 +39,9 @@ break;
 case GetRecordingStatusRequestMessage.GET_RECORDING_STATUS_REQUEST:
 processGetRecordingStatusRequestMessage(message);
 break;
+case GetUsersRequestMessage.GET_USERS_REQUEST:
+processGetUsersRequestMessage(message);
+break;
 }
 }
 }
