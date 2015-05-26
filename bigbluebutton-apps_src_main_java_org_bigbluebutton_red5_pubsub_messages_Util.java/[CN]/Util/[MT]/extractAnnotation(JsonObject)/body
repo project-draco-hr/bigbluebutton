@@ -1,0 +1,32 @@
+{
+  if (annotationElement.has(Constants.ID) && annotationElement.has("transparency") && annotationElement.has("color")&& annotationElement.has("status")&& annotationElement.has("whiteboardId")&& annotationElement.has("thickness")&& annotationElement.has("points")) {
+    Map<String,Object> finalAnnotation=new HashMap<String,Object>();
+    boolean transparency=annotationElement.get("transparency").getAsBoolean();
+    String id=annotationElement.get(Constants.ID).getAsString();
+    int color=annotationElement.get("color").getAsInt();
+    String status=annotationElement.get(Constants.STATUS).getAsString();
+    String whiteboardId=annotationElement.get("whiteboardId").getAsString();
+    int thickness=annotationElement.get("thickness").getAsInt();
+    String type=annotationElement.get("type").getAsString();
+    JsonArray pointsJsonArray=annotationElement.get("points").getAsJsonArray();
+    ArrayList<Float> pointsArray=new ArrayList<Float>();
+    Iterator<JsonElement> pointIter=pointsJsonArray.iterator();
+    while (pointIter.hasNext()) {
+      JsonElement p=pointIter.next();
+      Float pf=p.getAsFloat();
+      if (pf != null) {
+        pointsArray.add(pf);
+      }
+    }
+    finalAnnotation.put("transparency",transparency);
+    finalAnnotation.put(Constants.ID,id);
+    finalAnnotation.put("color",color);
+    finalAnnotation.put("status",status);
+    finalAnnotation.put("whiteboardId",whiteboardId);
+    finalAnnotation.put("thickness",thickness);
+    finalAnnotation.put("points",pointsArray);
+    finalAnnotation.put("type",type);
+    return finalAnnotation;
+  }
+  return null;
+}

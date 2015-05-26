@@ -1,4 +1,4 @@
 {
   String replyTo=meetingID + "/" + requesterID;
-  bbbInGW.isWhiteboardEnabled(meetingID,requesterID,replyTo);
+  red5BBBInGW.isWhiteboardEnabled(meetingID,requesterID,replyTo);
 }
