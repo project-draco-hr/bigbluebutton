@@ -1,2 +1,5 @@
 {
+  System.out.println("~~sendWhiteboardAnnotation in Red5BBBInGw");
+  SendWhiteboardAnnotationRequestMessage msg=new SendWhiteboardAnnotationRequestMessage(meetingID,requesterID,annotation);
+  sender.send(MessagingConstants.TO_WHITEBOARD_CHANNEL,msg.toJson());
 }

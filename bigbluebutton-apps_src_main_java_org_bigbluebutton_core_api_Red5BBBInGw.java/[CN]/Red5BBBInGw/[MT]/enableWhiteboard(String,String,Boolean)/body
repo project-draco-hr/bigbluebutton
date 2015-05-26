@@ -1,2 +1,5 @@
 {
+  System.out.println("~~enableWhiteboard in Red5BBBInGw");
+  EnableWhiteboardRequestMessage msg=new EnableWhiteboardRequestMessage(meetingID,requesterID,enable);
+  sender.send(MessagingConstants.TO_WHITEBOARD_CHANNEL,msg.toJson());
 }

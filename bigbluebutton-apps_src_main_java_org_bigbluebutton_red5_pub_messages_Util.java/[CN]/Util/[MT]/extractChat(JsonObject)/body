@@ -10,8 +10,6 @@
     chatMap.put(ChatKeyUtil.FROM_USERID,chat.get(Constants.FROM_USERID).getAsString());
     chatMap.put(ChatKeyUtil.FROM_TIME,chat.get(Constants.FROM_TIME).getAsString());
     chatMap.put(ChatKeyUtil.FROM_USERNAME,chat.get(Constants.FROM_USERNAME).getAsString());
-    System.out.println("in extractChat" + chatMap.get(ChatKeyUtil.CHAT_TYPE));
-    System.out.println("in extractChat2" + chatMap.get(Constants.CHAT_TYPE));
     return chatMap;
   }
   return null;

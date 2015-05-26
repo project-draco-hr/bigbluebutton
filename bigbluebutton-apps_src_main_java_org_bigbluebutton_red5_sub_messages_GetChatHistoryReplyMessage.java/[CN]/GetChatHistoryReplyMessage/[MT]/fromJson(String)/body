@@ -1,23 +1,18 @@
 {
   JsonParser parser=new JsonParser();
   JsonObject obj=(JsonObject)parser.parse(message);
-  System.out.println("11");
   if (obj.has("header") && obj.has("payload")) {
     JsonObject header=(JsonObject)obj.get("header");
     JsonObject payload=(JsonObject)obj.get("payload");
-    System.out.println("12");
     if (header.has("name")) {
-      System.out.println("13");
       String messageName=header.get("name").getAsString();
       if (GET_CHAT_HISTORY_REPLY.equals(messageName)) {
-        System.out.println("14" + payload.toString());
         if (payload.has(Constants.MEETING_ID) && payload.has(Constants.CHAT_HISTORY) && payload.has(Constants.REQUESTER_ID)) {
           String meetingId=payload.get(Constants.MEETING_ID).getAsString();
           String requesterId=payload.get(Constants.REQUESTER_ID).getAsString();
           JsonArray history=(JsonArray)payload.get(Constants.CHAT_HISTORY);
           Util util=new Util();
           ArrayList<Map<String,Object>> chatHistory=util.extractChatHistory(history);
-          System.out.println("15");
           System.out.println("GetChatHistoryReplyMessage fromJson");
           return new GetChatHistoryReplyMessage(meetingId,requesterId,chatHistory);
         }

@@ -1,3 +1,3 @@
 {
-  bbbInGW.sendWhiteboardAnnotation(meetingID,requesterID,shape);
+  red5BBBInGW.sendWhiteboardAnnotation(meetingID,requesterID,shape);
 }

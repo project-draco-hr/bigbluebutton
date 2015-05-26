@@ -1,0 +1,11 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      System.out.println("MEEESAGE:" + message);
+    }
+  }
+}

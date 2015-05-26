@@ -1,2 +1,5 @@
 {
+  System.out.println("~~requestWhiteboardAnnotationHistory in Red5BBBInGw");
+  RequestWhiteboardAnnotationHistoryRequestMessage msg=new RequestWhiteboardAnnotationHistoryRequestMessage(meetingID,requesterID,whiteboardId,replyTo);
+  sender.send(MessagingConstants.TO_WHITEBOARD_CHANNEL,msg.toJson());
 }
