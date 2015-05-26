@@ -19,5 +19,5 @@
     log.error("Invalid Lock Layout message. viewersOnly is null");
     return;
   }
-  application.lockLayout(meetingID,getBbbSession().getInternalUserID(),lock,viewersOnly,layout);
+  red5GW.lockLayout(meetingID,getBbbSession().getInternalUserID(),lock,viewersOnly,layout);
 }

@@ -1,2 +1,4 @@
 {
+  BroadcastLayoutRequestMessage msg=new BroadcastLayoutRequestMessage(meetingID,requesterID,layout);
+  sender.send(MessagingConstants.TO_USERS_CHANNEL,msg.toJson());
 }

@@ -114,6 +114,15 @@ if (gurm != null) {
 processGetUsersReplyMessage(gurm);
 }
 break;
+case GetCurrentLayoutReplyMessage.GET_CURRENT_LAYOUT_REPLY:
+processGetCurrentLayoutReplyMessage(message);
+break;
+case BroadcastLayoutMessage.BROADCAST_LAYOUT:
+processBroadcastLayoutMessage(message);
+break;
+case LockLayoutMessage.LOCK_LAYOUT:
+processLockLayoutMessage(message);
+break;
 }
 }
 }

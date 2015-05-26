@@ -48,6 +48,15 @@ break;
 case InitAudioSettingsMessage.INIT_AUDIO_SETTING:
 processInitAudioSettingsMessage(message);
 break;
+case BroadcastLayoutRequestMessage.BROADCAST_LAYOUT_REQUEST:
+processBroadcastLayoutRequestMessage(message);
+break;
+case LockLayoutRequestMessage.LOCK_LAYOUT_REQUEST:
+processLockLayoutRequestMessage(message);
+break;
+case GetCurrentLayoutRequestMessage.GET_CURRENT_LAYOUT_REQUEST:
+processGetCurrentLayoutRequestMessage(message);
+break;
 }
 }
 }
