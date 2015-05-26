@@ -3,6 +3,7 @@
     chatMessageSender.handleChatMessage(message);
   }
  else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_PRESENTATION_CHANNEL)) {
+    presentationMessageSender.handlePresentationMessage(message);
   }
  else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_MEETING_CHANNEL)) {
     meetingMessageSender.handleMeetingMessage(message);

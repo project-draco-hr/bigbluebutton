@@ -1,0 +1,13 @@
+{
+  PresentationRemovedMessage msg=PresentationRemovedMessage.fromJson(json);
+  if (msg != null) {
+    Map<String,Object> args=new HashMap<String,Object>();
+    args.put("presentationID",msg.presentationId);
+    Map<String,Object> message=new HashMap<String,Object>();
+    Gson gson=new Gson();
+    message.put("msg",gson.toJson(args));
+    System.out.println("RedisPubSubMessageHandler - processPresentationRemovedMessage \n" + message.get("msg") + "\n");
+    BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"removePresentationCallback",message);
+    service.sendMessage(m);
+  }
+}

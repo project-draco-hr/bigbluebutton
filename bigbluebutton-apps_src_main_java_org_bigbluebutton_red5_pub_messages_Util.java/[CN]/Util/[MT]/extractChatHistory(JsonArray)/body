@@ -8,6 +8,5 @@
       collection.add(chatMap);
     }
   }
-  System.out.println("extractChatHistory-----------------------");
   return collection;
 }

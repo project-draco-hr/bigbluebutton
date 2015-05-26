@@ -1,0 +1,21 @@
+{
+  ArrayList<Map<String,Object>> presentations=new ArrayList<Map<String,Object>>();
+  Iterator<JsonElement> presentationsIter=presArray.iterator();
+  while (presentationsIter.hasNext()) {
+    JsonObject presObj=(JsonObject)presentationsIter.next();
+    if (presObj.has(Constants.ID) && presObj.has(Constants.NAME) && presObj.has(Constants.CURRENT)&& presObj.has(Constants.PAGES)) {
+      Map<String,Object> pres=new HashMap<String,Object>();
+      String presId=presObj.get(Constants.ID).getAsString();
+      String presName=presObj.get(Constants.NAME).getAsString();
+      Boolean currentPres=presObj.get(Constants.CURRENT).getAsBoolean();
+      pres.put("id",presId);
+      pres.put("name",presName);
+      pres.put("current",currentPres);
+      JsonArray pagesJsonArray=presObj.get(Constants.PAGES).getAsJsonArray();
+      ArrayList<Map<String,Object>> pages=extractPresentationPages(pagesJsonArray);
+      pres.put(Constants.PAGES,pages);
+      presentations.add(pres);
+    }
+  }
+  return presentations;
+}
