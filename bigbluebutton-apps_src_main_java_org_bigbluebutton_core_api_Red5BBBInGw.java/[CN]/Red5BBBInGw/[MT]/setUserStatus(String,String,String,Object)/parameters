@@ -1,4 +1,4 @@
-String meetingID
-String userID
+String meetingId
+String userId
 String status
 Object value

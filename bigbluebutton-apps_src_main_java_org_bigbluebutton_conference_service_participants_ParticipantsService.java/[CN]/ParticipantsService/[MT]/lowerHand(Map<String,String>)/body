@@ -3,5 +3,5 @@
   String meetingId=scope.getName();
   String userId=(String)msg.get("userId");
   String loweredBy=(String)msg.get("loweredBy");
-  bbbInGW.lowerHand(meetingId,userId,loweredBy);
+  red5InGW.lowerHand(meetingId,userId,loweredBy);
 }

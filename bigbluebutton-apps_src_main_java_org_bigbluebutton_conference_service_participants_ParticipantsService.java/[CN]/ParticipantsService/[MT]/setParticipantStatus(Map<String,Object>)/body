@@ -4,5 +4,5 @@
   String userId=(String)msg.get("userID");
   String status=(String)msg.get("status");
   Object value=(Object)msg.get("value");
-  bbbInGW.setUserStatus(meetingId,userId,status,value);
+  red5InGW.setUserStatus(meetingId,userId,status,value);
 }

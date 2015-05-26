@@ -3,5 +3,5 @@
   String meetingId=scope.getName();
   String userId=(String)msg.get("userId");
   Boolean recording=(Boolean)msg.get("recording");
-  bbbInGW.setRecordingStatus(meetingId,userId,recording);
+  red5InGW.setRecordingStatus(meetingId,userId,recording);
 }

@@ -1,5 +1,5 @@
 {
   IScope scope=Red5.getConnectionLocal().getScope();
   String meetingId=scope.getName();
-  bbbInGW.getRecordingStatus(meetingId,getMyUserId());
+  red5InGW.getRecordingStatus(meetingId,getMyUserId());
 }

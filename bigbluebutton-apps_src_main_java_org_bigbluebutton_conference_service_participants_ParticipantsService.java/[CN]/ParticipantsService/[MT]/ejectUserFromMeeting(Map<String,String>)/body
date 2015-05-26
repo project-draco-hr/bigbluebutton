@@ -3,5 +3,5 @@
   String meetingId=scope.getName();
   String userId=(String)msg.get("userId");
   String ejectedBy=(String)msg.get("ejectedBy");
-  bbbInGW.ejectUserFromMeeting(meetingId,userId,ejectedBy);
+  red5InGW.ejectUserFromMeeting(meetingId,userId,ejectedBy);
 }

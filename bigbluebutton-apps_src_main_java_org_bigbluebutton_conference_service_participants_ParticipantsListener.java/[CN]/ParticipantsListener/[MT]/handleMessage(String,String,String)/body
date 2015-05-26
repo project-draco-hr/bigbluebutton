@@ -3,24 +3,44 @@
     System.out.println("Users message: " + channel + " "+ message);
     JsonParser parser=new JsonParser();
     JsonObject obj=(JsonObject)parser.parse(message);
-    JsonObject headerObject=(JsonObject)obj.get("header");
-    JsonObject payloadObject=(JsonObject)obj.get("payload");
-    String eventName=headerObject.get("name").toString().replace("\"","");
-    if (eventName.equalsIgnoreCase("user_leaving_request") || eventName.equalsIgnoreCase("user_raised_hand_message") || eventName.equalsIgnoreCase("user_lowered_hand_message")) {
-      String roomName=payloadObject.get("meeting_id").toString().replace("\"","");
-      String userID=payloadObject.get("userid").toString().replace("\"","");
-      if (eventName.equalsIgnoreCase("user_leaving_request")) {
-        log.warn("TODO: Need to pass sessionId on user_leaving_request message.");
-        String sessionId="tobeimplemented";
-        bbbInGW.userLeft(roomName,userID,sessionId);
-      }
- else       if (eventName.equalsIgnoreCase("user_raised_hand_message")) {
-        bbbInGW.userRaiseHand(roomName,userID);
-      }
- else       if (eventName.equalsIgnoreCase("user_lowered_hand_message")) {
-        String requesterID=payloadObject.get("lowered_by").toString().replace("\"","");
-        bbbInGW.lowerHand(roomName,userID,requesterID);
-      }
-    }
-  }
+    if (obj.has("header") && obj.has("payload")) {
+      JsonObject header=(JsonObject)obj.get("header");
+      JsonObject payload=(JsonObject)obj.get("payload");
+      if (header.has("name")) {
+        String messageName=header.get("name").getAsString();
+switch (messageName) {
+case UserLeavingMessage.USER_LEAVING:
+          processUserLeavingMessage(message);
+        break;
+case AssignPresenterRequestMessage.ASSIGN_PRESENTER_REQUEST:
+      processAssignPresenterRequestMessage(message);
+    break;
+case UserRaisedHandMessage.USER_RAISED_HAND:
+  processUserRaisedHandMessage(message);
+break;
+case UserLoweredHandMessage.USER_LOWERED_HAND:
+processUserLoweredHandMessage(message);
+break;
+case EjectUserFromMeetingRequestMessage.EJECT_USER_FROM_MEETING_REQUEST:
+processEjectUserFromMeetingRequestMessage(message);
+break;
+case UserShareWebcamRequestMessage.USER_SHARE_WEBCAM_REQUEST:
+processUserShareWebcamRequestMessage(message);
+break;
+case UserUnshareWebcamRequestMessage.USER_UNSHARE_WEBCAM_REQUEST:
+processUserUnshareWebcamRequestMessage(message);
+break;
+case SetUserStatusRequestMessage.SET_USER_STATUS_REQUEST:
+processSetUserStatusRequestMessage(message);
+break;
+case SetRecordingStatusRequestMessage.SET_RECORDING_STATUS_REQUEST:
+processSetRecordingStatusRequestMessage(message);
+break;
+case GetRecordingStatusRequestMessage.GET_RECORDING_STATUS_REQUEST:
+processGetRecordingStatusRequestMessage(message);
+break;
+}
+}
+}
+}
 }

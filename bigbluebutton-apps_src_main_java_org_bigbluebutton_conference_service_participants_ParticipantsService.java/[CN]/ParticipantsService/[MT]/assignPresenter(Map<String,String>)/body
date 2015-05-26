@@ -4,5 +4,5 @@
   String newPresenterID=(String)msg.get("newPresenterID");
   String newPresenterName=(String)msg.get("newPresenterName");
   String assignedBy=(String)msg.get("assignedBy");
-  bbbInGW.assignPresenter(meetingId,newPresenterID,newPresenterName,assignedBy);
+  red5InGW.assignPresenter(meetingId,newPresenterID,newPresenterName,assignedBy);
 }

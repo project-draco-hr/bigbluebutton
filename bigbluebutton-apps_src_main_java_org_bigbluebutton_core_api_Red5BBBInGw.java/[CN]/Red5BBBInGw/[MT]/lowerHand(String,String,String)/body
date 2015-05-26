@@ -1,2 +1,4 @@
 {
+  UserLoweredHandMessage msg=new UserLoweredHandMessage(meetingId,userId,false,loweredBy);
+  sender.send(MessagingConstants.TO_USERS_CHANNEL,msg.toJson());
 }

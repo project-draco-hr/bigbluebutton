@@ -1,2 +1,4 @@
 {
+  SetRecordingStatusRequestMessage msg=new SetRecordingStatusRequestMessage(meetingId,userId,recording);
+  sender.send(MessagingConstants.TO_USERS_CHANNEL,msg.toJson());
 }
