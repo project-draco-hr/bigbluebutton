@@ -12,6 +12,12 @@ case PresentationRemovedMessage.PRESENTATION_REMOVED:
 case GetPresentationInfoReplyMessage.GET_PRESENTATION_INFO_REPLY:
     processGetPresentationInfoReplyMessage(message);
   break;
+case GoToSlideMessage.GO_TO_SLIDE:
+GoToSlideMessage gts=GoToSlideMessage.fromJson(message);
+if (gts != null) {
+processGoToSlideMessage(gts);
+}
+break;
 }
 }
 }

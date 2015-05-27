@@ -1,0 +1,11 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("shapeId",msg.shapeId);
+  args.put("whiteboardId",msg.whiteboardId);
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args));
+  System.out.println("RedisPubSubMessageHandler - processUndoWhiteboardReply \n" + message.toString() + "\n");
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"WhiteboardUndoCommand",message);
+  service.sendMessage(m);
+}
