@@ -1,2 +1,4 @@
 {
+  EjectUserFromVoiceRequestMessage msg=new EjectUserFromVoiceRequestMessage(meetingID,ejectedBy,userId);
+  sender.send(MessagingConstants.TO_USERS_CHANNEL,msg.toJson());
 }

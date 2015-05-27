@@ -3,5 +3,5 @@
   String userid=(String)msg.get(VoiceKeyUtil.USERID);
   String meetingID=Red5.getConnectionLocal().getScope().getName();
   String requesterID=getBbbSession().getInternalUserID();
-  bbbInGW.muteUser(meetingID,requesterID,userid,mute);
+  red5InGW.muteUser(meetingID,requesterID,userid,mute);
 }

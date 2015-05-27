@@ -57,6 +57,24 @@ break;
 case GetCurrentLayoutRequestMessage.GET_CURRENT_LAYOUT_REQUEST:
 processGetCurrentLayoutRequestMessage(message);
 break;
+case MuteAllExceptPresenterRequestMessage.MUTE_ALL_EXCEPT_PRESENTER_REQUEST:
+processMuteAllExceptPresenterRequestMessage(message);
+break;
+case MuteAllRequestMessage.MUTE_ALL_REQUEST:
+processMuteAllRequestMessage(message);
+break;
+case IsMeetingMutedRequestMessage.IS_MEETING_MUTED_REQUEST:
+processIsMeetingMutedRequestMessage(message);
+break;
+case MuteUserRequestMessage.MUTE_USER_REQUEST:
+processMuteUserRequestMessage(message);
+break;
+case LockMuteUserRequestMessage.LOCK_MUTE_USER_REQUEST:
+processLockMuteUserRequestMessage(message);
+break;
+case EjectUserFromVoiceRequestMessage.EJECT_USER_FROM_VOICE_REQUEST:
+processEjectUserFromVoiceRequestMessage(message);
+break;
 }
 }
 }

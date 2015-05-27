@@ -1,0 +1,21 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (LOCK_MUTE_USER_REQUEST.equals(messageName)) {
+        if (payload.has(MEETING_ID) && payload.has(REQUESTER_ID) && payload.has(USER_ID)&& payload.has(LOCK)) {
+          String id=payload.get(MEETING_ID).getAsString();
+          String requesterId=payload.get(REQUESTER_ID).getAsString();
+          String userId=payload.get(USER_ID).getAsString();
+          Boolean lock=payload.get(LOCK).getAsBoolean();
+          return new LockMuteUserRequestMessage(id,requesterId,userId,lock);
+        }
+      }
+    }
+  }
+  return null;
+}

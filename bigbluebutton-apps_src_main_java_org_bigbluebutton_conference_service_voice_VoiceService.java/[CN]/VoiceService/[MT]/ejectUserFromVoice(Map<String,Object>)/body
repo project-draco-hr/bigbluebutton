@@ -2,5 +2,5 @@
   String userId=(String)msg.get("userId");
   String meetingID=Red5.getConnectionLocal().getScope().getName();
   String ejectedBy=getBbbSession().getInternalUserID();
-  bbbInGW.ejectUserFromVoice(meetingID,userId,ejectedBy);
+  red5InGW.ejectUserFromVoice(meetingID,userId,ejectedBy);
 }
