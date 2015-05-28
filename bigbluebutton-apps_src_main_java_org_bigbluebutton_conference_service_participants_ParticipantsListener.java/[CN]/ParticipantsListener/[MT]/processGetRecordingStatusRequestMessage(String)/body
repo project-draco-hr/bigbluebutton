@@ -1,6 +1,0 @@
-{
-  GetRecordingStatusRequestMessage msg=GetRecordingStatusRequestMessage.fromJson(message);
-  if (msg != null) {
-    bbbInGW.getRecordingStatus(msg.meetingId,msg.userId);
-  }
-}

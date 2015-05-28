@@ -1,6 +1,0 @@
-{
-  BroadcastLayoutRequestMessage msg=BroadcastLayoutRequestMessage.fromJson(message);
-  if (msg != null) {
-    bbbInGW.broadcastLayout(msg.meetingId,msg.userId,msg.layout);
-  }
-}

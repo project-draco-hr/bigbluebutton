@@ -1,6 +1,0 @@
-{
-  MuteAllExceptPresenterRequestMessage msg=MuteAllExceptPresenterRequestMessage.fromJson(message);
-  if (msg != null) {
-    bbbInGW.muteAllExceptPresenter(msg.meetingId,msg.requesterId,msg.mute);
-  }
-}

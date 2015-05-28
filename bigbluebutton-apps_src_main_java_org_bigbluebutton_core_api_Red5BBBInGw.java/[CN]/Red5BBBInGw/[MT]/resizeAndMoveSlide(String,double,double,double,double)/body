@@ -1,5 +1,4 @@
 {
-  System.out.println("~~resizeAndMoveSlide in Red5BBBInGw");
   ResizeAndMoveSlideMessage msg=new ResizeAndMoveSlideMessage(meetingID,xOffset,yOffset,widthRatio,heightRatio);
   sender.send(MessagingConstants.TO_PRESENTATION_CHANNEL,msg.toJson());
 }

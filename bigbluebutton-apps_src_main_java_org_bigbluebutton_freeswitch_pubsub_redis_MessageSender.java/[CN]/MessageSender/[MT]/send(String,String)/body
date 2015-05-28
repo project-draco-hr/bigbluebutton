@@ -1,4 +1,0 @@
-{
-  MessageToSend msg=new MessageToSend(channel,message);
-  messages.add(msg);
-}

@@ -1,5 +1,4 @@
 {
-  System.out.println("~~sendConversionCompleted in Red5BBBInGw");
   SendConversionCompletedMessage msg=new SendConversionCompletedMessage(messageKey,meetingId,code,presId,numPages,presName,presBaseUrl);
   sender.send(MessagingConstants.TO_PRESENTATION_CHANNEL,msg.toJson());
 }

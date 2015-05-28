@@ -1,6 +1,0 @@
-{
-  MuteUserRequestMessage msg=MuteUserRequestMessage.fromJson(message);
-  if (msg != null) {
-    bbbInGW.muteUser(msg.meetingId,msg.requesterId,msg.userId,msg.mute);
-  }
-}

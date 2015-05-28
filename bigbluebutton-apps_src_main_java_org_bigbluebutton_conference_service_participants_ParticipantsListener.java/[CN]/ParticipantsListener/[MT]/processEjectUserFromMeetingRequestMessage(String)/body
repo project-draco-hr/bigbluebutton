@@ -1,6 +1,0 @@
-{
-  EjectUserFromMeetingRequestMessage eufm=EjectUserFromMeetingRequestMessage.fromJson(message);
-  if (eufm != null) {
-    bbbInGW.ejectUserFromMeeting(eufm.meetingId,eufm.userId,eufm.ejectedBy);
-  }
-}

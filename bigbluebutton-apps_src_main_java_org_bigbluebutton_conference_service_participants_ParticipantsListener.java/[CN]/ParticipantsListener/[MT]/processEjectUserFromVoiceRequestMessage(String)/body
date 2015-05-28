@@ -1,6 +1,0 @@
-{
-  EjectUserFromVoiceRequestMessage msg=EjectUserFromVoiceRequestMessage.fromJson(message);
-  if (msg != null) {
-    bbbInGW.ejectUserFromVoice(msg.meetingId,msg.userId,msg.requesterId);
-  }
-}

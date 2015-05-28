@@ -1,6 +1,0 @@
-{
-  UserLeavingMessage ulm=UserLeavingMessage.fromJson(message);
-  if (ulm != null) {
-    bbbInGW.userLeft(ulm.meetingId,ulm.userId,ulm.meetingId);
-  }
-}

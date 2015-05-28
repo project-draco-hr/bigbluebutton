@@ -1,5 +1,4 @@
 {
-  System.out.println("~~ClearWhiteboardRequestMessage in Red5BBBInGw");
   ClearWhiteboardRequestMessage msg=new ClearWhiteboardRequestMessage(meetingID,requesterID,whiteboardId);
   sender.send(MessagingConstants.TO_WHITEBOARD_CHANNEL,msg.toJson());
 }

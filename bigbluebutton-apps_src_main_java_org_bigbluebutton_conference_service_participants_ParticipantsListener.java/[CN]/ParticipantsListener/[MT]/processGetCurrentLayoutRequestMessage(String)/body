@@ -1,6 +1,0 @@
-{
-  GetCurrentLayoutRequestMessage msg=GetCurrentLayoutRequestMessage.fromJson(message);
-  if (msg != null) {
-    bbbInGW.getCurrentLayout(msg.meetingId,msg.userId);
-  }
-}

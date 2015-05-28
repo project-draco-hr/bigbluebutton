@@ -1,4 +1,0 @@
-{
-  eventMap.put(QUESTION_PATTERN + SEPARATOR + id+ SEPARATOR+ QUESTION_TEXT,question);
-  eventMap.put(QUESTION_PATTERN + SEPARATOR + id+ SEPARATOR+ QUESTION_MULTIRESPONSE,multiresponse.toString());
-}

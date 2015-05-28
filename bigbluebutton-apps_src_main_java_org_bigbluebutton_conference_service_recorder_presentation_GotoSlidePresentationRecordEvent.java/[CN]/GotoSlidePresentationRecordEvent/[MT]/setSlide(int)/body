@@ -1,3 +1,0 @@
-{
-  eventMap.put("slide",Integer.toString(slide - 1));
-}
