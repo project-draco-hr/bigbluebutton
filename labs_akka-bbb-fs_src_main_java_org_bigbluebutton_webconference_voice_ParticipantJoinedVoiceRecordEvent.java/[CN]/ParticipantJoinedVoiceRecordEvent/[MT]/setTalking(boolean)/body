@@ -1,3 +1,0 @@
-{
-  eventMap.put("talking",Boolean.toString(talking));
-}
