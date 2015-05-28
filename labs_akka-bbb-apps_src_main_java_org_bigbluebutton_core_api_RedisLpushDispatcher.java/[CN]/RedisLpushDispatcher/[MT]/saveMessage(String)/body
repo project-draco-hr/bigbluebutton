@@ -1,0 +1,9 @@
+{
+  Jedis jedis=redisPool.getResource();
+  try {
+    jedis.lpush(BBBMESSAGES,msg);
+  }
+  finally {
+    redisPool.returnResource(jedis);
+  }
+}

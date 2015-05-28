@@ -1,0 +1,4 @@
+String room
+String participant
+Boolean mute
+String requesterId

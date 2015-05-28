@@ -1,0 +1,3 @@
+{
+  eventMap.put("share",Boolean.toString(share));
+}

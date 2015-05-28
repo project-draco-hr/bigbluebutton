@@ -1,0 +1,6 @@
+{
+  InitAudioSettingsMessage msg=InitAudioSettingsMessage.fromJson(message);
+  if (msg != null) {
+    bbbInGW.initAudioSettings(msg.meetingId,msg.userId,msg.muted);
+  }
+}

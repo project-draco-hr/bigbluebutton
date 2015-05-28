@@ -1,0 +1,5 @@
+{
+  Iterator<ConferenceMember> it=myConfrenceMembers.iterator();
+  while (it.hasNext()) {
+  }
+}

@@ -1,0 +1,3 @@
+{
+  canSpeak=tempVal.equals("true") ? true : false;
+}

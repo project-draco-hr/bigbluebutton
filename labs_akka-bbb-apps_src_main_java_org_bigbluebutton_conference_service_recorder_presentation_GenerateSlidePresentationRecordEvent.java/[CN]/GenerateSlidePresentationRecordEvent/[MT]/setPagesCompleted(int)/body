@@ -1,0 +1,3 @@
+{
+  eventMap.put("pagesCompleted",Integer.toString(pagesCompleted));
+}

@@ -1,0 +1,6 @@
+{
+  MuteAllRequestMessage msg=MuteAllRequestMessage.fromJson(message);
+  if (msg != null) {
+    bbbInGW.muteAllUsers(msg.meetingId,msg.requesterId,msg.mute);
+  }
+}

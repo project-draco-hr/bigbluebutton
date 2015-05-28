@@ -1,0 +1,6 @@
+{
+  this.meetingId=meetingId;
+  this.requesterId=requesterId;
+  this.lock=lock;
+  this.internalUserId=internalUserId;
+}

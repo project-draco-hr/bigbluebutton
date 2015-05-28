@@ -1,0 +1,19 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (DISCONNECT_All_USERS.equals(messageName)) {
+        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.USER_ID)) {
+          String meetingId=payload.get(Constants.MEETING_ID).getAsString();
+          return new DisconnectAllUsersMessage(meetingId);
+        }
+      }
+    }
+  }
+  System.out.println("Failed to parse DisconnectAllUsersMessage");
+  return null;
+}
