@@ -1,5 +1,0 @@
-{
-  String action="unmute";
-  if (mute)   action="mute";
-  return room + SPACE + action+ SPACE+ participant;
-}

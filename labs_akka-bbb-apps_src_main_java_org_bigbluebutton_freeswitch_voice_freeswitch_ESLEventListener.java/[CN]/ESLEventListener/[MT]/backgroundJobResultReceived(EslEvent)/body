@@ -1,3 +1,0 @@
-{
-  System.out.println("Background job result received [" + event + "]");
-}

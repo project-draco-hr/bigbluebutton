@@ -1,6 +1,0 @@
-{
-  Integer memberId=this.getMemberIdFromEvent(event);
-  System.out.println("User left voice conference, user=[" + memberId.toString() + "], conf=["+ confName+ "]");
-  VoiceUserLeftEvent pl=new VoiceUserLeftEvent(memberId.toString(),confName);
-  conferenceEventListener.handleConferenceEvent(pl);
-}

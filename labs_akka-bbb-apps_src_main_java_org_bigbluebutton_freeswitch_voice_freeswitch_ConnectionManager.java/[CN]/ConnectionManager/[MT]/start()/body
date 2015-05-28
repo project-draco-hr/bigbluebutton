@@ -1,5 +1,0 @@
-{
-  System.out.println("Starting FreeSWITCH ESL connection manager.");
-  ConnectThread connector=new ConnectThread();
-  connectTask=(ScheduledFuture<ConnectThread>)connExec.scheduleAtFixedRate(connector,5,5,TimeUnit.SECONDS);
-}

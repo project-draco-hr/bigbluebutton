@@ -1,5 +1,0 @@
-{
-  if (connectTask != null) {
-    connectTask.cancel(true);
-  }
-}

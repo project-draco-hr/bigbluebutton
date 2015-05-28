@@ -1,6 +1,0 @@
-{
-  Client c=manager.getESLClient();
-  if (c.canSend()) {
-    c.sendAsyncApiCommand(mpc.getCommand(),mpc.getCommandArgs());
-  }
-}
