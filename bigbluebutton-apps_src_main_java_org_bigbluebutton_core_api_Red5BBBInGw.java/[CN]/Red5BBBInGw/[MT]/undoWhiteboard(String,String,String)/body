@@ -1,5 +1,5 @@
 {
   System.out.println("~~undoWhiteboard in Red5BBBInGw");
-  org.bigbluebutton.red5.pubsub.messages.UndoWhiteboardRequest msg=new org.bigbluebutton.red5.pubsub.messages.UndoWhiteboardRequest(meetingID,requesterID,whiteboardId);
+  org.bigbluebutton.common.messages.UndoWhiteboardRequest msg=new org.bigbluebutton.common.messages.UndoWhiteboardRequest(meetingID,requesterID,whiteboardId);
   sender.send(MessagingConstants.TO_WHITEBOARD_CHANNEL,msg.toJson());
 }
