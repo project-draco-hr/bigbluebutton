@@ -1,3 +1,0 @@
-{
-  eventMap.put("yOffset",Double.toString(offset));
-}

@@ -1,5 +1,0 @@
-{
-  super(room,requesterId);
-  this.participant=participant;
-  this.mute=mute;
-}
