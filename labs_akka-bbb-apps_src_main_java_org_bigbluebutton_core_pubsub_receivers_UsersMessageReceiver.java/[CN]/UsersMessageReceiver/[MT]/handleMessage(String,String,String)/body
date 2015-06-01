@@ -78,4 +78,35 @@ break;
 }
 }
 }
+ else if (channel.equalsIgnoreCase(MessagingConstants.FROM_VOICE_CONF_SYSTEM_CHAN)) {
+System.out.println("Voice message: " + channel + " "+ message);
+JsonParser parser=new JsonParser();
+JsonObject obj=(JsonObject)parser.parse(message);
+if (obj.has("header") && obj.has("payload")) {
+JsonObject header=(JsonObject)obj.get("header");
+if (header.has("name")) {
+String messageName=header.get("name").getAsString();
+switch (messageName) {
+case UserJoinedVoiceConfMessage.USER_JOINED_VOICE_CONF:
+processUserJoinedVoiceConfMessage(message);
+break;
+case UserLeftVoiceConfMessage.USER_LEFT_VOICE_CONF:
+processUserLeftVoiceConfMessage(message);
+break;
+case UserLockedInVoiceConfMessage.USER_LOCKED_IN_VOICE_CONF:
+processUserLockedInVoiceConfMessage(message);
+break;
+case UserMutedInVoiceConfMessage.USER_MUTED_IN_VOICE_CONF:
+processUserMutedInVoiceConfMessage(message);
+break;
+case UserTalkingInVoiceConfMessage.USER_TALKING_IN_VOICE_CONF:
+processUserTalkingInVoiceConfMessage(message);
+break;
+case VoiceConfRecordingStartedMessage.VOICE_CONF_RECORDING_STARTED:
+processVoiceConfRecordingStartedMessage(message);
+break;
+}
+}
+}
+}
 }

@@ -1,0 +1,3 @@
+{
+  GetUsersFromVoiceConfRequestMessage msg=GetUsersFromVoiceConfRequestMessage.fromJson(json);
+}

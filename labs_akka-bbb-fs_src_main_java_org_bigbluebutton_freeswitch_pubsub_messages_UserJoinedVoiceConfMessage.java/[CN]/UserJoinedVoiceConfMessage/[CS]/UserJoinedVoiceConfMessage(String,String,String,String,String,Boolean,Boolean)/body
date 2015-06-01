@@ -1,0 +1,9 @@
+{
+  this.voiceConfId=voiceConfId;
+  this.voiceUserId=voiceUserId;
+  this.userId=userId;
+  this.callerIdName=callerIdName;
+  this.callerIdNum=callerIdNum;
+  this.muted=muted;
+  this.talking=talking;
+}

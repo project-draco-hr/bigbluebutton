@@ -1,0 +1,3 @@
+{
+  RecordVoiceConfRequestMessage msg=RecordVoiceConfRequestMessage.fromJson(json);
+}

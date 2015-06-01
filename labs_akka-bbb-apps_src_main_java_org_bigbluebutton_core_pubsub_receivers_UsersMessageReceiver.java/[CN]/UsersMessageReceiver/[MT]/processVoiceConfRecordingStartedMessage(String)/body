@@ -1,0 +1,6 @@
+{
+  VoiceConfRecordingStartedMessage msg=VoiceConfRecordingStartedMessage.fromJson(json);
+  if (msg != null) {
+    bbbInGW.voiceRecording(msg.voiceConfId,msg.recordStream,msg.timestamp,msg.recording);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  EjectUserFromVoiceConfRequestMessage msg=EjectUserFromVoiceConfRequestMessage.fromJson(json);
+}

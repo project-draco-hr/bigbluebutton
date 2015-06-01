@@ -1,2 +1,29 @@
 {
+  if (channel.equalsIgnoreCase(TO_VOICE_CONF_SYSTEM_CHAN)) {
+    JsonParser parser=new JsonParser();
+    JsonObject obj=(JsonObject)parser.parse(message);
+    if (obj.has("header") && obj.has("payload")) {
+      JsonObject header=(JsonObject)obj.get("header");
+      if (header.has("name")) {
+        String messageName=header.get("name").getAsString();
+switch (messageName) {
+case EjectAllUsersFromVoiceConfRequestMessage.EJECT_ALL_VOICE_USERS_REQUEST:
+          processEjectAllVoiceUsersRequestMessage(message);
+        break;
+case EjectUserFromVoiceConfRequestMessage.EJECT_VOICE_USER_REQUEST:
+      processEjectVoiceUserRequestMessage(message);
+    break;
+case GetUsersFromVoiceConfRequestMessage.GET_VOICE_USERS_REQUEST:
+  processGetVoiceUsersRequestMessage(message);
+break;
+case MuteUserInVoiceConfRequestMessage.MUTE_VOICE_USER_REQUEST:
+processMuteVoiceUserRequestMessage(message);
+break;
+case RecordVoiceConfRequestMessage.RECORD_VOICE_CONF_REQUEST:
+processRecordVoiceConfRequestMessage(message);
+break;
+}
+}
+}
+}
 }

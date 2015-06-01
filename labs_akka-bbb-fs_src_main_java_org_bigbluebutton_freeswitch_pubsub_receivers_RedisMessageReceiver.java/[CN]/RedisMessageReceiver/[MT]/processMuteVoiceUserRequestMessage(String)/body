@@ -1,0 +1,3 @@
+{
+  MuteUserInVoiceConfRequestMessage msg=MuteUserInVoiceConfRequestMessage.fromJson(json);
+}
