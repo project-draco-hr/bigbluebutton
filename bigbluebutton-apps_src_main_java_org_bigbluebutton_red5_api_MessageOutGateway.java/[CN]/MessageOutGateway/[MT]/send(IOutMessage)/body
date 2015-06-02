@@ -1,5 +1,0 @@
-{
-  for (  OutMessageListener2 l : listeners) {
-    l.handleMessage(msg);
-  }
-}
