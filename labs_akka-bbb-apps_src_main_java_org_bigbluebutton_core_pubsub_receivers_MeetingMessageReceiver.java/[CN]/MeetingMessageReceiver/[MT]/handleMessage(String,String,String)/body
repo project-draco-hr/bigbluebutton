@@ -5,12 +5,10 @@
     if (msg != null) {
       if (msg instanceof EndMeetingMessage) {
         EndMeetingMessage emm=(EndMeetingMessage)msg;
-        System.out.println("Received end meeting request. Meeting id [" + emm.meetingId + "]");
         bbbGW.endMeeting(emm.meetingId);
       }
  else       if (msg instanceof CreateMeetingMessage) {
         CreateMeetingMessage emm=(CreateMeetingMessage)msg;
-        System.out.println("Received create meeting request. Meeting id [" + emm.id + "]");
         bbbGW.createMeeting2(emm.id,emm.externalId,emm.name,emm.record,emm.voiceBridge,emm.duration,emm.autoStartRecording,emm.allowStartStopRecording,emm.moderatorPass,emm.viewerPass,emm.createTime,emm.createDate);
       }
  else       if (msg instanceof RegisterUserMessage) {
@@ -23,8 +21,6 @@
       }
  else       if (msg instanceof ValidateAuthTokenMessage) {
         ValidateAuthTokenMessage emm=(ValidateAuthTokenMessage)msg;
-        System.out.println("Received ValidateAuthTokenMessage token request. Meeting id [" + emm.meetingId + "]");
-        System.out.println("TODO: Need to pass sessionId on ValidateAuthTokenMessage message.");
         String sessionId="tobeimplemented";
         bbbGW.validateAuthToken(emm.meetingId,emm.userId,emm.token,emm.replyTo,sessionId);
       }
