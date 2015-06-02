@@ -1,0 +1,24 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (BROADCAST_LAYOUT.equals(messageName)) {
+        if (payload.has(Constants.MEETING_ID) && payload.has(LOCKED) && payload.has(SET_BY_USERID)&& payload.has(USERS)&& payload.has(LAYOUT)) {
+          String id=payload.get(Constants.MEETING_ID).getAsString();
+          String setByUserid=payload.get(SET_BY_USERID).getAsString();
+          String layout=payload.get(LAYOUT).getAsString();
+          Boolean locked=payload.get(LOCKED).getAsBoolean();
+          JsonArray usersArr=(JsonArray)payload.get(USERS);
+          Util util=new Util();
+          ArrayList<String> users=util.extractUserids(usersArr);
+          return new BroadcastLayoutMessage(id,setByUserid,layout,locked,users);
+        }
+      }
+    }
+  }
+  return null;
+}

@@ -1,0 +1,3 @@
+String voiceConfId
+String voiceUserId
+Boolean muted

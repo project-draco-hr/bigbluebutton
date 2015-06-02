@@ -1,0 +1,6 @@
+{
+  SetUserStatusRequestMessage msg=SetUserStatusRequestMessage.fromJson(message);
+  if (msg != null) {
+    bbbInGW.setUserStatus(msg.meetingId,msg.userId,msg.status,msg.value);
+  }
+}

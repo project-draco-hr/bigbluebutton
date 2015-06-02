@@ -1,4 +1,0 @@
-{
-  log.debug("Setting whiteboard application instance");
-  this.application=a;
-}

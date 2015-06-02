@@ -1,0 +1,7 @@
+{
+  this.meetingId=meetingId;
+  this.messageKey=messageKey;
+  this.code=code;
+  this.presId=presId;
+  this.presName=presName;
+}

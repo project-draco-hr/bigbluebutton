@@ -1,0 +1,4 @@
+{
+  this.voiceConfId=voiceConfId;
+  this.voiceUserId=voiceUserId;
+}

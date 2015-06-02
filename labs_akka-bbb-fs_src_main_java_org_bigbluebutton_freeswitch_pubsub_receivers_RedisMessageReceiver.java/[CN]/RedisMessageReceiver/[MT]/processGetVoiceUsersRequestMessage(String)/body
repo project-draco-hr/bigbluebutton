@@ -1,0 +1,4 @@
+{
+  GetUsersFromVoiceConfRequestMessage msg=GetUsersFromVoiceConfRequestMessage.fromJson(json);
+  fsApp.getAllUsers(msg.voiceConfId);
+}

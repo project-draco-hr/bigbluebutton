@@ -1,0 +1,6 @@
+{
+  UserUnshareWebcamRequestMessage msg=UserUnshareWebcamRequestMessage.fromJson(message);
+  if (msg != null) {
+    bbbInGW.unshareWebcam(msg.meetingId,msg.userId,msg.stream);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  UserLockedInVoiceConfMessage msg=UserLockedInVoiceConfMessage.fromJson(json);
+  if (msg != null) {
+    bbbInGW.voiceUserLocked(msg.voiceConfId,msg.voiceUserId,msg.locked);
+  }
+}

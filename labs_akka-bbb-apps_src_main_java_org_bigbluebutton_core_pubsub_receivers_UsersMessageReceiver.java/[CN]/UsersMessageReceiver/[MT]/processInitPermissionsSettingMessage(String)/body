@@ -1,0 +1,6 @@
+{
+  InitPermissionsSettingMessage msg=InitPermissionsSettingMessage.fromJson(message);
+  if (msg != null) {
+    bbbInGW.initLockSettings(msg.meetingId,msg.permissions);
+  }
+}

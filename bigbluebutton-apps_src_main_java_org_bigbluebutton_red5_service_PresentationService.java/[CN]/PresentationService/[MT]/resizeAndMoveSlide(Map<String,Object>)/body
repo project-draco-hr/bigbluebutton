@@ -32,5 +32,5 @@
     heightRatio=(Double)msg.get("heightRatio");
   }
   IScope scope=Red5.getConnectionLocal().getScope();
-  presentationApplication.resizeAndMoveSlide(scope.getName(),xOffset,yOffset,widthRatio,heightRatio);
+  bbbInGW.resizeAndMoveSlide(scope.getName(),xOffset,yOffset,widthRatio,heightRatio);
 }

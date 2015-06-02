@@ -1,0 +1,3 @@
+{
+  eventMap.put("current",Boolean.toString(current));
+}

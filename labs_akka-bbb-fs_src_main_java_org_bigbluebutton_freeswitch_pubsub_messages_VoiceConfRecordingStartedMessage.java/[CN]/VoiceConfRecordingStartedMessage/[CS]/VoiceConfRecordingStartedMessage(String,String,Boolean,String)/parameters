@@ -1,0 +1,4 @@
+String voiceConfId
+String recordStream
+Boolean recording
+String timestamp

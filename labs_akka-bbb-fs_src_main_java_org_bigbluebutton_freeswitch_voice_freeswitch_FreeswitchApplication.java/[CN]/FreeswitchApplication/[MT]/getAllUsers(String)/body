@@ -1,0 +1,4 @@
+{
+  GetAllUsersCommand prc=new GetAllUsersCommand(voiceConfId,USER);
+  queueMessage(prc);
+}

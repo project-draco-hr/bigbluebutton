@@ -1,0 +1,5 @@
+{
+  this.manager=connManager;
+  this.eslEventListener=eventListener;
+  this.conferenceEventListener=confListener;
+}

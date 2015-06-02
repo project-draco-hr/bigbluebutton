@@ -1,0 +1,7 @@
+String userId
+String voiceUserId
+String room
+String callerIdNum
+String callerIdName
+Boolean muted
+Boolean speaking

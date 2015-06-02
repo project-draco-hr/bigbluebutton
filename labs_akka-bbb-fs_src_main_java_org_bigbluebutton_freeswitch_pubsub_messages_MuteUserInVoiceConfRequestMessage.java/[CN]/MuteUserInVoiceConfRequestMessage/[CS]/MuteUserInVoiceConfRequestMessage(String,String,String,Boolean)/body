@@ -1,0 +1,6 @@
+{
+  this.meetingId=meetingId;
+  this.voiceConfId=voiceConfId;
+  this.voiceUserId=voiceUserId;
+  this.mute=mute;
+}

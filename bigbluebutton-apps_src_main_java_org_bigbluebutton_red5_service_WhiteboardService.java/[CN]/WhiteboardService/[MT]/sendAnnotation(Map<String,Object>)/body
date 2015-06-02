@@ -2,6 +2,6 @@
   String meetingID=getMeetingId();
   String requesterID=getBbbSession().getInternalUserID();
   if (validMessage(annotation)) {
-    application.sendWhiteboardAnnotation(meetingID,requesterID,annotation);
+    bbbInGW.sendWhiteboardAnnotation(meetingID,requesterID,annotation);
   }
 }

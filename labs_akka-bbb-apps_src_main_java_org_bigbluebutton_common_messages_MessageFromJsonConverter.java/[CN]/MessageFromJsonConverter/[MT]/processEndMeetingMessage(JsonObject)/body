@@ -1,0 +1,4 @@
+{
+  String id=payload.get(Constants.MEETING_ID).getAsString();
+  return new EndMeetingMessage(id);
+}
