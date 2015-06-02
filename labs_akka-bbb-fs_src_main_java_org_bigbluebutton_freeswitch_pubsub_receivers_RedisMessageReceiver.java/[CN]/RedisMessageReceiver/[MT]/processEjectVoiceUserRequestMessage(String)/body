@@ -1,3 +1,4 @@
 {
   EjectUserFromVoiceConfRequestMessage msg=EjectUserFromVoiceConfRequestMessage.fromJson(json);
+  fsApp.eject(msg.voiceConfId,msg.voiceUserId);
 }
