@@ -13,7 +13,6 @@
           JsonObject annotationElement=(JsonObject)payload.get(Constants.ANNOTATION);
           Util util=new Util();
           Map<String,Object> annotation=util.extractAnnotation(annotationElement);
-          System.out.println("SendWhiteboardAnnotationRequestMessage fromJson");
           return new SendWhiteboardAnnotationRequestMessage(meetingId,requesterId,annotation);
         }
       }

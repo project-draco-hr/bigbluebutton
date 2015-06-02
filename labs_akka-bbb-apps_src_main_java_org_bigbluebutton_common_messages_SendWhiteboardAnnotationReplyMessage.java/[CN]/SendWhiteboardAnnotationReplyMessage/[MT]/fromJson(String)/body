@@ -14,7 +14,6 @@
           JsonObject shape=(JsonObject)payload.get(Constants.SHAPE);
           Util util=new Util();
           Map<String,Object> annotation=util.extractOuterAnnotation(shape);
-          System.out.println("SendWhiteboardAnnotationReplyMessage fromJson");
           return new SendWhiteboardAnnotationReplyMessage(meetingId,requesterId,whiteboardId,annotation);
         }
       }

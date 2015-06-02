@@ -1,0 +1,10 @@
+{
+  VoiceUserTalkingRecordEvent pte=(VoiceUserTalkingRecordEvent)event;
+  ParticipantTalkingVoiceRecordEvent evt=new ParticipantTalkingVoiceRecordEvent();
+  evt.setMeetingId(room);
+  evt.setTimestamp(genTimestamp());
+  evt.setBridge(event.getRoom());
+  evt.setParticipant(((VoiceUserTalkingRecordEvent)event).getUserId().toString());
+  evt.setTalking(pte.isTalking());
+  recorder.record(room,evt);
+}
