@@ -1,6 +1,5 @@
 {
   String meetingID=getMeetingId();
   String requesterID=getBbbSession().getInternalUserID();
-  String replyTo=meetingID + "/" + requesterID;
-  bbbInGW.isWhiteboardEnabled(meetingID,requesterID,replyTo);
+  application.setIsWhiteboardEnabled(meetingID,requesterID);
 }

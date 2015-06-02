@@ -1,5 +1,5 @@
 {
   String presentationID=(String)msg.get("presentationID");
   IScope scope=Red5.getConnectionLocal().getScope();
-  bbbInGW.removePresentation(scope.getName(),presentationID);
+  presentationApplication.removePresentation(scope.getName(),presentationID);
 }

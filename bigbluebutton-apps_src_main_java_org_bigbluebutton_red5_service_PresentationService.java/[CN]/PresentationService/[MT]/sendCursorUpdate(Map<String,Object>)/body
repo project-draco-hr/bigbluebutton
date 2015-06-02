@@ -16,5 +16,5 @@
  else {
     yPercent=(Double)msg.get("yPercent");
   }
-  bbbInGW.sendCursorUpdate(scope.getName(),xPercent,yPercent);
+  presentationApplication.sendCursorUpdate(scope.getName(),xPercent,yPercent);
 }

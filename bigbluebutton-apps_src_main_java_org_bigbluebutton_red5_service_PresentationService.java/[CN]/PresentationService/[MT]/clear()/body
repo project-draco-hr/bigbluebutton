@@ -1,4 +1,4 @@
 {
   IScope scope=Red5.getConnectionLocal().getScope();
-  bbbInGW.clear(scope.getName());
+  presentationApplication.clear(scope.getName());
 }

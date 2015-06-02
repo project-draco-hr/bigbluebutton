@@ -1,7 +1,5 @@
 {
   IScope scope=Red5.getConnectionLocal().getScope();
-  String meetingID=scope.getName();
-  String requesterID=getBbbSession().getInternalUserID();
-  String replyTo=meetingID + "/" + requesterID;
-  bbbInGW.getPresentationInfo(meetingID,requesterID,replyTo);
+  log.debug("Getting presentation info for meeting [{}]",scope.getName());
+  presentationApplication.getPresentationInfo(scope.getName(),getBbbSession().getInternalUserID());
 }
