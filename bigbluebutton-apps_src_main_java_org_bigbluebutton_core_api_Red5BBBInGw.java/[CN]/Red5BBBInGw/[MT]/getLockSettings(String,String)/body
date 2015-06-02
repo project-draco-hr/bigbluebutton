@@ -1,5 +1,4 @@
 {
   GetLockSettingsMessage msg=new GetLockSettingsMessage(meetingId,userId);
-  System.out.println("~~~GetLockSettings in Red5BBBInGw");
   sender.send(MessagingConstants.TO_MEETING_CHANNEL,msg.toJson());
 }

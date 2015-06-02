@@ -1,5 +1,4 @@
 {
   LockUserMessage msg=new LockUserMessage(meetingId,requesterID,lock,internalUserID);
-  System.out.println("~~~LockUser in Red5BBBInGw");
   sender.send(MessagingConstants.TO_MEETING_CHANNEL,msg.toJson());
 }

@@ -1,0 +1,14 @@
+{
+  PresentationCursorUpdateMessage msg=PresentationCursorUpdateMessage.fromJson(json);
+  if (msg != null) {
+    Map<String,Object> args=new HashMap<String,Object>();
+    args.put("meetingID",msg.meetingId);
+    args.put("xPercent",msg.xPercent);
+    args.put("yPercent",msg.yPercent);
+    Map<String,Object> message=new HashMap<String,Object>();
+    Gson gson=new Gson();
+    message.put("msg",gson.toJson(args));
+    BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"PresentationCursorUpdateCommand",message);
+    service.sendMessage(m);
+  }
+}
