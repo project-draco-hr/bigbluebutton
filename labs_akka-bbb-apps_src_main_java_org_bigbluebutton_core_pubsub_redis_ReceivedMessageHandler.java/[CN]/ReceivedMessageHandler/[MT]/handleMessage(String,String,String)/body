@@ -1,4 +1,0 @@
-{
-  ReceivedMessage rm=new ReceivedMessage(pattern,channel,message);
-  receivedMessages.add(rm);
-}
