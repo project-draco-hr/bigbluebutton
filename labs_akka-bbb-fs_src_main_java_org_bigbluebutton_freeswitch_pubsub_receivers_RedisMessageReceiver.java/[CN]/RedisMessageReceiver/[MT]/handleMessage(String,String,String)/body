@@ -19,8 +19,11 @@ break;
 case MuteUserInVoiceConfRequestMessage.MUTE_VOICE_USER_REQUEST:
 processMuteVoiceUserRequestMessage(message);
 break;
-case RecordVoiceConfRequestMessage.RECORD_VOICE_CONF_REQUEST:
-processRecordVoiceConfRequestMessage(message);
+case StartRecordingVoiceConfRequestMessage.START_RECORD_VOICE_CONF_REQUEST:
+processStartRecordingVoiceConfRequestMessage(message);
+break;
+case StopRecordingVoiceConfRequestMessage.STOP_RECORD_VOICE_CONF_REQUEST:
+processStopRecordingVoiceConfRequestMessage(message);
 break;
 }
 }

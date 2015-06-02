@@ -1,0 +1,4 @@
+{
+  StartRecordingVoiceConfRequestMessage msg=StartRecordingVoiceConfRequestMessage.fromJson(json);
+  fsApp.startRecording(msg.voiceConfId,msg.meetingId);
+}
