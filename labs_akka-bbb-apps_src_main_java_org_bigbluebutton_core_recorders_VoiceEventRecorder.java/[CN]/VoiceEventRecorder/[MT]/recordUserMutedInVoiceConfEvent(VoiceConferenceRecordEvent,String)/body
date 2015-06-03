@@ -1,10 +1,10 @@
 {
   VoiceUserMutedRecordEvent pme=(VoiceUserMutedRecordEvent)event;
   ParticipantMutedVoiceRecordEvent evt=new ParticipantMutedVoiceRecordEvent();
-  evt.setMeetingId(room);
+  evt.setMeetingId(meetingId);
   evt.setTimestamp(genTimestamp());
   evt.setBridge(event.getRoom());
   evt.setParticipant(((VoiceUserMutedRecordEvent)event).getUserId().toString());
   evt.setMuted(pme.isMuted());
-  recorder.record(room,evt);
+  recorder.record(meetingId,evt);
 }

@@ -1,21 +1,21 @@
 {
   if (event instanceof VoiceUserJoinedRecordEvent) {
-    recordParticipantJoinedEvent(event,room);
+    recordUserJoinedVoiceConfEvent(event,meetingId);
   }
  else   if (event instanceof VoiceUserLeftRecordEvent) {
-    recordParticipantLeftEvent(event,room);
+    recordUserLeftVoiceConfEvent(event,meetingId);
   }
  else   if (event instanceof VoiceUserMutedRecordEvent) {
-    recordParticipantMutedEvent(event,room);
+    recordUserMutedInVoiceConfEvent(event,meetingId);
   }
  else   if (event instanceof VoiceUserTalkingRecordEvent) {
-    recordParticipantTalkingEvent(event,room);
+    recordUserTalkingInVoiceConfEvent(event,meetingId);
   }
  else   if (event instanceof VoiceUserLockedRecordEvent) {
-    recordParticipantLockedEvent(event,room);
+    recordUserLockedInVoiceConfEvent(event,meetingId);
   }
  else   if (event instanceof VoiceStartRecordingRecordEvent) {
-    recordStartRecordingEvent(event,room);
+    recordVoiceConfRecordingStartedEvent(event,meetingId);
   }
  else {
     System.out.println("Processing UnknownEvent " + event.getClass().getName() + " for room: "+ event.getRoom());

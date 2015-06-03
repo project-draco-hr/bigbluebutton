@@ -1,10 +1,10 @@
 {
   VoiceUserLockedRecordEvent ple=(VoiceUserLockedRecordEvent)event;
   ParticipantLockedVoiceRecordEvent evt=new ParticipantLockedVoiceRecordEvent();
-  evt.setMeetingId(room);
+  evt.setMeetingId(meetingId);
   evt.setTimestamp(genTimestamp());
   evt.setBridge(event.getRoom());
   evt.setParticipant(((VoiceUserLockedRecordEvent)event).getUserId().toString());
   evt.setLocked(ple.isLocked());
-  recorder.record(room,evt);
+  recorder.record(meetingId,evt);
 }

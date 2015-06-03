@@ -1,0 +1,13 @@
+{
+  config=new GenericObjectPoolConfigWrapper();
+  config.setWhenExhaustedAction(GenericObjectPool.WHEN_EXHAUSTED_FAIL);
+  config.setMaxActive(12);
+  config.setMaxIdle(6);
+  config.setMinIdle(1);
+  config.setTestOnBorrow(true);
+  config.setTestOnReturn(true);
+  config.setTestWhileIdle(true);
+  config.setNumTestsPerEvictionRun(12);
+  config.setTimeBetweenEvictionRunsMillis(60000);
+  config.setMaxWait(5000);
+}
