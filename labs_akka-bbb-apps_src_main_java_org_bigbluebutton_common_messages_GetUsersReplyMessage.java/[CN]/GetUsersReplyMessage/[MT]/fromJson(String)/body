@@ -20,6 +20,5 @@
       }
     }
   }
-  System.out.println("Failed to parse GetUsersReplyMessage");
   return null;
 }

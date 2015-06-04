@@ -15,7 +15,6 @@
           int numberOfPages=payload.get(Constants.NUM_PAGES).getAsInt();
           int maxNumberPages=payload.get(Constants.MAX_NUM_PAGES).getAsInt();
           String presName=payload.get(Constants.PRESENTATION_NAME).getAsString();
-          System.out.println("SendPageCountError fromJson");
           return new SendPageCountErrorMessage(messageKey,meetingId,code,presId,numberOfPages,maxNumberPages,presName);
         }
       }

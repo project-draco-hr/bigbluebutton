@@ -13,7 +13,6 @@
           double yOffset=payload.get(Constants.Y_OFFSET).getAsDouble();
           double heightRatio=payload.get(Constants.HEIGHT_RATIO).getAsDouble();
           double widthRatio=payload.get(Constants.WIDTH_RATIO).getAsDouble();
-          System.out.println("ResizeAndMoveSlide fromJson");
           return new ResizeAndMoveSlideMessage(meetingId,xOffset,yOffset,widthRatio,heightRatio);
         }
       }

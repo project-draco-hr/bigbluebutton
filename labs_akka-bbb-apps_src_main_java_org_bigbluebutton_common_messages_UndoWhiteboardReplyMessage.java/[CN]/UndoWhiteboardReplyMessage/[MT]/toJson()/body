@@ -4,7 +4,6 @@
   payload.put(Constants.WHITEBOARD_ID,whiteboardId);
   payload.put(Constants.REQUESTER_ID,requesterId);
   payload.put(Constants.SHAPE_ID,shapeId);
-  System.out.println("UndoWhiteboardReplyMessage toJson");
   java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(UNDO_WHITEBOARD_REPLY,VERSION,null);
   return MessageBuilder.buildJson(header,payload);
 }

@@ -15,7 +15,6 @@
           int numberOfPages=payload.get(Constants.NUM_PAGES).getAsInt();
           int pagesCompleted=payload.get(Constants.PAGES_COMPLETED).getAsInt();
           String presName=payload.get(Constants.PRESENTATION_NAME).getAsString();
-          System.out.println("SendSlideGenerated fromJson");
           return new SendSlideGeneratedMessage(messageKey,meetingId,code,presId,numberOfPages,pagesCompleted,presName);
         }
       }

@@ -13,7 +13,6 @@
           JsonArray history=(JsonArray)payload.get(Constants.CHAT_HISTORY);
           Util util=new Util();
           ArrayList<Map<String,Object>> chatHistory=util.extractChatHistory(history);
-          System.out.println("GetChatHistoryReplyMessage fromJson");
           return new GetChatHistoryReplyMessage(meetingId,requesterId,chatHistory);
         }
       }

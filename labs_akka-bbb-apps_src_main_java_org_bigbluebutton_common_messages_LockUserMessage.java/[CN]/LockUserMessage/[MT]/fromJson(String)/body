@@ -12,7 +12,6 @@
           String requesterId=payload.get(Constants.REQUESTER_ID).getAsString();
           boolean lock=payload.get(Constants.LOCK).getAsBoolean();
           String internalUserId=payload.get(Constants.INTERNAL_USER_ID).getAsString();
-          System.out.println("LockUser fromJson");
           return new LockUserMessage(meetingId,requesterId,lock,internalUserId);
         }
       }

@@ -11,7 +11,6 @@
   payload.put(Constants.MEETING_ID,meetingId);
   payload.put(Constants.USER_ID,userId);
   payload.put(Constants.SETTINGS,settingsMap);
-  System.out.println("SendLockSettings toJson");
   java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(SEND_LOCK_SETTINGS,VERSION,null);
   return MessageBuilder.buildJson(header,payload);
 }

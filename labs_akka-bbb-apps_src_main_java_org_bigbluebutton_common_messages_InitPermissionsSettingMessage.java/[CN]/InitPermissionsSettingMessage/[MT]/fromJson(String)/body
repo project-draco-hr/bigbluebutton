@@ -19,6 +19,5 @@
       }
     }
   }
-  System.out.println("Failed to parse NewPermissionsSettingMessage");
   return null;
 }

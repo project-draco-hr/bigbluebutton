@@ -14,6 +14,5 @@
       }
     }
   }
-  System.out.println("Failed to parse MeetingHasEndedMessage");
   return null;
 }

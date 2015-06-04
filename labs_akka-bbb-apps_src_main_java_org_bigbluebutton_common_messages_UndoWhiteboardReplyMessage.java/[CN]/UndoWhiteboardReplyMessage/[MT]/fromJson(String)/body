@@ -12,7 +12,6 @@
           String whiteboardId=payload.get(Constants.WHITEBOARD_ID).getAsString();
           String shapeId=payload.get(Constants.SHAPE_ID).getAsString();
           String requesterId=payload.get(Constants.REQUESTER_ID).getAsString();
-          System.out.println("UndoWhiteboardReplyMessage fromJson");
           return new UndoWhiteboardReplyMessage(meetingId,requesterId,whiteboardId,shapeId);
         }
       }

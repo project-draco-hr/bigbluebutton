@@ -10,7 +10,6 @@
         if (payload.has(Constants.MEETING_ID) && payload.has(Constants.PAGE)) {
           String meetingId=payload.get(Constants.MEETING_ID).getAsString();
           String page=payload.get(Constants.PAGE).getAsString();
-          System.out.println("GoToSlide fromJson");
           return new GoToSlideMessage(meetingId,page);
         }
       }

@@ -8,6 +8,5 @@
   payload.put(Constants.MAX_NUM_PAGES,maxNumberPages);
   payload.put(Constants.PRESENTATION_NAME,presName);
   java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(SEND_PAGE_COUNT_ERROR,VERSION,null);
-  System.out.println("SendPageCountError toJson");
   return MessageBuilder.buildJson(header,payload);
 }

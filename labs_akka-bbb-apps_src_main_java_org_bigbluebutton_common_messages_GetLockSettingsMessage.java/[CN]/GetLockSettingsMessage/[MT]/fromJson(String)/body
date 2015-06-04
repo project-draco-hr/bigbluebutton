@@ -10,7 +10,6 @@
         if (payload.has(Constants.MEETING_ID) && payload.has(Constants.USER_ID)) {
           String meetingId=payload.get(Constants.MEETING_ID).getAsString();
           String userId=payload.get(Constants.USER_ID).getAsString();
-          System.out.println("GetLockSettings fromJson");
           return new GetLockSettingsMessage(meetingId,userId);
         }
       }

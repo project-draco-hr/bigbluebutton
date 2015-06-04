@@ -13,6 +13,5 @@
   payload.put(Constants.MESSAGE,message);
   payload.put(Constants.MEETING_ID,meetingId);
   java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(SEND_PRIVATE_CHAT_MESSAGE,VERSION,null);
-  System.out.println("SendPrivateChatMessage toJson");
   return MessageBuilder.buildJson(header,payload);
 }

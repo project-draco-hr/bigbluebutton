@@ -8,6 +8,5 @@
   payload.put(Constants.PRESENTATION_NAME,presName);
   payload.put(Constants.PRESENTATION_BASE_URL,presBaseUrl);
   java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(SEND_CONVERSION_COMPLETED,VERSION,null);
-  System.out.println("SendConversionCompleted toJson");
   return MessageBuilder.buildJson(header,payload);
 }

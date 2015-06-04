@@ -3,7 +3,6 @@
   payload.put(Constants.MEETING_ID,meetingId);
   payload.put(Constants.WHITEBOARD_ID,whiteboardId);
   payload.put(Constants.REQUESTER_ID,requesterId);
-  System.out.println("ClearWhiteboardReplyMessage toJson");
   java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(WHITEBOARD_CLEARED_MESSAGE,VERSION,null);
   return MessageBuilder.buildJson(header,payload);
 }

@@ -7,13 +7,11 @@
     if (header.has("name")) {
       String messageName=header.get("name").getAsString();
       if (REQUEST_WHITEBOARD_ANNOTATION_HISTORY_REQUEST.equals(messageName)) {
-        System.out.println("4" + payload.toString());
         if (payload.has(Constants.MEETING_ID) && payload.has(Constants.WHITEBOARD_ID) && payload.has(Constants.REPLY_TO)&& payload.has(Constants.REQUESTER_ID)) {
           String meetingId=payload.get(Constants.MEETING_ID).getAsString();
           String whiteboardId=payload.get(Constants.WHITEBOARD_ID).getAsString();
           String requesterId=payload.get(Constants.REQUESTER_ID).getAsString();
           String replyTo=payload.get(Constants.REPLY_TO).getAsString();
-          System.out.println("RequestWhiteboardAnnotationHistoryRequestMessage fromJson");
           return new RequestWhiteboardAnnotationHistoryRequestMessage(meetingId,requesterId,whiteboardId,replyTo);
         }
       }

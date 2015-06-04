@@ -18,6 +18,5 @@
       }
     }
   }
-  System.out.println("Failed to parse RegisterUserMessage");
   return null;
 }

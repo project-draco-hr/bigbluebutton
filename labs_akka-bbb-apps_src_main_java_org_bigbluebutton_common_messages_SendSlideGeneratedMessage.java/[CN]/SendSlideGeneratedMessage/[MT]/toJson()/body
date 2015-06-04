@@ -8,6 +8,5 @@
   payload.put(Constants.PAGES_COMPLETED,pagesCompleted);
   payload.put(Constants.PRESENTATION_NAME,presName);
   java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(SEND_SLIDE_GENERATED,VERSION,null);
-  System.out.println("SendSlideGenerated toJson");
   return MessageBuilder.buildJson(header,payload);
 }

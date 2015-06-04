@@ -11,7 +11,6 @@
           String meetingId=payload.get(Constants.MEETING_ID).getAsString();
           String requesterId=payload.get(Constants.REQUESTER_ID).getAsString();
           String replyTo=payload.get(Constants.REPLY_TO).getAsString();
-          System.out.println("GetSlideInfo fromJson");
           return new GetSlideInfoMessage(meetingId,requesterId,replyTo);
         }
       }

@@ -20,7 +20,6 @@
             settingsMap.put("lockOnJoinConfigurable",settingsObj.get(Constants.LOCK_ON_JOIN_CONFIGURABLE).getAsBoolean());
             String meetingId=payload.get(Constants.MEETING_ID).getAsString();
             String userId=payload.get(Constants.USER_ID).getAsString();
-            System.out.println("SendLockSettings fromJson");
             return new SendLockSettingsMessage(meetingId,userId,settingsMap);
           }
         }

@@ -4,6 +4,5 @@
   payload.put(Constants.PRESENTATION_ID,presentationId);
   payload.put(Constants.SHARE,share);
   java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(SHARE_PRESENTATION,VERSION,null);
-  System.out.println("SharePresentation toJson");
   return MessageBuilder.buildJson(header,payload);
 }

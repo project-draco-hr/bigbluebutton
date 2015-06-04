@@ -14,7 +14,6 @@
           JsonArray shapes=(JsonArray)payload.get(Constants.SHAPES);
           Util util=new Util();
           ArrayList<Map<String,Object>> shapesList=util.extractShapes(shapes);
-          System.out.println("GetWhiteboardShapesReplyMessage fromJson" + shapesList.toString());
           return new GetWhiteboardShapesReplyMessage(meetingId,requesterId,whiteboardId,shapesList);
         }
       }

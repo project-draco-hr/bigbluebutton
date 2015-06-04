@@ -3,7 +3,6 @@
   payload.put(Constants.MEETING_ID,meetingId);
   payload.put(Constants.WHITEBOARD_ID,whiteboardId);
   payload.put(Constants.REQUESTER_ID,requesterId);
-  System.out.println("UndoWhiteboardRequest toJson");
   java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(UNDO_WHITEBOARD_REQUEST,VERSION,null);
   return MessageBuilder.buildJson(header,payload);
 }
