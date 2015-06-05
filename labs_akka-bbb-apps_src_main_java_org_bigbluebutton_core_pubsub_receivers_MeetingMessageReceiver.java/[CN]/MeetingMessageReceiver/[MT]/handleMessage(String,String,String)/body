@@ -1,4 +1,5 @@
 {
+  LOG.debug("Checking message: " + pattern + " "+ channel+ " "+ message);
   if (channel.equalsIgnoreCase(MessagingConstants.TO_MEETING_CHANNEL)) {
     IPublishedMessage msg=MessageFromJsonConverter.convert(message);
     if (msg != null) {
