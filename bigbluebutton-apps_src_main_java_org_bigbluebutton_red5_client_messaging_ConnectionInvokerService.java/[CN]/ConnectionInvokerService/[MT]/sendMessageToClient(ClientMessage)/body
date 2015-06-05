@@ -14,4 +14,7 @@
  else   if (message instanceof DisconnectAllClientsMessage) {
     handleDisconnectAllClientsMessage((DisconnectAllClientsMessage)message);
   }
+ else   if (message instanceof DisconnectAllMessage) {
+    handleDisconnectAllMessage((DisconnectAllMessage)message);
+  }
 }

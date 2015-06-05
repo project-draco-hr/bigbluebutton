@@ -1,11 +1,6 @@
 {
-  if (pingMessages.size() < maxLives) {
-    pingMessages.add(msg.getId());
-    service.sendKeepAlive(msg.getId());
-  }
- else {
+  if (lastKeepAliveMessage != 0 && (System.currentTimeMillis() - lastKeepAliveMessage > 20000)) {
+    log.warn("BBB Apps is down. Making service unavailable.");
     available=false;
-    pingMessages.clear();
-    log.warn("bbb-apps is down!");
   }
 }

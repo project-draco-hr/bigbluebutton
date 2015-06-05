@@ -33,16 +33,16 @@
       }
     }
   }
- else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_SYSTEM_CHANNEL)) {
+ else   if (channel.equalsIgnoreCase(MessagingConstants.BBB_APPS_KEEP_ALIVE_CHANNEL)) {
     if (obj.has("header") && obj.has("payload")) {
       JsonObject header=(JsonObject)obj.get("header");
       JsonObject payload=(JsonObject)obj.get("payload");
       if (header.has("name")) {
         String messageName=header.get("name").getAsString();
         for (        MessageListener listener : listeners) {
-          if (MessagingConstants.KEEP_ALIVE_REPLY.equalsIgnoreCase(messageName)) {
-            String pongId=payload.get("keep_alive_id").getAsString();
-            listener.handle(new KeepAliveReply(pongId));
+          if (BbbAppsIsAliveMessage.BBB_APPS_IS_ALIVE.equalsIgnoreCase(messageName)) {
+            BbbAppsIsAliveMessage msg=BbbAppsIsAliveMessage.fromJson(message);
+            listener.handle(new KeepAliveReply(msg.startedOn,msg.timestamp));
           }
         }
       }
