@@ -4,9 +4,14 @@
     log.warn("Security is disabled in this service. Make sure this is intentional.");
     return true;
   }
-  queryString=queryString.replace("&checksum=" + checksum,"");
-  queryString=queryString.replace("checksum=" + checksum + "&","");
-  queryString=queryString.replace("checksum=" + checksum,"");
+  if (queryString == null) {
+    queryString="";
+  }
+ else {
+    queryString=queryString.replace("&checksum=" + checksum,"");
+    queryString=queryString.replace("checksum=" + checksum + "&","");
+    queryString=queryString.replace("checksum=" + checksum,"");
+  }
   log.debug("query string after checksum removed: [{}]",queryString);
   String cs=DigestUtils.shaHex(apiCall + queryString + securitySalt);
   log.debug("our checksum: [{}], client: [{}]",cs,checksum);
