@@ -1,7 +1,0 @@
-String meetingId
-String presentationId
-String code
-String messageKey
-String presentationName
-int numPages
-int maxNumPages

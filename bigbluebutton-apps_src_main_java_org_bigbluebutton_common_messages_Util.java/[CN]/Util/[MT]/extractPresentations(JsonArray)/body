@@ -1,9 +1,0 @@
-{
-  ArrayList<Map<String,Object>> presentations=new ArrayList<Map<String,Object>>();
-  Iterator<JsonElement> presentationsIter=presArray.iterator();
-  while (presentationsIter.hasNext()) {
-    JsonObject presObj=(JsonObject)presentationsIter.next();
-    presentations.add(extractPresentation(presObj));
-  }
-  return presentations;
-}

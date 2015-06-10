@@ -1,6 +1,0 @@
-String meetingId
-String requesterId
-int xOffset
-int yOffset
-int widthRatio
-int heightRatio
