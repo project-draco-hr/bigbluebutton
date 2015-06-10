@@ -1,0 +1,3 @@
+String meetingID
+Map<String,Boolean> permissions
+ArrayList<Map<String,Object>> users

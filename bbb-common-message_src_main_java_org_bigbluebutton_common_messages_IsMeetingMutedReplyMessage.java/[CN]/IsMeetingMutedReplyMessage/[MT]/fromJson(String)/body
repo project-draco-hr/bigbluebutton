@@ -1,0 +1,20 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (IS_MEETING_MUTED_REPLY.equals(messageName)) {
+        if (payload.has(MEETING_ID) && payload.has(REQUESTER_ID) && payload.has(MUTED)) {
+          String id=payload.get(MEETING_ID).getAsString();
+          String requesterId=payload.get(REQUESTER_ID).getAsString();
+          Boolean muted=payload.get(MUTED).getAsBoolean();
+          return new IsMeetingMutedReplyMessage(id,requesterId,muted);
+        }
+      }
+    }
+  }
+  return null;
+}

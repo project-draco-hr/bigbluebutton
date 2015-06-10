@@ -1,0 +1,5 @@
+{
+  this.meetingId=meetingId;
+  this.chatHistory=chatHistory;
+  this.requesterId=requesterId;
+}

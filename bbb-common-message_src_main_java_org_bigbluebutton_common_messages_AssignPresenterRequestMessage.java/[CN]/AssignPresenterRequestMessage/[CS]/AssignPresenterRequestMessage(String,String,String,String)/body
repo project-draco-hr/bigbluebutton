@@ -1,0 +1,6 @@
+{
+  this.meetingId=meetingID;
+  this.newPresenterId=newPresenterId;
+  this.newPresenterName=newPresenterName;
+  this.assignedBy=assignedBy;
+}

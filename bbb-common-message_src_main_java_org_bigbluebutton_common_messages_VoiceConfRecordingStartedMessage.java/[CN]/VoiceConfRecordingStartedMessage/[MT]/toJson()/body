@@ -1,0 +1,9 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(VOICE_CONF_ID,voiceConfId);
+  payload.put(RECORD_STREAM,recordStream);
+  payload.put(RECORDING,recording);
+  payload.put(TIMESTAMP,timestamp);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(VOICE_CONF_RECORDING_STARTED,VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}
