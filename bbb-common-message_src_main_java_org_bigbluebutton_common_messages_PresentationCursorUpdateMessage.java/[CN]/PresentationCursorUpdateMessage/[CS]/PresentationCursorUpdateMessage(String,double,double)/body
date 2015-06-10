@@ -1,0 +1,5 @@
+{
+  this.meetingId=meetingId;
+  this.xPercent=xPercent;
+  this.yPercent=yPercent;
+}

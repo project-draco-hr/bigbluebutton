@@ -1,0 +1,8 @@
+{
+  this.meetingId=meetingId;
+  this.requesterId=requesterId;
+  this.xOffset=xOffset;
+  this.yOffset=yOffset;
+  this.widthRatio=widthRatio;
+  this.heightRatio=heightRatio;
+}

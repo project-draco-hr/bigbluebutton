@@ -1,0 +1,12 @@
+{
+  ArrayList<Map<String,Object>> collection=new ArrayList<Map<String,Object>>();
+  Iterator<JsonElement> shapesIter=shapes.iterator();
+  while (shapesIter.hasNext()) {
+    JsonElement shape=shapesIter.next();
+    Map<String,Object> shapeMap=extractOuterAnnotation((JsonObject)shape);
+    if (shapeMap != null) {
+      collection.add(shapeMap);
+    }
+  }
+  return collection;
+}

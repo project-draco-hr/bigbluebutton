@@ -1,0 +1,9 @@
+{
+  this.meetingId=meetingId;
+  this.presentationId=presentationId;
+  this.code=code;
+  this.messageKey=messageKey;
+  this.presentationName=presentationName;
+  this.pagesCompleted=pagesCompleted;
+  this.numPages=numPages;
+}
