@@ -1,4 +1,0 @@
-String meetingId
-String requesterId
-String userId
-Boolean lock

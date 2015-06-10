@@ -1,9 +1,0 @@
-{
-  HashMap<String,Object> payload=new HashMap<String,Object>();
-  payload.put(Constants.MEETING_ID,meetingId);
-  payload.put(Constants.REQUESTER_ID,requesterId);
-  payload.put(Constants.ANNOTATION,annotation);
-  System.out.println("SendWhiteboardAnnotationRequestMessage toJson");
-  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(SEND_WHITEBOARD_ANNOTATION_REQUEST,VERSION,null);
-  return MessageBuilder.buildJson(header,payload);
-}

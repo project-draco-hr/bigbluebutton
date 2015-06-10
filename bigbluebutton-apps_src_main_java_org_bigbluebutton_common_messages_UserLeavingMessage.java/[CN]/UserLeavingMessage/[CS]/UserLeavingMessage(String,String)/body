@@ -1,4 +1,0 @@
-{
-  this.meetingId=meetingID;
-  this.userId=internalUserId;
-}

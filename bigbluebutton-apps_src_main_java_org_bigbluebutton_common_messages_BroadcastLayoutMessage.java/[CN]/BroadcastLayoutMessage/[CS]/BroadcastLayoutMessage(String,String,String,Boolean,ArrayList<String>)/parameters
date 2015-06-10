@@ -1,5 +1,0 @@
-String meetingId
-String setByUserid
-String layout
-Boolean locked
-ArrayList<String> users

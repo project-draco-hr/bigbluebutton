@@ -1,7 +1,0 @@
-{
-  this.meetingId=meetingId;
-  this.requestedByUserid=requestedByUserid;
-  this.setByUserid=setByUserid;
-  this.layout=layout;
-  this.locked=locked;
-}

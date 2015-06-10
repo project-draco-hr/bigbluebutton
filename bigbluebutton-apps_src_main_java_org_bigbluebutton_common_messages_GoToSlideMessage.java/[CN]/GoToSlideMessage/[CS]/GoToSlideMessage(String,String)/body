@@ -1,4 +1,0 @@
-{
-  this.meetingId=meetingId;
-  this.page=page;
-}

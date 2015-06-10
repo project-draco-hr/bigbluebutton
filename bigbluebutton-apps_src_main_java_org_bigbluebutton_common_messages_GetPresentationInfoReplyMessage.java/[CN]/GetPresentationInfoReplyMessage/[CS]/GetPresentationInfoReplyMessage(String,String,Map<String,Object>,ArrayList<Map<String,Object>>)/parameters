@@ -1,4 +1,0 @@
-String meetingId
-String requesterId
-Map<String,Object> presenter
-ArrayList<Map<String,Object>> presentations

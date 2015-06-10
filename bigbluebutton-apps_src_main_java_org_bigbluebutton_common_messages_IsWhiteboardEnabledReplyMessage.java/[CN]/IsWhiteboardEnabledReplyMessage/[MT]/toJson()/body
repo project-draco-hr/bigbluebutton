@@ -1,9 +1,0 @@
-{
-  HashMap<String,Object> payload=new HashMap<String,Object>();
-  payload.put(Constants.MEETING_ID,meetingId);
-  payload.put(Constants.REQUESTER_ID,requesterId);
-  payload.put(Constants.ENABLED,enabled);
-  System.out.println("IsWhiteboardEnabledReplyMessage toJson");
-  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(IS_WHITEBOARD_ENABLED_REPLY,VERSION,null);
-  return MessageBuilder.buildJson(header,payload);
-}

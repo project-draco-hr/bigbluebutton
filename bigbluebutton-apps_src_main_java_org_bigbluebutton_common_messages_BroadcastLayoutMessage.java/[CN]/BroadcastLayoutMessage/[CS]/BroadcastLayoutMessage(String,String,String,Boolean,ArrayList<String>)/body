@@ -1,7 +1,0 @@
-{
-  this.meetingId=meetingId;
-  this.setByUserid=setByUserid;
-  this.layout=layout;
-  this.locked=locked;
-  this.users=users;
-}

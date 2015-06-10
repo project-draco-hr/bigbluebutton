@@ -1,5 +1,0 @@
-String meetingId
-String requestedByUserid
-String setByUserid
-String layout
-Boolean locked

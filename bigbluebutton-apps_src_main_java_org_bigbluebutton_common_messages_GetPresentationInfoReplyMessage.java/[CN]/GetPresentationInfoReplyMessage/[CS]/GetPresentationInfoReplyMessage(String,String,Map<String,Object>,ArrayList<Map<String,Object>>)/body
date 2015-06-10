@@ -1,6 +1,0 @@
-{
-  this.meetingId=meetingId;
-  this.requesterId=requesterId;
-  this.presenter=presenter;
-  this.presentations=presentations;
-}

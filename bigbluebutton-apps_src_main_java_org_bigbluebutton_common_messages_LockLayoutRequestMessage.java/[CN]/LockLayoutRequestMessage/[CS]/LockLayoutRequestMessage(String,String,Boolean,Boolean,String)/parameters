@@ -1,5 +1,0 @@
-String meetingId
-String userId
-Boolean lock
-Boolean viewersOnly
-String layout

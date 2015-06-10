@@ -1,9 +1,0 @@
-{
-  this.meetingId=meetingId;
-  this.messageKey=messageKey;
-  this.code=code;
-  this.presId=presId;
-  this.numberOfPages=numberOfPages;
-  this.maxNumberPages=maxNumberPages;
-  this.presName=presName;
-}

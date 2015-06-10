@@ -1,3 +1,0 @@
-String meetingId
-String userId
-Map<String,Boolean> newSettings
