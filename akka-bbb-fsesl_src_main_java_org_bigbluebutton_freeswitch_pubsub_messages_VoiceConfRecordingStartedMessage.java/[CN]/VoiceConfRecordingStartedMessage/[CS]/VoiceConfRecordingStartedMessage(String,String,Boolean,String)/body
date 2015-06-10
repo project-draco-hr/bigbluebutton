@@ -1,6 +1,0 @@
-{
-  this.voiceConfId=voiceConfId;
-  this.recordStream=recordStream;
-  this.recording=recording;
-  this.timestamp=timestamp;
-}

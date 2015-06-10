@@ -6,7 +6,7 @@
     JsonObject payload=(JsonObject)obj.get("payload");
     if (header.has("name")) {
       String messageName=header.get("name").getAsString();
-      if (RECORD_VOICE_CONF_REQUEST.equals(messageName)) {
+      if (STOP_RECORD_VOICE_CONF_REQUEST.equals(messageName)) {
         if (payload.has(MEETING_ID) && payload.has(VOICE_CONF_ID) && payload.has(RECORD_STREAM)) {
           String id=payload.get(MEETING_ID).getAsString();
           String voiceConfId=payload.get(VOICE_CONF_ID).getAsString();

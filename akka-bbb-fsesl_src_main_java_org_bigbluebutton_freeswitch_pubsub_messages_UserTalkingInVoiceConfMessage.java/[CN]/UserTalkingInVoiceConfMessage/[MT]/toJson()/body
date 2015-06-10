@@ -1,8 +1,0 @@
-{
-  HashMap<String,Object> payload=new HashMap<String,Object>();
-  payload.put(VOICE_CONF_ID,voiceConfId);
-  payload.put(VOICE_USER_ID,voiceUserId);
-  payload.put(TALKING,talking);
-  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(USER_TALKING_IN_VOICE_CONF,VERSION,null);
-  return MessageBuilder.buildJson(header,payload);
-}
