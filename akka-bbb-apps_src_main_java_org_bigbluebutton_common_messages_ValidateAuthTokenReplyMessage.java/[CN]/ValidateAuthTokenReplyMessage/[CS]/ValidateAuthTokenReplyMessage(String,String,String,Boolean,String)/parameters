@@ -1,5 +1,0 @@
-String meetingId
-String userId
-String token
-Boolean valid
-String replyTo

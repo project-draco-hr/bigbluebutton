@@ -1,8 +1,0 @@
-{
-  HashMap<String,Object> payload=new HashMap<String,Object>();
-  payload.put(Constants.MEETING_ID,meetingId);
-  payload.put(Constants.REQUESTER_ID,requesterId);
-  payload.put(Constants.REPLY_TO,replyTo);
-  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(GET_SLIDE_INFO,VERSION,null);
-  return MessageBuilder.buildJson(header,payload);
-}

@@ -1,5 +1,0 @@
-{
-  this.meetingId=meetingId;
-  this.user=user;
-  this.voiceConf=voiceConf;
-}

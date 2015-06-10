@@ -1,5 +1,0 @@
-{
-  this.meetingId=meetingID;
-  this.users=users;
-  this.permissions=permissions;
-}

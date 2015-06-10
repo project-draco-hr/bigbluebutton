@@ -1,6 +1,0 @@
-{
-  this.meetingId=meetingId;
-  this.requesterId=requesterId;
-  this.userId=userId;
-  this.lock=lock;
-}

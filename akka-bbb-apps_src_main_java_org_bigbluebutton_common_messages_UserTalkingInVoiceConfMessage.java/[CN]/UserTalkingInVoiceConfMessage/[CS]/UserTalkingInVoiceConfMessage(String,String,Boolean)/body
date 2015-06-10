@@ -1,5 +1,0 @@
-{
-  this.voiceConfId=voiceConfId;
-  this.voiceUserId=voiceUserId;
-  this.talking=talking;
-}

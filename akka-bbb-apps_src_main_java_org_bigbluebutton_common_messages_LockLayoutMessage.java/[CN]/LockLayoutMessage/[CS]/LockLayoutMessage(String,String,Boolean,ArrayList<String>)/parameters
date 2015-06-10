@@ -1,4 +1,0 @@
-String meetingId
-String setByUserid
-Boolean locked
-ArrayList<String> users

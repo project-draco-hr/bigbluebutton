@@ -1,5 +1,0 @@
-{
-  this.meetingId=meetingId;
-  this.presentationId=presentationId;
-  this.share=share;
-}

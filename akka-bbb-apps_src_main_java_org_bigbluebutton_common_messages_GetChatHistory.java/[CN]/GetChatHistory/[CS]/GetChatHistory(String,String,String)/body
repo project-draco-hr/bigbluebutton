@@ -1,5 +1,0 @@
-{
-  this.meetingId=meetingId;
-  this.replyTo=replyTo;
-  this.requesterId=requesterId;
-}

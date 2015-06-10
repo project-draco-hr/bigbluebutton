@@ -1,4 +1,0 @@
-String meetingId
-String requesterId
-String whiteboardId
-Map<String,Object> shape

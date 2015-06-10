@@ -1,9 +1,0 @@
-{
-  HashMap<String,Object> payload=new HashMap<String,Object>();
-  payload.put(Constants.MEETING_ID,meetingId);
-  payload.put(SET_BY_USERID,setByUserid);
-  payload.put(LOCKED,locked);
-  payload.put(USERS,users);
-  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(LOCK_LAYOUT,VERSION,null);
-  return MessageBuilder.buildJson(header,payload);
-}
