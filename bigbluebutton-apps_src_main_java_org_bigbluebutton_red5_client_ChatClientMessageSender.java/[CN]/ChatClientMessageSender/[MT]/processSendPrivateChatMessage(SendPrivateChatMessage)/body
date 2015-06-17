@@ -10,6 +10,9 @@
   messageInfo.put(ChatKeyUtil.FROM_COLOR,msg.messageInfo.get(ChatKeyUtil.FROM_COLOR));
   messageInfo.put(ChatKeyUtil.MESSAGE,msg.messageInfo.get(ChatKeyUtil.MESSAGE));
   System.out.println("RedisPubSubMessageHandler - processSendPrivateChatMessage \n" + messageInfo.toString() + "\n");
-  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"ChatReceivePrivateMessageCommand",messageInfo);
-  service.sendMessage(m);
+  String toUserId=msg.messageInfo.get(ChatKeyUtil.TO_USERID);
+  DirectClientMessage receiver=new DirectClientMessage(msg.meetingId,toUserId,"ChatReceivePrivateMessageCommand",messageInfo);
+  service.sendMessage(receiver);
+  DirectClientMessage sender=new DirectClientMessage(msg.meetingId,msg.requesterId,"ChatReceivePrivateMessageCommand",messageInfo);
+  service.sendMessage(sender);
 }
