@@ -1,0 +1,24 @@
+{
+  if (channel.equalsIgnoreCase(MessagingConstants.FROM_VOICE_CONF_SYSTEM_CHAN)) {
+    JsonParser parser=new JsonParser();
+    JsonObject obj=(JsonObject)parser.parse(message);
+    if (obj.has("header") && obj.has("payload")) {
+      JsonObject header=(JsonObject)obj.get("header");
+      if (header.has("name")) {
+        String messageName=header.get("name").getAsString();
+        if (DeskShareStartedEventMessage.DESK_SHARE_STARTED_MESSAGE.equals(messageName)) {
+          DeskShareStartedEventMessage msg=DeskShareStartedEventMessage.fromJson(message);
+        }
+ else         if (DeskShareEndedEventMessage.DESK_SHARE_ENDED_MESSAGE.equals(messageName)) {
+          DeskShareEndedEventMessage msg=DeskShareEndedEventMessage.fromJson(message);
+        }
+ else         if (DeskShareViewerJoinedEventMessage.DESK_SHARE_VIEWER_JOINED_MESSAGE.equals(messageName)) {
+          DeskShareViewerJoinedEventMessage msg=DeskShareViewerJoinedEventMessage.fromJson(message);
+        }
+ else         if (DeskShareViewerLeftEventMessage.DESK_SHARE_VIEWER_LEFT_MESSAGE.equals(messageName)) {
+          DeskShareViewerLeftEventMessage msg=DeskShareViewerLeftEventMessage.fromJson(message);
+        }
+      }
+    }
+  }
+}

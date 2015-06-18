@@ -26,6 +26,26 @@
         System.out.println("************** FreeswitchConferenceEventListener VoiceStartRecordingEvent recording=[" + evt.startRecord() + "]");
         vcs.voiceConfRecordingStarted(evt.getRoom(),evt.getRecordingFilename(),evt.startRecord(),evt.getTimestamp());
       }
+ else       if (event instanceof DeskShareStartedEvent) {
+        DeskShareStartedEvent evt=(DeskShareStartedEvent)event;
+        System.out.println("************** FreeswitchConferenceEventListener DeskShareStartedEvent");
+        vcs.deskShareStarted(evt.getRoom(),evt.getCallerIdNum(),evt.getCallerIdName());
+      }
+ else       if (event instanceof DeskShareEndedEvent) {
+        DeskShareEndedEvent evt=(DeskShareEndedEvent)event;
+        System.out.println("************** FreeswitchConferenceEventListener DeskShareEndedEvent");
+        vcs.deskShareEnded(evt.getRoom(),evt.getCallerIdNum(),evt.getCallerIdName());
+      }
+ else       if (event instanceof DeskShareViewerJoinedEvent) {
+        DeskShareViewerJoinedEvent evt=(DeskShareViewerJoinedEvent)event;
+        System.out.println("************** FreeswitchConferenceEventListener DeskShareViewerJoinedEvent");
+        vcs.deskShareViewerJoined(evt.getRoom(),evt.getCallerIdNum(),evt.getCallerIdName());
+      }
+ else       if (event instanceof DeskShareViewerLeftEvent) {
+        DeskShareViewerLeftEvent evt=(DeskShareViewerLeftEvent)event;
+        System.out.println("************** FreeswitchConferenceEventListener DeskShareViewerLeftEvent");
+        vcs.deskShareViewerLeft(evt.getRoom(),evt.getCallerIdNum(),evt.getCallerIdName());
+      }
     }
   }
 ;
