@@ -5,18 +5,36 @@
   }
   System.out.println("Handling conferenceEventRecord " + action);
   if (action.equals(START_RECORDING_EVENT)) {
-    VoiceStartRecordingEvent sre=new VoiceStartRecordingEvent(confName,true);
-    sre.setRecordingFilename(getRecordFilenameFromEvent(event));
-    sre.setTimestamp(genTimestamp().toString());
-    System.out.println("Voice conference recording started. file=[" + getRecordFilenameFromEvent(event) + "], conf=["+ confName+ "]");
-    conferenceEventListener.handleConferenceEvent(sre);
+    if (confName.endsWith(DESKSHARE_CONFERENCE_NAME_LABEL)) {
+      DeskShareRecordingEvent dssre=new DeskShareRecordingEvent(confName,true);
+      dssre.setRecordingFilename(getRecordFilenameFromEvent(event));
+      dssre.setTimestamp(genTimestamp().toString());
+      System.out.println("DeskShare conference recording started. file=[" + getRecordFilenameFromEvent(event) + "], conf=["+ confName+ "]");
+      conferenceEventListener.handleConferenceEvent((VoiceConferenceEvent)dssre);
+    }
+ else {
+      VoiceStartRecordingEvent sre=new VoiceStartRecordingEvent(confName,true);
+      sre.setRecordingFilename(getRecordFilenameFromEvent(event));
+      sre.setTimestamp(genTimestamp().toString());
+      System.out.println("Voice conference recording started. file=[" + getRecordFilenameFromEvent(event) + "], conf=["+ confName+ "]");
+      conferenceEventListener.handleConferenceEvent(sre);
+    }
   }
  else   if (action.equals(STOP_RECORDING_EVENT)) {
-    VoiceStartRecordingEvent srev=new VoiceStartRecordingEvent(confName,false);
-    srev.setRecordingFilename(getRecordFilenameFromEvent(event));
-    srev.setTimestamp(genTimestamp().toString());
-    System.out.println("Voice conference recording stopped. file=[" + getRecordFilenameFromEvent(event) + "], conf=["+ confName+ "]");
-    conferenceEventListener.handleConferenceEvent(srev);
+    if (confName.endsWith(DESKSHARE_CONFERENCE_NAME_LABEL)) {
+      DeskShareRecordingEvent dssre=new DeskShareRecordingEvent(confName,false);
+      dssre.setRecordingFilename(getRecordFilenameFromEvent(event));
+      dssre.setTimestamp(genTimestamp().toString());
+      System.out.println("DeskShare conference recording stopped. file=[" + getRecordFilenameFromEvent(event) + "], conf=["+ confName+ "]");
+      conferenceEventListener.handleConferenceEvent((VoiceConferenceEvent)dssre);
+    }
+ else {
+      VoiceStartRecordingEvent sre=new VoiceStartRecordingEvent(confName,false);
+      sre.setRecordingFilename(getRecordFilenameFromEvent(event));
+      sre.setTimestamp(genTimestamp().toString());
+      System.out.println("Voice conference recording stopped. file=[" + getRecordFilenameFromEvent(event) + "], conf=["+ confName+ "]");
+      conferenceEventListener.handleConferenceEvent(sre);
+    }
   }
  else {
     System.out.println("Processing UNKNOWN conference Action " + action + "]");

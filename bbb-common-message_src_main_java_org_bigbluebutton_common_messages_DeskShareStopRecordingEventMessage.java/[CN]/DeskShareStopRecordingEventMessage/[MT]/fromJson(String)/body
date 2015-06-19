@@ -6,12 +6,12 @@
     JsonObject payload=(JsonObject)obj.get("payload");
     if (header.has("name")) {
       String messageName=header.get("name").getAsString();
-      if (DESKSHARE_STARTED_MESSAGE.equals(messageName)) {
-        if (payload.has(CONFERENCE_NAME) && payload.has(CALLER_ID) && payload.has(CALLER_ID_NAME)) {
+      if (DESKSHARE_STOP_RECORDING_MESSAGE.equals(messageName)) {
+        if (payload.has(CONFERENCE_NAME) && payload.has(TIMESTAMP) && payload.has(FILENAME)) {
           String conferenceName=payload.get(CONFERENCE_NAME).getAsString();
-          String callerId=payload.get(CALLER_ID_NAME).getAsString();
-          String callerIdName=payload.get(CALLER_ID_NAME).getAsString();
-          return new DeskShareStartedEventMessage(conferenceName,callerId,callerIdName);
+          String filename=payload.get(FILENAME).getAsString();
+          String timestamp=payload.get(TIMESTAMP).getAsString();
+          return new DeskShareStopRecordingEventMessage(conferenceName,filename,timestamp);
         }
       }
     }
