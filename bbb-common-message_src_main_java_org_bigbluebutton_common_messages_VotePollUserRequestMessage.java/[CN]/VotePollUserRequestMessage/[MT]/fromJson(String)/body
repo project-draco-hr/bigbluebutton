@@ -1,0 +1,22 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (VOTE_POLL_REQUEST.equals(messageName)) {
+        if (payload.has(Constants.MEETING_ID) && payload.has(USER_ID) && payload.has(POLL_ID)&& payload.has(QUESTION_ID)&& payload.has(ANSWER_ID)) {
+          String id=payload.get(Constants.MEETING_ID).getAsString();
+          String userId=payload.get(USER_ID).getAsString();
+          String pollId=payload.get(POLL_ID).getAsString();
+          Integer questionId=payload.get(QUESTION_ID).getAsInt();
+          Integer answerId=payload.get(ANSWER_ID).getAsInt();
+          return new VotePollUserRequestMessage(id,userId,pollId,questionId,answerId);
+        }
+      }
+    }
+  }
+  return null;
+}
