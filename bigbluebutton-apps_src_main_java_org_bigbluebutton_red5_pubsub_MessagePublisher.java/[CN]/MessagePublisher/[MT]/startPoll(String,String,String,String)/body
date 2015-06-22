@@ -1,0 +1,4 @@
+{
+  StartPollRequestMessage msg=new StartPollRequestMessage(meetingId,requesterId,pollId,pollType);
+  sender.send(MessagingConstants.TO_POLLING_CHANNEL,msg.toJson());
+}

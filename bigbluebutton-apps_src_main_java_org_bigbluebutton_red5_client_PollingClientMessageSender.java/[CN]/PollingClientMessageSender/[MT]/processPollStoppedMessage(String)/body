@@ -1,0 +1,12 @@
+{
+  PollStoppedMessage msg=PollStoppedMessage.fromJson(json);
+  if (msg != null) {
+    Map<String,Object> args=new HashMap<String,Object>();
+    args.put("pollId",msg.pollId);
+    Map<String,Object> message=new HashMap<String,Object>();
+    Gson gson=new Gson();
+    message.put("msg",gson.toJson(args));
+    BroadcastClientMessage b=new BroadcastClientMessage(msg.meetingId,"pollStoppedMessage",message);
+    service.sendMessage(b);
+  }
+}
