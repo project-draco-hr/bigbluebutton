@@ -1,23 +1,6 @@
 {
-  log.debug("Received lock layout request");
   String meetingID=Red5.getConnectionLocal().getScope().getName();
-  String newlayout=(String)message.get("layout");
-  Boolean lock=(Boolean)message.get("lock");
-  Boolean viewersOnly=(Boolean)message.get("viewersOnly");
-  String layout;
-  if (newlayout == null || newlayout.isEmpty()) {
-    layout=null;
-  }
- else {
-    layout=newlayout;
-  }
-  if (lock == null) {
-    log.error("Invalid Lock Layout message. lock in null.");
-    return;
-  }
-  if (viewersOnly == null) {
-    log.error("Invalid Lock Layout message. viewersOnly is null");
-    return;
-  }
-  red5GW.lockLayout(meetingID,getBbbSession().getInternalUserID(),lock,viewersOnly,layout);
+  String userId=getBbbSession().getInternalUserID();
+  String pollId=(String)message.get("pollId");
+  red5GW.stopPoll(meetingID,userId,pollId);
 }
