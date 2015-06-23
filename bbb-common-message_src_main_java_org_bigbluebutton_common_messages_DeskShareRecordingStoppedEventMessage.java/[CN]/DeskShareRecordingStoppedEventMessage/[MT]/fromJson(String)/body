@@ -1,0 +1,20 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (DESKSHARE_RECORDING_STOPPED_MESSAGE.equals(messageName)) {
+        if (payload.has(CONFERENCE_NAME) && payload.has(TIMESTAMP) && payload.has(FILENAME)) {
+          String conferenceName=payload.get(CONFERENCE_NAME).getAsString();
+          String filename=payload.get(FILENAME).getAsString();
+          String timestamp=payload.get(TIMESTAMP).getAsString();
+          return new DeskShareRecordingStoppedEventMessage(conferenceName,filename,timestamp);
+        }
+      }
+    }
+  }
+  return null;
+}

@@ -1,0 +1,5 @@
+{
+  super(room,requesterId);
+  this.broadcastPath=broadcastPath;
+  this.broadcast=broadcast;
+}

@@ -1,0 +1,5 @@
+{
+  this.conferenceName=conferenceName;
+  this.filename=filename;
+  this.timestamp=timestamp;
+}

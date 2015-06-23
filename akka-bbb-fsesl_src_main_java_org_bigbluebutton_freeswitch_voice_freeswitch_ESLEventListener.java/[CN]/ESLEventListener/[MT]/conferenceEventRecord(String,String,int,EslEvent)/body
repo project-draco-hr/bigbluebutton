@@ -5,7 +5,7 @@
   }
   System.out.println("Handling conferenceEventRecord " + action);
   if (action.equals(START_RECORDING_EVENT)) {
-    if (confName.endsWith(DESKSHARE_CONFERENCE_NAME_LABEL)) {
+    if (confName.endsWith(DESKSHARE_CONFERENCE_NAME_SUFFIX)) {
       DeskShareRecordingEvent dssre=new DeskShareRecordingEvent(confName,true);
       dssre.setRecordingFilename(getRecordFilenameFromEvent(event));
       dssre.setTimestamp(genTimestamp().toString());
@@ -21,7 +21,7 @@
     }
   }
  else   if (action.equals(STOP_RECORDING_EVENT)) {
-    if (confName.endsWith(DESKSHARE_CONFERENCE_NAME_LABEL)) {
+    if (confName.endsWith(DESKSHARE_CONFERENCE_NAME_SUFFIX)) {
       DeskShareRecordingEvent dssre=new DeskShareRecordingEvent(confName,false);
       dssre.setRecordingFilename(getRecordFilenameFromEvent(event));
       dssre.setTimestamp(genTimestamp().toString());

@@ -1,0 +1,8 @@
+{
+  Client c=manager.getESLClient();
+  if (c.canSend()) {
+    System.out.println("\n\n\n ConnectionManager broadcastRTMP \n\n\n");
+    EslMessage response=c.sendSyncApiCommand(rtmp.getCommand(),rtmp.getCommandArgs());
+    rtmp.handleResponse(response,conferenceEventListener);
+  }
+}

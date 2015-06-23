@@ -1,0 +1,6 @@
+{
+  String action="norecord";
+  if (broadcast)   action="record";
+  System.out.println("\n\n\n\n\n DESKSHARE BROADCAST RTMP " + broadcast + "\n\n\n\n");
+  return SPACE + getRoom() + SPACE+ action+ SPACE+ broadcastPath;
+}
