@@ -1,0 +1,9 @@
+{
+  String path=e.getEventHeaders().get("Path");
+  if (isRTMPStream(e)) {
+    return path.substring(path.indexOf("}"));
+  }
+ else {
+    return "";
+  }
+}
