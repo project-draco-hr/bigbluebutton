@@ -27,6 +27,7 @@
       }
  else       if (command instanceof DeskShareRecordCommand) {
         System.out.println("Sending DeskShareRecordCommand for conference = [" + command.getRoom() + "]");
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$Sending DeskShareRECORDCommand for conference = [" + command.getRoom() + "]");
         manager.record((DeskShareRecordCommand)command);
       }
  else       if (command instanceof DeskShareBroadcastRTMPCommand) {

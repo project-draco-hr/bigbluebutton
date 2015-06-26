@@ -1,5 +1,0 @@
-{
-  DeskShareRecordCommand dsrc=new DeskShareRecordCommand(voiceConfId,USER,true,filePath);
-  System.out.println("______in FS app deskShareRecording______");
-  queueMessage(dsrc);
-}

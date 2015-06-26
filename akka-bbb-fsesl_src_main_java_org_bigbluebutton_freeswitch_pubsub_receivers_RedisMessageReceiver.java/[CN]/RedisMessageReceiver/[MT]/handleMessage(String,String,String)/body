@@ -26,6 +26,12 @@ break;
 case StopRecordingVoiceConfRequestMessage.STOP_RECORD_VOICE_CONF_REQUEST:
 processStopRecordingVoiceConfRequestMessage(message);
 break;
+case DeskShareStartRecordingEventMessage.DESKSHARE_START_RECORDING_MESSAGE:
+processDeskShareStartRecordingEventMessage(message);
+break;
+case DeskShareStopRecordingEventMessage.DESKSHARE_STOP_RECORDING_MESSAGE:
+processDeskShareStopRecordingEventMessage(message);
+break;
 }
 }
 }
