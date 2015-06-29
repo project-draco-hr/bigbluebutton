@@ -18,17 +18,23 @@
         }
  else         if (DeskShareRecordingStartedEventMessage.DESKSHARE_RECORDING_STARTED_MESSAGE.equals(messageName)) {
           System.out.println("^^^^^^^REC STARTED^^^^^^");
+          DeskShareRecordingStartedEventMessage msg=DeskShareRecordingStartedEventMessage.fromJson(message);
+          bbbGW.deskShareRecordingStarted(msg.conferenceName,msg.filename,msg.timestamp);
         }
  else         if (DeskShareRecordingStoppedEventMessage.DESKSHARE_RECORDING_STOPPED_MESSAGE.equals(messageName)) {
           System.out.println("^^^^^^^REC STOPPED^^^^^^");
+          DeskShareRecordingStoppedEventMessage msg=DeskShareRecordingStoppedEventMessage.fromJson(message);
+          bbbGW.deskShareRecordingStopped(msg.conferenceName,msg.filename,msg.timestamp);
         }
  else         if (DeskShareRTMPBroadcastStartedEventMessage.DESKSHARE_RTMP_BROADCAST_STARTED_MESSAGE.equals(messageName)) {
           System.out.println("^^^^^^^DESKSHARE_RTMP_BROADCAST_STARTED_MESSAGE^^^^^^");
           DeskShareRTMPBroadcastStartedEventMessage msg=DeskShareRTMPBroadcastStartedEventMessage.fromJson(message);
+          bbbGW.deskShareRTMPBroadcastStarted(msg.conferenceName,msg.streamname,msg.timestamp);
         }
  else         if (DeskShareRTMPBroadcastStoppedEventMessage.DESKSHARE_RTMP_BROADCAST_STOPPED_MESSAGE.equals(messageName)) {
           System.out.println("^^^^^^^DESKSHARE_RTMP_BROADCAST_STOPPED_MESSAGE^^^^^^");
           DeskShareRTMPBroadcastStoppedEventMessage msg=DeskShareRTMPBroadcastStoppedEventMessage.fromJson(message);
+          bbbGW.deskShareRTMPBroadcastStopped(msg.conferenceName,msg.streamname,msg.timestamp);
         }
       }
     }
