@@ -1,4 +1,5 @@
 String room
 String requesterId
-boolean broadcast
 String broadcastPath
+String timestamp
+boolean broadcast

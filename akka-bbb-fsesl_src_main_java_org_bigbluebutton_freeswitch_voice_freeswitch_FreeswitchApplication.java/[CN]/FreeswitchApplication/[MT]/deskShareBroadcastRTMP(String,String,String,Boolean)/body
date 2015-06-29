@@ -1,0 +1,5 @@
+{
+  DeskShareBroadcastRTMPCommand rtmp=new DeskShareBroadcastRTMPCommand(voiceConfId,USER,streamUrl,timestamp,broadcast);
+  System.out.println("______in FS app deskShareRecording__" + rtmp.getCommand() + "____");
+  queueMessage(rtmp);
+}
