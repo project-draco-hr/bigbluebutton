@@ -1,15 +1,20 @@
 {
   super.streamBroadcastClose(stream);
-  if (recordVideoStream) {
-    IConnection conn=Red5.getConnectionLocal();
-    String scopeName;
-    if (conn != null) {
-      scopeName=conn.getScope().getName();
-    }
+  IConnection conn=Red5.getConnectionLocal();
+  String scopeName;
+  if (conn != null) {
+    scopeName=conn.getScope().getName();
+  }
  else {
-      log.info("Connection local was null, using scope name from the stream: {}",stream);
-      scopeName=stream.getScope().getName();
-    }
+    log.info("Connection local was null, using scope name from the stream: {}",stream);
+    scopeName=stream.getScope().getName();
+  }
+  log.info("streamBroadcastClose " + stream.getPublishedName() + " "+ System.currentTimeMillis()+ " "+ conn.getScope().getName());
+  String userId=getUserId();
+  String meetingId=conn.getScope().getName();
+  String streamId=stream.getPublishedName();
+  publisher.userUnshareWebcamRequestMessage(meetingId,userId,streamId);
+  if (recordVideoStream) {
     IStreamListener listener=streamListeners.remove(scopeName + "-" + stream.getPublishedName());
     if (listener != null) {
       stream.removeStreamListener(listener);

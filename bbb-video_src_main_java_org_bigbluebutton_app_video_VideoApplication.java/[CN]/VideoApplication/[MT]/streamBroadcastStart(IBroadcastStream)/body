@@ -2,6 +2,10 @@
   IConnection conn=Red5.getConnectionLocal();
   super.streamBroadcastStart(stream);
   log.info("streamBroadcastStart " + stream.getPublishedName() + " "+ System.currentTimeMillis()+ " "+ conn.getScope().getName());
+  String userId=getUserId();
+  String meetingId=conn.getScope().getName();
+  String streamId=stream.getPublishedName();
+  publisher.userSharedWebcamMessage(meetingId,userId,streamId);
   if (recordVideoStream) {
     recordStream(stream);
     VideoStreamListener listener=new VideoStreamListener();
