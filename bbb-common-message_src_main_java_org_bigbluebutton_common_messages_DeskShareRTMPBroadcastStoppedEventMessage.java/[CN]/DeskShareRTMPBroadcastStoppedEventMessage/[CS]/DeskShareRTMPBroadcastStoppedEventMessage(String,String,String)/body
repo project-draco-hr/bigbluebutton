@@ -1,5 +1,0 @@
-{
-  this.conferenceName=conferenceName;
-  this.streamname=streamname;
-  this.timestamp=timestamp;
-}

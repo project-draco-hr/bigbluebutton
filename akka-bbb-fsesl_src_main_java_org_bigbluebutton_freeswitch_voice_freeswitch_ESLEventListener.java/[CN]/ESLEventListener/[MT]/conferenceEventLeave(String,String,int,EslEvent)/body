@@ -7,7 +7,6 @@
     if (callerId.endsWith(DESKSHARE_CALLER_ID_SUFFIX) && callerIdName.endsWith(DESKSHARE_CALLER_NAME_SUFFIX)) {
       DeskShareEndedEvent dsEnd=new DeskShareEndedEvent(confName,callerId,callerIdName);
       conferenceEventListener.handleConferenceEvent(dsEnd);
-      return;
     }
  else {
       DeskShareViewerLeftEvent dsLeft=new DeskShareViewerLeftEvent(confName,callerId,callerIdName);

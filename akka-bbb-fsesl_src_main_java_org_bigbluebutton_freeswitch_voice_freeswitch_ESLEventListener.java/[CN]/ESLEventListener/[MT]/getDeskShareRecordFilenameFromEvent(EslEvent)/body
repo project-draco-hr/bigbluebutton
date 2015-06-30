@@ -1,0 +1,5 @@
+{
+  String rawPath=e.getEventHeaders().get("Path");
+  String path=rawPath.substring(rawPath.lastIndexOf("}") + 1);
+  return path;
+}

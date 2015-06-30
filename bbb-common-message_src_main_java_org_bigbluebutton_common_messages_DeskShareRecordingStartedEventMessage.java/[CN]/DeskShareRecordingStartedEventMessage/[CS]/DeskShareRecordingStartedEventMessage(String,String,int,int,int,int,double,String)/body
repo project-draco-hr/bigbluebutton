@@ -1,0 +1,10 @@
+{
+  this.conferenceName=conferenceName;
+  this.filename=filename;
+  this.timestamp=timestamp;
+  this.channels=channels;
+  this.samplerate=samplerate;
+  this.vw=vw;
+  this.vh=vh;
+  this.fps=fps;
+}

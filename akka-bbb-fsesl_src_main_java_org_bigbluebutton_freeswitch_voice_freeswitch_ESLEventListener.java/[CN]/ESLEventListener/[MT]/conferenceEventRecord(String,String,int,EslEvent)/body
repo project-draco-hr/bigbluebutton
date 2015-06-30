@@ -3,8 +3,6 @@
   if (action == null) {
     return;
   }
-  System.out.println("Handling conferenceEventRecord " + action);
-  System.out.println("\n\n\nAAAAAAAAAAAAAAAAAAA " + isRTMPStream(event) + "\n\n\n");
   if (action.equals(START_RECORDING_EVENT)) {
     if (confName.endsWith(DESKSHARE_CONFERENCE_NAME_SUFFIX)) {
       if (isRTMPStream(event)) {
@@ -21,9 +19,14 @@
       }
  else {
         DeskShareRecordingEvent dssre=new DeskShareRecordingEvent(confName,true);
-        dssre.setRecordingFilename(getRecordFilenameFromEvent(event));
+        dssre.setRecordingFilename(getDeskShareRecordFilenameFromEvent(event));
         dssre.setTimestamp(genTimestamp().toString());
-        System.out.println("DeskShare conference recording started. file=[" + getRecordFilenameFromEvent(event) + "], conf=["+ confName+ "]");
+        dssre.setChannels(Integer.parseInt(getBroadcastParameter(event,"channels")));
+        dssre.setFramesPerSecond(Double.parseDouble(getBroadcastParameter(event,"fps")));
+        dssre.setVideoHeight(Integer.parseInt(getBroadcastParameter(event,"vh")));
+        dssre.setVideoWidth(Integer.parseInt(getBroadcastParameter(event,"vw")));
+        dssre.setSampleRate(Integer.parseInt(getBroadcastParameter(event,"samplerate")));
+        System.out.println("DeskShare conference recording started. file=[" + dssre.getRecordingFilename() + "], conf=["+ confName+ "]");
         conferenceEventListener.handleConferenceEvent((VoiceConferenceEvent)dssre);
       }
     }
@@ -51,9 +54,14 @@
       }
  else {
         DeskShareRecordingEvent dssre=new DeskShareRecordingEvent(confName,false);
-        dssre.setRecordingFilename(getRecordFilenameFromEvent(event));
+        dssre.setRecordingFilename(getDeskShareRecordFilenameFromEvent(event));
         dssre.setTimestamp(genTimestamp().toString());
-        System.out.println("DeskShare conference recording stopped. file=[" + getRecordFilenameFromEvent(event) + "], conf=["+ confName+ "]");
+        dssre.setChannels(Integer.parseInt(getBroadcastParameter(event,"channels")));
+        dssre.setFramesPerSecond(Double.parseDouble(getBroadcastParameter(event,"fps")));
+        dssre.setVideoHeight(Integer.parseInt(getBroadcastParameter(event,"vh")));
+        dssre.setVideoWidth(Integer.parseInt(getBroadcastParameter(event,"vw")));
+        dssre.setSampleRate(Integer.parseInt(getBroadcastParameter(event,"samplerate")));
+        System.out.println("DeskShare conference recording stopped. file=[" + dssre.getRecordingFilename() + "], conf=["+ confName+ "]");
         conferenceEventListener.handleConferenceEvent((VoiceConferenceEvent)dssre);
       }
     }

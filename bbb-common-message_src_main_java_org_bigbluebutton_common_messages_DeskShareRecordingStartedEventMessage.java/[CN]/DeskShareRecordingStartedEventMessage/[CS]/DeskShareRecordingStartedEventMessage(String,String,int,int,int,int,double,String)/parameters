@@ -1,0 +1,8 @@
+String conferenceName
+String filename
+int channels
+int samplerate
+int vw
+int vh
+double fps
+String timestamp
