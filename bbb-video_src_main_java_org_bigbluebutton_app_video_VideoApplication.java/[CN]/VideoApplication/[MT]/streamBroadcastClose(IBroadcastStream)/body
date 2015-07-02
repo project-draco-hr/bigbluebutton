@@ -14,11 +14,11 @@
   String meetingId=conn.getScope().getName();
   String streamId=stream.getPublishedName();
   publisher.userUnshareWebcamRequestMessage(meetingId,userId,streamId);
+  IStreamListener listener=streamListeners.remove(scopeName + "-" + stream.getPublishedName());
+  if (listener != null) {
+    stream.removeStreamListener(listener);
+  }
   if (recordVideoStream) {
-    IStreamListener listener=streamListeners.remove(scopeName + "-" + stream.getPublishedName());
-    if (listener != null) {
-      stream.removeStreamListener(listener);
-    }
     long publishDuration=(System.currentTimeMillis() - stream.getCreationTime()) / 1000;
     log.info("streamBroadcastClose " + stream.getPublishedName() + " "+ System.currentTimeMillis()+ " "+ scopeName);
     Map<String,String> event=new HashMap<String,String>();
