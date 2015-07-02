@@ -16,6 +16,7 @@
   publisher.userUnshareWebcamRequestMessage(meetingId,userId,streamId);
   IStreamListener listener=streamListeners.remove(scopeName + "-" + stream.getPublishedName());
   if (listener != null) {
+    ((VideoStreamListener)listener).streamStopped();
     stream.removeStreamListener(listener);
   }
   if (recordVideoStream) {

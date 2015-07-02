@@ -8,6 +8,7 @@
     lastVideoTime=System.currentTimeMillis();
     if (!firstPacketReceived) {
       firstPacketReceived=true;
+      publishing=true;
       timeoutJobName=scheduler.addScheduledJob(videoTimeout,new TimeoutJob());
       if (record) {
         Map<String,String> event=new HashMap<String,String>();
