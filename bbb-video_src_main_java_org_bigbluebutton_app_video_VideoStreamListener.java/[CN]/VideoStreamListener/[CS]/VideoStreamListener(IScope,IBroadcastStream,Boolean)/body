@@ -1,0 +1,6 @@
+{
+  this.scope=scope;
+  this.stream=stream;
+  this.record=record;
+  scheduler=(QuartzSchedulingService)scope.getParent().getContext().getBean(QuartzSchedulingService.BEAN_NAME);
+}

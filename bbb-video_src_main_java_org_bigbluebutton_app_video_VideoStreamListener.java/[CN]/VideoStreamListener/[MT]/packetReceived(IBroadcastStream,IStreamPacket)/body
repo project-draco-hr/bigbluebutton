@@ -5,16 +5,20 @@
     return;
   }
   if (packet instanceof VideoData) {
+    lastVideoTime=System.currentTimeMillis();
     if (!firstPacketReceived) {
       firstPacketReceived=true;
-      IConnection conn=Red5.getConnectionLocal();
-      Map<String,String> event=new HashMap<String,String>();
-      event.put("module","WEBCAM");
-      event.put("timestamp",genTimestamp().toString());
-      event.put("meetingId",conn.getScope().getName());
-      event.put("stream",stream.getPublishedName());
-      event.put("eventName","StartWebcamShareEvent");
-      recordingService.record(conn.getScope().getName(),event);
+      timeoutJobName=scheduler.addScheduledJob(videoTimeout,new TimeoutJob());
+      if (record) {
+        IConnection conn=Red5.getConnectionLocal();
+        Map<String,String> event=new HashMap<String,String>();
+        event.put("module","WEBCAM");
+        event.put("timestamp",genTimestamp().toString());
+        event.put("meetingId",scope.getName());
+        event.put("stream",stream.getPublishedName());
+        event.put("eventName","StartWebcamShareEvent");
+        recordingService.record(conn.getScope().getName(),event);
+      }
     }
   }
 }
