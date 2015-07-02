@@ -1,7 +1,12 @@
 {
   if ((System.currentTimeMillis() - lastVideoTime) > videoTimeout) {
     log.warn("No data received for stream[{}] in the last few seconds. Close stream.",stream.getPublishedName());
-    scheduler.removeScheduledJob(timeoutJobName);
-    stream.stop();
+    if (!streamStopped) {
+      streamStopped=true;
+      scheduler.removeScheduledJob(timeoutJobName);
+      if (publishing) {
+        stream.stop();
+      }
+    }
   }
 }

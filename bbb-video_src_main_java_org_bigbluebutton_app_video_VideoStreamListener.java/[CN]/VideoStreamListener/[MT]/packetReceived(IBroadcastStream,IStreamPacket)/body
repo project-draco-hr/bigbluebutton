@@ -8,16 +8,16 @@
     lastVideoTime=System.currentTimeMillis();
     if (!firstPacketReceived) {
       firstPacketReceived=true;
+      publishing=true;
       timeoutJobName=scheduler.addScheduledJob(videoTimeout,new TimeoutJob());
       if (record) {
-        IConnection conn=Red5.getConnectionLocal();
         Map<String,String> event=new HashMap<String,String>();
         event.put("module","WEBCAM");
         event.put("timestamp",genTimestamp().toString());
         event.put("meetingId",scope.getName());
         event.put("stream",stream.getPublishedName());
         event.put("eventName","StartWebcamShareEvent");
-        recordingService.record(conn.getScope().getName(),event);
+        recordingService.record(scope.getName(),event);
       }
     }
   }
