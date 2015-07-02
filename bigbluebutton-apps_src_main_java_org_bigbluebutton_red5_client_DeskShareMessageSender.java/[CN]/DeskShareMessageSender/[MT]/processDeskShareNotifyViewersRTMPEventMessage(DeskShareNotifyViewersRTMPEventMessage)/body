@@ -1,0 +1,16 @@
+{
+  Map<String,Object> messageInfo=new HashMap<String,Object>();
+  System.out.println("RedisPubSubMessageHandler - " + msg.toJson());
+  System.out.println("RedisPubSubMessageHandler - processDeskShareNotifyViewersRTMPEventMessage \n" + msg.streamPath + "\n");
+  messageInfo.put(ChatKeyUtil.CHAT_TYPE,"PUBLIC_CHAT");
+  messageInfo.put(ChatKeyUtil.FROM_USERID,"enm6bgnif0d4_2");
+  messageInfo.put(ChatKeyUtil.FROM_USERNAME,"User 4526544");
+  messageInfo.put(ChatKeyUtil.TO_USERID,"public_chat_userid");
+  messageInfo.put(ChatKeyUtil.TO_USERNAME,"public_chat_username");
+  messageInfo.put(ChatKeyUtil.FROM_TIME,"1.435851039645E12");
+  messageInfo.put(ChatKeyUtil.FROM_TZ_OFFSET,"240");
+  messageInfo.put(ChatKeyUtil.FROM_COLOR,"0");
+  messageInfo.put(ChatKeyUtil.MESSAGE,"BROADCASTING_RTMP:" + msg.broadcasting + " "+ msg.streamPath);
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"ChatReceivePublicMessageCommand",messageInfo);
+  service.sendMessage(m);
+}
