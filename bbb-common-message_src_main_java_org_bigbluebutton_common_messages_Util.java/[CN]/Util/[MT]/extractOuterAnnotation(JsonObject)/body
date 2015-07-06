@@ -8,7 +8,13 @@
     finalAnnotation.put("type",type);
     finalAnnotation.put("status",status);
     JsonElement shape=annotationElement.get("shape");
-    Map<String,Object> shapesMap=extractAnnotation((JsonObject)shape);
+    Map<String,Object> shapesMap;
+    if (type.equals("poll_result")) {
+      shapesMap=extractPollResultAnnotation((JsonObject)shape);
+    }
+ else {
+      shapesMap=extractAnnotation((JsonObject)shape);
+    }
     if (shapesMap != null) {
       finalAnnotation.put("shapes",shapesMap);
     }
