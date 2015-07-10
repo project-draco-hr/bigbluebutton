@@ -19,7 +19,5 @@
   messageInfo2.put("width",msg.vw);
   messageInfo2.put("height",msg.vh);
   BroadcastClientMessage m2=new BroadcastClientMessage(msg.meetingId,"DeskShareRTMPBroadcastNotification",messageInfo2);
-  System.out.println("A\n\n\n\nAAA" + m2.toString());
   service.sendMessage(m2);
-  System.out.println("A\n\n\n\nAAA" + messageInfo2.toString());
 }
