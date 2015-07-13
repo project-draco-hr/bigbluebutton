@@ -1,3 +1,5 @@
 IScope scope
 IBroadcastStream stream
 Boolean record
+String userId
+int packetTimeout
