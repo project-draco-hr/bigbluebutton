@@ -2,6 +2,8 @@
   if (annotationElement.has("result") && annotationElement.has("whiteboardId") && annotationElement.has("points")) {
     Map<String,Object> finalAnnotation=new HashMap<String,Object>();
     String whiteboardId=annotationElement.get("whiteboardId").getAsString();
+    Integer numRespondents=annotationElement.get(NUM_RESPONDENTS).getAsInt();
+    Integer numResponders=annotationElement.get(NUM_RESPONDERS).getAsInt();
     String resultJson=annotationElement.get("result").getAsString();
     JsonParser parser=new JsonParser();
     JsonArray resultJsonArray=parser.parse(resultJson).getAsJsonArray();
@@ -29,6 +31,8 @@
       }
     }
     finalAnnotation.put("whiteboardId",whiteboardId);
+    finalAnnotation.put(NUM_RESPONDENTS,numRespondents);
+    finalAnnotation.put(NUM_RESPONDERS,numResponders);
     finalAnnotation.put("result",collection);
     finalAnnotation.put("points",pointsArray);
     return finalAnnotation;
