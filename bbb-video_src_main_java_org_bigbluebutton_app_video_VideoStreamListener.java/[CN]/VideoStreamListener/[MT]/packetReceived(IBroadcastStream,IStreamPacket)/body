@@ -6,9 +6,11 @@
   }
   if (packet instanceof VideoData) {
     lastVideoTime=System.currentTimeMillis();
+    packetCount++;
     if (!firstPacketReceived) {
       firstPacketReceived=true;
       publishing=true;
+      firstPacketTime=lastVideoTime;
       timeoutJobName=scheduler.addScheduledJob(videoTimeout,new TimeoutJob());
       if (record) {
         Map<String,String> event=new HashMap<String,String>();
