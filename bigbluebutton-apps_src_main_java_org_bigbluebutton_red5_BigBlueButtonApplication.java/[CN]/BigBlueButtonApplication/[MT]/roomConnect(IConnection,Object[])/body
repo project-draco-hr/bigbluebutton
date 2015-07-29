@@ -46,5 +46,6 @@
   Gson gson=new Gson();
   String logStr=gson.toJson(logData);
   log.info("User joining bbb-apps: data={}",logStr);
+  userConnections.addUserConnection(userId,connId);
   return super.roomConnect(connection,params);
 }
