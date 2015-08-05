@@ -22,5 +22,20 @@
         recordingService.record(scope.getName(),event);
       }
     }
+    if (streamPaused) {
+      streamPaused=false;
+      long now=System.currentTimeMillis();
+      long numSeconds=(now - lastVideoTime) / 1000;
+      Map<String,Object> logData=new HashMap<String,Object>();
+      logData.put("meetingId",scope.getName());
+      logData.put("userId",userId);
+      logData.put("stream",stream.getPublishedName());
+      logData.put("packetCount",packetCount);
+      logData.put("publishing",publishing);
+      logData.put("pausedFor (sec)",numSeconds);
+      Gson gson=new Gson();
+      String logStr=gson.toJson(logData);
+      log.warn("Video stream restarted. data={}",logStr);
+    }
   }
 }
