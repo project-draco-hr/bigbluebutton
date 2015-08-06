@@ -4,12 +4,12 @@
   final String NUM="num";
   final String HEIGHT_RATIO="height_ratio";
   final String X_OFFSET="x_offset";
-  final String PNG_URI="png_uri";
+  final String SVG_URI="svg_uri";
   final String THUMB_URI="thumb_uri";
   final String TXT_URI="txt_uri";
   final String CURRENT="current";
   final String SWF_URI="swf_uri";
-  if (page.has(Constants.ID) && page.has(WIDTH_RATIO) && page.has(Y_OFFSET)&& page.has(NUM)&& page.has(HEIGHT_RATIO)&& page.has(X_OFFSET)&& page.has(PNG_URI)&& page.has(THUMB_URI)&& page.has(CURRENT)&& page.has(TXT_URI)&& page.has(SWF_URI)) {
+  if (page.has(Constants.ID) && page.has(WIDTH_RATIO) && page.has(Y_OFFSET)&& page.has(NUM)&& page.has(HEIGHT_RATIO)&& page.has(X_OFFSET)&& page.has(SVG_URI)&& page.has(THUMB_URI)&& page.has(CURRENT)&& page.has(TXT_URI)&& page.has(SWF_URI)) {
     Map<String,Object> finalPage=new HashMap<String,Object>();
     String id=page.get(Constants.ID).getAsString();
     double widthRatio=page.get(WIDTH_RATIO).getAsDouble();
@@ -17,7 +17,7 @@
     double num=page.get(NUM).getAsDouble();
     double heightRatio=page.get(HEIGHT_RATIO).getAsDouble();
     double xOffset=page.get(X_OFFSET).getAsDouble();
-    String pngUri=page.get(PNG_URI).getAsString();
+    String svgUri=page.get(SVG_URI).getAsString();
     String thumbUri=page.get(THUMB_URI).getAsString();
     boolean current=page.get(CURRENT).getAsBoolean();
     String txtUri=page.get(TXT_URI).getAsString();
@@ -28,7 +28,7 @@
     finalPage.put(NUM,num);
     finalPage.put(HEIGHT_RATIO,heightRatio);
     finalPage.put(X_OFFSET,xOffset);
-    finalPage.put(PNG_URI,pngUri);
+    finalPage.put(SVG_URI,svgUri);
     finalPage.put(THUMB_URI,thumbUri);
     finalPage.put(CURRENT,current);
     finalPage.put(TXT_URI,txtUri);
