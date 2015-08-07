@@ -1,0 +1,15 @@
+{
+  boolean success=false;
+  File imagePresentationDir=determineSvgImagesDirectory(pres.getUploadedFile());
+  if (!imagePresentationDir.exists())   imagePresentationDir.mkdir();
+  cleanDirectory(imagePresentationDir);
+  try {
+    extractPdfPages(pres);
+    success=generateSvgImages(imagePresentationDir,pres);
+  }
+ catch (  InterruptedException e) {
+    log.warn("Interrupted Exception while generating images.");
+    success=false;
+  }
+  return success;
+}

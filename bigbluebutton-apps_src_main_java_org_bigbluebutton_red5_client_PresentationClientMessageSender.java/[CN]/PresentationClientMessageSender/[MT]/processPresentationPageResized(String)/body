@@ -7,7 +7,7 @@
     args.put("current",msg.page.get("current"));
     args.put("swfUri",msg.page.get("swf_uri"));
     args.put("txtUri",msg.page.get("txt_uri"));
-    args.put("pngUri",msg.page.get("png_uri"));
+    args.put("svgUri",msg.page.get("svg_uri"));
     args.put("thumbUri",msg.page.get("thumb_uri"));
     args.put("xOffset",msg.page.get("x_offset"));
     args.put("yOffset",msg.page.get("y_offset"));
