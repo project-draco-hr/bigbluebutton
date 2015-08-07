@@ -4,4 +4,5 @@
   this.fullname=fullname;
   this.role=role;
   this.status=new ConcurrentHashMap<String,String>();
+  this.streams=Collections.synchronizedList(new ArrayList<String>());
 }
