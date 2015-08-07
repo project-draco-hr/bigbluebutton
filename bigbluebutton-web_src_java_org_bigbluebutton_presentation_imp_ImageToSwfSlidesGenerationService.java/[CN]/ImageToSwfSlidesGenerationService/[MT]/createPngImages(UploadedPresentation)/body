@@ -1,5 +1,0 @@
-{
-  log.debug("Creating PNG images.");
-  notifier.sendCreatingPngImagesUpdateMessage(pres);
-  pngImageCreator.createPngImages(pres);
-}
