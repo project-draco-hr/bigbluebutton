@@ -5,7 +5,7 @@
   Map<String,Object> message=new HashMap<String,Object>();
   Gson gson=new Gson();
   message.put("msg",gson.toJson(args));
-  System.out.println("RedisPubSubMessageHandler - processUserSharedWebcamMessage \n" + message.get("msg") + "\n");
+  log.debug("RedisPubSubMessageHandler - processUserSharedWebcamMessage \n" + message.get("msg") + "\n");
   BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"userSharedWebcam",message);
   service.sendMessage(m);
 }

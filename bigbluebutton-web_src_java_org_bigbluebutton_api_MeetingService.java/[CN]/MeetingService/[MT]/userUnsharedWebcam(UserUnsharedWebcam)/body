@@ -1,0 +1,14 @@
+{
+  Meeting m=getMeeting(message.meetingId);
+  if (m != null) {
+    User user=m.getUserById(message.userId);
+    if (user != null) {
+      user.removeStream(message.stream);
+      log.info("User {} stopped to stream {} to the meeting {}",user.getFullname(),message.stream,message.meetingId);
+      return;
+    }
+    log.warn("The participant " + message.userId + " doesn't exist in the meeting "+ message.meetingId);
+    return;
+  }
+  log.warn("The meeting " + message.meetingId + " doesn't exist");
+}
