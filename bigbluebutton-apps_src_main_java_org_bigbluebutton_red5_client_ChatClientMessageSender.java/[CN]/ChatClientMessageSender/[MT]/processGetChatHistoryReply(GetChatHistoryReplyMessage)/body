@@ -1,0 +1,15 @@
+{
+  System.out.println("RedisPubSubMessageHandler - processGetChatHistory \n" + gch.toString() + "\n");
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("meetingId",gch.meetingId);
+  args.put("requester_id",gch.requesterId);
+  args.put("chat_history",gch.chatHistory);
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args.get("chat_history")));
+  System.out.println("*************************************************************************************\n");
+  System.out.println("RedisPubSubMessageHandler - processGetChatHistoryReply \n" + gson.toJson(args) + "\n");
+  System.out.println("*************************************************************************************\n");
+  DirectClientMessage m=new DirectClientMessage(gch.meetingId,gch.requesterId,"ChatRequestMessageHistoryReply",message);
+  service.sendMessage(m);
+}

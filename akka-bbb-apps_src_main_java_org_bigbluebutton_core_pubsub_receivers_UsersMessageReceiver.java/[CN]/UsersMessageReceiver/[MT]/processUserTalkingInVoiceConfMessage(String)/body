@@ -1,0 +1,6 @@
+{
+  UserTalkingInVoiceConfMessage msg=UserTalkingInVoiceConfMessage.fromJson(json);
+  if (msg != null) {
+    bbbInGW.voiceUserTalking(msg.voiceConfId,msg.voiceUserId,msg.talking);
+  }
+}

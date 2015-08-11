@@ -1,0 +1,11 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("userId",msg.userId);
+  args.put("webcamStream",msg.stream);
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args));
+  log.debug("RedisPubSubMessageHandler - processUserSharedWebcamMessage \n" + message.get("msg") + "\n");
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"userSharedWebcam",message);
+  service.sendMessage(m);
+}

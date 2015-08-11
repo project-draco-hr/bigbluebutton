@@ -1,0 +1,14 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("user",msg.user);
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args));
+  System.out.println("RedisPubSubMessageHandler - joinMeetingReply \n" + message.get("msg") + "\n");
+  String userId=msg.user.get("userId").toString();
+  DirectClientMessage jmr=new DirectClientMessage(msg.meetingId,userId,"joinMeetingReply",message);
+  service.sendMessage(jmr);
+  System.out.println("RedisPubSubMessageHandler - handleUserJoined \n" + message.get("msg") + "\n");
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"participantJoined",message);
+  service.sendMessage(m);
+}

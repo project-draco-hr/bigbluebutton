@@ -1,0 +1,4 @@
+{
+  GoToSlideMessage msg=new GoToSlideMessage(meetingID,page);
+  sender.send(MessagingConstants.TO_PRESENTATION_CHANNEL,msg.toJson());
+}

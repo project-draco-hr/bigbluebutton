@@ -1,0 +1,4 @@
+{
+  bbbInGW=inGW;
+  conversionUpdatesProcessor=new ConversionUpdatesProcessor(bbbInGW);
+}

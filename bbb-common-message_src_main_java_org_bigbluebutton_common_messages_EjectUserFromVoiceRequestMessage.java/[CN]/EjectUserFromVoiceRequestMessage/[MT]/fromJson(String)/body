@@ -1,0 +1,20 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (EJECT_USER_FROM_VOICE_REQUEST.equals(messageName)) {
+        if (payload.has(MEETING_ID) && payload.has(REQUESTER_ID) && payload.has(USER_ID)) {
+          String id=payload.get(MEETING_ID).getAsString();
+          String requesterId=payload.get(REQUESTER_ID).getAsString();
+          String userId=payload.get(USER_ID).getAsString();
+          return new EjectUserFromVoiceRequestMessage(id,requesterId,userId);
+        }
+      }
+    }
+  }
+  return null;
+}

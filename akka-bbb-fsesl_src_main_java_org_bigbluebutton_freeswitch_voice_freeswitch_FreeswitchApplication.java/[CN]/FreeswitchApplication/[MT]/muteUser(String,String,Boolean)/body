@@ -1,0 +1,4 @@
+{
+  MuteUserCommand mpc=new MuteUserCommand(voiceConfId,voiceUserId,mute,USER);
+  queueMessage(mpc);
+}

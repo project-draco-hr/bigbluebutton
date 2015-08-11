@@ -1,4 +1,0 @@
-{
-  this.recorder=recorder;
-  log.debug("setting recorder");
-}

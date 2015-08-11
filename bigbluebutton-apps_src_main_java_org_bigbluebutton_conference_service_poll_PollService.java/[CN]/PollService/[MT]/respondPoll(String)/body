@@ -1,4 +1,0 @@
-{
-  System.out.println("*** PollService:: respond poll \n" + msg + "\n");
-  bbbInGW.respondPoll(getMeetingID(),getRequesterID(),msg);
-}

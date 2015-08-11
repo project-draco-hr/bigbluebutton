@@ -1,0 +1,5 @@
+{
+  this.meetingId=meetingID;
+  this.userId=userId;
+  this.muted=muted;
+}

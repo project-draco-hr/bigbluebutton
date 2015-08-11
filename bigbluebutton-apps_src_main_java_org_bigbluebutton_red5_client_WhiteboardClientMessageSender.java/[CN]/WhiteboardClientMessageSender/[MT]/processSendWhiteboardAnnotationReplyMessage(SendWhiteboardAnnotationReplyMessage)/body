@@ -1,0 +1,15 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("whiteboardId",msg.whiteboardId);
+  Map<String,Object> shape=new HashMap<String,Object>();
+  shape.put("id",msg.shape.get("id"));
+  shape.put("type",msg.shape.get("type"));
+  shape.put("status",msg.shape.get("status"));
+  shape.put("shape",msg.shape.get("shapes"));
+  args.put("shape",shape);
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args));
+  BroadcastClientMessage b=new BroadcastClientMessage(msg.meetingId,"WhiteboardNewAnnotationCommand",message);
+  service.sendMessage(b);
+}

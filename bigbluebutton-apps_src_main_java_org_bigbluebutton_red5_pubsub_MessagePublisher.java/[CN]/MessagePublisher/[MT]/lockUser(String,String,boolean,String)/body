@@ -1,0 +1,4 @@
+{
+  LockUserMessage msg=new LockUserMessage(meetingId,requesterID,lock,internalUserID);
+  sender.send(MessagingConstants.TO_MEETING_CHANNEL,msg.toJson());
+}

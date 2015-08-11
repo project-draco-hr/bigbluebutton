@@ -1,0 +1,3 @@
+{
+  red5BBBInGW.resizeAndMoveSlide(meetingID,xOffset,yOffset,widthRatio,heightRatio);
+}

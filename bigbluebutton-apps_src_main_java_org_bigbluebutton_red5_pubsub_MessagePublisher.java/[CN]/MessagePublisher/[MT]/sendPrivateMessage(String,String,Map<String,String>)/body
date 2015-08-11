@@ -1,0 +1,4 @@
+{
+  SendPrivateChatMessage msg=new SendPrivateChatMessage(meetingID,requesterID,message);
+  sender.send(MessagingConstants.TO_CHAT_CHANNEL,msg.toJson());
+}

@@ -1,0 +1,24 @@
+{
+  String action=event.getEventHeaders().get("Action");
+  if (action == null) {
+    return;
+  }
+  System.out.println("Handling conferenceEventRecord " + action);
+  if (action.equals(START_RECORDING_EVENT)) {
+    VoiceStartRecordingEvent sre=new VoiceStartRecordingEvent(confName,true);
+    sre.setRecordingFilename(getRecordFilenameFromEvent(event));
+    sre.setTimestamp(genTimestamp().toString());
+    System.out.println("Voice conference recording started. file=[" + getRecordFilenameFromEvent(event) + "], conf=["+ confName+ "]");
+    conferenceEventListener.handleConferenceEvent(sre);
+  }
+ else   if (action.equals(STOP_RECORDING_EVENT)) {
+    VoiceStartRecordingEvent srev=new VoiceStartRecordingEvent(confName,false);
+    srev.setRecordingFilename(getRecordFilenameFromEvent(event));
+    srev.setTimestamp(genTimestamp().toString());
+    System.out.println("Voice conference recording stopped. file=[" + getRecordFilenameFromEvent(event) + "], conf=["+ confName+ "]");
+    conferenceEventListener.handleConferenceEvent(srev);
+  }
+ else {
+    System.out.println("Processing UNKNOWN conference Action " + action + "]");
+  }
+}

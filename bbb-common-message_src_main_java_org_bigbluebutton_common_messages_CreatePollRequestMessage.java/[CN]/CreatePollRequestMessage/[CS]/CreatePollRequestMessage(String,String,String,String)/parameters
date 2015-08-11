@@ -1,0 +1,4 @@
+String meetingId
+String requesterId
+String pollId
+String pollType

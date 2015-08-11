@@ -1,0 +1,4 @@
+{
+  UserLeavingMessage msg=new UserLeavingMessage(meetingId,userId);
+  sender.send(MessagingConstants.TO_USERS_CHANNEL,msg.toJson());
+}

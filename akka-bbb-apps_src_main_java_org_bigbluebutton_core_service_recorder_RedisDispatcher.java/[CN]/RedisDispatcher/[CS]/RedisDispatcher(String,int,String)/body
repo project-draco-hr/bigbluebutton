@@ -1,0 +1,4 @@
+{
+  setupConfig();
+  redisPool=new JedisPool(config.getConfig(),host,port);
+}

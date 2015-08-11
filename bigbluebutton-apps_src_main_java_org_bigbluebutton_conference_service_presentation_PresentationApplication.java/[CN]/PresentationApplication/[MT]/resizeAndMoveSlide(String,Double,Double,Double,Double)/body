@@ -1,3 +1,0 @@
-{
-  bbbInGW.resizeAndMoveSlide(meetingID,xOffset,yOffset,widthRatio,heightRatio);
-}

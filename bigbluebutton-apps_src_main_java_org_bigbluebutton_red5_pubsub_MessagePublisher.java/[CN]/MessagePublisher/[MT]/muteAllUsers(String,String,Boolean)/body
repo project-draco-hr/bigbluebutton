@@ -1,0 +1,4 @@
+{
+  MuteAllRequestMessage msg=new MuteAllRequestMessage(meetingID,requesterID,mute);
+  sender.send(MessagingConstants.TO_USERS_CHANNEL,msg.toJson());
+}

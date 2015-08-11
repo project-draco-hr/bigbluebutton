@@ -1,0 +1,6 @@
+{
+  UserLeftVoiceConfMessage msg=UserLeftVoiceConfMessage.fromJson(json);
+  if (msg != null) {
+    bbbInGW.voiceUserLeft(msg.voiceConfId,msg.voiceUserId);
+  }
+}

@@ -1,0 +1,23 @@
+{
+  GoToSlideReplyMessage msg=GoToSlideReplyMessage.fromJson(json);
+  if (msg != null) {
+    Map<String,Object> args=new HashMap<String,Object>();
+    args.put("id",msg.page.get(Constants.ID));
+    args.put("widthRatio",msg.page.get(Constants.WIDTH_RATIO));
+    args.put("yOffset",msg.page.get(Constants.Y_OFFSET));
+    args.put("xOffset",msg.page.get(Constants.X_OFFSET));
+    args.put("num",msg.page.get("num"));
+    args.put("heightRatio",msg.page.get(Constants.HEIGHT_RATIO));
+    args.put("svgUri",msg.page.get("svg_uri"));
+    args.put("thumbUri",msg.page.get("thumb_uri"));
+    args.put(Constants.CURRENT,msg.page.get(Constants.CURRENT));
+    args.put("txtUri",msg.page.get("txt_uri"));
+    args.put("swfUri",msg.page.get("swf_uri"));
+    Map<String,Object> message=new HashMap<String,Object>();
+    Gson gson=new Gson();
+    message.put("msg",gson.toJson(args));
+    System.out.println("RedisPubSubMessageHandler - processGoToSlideMessage \n" + message.get("msg") + "\n");
+    BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"goToSlideCallback",message);
+    service.sendMessage(m);
+  }
+}

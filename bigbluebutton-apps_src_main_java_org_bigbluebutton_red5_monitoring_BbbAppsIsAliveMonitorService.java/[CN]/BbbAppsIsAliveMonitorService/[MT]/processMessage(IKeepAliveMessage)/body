@@ -1,0 +1,14 @@
+{
+  Runnable task=new Runnable(){
+    public void run(){
+      if (msg instanceof KeepAliveMessage) {
+        processKeepAliveMessage((KeepAliveMessage)msg);
+      }
+ else       if (msg instanceof CheckIsAliveTimer) {
+        processCheckIsAliveTimer((CheckIsAliveTimer)msg);
+      }
+    }
+  }
+;
+  runExec.execute(task);
+}

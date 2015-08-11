@@ -1,5 +1,0 @@
-{
-  IScope scope=Red5.getConnectionLocal().getScope();
-  String userId=getBbbSession().getInternalUserID();
-  application.userRaiseHand(scope.getName(),userId);
-}

@@ -1,0 +1,16 @@
+{
+  GetSlideInfoReplyMessage msg=GetSlideInfoReplyMessage.fromJson(json);
+  if (msg != null) {
+    Map<String,Object> args=new HashMap<String,Object>();
+    args.put("meetingID",msg.meetingId);
+    args.put("xOffset",msg.xOffset);
+    args.put("yOffest",msg.yOffset);
+    args.put("widthRatio",msg.widthRatio);
+    args.put("heightRatio",msg.heightRatio);
+    Map<String,Object> message=new HashMap<String,Object>();
+    Gson gson=new Gson();
+    message.put("msg",gson.toJson(args));
+    DirectClientMessage m=new DirectClientMessage(msg.meetingId,msg.requesterId,"getSlideInfoReply",message);
+    service.sendMessage(m);
+  }
+}

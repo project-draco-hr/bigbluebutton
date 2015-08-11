@@ -1,0 +1,4 @@
+{
+  MuteUserInVoiceConfRequestMessage msg=MuteUserInVoiceConfRequestMessage.fromJson(json);
+  fsApp.muteUser(msg.voiceConfId,msg.voiceUserId,msg.mute);
+}

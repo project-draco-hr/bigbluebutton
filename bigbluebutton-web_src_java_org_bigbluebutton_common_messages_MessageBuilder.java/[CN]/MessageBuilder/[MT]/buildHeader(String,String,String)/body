@@ -1,0 +1,8 @@
+{
+  java.util.HashMap<String,Object> header=new java.util.HashMap<String,Object>();
+  header.put(NAME,name);
+  header.put(VERSION,version);
+  header.put(TIMESTAMP,generateTimestamp());
+  if (replyTo != null && replyTo != "")   header.put(REPLY_TO,replyTo);
+  return header;
+}

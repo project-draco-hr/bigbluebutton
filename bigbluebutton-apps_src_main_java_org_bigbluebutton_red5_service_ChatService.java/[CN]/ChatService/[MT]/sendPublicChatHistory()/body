@@ -1,0 +1,6 @@
+{
+  String meetingID=Red5.getConnectionLocal().getScope().getName();
+  String requesterID=getBbbSession().getInternalUserID();
+  String replyTo=meetingID + "/" + requesterID;
+  red5BBBInGw.getChatHistory(meetingID,requesterID,replyTo);
+}

@@ -1,0 +1,7 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(TIMESTAMP,timestamp);
+  payload.put(STARTED_ON,timestamp);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(BBB_APPS_IS_ALIVE,VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}

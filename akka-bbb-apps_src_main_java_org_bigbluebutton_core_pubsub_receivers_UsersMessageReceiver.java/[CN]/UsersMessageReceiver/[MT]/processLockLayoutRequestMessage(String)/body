@@ -1,0 +1,6 @@
+{
+  LockLayoutRequestMessage msg=LockLayoutRequestMessage.fromJson(message);
+  if (msg != null) {
+    bbbInGW.lockLayout(msg.meetingId,msg.userId,msg.lock,msg.viewersOnly,msg.layout);
+  }
+}
