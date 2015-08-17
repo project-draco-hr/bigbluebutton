@@ -1,0 +1,6 @@
+{
+  UserShareWebcamRequestMessage msg=UserShareWebcamRequestMessage.fromJson(message);
+  if (msg != null) {
+    bbbInGW.shareWebcam(msg.meetingId,msg.userId,msg.stream);
+  }
+}

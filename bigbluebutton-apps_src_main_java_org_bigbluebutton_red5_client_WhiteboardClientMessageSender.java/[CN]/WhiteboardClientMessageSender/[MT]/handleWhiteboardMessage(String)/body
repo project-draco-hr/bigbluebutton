@@ -1,0 +1,42 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+switch (messageName) {
+case UndoWhiteboardReplyMessage.UNDO_WHITEBOARD_REPLY:
+        UndoWhiteboardReplyMessage uwrm=UndoWhiteboardReplyMessage.fromJson(message);
+      if (uwrm != null) {
+        processUndoWhiteboardReply(uwrm);
+      }
+    break;
+case ClearWhiteboardReplyMessage.WHITEBOARD_CLEARED_MESSAGE:
+  ClearWhiteboardReplyMessage wcm=ClearWhiteboardReplyMessage.fromJson(message);
+if (wcm != null) {
+  processClearWhiteboardReply(wcm);
+}
+break;
+case IsWhiteboardEnabledReplyMessage.IS_WHITEBOARD_ENABLED_REPLY:
+IsWhiteboardEnabledReplyMessage iwe=IsWhiteboardEnabledReplyMessage.fromJson(message);
+if (iwe != null) {
+processIsWhiteboardEnabledReply(iwe);
+}
+break;
+case GetWhiteboardShapesReplyMessage.GET_WHITEBOARD_SHAPES_REPLY:
+GetWhiteboardShapesReplyMessage gwsrm=GetWhiteboardShapesReplyMessage.fromJson(message);
+if (gwsrm != null) {
+processGetWhiteboardShapesReplyMessage(gwsrm);
+}
+break;
+case SendWhiteboardAnnotationReplyMessage.SEND_WHITEBOARD_ANNOTATION_REPLY:
+SendWhiteboardAnnotationReplyMessage swarm=SendWhiteboardAnnotationReplyMessage.fromJson(message);
+if (swarm != null) {
+processSendWhiteboardAnnotationReplyMessage(swarm);
+}
+break;
+}
+}
+}
+}

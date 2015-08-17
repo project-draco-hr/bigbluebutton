@@ -1,0 +1,5 @@
+{
+  this.meetingId=meetingId;
+  this.code=code;
+  this.presentation=presentation;
+}

@@ -1,0 +1,4 @@
+{
+  StopPollRequestMessage msg=new StopPollRequestMessage(meetingId,userId,pollId);
+  sender.send(MessagingConstants.TO_POLLING_CHANNEL,msg.toJson());
+}

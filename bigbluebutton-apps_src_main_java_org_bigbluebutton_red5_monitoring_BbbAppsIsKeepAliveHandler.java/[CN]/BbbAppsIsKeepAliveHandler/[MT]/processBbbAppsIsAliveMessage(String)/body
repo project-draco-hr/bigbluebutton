@@ -1,0 +1,6 @@
+{
+  BbbAppsIsAliveMessage msg=BbbAppsIsAliveMessage.fromJson(json);
+  if (msg != null) {
+    monitorService.handleKeepAliveMessage(msg.startedOn,msg.timestamp);
+  }
+}

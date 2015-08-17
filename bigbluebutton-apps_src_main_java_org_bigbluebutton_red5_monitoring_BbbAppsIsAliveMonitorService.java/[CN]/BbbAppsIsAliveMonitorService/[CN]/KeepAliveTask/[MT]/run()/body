@@ -1,0 +1,4 @@
+{
+  CheckIsAliveTimer ping=new CheckIsAliveTimer();
+  queueMessage(ping);
+}

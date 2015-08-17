@@ -1,0 +1,6 @@
+{
+  GetUsersRequestMessage msg=GetUsersRequestMessage.fromJson(message);
+  if (msg != null) {
+    bbbInGW.getUsers(msg.meetingId,msg.requesterId);
+  }
+}

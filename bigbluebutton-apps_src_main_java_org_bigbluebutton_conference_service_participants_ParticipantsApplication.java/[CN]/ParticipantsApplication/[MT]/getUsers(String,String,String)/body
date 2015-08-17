@@ -1,3 +1,0 @@
-{
-  bbbInGW.getUsers(meetingID,requesterID);
-}

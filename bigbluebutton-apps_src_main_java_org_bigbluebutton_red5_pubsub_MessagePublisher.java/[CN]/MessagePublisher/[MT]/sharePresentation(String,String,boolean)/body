@@ -1,0 +1,4 @@
+{
+  SharePresentationMessage msg=new SharePresentationMessage(meetingID,presentationID,share);
+  sender.send(MessagingConstants.TO_PRESENTATION_CHANNEL,msg.toJson());
+}

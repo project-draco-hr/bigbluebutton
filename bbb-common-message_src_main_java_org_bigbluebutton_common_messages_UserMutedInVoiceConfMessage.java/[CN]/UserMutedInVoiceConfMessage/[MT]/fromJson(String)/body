@@ -1,0 +1,20 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (USER_MUTED_IN_VOICE_CONF.equals(messageName)) {
+        if (payload.has(VOICE_CONF_ID) && payload.has(VOICE_USER_ID) && payload.has(MUTED)) {
+          String voiceConfId=payload.get(VOICE_CONF_ID).getAsString();
+          String voiceUserId=payload.get(VOICE_USER_ID).getAsString();
+          Boolean muted=payload.get(MUTED).getAsBoolean();
+          return new UserMutedInVoiceConfMessage(voiceConfId,voiceUserId,muted);
+        }
+      }
+    }
+  }
+  return null;
+}

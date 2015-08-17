@@ -1,0 +1,4 @@
+{
+  LockMuteUserRequestMessage msg=new LockMuteUserRequestMessage(meetingID,requesterID,userID,lock);
+  sender.send(MessagingConstants.TO_USERS_CHANNEL,msg.toJson());
+}

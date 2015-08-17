@@ -1,5 +1,0 @@
-{
-  if (icecastBroadcast) {
-    broadcastToIcecast(room,meetingid);
-  }
-}

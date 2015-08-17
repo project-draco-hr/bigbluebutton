@@ -1,0 +1,24 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+switch (messageName) {
+case PollStartedMessage.POLL_STARTED:
+        processPollStartedMessage(message);
+      break;
+case PollStoppedMessage.POLL_STOPPED:
+    processPollStoppedMessage(message);
+  break;
+case PollShowResultMessage.POLL_SHOW_RESULT:
+processPollShowResultMessage(message);
+break;
+case UserVotedPollMessage.USER_VOTED_POLL:
+processUserVotedPollMessage(message);
+break;
+}
+}
+}
+}

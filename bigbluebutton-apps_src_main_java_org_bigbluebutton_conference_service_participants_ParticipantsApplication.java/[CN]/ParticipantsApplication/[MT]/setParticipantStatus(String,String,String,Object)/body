@@ -1,3 +1,0 @@
-{
-  bbbInGW.setUserStatus(room,userid,status,value);
-}

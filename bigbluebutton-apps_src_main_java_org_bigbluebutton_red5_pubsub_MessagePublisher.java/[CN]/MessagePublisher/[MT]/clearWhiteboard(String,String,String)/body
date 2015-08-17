@@ -1,0 +1,4 @@
+{
+  ClearWhiteboardRequestMessage msg=new ClearWhiteboardRequestMessage(meetingID,requesterID,whiteboardId);
+  sender.send(MessagingConstants.TO_WHITEBOARD_CHANNEL,msg.toJson());
+}

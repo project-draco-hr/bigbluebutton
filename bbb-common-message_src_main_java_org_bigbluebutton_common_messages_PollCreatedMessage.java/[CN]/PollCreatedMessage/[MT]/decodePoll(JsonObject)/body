@@ -1,0 +1,8 @@
+{
+  Map<String,Object> pollMap=new HashMap<String,Object>();
+  if (poll.has(ID) && poll.has(QUESTIONS)) {
+    String id=poll.get(ID).getAsString();
+    JsonArray qArray=poll.get(QUESTIONS).getAsJsonArray();
+  }
+  return pollMap;
+}

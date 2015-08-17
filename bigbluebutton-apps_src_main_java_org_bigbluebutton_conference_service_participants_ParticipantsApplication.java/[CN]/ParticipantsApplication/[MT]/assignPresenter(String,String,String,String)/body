@@ -1,3 +1,0 @@
-{
-  bbbInGW.assignPresenter(room,newPresenterID,newPresenterName,assignedBy);
-}

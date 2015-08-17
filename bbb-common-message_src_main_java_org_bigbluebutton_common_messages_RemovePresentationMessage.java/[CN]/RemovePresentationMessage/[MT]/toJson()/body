@@ -1,0 +1,7 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(Constants.MEETING_ID,meetingId);
+  payload.put(Constants.PRESENTATION_ID,presentationId);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(REMOVE_PRESENTATION,VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}

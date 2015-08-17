@@ -1,0 +1,4 @@
+{
+  SendPageCountErrorMessage msg=new SendPageCountErrorMessage(messageKey,meetingId,code,presId,numberOfPages,maxNumberPages,presName);
+  sender.send(MessagingConstants.TO_PRESENTATION_CHANNEL,msg.toJson());
+}

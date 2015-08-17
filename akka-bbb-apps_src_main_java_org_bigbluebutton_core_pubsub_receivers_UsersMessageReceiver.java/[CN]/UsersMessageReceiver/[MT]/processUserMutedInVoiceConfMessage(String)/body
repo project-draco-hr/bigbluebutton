@@ -1,0 +1,6 @@
+{
+  UserMutedInVoiceConfMessage msg=UserMutedInVoiceConfMessage.fromJson(json);
+  if (msg != null) {
+    bbbInGW.voiceUserMuted(msg.voiceConfId,msg.voiceUserId,msg.muted);
+  }
+}

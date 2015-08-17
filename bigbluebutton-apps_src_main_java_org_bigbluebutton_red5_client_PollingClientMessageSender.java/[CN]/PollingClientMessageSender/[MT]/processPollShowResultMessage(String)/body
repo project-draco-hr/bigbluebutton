@@ -1,0 +1,12 @@
+{
+  PollShowResultMessage msg=PollShowResultMessage.fromJson(json);
+  if (msg != null) {
+    Map<String,Object> args=new HashMap<String,Object>();
+    args.put("poll",msg.poll);
+    Map<String,Object> message=new HashMap<String,Object>();
+    Gson gson=new Gson();
+    message.put("msg",gson.toJson(args));
+    BroadcastClientMessage b=new BroadcastClientMessage(msg.meetingId,"pollShowResultMessage",message);
+    service.sendMessage(b);
+  }
+}

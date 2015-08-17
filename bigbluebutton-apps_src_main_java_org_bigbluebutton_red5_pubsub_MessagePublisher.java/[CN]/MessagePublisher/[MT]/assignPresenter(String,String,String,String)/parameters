@@ -1,0 +1,4 @@
+String meetingId
+String newPresenterID
+String newPresenterName
+String assignedBy

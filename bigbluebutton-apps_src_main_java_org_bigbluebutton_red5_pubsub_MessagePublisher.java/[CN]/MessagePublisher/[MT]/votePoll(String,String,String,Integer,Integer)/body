@@ -1,0 +1,4 @@
+{
+  VotePollUserRequestMessage msg=new VotePollUserRequestMessage(meetingId,userId,pollId,questionId,answerId);
+  sender.send(MessagingConstants.TO_POLLING_CHANNEL,msg.toJson());
+}

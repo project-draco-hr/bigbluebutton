@@ -1,0 +1,12 @@
+{
+  Map<String,Object> answerMap=new HashMap<String,Object>();
+  if (answer.has(Constants.ID) && answer.has(KEY)) {
+    String id=answer.get(Constants.ID).getAsString();
+    String key=answer.get(KEY).getAsString();
+    Integer numVotes=answer.get(NUM_VOTES).getAsInt();
+    answerMap.put(Constants.ID,id);
+    answerMap.put(KEY,key);
+    answerMap.put(NUM_VOTES,numVotes);
+  }
+  return answerMap;
+}

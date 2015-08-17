@@ -1,0 +1,6 @@
+{
+  String RECORD_DIR="/var/freeswitch/meetings";
+  String voicePath=RECORD_DIR + File.separatorChar + meetingid+ "-"+ genTimestamp()+ ".wav";
+  RecordConferenceCommand rcc=new RecordConferenceCommand(voiceConfId,USER,true,voicePath);
+  queueMessage(rcc);
+}

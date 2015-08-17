@@ -1,0 +1,4 @@
+{
+  this.recorder=recorder;
+  messages=new LinkedBlockingQueue<RecordEvent>();
+}

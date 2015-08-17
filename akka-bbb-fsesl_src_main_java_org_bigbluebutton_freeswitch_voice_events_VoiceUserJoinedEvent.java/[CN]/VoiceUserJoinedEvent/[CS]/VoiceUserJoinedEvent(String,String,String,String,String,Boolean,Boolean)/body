@@ -1,0 +1,9 @@
+{
+  super(room);
+  this.userId=userId;
+  this.voiceUserId=voiceUserId;
+  this.callerIdName=callerIdName;
+  this.callerIdNum=callerIdNum;
+  this.muted=muted;
+  this.speaking=speaking;
+}

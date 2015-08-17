@@ -1,0 +1,3 @@
+String meetingId
+String requesterId
+Map<String,Object> poll

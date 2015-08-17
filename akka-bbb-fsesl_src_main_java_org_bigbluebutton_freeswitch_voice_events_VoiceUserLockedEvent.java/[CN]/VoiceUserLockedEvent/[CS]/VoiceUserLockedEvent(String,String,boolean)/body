@@ -1,0 +1,5 @@
+{
+  super(room);
+  this.locked=locked;
+  this.userId=userId;
+}

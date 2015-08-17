@@ -1,0 +1,4 @@
+{
+  GetPresentationInfoMessage msg=new GetPresentationInfoMessage(meetingID,requesterID,replyTo);
+  sender.send(MessagingConstants.TO_PRESENTATION_CHANNEL,msg.toJson());
+}
