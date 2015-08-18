@@ -1,4 +1,17 @@
 {
   CheckIsAliveTimer ping=new CheckIsAliveTimer();
   queueMessage(ping);
+  PubSubPingMessage msg=new PubSubPingMessage();
+  MessageHeader header=new MessageHeader();
+  header.name=PubSubPingMessage.PUBSUB_PING;
+  header.timestamp=System.nanoTime();
+  header.replyTo="BbbRed5";
+  header.version="0.0.1";
+  PubSubPingMessagePayload payload=new PubSubPingMessagePayload();
+  payload.system="BbbAppsRed5";
+  payload.timestamp=System.currentTimeMillis();
+  msg.header=header;
+  msg.payload=payload;
+  Gson gson=new Gson();
+  sender.send(MessagingConstants.TO_SYSTEM_CHANNEL,gson.toJson(msg));
 }
