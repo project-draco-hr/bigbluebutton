@@ -1,4 +1,4 @@
 {
-  this.startedOn=startedOn;
+  this.system=system;
   this.timestamp=timestamp;
 }

@@ -8,7 +8,7 @@
   header.replyTo="BbbRed5";
   header.version="0.0.1";
   PubSubPingMessagePayload payload=new PubSubPingMessagePayload();
-  payload.system="BbbAppsRed5";
+  payload.system=SYSTEM_NAME;
   payload.timestamp=System.currentTimeMillis();
   msg.header=header;
   msg.payload=payload;

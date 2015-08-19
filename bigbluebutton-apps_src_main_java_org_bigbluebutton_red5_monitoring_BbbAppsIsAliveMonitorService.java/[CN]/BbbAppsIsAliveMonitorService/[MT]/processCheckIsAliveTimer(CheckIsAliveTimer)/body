@@ -1,6 +1,8 @@
 {
-  if (lastKeepAliveMessage != 0 && (System.currentTimeMillis() - lastKeepAliveMessage > 10000)) {
-    log.warn("BBB Apps is down. Disconnecting all clients.");
+  Long now=System.currentTimeMillis();
+  log.debug("Checking keep alive. now=" + now + " lk="+ lastKeepAliveMessage+ " diff="+ (now - lastKeepAliveMessage > 10000));
+  if (lastKeepAliveMessage != 0 && (now - lastKeepAliveMessage > 10000)) {
+    log.error("BBB Apps is down. Disconnecting all clients.");
     service.sendMessage(new DisconnectAllMessage());
   }
 }
