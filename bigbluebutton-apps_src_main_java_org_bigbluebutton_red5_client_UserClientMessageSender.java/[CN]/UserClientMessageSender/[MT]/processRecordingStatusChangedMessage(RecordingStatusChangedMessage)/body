@@ -5,7 +5,6 @@
   Map<String,Object> message=new HashMap<String,Object>();
   Gson gson=new Gson();
   message.put("msg",gson.toJson(args));
-  System.out.println("RedisPubSubMessageHandler - processRecordingStatusChangedMessage \n" + message.get("msg") + "\n");
   BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"recordingStatusChanged",message);
   service.sendMessage(m);
 }

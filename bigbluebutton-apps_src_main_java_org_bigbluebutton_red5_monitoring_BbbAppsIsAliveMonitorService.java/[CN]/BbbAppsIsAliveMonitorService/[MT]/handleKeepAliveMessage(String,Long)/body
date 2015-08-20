@@ -1,5 +1,4 @@
 {
-  log.info("Handle keep alive.");
   if (system.equals(SYSTEM_NAME)) {
     queueMessage(new KeepAliveMessage(system,timestamp));
   }

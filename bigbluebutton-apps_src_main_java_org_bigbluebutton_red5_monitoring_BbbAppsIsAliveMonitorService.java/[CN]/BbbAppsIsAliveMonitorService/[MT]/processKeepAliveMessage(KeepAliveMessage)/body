@@ -1,4 +1,3 @@
 {
-  log.debug("Received keep alive.");
   lastKeepAliveMessage=System.currentTimeMillis();
 }

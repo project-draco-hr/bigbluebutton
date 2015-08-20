@@ -8,7 +8,6 @@
     Iterator<String> usersIter=msg.users.iterator();
     while (usersIter.hasNext()) {
       String user=usersIter.next();
-      log.debug("RedisPubSubMessageHandler - processBroadcastLayoutMessage \n" + message + "\n");
       DirectClientMessage m=new DirectClientMessage(msg.meetingId,user,"syncLayout",args);
       service.sendMessage(m);
     }

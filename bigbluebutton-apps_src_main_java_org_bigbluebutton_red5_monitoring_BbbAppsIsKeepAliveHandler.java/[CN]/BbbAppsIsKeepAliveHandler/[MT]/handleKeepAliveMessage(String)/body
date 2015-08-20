@@ -1,5 +1,4 @@
 {
-  System.out.println("***** Handle pong message");
   JsonParser parser=new JsonParser();
   JsonObject obj=(JsonObject)parser.parse(message);
   if (obj.has("header") && obj.has("payload")) {
@@ -8,10 +7,9 @@
       String messageName=header.get("name").getAsString();
 switch (messageName) {
 case PubSubPongMessage.PUBSUB_PONG:
-        System.out.println("***** 1 Handle pong message");
-      processBbbAppsIsAliveMessage(message);
-    break;
-}
+        processBbbAppsIsAliveMessage(message);
+      break;
+  }
 }
 }
 }

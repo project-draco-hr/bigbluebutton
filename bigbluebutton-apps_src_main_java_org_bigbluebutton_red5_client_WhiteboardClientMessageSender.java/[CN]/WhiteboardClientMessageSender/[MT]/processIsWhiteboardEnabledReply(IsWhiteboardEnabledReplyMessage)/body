@@ -4,7 +4,6 @@
   Map<String,Object> message=new HashMap<String,Object>();
   Gson gson=new Gson();
   message.put("msg",gson.toJson(args));
-  System.out.println("RedisPubSubMessageHandler - processClearWhiteboardReply \n" + message.toString() + "\n");
   DirectClientMessage m=new DirectClientMessage(msg.meetingId,msg.requesterId,"WhiteboardIsWhiteboardEnabledReply",message);
   service.sendMessage(m);
   BroadcastClientMessage b=new BroadcastClientMessage(msg.meetingId,"WhiteboardIsWhiteboardEnabledReply",message);

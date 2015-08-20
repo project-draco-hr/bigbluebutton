@@ -1,8 +1,8 @@
 {
-  PubSubPongMessage m=new PubSubPongMessage();
+  PubSubPingMessage m=new PubSubPingMessage();
   MessageHeader header=new MessageHeader();
   PubSubPingMessagePayload payload=new PubSubPingMessagePayload();
-  header.name=PubSubPongMessage.PUBSUB_PONG;
+  header.name=PubSubPingMessage.PUBSUB_PING;
   header.timestamp=System.nanoTime();
   payload.system=system;
   payload.timestamp=timestamp;
