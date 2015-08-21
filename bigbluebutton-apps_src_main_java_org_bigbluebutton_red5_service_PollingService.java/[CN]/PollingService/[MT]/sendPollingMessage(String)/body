@@ -1,0 +1,5 @@
+{
+  String meetingID=Red5.getConnectionLocal().getScope().getName();
+  String userId=getBbbSession().getInternalUserID();
+  red5GW.sendPollingMessage(json);
+}
