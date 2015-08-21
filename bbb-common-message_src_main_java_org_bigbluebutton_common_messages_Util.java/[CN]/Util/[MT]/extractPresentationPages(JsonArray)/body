@@ -3,14 +3,14 @@
   Iterator<JsonElement> pagesIter=pagesArray.iterator();
   while (pagesIter.hasNext()) {
     JsonObject pageObj=(JsonObject)pagesIter.next();
-    if (pageObj.has("id") && pageObj.has("num") && pageObj.has("thumb_uri")&& pageObj.has("swf_uri")&& pageObj.has("txt_uri")&& pageObj.has("png_uri")&& pageObj.has("current")&& pageObj.has("x_offset")&& pageObj.has("y_offset")&& pageObj.has("width_ratio")&& pageObj.has("height_ratio")) {
+    if (pageObj.has("id") && pageObj.has("num") && pageObj.has("thumb_uri")&& pageObj.has("swf_uri")&& pageObj.has("txt_uri")&& pageObj.has("svg_uri")&& pageObj.has("current")&& pageObj.has("x_offset")&& pageObj.has("y_offset")&& pageObj.has("width_ratio")&& pageObj.has("height_ratio")) {
       Map<String,Object> page=new HashMap<String,Object>();
       String pageId=pageObj.get("id").getAsString();
       Integer pageNum=pageObj.get("num").getAsInt();
       String pageThumbUri=pageObj.get("thumb_uri").getAsString();
       String pageSwfUri=pageObj.get("swf_uri").getAsString();
       String pageTxtUri=pageObj.get("txt_uri").getAsString();
-      String pagePngUri=pageObj.get("png_uri").getAsString();
+      String pageSvgUri=pageObj.get("svg_uri").getAsString();
       Boolean currentPage=pageObj.get("current").getAsBoolean();
       Double xOffset=pageObj.get("x_offset").getAsDouble();
       Double yOffset=pageObj.get("y_offset").getAsDouble();
@@ -21,7 +21,7 @@
       page.put("thumbUri",pageThumbUri);
       page.put("swfUri",pageSwfUri);
       page.put("txtUri",pageTxtUri);
-      page.put("pngUri",pagePngUri);
+      page.put("svgUri",pageSvgUri);
       page.put("current",currentPage);
       page.put("xOffset",xOffset);
       page.put("yOffset",yOffset);

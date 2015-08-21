@@ -1,0 +1,23 @@
+{
+  Map<String,Object> pollMap=new HashMap<String,Object>();
+  if (poll.has(Constants.ID) && poll.has(ANSWERS)) {
+    String id=poll.get(Constants.ID).getAsString();
+    Integer numRespondents=poll.get(NUM_RESPONDENTS).getAsInt();
+    Integer numResponders=poll.get(NUM_RESPONDERS).getAsInt();
+    JsonArray answers=poll.get(ANSWERS).getAsJsonArray();
+    ArrayList<Map<String,Object>> collection=new ArrayList<Map<String,Object>>();
+    Iterator<JsonElement> answersIter=answers.iterator();
+    while (answersIter.hasNext()) {
+      JsonElement qElem=answersIter.next();
+      Map<String,Object> answerMap=decodeSimplePollAnswerVote((JsonObject)qElem);
+      if (answerMap != null) {
+        collection.add(answerMap);
+      }
+    }
+    pollMap.put(Constants.ID,id);
+    pollMap.put(NUM_RESPONDENTS,numRespondents);
+    pollMap.put(NUM_RESPONDERS,numResponders);
+    pollMap.put(ANSWERS,collection);
+  }
+  return pollMap;
+}

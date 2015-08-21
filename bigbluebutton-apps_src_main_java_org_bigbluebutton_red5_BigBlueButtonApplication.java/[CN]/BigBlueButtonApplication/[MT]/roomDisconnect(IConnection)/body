@@ -22,7 +22,13 @@
   logData.put("description","User leaving BBB Apps.");
   Gson gson=new Gson();
   String logStr=gson.toJson(logData);
-  log.info("User leaving bbb-apps: data={}",logStr);
-  red5InGW.userLeft(bbbSession.getRoom(),getBbbSession().getInternalUserID(),sessionId);
+  boolean removeUser=userConnections.userDisconnected(userId,connId);
+  if (removeUser) {
+    log.info("User leaving bbb-apps: data={}",logStr);
+    red5InGW.userLeft(bbbSession.getRoom(),getBbbSession().getInternalUserID(),sessionId);
+  }
+ else {
+    log.info("User not leaving bbb-apps but just disconnected: data={}",logStr);
+  }
   super.roomDisconnect(conn);
 }

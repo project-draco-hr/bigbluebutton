@@ -20,4 +20,7 @@
  else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_DESK_SHARE_CHANNEL)) {
     deskShareMessageSender.handleDeskShareMessage(message);
   }
+ else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_POLLING_CHANNEL)) {
+    pollingMessageSender.handlePollMessage(message);
+  }
 }

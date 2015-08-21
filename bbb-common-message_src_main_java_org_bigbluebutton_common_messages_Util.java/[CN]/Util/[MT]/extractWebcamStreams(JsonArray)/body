@@ -1,0 +1,9 @@
+{
+  ArrayList<String> collection=new ArrayList<String>();
+  Iterator<JsonElement> webcamStreamsIter=webcamStreams.iterator();
+  while (webcamStreamsIter.hasNext()) {
+    JsonElement stream=webcamStreamsIter.next();
+    collection.add(stream.getAsString());
+  }
+  return collection;
+}

@@ -1,7 +1,6 @@
 {
-  LOG.debug("Checking message: " + pattern + " "+ channel+ " "+ message);
   if (channel.equalsIgnoreCase(MessagingConstants.TO_MEETING_CHANNEL)) {
-    IPublishedMessage msg=MessageFromJsonConverter.convert(message);
+    IBigBlueButtonMessage msg=MessageFromJsonConverter.convert(message);
     if (msg != null) {
       if (msg instanceof EndMeetingMessage) {
         EndMeetingMessage emm=(EndMeetingMessage)msg;
@@ -61,7 +60,7 @@
     }
   }
  else   if (channel.equalsIgnoreCase(MessagingConstants.TO_SYSTEM_CHANNEL)) {
-    IPublishedMessage msg=MessageFromJsonConverter.convert(message);
+    IBigBlueButtonMessage msg=MessageFromJsonConverter.convert(message);
     if (msg != null) {
       if (msg instanceof KeepAliveMessage) {
         KeepAliveMessage emm=(KeepAliveMessage)msg;

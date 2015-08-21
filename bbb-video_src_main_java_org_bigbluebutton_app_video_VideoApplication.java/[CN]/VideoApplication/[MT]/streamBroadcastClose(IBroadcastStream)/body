@@ -1,21 +1,27 @@
 {
   super.streamBroadcastClose(stream);
-  if (recordVideoStream) {
-    IConnection conn=Red5.getConnectionLocal();
-    String scopeName;
-    if (conn != null) {
-      scopeName=conn.getScope().getName();
-    }
+  IConnection conn=Red5.getConnectionLocal();
+  String scopeName;
+  if (conn != null) {
+    scopeName=conn.getScope().getName();
+  }
  else {
-      log.info("Connection local was null, using scope name from the stream: {}",stream);
-      scopeName=stream.getScope().getName();
-    }
-    IStreamListener listener=streamListeners.remove(scopeName + "-" + stream.getPublishedName());
-    if (listener != null) {
-      stream.removeStreamListener(listener);
-    }
+    log.info("Connection local was null, using scope name from the stream: {}",stream);
+    scopeName=stream.getScope().getName();
+  }
+  log.info("Stream broadcast closed for stream=[{}] meeting=[{}]",stream.getPublishedName(),scopeName);
+  String userId=getUserId();
+  String meetingId=conn.getScope().getName();
+  String streamId=stream.getPublishedName();
+  publisher.userUnshareWebcamRequestMessage(meetingId,userId,streamId);
+  IStreamListener listener=streamListeners.remove(scopeName + "-" + stream.getPublishedName());
+  if (listener != null) {
+    ((VideoStreamListener)listener).streamStopped();
+    stream.removeStreamListener(listener);
+  }
+  if (recordVideoStream) {
     long publishDuration=(System.currentTimeMillis() - stream.getCreationTime()) / 1000;
-    log.info("streamBroadcastClose " + stream.getPublishedName() + " "+ System.currentTimeMillis()+ " "+ scopeName);
+    log.info("Stop recording event for stream=[{}] meeting=[{}]",stream.getPublishedName(),scopeName);
     Map<String,String> event=new HashMap<String,String>();
     event.put("module","WEBCAM");
     event.put("timestamp",genTimestamp().toString());

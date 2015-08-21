@@ -1,0 +1,11 @@
+{
+  if (users.containsKey(userId)) {
+    UserConnection user=users.get(userId);
+    user.add(connId);
+  }
+ else {
+    UserConnection user=new UserConnection();
+    user.add(connId);
+    users.put(userId,user);
+  }
+}

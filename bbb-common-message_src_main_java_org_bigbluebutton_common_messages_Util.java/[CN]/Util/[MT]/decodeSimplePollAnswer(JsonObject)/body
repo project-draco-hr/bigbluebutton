@@ -1,0 +1,10 @@
+{
+  Map<String,Object> answerMap=new HashMap<String,Object>();
+  if (answer.has(Constants.ID) && answer.has(KEY)) {
+    String id=answer.get(Constants.ID).getAsString();
+    String key=answer.get(KEY).getAsString();
+    answerMap.put(Constants.ID,id);
+    answerMap.put(KEY,key);
+  }
+  return answerMap;
+}
