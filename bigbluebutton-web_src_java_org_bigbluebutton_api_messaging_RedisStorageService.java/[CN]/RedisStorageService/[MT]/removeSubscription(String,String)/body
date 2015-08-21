@@ -9,7 +9,7 @@
     unsubscribed=false;
   }
  finally {
-    redisPool.returnResource(jedis);
+    jedis.close();
   }
   return unsubscribed;
 }

@@ -32,16 +32,26 @@
       }
     }
   }
- else   if (channel.equalsIgnoreCase(MessagingConstants.BBB_APPS_KEEP_ALIVE_CHANNEL)) {
+ else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_SYSTEM_CHANNEL)) {
     if (obj.has("header") && obj.has("payload")) {
       JsonObject header=(JsonObject)obj.get("header");
       JsonObject payload=(JsonObject)obj.get("payload");
       if (header.has("name")) {
         String messageName=header.get("name").getAsString();
-        for (        MessageListener listener : listeners) {
-          if (BbbAppsIsAliveMessage.BBB_APPS_IS_ALIVE.equalsIgnoreCase(messageName)) {
-            BbbAppsIsAliveMessage msg=BbbAppsIsAliveMessage.fromJson(message);
-            listener.handle(new KeepAliveReply(msg.startedOn,msg.timestamp));
+        IMessage rxMsg=null;
+        if (PubSubPongMessage.PUBSUB_PONG.equals(messageName)) {
+          IBigBlueButtonMessage msg=decoder.decodeMessage(message);
+          if (msg != null) {
+            PubSubPongMessage m=(PubSubPongMessage)msg;
+            rxMsg=new KeepAliveReply(m.payload.system,m.payload.timestamp);
+          }
+ else {
+            System.out.println("***** 1 Failed to decode pong message");
+          }
+        }
+        if (rxMsg != null) {
+          for (          MessageListener listener : listeners) {
+            listener.handle(rxMsg);
           }
         }
       }

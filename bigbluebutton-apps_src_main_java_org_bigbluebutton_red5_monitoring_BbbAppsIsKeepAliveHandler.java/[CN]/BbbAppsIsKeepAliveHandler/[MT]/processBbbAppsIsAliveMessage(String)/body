@@ -1,6 +1,10 @@
 {
-  BbbAppsIsAliveMessage msg=BbbAppsIsAliveMessage.fromJson(json);
+  IBigBlueButtonMessage msg=decoder.decodeMessage(json);
   if (msg != null) {
-    monitorService.handleKeepAliveMessage(msg.startedOn,msg.timestamp);
+    PubSubPongMessage m=(PubSubPongMessage)msg;
+    monitorService.handleKeepAliveMessage(m.payload.system,m.payload.timestamp);
+  }
+ else {
+    System.out.println("***** 1 Failed to decode pong message");
   }
 }

@@ -5,7 +5,6 @@
     args.put("locked",msg.locked);
     args.put("setById",msg.setByUserid);
     args.put("layout",msg.layout);
-    System.out.println("RedisPubSubMessageHandler - processGetCurrentLayoutReplyMessage \n" + message + "\n");
     DirectClientMessage m=new DirectClientMessage(msg.meetingId,msg.requestedByUserid,"getCurrentLayoutResponse",args);
     service.sendMessage(m);
   }

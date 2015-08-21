@@ -1,4 +1,5 @@
 {
+  redisPool=new JedisPool(new GenericObjectPoolConfig(),host,port,Protocol.DEFAULT_TIMEOUT,null,Protocol.DEFAULT_DATABASE,"BbbRed5AppsPub");
   log.info("Redis message publisher starting!");
   try {
     sendMessage=true;
