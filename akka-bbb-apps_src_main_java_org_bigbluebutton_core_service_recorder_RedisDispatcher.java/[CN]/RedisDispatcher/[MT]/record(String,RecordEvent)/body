@@ -6,6 +6,6 @@
     jedis.rpush("meeting" + COLON + session+ COLON+ "recordings",msgid.toString());
   }
   finally {
-    redisPool.returnResource(jedis);
+    jedis.close();
   }
 }

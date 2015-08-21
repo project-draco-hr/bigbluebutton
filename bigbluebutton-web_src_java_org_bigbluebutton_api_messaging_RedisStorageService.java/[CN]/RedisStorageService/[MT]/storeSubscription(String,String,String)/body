@@ -16,7 +16,7 @@
     log.warn("Cannot store subscription:" + meetingId,e);
   }
  finally {
-    redisPool.returnResource(jedis);
+    jedis.close();
   }
   return sid;
 }

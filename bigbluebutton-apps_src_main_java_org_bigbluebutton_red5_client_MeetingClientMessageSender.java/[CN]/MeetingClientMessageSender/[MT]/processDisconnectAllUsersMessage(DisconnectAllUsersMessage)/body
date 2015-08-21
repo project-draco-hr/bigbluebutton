@@ -1,5 +1,4 @@
 {
-  System.out.println("RedisPubSubMessageHandler - processDisconnectAllUsersMessage mid=[" + msg.meetingId + "]");
   DisconnectAllClientsMessage dm=new DisconnectAllClientsMessage(msg.meetingId);
   service.sendMessage(dm);
 }
