@@ -6,10 +6,12 @@
         jedis.publish(channel,message);
       }
  catch (      Exception e) {
-        log.warn("Cannot publish the message to redis",e);
+        log.warn("Cannot publish the message to pubsub",e);
       }
  finally {
-        jedis.close();
+        if (jedis != null) {
+          jedis.close();
+        }
       }
     }
   }
