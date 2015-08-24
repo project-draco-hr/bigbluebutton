@@ -1,3 +1,0 @@
-{
-  bbbInGW.sendCursorUpdate(meetingID,xPercent,yPercent);
-}

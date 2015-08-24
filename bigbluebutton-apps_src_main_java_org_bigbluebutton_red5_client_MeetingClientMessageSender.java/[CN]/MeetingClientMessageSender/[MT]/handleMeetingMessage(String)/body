@@ -1,0 +1,60 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+switch (messageName) {
+case DisconnectUserMessage.DISCONNECT_USER:
+        DisconnectUserMessage m=DisconnectUserMessage.fromJson(message);
+      if (m != null) {
+        processDisconnectUserMessage(m);
+      }
+    break;
+case DisconnectAllUsersMessage.DISCONNECT_All_USERS:
+  DisconnectAllUsersMessage daum=DisconnectAllUsersMessage.fromJson(message);
+if (daum != null) {
+  processDisconnectAllUsersMessage(daum);
+}
+break;
+case MeetingEndedMessage.MEETING_ENDED:
+MeetingEndedMessage mem=MeetingEndedMessage.fromJson(message);
+if (mem != null) {
+processMeetingEndedMessage(mem);
+}
+break;
+case MeetingHasEndedMessage.MEETING_HAS_ENDED:
+MeetingHasEndedMessage mhem=MeetingHasEndedMessage.fromJson(message);
+if (mhem != null) {
+processMeetingHasEndedMessage(mhem);
+}
+break;
+case MeetingStateMessage.MEETING_STATE:
+MeetingStateMessage msm=MeetingStateMessage.fromJson(message);
+if (msm != null) {
+processMeetingStateMessage(msm);
+}
+break;
+case NewPermissionsSettingMessage.NEW_PERMISSIONS_SETTING:
+NewPermissionsSettingMessage npsm=NewPermissionsSettingMessage.fromJson(message);
+if (npsm != null) {
+processNewPermissionsSettingMessage(npsm);
+}
+break;
+case MeetingMutedMessage.MEETING_MUTED:
+MeetingMutedMessage mmm=MeetingMutedMessage.fromJson(message);
+if (mmm != null) {
+processMeetingMutedMessage(mmm);
+}
+break;
+case UserLockedMessage.USER_LOCKED:
+UserLockedMessage ulm=UserLockedMessage.fromJson(message);
+if (ulm != null) {
+processUserLockedMessage(ulm);
+}
+break;
+}
+}
+}
+}

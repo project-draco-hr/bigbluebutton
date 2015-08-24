@@ -1,0 +1,15 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+switch (messageName) {
+case PubSubPongMessage.PUBSUB_PONG:
+        processBbbAppsIsAliveMessage(message);
+      break;
+  }
+}
+}
+}

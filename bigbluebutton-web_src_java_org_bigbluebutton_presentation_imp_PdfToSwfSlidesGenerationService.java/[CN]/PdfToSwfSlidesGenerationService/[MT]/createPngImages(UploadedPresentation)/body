@@ -1,5 +1,0 @@
-{
-  log.info("Creating PNG images. MeetingId=[" + pres.getMeetingId() + "], presId=["+ pres.getId()+ "], name=["+ pres.getName()+ "]");
-  notifier.sendCreatingPngImagesUpdateMessage(pres);
-  pngImageCreator.createPngImages(pres);
-}

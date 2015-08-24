@@ -1,0 +1,5 @@
+{
+  for (  MessageHandler l : receivers) {
+    l.handleMessage(pattern,channel,message);
+  }
+}

@@ -21,6 +21,26 @@
  else       if (message instanceof UserStatusChanged) {
         updatedStatus((UserStatusChanged)message);
       }
+ else       if (message instanceof UserJoinedVoice) {
+        log.info("Processing voice user joined message.");
+        userJoinedVoice((UserJoinedVoice)message);
+      }
+ else       if (message instanceof UserLeftVoice) {
+        log.info("Processing voice user left message.");
+        userLeftVoice((UserLeftVoice)message);
+      }
+ else       if (message instanceof UserListeningOnly) {
+        log.info("Processing user listening only message.");
+        userListeningOnly((UserListeningOnly)message);
+      }
+ else       if (message instanceof UserSharedWebcam) {
+        log.info("Processing user shared webcam message.");
+        userSharedWebcam((UserSharedWebcam)message);
+      }
+ else       if (message instanceof UserUnsharedWebcam) {
+        log.info("Processing user unshared webcam message.");
+        userUnsharedWebcam((UserUnsharedWebcam)message);
+      }
  else       if (message instanceof RemoveExpiredMeetings) {
         checkAndRemoveExpiredMeetings();
       }

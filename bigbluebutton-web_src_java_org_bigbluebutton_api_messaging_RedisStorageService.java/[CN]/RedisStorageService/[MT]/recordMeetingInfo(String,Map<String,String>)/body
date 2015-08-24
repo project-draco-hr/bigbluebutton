@@ -11,6 +11,6 @@
     log.warn("Cannot record the info meeting:" + meetingId,e);
   }
  finally {
-    redisPool.returnResource(jedis);
+    jedis.close();
   }
 }

@@ -1,0 +1,6 @@
+{
+  IScope scope=Red5.getConnectionLocal().getScope();
+  String meetingId=scope.getName();
+  String userId=getBbbSession().getInternalUserID();
+  red5InGW.userRaiseHand(meetingId,userId);
+}

@@ -1,0 +1,6 @@
+{
+  if (system.equals("BbbWeb")) {
+    KeepAlivePong pong=new KeepAlivePong(system,timestamp);
+    queueMessage(pong);
+  }
+}

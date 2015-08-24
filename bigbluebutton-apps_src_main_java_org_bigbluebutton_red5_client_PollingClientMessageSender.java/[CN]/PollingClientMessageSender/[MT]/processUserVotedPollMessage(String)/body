@@ -1,0 +1,12 @@
+{
+  UserVotedPollMessage msg=UserVotedPollMessage.fromJson(json);
+  if (msg != null) {
+    Map<String,Object> args=new HashMap<String,Object>();
+    args.put("poll",msg.poll);
+    Map<String,Object> message=new HashMap<String,Object>();
+    Gson gson=new Gson();
+    message.put("msg",gson.toJson(args));
+    DirectClientMessage b=new DirectClientMessage(msg.meetingId,msg.presenterId,"pollUserVotedMessage",message);
+    service.sendMessage(b);
+  }
+}

@@ -1,0 +1,30 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+switch (messageName) {
+case SendPublicChatMessage.SEND_PUBLIC_CHAT_MESSAGE:
+        SendPublicChatMessage spucm=SendPublicChatMessage.fromJson(message);
+      if (spucm != null) {
+        processSendPublicChatMessage(spucm);
+      }
+    break;
+case SendPrivateChatMessage.SEND_PRIVATE_CHAT_MESSAGE:
+  SendPrivateChatMessage sprcm=SendPrivateChatMessage.fromJson(message);
+if (sprcm != null) {
+  processSendPrivateChatMessage(sprcm);
+}
+break;
+case GetChatHistoryReplyMessage.GET_CHAT_HISTORY_REPLY:
+GetChatHistoryReplyMessage gch=GetChatHistoryReplyMessage.fromJson(message);
+if (gch != null) {
+processGetChatHistoryReply(gch);
+}
+break;
+}
+}
+}
+}

@@ -1,5 +1,4 @@
 {
-  Gson gson=new Gson();
   JsonParser parser=new JsonParser();
   JsonObject obj=(JsonObject)parser.parse(message);
   if (channel.equalsIgnoreCase(MessagingConstants.FROM_MEETING_CHANNEL)) {
@@ -39,10 +38,20 @@
       JsonObject payload=(JsonObject)obj.get("payload");
       if (header.has("name")) {
         String messageName=header.get("name").getAsString();
-        for (        MessageListener listener : listeners) {
-          if (MessagingConstants.KEEP_ALIVE_REPLY.equalsIgnoreCase(messageName)) {
-            String pongId=payload.get("keep_alive_id").getAsString();
-            listener.handle(new KeepAliveReply(pongId));
+        IMessage rxMsg=null;
+        if (PubSubPongMessage.PUBSUB_PONG.equals(messageName)) {
+          IBigBlueButtonMessage msg=decoder.decodeMessage(message);
+          if (msg != null) {
+            PubSubPongMessage m=(PubSubPongMessage)msg;
+            rxMsg=new KeepAliveReply(m.payload.system,m.payload.timestamp);
+          }
+ else {
+            System.out.println("***** 1 Failed to decode pong message");
+          }
+        }
+        if (rxMsg != null) {
+          for (          MessageListener listener : listeners) {
+            listener.handle(rxMsg);
           }
         }
       }
@@ -84,6 +93,51 @@
           String userid=user.get("userid").getAsString();
           for (          MessageListener listener : listeners) {
             listener.handle(new UserLeft(meetingId,userid));
+          }
+        }
+ else         if (MessagingConstants.USER_JOINED_VOICE_EVENT.equalsIgnoreCase(messageName)) {
+          System.out.println("Handling [" + messageName + "] message.");
+          String meetingId=payload.get("meeting_id").getAsString();
+          JsonObject user=(JsonObject)payload.get("user");
+          String userid=user.get("userid").getAsString();
+          for (          MessageListener listener : listeners) {
+            listener.handle(new UserJoinedVoice(meetingId,userid));
+          }
+        }
+ else         if (MessagingConstants.USER_LEFT_VOICE_EVENT.equalsIgnoreCase(messageName)) {
+          System.out.println("Handling [" + messageName + "] message.");
+          String meetingId=payload.get("meeting_id").getAsString();
+          JsonObject user=(JsonObject)payload.get("user");
+          String userid=user.get("userid").getAsString();
+          for (          MessageListener listener : listeners) {
+            listener.handle(new UserLeftVoice(meetingId,userid));
+          }
+        }
+ else         if (MessagingConstants.USER_LISTEN_ONLY_EVENT.equalsIgnoreCase(messageName)) {
+          System.out.println("Handling [" + messageName + "] message.");
+          String meetingId=payload.get("meeting_id").getAsString();
+          String userid=payload.get("userid").getAsString();
+          Boolean listenOnly=payload.get("listen_only").getAsBoolean();
+          for (          MessageListener listener : listeners) {
+            listener.handle(new UserListeningOnly(meetingId,userid,listenOnly));
+          }
+        }
+ else         if (MessagingConstants.USER_SHARE_WEBCAM_EVENT.equalsIgnoreCase(messageName)) {
+          System.out.println("Handling [" + messageName + "] message.");
+          String meetingId=payload.get("meeting_id").getAsString();
+          String userid=payload.get("userid").getAsString();
+          String stream=payload.get("stream").getAsString();
+          for (          MessageListener listener : listeners) {
+            listener.handle(new UserSharedWebcam(meetingId,userid,stream));
+          }
+        }
+ else         if (MessagingConstants.USER_UNSHARE_WEBCAM_EVENT.equalsIgnoreCase(messageName)) {
+          System.out.println("Handling [" + messageName + "] message.");
+          String meetingId=payload.get("meeting_id").getAsString();
+          String userid=payload.get("userid").getAsString();
+          String stream=payload.get("stream").getAsString();
+          for (          MessageListener listener : listeners) {
+            listener.handle(new UserUnsharedWebcam(meetingId,userid,stream));
           }
         }
       }

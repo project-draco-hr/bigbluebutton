@@ -1,3 +1,0 @@
-{
-  bbbInGW.getRecordingStatus(meetingId,userId);
-}

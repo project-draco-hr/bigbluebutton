@@ -1,0 +1,7 @@
+{
+  String meetingID=Red5.getConnectionLocal().getScope().getName();
+  String userId=getBbbSession().getInternalUserID();
+  String pollId=(String)message.get("pollId");
+  String pollType=(String)message.get("pollType");
+  red5GW.startPoll(meetingID,userId,pollId,pollType);
+}

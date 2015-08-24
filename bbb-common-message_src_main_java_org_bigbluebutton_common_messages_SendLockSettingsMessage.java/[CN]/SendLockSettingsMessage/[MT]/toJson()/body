@@ -1,0 +1,16 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  Map<String,Boolean> settingsMap=new HashMap<String,Boolean>();
+  settingsMap.put(Constants.DISABLE_CAMERA,newSettings.get("disableCam"));
+  settingsMap.put(Constants.DISABLE_MICROPHONE,newSettings.get("disableMic"));
+  settingsMap.put(Constants.DISABLE_PRIVATE_CHAT,newSettings.get("disablePrivateChat"));
+  settingsMap.put(Constants.DISABLE_PUBLIC_CHAT,newSettings.get("disablePublicChat"));
+  settingsMap.put(Constants.LOCKED_LAYOUT,newSettings.get("lockedLayout"));
+  settingsMap.put(Constants.LOCK_ON_JOIN,newSettings.get("lockOnJoin"));
+  settingsMap.put(Constants.LOCK_ON_JOIN_CONFIGURABLE,newSettings.get("lockOnJoinConfigurable"));
+  payload.put(Constants.MEETING_ID,meetingId);
+  payload.put(Constants.USER_ID,userId);
+  payload.put(Constants.SETTINGS,settingsMap);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(SEND_LOCK_SETTINGS,VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}

@@ -1,0 +1,4 @@
+{
+  LockLayoutRequestMessage msg=new LockLayoutRequestMessage(meetingID,setById,lock,viewersOnly,layout);
+  sender.send(MessagingConstants.TO_USERS_CHANNEL,msg.toJson());
+}

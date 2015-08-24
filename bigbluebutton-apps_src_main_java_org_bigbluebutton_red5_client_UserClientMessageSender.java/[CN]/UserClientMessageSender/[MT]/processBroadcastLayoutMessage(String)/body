@@ -1,0 +1,15 @@
+{
+  BroadcastLayoutMessage msg=BroadcastLayoutMessage.fromJson(message);
+  if (msg != null) {
+    Map<String,Object> args=new HashMap<String,Object>();
+    args.put("locked",msg.locked);
+    args.put("setByUserID",msg.setByUserid);
+    args.put("layout",msg.layout);
+    Iterator<String> usersIter=msg.users.iterator();
+    while (usersIter.hasNext()) {
+      String user=usersIter.next();
+      DirectClientMessage m=new DirectClientMessage(msg.meetingId,user,"syncLayout",args);
+      service.sendMessage(m);
+    }
+  }
+}

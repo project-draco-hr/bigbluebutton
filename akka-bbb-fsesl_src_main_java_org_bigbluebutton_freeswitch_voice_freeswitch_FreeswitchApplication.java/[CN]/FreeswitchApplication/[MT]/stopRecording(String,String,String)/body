@@ -1,0 +1,4 @@
+{
+  RecordConferenceCommand rcc=new RecordConferenceCommand(voiceConfId,USER,false,voicePath);
+  queueMessage(rcc);
+}

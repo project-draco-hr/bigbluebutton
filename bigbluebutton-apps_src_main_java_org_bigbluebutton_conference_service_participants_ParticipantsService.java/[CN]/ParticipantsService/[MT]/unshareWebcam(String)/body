@@ -1,5 +1,0 @@
-{
-  IScope scope=Red5.getConnectionLocal().getScope();
-  String userId=getBbbSession().getInternalUserID();
-  application.unshareWebcam(scope.getName(),userId,stream);
-}

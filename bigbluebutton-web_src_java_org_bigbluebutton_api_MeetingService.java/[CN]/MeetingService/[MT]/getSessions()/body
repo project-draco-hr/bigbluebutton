@@ -1,0 +1,4 @@
+{
+  log.debug("Num sessions = [" + sessions.size() + "]");
+  return sessions.isEmpty() ? Collections.<UserSession>emptySet() : Collections.unmodifiableCollection(sessions.values());
+}

@@ -1,0 +1,11 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("meetingId",gch.meetingId);
+  args.put("requester_id",gch.requesterId);
+  args.put("chat_history",gch.chatHistory);
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args.get("chat_history")));
+  DirectClientMessage m=new DirectClientMessage(gch.meetingId,gch.requesterId,"ChatRequestMessageHistoryReply",message);
+  service.sendMessage(m);
+}

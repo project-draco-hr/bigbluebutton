@@ -1,0 +1,45 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+switch (messageName) {
+case PresentationRemovedMessage.PRESENTATION_REMOVED:
+        processPresentationRemovedMessage(message);
+      break;
+case GetPresentationInfoReplyMessage.GET_PRESENTATION_INFO_REPLY:
+    processGetPresentationInfoReplyMessage(message);
+  break;
+case GoToSlideReplyMessage.GO_TO_SLIDE_REPLY:
+processGoToSlideMessage(message);
+break;
+case PresentationConversionProgressMessage.PRESENTATION_CONVERSION_PROGRESS:
+processPresentationConversionProgress(message);
+break;
+case PresentationPageGeneratedReplyMessage.PRESENTATION_PAGE_GENERATED:
+processPresentationPageGeneratedReply(message);
+break;
+case PresentationCursorUpdateMessage.PRESENTATION_CURSOR_UPDATED:
+processPresentationCursorUpdate(message);
+break;
+case PresentationConversionErrorMessage.PRESENTATION_CONVERSION_ERROR:
+processPresentationConversionError(message);
+break;
+case GetSlideInfoReplyMessage.GET_SLIDE_INFO:
+processGetSlideInfoReply(message);
+break;
+case PresentationConversionDoneMessage.PRESENTATION_CONVERSION_DONE:
+processPresentationConversionDone(message);
+break;
+case PresentationPageResizedMessage.PRESENTATION_PAGE_RESIZED:
+processPresentationPageResized(message);
+break;
+case PresentationSharedMessage.PRESENTATION_SHARED_MESSAGE:
+processPresentationSharedMessage(message);
+break;
+}
+}
+}
+}

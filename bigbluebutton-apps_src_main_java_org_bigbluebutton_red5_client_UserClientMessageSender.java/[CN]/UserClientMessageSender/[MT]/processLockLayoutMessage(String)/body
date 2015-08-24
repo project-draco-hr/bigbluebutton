@@ -1,0 +1,14 @@
+{
+  LockLayoutMessage msg=LockLayoutMessage.fromJson(message);
+  if (msg != null) {
+    Map<String,Object> args=new HashMap<String,Object>();
+    args.put("locked",msg.locked);
+    args.put("setById",msg.setByUserid);
+    Iterator<String> usersIter=msg.users.iterator();
+    while (usersIter.hasNext()) {
+      String user=usersIter.next();
+      DirectClientMessage m=new DirectClientMessage(msg.meetingId,user,"layoutLocked",args);
+      service.sendMessage(m);
+    }
+  }
+}

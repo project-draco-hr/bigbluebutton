@@ -1,3 +1,0 @@
-{
-  log.debug("Background job result received [{}]",event);
-}

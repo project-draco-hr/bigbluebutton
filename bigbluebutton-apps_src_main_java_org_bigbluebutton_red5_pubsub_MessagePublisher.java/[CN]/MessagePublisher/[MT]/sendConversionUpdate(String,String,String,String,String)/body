@@ -1,0 +1,4 @@
+{
+  SendConversionUpdateMessage msg=new SendConversionUpdateMessage(messageKey,meetingId,code,presId,presName);
+  sender.send(MessagingConstants.TO_PRESENTATION_CHANNEL,msg.toJson());
+}

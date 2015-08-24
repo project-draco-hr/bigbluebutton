@@ -1,0 +1,4 @@
+{
+  StopRecordingVoiceConfRequestMessage msg=StopRecordingVoiceConfRequestMessage.fromJson(json);
+  fsApp.stopRecording(msg.voiceConfId,msg.meetingId,msg.recordStream);
+}

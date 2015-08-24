@@ -1,0 +1,22 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (SEND_WHITEBOARD_ANNOTATION_REQUEST.equals(messageName)) {
+        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.ANNOTATION) && payload.has(Constants.REQUESTER_ID)) {
+          String meetingId=payload.get(Constants.MEETING_ID).getAsString();
+          String requesterId=payload.get(Constants.REQUESTER_ID).getAsString();
+          JsonObject annotationElement=(JsonObject)payload.get(Constants.ANNOTATION);
+          Util util=new Util();
+          Map<String,Object> annotation=util.extractAnnotation(annotationElement);
+          return new SendWhiteboardAnnotationRequestMessage(meetingId,requesterId,annotation);
+        }
+      }
+    }
+  }
+  return null;
+}

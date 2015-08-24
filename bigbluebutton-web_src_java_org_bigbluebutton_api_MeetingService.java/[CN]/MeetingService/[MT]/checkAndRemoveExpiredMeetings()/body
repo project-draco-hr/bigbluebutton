@@ -45,6 +45,7 @@
       log.info("Removing meeting: data={}",logStr);
       destroyMeeting(m.getInternalId());
       meetings.remove(m.getInternalId());
+      removeUserSessions(m.getInternalId());
       continue;
     }
     if (m.hasExceededDuration()) {

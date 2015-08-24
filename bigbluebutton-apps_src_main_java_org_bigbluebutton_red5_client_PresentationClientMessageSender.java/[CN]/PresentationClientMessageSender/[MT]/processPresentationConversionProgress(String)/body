@@ -1,0 +1,16 @@
+{
+  PresentationConversionProgressMessage msg=PresentationConversionProgressMessage.fromJson(json);
+  if (msg != null) {
+    Map<String,Object> args=new HashMap<String,Object>();
+    args.put("presentationID",msg.presentationId);
+    args.put("meetingID",msg.meetingId);
+    args.put("code",msg.code);
+    args.put("messageKey",msg.messageKey);
+    args.put("presentationName",msg.presentationName);
+    Map<String,Object> message=new HashMap<String,Object>();
+    Gson gson=new Gson();
+    message.put("msg",gson.toJson(args));
+    BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"conversionUpdateMessageCallback",message);
+    service.sendMessage(m);
+  }
+}

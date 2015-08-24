@@ -1,0 +1,9 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(Constants.MEETING_ID,meetingId);
+  payload.put(Constants.USER_ID,userId);
+  payload.put(Constants.RAISE_HAND,raisedHand);
+  payload.put(Constants.LOWERED_BY,loweredBy);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(USER_LOWERED_HAND,VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}

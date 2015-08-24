@@ -1,4 +1,0 @@
-{
-  System.out.println("*** PollService:: start poll \n" + msg + "\n");
-  bbbInGW.startPoll(getMeetingID(),getRequesterID(),msg);
-}

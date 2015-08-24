@@ -1,0 +1,23 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (GET_SLIDE_INFO.equals(messageName)) {
+        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.REQUESTER_ID) && payload.has(Constants.X_OFFSET)&& payload.has(Constants.Y_OFFSET)&& payload.has(Constants.WIDTH_RATIO)&& payload.has(Constants.HEIGHT_RATIO)) {
+          String meetingId=payload.get(Constants.MEETING_ID).getAsString();
+          String requesterId=payload.get(Constants.REQUESTER_ID).getAsString();
+          int xOffset=payload.get(Constants.X_OFFSET).getAsInt();
+          int yOffset=payload.get(Constants.Y_OFFSET).getAsInt();
+          int widthRatio=payload.get(Constants.WIDTH_RATIO).getAsInt();
+          int heightRatio=payload.get(Constants.HEIGHT_RATIO).getAsInt();
+          return new GetSlideInfoReplyMessage(meetingId,requesterId,xOffset,yOffset,widthRatio,heightRatio);
+        }
+      }
+    }
+  }
+  return null;
+}

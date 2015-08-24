@@ -1,0 +1,7 @@
+{
+  Long now=System.currentTimeMillis();
+  if (lastKeepAliveMessage != 0 && (now - lastKeepAliveMessage > 10000)) {
+    log.error("BBB Apps Red5 pubsub error!");
+    service.sendMessage(new DisconnectAllMessage());
+  }
+}

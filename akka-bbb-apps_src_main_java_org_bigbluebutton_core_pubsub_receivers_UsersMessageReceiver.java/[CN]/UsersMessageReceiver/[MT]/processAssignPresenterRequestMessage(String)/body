@@ -1,0 +1,6 @@
+{
+  AssignPresenterRequestMessage apm=AssignPresenterRequestMessage.fromJson(message);
+  if (apm != null) {
+    bbbInGW.assignPresenter(apm.meetingId,apm.newPresenterId,apm.newPresenterName,apm.assignedBy);
+  }
+}

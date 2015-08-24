@@ -1,0 +1,3 @@
+{
+  redisPool=new JedisPool(new GenericObjectPoolConfig(),host,port,Protocol.DEFAULT_TIMEOUT,null,Protocol.DEFAULT_DATABASE,"BbbAppsAkkaRec");
+}

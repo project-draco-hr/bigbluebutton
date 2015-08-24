@@ -1,0 +1,7 @@
+{
+  IScope scope=Red5.getConnectionLocal().getScope();
+  String meetingId=scope.getName();
+  String userId=(String)msg.get("userId");
+  Boolean recording=(Boolean)msg.get("recording");
+  red5InGW.setRecordingStatus(meetingId,userId,recording);
+}

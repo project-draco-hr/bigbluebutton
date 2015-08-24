@@ -1,0 +1,4 @@
+{
+  DisconnectClientMessage m=new DisconnectClientMessage(msg.meetingId,msg.userId);
+  service.sendMessage(m);
+}

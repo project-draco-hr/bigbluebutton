@@ -1,0 +1,7 @@
+String meetingId
+String presentationId
+int numPages
+String code
+String messageKey
+String presentationName
+int pagesCompleted

@@ -12,7 +12,7 @@
     log.warn("Cannot list subscriptions:" + meetingId,e);
   }
  finally {
-    redisPool.returnResource(jedis);
+    jedis.close();
   }
   return list;
 }
