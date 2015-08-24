@@ -5,7 +5,6 @@
     if (meetingScope.hasChildScope(ScopeType.SHARED_OBJECT,msg.getSharedObjectName())) {
       ISharedObject so=getSharedObject(meetingScope,msg.getSharedObjectName());
       if (so != null) {
-        System.out.println("*********** Sending [" + msg.getMessageName() + "] using shared object.");
         so.sendMessage(msg.getMessageName(),msg.getMessage());
       }
  else {
