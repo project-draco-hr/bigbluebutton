@@ -1,6 +1,0 @@
-{
-  UserLoweredHandMessage ulhm=UserLoweredHandMessage.fromJson(message);
-  if (ulhm != null) {
-    bbbInGW.lowerHand(ulhm.meetingId,ulhm.userId,ulhm.loweredBy);
-  }
-}

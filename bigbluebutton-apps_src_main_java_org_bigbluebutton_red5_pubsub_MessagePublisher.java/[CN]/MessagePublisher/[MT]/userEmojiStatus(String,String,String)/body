@@ -1,0 +1,4 @@
+{
+  UserEmojiStatusMessage msg=new UserEmojiStatusMessage(meetingId,userId,emojiStatus);
+  sender.send(MessagingConstants.TO_USERS_CHANNEL,msg.toJson());
+}
