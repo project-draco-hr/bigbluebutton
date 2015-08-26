@@ -1,6 +1,7 @@
 {
   Map<String,Object> args=new HashMap<String,Object>();
   args.put("userId",msg.userId);
+  args.put("emojiStatus",msg.emojiStatus);
   Map<String,Object> message=new HashMap<String,Object>();
   Gson gson=new Gson();
   message.put("msg",gson.toJson(args));
