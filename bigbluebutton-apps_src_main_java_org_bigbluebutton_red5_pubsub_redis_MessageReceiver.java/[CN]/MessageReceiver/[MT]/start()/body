@@ -2,7 +2,8 @@
   log.info("Ready to receive messages from Redis pubsub.");
   try {
     receiveMessage=true;
-    final Jedis jedis=redisPool.getResource();
+    jedis=new Jedis(host,port);
+    jedis.clientSetname("BbbRed5AppsSub");
     Runnable messageReceiver=new Runnable(){
       public void run(){
         if (receiveMessage) {

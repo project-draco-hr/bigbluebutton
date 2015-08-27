@@ -9,7 +9,6 @@
   messageInfo.put(ChatKeyUtil.FROM_TZ_OFFSET,msg.messageInfo.get(ChatKeyUtil.FROM_TZ_OFFSET));
   messageInfo.put(ChatKeyUtil.FROM_COLOR,msg.messageInfo.get(ChatKeyUtil.FROM_COLOR));
   messageInfo.put(ChatKeyUtil.MESSAGE,msg.messageInfo.get(ChatKeyUtil.MESSAGE));
-  System.out.println("RedisPubSubMessageHandler - processSendPublicChatMessage \n" + messageInfo.toString() + "\n");
   BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"ChatReceivePublicMessageCommand",messageInfo);
   service.sendMessage(m);
 }

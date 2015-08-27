@@ -1,5 +1,4 @@
 {
-  log.debug("Received BBB Apps Is Alive.");
-  lastKeepAliveMessage=msg.timestamp;
+  lastKeepAliveMessage=System.currentTimeMillis();
   available=true;
 }

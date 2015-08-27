@@ -1,6 +1,6 @@
 {
   if (message instanceof KeepAliveReply) {
     KeepAliveReply msg=(KeepAliveReply)message;
-    handleKeepAliveReply(msg.startedOn,msg.timestamp);
+    handleKeepAliveReply(msg.system,msg.timestamp);
   }
 }

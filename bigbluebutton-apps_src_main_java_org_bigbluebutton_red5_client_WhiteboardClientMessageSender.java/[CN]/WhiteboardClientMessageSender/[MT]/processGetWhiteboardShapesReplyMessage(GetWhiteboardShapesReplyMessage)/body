@@ -6,7 +6,6 @@
   Map<String,Object> message=new HashMap<String,Object>();
   Gson gson=new Gson();
   message.put("msg",gson.toJson(args));
-  System.out.println("RedisPubSubMessageHandler - processGetWhiteboardShapesReplyMessage \n" + message.get("msg").toString() + "\n");
   DirectClientMessage m=new DirectClientMessage(msg.meetingId,msg.requesterId,"WhiteboardRequestAnnotationHistoryReply",message);
   service.sendMessage(m);
 }

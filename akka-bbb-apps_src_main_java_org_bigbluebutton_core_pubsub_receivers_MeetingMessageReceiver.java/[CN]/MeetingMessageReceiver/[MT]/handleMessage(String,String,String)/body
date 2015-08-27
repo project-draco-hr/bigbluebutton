@@ -60,15 +60,30 @@
     }
   }
  else   if (channel.equalsIgnoreCase(MessagingConstants.TO_SYSTEM_CHANNEL)) {
-    IBigBlueButtonMessage msg=MessageFromJsonConverter.convert(message);
-    if (msg != null) {
-      if (msg instanceof KeepAliveMessage) {
-        KeepAliveMessage emm=(KeepAliveMessage)msg;
-        bbbGW.isAliveAudit(emm.keepAliveId);
-      }
-    }
+    JsonParser parser=new JsonParser();
+    JsonObject obj=(JsonObject)parser.parse(message);
+    if (obj.has("header") && obj.has("payload")) {
+      JsonObject header=(JsonObject)obj.get("header");
+      if (header.has("name")) {
+        String messageName=header.get("name").getAsString();
+        if (PubSubPingMessage.PUBSUB_PING.equals(messageName)) {
+          Gson gson=new Gson();
+          PubSubPingMessage msg=gson.fromJson(message,PubSubPingMessage.class);
+          bbbGW.handleBigBlueButtonMessage(msg);
+        }
  else {
-      System.out.println("Unknown message: [" + message + "]");
+          IBigBlueButtonMessage msg=MessageFromJsonConverter.convert(message);
+          if (msg != null) {
+            if (msg instanceof KeepAliveMessage) {
+              KeepAliveMessage emm=(KeepAliveMessage)msg;
+              bbbGW.isAliveAudit(emm.keepAliveId);
+            }
+          }
+ else {
+            System.out.println("Unknown message: [" + message + "]");
+          }
+        }
+      }
     }
   }
 }

@@ -5,7 +5,6 @@
   Map<String,Object> message=new HashMap<String,Object>();
   Gson gson=new Gson();
   message.put("msg",gson.toJson(args));
-  System.out.println("RedisPubSubMessageHandler - processMeetingStateMessage \n" + message.get("msg") + "\n");
   DirectClientMessage m=new DirectClientMessage(msg.meetingId,msg.userId,"meetingState",message);
   service.sendMessage(m);
 }

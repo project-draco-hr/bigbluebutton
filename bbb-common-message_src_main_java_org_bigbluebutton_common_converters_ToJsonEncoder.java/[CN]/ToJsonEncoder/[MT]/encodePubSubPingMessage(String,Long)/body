@@ -1,0 +1,13 @@
+{
+  PubSubPingMessage m=new PubSubPingMessage();
+  MessageHeader header=new MessageHeader();
+  PubSubPingMessagePayload payload=new PubSubPingMessagePayload();
+  header.name=PubSubPingMessage.PUBSUB_PING;
+  header.timestamp=System.nanoTime();
+  payload.system=system;
+  payload.timestamp=timestamp;
+  m.header=header;
+  m.payload=payload;
+  Gson gson=new Gson();
+  return gson.toJson(m);
+}

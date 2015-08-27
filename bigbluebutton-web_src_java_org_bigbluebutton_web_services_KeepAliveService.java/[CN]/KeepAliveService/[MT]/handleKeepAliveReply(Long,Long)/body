@@ -1,4 +1,0 @@
-{
-  KeepAlivePong pong=new KeepAlivePong(startedOn,timestamp);
-  queueMessage(pong);
-}
