@@ -1,9 +1,0 @@
-{
-  Map<String,Object> args=new HashMap<String,Object>();
-  args.put("userId",msg.userId);
-  Map<String,Object> message=new HashMap<String,Object>();
-  Gson gson=new Gson();
-  message.put("msg",gson.toJson(args));
-  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"userRaisedHand",message);
-  service.sendMessage(m);
-}

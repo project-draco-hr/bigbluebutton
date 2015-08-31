@@ -42,22 +42,16 @@ if (usm != null) {
 processUserStatusChangedMessage(usm);
 }
 break;
-case UserRaisedHandMessage.USER_RAISED_HAND:
-UserRaisedHandMessage urhm=UserRaisedHandMessage.fromJson(message);
+case UserEmojiStatusMessage.USER_EMOJI_STATUS:
+UserEmojiStatusMessage urhm=UserEmojiStatusMessage.fromJson(message);
 if (urhm != null) {
-processUserRaisedHandMessage(urhm);
+processUserEmojiStatusMessage(urhm);
 }
 break;
 case UserListeningOnlyMessage.USER_LISTENING_ONLY:
 UserListeningOnlyMessage ulom=UserListeningOnlyMessage.fromJson(message);
 if (ulom != null) {
 processUserListeningOnlyMessage(ulom);
-}
-break;
-case UserLoweredHandMessage.USER_LOWERED_HAND:
-UserLoweredHandMessage ulhm=UserLoweredHandMessage.fromJson(message);
-if (ulhm != null) {
-processUserLoweredHandMessage(ulhm);
 }
 break;
 case UserSharedWebcamMessage.USER_SHARED_WEBCAM:
