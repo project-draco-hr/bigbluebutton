@@ -5,6 +5,7 @@
   Map<String,Object> message=new HashMap<String,Object>();
   Gson gson=new Gson();
   message.put("msg",gson.toJson(args));
+  log.info("validateAuthTokenReply - " + gson.toJson(args));
   DirectClientMessage m=new DirectClientMessage(msg.meetingId,msg.userId,"validateAuthTokenReply",message);
   service.sendMessage(m);
 }
