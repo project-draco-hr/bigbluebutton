@@ -1,7 +1,0 @@
-{
-  UserRaisedHandMessage urhm=UserRaisedHandMessage.fromJson(message);
-  if (urhm != null) {
-    bbbInGW.userRaiseHand(urhm.meetingId,urhm.userId);
-    ;
-  }
-}

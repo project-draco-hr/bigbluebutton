@@ -1,3 +1,4 @@
 {
   sendMessage=false;
+  redisPool.destroy();
 }
