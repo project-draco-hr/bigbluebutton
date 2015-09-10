@@ -1,11 +1,10 @@
 {
   Map<String,Object> args=new HashMap<String,Object>();
   args.put("userId",msg.userId);
-  args.put("valid",msg.valid);
+  args.put("emojiStatus",msg.emojiStatus);
   Map<String,Object> message=new HashMap<String,Object>();
   Gson gson=new Gson();
   message.put("msg",gson.toJson(args));
-  log.info("validateAuthTokenReply - " + gson.toJson(args));
-  DirectClientMessage m=new DirectClientMessage(msg.meetingId,msg.userId,"validateAuthTokenReply",message);
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"userEmojiStatus",message);
   service.sendMessage(m);
 }
