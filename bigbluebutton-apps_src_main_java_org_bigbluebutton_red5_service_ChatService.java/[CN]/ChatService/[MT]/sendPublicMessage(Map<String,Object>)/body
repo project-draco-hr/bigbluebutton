@@ -20,5 +20,10 @@
   message.put(ChatKeyUtil.MESSAGE,chatText);
   String meetingID=Red5.getConnectionLocal().getScope().getName();
   String requesterID=getBbbSession().getInternalUserID();
-  red5BBBInGw.sendPublicMessage(meetingID,requesterID,message);
+  if (chatText.length() <= maxMessageLength) {
+    red5BBBInGw.sendPublicMessage(meetingID,requesterID,message);
+  }
+ else {
+    log.warn("sendPublicMessage maximum allowed message length exceeded (length: [" + chatText.length() + "], message: ["+ chatText+ "])");
+  }
 }
