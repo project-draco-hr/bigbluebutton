@@ -1,0 +1,5 @@
+{
+  log.info("BBB Video-broadcast roomConnect");
+  log.info("\n\n\n\n\n\n video-broadcast roomConnect AAAAAAAA\n\n\n");
+  return super.roomConnect(conn,params);
+}

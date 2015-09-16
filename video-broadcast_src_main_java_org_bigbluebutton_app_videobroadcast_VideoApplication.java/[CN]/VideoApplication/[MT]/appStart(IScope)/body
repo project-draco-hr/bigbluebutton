@@ -1,0 +1,7 @@
+{
+  super.appStart(app);
+  log.info("BBB Video-broadcast appStart");
+  System.out.println("BBB Video-broadcast appStart\n\n\n\n\n\n\n\n\n");
+  appScope=app;
+  return true;
+}

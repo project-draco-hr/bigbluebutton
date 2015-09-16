@@ -1,0 +1,16 @@
+{
+  log.info("BBB Video roomDisconnect");
+  String connType=getConnectionType(Red5.getConnectionLocal().getType());
+  String connId=Red5.getConnectionLocal().getSessionId();
+  Map<String,Object> logData=new HashMap<String,Object>();
+  logData.put("meetingId",getMeetingId());
+  logData.put("userId",getUserId());
+  logData.put("connType",connType);
+  logData.put("connId",connId);
+  logData.put("event","user_leaving_bbb_video");
+  logData.put("description","User leaving BBB Video.");
+  Gson gson=new Gson();
+  String logStr=gson.toJson(logData);
+  log.info("User leaving bbb-video: data={}",logStr);
+  super.roomDisconnect(conn);
+}
