@@ -1,10 +1,8 @@
 {
-  log.debug("User left from meeting[{}]",message.meetingId);
   Meeting m=getMeeting(message.meetingId);
   if (m != null) {
     User user=m.userLeft(message.userId);
     if (user != null) {
-      log.info("User removed from meeting [" + message.meetingId + "] user ["+ user.getFullname()+ "]");
       Map<String,Object> logData=new HashMap<String,Object>();
       logData.put("meetingId",m.getInternalId());
       logData.put("externalMeetingId",m.getExternalId());
@@ -20,8 +18,6 @@
       log.info("User left meeting: data={}",logStr);
       return;
     }
-    log.warn("The participant " + message.userId + " doesn't exist in the meeting "+ message.meetingId);
     return;
   }
-  log.warn("The meeting " + message.meetingId + " doesn't exist");
 }
