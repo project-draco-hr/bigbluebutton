@@ -1,6 +1,5 @@
 {
   if (m.isRecord() && m.getNumUsers() == 0) {
-    log.info("Kick-off processing of recording for meeting [id={} , name={}]",m.getInternalId(),m.getName());
     Map<String,Object> logData=new HashMap<String,Object>();
     logData.put("meetingId",m.getInternalId());
     logData.put("externalMeetingId",m.getExternalId());

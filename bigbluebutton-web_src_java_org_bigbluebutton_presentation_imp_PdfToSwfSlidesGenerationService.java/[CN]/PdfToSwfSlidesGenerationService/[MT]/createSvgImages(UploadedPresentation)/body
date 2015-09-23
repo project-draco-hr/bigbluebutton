@@ -1,5 +1,4 @@
 {
-  log.info("Creating SVG images. MeetingId=[" + pres.getMeetingId() + "], presId=["+ pres.getId()+ "], name=["+ pres.getName()+ "]");
   notifier.sendCreatingSvgImagesUpdateMessage(pres);
   svgImageCreator.createSvgImages(pres);
 }
