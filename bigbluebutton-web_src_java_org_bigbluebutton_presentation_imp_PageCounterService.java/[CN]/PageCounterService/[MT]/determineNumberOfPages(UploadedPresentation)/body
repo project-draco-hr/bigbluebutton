@@ -7,7 +7,6 @@
     numberOfPages=1;
   }
   if (isNumberOfPagesValid(numberOfPages)) {
-    log.debug("Counting pages for " + pres.getFileType() + " "+ numberOfPages);
     pres.setNumberOfPages(numberOfPages);
   }
 }
