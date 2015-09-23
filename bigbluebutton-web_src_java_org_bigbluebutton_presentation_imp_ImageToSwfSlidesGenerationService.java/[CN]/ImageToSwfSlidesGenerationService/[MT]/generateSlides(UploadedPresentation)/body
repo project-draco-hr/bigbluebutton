@@ -1,7 +1,5 @@
 {
-  log.debug("Generating slides");
   pres.setNumberOfPages(1);
-  log.debug("Determined number of pages " + pres.getNumberOfPages());
   if (pres.getNumberOfPages() > 0) {
     PageConverter pageConverter=determinePageConverter(pres);
     convertImageToSwf(pres,pageConverter);

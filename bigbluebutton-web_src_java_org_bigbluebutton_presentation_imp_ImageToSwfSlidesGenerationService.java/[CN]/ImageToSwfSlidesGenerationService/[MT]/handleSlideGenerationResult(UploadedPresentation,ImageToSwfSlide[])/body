@@ -8,7 +8,6 @@
       long timeLeft=endTime - System.currentTimeMillis();
       future=completionService.take();
       slide=future.get(timeLeft,TimeUnit.MILLISECONDS);
-      System.out.println("handleSlideGenerationResult " + slide.getPageNumber());
     }
  catch (    InterruptedException e) {
       log.error("InterruptedException while creating slide " + pres.getName());

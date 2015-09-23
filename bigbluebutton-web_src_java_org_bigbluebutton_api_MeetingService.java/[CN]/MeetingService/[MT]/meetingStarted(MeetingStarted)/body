@@ -1,10 +1,8 @@
 {
-  log.debug("Meeting [{}] has started.",message.meetingId);
   Meeting m=getMeeting(message.meetingId);
   if (m != null) {
     if (m.getStartTime() == 0) {
       long now=System.currentTimeMillis();
-      log.info("Meeting [{}] has started on [{}]",message.meetingId,now);
       m.setStartTime(now);
       Map<String,Object> logData=new HashMap<String,Object>();
       logData.put("meetingId",m.getInternalId());
@@ -19,7 +17,6 @@
       log.info("Meeting started: data={}",logStr);
     }
  else {
-      log.debug("The meeting [{}] has been started again...",message.meetingId);
       Map<String,Object> logData=new HashMap<String,Object>();
       logData.put("meetingId",m.getInternalId());
       logData.put("externalMeetingId",m.getExternalId());
@@ -34,5 +31,4 @@
     }
     return;
   }
-  log.warn("The meeting [{}] doesn't exist",message.meetingId);
 }
