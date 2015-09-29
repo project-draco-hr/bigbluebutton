@@ -1,0 +1,10 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(Constants.MEETING_ID,meetingId);
+  payload.put(Constants.LINE_NUMBER,lineNumber);
+  payload.put(Constants.LOCALE,locale);
+  payload.put(Constants.START_TIME,startTime);
+  payload.put(Constants.TEXT,text);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(NEW_CAPTION_LINE,VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}

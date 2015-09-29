@@ -1,0 +1,22 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (NEW_CAPTION_LINE.equals(messageName)) {
+        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.LINE_NUMBER) && payload.has(Constants.LOCALE,locale)&& payload.has(Constants.START_TIME)&& payload.has(Constants.TEXT)) {
+          String meetingID=payload.get(Constants.MEETING_ID).getAsString();
+          Integer lineNumber=payload.get(Constants.LINE_NUMBER).getAsInt();
+          String locale=payload.get(Constants.LOCALE).getAsString();
+          Integer startTime=payload.get(Constants.START_TIME).getAsInt();
+          String text=payload.get(Constants.TEXT).getAsString();
+          return new NewCaptionLineMessage(meetingID,lineNumber,locale,startTime,text);
+        }
+      }
+    }
+  }
+  return null;
+}
