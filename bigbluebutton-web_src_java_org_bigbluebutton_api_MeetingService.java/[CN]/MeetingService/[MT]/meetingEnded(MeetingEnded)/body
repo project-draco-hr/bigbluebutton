@@ -1,9 +1,7 @@
 {
-  log.debug("Meeting [{}] has ended.",message.meetingId);
   Meeting m=getMeeting(message.meetingId);
   if (m != null) {
     long now=System.currentTimeMillis();
-    log.debug("Meeting [{}] end time [{}].",message.meetingId,now);
     m.setEndTime(now);
     Map<String,Object> logData=new HashMap<String,Object>();
     logData.put("meetingId",m.getInternalId());
@@ -18,5 +16,4 @@
     log.info("Meeting ended: data={}",logStr);
     return;
   }
-  log.warn("The meeting " + message.meetingId + " doesn't exist");
 }

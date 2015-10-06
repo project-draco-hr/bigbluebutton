@@ -1,4 +1,3 @@
 {
-  log.info("Received request to end meeting=[{}]",meetingId);
   handle(new EndMeeting(meetingId));
 }

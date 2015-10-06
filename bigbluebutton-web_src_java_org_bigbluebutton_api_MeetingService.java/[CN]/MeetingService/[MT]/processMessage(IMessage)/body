@@ -7,38 +7,30 @@
         meetingStarted((MeetingStarted)message);
       }
  else       if (message instanceof MeetingEnded) {
-        log.info("Processing meeting ended request.");
         meetingEnded((MeetingEnded)message);
       }
  else       if (message instanceof UserJoined) {
-        log.info("Processing user joined message.");
         userJoined((UserJoined)message);
       }
  else       if (message instanceof UserLeft) {
-        log.info("Processing user left message.");
         userLeft((UserLeft)message);
       }
  else       if (message instanceof UserStatusChanged) {
         updatedStatus((UserStatusChanged)message);
       }
  else       if (message instanceof UserJoinedVoice) {
-        log.info("Processing voice user joined message.");
         userJoinedVoice((UserJoinedVoice)message);
       }
  else       if (message instanceof UserLeftVoice) {
-        log.info("Processing voice user left message.");
         userLeftVoice((UserLeftVoice)message);
       }
  else       if (message instanceof UserListeningOnly) {
-        log.info("Processing user listening only message.");
         userListeningOnly((UserListeningOnly)message);
       }
  else       if (message instanceof UserSharedWebcam) {
-        log.info("Processing user shared webcam message.");
         userSharedWebcam((UserSharedWebcam)message);
       }
  else       if (message instanceof UserUnsharedWebcam) {
-        log.info("Processing user unshared webcam message.");
         userUnsharedWebcam((UserUnsharedWebcam)message);
       }
  else       if (message instanceof RemoveExpiredMeetings) {
@@ -48,7 +40,6 @@
         processCreateMeeting((CreateMeeting)message);
       }
  else       if (message instanceof EndMeeting) {
-        log.info("Processing end meeting request.");
         processEndMeeting((EndMeeting)message);
       }
  else       if (message instanceof RegisterUser) {

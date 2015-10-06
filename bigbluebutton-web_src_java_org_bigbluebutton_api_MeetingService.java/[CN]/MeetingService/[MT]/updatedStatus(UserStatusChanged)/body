@@ -4,11 +4,8 @@
     User user=m.getUserById(message.userId);
     if (user != null) {
       user.setStatus(message.status,message.value);
-      log.info("Setting new status value in meeting " + message.meetingId + " for participant:"+ user.getFullname());
       return;
     }
-    log.warn("The participant " + message.userId + " doesn't exist in the meeting "+ message.meetingId);
     return;
   }
-  log.warn("The meeting " + message.meetingId + " doesn't exist");
 }

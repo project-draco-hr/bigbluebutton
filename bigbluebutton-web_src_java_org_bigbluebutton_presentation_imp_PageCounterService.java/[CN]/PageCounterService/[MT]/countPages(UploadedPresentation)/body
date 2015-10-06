@@ -5,6 +5,5 @@
     return 0;
   }
   numPages=pageCounter.countNumberOfPages(pres.getUploadedFile());
-  log.debug("There are " + numPages);
   return numPages;
 }
