@@ -6,5 +6,6 @@
       return conn;
     }
   }
+  log.warn("Failed to get connection for userId = " + userID);
   return null;
 }
