@@ -13,17 +13,16 @@
   String userId=getUserId();
   String meetingId=conn.getScope().getName();
   String streamId=stream.getPublishedName();
-  publisher.userUnshareWebcamRequestMessage(meetingId,userId,streamId);
   if (recordVideoStream) {
     long publishDuration=(System.currentTimeMillis() - stream.getCreationTime()) / 1000;
     log.info("Stop recording event for stream=[{}] meeting=[{}]",stream.getPublishedName(),scopeName);
     Map<String,String> event=new HashMap<String,String>();
-    event.put("module","WEBCAM");
+    event.put("module","WEBRTC-DESKSHARE");
     event.put("timestamp",genTimestamp().toString());
     event.put("meetingId",scopeName);
     event.put("stream",stream.getPublishedName());
     event.put("duration",new Long(publishDuration).toString());
-    event.put("eventName","StopWebcamShareEvent");
+    event.put("eventName","StopWebRTCDesktopShareEvent");
     recordingService.record(scopeName,event);
   }
 }

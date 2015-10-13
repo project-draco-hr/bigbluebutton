@@ -10,10 +10,10 @@
   logData.put("userId",getUserId());
   logData.put("connType",connType);
   logData.put("connId",connId);
-  logData.put("event","user_leaving_bbb_video");
-  logData.put("description","User leaving BBB Video.");
+  logData.put("event","user_leaving_bbb_video_broadcast");
+  logData.put("description","User leaving BBB video-broadcast.");
   Gson gson=new Gson();
   String logStr=gson.toJson(logData);
-  log.info("User leaving bbb-video: data={}",logStr);
+  log.info("User leaving bbb-video-broadcast: data={}",logStr);
   super.appDisconnect(conn);
 }

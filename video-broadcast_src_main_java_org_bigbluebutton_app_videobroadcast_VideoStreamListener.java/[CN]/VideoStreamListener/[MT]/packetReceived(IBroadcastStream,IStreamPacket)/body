@@ -20,7 +20,7 @@
         event.put("timestamp",genTimestamp().toString());
         event.put("meetingId",scope.getName());
         event.put("stream",stream.getPublishedName());
-        event.put("eventName","StartWebcamShareEvent");
+        event.put("eventName","StartWebRTCDeskShareEvent");
         recordingService.record(scope.getName(),event);
       }
     }
