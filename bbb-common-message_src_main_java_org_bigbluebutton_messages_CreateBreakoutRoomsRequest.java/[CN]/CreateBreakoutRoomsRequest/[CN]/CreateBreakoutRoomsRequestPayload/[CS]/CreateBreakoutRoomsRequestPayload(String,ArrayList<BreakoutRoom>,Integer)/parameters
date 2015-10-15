@@ -1,0 +1,3 @@
+String meetingId
+ArrayList<BreakoutRoom> breakoutRooms
+Integer duration
