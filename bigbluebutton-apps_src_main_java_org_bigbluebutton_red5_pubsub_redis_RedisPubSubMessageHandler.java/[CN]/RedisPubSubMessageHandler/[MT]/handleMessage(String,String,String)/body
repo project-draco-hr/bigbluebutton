@@ -20,4 +20,7 @@
  else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_POLLING_CHANNEL)) {
     pollingMessageSender.handlePollMessage(message);
   }
+ else   if (channel.equalsIgnoreCase(MessagingConstants.FROM_CAPTION_CHANNEL)) {
+    captionMessageSender.handleCaptionMessage(message);
+  }
 }

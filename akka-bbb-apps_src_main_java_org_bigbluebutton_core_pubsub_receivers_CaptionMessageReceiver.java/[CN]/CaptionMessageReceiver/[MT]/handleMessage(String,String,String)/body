@@ -1,0 +1,20 @@
+{
+  if (channel.equalsIgnoreCase(MessagingConstants.TO_CAPTION_CHANNEL)) {
+    JsonParser parser=new JsonParser();
+    JsonObject obj=(JsonObject)parser.parse(message);
+    if (obj.has("header") && obj.has("payload")) {
+      JsonObject header=(JsonObject)obj.get("header");
+      if (header.has("name")) {
+        String messageName=header.get("name").getAsString();
+        if (NewCaptionLineMessage.NEW_CAPTION_LINE.equals(messageName)) {
+          NewCaptionLineMessage msg=NewCaptionLineMessage.fromJson(message);
+          bbbGW.newCaptionLine(msg.meetingID,msg.lineNumber,msg.locale,msg.startTime,msg.text);
+        }
+ else         if (SendCaptionHistoryRequestMessage.SEND_CAPTION_HISTORY_REQUEST.equals(messageName)) {
+          SendCaptionHistoryRequestMessage msg=SendCaptionHistoryRequestMessage.fromJson(message);
+          bbbGW.sendCaptionHistory(msg.meetingID,msg.requesterID);
+        }
+      }
+    }
+  }
+}

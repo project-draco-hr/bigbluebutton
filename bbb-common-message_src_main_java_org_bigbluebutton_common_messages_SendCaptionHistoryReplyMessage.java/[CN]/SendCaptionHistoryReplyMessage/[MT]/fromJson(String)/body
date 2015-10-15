@@ -6,11 +6,14 @@
     JsonObject payload=(JsonObject)obj.get("payload");
     if (header.has("name")) {
       String messageName=header.get("name").getAsString();
-      if (SEND_CAPTION_HISTORY.equals(messageName)) {
-        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.REQUESTER_ID)) {
+      if (SEND_CAPTION_HISTORY_REPLY.equals(messageName)) {
+        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.CAPTION_HISTORY) && payload.has(Constants.REQUESTER_ID)) {
           String meetingID=payload.get(Constants.MEETING_ID).getAsString();
           String requesterID=payload.get(Constants.REQUESTER_ID).getAsString();
-          return new SendCaptionHistoryMessage(meetingID,requesterID);
+          JsonObject history=(JsonObject)payload.get(Constants.CAPTION_HISTORY);
+          Util util=new Util();
+          Map<String,ArrayList<String>> captionHistory=util.extractCaptionHistory(history);
+          return new SendCaptionHistoryReplyMessage(meetingID,requesterID,captionHistory);
         }
       }
     }
