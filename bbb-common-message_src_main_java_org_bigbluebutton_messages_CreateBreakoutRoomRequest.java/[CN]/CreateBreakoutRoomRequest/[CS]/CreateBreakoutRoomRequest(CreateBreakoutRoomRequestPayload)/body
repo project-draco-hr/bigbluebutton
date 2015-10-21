@@ -1,0 +1,4 @@
+{
+  this.header=new Header(NAME);
+  this.payload=payload;
+}

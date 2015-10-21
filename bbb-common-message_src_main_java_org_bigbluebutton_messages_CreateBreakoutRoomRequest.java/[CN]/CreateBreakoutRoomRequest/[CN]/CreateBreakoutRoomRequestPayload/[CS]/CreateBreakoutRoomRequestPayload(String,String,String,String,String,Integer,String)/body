@@ -1,0 +1,9 @@
+{
+  this.meetingId=meetingId;
+  this.name=name;
+  this.voiceConfId=voiceConfId;
+  this.viewerPassword=viewerPassword;
+  this.moderatorPassword=moderatorPassword;
+  this.durationInMinutes=duration;
+  this.defaultPresentationURL=defaultPresentationURL;
+}
