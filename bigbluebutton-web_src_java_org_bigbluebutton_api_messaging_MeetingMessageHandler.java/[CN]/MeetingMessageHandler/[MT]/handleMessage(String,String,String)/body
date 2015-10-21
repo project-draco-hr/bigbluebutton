@@ -29,6 +29,9 @@
  else         if (CreateBreakoutRoomRequest.NAME.equals(messageName)) {
           Gson gson=new Gson();
           CreateBreakoutRoomRequest msg=gson.fromJson(message,CreateBreakoutRoomRequest.class);
+          for (          MessageListener listener : listeners) {
+            listener.handle(new CreateBreakoutRoom(msg.payload.meetingId,msg.payload.name,msg.payload.voiceConfId,msg.payload.viewerPassword,msg.payload.moderatorPassword,msg.payload.durationInMinutes,msg.payload.defaultPresentationURL));
+          }
         }
       }
     }

@@ -1,0 +1,7 @@
+String meetingId
+String name
+String voiceConfId
+String viewerPassword
+String moderatorPassword
+Integer duration
+String defaultPresentationURL
