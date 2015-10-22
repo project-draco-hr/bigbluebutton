@@ -1,5 +1,4 @@
 {
-  log.debug("Add a new subscriber");
   String sid=messagingService.storeSubscription(meetingId,event,callbackURL);
   return sid;
 }

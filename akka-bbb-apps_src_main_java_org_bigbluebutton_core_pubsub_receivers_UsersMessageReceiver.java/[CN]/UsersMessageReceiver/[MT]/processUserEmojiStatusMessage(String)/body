@@ -1,0 +1,6 @@
+{
+  UserEmojiStatusMessage uesm=UserEmojiStatusMessage.fromJson(message);
+  if (uesm != null) {
+    bbbInGW.userEmojiStatus(uesm.meetingId,uesm.userId,uesm.emojiStatus);
+  }
+}

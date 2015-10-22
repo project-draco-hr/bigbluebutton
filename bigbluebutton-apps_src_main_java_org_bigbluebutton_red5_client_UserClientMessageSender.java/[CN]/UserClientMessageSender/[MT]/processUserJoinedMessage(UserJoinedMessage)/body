@@ -5,6 +5,7 @@
   Gson gson=new Gson();
   message.put("msg",gson.toJson(args));
   String userId=msg.user.get("userId").toString();
+  log.info("joinMeetingReply - " + gson.toJson(args));
   DirectClientMessage jmr=new DirectClientMessage(msg.meetingId,userId,"joinMeetingReply",message);
   service.sendMessage(jmr);
   BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"participantJoined",message);

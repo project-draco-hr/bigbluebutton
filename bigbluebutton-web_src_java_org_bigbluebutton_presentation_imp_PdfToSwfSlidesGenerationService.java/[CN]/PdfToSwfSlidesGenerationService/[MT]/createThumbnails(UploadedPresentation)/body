@@ -1,5 +1,4 @@
 {
-  log.info("Creating thumbnails. MeetingId=[" + pres.getMeetingId() + "], presId=["+ pres.getId()+ "], name=["+ pres.getName()+ "]");
   notifier.sendCreatingThumbnailsUpdateMessage(pres);
   thumbnailCreator.createThumbnails(pres);
 }

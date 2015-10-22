@@ -7,7 +7,7 @@
     if (header.has("name")) {
       String messageName=header.get("name").getAsString();
       if (INIT_PERMISSIONS_SETTING.equals(messageName)) {
-        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.USERS) && payload.has(Constants.PERMISSIONS)) {
+        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.PERMISSIONS)) {
           String meetingID=payload.get(Constants.MEETING_ID).getAsString();
           JsonObject permissions=(JsonObject)payload.get(Constants.PERMISSIONS);
           Util util=new Util();
