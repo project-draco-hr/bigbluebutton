@@ -1,14 +1,23 @@
 {
   if (channel.equalsIgnoreCase(MessagingConstants.TO_MEETING_CHANNEL)) {
+    JsonParser parser=new JsonParser();
+    JsonObject obj=(JsonObject)parser.parse(message);
+    if (obj.has("header") && obj.has("payload")) {
+      JsonObject header=(JsonObject)obj.get("header");
+      if (header.has("name")) {
+        String messageName=header.get("name").getAsString();
+        if (CreateMeetingRequest.NAME.equals(messageName)) {
+          Gson gson=new Gson();
+          CreateMeetingRequest msg=gson.fromJson(message,CreateMeetingRequest.class);
+          bbbGW.handleBigBlueButtonMessage(msg);
+        }
+      }
+    }
     IBigBlueButtonMessage msg=MessageFromJsonConverter.convert(message);
     if (msg != null) {
       if (msg instanceof EndMeetingMessage) {
         EndMeetingMessage emm=(EndMeetingMessage)msg;
         bbbGW.endMeeting(emm.meetingId);
-      }
- else       if (msg instanceof CreateMeetingMessage) {
-        CreateMeetingMessage emm=(CreateMeetingMessage)msg;
-        bbbGW.createMeeting2(emm.id,emm.externalId,emm.name,emm.record,emm.voiceBridge,emm.duration,emm.autoStartRecording,emm.allowStartStopRecording,emm.moderatorPass,emm.viewerPass,emm.createTime,emm.createDate);
       }
  else       if (msg instanceof RegisterUserMessage) {
         RegisterUserMessage emm=(RegisterUserMessage)msg;
