@@ -1,0 +1,10 @@
+{
+  String checksum="";
+  try {
+    checksum=DigestUtils.shaHex(s);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  return checksum;
+}
