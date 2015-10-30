@@ -1,0 +1,4 @@
+{
+  this.breakoutId=breakoutId;
+  this.name=name;
+}
