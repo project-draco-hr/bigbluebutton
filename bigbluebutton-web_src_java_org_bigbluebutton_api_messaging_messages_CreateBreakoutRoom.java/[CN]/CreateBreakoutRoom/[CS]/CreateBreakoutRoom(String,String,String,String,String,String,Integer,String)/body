@@ -1,5 +1,6 @@
 {
-  this.meetingId=meetingId;
+  this.breakoutId=breakoutId;
+  this.parentId=parentId;
   this.name=name;
   this.voiceConfId=voiceConfId;
   this.viewerPassword=viewerPassword;
