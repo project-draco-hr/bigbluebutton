@@ -1,4 +1,9 @@
 {
+  if (log.isTraceEnabled()) {
+    Gson gson=new Gson();
+    String json=gson.toJson(msg.getMessage());
+    log.trace("Handle direct message: " + msg.getMessageName() + " msg="+ json);
+  }
   final String sessionId=CONN + msg.getUserID();
   Runnable sender=new Runnable(){
     public void run(){
@@ -10,6 +15,11 @@
             List<Object> params=new ArrayList<Object>();
             params.add(msg.getMessageName());
             params.add(msg.getMessage());
+            if (log.isTraceEnabled()) {
+              Gson gson=new Gson();
+              String json=gson.toJson(msg.getMessage());
+              log.trace("Send direct message: " + msg.getMessageName() + " msg="+ json);
+            }
             ServiceUtils.invokeOnConnection(conn,"onMessageFromServer",params.toArray());
           }
         }

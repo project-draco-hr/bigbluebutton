@@ -1,5 +1,4 @@
 {
-  log.info("Creating textfiles for accessibility. MeetingId=[" + pres.getMeetingId() + "], presId=["+ pres.getId()+ "], name=["+ pres.getName()+ "]");
   notifier.sendCreatingTextFilesUpdateMessage(pres);
   textFileCreator.createTextFiles(pres);
 }

@@ -1,4 +1,3 @@
 {
-  log.debug("The number of meetings are: " + meetings.size());
   return meetings.isEmpty() ? Collections.<Meeting>emptySet() : Collections.unmodifiableCollection(meetings.values());
 }

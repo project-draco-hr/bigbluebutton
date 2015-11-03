@@ -8,25 +8,29 @@
       if (header.has("name")) {
         String messageName=header.get("name").getAsString();
         if (MessagingConstants.MEETING_STARTED_EVENT.equalsIgnoreCase(messageName)) {
-          System.out.println("Handling [" + messageName + "] message.");
           String meetingId=payload.get("meeting_id").getAsString();
           for (          MessageListener listener : listeners) {
             listener.handle(new MeetingStarted(meetingId));
           }
         }
  else         if (MessagingConstants.MEETING_ENDED_EVENT.equalsIgnoreCase(messageName)) {
-          System.out.println("Handling [" + messageName + "] message.");
           String meetingId=payload.get("meeting_id").getAsString();
           for (          MessageListener listener : listeners) {
             listener.handle(new MeetingEnded(meetingId));
           }
         }
  else         if (MessagingConstants.MEETING_DESTROYED_EVENT.equalsIgnoreCase(messageName)) {
-          System.out.println("Handling [" + messageName + "] message.");
           String meetingId=payload.get("meeting_id").getAsString();
           log.info("Received a meeting destroyed message for meeting id=[{}]",meetingId);
           for (          MessageListener listener : listeners) {
             listener.handle(new MeetingDestroyed(meetingId));
+          }
+        }
+ else         if (CreateBreakoutRoomRequest.NAME.equals(messageName)) {
+          Gson gson=new Gson();
+          CreateBreakoutRoomRequest msg=gson.fromJson(message,CreateBreakoutRoomRequest.class);
+          for (          MessageListener listener : listeners) {
+            listener.handle(new CreateBreakoutRoom(msg.payload.meetingId,msg.payload.name,msg.payload.voiceConfId,msg.payload.viewerPassword,msg.payload.moderatorPassword,msg.payload.durationInMinutes,msg.payload.defaultPresentationURL));
           }
         }
       }
@@ -45,9 +49,6 @@
             PubSubPongMessage m=(PubSubPongMessage)msg;
             rxMsg=new KeepAliveReply(m.payload.system,m.payload.timestamp);
           }
- else {
-            System.out.println("***** 1 Failed to decode pong message");
-          }
         }
         if (rxMsg != null) {
           for (          MessageListener listener : listeners) {
@@ -63,9 +64,7 @@
       JsonObject payload=(JsonObject)obj.get("payload");
       if (header.has("name")) {
         String messageName=header.get("name").getAsString();
-        System.out.println("Received [" + messageName + "] message on channel ["+ channel+ "].");
         if (MessagingConstants.USER_JOINED_EVENT.equalsIgnoreCase(messageName)) {
-          System.out.println("Handling [" + messageName + "] message.");
           String meetingId=payload.get("meeting_id").getAsString();
           JsonObject user=(JsonObject)payload.get("user");
           String userid=user.get("userid").getAsString();
@@ -77,7 +76,6 @@
           }
         }
  else         if (MessagingConstants.USER_STATUS_CHANGE_EVENT.equalsIgnoreCase(messageName)) {
-          System.out.println("Handling [" + messageName + "] message.");
           String meetingId=payload.get("meeting_id").getAsString();
           String userid=payload.get("userid").getAsString();
           String status=payload.get("status").getAsString();
@@ -87,7 +85,6 @@
           }
         }
  else         if (MessagingConstants.USER_LEFT_EVENT.equalsIgnoreCase(messageName)) {
-          System.out.println("Handling [" + messageName + "] message.");
           String meetingId=payload.get("meeting_id").getAsString();
           JsonObject user=(JsonObject)payload.get("user");
           String userid=user.get("userid").getAsString();
@@ -96,7 +93,6 @@
           }
         }
  else         if (MessagingConstants.USER_JOINED_VOICE_EVENT.equalsIgnoreCase(messageName)) {
-          System.out.println("Handling [" + messageName + "] message.");
           String meetingId=payload.get("meeting_id").getAsString();
           JsonObject user=(JsonObject)payload.get("user");
           String userid=user.get("userid").getAsString();
@@ -105,7 +101,6 @@
           }
         }
  else         if (MessagingConstants.USER_LEFT_VOICE_EVENT.equalsIgnoreCase(messageName)) {
-          System.out.println("Handling [" + messageName + "] message.");
           String meetingId=payload.get("meeting_id").getAsString();
           JsonObject user=(JsonObject)payload.get("user");
           String userid=user.get("userid").getAsString();
@@ -114,7 +109,6 @@
           }
         }
  else         if (MessagingConstants.USER_LISTEN_ONLY_EVENT.equalsIgnoreCase(messageName)) {
-          System.out.println("Handling [" + messageName + "] message.");
           String meetingId=payload.get("meeting_id").getAsString();
           String userid=payload.get("userid").getAsString();
           Boolean listenOnly=payload.get("listen_only").getAsBoolean();
@@ -123,7 +117,6 @@
           }
         }
  else         if (MessagingConstants.USER_SHARE_WEBCAM_EVENT.equalsIgnoreCase(messageName)) {
-          System.out.println("Handling [" + messageName + "] message.");
           String meetingId=payload.get("meeting_id").getAsString();
           String userid=payload.get("userid").getAsString();
           String stream=payload.get("stream").getAsString();
@@ -132,7 +125,6 @@
           }
         }
  else         if (MessagingConstants.USER_UNSHARE_WEBCAM_EVENT.equalsIgnoreCase(messageName)) {
-          System.out.println("Handling [" + messageName + "] message.");
           String meetingId=payload.get("meeting_id").getAsString();
           String userid=payload.get("userid").getAsString();
           String stream=payload.get("stream").getAsString();

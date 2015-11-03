@@ -1,6 +1,10 @@
 {
   Jedis jedis=new Jedis(host,port);
   Long msgid=jedis.incr("global:nextRecordedMsgId");
-  jedis.hmset("recording" + COLON + session+ COLON+ msgid,message.toMap());
-  jedis.rpush("meeting" + COLON + session+ COLON+ "recordings",msgid.toString());
+  String key="recording" + COLON + session+ COLON+ msgid;
+  jedis.hmset(key,message.toMap());
+  jedis.expire(key,14 * 24 * 60* 60);
+  key="meeting" + COLON + session+ COLON+ "recordings";
+  jedis.rpush(key,msgid.toString());
+  jedis.expire(key,14 * 24 * 60* 60);
 }
