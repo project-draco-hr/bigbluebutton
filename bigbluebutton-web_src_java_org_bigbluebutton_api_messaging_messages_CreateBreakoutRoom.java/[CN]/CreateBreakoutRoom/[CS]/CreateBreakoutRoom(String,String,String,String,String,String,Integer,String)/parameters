@@ -1,4 +1,5 @@
-String meetingId
+String breakoutId
+String parentId
 String name
 String voiceConfId
 String viewerPassword
