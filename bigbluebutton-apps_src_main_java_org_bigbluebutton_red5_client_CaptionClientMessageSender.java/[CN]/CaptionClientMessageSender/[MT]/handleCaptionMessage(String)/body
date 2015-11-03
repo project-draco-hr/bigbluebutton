@@ -18,6 +18,12 @@ if (sch != null) {
   processSendCaptionHistoryReplyMessage(sch);
 }
 break;
+case CurrentCaptionLineMessage.CURRENT_CAPTION_LINE:
+CurrentCaptionLineMessage ccl=CurrentCaptionLineMessage.fromJson(message);
+if (ccl != null) {
+processCurrentCaptionLineMessage(ccl);
+}
+break;
 }
 }
 }

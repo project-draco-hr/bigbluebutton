@@ -14,6 +14,10 @@
           SendCaptionHistoryRequestMessage msg=SendCaptionHistoryRequestMessage.fromJson(message);
           bbbGW.sendCaptionHistory(msg.meetingID,msg.requesterID);
         }
+ else         if (CurrentCaptionLineMessage.CURRENT_CAPTION_LINE.equals(messageName)) {
+          CurrentCaptionLineMessage msg=CurrentCaptionLineMessage.fromJson(message);
+          bbbGW.currentCaptionLine(msg.meetingID,msg.locale,msg.text);
+        }
       }
     }
   }

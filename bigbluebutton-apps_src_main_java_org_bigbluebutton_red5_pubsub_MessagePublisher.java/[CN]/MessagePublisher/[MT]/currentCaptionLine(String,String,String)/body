@@ -1,0 +1,4 @@
+{
+  CurrentCaptionLineMessage msg=new CurrentCaptionLineMessage(meetingID,locale,text);
+  sender.send(MessagingConstants.TO_CAPTION_CHANNEL,msg.toJson());
+}

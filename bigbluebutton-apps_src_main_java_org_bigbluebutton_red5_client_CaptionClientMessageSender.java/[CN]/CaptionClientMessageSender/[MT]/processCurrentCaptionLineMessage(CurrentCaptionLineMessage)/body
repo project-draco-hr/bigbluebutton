@@ -1,0 +1,7 @@
+{
+  Map<String,Object> message=new HashMap<String,Object>();
+  message.put(Constants.LOCALE,msg.locale);
+  message.put(Constants.TEXT,msg.text);
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingID,"currentCaptionLine",message);
+  service.sendMessage(m);
+}
