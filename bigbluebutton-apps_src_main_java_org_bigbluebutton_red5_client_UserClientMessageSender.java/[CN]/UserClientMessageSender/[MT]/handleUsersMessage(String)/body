@@ -4,6 +4,7 @@
   if (obj.has("header") && obj.has("payload")) {
     JsonObject header=(JsonObject)obj.get("header");
     if (header.has("name")) {
+      Gson gson=new Gson();
       String messageName=header.get("name").getAsString();
 switch (messageName) {
 case ValidateAuthTokenReplyMessage.VALIDATE_AUTH_TOKEN_REPLY:
@@ -116,6 +117,30 @@ processBroadcastLayoutMessage(message);
 break;
 case LockLayoutMessage.LOCK_LAYOUT:
 processLockLayoutMessage(message);
+break;
+case BreakoutRoomJoinURL.NAME:
+BreakoutRoomJoinURL brjum=gson.fromJson(message,BreakoutRoomJoinURL.class);
+if (brjum != null) {
+processBreakoutRoomJoinURL(brjum);
+}
+break;
+case TimeRemainingUpdate.NAME:
+TimeRemainingUpdate trum=gson.fromJson(message,TimeRemainingUpdate.class);
+if (trum != null) {
+processTimeRemainingUpdate(trum);
+}
+break;
+case UpdateBreakoutUsers.NAME:
+UpdateBreakoutUsers ubum=gson.fromJson(message,UpdateBreakoutUsers.class);
+if (ubum != null) {
+processUpdateBreakoutUsers(ubum);
+}
+break;
+case BreakoutRoomStarted.NAME:
+BreakoutRoomStarted brsm=gson.fromJson(message,BreakoutRoomStarted.class);
+if (brsm != null) {
+processBreakoutRoomStarted(brsm);
+}
 break;
 }
 }
