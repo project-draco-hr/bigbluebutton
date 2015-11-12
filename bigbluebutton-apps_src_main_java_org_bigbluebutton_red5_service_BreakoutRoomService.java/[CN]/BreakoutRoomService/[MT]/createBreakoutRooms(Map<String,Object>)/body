@@ -3,6 +3,6 @@
   String meetingId=(String)msg.get("meetingId");
   Integer duration=(Integer)msg.get("durationInMinutes");
   ArrayList<BreakoutRoomRequestPayload> breakoutRooms=(ArrayList<BreakoutRoomRequestPayload>)msg.get("rooms");
-  CreateBreakoutRoomsRequestPayload playload=new CreateBreakoutRoomsRequestPayload(meetingId,breakoutRooms,duration);
-  red5GW.createBreakoutRooms(playload);
+  CreateBreakoutRoomsRequestPayload payload=new CreateBreakoutRoomsRequestPayload(meetingId,breakoutRooms,duration);
+  red5GW.createBreakoutRooms(payload);
 }

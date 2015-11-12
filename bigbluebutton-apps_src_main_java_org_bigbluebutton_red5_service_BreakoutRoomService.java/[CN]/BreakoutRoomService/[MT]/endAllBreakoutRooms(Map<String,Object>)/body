@@ -1,0 +1,6 @@
+{
+  IScope scope=Red5.getConnectionLocal().getScope();
+  String meetingId=(String)msg.get("meetingId");
+  EndAllBreakoutRoomsRequestPayload payload=new EndAllBreakoutRoomsRequestPayload(meetingId);
+  red5GW.endAllBreakoutRooms(payload);
+}

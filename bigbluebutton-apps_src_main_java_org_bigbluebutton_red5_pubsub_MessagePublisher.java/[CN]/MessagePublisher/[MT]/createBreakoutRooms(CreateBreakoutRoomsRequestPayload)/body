@@ -1,4 +1,4 @@
 {
-  CreateBreakoutRoomsRequest msg=new CreateBreakoutRoomsRequest(playload);
+  CreateBreakoutRoomsRequest msg=new CreateBreakoutRoomsRequest(payload);
   sender.send(MessagingConstants.TO_USERS_CHANNEL,msg.toJson());
 }
