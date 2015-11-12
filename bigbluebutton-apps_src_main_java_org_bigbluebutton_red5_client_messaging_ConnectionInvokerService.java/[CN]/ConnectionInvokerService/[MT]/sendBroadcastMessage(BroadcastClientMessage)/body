@@ -1,0 +1,25 @@
+{
+  if (log.isTraceEnabled()) {
+    Gson gson=new Gson();
+    String json=gson.toJson(msg.getMessage());
+    log.trace("Handle broadcast message: " + msg.getMessageName() + " msg="+ json);
+  }
+  Runnable sender=new Runnable(){
+    public void run(){
+      IScope meetingScope=getScope(msg.getMeetingID());
+      if (meetingScope != null) {
+        List<Object> params=new ArrayList<Object>();
+        params.add(msg.getMessageName());
+        params.add(msg.getMessage());
+        if (log.isTraceEnabled()) {
+          Gson gson=new Gson();
+          String json=gson.toJson(msg.getMessage());
+          log.trace("Broadcast message: " + msg.getMessageName() + " msg="+ json);
+        }
+        ServiceUtils.invokeOnAllScopeConnections(meetingScope,"onMessageFromServer",params.toArray(),null);
+      }
+    }
+  }
+;
+  runExec.execute(sender);
+}

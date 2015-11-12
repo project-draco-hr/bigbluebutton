@@ -1,0 +1,8 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(Constants.MEETING_ID,meetingId);
+  payload.put(Constants.USER_ID,userId);
+  payload.put(Constants.STREAM,stream);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(USER_UNSHARED_WEBCAM,VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}

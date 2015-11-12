@@ -7,19 +7,31 @@
         meetingStarted((MeetingStarted)message);
       }
  else       if (message instanceof MeetingEnded) {
-        log.info("Processing meeting ended request.");
         meetingEnded((MeetingEnded)message);
       }
  else       if (message instanceof UserJoined) {
-        log.info("Processing user joined message.");
         userJoined((UserJoined)message);
       }
  else       if (message instanceof UserLeft) {
-        log.info("Processing user left message.");
         userLeft((UserLeft)message);
       }
  else       if (message instanceof UserStatusChanged) {
         updatedStatus((UserStatusChanged)message);
+      }
+ else       if (message instanceof UserJoinedVoice) {
+        userJoinedVoice((UserJoinedVoice)message);
+      }
+ else       if (message instanceof UserLeftVoice) {
+        userLeftVoice((UserLeftVoice)message);
+      }
+ else       if (message instanceof UserListeningOnly) {
+        userListeningOnly((UserListeningOnly)message);
+      }
+ else       if (message instanceof UserSharedWebcam) {
+        userSharedWebcam((UserSharedWebcam)message);
+      }
+ else       if (message instanceof UserUnsharedWebcam) {
+        userUnsharedWebcam((UserUnsharedWebcam)message);
       }
  else       if (message instanceof RemoveExpiredMeetings) {
         checkAndRemoveExpiredMeetings();
@@ -28,7 +40,6 @@
         processCreateMeeting((CreateMeeting)message);
       }
  else       if (message instanceof EndMeeting) {
-        log.info("Processing end meeting request.");
         processEndMeeting((EndMeeting)message);
       }
  else       if (message instanceof RegisterUser) {

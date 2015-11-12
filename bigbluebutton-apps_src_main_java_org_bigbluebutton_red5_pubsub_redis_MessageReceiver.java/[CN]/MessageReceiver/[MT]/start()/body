@@ -1,0 +1,26 @@
+{
+  log.info("Ready to receive messages from Redis pubsub.");
+  try {
+    receiveMessage=true;
+    jedis=new Jedis(host,port);
+    jedis.clientSetname("BbbRed5AppsSub");
+    Runnable messageReceiver=new Runnable(){
+      public void run(){
+        if (receiveMessage) {
+          try {
+            jedis.psubscribe(new PubSubListener(),MessagingConstants.FROM_BBB_APPS_PATTERN);
+          }
+ catch (          JedisConnectionException ex) {
+            log.warn("Exception on Jedis connection. Resubscribing to pubsub.");
+            start();
+          }
+        }
+      }
+    }
+;
+    msgReceiverExec.execute(messageReceiver);
+  }
+ catch (  Exception e) {
+    log.error("Error subscribing to channels: " + e.getMessage());
+  }
+}

@@ -1,0 +1,4 @@
+{
+  SendLockSettingsMessage msg=new SendLockSettingsMessage(meetingID,userId,settings);
+  sender.send(MessagingConstants.TO_MEETING_CHANNEL,msg.toJson());
+}

@@ -1,0 +1,4 @@
+{
+  RemovePresentationMessage msg=new RemovePresentationMessage(meetingID,presentationID);
+  sender.send(MessagingConstants.TO_PRESENTATION_CHANNEL,msg.toJson());
+}

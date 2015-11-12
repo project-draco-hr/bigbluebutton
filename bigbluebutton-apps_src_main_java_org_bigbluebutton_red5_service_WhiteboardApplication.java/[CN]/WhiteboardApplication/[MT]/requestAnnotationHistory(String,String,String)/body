@@ -1,0 +1,4 @@
+{
+  String replyTo=meetingID + "/" + requesterID;
+  red5BBBInGW.requestWhiteboardAnnotationHistory(meetingID,requesterID,whiteboardId,replyTo);
+}

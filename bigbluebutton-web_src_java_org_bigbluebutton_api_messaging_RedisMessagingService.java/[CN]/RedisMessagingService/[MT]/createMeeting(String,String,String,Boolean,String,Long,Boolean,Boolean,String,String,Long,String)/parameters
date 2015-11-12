@@ -1,0 +1,12 @@
+String meetingID
+String externalMeetingID
+String meetingName
+Boolean recorded
+String voiceBridge
+Long duration
+Boolean autoStartRecording
+Boolean allowStartStopRecording
+String moderatorPass
+String viewerPass
+Long createTime
+String createDate

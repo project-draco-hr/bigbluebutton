@@ -1,0 +1,9 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("whiteboardId",msg.whiteboardId);
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args));
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"WhiteboardClearCommand",message);
+  service.sendMessage(m);
+}

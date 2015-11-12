@@ -1,0 +1,4 @@
+{
+  EnableWhiteboardRequestMessage msg=new EnableWhiteboardRequestMessage(meetingID,requesterID,enable);
+  sender.send(MessagingConstants.TO_WHITEBOARD_CHANNEL,msg.toJson());
+}

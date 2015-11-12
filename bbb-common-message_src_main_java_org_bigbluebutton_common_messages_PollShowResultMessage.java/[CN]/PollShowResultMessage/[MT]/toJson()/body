@@ -1,0 +1,7 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(MEETING_ID,meetingId);
+  payload.put(POLL,poll);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(POLL_SHOW_RESULT,VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}

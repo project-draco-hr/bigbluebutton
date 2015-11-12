@@ -1,13 +1,11 @@
 {
-  log.debug("Generating slides");
   determineNumberOfPages(pres);
-  log.info("Determined number of pages. MeetingId=[" + pres.getMeetingId() + "], presId=["+ pres.getId()+ "], name=["+ pres.getName()+ "], numPages=["+ pres.getNumberOfPages()+ "]");
   if (pres.getNumberOfPages() > 0) {
     convertPdfToSwf(pres);
     createTextFiles(pres);
     createThumbnails(pres);
-    if (pngImagesRequired) {
-      createPngImages(pres);
+    if (svgImagesRequired) {
+      createSvgImages(pres);
     }
     notifier.sendConversionCompletedMessage(pres);
   }

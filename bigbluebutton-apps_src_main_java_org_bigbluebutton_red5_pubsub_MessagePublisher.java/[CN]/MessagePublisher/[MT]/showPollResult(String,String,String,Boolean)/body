@@ -1,0 +1,4 @@
+{
+  ShowPollResultRequestMessage msg=new ShowPollResultRequestMessage(meetingId,requesterId,pollId,show);
+  sender.send(MessagingConstants.TO_POLLING_CHANNEL,msg.toJson());
+}

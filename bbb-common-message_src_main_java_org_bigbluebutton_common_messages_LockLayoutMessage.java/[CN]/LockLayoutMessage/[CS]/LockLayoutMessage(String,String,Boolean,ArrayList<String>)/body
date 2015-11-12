@@ -1,0 +1,6 @@
+{
+  this.meetingId=meetingId;
+  this.setByUserid=setByUserid;
+  this.locked=locked;
+  this.users=users;
+}

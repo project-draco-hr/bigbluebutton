@@ -1,0 +1,4 @@
+{
+  GetLockSettingsMessage msg=new GetLockSettingsMessage(meetingId,userId);
+  sender.send(MessagingConstants.TO_MEETING_CHANNEL,msg.toJson());
+}

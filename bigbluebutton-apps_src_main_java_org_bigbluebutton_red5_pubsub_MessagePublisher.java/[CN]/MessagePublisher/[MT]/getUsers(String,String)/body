@@ -1,0 +1,4 @@
+{
+  GetUsersRequestMessage msg=new GetUsersRequestMessage(meetingId,requesterId);
+  sender.send(MessagingConstants.TO_USERS_CHANNEL,msg.toJson());
+}

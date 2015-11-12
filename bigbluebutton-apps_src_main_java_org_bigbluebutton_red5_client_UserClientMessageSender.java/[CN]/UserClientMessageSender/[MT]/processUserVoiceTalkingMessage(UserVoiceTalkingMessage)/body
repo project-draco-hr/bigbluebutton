@@ -1,0 +1,13 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("meetingID",msg.meetingId);
+  args.put("userId",msg.user.get("userId"));
+  Map<String,Object> vuMap=(Map<String,Object>)msg.user.get("voiceUser");
+  args.put("voiceUserId",(String)vuMap.get("userId"));
+  args.put("talking",(Boolean)vuMap.get("talking"));
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args));
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"voiceUserTalking",message);
+  service.sendMessage(m);
+}

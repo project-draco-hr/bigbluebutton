@@ -1,4 +1,0 @@
-{
-  super();
-  log.debug("setting redis dispatcher");
-}

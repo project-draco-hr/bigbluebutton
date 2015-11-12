@@ -1,0 +1,3 @@
+{
+  red5BBBInGW.clearWhiteboard(meetingID,requesterID,whiteboardId);
+}

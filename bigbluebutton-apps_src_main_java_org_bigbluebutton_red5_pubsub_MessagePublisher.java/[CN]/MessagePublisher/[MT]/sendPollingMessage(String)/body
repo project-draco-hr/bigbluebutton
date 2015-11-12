@@ -1,0 +1,3 @@
+{
+  sender.send(MessagingConstants.TO_POLLING_CHANNEL,json);
+}

@@ -1,3 +1,0 @@
-{
-  return e.getEventHeaders().get("Event-Date-Timestamp");
-}

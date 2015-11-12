@@ -1,0 +1,5 @@
+String meetingId
+String presentationId
+String code
+String messageKey
+String presentationName

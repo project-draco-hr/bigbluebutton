@@ -1,0 +1,4 @@
+{
+  GetChatHistoryRequestMessage msg=new GetChatHistoryRequestMessage(meetingID,requesterID,replyTo);
+  sender.send(MessagingConstants.TO_CHAT_CHANNEL,msg.toJson());
+}

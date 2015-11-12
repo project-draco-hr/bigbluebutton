@@ -1,0 +1,6 @@
+{
+  this.meetingId=meetingId;
+  this.whiteboardId=whiteboardId;
+  this.requesterId=requesterId;
+  this.replyTo=replyTo;
+}

@@ -1,0 +1,4 @@
+{
+  EjectAllUsersCommand mpc=new EjectAllUsersCommand(voiceConfId,USER);
+  queueMessage(mpc);
+}

@@ -1,0 +1,4 @@
+{
+  UserShareWebcamRequestMessage msg=new UserShareWebcamRequestMessage(meetingId,userId,stream);
+  sender.send(MessagingConstants.TO_USERS_CHANNEL,msg.toJson());
+}

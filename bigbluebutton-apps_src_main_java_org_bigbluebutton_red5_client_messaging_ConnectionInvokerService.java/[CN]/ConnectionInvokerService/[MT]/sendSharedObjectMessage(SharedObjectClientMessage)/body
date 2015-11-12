@@ -1,0 +1,11 @@
+{
+  IScope meetingScope=getScope(msg.getMeetingID());
+  if (meetingScope != null) {
+    if (meetingScope.hasChildScope(ScopeType.SHARED_OBJECT,msg.getSharedObjectName())) {
+      ISharedObject so=getSharedObject(meetingScope,msg.getSharedObjectName());
+      if (so != null) {
+        so.sendMessage(msg.getMessageName(),msg.getMessage());
+      }
+    }
+  }
+}

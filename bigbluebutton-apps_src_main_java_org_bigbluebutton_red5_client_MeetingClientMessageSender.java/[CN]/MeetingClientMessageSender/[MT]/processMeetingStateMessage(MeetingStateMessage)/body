@@ -1,0 +1,10 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("permissions",msg.permissions);
+  args.put("meetingMuted",msg.muted);
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args));
+  DirectClientMessage m=new DirectClientMessage(msg.meetingId,msg.userId,"meetingState",message);
+  service.sendMessage(m);
+}

@@ -1,3 +1,0 @@
-{
-  bbbInGW.sendWhiteboardAnnotation(meetingID,requesterID,shape);
-}

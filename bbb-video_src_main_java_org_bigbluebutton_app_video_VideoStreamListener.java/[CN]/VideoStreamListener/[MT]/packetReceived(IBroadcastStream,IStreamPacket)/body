@@ -5,16 +5,37 @@
     return;
   }
   if (packet instanceof VideoData) {
+    lastVideoTime=System.currentTimeMillis();
+    packetCount++;
     if (!firstPacketReceived) {
       firstPacketReceived=true;
-      IConnection conn=Red5.getConnectionLocal();
-      Map<String,String> event=new HashMap<String,String>();
-      event.put("module","WEBCAM");
-      event.put("timestamp",genTimestamp().toString());
-      event.put("meetingId",conn.getScope().getName());
-      event.put("stream",stream.getPublishedName());
-      event.put("eventName","StartWebcamShareEvent");
-      recordingService.record(conn.getScope().getName(),event);
+      publishing=true;
+      firstPacketTime=lastVideoTime;
+      timeoutJobName=scheduler.addScheduledJob(videoTimeout,new TimeoutJob());
+      if (record) {
+        Map<String,String> event=new HashMap<String,String>();
+        event.put("module","WEBCAM");
+        event.put("timestamp",genTimestamp().toString());
+        event.put("meetingId",scope.getName());
+        event.put("stream",stream.getPublishedName());
+        event.put("eventName","StartWebcamShareEvent");
+        recordingService.record(scope.getName(),event);
+      }
+    }
+    if (streamPaused) {
+      streamPaused=false;
+      long now=System.currentTimeMillis();
+      long numSeconds=(now - lastVideoTime) / 1000;
+      Map<String,Object> logData=new HashMap<String,Object>();
+      logData.put("meetingId",scope.getName());
+      logData.put("userId",userId);
+      logData.put("stream",stream.getPublishedName());
+      logData.put("packetCount",packetCount);
+      logData.put("publishing",publishing);
+      logData.put("pausedFor (sec)",numSeconds);
+      Gson gson=new Gson();
+      String logStr=gson.toJson(logData);
+      log.warn("Video stream restarted. data={}",logStr);
     }
   }
 }

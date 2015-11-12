@@ -1,0 +1,13 @@
+{
+  IScope scope=Red5.getConnectionLocal().getScope();
+  String meetingId=scope.getName();
+  String userId=getBbbSession().getInternalUserID();
+  Map<String,Object> logData=new HashMap<String,Object>();
+  logData.put("meetingId",scope.getName());
+  logData.put("userId",userId);
+  logData.put("stream",stream);
+  Gson gson=new Gson();
+  String logStr=gson.toJson(logData);
+  log.warn("User unshared webcam. data={}",logStr);
+  red5InGW.unshareWebcam(meetingId,userId,stream);
+}

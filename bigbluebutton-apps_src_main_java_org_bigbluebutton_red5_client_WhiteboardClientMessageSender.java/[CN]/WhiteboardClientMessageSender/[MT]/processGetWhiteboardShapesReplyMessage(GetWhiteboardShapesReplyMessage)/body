@@ -1,0 +1,11 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("whiteboardId",msg.whiteboardId);
+  args.put("count",msg.shapes.size());
+  args.put("annotations",msg.shapes);
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args));
+  DirectClientMessage m=new DirectClientMessage(msg.meetingId,msg.requesterId,"WhiteboardRequestAnnotationHistoryReply",message);
+  service.sendMessage(m);
+}

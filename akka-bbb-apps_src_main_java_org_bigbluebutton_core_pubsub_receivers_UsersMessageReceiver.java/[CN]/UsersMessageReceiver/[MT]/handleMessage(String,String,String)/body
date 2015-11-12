@@ -1,0 +1,107 @@
+{
+  if (channel.equalsIgnoreCase(MessagingConstants.TO_USERS_CHANNEL)) {
+    JsonParser parser=new JsonParser();
+    JsonObject obj=(JsonObject)parser.parse(message);
+    if (obj.has("header") && obj.has("payload")) {
+      JsonObject header=(JsonObject)obj.get("header");
+      if (header.has("name")) {
+        String messageName=header.get("name").getAsString();
+switch (messageName) {
+case UserLeavingMessage.USER_LEAVING:
+          processUserLeavingMessage(message);
+        break;
+case AssignPresenterRequestMessage.ASSIGN_PRESENTER_REQUEST:
+      processAssignPresenterRequestMessage(message);
+    break;
+case UserEmojiStatusMessage.USER_EMOJI_STATUS:
+  processUserEmojiStatusMessage(message);
+break;
+case EjectUserFromMeetingRequestMessage.EJECT_USER_FROM_MEETING_REQUEST:
+processEjectUserFromMeetingRequestMessage(message);
+break;
+case UserShareWebcamRequestMessage.USER_SHARE_WEBCAM_REQUEST:
+processUserShareWebcamRequestMessage(message);
+break;
+case UserUnshareWebcamRequestMessage.USER_UNSHARE_WEBCAM_REQUEST:
+processUserUnshareWebcamRequestMessage(message);
+break;
+case SetUserStatusRequestMessage.SET_USER_STATUS_REQUEST:
+processSetUserStatusRequestMessage(message);
+break;
+case SetRecordingStatusRequestMessage.SET_RECORDING_STATUS_REQUEST:
+processSetRecordingStatusRequestMessage(message);
+break;
+case GetRecordingStatusRequestMessage.GET_RECORDING_STATUS_REQUEST:
+processGetRecordingStatusRequestMessage(message);
+break;
+case GetUsersRequestMessage.GET_USERS_REQUEST:
+processGetUsersRequestMessage(message);
+break;
+case InitPermissionsSettingMessage.INIT_PERMISSIONS_SETTING:
+processInitPermissionsSettingMessage(message);
+break;
+case InitAudioSettingsMessage.INIT_AUDIO_SETTING:
+processInitAudioSettingsMessage(message);
+break;
+case BroadcastLayoutRequestMessage.BROADCAST_LAYOUT_REQUEST:
+processBroadcastLayoutRequestMessage(message);
+break;
+case LockLayoutRequestMessage.LOCK_LAYOUT_REQUEST:
+processLockLayoutRequestMessage(message);
+break;
+case GetCurrentLayoutRequestMessage.GET_CURRENT_LAYOUT_REQUEST:
+processGetCurrentLayoutRequestMessage(message);
+break;
+case MuteAllExceptPresenterRequestMessage.MUTE_ALL_EXCEPT_PRESENTER_REQUEST:
+processMuteAllExceptPresenterRequestMessage(message);
+break;
+case MuteAllRequestMessage.MUTE_ALL_REQUEST:
+processMuteAllRequestMessage(message);
+break;
+case IsMeetingMutedRequestMessage.IS_MEETING_MUTED_REQUEST:
+processIsMeetingMutedRequestMessage(message);
+break;
+case MuteUserRequestMessage.MUTE_USER_REQUEST:
+processMuteUserRequestMessage(message);
+break;
+case LockMuteUserRequestMessage.LOCK_MUTE_USER_REQUEST:
+processLockMuteUserRequestMessage(message);
+break;
+case EjectUserFromVoiceRequestMessage.EJECT_USER_FROM_VOICE_REQUEST:
+processEjectUserFromVoiceRequestMessage(message);
+break;
+}
+}
+}
+}
+ else if (channel.equalsIgnoreCase(MessagingConstants.FROM_VOICE_CONF_SYSTEM_CHAN)) {
+JsonParser parser=new JsonParser();
+JsonObject obj=(JsonObject)parser.parse(message);
+if (obj.has("header") && obj.has("payload")) {
+JsonObject header=(JsonObject)obj.get("header");
+if (header.has("name")) {
+String messageName=header.get("name").getAsString();
+switch (messageName) {
+case UserJoinedVoiceConfMessage.USER_JOINED_VOICE_CONF:
+processUserJoinedVoiceConfMessage(message);
+break;
+case UserLeftVoiceConfMessage.USER_LEFT_VOICE_CONF:
+processUserLeftVoiceConfMessage(message);
+break;
+case UserLockedInVoiceConfMessage.USER_LOCKED_IN_VOICE_CONF:
+processUserLockedInVoiceConfMessage(message);
+break;
+case UserMutedInVoiceConfMessage.USER_MUTED_IN_VOICE_CONF:
+processUserMutedInVoiceConfMessage(message);
+break;
+case UserTalkingInVoiceConfMessage.USER_TALKING_IN_VOICE_CONF:
+processUserTalkingInVoiceConfMessage(message);
+break;
+case VoiceConfRecordingStartedMessage.VOICE_CONF_RECORDING_STARTED:
+processVoiceConfRecordingStartedMessage(message);
+break;
+}
+}
+}
+}
+}

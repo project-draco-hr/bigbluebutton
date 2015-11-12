@@ -1,4 +1,0 @@
-{
-  connInvokerService.addScope(room.getName(),room);
-  return super.roomStart(room);
-}

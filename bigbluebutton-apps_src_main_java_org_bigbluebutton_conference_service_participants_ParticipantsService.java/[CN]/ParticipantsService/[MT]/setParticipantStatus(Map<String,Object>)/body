@@ -1,4 +1,0 @@
-{
-  String roomName=Red5.getConnectionLocal().getScope().getName();
-  application.setParticipantStatus(roomName,(String)msg.get("userID"),(String)msg.get("status"),(Object)msg.get("value"));
-}

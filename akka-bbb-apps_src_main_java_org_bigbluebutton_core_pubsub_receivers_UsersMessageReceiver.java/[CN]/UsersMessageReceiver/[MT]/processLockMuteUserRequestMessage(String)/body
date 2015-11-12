@@ -1,0 +1,6 @@
+{
+  LockMuteUserRequestMessage msg=LockMuteUserRequestMessage.fromJson(message);
+  if (msg != null) {
+    bbbInGW.lockMuteUser(msg.meetingId,msg.requesterId,msg.userId,msg.lock);
+  }
+}

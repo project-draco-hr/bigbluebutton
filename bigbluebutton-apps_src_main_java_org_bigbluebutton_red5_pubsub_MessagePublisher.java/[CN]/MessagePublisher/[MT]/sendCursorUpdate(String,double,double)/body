@@ -1,0 +1,4 @@
+{
+  SendCursorUpdateMessage msg=new SendCursorUpdateMessage(meetingID,xPercent,yPercent);
+  sender.send(MessagingConstants.TO_PRESENTATION_CHANNEL,msg.toJson());
+}

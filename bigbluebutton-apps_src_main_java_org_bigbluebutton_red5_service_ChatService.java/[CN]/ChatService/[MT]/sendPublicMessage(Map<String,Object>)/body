@@ -1,0 +1,29 @@
+{
+  String chatType=msg.get(ChatKeyUtil.CHAT_TYPE).toString();
+  String fromUserID=msg.get(ChatKeyUtil.FROM_USERID).toString();
+  String fromUsername=msg.get(ChatKeyUtil.FROM_USERNAME).toString();
+  String fromColor=msg.get(ChatKeyUtil.FROM_COLOR).toString();
+  String fromTime=msg.get(ChatKeyUtil.FROM_TIME).toString();
+  String fromTimezoneOffset=msg.get(ChatKeyUtil.FROM_TZ_OFFSET).toString();
+  String toUserID=msg.get(ChatKeyUtil.TO_USERID).toString();
+  String toUsername=msg.get(ChatKeyUtil.TO_USERNAME).toString();
+  String chatText=msg.get(ChatKeyUtil.MESSAGE).toString();
+  Map<String,String> message=new HashMap<String,String>();
+  message.put(ChatKeyUtil.CHAT_TYPE,chatType);
+  message.put(ChatKeyUtil.FROM_USERID,fromUserID);
+  message.put(ChatKeyUtil.FROM_USERNAME,fromUsername);
+  message.put(ChatKeyUtil.FROM_COLOR,fromColor);
+  message.put(ChatKeyUtil.FROM_TIME,fromTime);
+  message.put(ChatKeyUtil.FROM_TZ_OFFSET,fromTimezoneOffset);
+  message.put(ChatKeyUtil.TO_USERID,toUserID);
+  message.put(ChatKeyUtil.TO_USERNAME,toUsername);
+  message.put(ChatKeyUtil.MESSAGE,chatText);
+  String meetingID=Red5.getConnectionLocal().getScope().getName();
+  String requesterID=getBbbSession().getInternalUserID();
+  if (chatText.length() <= maxMessageLength) {
+    red5BBBInGw.sendPublicMessage(meetingID,requesterID,message);
+  }
+ else {
+    log.warn("sendPublicMessage maximum allowed message length exceeded (length: [" + chatText.length() + "], message: ["+ chatText+ "])");
+  }
+}

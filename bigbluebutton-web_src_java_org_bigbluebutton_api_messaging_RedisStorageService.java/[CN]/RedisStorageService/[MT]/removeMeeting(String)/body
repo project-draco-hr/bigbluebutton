@@ -5,6 +5,6 @@
     jedis.srem("meetings",meetingId);
   }
   finally {
-    redisPool.returnResource(jedis);
+    jedis.close();
   }
 }

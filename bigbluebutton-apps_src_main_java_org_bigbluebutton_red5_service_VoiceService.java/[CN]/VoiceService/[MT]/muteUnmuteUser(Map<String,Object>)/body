@@ -1,0 +1,7 @@
+{
+  Boolean mute=(Boolean)msg.get(VoiceKeyUtil.MUTE);
+  String userid=(String)msg.get(VoiceKeyUtil.USERID);
+  String meetingID=Red5.getConnectionLocal().getScope().getName();
+  String requesterID=getBbbSession().getInternalUserID();
+  red5InGW.muteUser(meetingID,requesterID,userid,mute);
+}

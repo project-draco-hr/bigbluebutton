@@ -1,0 +1,52 @@
+{
+  String username=((String)params[0]).toString();
+  String role=((String)params[1]).toString();
+  String room=((String)params[2]).toString();
+  String voiceBridge=((String)params[3]).toString();
+  boolean record=(Boolean)params[4];
+  String externalUserID=((String)params[5]).toString();
+  String internalUserID=((String)params[6]).toString();
+  Boolean muted=false;
+  if (params.length >= 7 && ((Boolean)params[7])) {
+    muted=true;
+  }
+  Map<String,Boolean> lsMap=null;
+  if (params.length >= 8) {
+    try {
+      lsMap=(Map<String,Boolean>)params[8];
+    }
+ catch (    Exception e) {
+      lsMap=new HashMap<String,Boolean>();
+    }
+  }
+  String userId=internalUserID;
+  String sessionId=CONN + userId;
+  BigBlueButtonSession bbbSession=new BigBlueButtonSession(room,internalUserID,username,role,voiceBridge,record,externalUserID,muted,sessionId);
+  connection.setAttribute(Constants.SESSION,bbbSession);
+  connection.setAttribute("INTERNAL_USER_ID",internalUserID);
+  connection.setAttribute("USER_SESSION_ID",sessionId);
+  red5InGW.initLockSettings(room,lsMap);
+  red5InGW.initAudioSettings(room,internalUserID,muted);
+  String meetingId=bbbSession.getRoom();
+  String connType=getConnectionType(Red5.getConnectionLocal().getType());
+  String userFullname=bbbSession.getUsername();
+  String connId=Red5.getConnectionLocal().getSessionId();
+  String remoteHost=Red5.getConnectionLocal().getRemoteAddress();
+  int remotePort=Red5.getConnectionLocal().getRemotePort();
+  Map<String,Object> logData=new HashMap<String,Object>();
+  logData.put("meetingId",meetingId);
+  logData.put("connType",connType);
+  logData.put("connId",connId);
+  logData.put("conn",remoteHost + ":" + remotePort);
+  logData.put("userId",userId);
+  logData.put("externalUserId",externalUserID);
+  logData.put("sessionId",sessionId);
+  logData.put("username",userFullname);
+  logData.put("event","user_joining_bbb_apps");
+  logData.put("description","User joining BBB Apps.");
+  Gson gson=new Gson();
+  String logStr=gson.toJson(logData);
+  log.info("User joining bbb-apps: data={}",logStr);
+  userConnections.addUserConnection(userId,connId);
+  return super.roomConnect(connection,params);
+}

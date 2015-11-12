@@ -1,0 +1,6 @@
+{
+  this.meetingId=meetingId;
+  this.requesterId=requesterId;
+  this.pollId=pollId;
+  this.poll=poll;
+}

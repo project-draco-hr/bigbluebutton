@@ -1,0 +1,4 @@
+{
+  GetSlideInfoMessage msg=new GetSlideInfoMessage(meetingID,requesterID,replyTo);
+  sender.send(MessagingConstants.TO_PRESENTATION_CHANNEL,msg.toJson());
+}

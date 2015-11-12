@@ -1,0 +1,34 @@
+{
+  if (log.isTraceEnabled()) {
+    Gson gson=new Gson();
+    String json=gson.toJson(msg.getMessage());
+    log.trace("Handle direct message: " + msg.getMessageName() + " msg="+ json);
+  }
+  final String sessionId=CONN + msg.getUserID();
+  Runnable sender=new Runnable(){
+    public void run(){
+      IScope meetingScope=getScope(msg.getMeetingID());
+      if (meetingScope != null) {
+        IConnection conn=getConnection(meetingScope,sessionId);
+        if (conn != null) {
+          if (conn.isConnected()) {
+            List<Object> params=new ArrayList<Object>();
+            params.add(msg.getMessageName());
+            params.add(msg.getMessage());
+            if (log.isTraceEnabled()) {
+              Gson gson=new Gson();
+              String json=gson.toJson(msg.getMessage());
+              log.trace("Send direct message: " + msg.getMessageName() + " msg="+ json);
+            }
+            ServiceUtils.invokeOnConnection(conn,"onMessageFromServer",params.toArray());
+          }
+        }
+ else {
+          log.info("Cannot send message=[" + msg.getMessageName() + "] to ["+ sessionId+ "] as no such session on meeting=["+ msg.getMeetingID()+ "]");
+        }
+      }
+    }
+  }
+;
+  runExec.execute(sender);
+}

@@ -1,0 +1,6 @@
+{
+  IsMeetingMutedRequestMessage msg=IsMeetingMutedRequestMessage.fromJson(message);
+  if (msg != null) {
+    bbbInGW.isMeetingMuted(msg.meetingId,msg.requesterId);
+  }
+}

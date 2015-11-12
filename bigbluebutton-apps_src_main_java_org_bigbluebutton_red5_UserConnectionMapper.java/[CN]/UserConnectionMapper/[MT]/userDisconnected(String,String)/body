@@ -1,0 +1,12 @@
+{
+  if (users.containsKey(userId)) {
+    UserConnection user=users.get(userId);
+    user.remove(connId);
+    if (user.isEmpty()) {
+      users.remove(userId);
+      return true;
+    }
+    return false;
+  }
+  return true;
+}
