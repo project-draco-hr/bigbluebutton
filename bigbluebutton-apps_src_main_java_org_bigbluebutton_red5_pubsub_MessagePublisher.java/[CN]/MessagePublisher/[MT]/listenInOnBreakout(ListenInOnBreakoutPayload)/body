@@ -1,4 +1,4 @@
 {
   ListenInOnBreakout msg=new ListenInOnBreakout(payload);
-  sender.send(MessagingConstants.TO_USERS_CHANNEL,msg.toJson());
+  sender.send(MessagingConstants.TO_MEETING_CHANNEL,msg.toJson());
 }
