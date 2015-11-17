@@ -1,0 +1,9 @@
+{
+  IScope scope=Red5.getConnectionLocal().getScope();
+  String meetingId=(String)msg.get("meetingId");
+  String breakoutId=(String)msg.get("breakoutId");
+  String userId=(String)msg.get("userId");
+  Boolean listen=(Boolean)msg.get("listen");
+  ListenInOnBreakoutPayload payload=new ListenInOnBreakoutPayload(meetingId,breakoutId,userId,listen);
+  red5GW.listenInOnBreakout(payload);
+}

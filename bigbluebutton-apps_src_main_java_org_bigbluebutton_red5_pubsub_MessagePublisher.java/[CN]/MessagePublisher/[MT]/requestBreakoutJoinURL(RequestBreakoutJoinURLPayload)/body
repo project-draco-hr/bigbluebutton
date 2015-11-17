@@ -1,0 +1,4 @@
+{
+  RequestBreakoutJoinURL msg=new RequestBreakoutJoinURL(payload);
+  sender.send(MessagingConstants.TO_MEETING_CHANNEL,msg.toJson());
+}
