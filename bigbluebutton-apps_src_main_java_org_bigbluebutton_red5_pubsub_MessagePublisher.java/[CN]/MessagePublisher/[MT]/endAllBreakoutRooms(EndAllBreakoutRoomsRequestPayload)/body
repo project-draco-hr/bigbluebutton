@@ -1,4 +1,0 @@
-{
-  EndAllBreakoutRoomsRequest msg=new EndAllBreakoutRoomsRequest(payload);
-  sender.send(MessagingConstants.TO_MEETING_CHANNEL,msg.toJson());
-}

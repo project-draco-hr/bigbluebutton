@@ -1,0 +1,5 @@
+{
+  JsonObject payload=JsonEncoderUtil.buildPayload(jsonMessage);
+  JsonObject header=JsonEncoderUtil.addMessageHeader(messageName);
+  return new Gson().toJson(JsonEncoderUtil.headerAndPayload(header,payload));
+}
