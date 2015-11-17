@@ -1,4 +1,8 @@
 {
   IScope scope=Red5.getConnectionLocal().getScope();
-  red5GW.createBreakoutRooms(jsonMessage);
+  JsonObject payload=JsonEncoderUtil.buildPayload(jsonMessage);
+  JsonObject header=JsonEncoderUtil.addMessageHeader("CreateBreakoutRooms");
+  JsonObject message=JsonEncoderUtil.headerAndPayload(header,payload);
+  Gson gson=new Gson();
+  red5GW.createBreakoutRooms(gson.toJson(message));
 }
