@@ -1,8 +1,0 @@
-{
-  IScope scope=Red5.getConnectionLocal().getScope();
-  String meetingId=(String)msg.get("meetingId");
-  Integer duration=(Integer)msg.get("durationInMinutes");
-  ArrayList<BreakoutRoomRequestPayload> breakoutRooms=(ArrayList<BreakoutRoomRequestPayload>)msg.get("rooms");
-  CreateBreakoutRoomsRequestPayload payload=new CreateBreakoutRoomsRequestPayload(meetingId,breakoutRooms,duration);
-  red5GW.createBreakoutRooms(payload);
-}
