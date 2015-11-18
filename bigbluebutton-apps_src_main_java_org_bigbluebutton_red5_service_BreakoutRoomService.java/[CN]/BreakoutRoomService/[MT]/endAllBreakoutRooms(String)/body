@@ -1,0 +1,3 @@
+{
+  red5GW.endAllBreakoutRooms(addHeaderToMessage(jsonMessage,"EndAllBreakoutRooms"));
+}

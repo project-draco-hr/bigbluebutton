@@ -71,9 +71,13 @@ case EjectUserFromVoiceRequestMessage.EJECT_USER_FROM_VOICE_REQUEST:
 processEjectUserFromVoiceRequestMessage(message);
 break;
 case CreateBreakoutRoomsRequest.NAME:
-Gson gson=new Gson();
-CreateBreakoutRoomsRequest msg=gson.fromJson(message,CreateBreakoutRoomsRequest.class);
-bbbInGW.handleBigBlueButtonMessage(msg);
+bbbInGW.handleJsonMessage(message);
+break;
+case ListenInOnBreakout.NAME:
+bbbInGW.handleJsonMessage(message);
+break;
+case RequestBreakoutJoinURL.NAME:
+bbbInGW.handleJsonMessage(message);
 break;
 }
 }

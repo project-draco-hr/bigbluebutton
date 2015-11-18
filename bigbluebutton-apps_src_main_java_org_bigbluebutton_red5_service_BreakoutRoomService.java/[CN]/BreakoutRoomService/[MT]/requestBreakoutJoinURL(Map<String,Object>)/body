@@ -1,8 +1,0 @@
-{
-  IScope scope=Red5.getConnectionLocal().getScope();
-  String meetingId=(String)msg.get("meetingId");
-  String breakoutId=(String)msg.get("breakoutId");
-  String userId=(String)msg.get("userId");
-  RequestBreakoutJoinURLPayload payload=new RequestBreakoutJoinURLPayload(meetingId,breakoutId,userId);
-  red5GW.requestBreakoutJoinURL(payload);
-}
