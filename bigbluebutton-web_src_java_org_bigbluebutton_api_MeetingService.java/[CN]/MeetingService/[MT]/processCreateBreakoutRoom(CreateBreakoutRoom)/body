@@ -9,4 +9,5 @@
   params.put("duration",message.durationInMinutes.toString());
   Meeting breakout=paramsProcessorUtil.processCreateParams(params);
   presDownloadService.downloadAndProcessDocument(message.defaultPresentationURL,breakout.getInternalId());
+  messagingService.sendBreakoutRoomCreated(breakout.getInternalId(),breakout.getName());
 }
