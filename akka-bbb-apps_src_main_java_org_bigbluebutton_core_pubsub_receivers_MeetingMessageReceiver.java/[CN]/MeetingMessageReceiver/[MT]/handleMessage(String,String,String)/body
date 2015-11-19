@@ -12,9 +12,6 @@
           CreateMeetingRequest msg=gson.fromJson(message,CreateMeetingRequest.class);
           bbbGW.handleBigBlueButtonMessage(msg);
         }
-        if (BreakoutRoomStarted.NAME.equals(messageName)) {
-          bbbGW.handleJsonMessage(message);
-        }
       }
     }
     IBigBlueButtonMessage msg=MessageFromJsonConverter.convert(message);

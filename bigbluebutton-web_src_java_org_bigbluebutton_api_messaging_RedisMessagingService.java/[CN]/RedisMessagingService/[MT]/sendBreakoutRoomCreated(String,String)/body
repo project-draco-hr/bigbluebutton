@@ -1,4 +1,0 @@
-{
-  log.debug("Sending BreakoutRoomStarted message");
-  send(MessagingConstants.TO_MEETING_CHANNEL,new BreakoutRoomStarted(new BreakoutRoomPayload(breakoutId,name)).toJson());
-}
