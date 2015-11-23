@@ -1,0 +1,7 @@
+{
+  this.meetingID=meetingID;
+  this.startIndex=startIndex;
+  this.endIndex=endIndex;
+  this.locale=locale;
+  this.text=text;
+}

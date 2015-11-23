@@ -1,13 +1,9 @@
 {
-  Map<String,ArrayList<String>> collection=new HashMap<String,ArrayList<String>>();
+  Map<String,String> collection=new HashMap<String,String>();
   for (  Map.Entry<String,JsonElement> entry : history.entrySet()) {
     String locale=entry.getKey();
-    JsonArray linesJSON=entry.getValue().getAsJsonArray();
-    ArrayList<String> lines=new ArrayList<String>();
-    for (    JsonElement line : linesJSON) {
-      lines.add(line.getAsString());
-    }
-    collection.put(locale,lines);
+    String localeHistory=entry.getValue().getAsString();
+    collection.put(locale,localeHistory);
   }
   return collection;
 }

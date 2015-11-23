@@ -1,5 +1,0 @@
-String meetingID
-Integer lineNumber
-String locale
-Integer startTime
-String text

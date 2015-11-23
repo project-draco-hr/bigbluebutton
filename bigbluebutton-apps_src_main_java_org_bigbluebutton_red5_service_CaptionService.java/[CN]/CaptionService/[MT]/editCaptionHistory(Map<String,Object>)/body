@@ -1,0 +1,8 @@
+{
+  int startIndex=(Integer)msg.get("startIndex");
+  int endIndex=(Integer)msg.get("endIndex");
+  String locale=msg.get("locale").toString();
+  String text=msg.get("text").toString();
+  String meetingID=Red5.getConnectionLocal().getScope().getName();
+  red5InGW.editCaptionHistory(meetingID,startIndex,endIndex,locale,text);
+}

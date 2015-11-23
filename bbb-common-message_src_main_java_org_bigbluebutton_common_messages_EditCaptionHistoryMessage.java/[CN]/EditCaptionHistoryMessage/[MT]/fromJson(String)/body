@@ -1,0 +1,22 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (EDIT_CAPTION_HISTORY.equals(messageName)) {
+        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.START_INDEX) && payload.has(Constants.END_INDEX)&& payload.has(Constants.LOCALE)&& payload.has(Constants.TEXT)) {
+          String meetingID=payload.get(Constants.MEETING_ID).getAsString();
+          Integer startIndex=payload.get(Constants.START_INDEX).getAsInt();
+          Integer endIndex=payload.get(Constants.END_INDEX).getAsInt();
+          String locale=payload.get(Constants.LOCALE).getAsString();
+          String text=payload.get(Constants.TEXT).getAsString();
+          return new EditCaptionHistoryMessage(meetingID,startIndex,endIndex,locale,text);
+        }
+      }
+    }
+  }
+  return null;
+}

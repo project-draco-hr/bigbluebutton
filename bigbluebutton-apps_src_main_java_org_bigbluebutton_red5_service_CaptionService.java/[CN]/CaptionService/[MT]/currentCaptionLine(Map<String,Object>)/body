@@ -1,6 +1,0 @@
-{
-  String locale=msg.get("locale").toString();
-  String text=msg.get("text").toString();
-  String meetingID=Red5.getConnectionLocal().getScope().getName();
-  red5InGW.currentCaptionLine(meetingID,locale,text);
-}
