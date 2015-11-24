@@ -1,0 +1,4 @@
+{
+  exitCode=statusCode;
+  log.debug("Conversion process exited with status=" + exitCode);
+}
