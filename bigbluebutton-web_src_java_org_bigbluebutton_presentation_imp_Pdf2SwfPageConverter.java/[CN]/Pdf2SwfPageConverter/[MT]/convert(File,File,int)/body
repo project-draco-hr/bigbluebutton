@@ -2,7 +2,7 @@
   String source=presentation.getAbsolutePath();
   String dest=output.getAbsolutePath();
   String AVM2SWF="-T9";
-  NuProcessBuilder pb=new NuProcessBuilder(Arrays.asList(SWFTOOLS_DIR + File.separator + "pdf2swf","-v",AVM2SWF,"-F",fontsDir,"-p",String.valueOf(page),source,"-o","dest"));
+  NuProcessBuilder pb=new NuProcessBuilder(Arrays.asList(SWFTOOLS_DIR + File.separator + "pdf2swf","-v",AVM2SWF,"-F",fontsDir,"-p",String.valueOf(page),source,"-o",dest));
   Pdf2SwfPageConverterHandler pHandler=new Pdf2SwfPageConverterHandler();
   pb.setProcessListener(pHandler);
   NuProcess process=pb.start();
