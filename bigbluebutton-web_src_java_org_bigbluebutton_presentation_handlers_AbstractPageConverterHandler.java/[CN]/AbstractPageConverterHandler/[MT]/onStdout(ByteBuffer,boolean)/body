@@ -3,5 +3,4 @@
     CharBuffer charBuffer=StandardCharsets.UTF_8.decode(buffer);
     stdoutBuilder.append(charBuffer);
   }
-  log.debug("Conversion success\n" + stdoutBuilder.toString());
 }

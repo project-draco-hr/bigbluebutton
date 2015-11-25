@@ -1,0 +1,26 @@
+{
+  if (exitCode == 0) {
+    int matches=StringUtils.countMatches(stdoutBuilder.toString(),DEFINE_SHAPE3);
+    matches*=0.5;
+    log.debug("Defined shapes in the SWF " + matches);
+    if (matches > maxSwfShapes) {
+      log.error("SWF contains too much Shapes defined, the maximum allowed number is " + maxSwfShapes);
+      return false;
+    }
+    return true;
+  }
+ else {
+    if (stdoutContains(FONT_NULL_GLYPH)) {
+      log.error("SWF contains invalid font glyph dfintion");
+    }
+ else     if (stdoutContains(SYMBOL_REDEFINED)) {
+      log.error("A SWF symbol was defined twice");
+    }
+ else {
+      log.error("The SWF is not compliant due to an unknown error");
+      log.error(stdoutBuilder.toString());
+    }
+    log.error(stderrBuilder.toString());
+    return false;
+  }
+}
