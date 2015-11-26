@@ -10,17 +10,20 @@
     return true;
   }
  else {
+    String reason="The SWF is not compliant due to an unknown error";
     if (stdoutContains(FONT_NULL_GLYPH)) {
-      log.error("SWF contains invalid font glyph dfintion");
+      reason="SWF contains invalid font glyph dfintion";
     }
  else     if (stdoutContains(SYMBOL_REDEFINED)) {
-      log.error("A SWF symbol was defined twice");
+      reason="A SWF symbol was defined twice";
     }
- else {
-      log.error("The SWF is not compliant due to an unknown error");
-      log.error(stdoutBuilder.toString());
+ else     if (stderrContains(MALFORMED_URL)) {
+      reason="The SWF contains a malformed URL, the parsed file does probably not exist";
     }
-    log.error(stderrBuilder.toString());
+ else     if (stderrContains(DEFINE_BUTTON)) {
+      reason="A SWF DefineButton tag could not be parsed";
+    }
+    log.error("swfdump exited with an error on file [" + analysedFile.getAbsolutePath() + "]\nReason => "+ reason+ "\nstderr:\n"+ stderrBuilder.toString());
     return false;
   }
 }
