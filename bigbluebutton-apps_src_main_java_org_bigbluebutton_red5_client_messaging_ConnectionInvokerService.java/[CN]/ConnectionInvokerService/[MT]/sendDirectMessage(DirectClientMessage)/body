@@ -30,5 +30,21 @@
     }
   }
 ;
-  runExec.execute(sender);
+  long endNanos=System.nanoTime() + SEND_TIMEOUT;
+  Future<?> f=runExec.submit(sender);
+  try {
+    long timeLeft=endNanos - System.nanoTime();
+    f.get(timeLeft,TimeUnit.NANOSECONDS);
+  }
+ catch (  ExecutionException e) {
+    log.warn("ExecutionException while sending direct message on connection[" + sessionId + "]");
+  }
+catch (  InterruptedException e) {
+    log.warn("Interrupted exception while sending direct message on connection[" + sessionId + "]");
+    Thread.currentThread().interrupt();
+  }
+catch (  TimeoutException e) {
+    log.warn("Timeout exception while sending direct message on connection[" + sessionId + "]");
+    f.cancel(true);
+  }
 }
