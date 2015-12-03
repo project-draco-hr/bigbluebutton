@@ -1,8 +1,0 @@
-{
-  ParticipantLeftVoiceRecordEvent evt=new ParticipantLeftVoiceRecordEvent();
-  evt.setMeetingId(meetingId);
-  evt.setTimestamp(genTimestamp());
-  evt.setBridge(event.getRoom());
-  evt.setParticipant(((VoiceUserLeftRecordEvent)event).getUserId().toString());
-  recorder.record(meetingId,evt);
-}
