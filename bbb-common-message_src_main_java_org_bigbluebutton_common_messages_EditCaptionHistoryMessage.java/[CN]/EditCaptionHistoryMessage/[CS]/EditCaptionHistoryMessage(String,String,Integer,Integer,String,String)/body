@@ -1,5 +1,6 @@
 {
   this.meetingID=meetingID;
+  this.userID=userID;
   this.startIndex=startIndex;
   this.endIndex=endIndex;
   this.locale=locale;

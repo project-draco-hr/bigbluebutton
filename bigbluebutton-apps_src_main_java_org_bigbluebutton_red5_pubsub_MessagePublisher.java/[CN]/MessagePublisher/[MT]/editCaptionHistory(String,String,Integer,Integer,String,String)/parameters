@@ -1,4 +1,5 @@
 String meetingID
+String userID
 Integer startIndex
 Integer endIndex
 String locale

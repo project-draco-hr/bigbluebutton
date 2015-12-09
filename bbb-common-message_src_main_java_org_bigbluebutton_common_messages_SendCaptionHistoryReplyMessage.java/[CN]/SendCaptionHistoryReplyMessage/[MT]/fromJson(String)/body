@@ -12,7 +12,7 @@
           String requesterID=payload.get(Constants.REQUESTER_ID).getAsString();
           JsonObject history=(JsonObject)payload.get(Constants.CAPTION_HISTORY);
           Util util=new Util();
-          Map<String,String> captionHistory=util.extractCaptionHistory(history);
+          Map<String,String[]> captionHistory=util.extractCaptionHistory(history);
           return new SendCaptionHistoryReplyMessage(meetingID,requesterID,captionHistory);
         }
       }

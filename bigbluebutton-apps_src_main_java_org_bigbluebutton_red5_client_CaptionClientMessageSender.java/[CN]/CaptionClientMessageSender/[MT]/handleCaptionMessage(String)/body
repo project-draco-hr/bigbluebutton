@@ -6,16 +6,22 @@
     if (header.has("name")) {
       String messageName=header.get("name").getAsString();
 switch (messageName) {
-case EditCaptionHistoryMessage.EDIT_CAPTION_HISTORY:
-        EditCaptionHistoryMessage ech=EditCaptionHistoryMessage.fromJson(message);
-      if (ech != null) {
-        processEditCaptionHistoryMessage(ech);
+case SendCaptionHistoryReplyMessage.SEND_CAPTION_HISTORY_REPLY:
+        SendCaptionHistoryReplyMessage sch=SendCaptionHistoryReplyMessage.fromJson(message);
+      if (sch != null) {
+        processSendCaptionHistoryReplyMessage(sch);
       }
     break;
-case SendCaptionHistoryReplyMessage.SEND_CAPTION_HISTORY_REPLY:
-  SendCaptionHistoryReplyMessage sch=SendCaptionHistoryReplyMessage.fromJson(message);
-if (sch != null) {
-  processSendCaptionHistoryReplyMessage(sch);
+case UpdateCaptionOwnerMessage.UPDATE_CAPTION_OWNER:
+  UpdateCaptionOwnerMessage uco=UpdateCaptionOwnerMessage.fromJson(message);
+if (uco != null) {
+  processUpdateCaptionOwnerMessage(uco);
+}
+break;
+case EditCaptionHistoryMessage.EDIT_CAPTION_HISTORY:
+EditCaptionHistoryMessage ech=EditCaptionHistoryMessage.fromJson(message);
+if (ech != null) {
+processEditCaptionHistoryMessage(ech);
 }
 break;
 }
