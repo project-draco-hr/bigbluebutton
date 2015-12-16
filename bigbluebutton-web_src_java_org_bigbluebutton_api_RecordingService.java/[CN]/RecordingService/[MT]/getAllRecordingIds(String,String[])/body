@@ -1,11 +1,10 @@
 {
-  String[] format=getPlaybackFormats(path);
+  List<String> ids=new ArrayList<String>();
   for (int i=0; i < format.length; i++) {
     List<File> recordings=getDirectories(path + File.separatorChar + format[i]);
     for (int f=0; f < recordings.size(); f++) {
-      if (recordings.get(f).getName().equals(id)) {
-        deleteDirectory(recordings.get(f));
-      }
+      if (!ids.contains(recordings.get(f).getName()))       ids.add(recordings.get(f).getName());
     }
   }
+  return ids;
 }

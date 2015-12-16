@@ -1,0 +1,2 @@
+String meetingId
+List<File> recordings

@@ -1,15 +1,26 @@
 {
   ArrayList<Recording> recs=new ArrayList<Recording>();
-  if (meetingIds.isEmpty()) {
-    meetingIds.addAll(getAllRecordingIds(publishedDir));
-    meetingIds.addAll(getAllRecordingIds(unpublishedDir));
+  List<File> allPublishedDirectories=new ArrayList<File>();
+  String[] publishedFormats=getPlaybackFormats(publishedDir);
+  for (int i=0; i < publishedFormats.length; ++i) {
+    allPublishedDirectories.addAll(getDirectories(publishedDir + File.separatorChar + publishedFormats[i]));
   }
+  List<File> allUnpublishedDirectories=new ArrayList<File>();
+  String[] unpublishedFormats=getPlaybackFormats(unpublishedDir);
+  for (int i=0; i < unpublishedFormats.length; ++i) {
+    allUnpublishedDirectories.addAll(getDirectories(unpublishedDir + File.separatorChar + unpublishedFormats[i]));
+  }
+  if (meetingIds.isEmpty()) {
+    meetingIds.addAll(getAllRecordingIds(allPublishedDirectories));
+    meetingIds.addAll(getAllRecordingIds(allUnpublishedDirectories));
+  }
+  log.debug("got all recording ids");
   for (  String meetingId : meetingIds) {
-    ArrayList<Recording> published=getRecordingsForPath(meetingId,publishedDir);
+    List<Recording> published=getRecordingsForPath(meetingId,allPublishedDirectories);
     if (!published.isEmpty()) {
       recs.addAll(published);
     }
-    ArrayList<Recording> unpublished=getRecordingsForPath(meetingId,unpublishedDir);
+    List<Recording> unpublished=getRecordingsForPath(meetingId,allUnpublishedDirectories);
     if (!unpublished.isEmpty()) {
       recs.addAll(unpublished);
     }

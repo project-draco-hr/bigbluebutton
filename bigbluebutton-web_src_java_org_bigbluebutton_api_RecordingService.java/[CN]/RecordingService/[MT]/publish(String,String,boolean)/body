@@ -1,9 +1,10 @@
 {
   String[] format=getPlaybackFormats(path);
   for (int i=0; i < format.length; i++) {
-    File[] recordings=getDirectories(path + File.separatorChar + format[i]);
-    for (int f=0; f < recordings.length; f++) {
-      if (recordings[f].getName().equalsIgnoreCase(recordingId)) {
+    List<File> recordings=getDirectories(path + File.separatorChar + format[i]);
+    for (int f=0; f < recordings.size(); f++) {
+      File recording=recordings.get(f);
+      if (recording.getName().equalsIgnoreCase(recordingId)) {
         Recording r=getRecordingInfo(path,recordingId,format[i]);
         if (r != null) {
           File dest;
@@ -14,11 +15,11 @@
             dest=new File(unpublishedDir + File.separatorChar + format[i]);
           }
           if (!dest.exists())           dest.mkdir();
-          boolean moved=recordings[f].renameTo(new File(dest,recordings[f].getName()));
+          boolean moved=recording.renameTo(new File(dest,recording.getName()));
           if (moved) {
             log.debug("Recording successfully moved!");
             r.setPublished(publish);
-            recordingServiceHelper.writeRecordingInfo(dest.getAbsolutePath() + File.separatorChar + recordings[f].getName(),r);
+            recordingServiceHelper.writeRecordingInfo(dest.getAbsolutePath() + File.separatorChar + recording.getName(),r);
           }
         }
       }
