@@ -17,23 +17,58 @@
     return true;
   }
  else {
-    log.debug("Previous conversion generated {} PlaceObject tags, {} DefineText tags and {} Images. Falling back to 'poly2bitmap' option for pdf2swf.",pHandler.numberOfPlacements(),pHandler.numberOfTextTags(),pHandler.numberOfImageTags());
-    NuProcessBuilder pbBmp=new NuProcessBuilder(Arrays.asList(SWFTOOLS_DIR + File.separator + "pdf2swf",AVM2SWF,"-s","poly2bitmap","-F",fontsDir,"-p",String.valueOf(page),source,"-o",dest));
-    Pdf2SwfPageConverterHandler pBmpHandler=new Pdf2SwfPageConverterHandler();
-    pbBmp.setProcessListener(pBmpHandler);
-    NuProcess processBmp=pbBmp.start();
+    log.debug("Previous conversion generated {} PlaceObject tags, {} DefineText tags and {} Images. Flattening to png image before converting again to a swf.",pHandler.numberOfPlacements(),pHandler.numberOfTextTags(),pHandler.numberOfImageTags());
+    File tempPdfPage=null;
+    File tempPng=null;
+    String basePresentationame=FilenameUtils.getBaseName(presentation.getName());
     try {
-      processBmp.waitFor(60,TimeUnit.SECONDS);
+      tempPdfPage=File.createTempFile(basePresentationame + "-" + page,".pdf");
+      tempPng=File.createTempFile(basePresentationame + "-" + page,".png");
+    }
+ catch (    IOException ioException) {
+      log.error("Unable to create temporary files");
+    }
+    NuProcessBuilder pbPdf=new NuProcessBuilder(Arrays.asList(GHOSTSCRIPT_EXEC,"-sDEVICE=pdfwrite","-dNOPAUSE","-dQUIET","-dBATCH","-dFirstPage=" + page,"-dLastPage=" + page,"-sOutputFile=" + tempPdfPage.getAbsolutePath(),noPdfMarkWorkaround,presentation.getAbsolutePath()));
+    NuAbstractProcessHandler pbPdfHandler=new NuAbstractProcessHandler(){
+    }
+;
+    pbPdf.setProcessListener(pbPdfHandler);
+    NuProcess processPdf=pbPdf.start();
+    try {
+      processPdf.waitFor(60,TimeUnit.SECONDS);
     }
  catch (    InterruptedException e) {
       log.error(e.getMessage());
     }
-    boolean doneBmp=pBmpHandler.isConversionSuccessfull();
-    if (doneBmp && destFile.exists()) {
+    NuProcessBuilder pbPng=new NuProcessBuilder(Arrays.asList(IMAGEMAGICK_DIR + File.separator + "convert","-density","150","-quality","90","-flatten","+dither","-depth","8",tempPdfPage.getAbsolutePath(),tempPng.getAbsolutePath()));
+    Pdf2PngPageConverterHandler pbPngHandler=new Pdf2PngPageConverterHandler();
+    pbPng.setProcessListener(pbPngHandler);
+    NuProcess processPng=pbPng.start();
+    try {
+      processPng.waitFor(60,TimeUnit.SECONDS);
+    }
+ catch (    InterruptedException e) {
+      log.error(e.getMessage());
+    }
+    source=tempPng.getAbsolutePath();
+    NuProcessBuilder pbSwf=new NuProcessBuilder(Arrays.asList(SWFTOOLS_DIR + File.separator + "png2swf","-o",dest,source));
+    Png2SwfPageConverterHandler pSwfHandler=new Png2SwfPageConverterHandler();
+    pbSwf.setProcessListener(pSwfHandler);
+    NuProcess processSwf=pbSwf.start();
+    try {
+      processSwf.waitFor(60,TimeUnit.SECONDS);
+    }
+ catch (    InterruptedException e) {
+      log.error(e.getMessage());
+    }
+    tempPdfPage.delete();
+    tempPng.delete();
+    boolean doneSwf=pSwfHandler.isConversionSuccessfull();
+    if (doneSwf && destFile.exists()) {
       return true;
     }
  else {
-      log.warn("Failed to convert: " + dest + " does not exist.");
+      log.warn("Failed to convert: " + destFile + " does not exist.");
       return false;
     }
   }
