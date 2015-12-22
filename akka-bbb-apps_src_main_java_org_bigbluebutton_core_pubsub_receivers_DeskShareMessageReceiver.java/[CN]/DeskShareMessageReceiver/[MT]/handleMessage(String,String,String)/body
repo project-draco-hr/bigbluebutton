@@ -36,6 +36,11 @@
           DeskShareRTMPBroadcastStoppedEventMessage msg=DeskShareRTMPBroadcastStoppedEventMessage.fromJson(message);
           bbbGW.deskShareRTMPBroadcastStopped(msg.conferenceName,msg.streamname,msg.vw,msg.vh,msg.timestamp);
         }
+ else         if (DeskShareGetInfoRequestMessage.GET_DESKTOP_SHARE_GET_INFO_REQUEST.equals(messageName)) {
+          System.out.println("^^^^^^^GET_DESKTOP_SHARE_INFO_REQUEST^^^^^^");
+          DeskShareGetInfoRequestMessage msg=DeskShareGetInfoRequestMessage.fromJson(message);
+          bbbGW.deskShareGetInfoRequest(msg.meetingId,msg.requesterId,msg.replyTo);
+        }
       }
     }
   }

@@ -8,11 +8,15 @@
 switch (messageName) {
 case DeskShareNotifyViewersRTMPEventMessage.DESK_SHARE_NOTIFY_VIEWERS_RTMP:
         DeskShareNotifyViewersRTMPEventMessage rtmp=DeskShareNotifyViewersRTMPEventMessage.fromJson(message);
-      System.out.println("DESKSHARE_RTMP_BROADCAST_STARTED_MESSAGE:" + rtmp.toJson());
-    if (rtmp != null) {
-      processDeskShareNotifyViewersRTMPEventMessage(rtmp);
-    }
-  break;
+      if (rtmp != null) {
+        processDeskShareNotifyViewersRTMPEventMessage(rtmp);
+      }
+    break;
+case DeskShareNotifyASingleViewerEventMessage.DESK_SHARE_NOTIFY_A_SINGLE_VIEWER:
+  DeskShareNotifyASingleViewerEventMessage singleViewerMsg=DeskShareNotifyASingleViewerEventMessage.fromJson(message);
+if (singleViewerMsg != null) {
+  processDeskShareNotifyASingleViewerEventMessage(singleViewerMsg);
+}
 }
 }
 }
