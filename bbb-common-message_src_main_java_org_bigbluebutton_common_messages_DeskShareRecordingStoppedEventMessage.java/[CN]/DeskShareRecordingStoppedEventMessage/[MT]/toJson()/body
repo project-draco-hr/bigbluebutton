@@ -1,0 +1,13 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(CONFERENCE_NAME,conferenceName);
+  payload.put(FILENAME,filename);
+  payload.put(TIMESTAMP,timestamp);
+  payload.put(CHANNELS,channels);
+  payload.put(SAMPLERATE,samplerate);
+  payload.put(VIDEO_HEIGHT,vh);
+  payload.put(VIDEO_WIDTH,vw);
+  payload.put(FRAMES_PER_SECOND,fps);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(DESKSHARE_RECORDING_STOPPED_MESSAGE,VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}

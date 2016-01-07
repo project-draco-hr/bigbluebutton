@@ -1,0 +1,5 @@
+{
+  super.streamPublishStart(stream);
+  IConnection conn=Red5.getConnectionLocal();
+  log.info("streamPublishStart " + stream.getPublishedName() + " "+ System.currentTimeMillis()+ " "+ conn.getScope().getName());
+}

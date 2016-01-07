@@ -1,0 +1,10 @@
+{
+  Map<String,Object> messageInfo=new HashMap<String,Object>();
+  System.out.println("RedisPubSubMessageHandler - processDeskShareNotifyViewersRTMPEventMessage \n" + msg.streamPath + "\n");
+  messageInfo.put("rtmpUrl",msg.streamPath);
+  messageInfo.put("broadcasting",msg.broadcasting);
+  messageInfo.put("width",msg.vw);
+  messageInfo.put("height",msg.vh);
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"DeskShareRTMPBroadcastNotification",messageInfo);
+  service.sendMessage(m);
+}

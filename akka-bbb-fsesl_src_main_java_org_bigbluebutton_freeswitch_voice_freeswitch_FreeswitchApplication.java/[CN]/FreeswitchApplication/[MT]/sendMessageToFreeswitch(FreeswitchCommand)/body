@@ -25,6 +25,14 @@
  else       if (command instanceof RecordConferenceCommand) {
         manager.record((RecordConferenceCommand)command);
       }
+ else       if (command instanceof DeskShareRecordCommand) {
+        System.out.println("^^^^(send to FS) Sending DeskShareRecordCommand for conference = [" + command.getRoom() + "]");
+        manager.record((DeskShareRecordCommand)command);
+      }
+ else       if (command instanceof DeskShareBroadcastRTMPCommand) {
+        System.out.println("^^^^(send to FS) Sending DeskShareBroadcastRTMPCommand for conference = [" + command.getRoom() + "]");
+        manager.broadcastRTMP((DeskShareBroadcastRTMPCommand)command);
+      }
  else       if (command instanceof BroadcastConferenceCommand) {
         manager.broadcast((BroadcastConferenceCommand)command);
       }

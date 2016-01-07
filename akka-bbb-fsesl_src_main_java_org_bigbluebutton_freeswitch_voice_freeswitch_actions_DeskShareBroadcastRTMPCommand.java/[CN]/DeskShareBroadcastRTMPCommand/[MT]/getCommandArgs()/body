@@ -1,0 +1,5 @@
+{
+  String action="norecord";
+  if (broadcast)   action="record";
+  return SPACE + getRoom() + SPACE+ action+ SPACE+ broadcastPath;
+}

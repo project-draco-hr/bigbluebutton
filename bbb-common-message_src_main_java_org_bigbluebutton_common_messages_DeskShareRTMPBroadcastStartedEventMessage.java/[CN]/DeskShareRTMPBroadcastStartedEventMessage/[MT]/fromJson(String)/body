@@ -1,0 +1,25 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (DESKSHARE_RTMP_BROADCAST_STARTED_MESSAGE.equals(messageName)) {
+        if (payload.has(CONFERENCE_NAME) && payload.has(TIMESTAMP) && payload.has(CHANNELS)&& payload.has(SAMPLERATE)&& payload.has(VIDEO_HEIGHT)&& payload.has(VIDEO_WIDTH)&& payload.has(FRAMES_PER_SECOND)&& payload.has(STREAMNAME)) {
+          String conferenceName=payload.get(CONFERENCE_NAME).getAsString();
+          String streamname=payload.get(STREAMNAME).getAsString();
+          String timestamp=payload.get(TIMESTAMP).getAsString();
+          int channels=payload.get(CHANNELS).getAsInt();
+          int samplerate=payload.get(SAMPLERATE).getAsInt();
+          int vh=payload.get(VIDEO_HEIGHT).getAsInt();
+          int vw=payload.get(VIDEO_WIDTH).getAsInt();
+          double fps=payload.get(FRAMES_PER_SECOND).getAsDouble();
+          return new DeskShareRTMPBroadcastStartedEventMessage(conferenceName,streamname,channels,samplerate,vw,vh,fps,timestamp);
+        }
+      }
+    }
+  }
+  return null;
+}

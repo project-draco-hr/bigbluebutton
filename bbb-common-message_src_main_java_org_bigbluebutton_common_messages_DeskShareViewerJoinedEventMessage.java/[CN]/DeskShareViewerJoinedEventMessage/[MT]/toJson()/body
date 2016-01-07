@@ -1,0 +1,8 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(CONFERENCE_NAME,conferenceName);
+  payload.put(CALLER_ID_NAME,callerIdName);
+  payload.put(CALLER_ID,callerId);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(DESK_SHARE_VIEWER_JOINED_MESSAGE,VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}
