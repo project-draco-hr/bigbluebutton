@@ -1,5 +1,0 @@
-{
-  DeskShareRecordCommand dsrc=new DeskShareRecordCommand(voiceConfId,USER,record,filePath);
-  System.out.println("\n______FreeswitchApplication::deskShareRecording__" + dsrc.getCommand() + "____\n");
-  queueMessage(dsrc);
-}

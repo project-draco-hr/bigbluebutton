@@ -1,8 +1,0 @@
-{
-  HashMap<String,Object> payload=new HashMap<String,Object>();
-  payload.put(CONFERENCE_NAME,conferenceName);
-  payload.put(FILENAME,filename);
-  payload.put(TIMESTAMP,timestamp);
-  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(DESKSHARE_STOP_RECORDING_MESSAGE,VERSION,null);
-  return MessageBuilder.buildJson(header,payload);
-}

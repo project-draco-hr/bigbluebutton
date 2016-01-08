@@ -1,5 +1,0 @@
-{
-  System.out.println("^^^FS^processDeskShareStopRecordingEventMessage");
-  DeskShareStopRecordingEventMessage msg=DeskShareStopRecordingEventMessage.fromJson(json);
-  fsApp.deskShareRecording(msg.conferenceName,msg.filename,false);
-}
