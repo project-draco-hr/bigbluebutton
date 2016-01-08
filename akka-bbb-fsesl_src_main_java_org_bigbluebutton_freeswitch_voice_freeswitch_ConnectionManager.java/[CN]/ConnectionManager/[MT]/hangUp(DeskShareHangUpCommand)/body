@@ -1,0 +1,8 @@
+{
+  Client c=manager.getESLClient();
+  if (c.canSend()) {
+    System.out.println("\n ConnectionManager hangUp " + huCmd.getCommandArgs() + "\n");
+    EslMessage response=c.sendSyncApiCommand(huCmd.getCommand(),huCmd.getCommandArgs());
+    huCmd.handleResponse(response,conferenceEventListener);
+  }
+}

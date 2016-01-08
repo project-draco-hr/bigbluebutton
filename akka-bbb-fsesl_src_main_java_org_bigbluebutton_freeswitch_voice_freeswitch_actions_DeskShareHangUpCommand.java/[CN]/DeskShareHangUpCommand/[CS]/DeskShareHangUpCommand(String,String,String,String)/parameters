@@ -1,0 +1,4 @@
+String room
+String fsConferenceName
+String requesterId
+String timestamp

@@ -41,6 +41,10 @@ case DeskShareStopRTMPBroadcastEventMessage.DESKSHARE_STOP_RTMP_BROADCAST_MESSAG
 System.out.println("\n\n\nDESKSHARE_STOP_RTMP_BROADCAST_MESSAGE\n\n");
 processDeskShareStopRTMPBroadcastEventMessage(message);
 break;
+case DeskShareHangUpEventMessage.DESKSHARE_HANG_UP_MESSAGE:
+System.out.println("\nDESKSHARE_HANG_UP_MESSAGE\n");
+processDeskShareHangUpEventMessage(message);
+break;
 }
 }
 }

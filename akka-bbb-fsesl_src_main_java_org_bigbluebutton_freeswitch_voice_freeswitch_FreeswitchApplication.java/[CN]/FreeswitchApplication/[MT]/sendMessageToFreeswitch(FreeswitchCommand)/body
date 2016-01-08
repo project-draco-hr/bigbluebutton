@@ -33,6 +33,11 @@
         System.out.println("^^^^(send to FS) Sending DeskShareBroadcastRTMPCommand for conference = [" + command.getRoom() + "]");
         manager.broadcastRTMP((DeskShareBroadcastRTMPCommand)command);
       }
+ else       if (command instanceof DeskShareHangUpCommand) {
+        DeskShareHangUpCommand cmd=(DeskShareHangUpCommand)command;
+        System.out.println("^^^^(send to FS) Sending DeskShareHangUpCommand for conference = [" + cmd.getRoom() + "]");
+        manager.hangUp(cmd);
+      }
  else       if (command instanceof BroadcastConferenceCommand) {
         manager.broadcast((BroadcastConferenceCommand)command);
       }

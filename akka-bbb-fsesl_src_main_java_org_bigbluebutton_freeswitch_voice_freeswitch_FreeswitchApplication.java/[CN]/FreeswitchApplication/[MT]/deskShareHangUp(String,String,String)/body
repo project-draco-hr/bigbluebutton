@@ -1,0 +1,5 @@
+{
+  DeskShareHangUpCommand huCmd=new DeskShareHangUpCommand(voiceConfId,fsConferenceName,USER,timestamp);
+  System.out.println("\n______FreeswitchApplication::deskShareHangUp___" + huCmd.getCommand() + "____\n");
+  queueMessage(huCmd);
+}
