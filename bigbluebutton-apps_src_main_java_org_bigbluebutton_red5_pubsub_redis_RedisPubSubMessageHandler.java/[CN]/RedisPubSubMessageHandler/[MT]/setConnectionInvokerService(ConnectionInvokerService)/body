@@ -6,4 +6,5 @@
   presentationMessageSender=new PresentationClientMessageSender(service);
   whiteboardMessageSender=new WhiteboardClientMessageSender(service);
   pollingMessageSender=new PollingClientMessageSender(service);
+  captionMessageSender=new CaptionClientMessageSender(service);
 }
