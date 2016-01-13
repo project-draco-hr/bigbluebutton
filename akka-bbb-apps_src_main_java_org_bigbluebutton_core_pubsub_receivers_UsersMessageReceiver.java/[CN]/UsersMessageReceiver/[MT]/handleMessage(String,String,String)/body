@@ -79,6 +79,9 @@ break;
 case RequestBreakoutJoinURL.NAME:
 bbbInGW.handleJsonMessage(message);
 break;
+case EndAllBreakoutRoomsRequest.NAME:
+bbbInGW.handleJsonMessage(message);
+break;
 }
 }
 }
