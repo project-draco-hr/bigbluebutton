@@ -1,0 +1,12 @@
+{
+  IConnection conn=null;
+  for (  IConnection c : conns) {
+    if (conn == null) {
+      conn=c;
+    }
+ else     if ((long)conn.getAttribute("TIMESTAMP") < (long)c.getAttribute("TIMESTAMP")) {
+      conn=c;
+    }
+  }
+  return conn;
+}
