@@ -118,6 +118,12 @@ break;
 case LockLayoutMessage.LOCK_LAYOUT:
 processLockLayoutMessage(message);
 break;
+case BreakoutRoomsList.NAME:
+BreakoutRoomsList brl=gson.fromJson(message,BreakoutRoomsList.class);
+if (brl != null) {
+processBreakoutRoomsList(brl);
+}
+break;
 case BreakoutRoomJoinURL.NAME:
 BreakoutRoomJoinURL brjum=gson.fromJson(message,BreakoutRoomJoinURL.class);
 if (brjum != null) {

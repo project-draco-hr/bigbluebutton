@@ -1,0 +1,11 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("meetingId",msg.payload.meetingId);
+  args.put("rooms",msg.payload.rooms);
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args));
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.payload.meetingId,"breakoutRoomsList",message);
+  log.debug("$$ Sending BreakoutRoomsList: {}",m);
+  service.sendMessage(m);
+}
