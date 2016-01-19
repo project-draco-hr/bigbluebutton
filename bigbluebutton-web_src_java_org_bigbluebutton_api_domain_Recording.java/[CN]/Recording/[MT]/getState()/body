@@ -1,7 +1,7 @@
 {
   String state=this.state;
   if (state.equals("available")) {
-    state=isPublished() ? "published" : "unpublished";
+    state=isPublished() ? STATE_PUBLISHED : STATE_UNPUBLISHED;
   }
   return state;
 }
