@@ -3,6 +3,7 @@
   if (meetingIds.isEmpty()) {
     meetingIds.addAll(getAllRecordingIds(publishedDir));
     meetingIds.addAll(getAllRecordingIds(unpublishedDir));
+    meetingIds.addAll(getAllRecordingIds(deletedDir));
   }
   for (  String meetingId : meetingIds) {
     ArrayList<Recording> published=getRecordingsForPath(meetingId,publishedDir);
@@ -12,6 +13,10 @@
     ArrayList<Recording> unpublished=getRecordingsForPath(meetingId,unpublishedDir);
     if (!unpublished.isEmpty()) {
       recs.addAll(unpublished);
+    }
+    ArrayList<Recording> deleted=getRecordingsForPath(meetingId,deletedDir);
+    if (!deleted.isEmpty()) {
+      recs.addAll(deleted);
     }
   }
   return recs;
