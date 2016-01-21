@@ -4,8 +4,8 @@
   File tempPdfFile=new File(tempDir.getAbsolutePath() + File.separator + "temp-"+ page+ ".pdf");
   if (extractor.extractPage(presentationFile,tempPdfFile,page)) {
     File tempPngFile=new File(tempDir.getAbsolutePath() + "/temp-" + page+ ".svg");
-    if (pdfToImageConverter.convert(tempPdfFile,tempPngFile,1)) {
-      if (imageToSwfConverter.convert(tempPngFile,output,1)) {
+    if (pdfToImageConverter.convert(tempPdfFile,tempPngFile,1,pres)) {
+      if (imageToSwfConverter.convert(tempPngFile,output,1,pres)) {
         return true;
       }
     }
