@@ -5,6 +5,7 @@
     for (int f=0; f < recordings.length; f++) {
       if (recordings[f].getName().equals(id)) {
         deleteDirectory(recordings[f]);
+        createDirectory(recordings[f]);
       }
     }
   }

@@ -7,19 +7,34 @@
         Recording r=getRecordingInfo(path,recordingId,format[i]);
         if (r != null) {
           File dest;
-          if (publish) {
+          if (state.equals(Recording.STATE_PUBLISHED)) {
             dest=new File(publishedDir + File.separatorChar + format[i]);
           }
- else {
+ else           if (state.equals(Recording.STATE_UNPUBLISHED)) {
             dest=new File(unpublishedDir + File.separatorChar + format[i]);
+          }
+ else           if (state.equals(Recording.STATE_DELETED)) {
+            dest=new File(deletedDir + File.separatorChar + format[i]);
+          }
+ else {
+            log.debug(String.format("State: %s, is not supported",state));
+            return;
           }
           if (!dest.exists())           dest.mkdir();
           boolean moved=recordings[f].renameTo(new File(dest,recordings[f].getName()));
           if (moved) {
             log.debug("Recording successfully moved!");
-            r.setPublished(publish);
-            r.setState(publish ? Recording.STATE_PUBLISHED : Recording.STATE_UNPUBLISHED);
+            r.setState(state);
+            r.setPublished(state.equals(Recording.STATE_PUBLISHED));
+            if (state.equals(Recording.STATE_DELETED)) {
+              r.setPlaybackFormat(null);
+              deleteRecording(recordingId,deletedDir);
+            }
             recordingServiceHelper.writeRecordingInfo(dest.getAbsolutePath() + File.separatorChar + recordings[f].getName(),r);
+            log.debug(String.format("Recording successfully %s!",state));
+          }
+ else {
+            log.debug("Recording was not moved");
           }
         }
       }
