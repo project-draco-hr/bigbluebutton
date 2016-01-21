@@ -1,3 +1,4 @@
 String host
 int port
 String password
+int keysExpiresInSec
