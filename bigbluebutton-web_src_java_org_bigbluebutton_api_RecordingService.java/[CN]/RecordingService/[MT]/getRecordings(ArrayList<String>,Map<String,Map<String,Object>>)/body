@@ -7,19 +7,19 @@
   }
   for (  String meetingId : meetingIds) {
     if (shouldIncludeDir(filters,Recording.STATE_PUBLISHED)) {
-      ArrayList<Recording> published=getRecordingsForPath(meetingId,publishedDir);
+      ArrayList<Recording> published=getRecordingsForPath(meetingId,recordingIdsFromFilters(filters),publishedDir);
       if (!published.isEmpty()) {
         recs.addAll(published);
       }
     }
     if (shouldIncludeDir(filters,Recording.STATE_UNPUBLISHED)) {
-      ArrayList<Recording> unpublished=getRecordingsForPath(meetingId,unpublishedDir);
+      ArrayList<Recording> unpublished=getRecordingsForPath(meetingId,recordingIdsFromFilters(filters),unpublishedDir);
       if (!unpublished.isEmpty()) {
         recs.addAll(unpublished);
       }
     }
     if (shouldIncludeDir(filters,Recording.STATE_DELETED)) {
-      ArrayList<Recording> deleted=getRecordingsForPath(meetingId,deletedDir);
+      ArrayList<Recording> deleted=getRecordingsForPath(meetingId,recordingIdsFromFilters(filters),deletedDir);
       if (!deleted.isEmpty()) {
         recs.addAll(deleted);
       }

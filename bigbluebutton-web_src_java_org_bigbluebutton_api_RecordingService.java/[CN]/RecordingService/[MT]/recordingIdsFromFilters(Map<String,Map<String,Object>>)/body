@@ -1,0 +1,8 @@
+{
+  String[] recordingIds={};
+  if (filters.containsKey("id")) {
+    Map<String,Object> filter=(Map<String,Object>)filters.get("id");
+    recordingIds=(String[])filter.get("values");
+  }
+  return recordingIds;
+}

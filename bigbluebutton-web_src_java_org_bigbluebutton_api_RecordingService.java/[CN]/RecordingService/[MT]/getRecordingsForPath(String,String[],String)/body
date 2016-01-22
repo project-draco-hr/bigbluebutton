@@ -6,7 +6,9 @@
     for (int f=0; f < recordings.length; f++) {
       if (recordings[f].getName().startsWith(meetingId)) {
         Recording r=getRecordingInfo(path,recordings[f].getName(),format[i]);
-        if (r != null)         recs.add(r);
+        if (r != null && (recordingId.length == 0 || Arrays.asList(recordingId).contains("any") || Arrays.asList(recordingId).contains(r.getId()))) {
+          recs.add(r);
+        }
       }
     }
   }
