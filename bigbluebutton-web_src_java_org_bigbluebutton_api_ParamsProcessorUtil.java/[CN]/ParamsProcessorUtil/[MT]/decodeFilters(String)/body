@@ -1,0 +1,18 @@
+{
+  Map<String,Object> filters=new LinkedHashMap<String,Object>();
+  try {
+    String[] sFilters=encodedFilters.split(URLDECODER_SEPARATOR);
+    for (    String sFilter : sFilters) {
+      String[] filterElements=sFilter.split(FILTERDECODER_SEPARATOR_ELEMENTS,3);
+      Map<String,Object> filter=new LinkedHashMap<String,Object>();
+      filter.put("op",filterElements[1]);
+      String[] fValues=filterElements[2].split(FILTERDECODER_SEPARATOR_OPERATORS);
+      filter.put("values",fValues);
+      filters.put(filterElements[0],filter);
+    }
+  }
+ catch (  Exception e) {
+    log.error("Couldn't decode the filters");
+  }
+  return filters;
+}

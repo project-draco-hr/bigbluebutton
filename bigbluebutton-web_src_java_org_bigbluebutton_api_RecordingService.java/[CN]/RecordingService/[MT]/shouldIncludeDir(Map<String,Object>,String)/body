@@ -1,0 +1,27 @@
+{
+  boolean r=false;
+  if (filters.containsKey("state")) {
+    Map<String,Object> filter=(Map<String,Object>)filters.get("state");
+    String[] values=(String[])filter.get("values");
+    if (Arrays.asList(values).contains("any")) {
+      r=true;
+    }
+ else {
+      if (type.equals(Recording.STATE_PUBLISHED) && Arrays.asList(values).contains(Recording.STATE_PUBLISHED)) {
+        r=true;
+      }
+ else       if (type.equals(Recording.STATE_UNPUBLISHED) && Arrays.asList(values).contains(Recording.STATE_UNPUBLISHED)) {
+        r=true;
+      }
+ else       if (type.equals(Recording.STATE_DELETED) && Arrays.asList(values).contains(Recording.STATE_DELETED)) {
+        r=true;
+      }
+    }
+  }
+ else {
+    if (type.equals(Recording.STATE_PUBLISHED) || type.equals(Recording.STATE_UNPUBLISHED)) {
+      r=true;
+    }
+  }
+  return r;
+}

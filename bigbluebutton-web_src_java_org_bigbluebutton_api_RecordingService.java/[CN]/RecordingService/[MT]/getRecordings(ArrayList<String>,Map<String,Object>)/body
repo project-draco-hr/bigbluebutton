@@ -1,0 +1,29 @@
+{
+  ArrayList<Recording> recs=new ArrayList<Recording>();
+  if (meetingIds.isEmpty()) {
+    if (shouldIncludeDir(filters,Recording.STATE_PUBLISHED))     meetingIds.addAll(getAllRecordingIds(publishedDir));
+    if (shouldIncludeDir(filters,Recording.STATE_UNPUBLISHED))     meetingIds.addAll(getAllRecordingIds(unpublishedDir));
+    if (shouldIncludeDir(filters,Recording.STATE_DELETED))     meetingIds.addAll(getAllRecordingIds(deletedDir));
+  }
+  for (  String meetingId : meetingIds) {
+    if (shouldIncludeDir(filters,Recording.STATE_PUBLISHED)) {
+      ArrayList<Recording> published=getRecordingsForPath(meetingId,publishedDir);
+      if (!published.isEmpty()) {
+        recs.addAll(published);
+      }
+    }
+    if (shouldIncludeDir(filters,Recording.STATE_UNPUBLISHED)) {
+      ArrayList<Recording> unpublished=getRecordingsForPath(meetingId,unpublishedDir);
+      if (!unpublished.isEmpty()) {
+        recs.addAll(unpublished);
+      }
+    }
+    if (shouldIncludeDir(filters,Recording.STATE_DELETED)) {
+      ArrayList<Recording> deleted=getRecordingsForPath(meetingId,deletedDir);
+      if (!deleted.isEmpty()) {
+        recs.addAll(deleted);
+      }
+    }
+  }
+  return recs;
+}
