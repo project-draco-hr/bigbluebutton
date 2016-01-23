@@ -148,6 +148,12 @@ if (brsm != null) {
 processBreakoutRoomStarted(brsm);
 }
 break;
+case BreakoutRoomClosed.NAME:
+BreakoutRoomClosed brcm=gson.fromJson(message,BreakoutRoomClosed.class);
+if (brcm != null) {
+processBreakoutRoomClosed(brcm);
+}
+break;
 }
 }
 }
