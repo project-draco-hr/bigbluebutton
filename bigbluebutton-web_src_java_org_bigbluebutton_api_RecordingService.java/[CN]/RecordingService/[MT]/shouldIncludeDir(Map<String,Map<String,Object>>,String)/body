@@ -16,6 +16,12 @@
  else       if (type.equals(Recording.STATE_DELETED) && Arrays.asList(values).contains(Recording.STATE_DELETED)) {
         r=true;
       }
+ else       if (type.equals(Recording.STATE_PROCESSING) && Arrays.asList(values).contains(Recording.STATE_PROCESSING)) {
+        r=true;
+      }
+ else       if (type.equals(Recording.STATE_PROCESSED) && Arrays.asList(values).contains(Recording.STATE_PROCESSED)) {
+        r=true;
+      }
     }
   }
  else {
