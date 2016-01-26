@@ -5,29 +5,12 @@
   }
   if (action.equals(START_RECORDING_EVENT)) {
     if (confName.endsWith(DESKSHARE_CONFERENCE_NAME_SUFFIX)) {
-      if (isRTMPStream(event)) {
+      if (event.getEventHeaders().get("Path").startsWith("rtmp")) {
         DeskShareRTMPBroadcastEvent rtmp=new DeskShareRTMPBroadcastEvent(confName,true);
-        rtmp.setChannels(Integer.parseInt(getBroadcastParameter(event,"channels")));
-        rtmp.setFramesPerSecond(Double.parseDouble(getBroadcastParameter(event,"fps")));
-        rtmp.setVideoHeight(Integer.parseInt(getBroadcastParameter(event,"vh")));
-        rtmp.setVideoWidth(Integer.parseInt(getBroadcastParameter(event,"vw")));
-        rtmp.setSampleRate(Integer.parseInt(getBroadcastParameter(event,"samplerate")));
-        rtmp.setRecordingStreamUrl(getStreamUrl(event));
+        rtmp.setBroadcastingStreamUrl(getStreamUrl(event));
         rtmp.setTimestamp(genTimestamp().toString());
         System.out.println("DeskShare conference broadcast started. url=[" + getStreamUrl(event) + "], conf=["+ confName+ "]");
-        conferenceEventListener.handleConferenceEvent((VoiceConferenceEvent)rtmp);
-      }
- else {
-        DeskShareRecordingEvent dssre=new DeskShareRecordingEvent(confName,true);
-        dssre.setRecordingFilename(getDeskShareRecordFilenameFromEvent(event));
-        dssre.setTimestamp(genTimestamp().toString());
-        dssre.setChannels(Integer.parseInt(getBroadcastParameter(event,"channels")));
-        dssre.setFramesPerSecond(Double.parseDouble(getBroadcastParameter(event,"fps")));
-        dssre.setVideoHeight(Integer.parseInt(getBroadcastParameter(event,"vh")));
-        dssre.setVideoWidth(Integer.parseInt(getBroadcastParameter(event,"vw")));
-        dssre.setSampleRate(Integer.parseInt(getBroadcastParameter(event,"samplerate")));
-        System.out.println("DeskShare conference recording started. file=[" + dssre.getRecordingFilename() + "], conf=["+ confName+ "]");
-        conferenceEventListener.handleConferenceEvent((VoiceConferenceEvent)dssre);
+        conferenceEventListener.handleConferenceEvent(rtmp);
       }
     }
  else {
@@ -40,29 +23,12 @@
   }
  else   if (action.equals(STOP_RECORDING_EVENT)) {
     if (confName.endsWith(DESKSHARE_CONFERENCE_NAME_SUFFIX)) {
-      if (isRTMPStream(event)) {
+      if (containsRTMPStream(event)) {
         DeskShareRTMPBroadcastEvent rtmp=new DeskShareRTMPBroadcastEvent(confName,false);
-        rtmp.setChannels(Integer.parseInt(getBroadcastParameter(event,"channels")));
-        rtmp.setFramesPerSecond(Double.parseDouble(getBroadcastParameter(event,"fps")));
-        rtmp.setVideoHeight(Integer.parseInt(getBroadcastParameter(event,"vh")));
-        rtmp.setVideoWidth(Integer.parseInt(getBroadcastParameter(event,"vw")));
-        rtmp.setSampleRate(Integer.parseInt(getBroadcastParameter(event,"samplerate")));
-        rtmp.setRecordingStreamUrl(getStreamUrl(event));
+        rtmp.setBroadcastingStreamUrl(getStreamUrl(event));
         rtmp.setTimestamp(genTimestamp().toString());
         System.out.println("DeskShare conference broadcast stopped. url=[" + getStreamUrl(event) + "], conf=["+ confName+ "]");
         conferenceEventListener.handleConferenceEvent((VoiceConferenceEvent)rtmp);
-      }
- else {
-        DeskShareRecordingEvent dssre=new DeskShareRecordingEvent(confName,false);
-        dssre.setRecordingFilename(getDeskShareRecordFilenameFromEvent(event));
-        dssre.setTimestamp(genTimestamp().toString());
-        dssre.setChannels(Integer.parseInt(getBroadcastParameter(event,"channels")));
-        dssre.setFramesPerSecond(Double.parseDouble(getBroadcastParameter(event,"fps")));
-        dssre.setVideoHeight(Integer.parseInt(getBroadcastParameter(event,"vh")));
-        dssre.setVideoWidth(Integer.parseInt(getBroadcastParameter(event,"vw")));
-        dssre.setSampleRate(Integer.parseInt(getBroadcastParameter(event,"samplerate")));
-        System.out.println("DeskShare conference recording stopped. file=[" + dssre.getRecordingFilename() + "], conf=["+ confName+ "]");
-        conferenceEventListener.handleConferenceEvent((VoiceConferenceEvent)dssre);
       }
     }
  else {

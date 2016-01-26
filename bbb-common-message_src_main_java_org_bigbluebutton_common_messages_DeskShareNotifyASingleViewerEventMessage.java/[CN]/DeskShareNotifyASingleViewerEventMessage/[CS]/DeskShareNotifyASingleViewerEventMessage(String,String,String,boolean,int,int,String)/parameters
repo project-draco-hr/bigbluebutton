@@ -1,7 +1,0 @@
-String meetingId
-String userId
-String streamPath
-boolean broadcasting
-int vw
-int vh
-String timestamp

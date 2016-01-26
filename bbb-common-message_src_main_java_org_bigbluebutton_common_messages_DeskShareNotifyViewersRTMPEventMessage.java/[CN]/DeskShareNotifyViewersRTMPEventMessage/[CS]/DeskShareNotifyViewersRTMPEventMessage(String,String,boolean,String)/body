@@ -1,0 +1,6 @@
+{
+  this.meetingId=meetingId;
+  this.streamPath=streamPath;
+  this.broadcasting=broadcasting;
+  this.timestamp=timestamp;
+}

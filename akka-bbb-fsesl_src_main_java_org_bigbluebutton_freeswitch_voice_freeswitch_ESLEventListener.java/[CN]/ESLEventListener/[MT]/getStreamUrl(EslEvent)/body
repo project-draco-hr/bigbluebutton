@@ -1,7 +1,6 @@
 {
-  String path=e.getEventHeaders().get("Path");
-  if (isRTMPStream(e)) {
-    return path.substring(path.lastIndexOf("}") + 1);
+  if (containsRTMPStream(e)) {
+    return e.getEventHeaders().get("Path");
   }
  else {
     return "";

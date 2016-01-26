@@ -1,0 +1,5 @@
+String meetingId
+String userId
+String streamPath
+boolean broadcasting
+String timestamp

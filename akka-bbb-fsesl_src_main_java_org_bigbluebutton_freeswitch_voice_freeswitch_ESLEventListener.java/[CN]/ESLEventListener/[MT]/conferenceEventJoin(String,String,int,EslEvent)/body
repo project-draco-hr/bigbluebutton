@@ -12,15 +12,9 @@
     System.out.println("Ignoring GLOBAL AUDIO USER [" + callerIdName + "]");
     return;
   }
-  if (confName.endsWith(DESKSHARE_CONFERENCE_NAME_SUFFIX)) {
-    if (callerId.endsWith(DESKSHARE_CALLER_ID_SUFFIX) && callerIdName.endsWith(DESKSHARE_CALLER_NAME_SUFFIX)) {
-      DeskShareStartedEvent dsStart=new DeskShareStartedEvent(confName,callerId,callerIdName);
-      conferenceEventListener.handleConferenceEvent(dsStart);
-    }
- else {
-      DeskShareViewerJoinedEvent dsJoined=new DeskShareViewerJoinedEvent(confName,callerId,callerIdName);
-      conferenceEventListener.handleConferenceEvent(dsJoined);
-    }
+  if (confName.endsWith(DESKSHARE_CONFERENCE_NAME_SUFFIX) && callerId.endsWith(DESKSHARE_CALLER_ID_SUFFIX) && callerIdName.endsWith(DESKSHARE_CALLER_NAME_SUFFIX)) {
+    DeskShareStartedEvent dsStart=new DeskShareStartedEvent(confName,callerId,callerIdName);
+    conferenceEventListener.handleConferenceEvent(dsStart);
   }
   Matcher matcher=CALLERNAME_PATTERN.matcher(callerIdName);
   if (matcher.matches()) {

@@ -1,9 +1,0 @@
-{
-  String path=e.getEventHeaders().get("Path");
-  if (path.contains("rtmp") && path.contains("channels") && path.contains("samplerate")&& path.contains("vw")&& path.contains("vh")&& path.contains("fps")) {
-    return true;
-  }
- else {
-    return false;
-  }
-}
