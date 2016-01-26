@@ -1,7 +1,7 @@
 {
   Client c=manager.getESLClient();
   if (c.canSend()) {
-    System.out.println("ConnectionManager hangUp " + huCmd.getCommandArgs());
+    System.out.println("ConnectionManager: send to FS: hangUp " + huCmd.getCommandArgs());
     EslMessage response=c.sendSyncApiCommand(huCmd.getCommand(),huCmd.getCommandArgs());
     huCmd.handleResponse(response,conferenceEventListener);
   }
