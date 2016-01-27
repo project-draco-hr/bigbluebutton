@@ -1,3 +1,0 @@
-{
-  return e.getEventHeaders().get("Path").startsWith("rtmp");
-}

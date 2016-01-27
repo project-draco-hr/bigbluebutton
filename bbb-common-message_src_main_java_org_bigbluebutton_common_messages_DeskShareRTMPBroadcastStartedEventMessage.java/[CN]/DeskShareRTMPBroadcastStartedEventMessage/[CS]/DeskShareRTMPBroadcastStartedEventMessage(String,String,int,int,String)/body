@@ -2,4 +2,6 @@
   this.conferenceName=conferenceName;
   this.streamname=streamname;
   this.timestamp=timestamp;
+  this.vw=vw;
+  this.vh=vh;
 }

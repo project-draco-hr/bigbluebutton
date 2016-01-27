@@ -5,9 +5,11 @@
   }
   if (action.equals(START_RECORDING_EVENT)) {
     if (confName.endsWith(DESKSHARE_CONFERENCE_NAME_SUFFIX)) {
-      if (event.getEventHeaders().get("Path").startsWith("rtmp")) {
+      if (isRTMPStream(event)) {
         DeskShareRTMPBroadcastEvent rtmp=new DeskShareRTMPBroadcastEvent(confName,true);
         rtmp.setBroadcastingStreamUrl(getStreamUrl(event));
+        rtmp.setVideoHeight(Integer.parseInt(getBroadcastParameter(event,"vh")));
+        rtmp.setVideoWidth(Integer.parseInt(getBroadcastParameter(event,"vw")));
         rtmp.setTimestamp(genTimestamp().toString());
         System.out.println("DeskShare conference broadcast started. url=[" + getStreamUrl(event) + "], conf=["+ confName+ "]");
         conferenceEventListener.handleConferenceEvent(rtmp);
@@ -23,12 +25,14 @@
   }
  else   if (action.equals(STOP_RECORDING_EVENT)) {
     if (confName.endsWith(DESKSHARE_CONFERENCE_NAME_SUFFIX)) {
-      if (containsRTMPStream(event)) {
+      if (isRTMPStream(event)) {
         DeskShareRTMPBroadcastEvent rtmp=new DeskShareRTMPBroadcastEvent(confName,false);
         rtmp.setBroadcastingStreamUrl(getStreamUrl(event));
+        rtmp.setVideoHeight(Integer.parseInt(getBroadcastParameter(event,"vh")));
+        rtmp.setVideoWidth(Integer.parseInt(getBroadcastParameter(event,"vw")));
         rtmp.setTimestamp(genTimestamp().toString());
         System.out.println("DeskShare conference broadcast stopped. url=[" + getStreamUrl(event) + "], conf=["+ confName+ "]");
-        conferenceEventListener.handleConferenceEvent((VoiceConferenceEvent)rtmp);
+        conferenceEventListener.handleConferenceEvent(rtmp);
       }
     }
  else {

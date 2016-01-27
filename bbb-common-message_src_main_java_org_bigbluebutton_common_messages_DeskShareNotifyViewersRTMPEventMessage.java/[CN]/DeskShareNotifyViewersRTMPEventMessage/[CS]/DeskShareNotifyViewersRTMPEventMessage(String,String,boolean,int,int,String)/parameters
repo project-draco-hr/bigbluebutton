@@ -1,4 +1,6 @@
 String meetingId
 String streamPath
 boolean broadcasting
+int vw
+int vh
 String timestamp

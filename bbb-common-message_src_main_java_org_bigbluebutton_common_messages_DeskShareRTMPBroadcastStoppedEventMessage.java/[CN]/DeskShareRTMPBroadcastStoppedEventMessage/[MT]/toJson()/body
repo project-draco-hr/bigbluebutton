@@ -3,6 +3,8 @@
   payload.put(CONFERENCE_NAME,conferenceName);
   payload.put(STREAMNAME,streamname);
   payload.put(TIMESTAMP,timestamp);
+  payload.put(VIDEO_HEIGHT,vh);
+  payload.put(VIDEO_WIDTH,vw);
   java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(DESKSHARE_RTMP_BROADCAST_STOPPED_MESSAGE,VERSION,null);
   return MessageBuilder.buildJson(header,payload);
 }

@@ -5,6 +5,8 @@
   payload.put(STREAM_PATH,streamPath);
   payload.put(BROADCASTING,broadcasting);
   payload.put(TIMESTAMP,timestamp);
+  payload.put(VIDEO_HEIGHT,vh);
+  payload.put(VIDEO_WIDTH,vw);
   java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(DESK_SHARE_NOTIFY_A_SINGLE_VIEWER,VERSION,null);
   return MessageBuilder.buildJson(header,payload);
 }

@@ -4,10 +4,10 @@
   String delims="[,{}]+";
   String[] arr=fullPathString.split(delims);
   String rtmpStreamPath=arr[arr.length - 1];
-  System.out.println("RedisPubSubMessageHandler - processDeskShareNotifyViewersRTMPEventMessage \n" + rtmpStreamPath);
-  System.out.println(msg.toString() + "\n");
   messageInfo.put("rtmpUrl",rtmpStreamPath);
   messageInfo.put("broadcasting",msg.broadcasting);
+  messageInfo.put("width",msg.vw);
+  messageInfo.put("height",msg.vh);
   BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingId,"DeskShareRTMPBroadcastNotification",messageInfo);
   service.sendMessage(m);
 }

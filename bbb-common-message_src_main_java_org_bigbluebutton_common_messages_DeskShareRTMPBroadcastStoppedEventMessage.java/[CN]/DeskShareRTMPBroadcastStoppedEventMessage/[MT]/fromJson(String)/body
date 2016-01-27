@@ -7,11 +7,13 @@
     if (header.has("name")) {
       String messageName=header.get("name").getAsString();
       if (DESKSHARE_RTMP_BROADCAST_STOPPED_MESSAGE.equals(messageName)) {
-        if (payload.has(CONFERENCE_NAME) && payload.has(TIMESTAMP) && payload.has(STREAMNAME)) {
+        if (payload.has(CONFERENCE_NAME) && payload.has(TIMESTAMP) && payload.has(VIDEO_HEIGHT)&& payload.has(VIDEO_WIDTH)&& payload.has(STREAMNAME)) {
           String conferenceName=payload.get(CONFERENCE_NAME).getAsString();
           String streamname=payload.get(STREAMNAME).getAsString();
           String timestamp=payload.get(TIMESTAMP).getAsString();
-          return new DeskShareRTMPBroadcastStoppedEventMessage(conferenceName,streamname,timestamp);
+          int vh=payload.get(VIDEO_HEIGHT).getAsInt();
+          int vw=payload.get(VIDEO_WIDTH).getAsInt();
+          return new DeskShareRTMPBroadcastStoppedEventMessage(conferenceName,streamname,vw,vh,timestamp);
         }
       }
     }
