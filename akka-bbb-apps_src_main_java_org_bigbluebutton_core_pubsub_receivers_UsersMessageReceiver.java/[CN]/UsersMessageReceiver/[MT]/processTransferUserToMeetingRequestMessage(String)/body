@@ -1,6 +1,0 @@
-{
-  TransferUserToMeetingRequestMessage msg=TransferUserToMeetingRequestMessage.fromJson(message);
-  if (msg != null) {
-    bbbInGW.transferUserToMeeting(msg.meetingId,msg.breakoutId,msg.userId,msg.toBreakout);
-  }
-}

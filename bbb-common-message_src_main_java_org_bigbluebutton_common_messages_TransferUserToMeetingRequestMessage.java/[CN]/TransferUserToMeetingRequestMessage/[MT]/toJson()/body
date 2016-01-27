@@ -1,9 +1,0 @@
-{
-  HashMap<String,Object> payload=new HashMap<String,Object>();
-  payload.put(Constants.MEETING_ID,meetingId);
-  payload.put(Constants.USER_ID,userId);
-  payload.put(BREAKOUT_ID,breakoutId);
-  payload.put(TO_BREAKOUT,toBreakout);
-  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(TRANSFER_USER_TO_MEETING,VERSION,null);
-  return MessageBuilder.buildJson(header,payload);
-}
