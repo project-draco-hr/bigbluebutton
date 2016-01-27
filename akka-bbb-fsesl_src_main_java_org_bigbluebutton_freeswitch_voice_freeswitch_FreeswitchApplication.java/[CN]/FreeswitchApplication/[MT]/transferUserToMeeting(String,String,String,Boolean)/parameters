@@ -1,0 +1,4 @@
+String voiceConfId
+String targetVoiceConfId
+String voiceUserId
+Boolean forward

@@ -1,0 +1,21 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (TRANSFER_USER_TO_VOICE_CONF_REQUEST.equals(messageName)) {
+        if (payload.has(VOICE_CONF_ID) && payload.has(BREAKOUT_VOICE_CONF_ID) && payload.has(VOICE_USER_ID)&& payload.has(TO_BREAKOUT)) {
+          String id=payload.get(VOICE_CONF_ID).getAsString();
+          String breakoutVoiceConfId=payload.get(BREAKOUT_VOICE_CONF_ID).getAsString();
+          String voiceUserId=payload.get(VOICE_USER_ID).getAsString();
+          Boolean toBreakout=payload.get(TO_BREAKOUT).getAsBoolean();
+          return new TransferUserToVoiceConfRequestMessage(id,breakoutVoiceConfId,voiceUserId,toBreakout);
+        }
+      }
+    }
+  }
+  return null;
+}

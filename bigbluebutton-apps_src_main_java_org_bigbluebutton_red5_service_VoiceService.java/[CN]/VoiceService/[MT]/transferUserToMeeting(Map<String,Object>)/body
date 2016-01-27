@@ -1,0 +1,7 @@
+{
+  Boolean toBreakout=(Boolean)msg.get("toBreakout");
+  String userId=(String)msg.get("userId");
+  String breakoutId=(String)msg.get("breakoutId");
+  String meetingId=Red5.getConnectionLocal().getScope().getName();
+  red5InGW.transferUserToMeeting(meetingId,breakoutId,userId,toBreakout);
+}

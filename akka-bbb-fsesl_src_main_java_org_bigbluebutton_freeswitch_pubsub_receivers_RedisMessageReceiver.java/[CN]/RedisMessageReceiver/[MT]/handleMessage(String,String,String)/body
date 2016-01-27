@@ -19,6 +19,9 @@ break;
 case MuteUserInVoiceConfRequestMessage.MUTE_VOICE_USER_REQUEST:
 processMuteVoiceUserRequestMessage(message);
 break;
+case TransferUserToVoiceConfRequestMessage.TRANSFER_USER_TO_VOICE_CONF_REQUEST:
+processTransferUserToVoiceConfRequestMessage(message);
+break;
 case StartRecordingVoiceConfRequestMessage.START_RECORD_VOICE_CONF_REQUEST:
 processStartRecordingVoiceConfRequestMessage(message);
 break;

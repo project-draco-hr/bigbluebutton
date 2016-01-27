@@ -1,0 +1,4 @@
+String voiceConfId
+String breakoutVoiceConfId
+String voiceUserId
+Boolean toBreakout
