@@ -7,12 +7,12 @@
     if (header.has("name")) {
       String messageName=header.get("name").getAsString();
       if (TRANSFER_USER_TO_VOICE_CONF_REQUEST.equals(messageName)) {
-        if (payload.has(VOICE_CONF_ID) && payload.has(BREAKOUT_VOICE_CONF_ID) && payload.has(VOICE_USER_ID)&& payload.has(TO_BREAKOUT)) {
+        if (payload.has(VOICE_CONF_ID) && payload.has(TARGET_VOICE_CONF_ID) && payload.has(VOICE_USER_ID)&& payload.has(FORWARD)) {
           String id=payload.get(VOICE_CONF_ID).getAsString();
-          String breakoutVoiceConfId=payload.get(BREAKOUT_VOICE_CONF_ID).getAsString();
+          String targetVoiceConfId=payload.get(TARGET_VOICE_CONF_ID).getAsString();
           String voiceUserId=payload.get(VOICE_USER_ID).getAsString();
-          Boolean toBreakout=payload.get(TO_BREAKOUT).getAsBoolean();
-          return new TransferUserToVoiceConfRequestMessage(id,breakoutVoiceConfId,voiceUserId,toBreakout);
+          Boolean forward=payload.get(FORWARD).getAsBoolean();
+          return new TransferUserToVoiceConfRequestMessage(id,targetVoiceConfId,voiceUserId,forward);
         }
       }
     }

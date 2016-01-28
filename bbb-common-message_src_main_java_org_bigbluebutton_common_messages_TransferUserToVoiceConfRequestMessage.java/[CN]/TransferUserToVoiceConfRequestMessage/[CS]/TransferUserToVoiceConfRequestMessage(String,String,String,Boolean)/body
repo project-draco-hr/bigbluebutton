@@ -1,6 +1,6 @@
 {
   this.voiceConfId=voiceConfId;
-  this.breakoutVoiceConfId=breakoutVoiceConfId;
+  this.targetVoiceConfId=breakoutVoiceConfId;
   this.voiceUserId=voiceUserId;
-  this.toBreakout=toBreakout;
+  this.forward=toBreakout;
 }

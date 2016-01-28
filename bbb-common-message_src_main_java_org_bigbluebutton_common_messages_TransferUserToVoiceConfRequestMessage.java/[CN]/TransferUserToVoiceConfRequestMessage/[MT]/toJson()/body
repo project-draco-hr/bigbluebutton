@@ -1,9 +1,9 @@
 {
   HashMap<String,Object> payload=new HashMap<String,Object>();
   payload.put(VOICE_CONF_ID,voiceConfId);
-  payload.put(BREAKOUT_VOICE_CONF_ID,breakoutVoiceConfId);
+  payload.put(TARGET_VOICE_CONF_ID,targetVoiceConfId);
   payload.put(VOICE_USER_ID,voiceUserId);
-  payload.put(TO_BREAKOUT,toBreakout);
+  payload.put(FORWARD,forward);
   java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(TRANSFER_USER_TO_VOICE_CONF_REQUEST,VERSION,null);
   return MessageBuilder.buildJson(header,payload);
 }
