@@ -1,2 +1,43 @@
 {
+  String[] format=getPlaybackFormats(path);
+  for (int i=0; i < format.length; i++) {
+    List<File> recordings=getDirectories(path + File.separatorChar + format[i]);
+    for (int f=0; f < recordings.size(); f++) {
+      if (recordings.get(f).getName().equalsIgnoreCase(recordingId)) {
+        Recording r=getRecordingInfo(path,recordingId,format[i]);
+        if (r != null) {
+          File dest;
+          if (state.equals(Recording.STATE_PUBLISHED)) {
+            dest=new File(publishedDir + File.separatorChar + format[i]);
+          }
+ else           if (state.equals(Recording.STATE_UNPUBLISHED)) {
+            dest=new File(unpublishedDir + File.separatorChar + format[i]);
+          }
+ else           if (state.equals(Recording.STATE_DELETED)) {
+            dest=new File(deletedDir + File.separatorChar + format[i]);
+          }
+ else {
+            log.debug(String.format("State: %s, is not supported",state));
+            return;
+          }
+          if (!dest.exists())           dest.mkdir();
+          boolean moved=recordings.get(f).renameTo(new File(dest,recordings.get(f).getName()));
+          if (moved) {
+            log.debug("Recording successfully moved!");
+            r.setState(state);
+            r.setPublished(state.equals(Recording.STATE_PUBLISHED));
+            if (state.equals(Recording.STATE_DELETED)) {
+              r.setPlaybackFormat(null);
+              deleteRecording(recordingId,deletedDir);
+            }
+            recordingServiceHelper.writeRecordingInfo(dest.getAbsolutePath() + File.separatorChar + recordings[f].getName(),r);
+            log.debug(String.format("Recording successfully %s!",state));
+          }
+ else {
+            log.debug("Recording was not moved");
+          }
+        }
+      }
+    }
+  }
 }
