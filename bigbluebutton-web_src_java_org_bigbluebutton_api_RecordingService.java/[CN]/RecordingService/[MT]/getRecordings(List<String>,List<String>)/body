@@ -1,0 +1,43 @@
+{
+  List<Recording> recs=new ArrayList<Recording>();
+  if (recordIDs.isEmpty()) {
+    if (shouldIncludeState(states,Recording.STATE_PUBLISHED))     recordIDs.addAll(getAllRecordingIds(allDirectories(publishedDir)));
+    if (shouldIncludeState(states,Recording.STATE_UNPUBLISHED))     recordIDs.addAll(getAllRecordingIds(allDirectories(unpublishedDir)));
+    if (shouldIncludeState(states,Recording.STATE_DELETED))     recordIDs.addAll(getAllRecordingIds(allDirectories(deletedDir)));
+    if (shouldIncludeState(states,Recording.STATE_PROCESSING))     recordIDs.addAll(getAllRecordingIds(allDirectories(processDir)));
+    if (shouldIncludeState(states,Recording.STATE_PROCESSED))     recordIDs.addAll(getAllRecordingIds(allDirectories(processDir)));
+  }
+  for (  String recordID : recordIDs) {
+    if (shouldIncludeState(states,Recording.STATE_PUBLISHED)) {
+      List<Recording> published=getRecordingsForPath(recordID,publishedDir);
+      if (!published.isEmpty()) {
+        recs.addAll(published);
+      }
+    }
+    if (shouldIncludeState(states,Recording.STATE_UNPUBLISHED)) {
+      List<Recording> unpublished=getRecordingsForPath(recordID,unpublishedDir);
+      if (!unpublished.isEmpty()) {
+        recs.addAll(unpublished);
+      }
+    }
+    if (shouldIncludeState(states,Recording.STATE_DELETED)) {
+      List<Recording> deleted=getRecordingsForPath(recordID,deletedDir);
+      if (!deleted.isEmpty()) {
+        recs.addAll(deleted);
+      }
+    }
+    if (shouldIncludeState(states,Recording.STATE_PROCESSING)) {
+      List<Recording> processing=getRecordingsForPath(recordID,processDir);
+      if (!processing.isEmpty()) {
+        recs.addAll(processing);
+      }
+    }
+    if (shouldIncludeState(states,Recording.STATE_PROCESSED)) {
+      List<Recording> processed=getRecordingsForPath(recordID,processDir);
+      if (!processed.isEmpty()) {
+        recs.addAll(processed);
+      }
+    }
+  }
+  return recs;
+}

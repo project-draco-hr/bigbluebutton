@@ -1,0 +1,7 @@
+{
+  List<File> allPublishedDirectories=new ArrayList<File>();
+  String[] formats=getPlaybackFormats(path);
+  for (int i=0; i < formats.length; ++i) {
+    allPublishedDirectories.addAll(getDirectories(path + File.separatorChar + formats[i]));
+  }
+}
