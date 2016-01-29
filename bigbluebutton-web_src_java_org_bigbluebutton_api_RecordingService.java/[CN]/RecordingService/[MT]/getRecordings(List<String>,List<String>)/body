@@ -1,93 +1,15 @@
 {
   List<Recording> recs=new ArrayList<Recording>();
-  Map<String,List<File>> allDirectories=new HashMap<String,List<File>>();
-  if (shouldIncludeState(states,Recording.STATE_PUBLISHED)) {
-    List<File> _allDirectories=new ArrayList<File>();
-    String[] formats=getPlaybackFormats(publishedDir);
-    for (int i=0; i < formats.length; ++i) {
-      _allDirectories.addAll(getDirectories(publishedDir + File.separatorChar + formats[i]));
-    }
-    if (_allDirectories.size() > 0) {
-      allDirectories.put(Recording.STATE_PUBLISHED,_allDirectories);
-    }
-  }
-  if (shouldIncludeState(states,Recording.STATE_UNPUBLISHED)) {
-    List<File> _allDirectories=new ArrayList<File>();
-    String[] formats=getPlaybackFormats(unpublishedDir);
-    for (int i=0; i < formats.length; ++i) {
-      _allDirectories.addAll(getDirectories(unpublishedDir + File.separatorChar + formats[i]));
-    }
-    if (_allDirectories.size() > 0) {
-      allDirectories.put(Recording.STATE_UNPUBLISHED,_allDirectories);
-    }
-  }
-  if (shouldIncludeState(states,Recording.STATE_DELETED)) {
-    List<File> _allDirectories=new ArrayList<File>();
-    String[] formats=getPlaybackFormats(deletedDir);
-    for (int i=0; i < formats.length; ++i) {
-      _allDirectories.addAll(getDirectories(deletedDir + File.separatorChar + formats[i]));
-    }
-    if (_allDirectories.size() > 0) {
-      allDirectories.put(Recording.STATE_DELETED,_allDirectories);
-    }
-  }
-  if (shouldIncludeState(states,Recording.STATE_PROCESSING)) {
-    List<File> _allDirectories=new ArrayList<File>();
-    String[] formats=getPlaybackFormats(processDir);
-    for (int i=0; i < formats.length; ++i) {
-      _allDirectories.addAll(getDirectories(processDir + File.separatorChar + formats[i]));
-    }
-    if (_allDirectories.size() > 0) {
-      allDirectories.put(Recording.STATE_PROCESSING,_allDirectories);
-    }
-  }
-  if (shouldIncludeState(states,Recording.STATE_PROCESSED)) {
-    List<File> _allDirectories=new ArrayList<File>();
-    String[] formats=getPlaybackFormats(processDir);
-    for (int i=0; i < formats.length; ++i) {
-      _allDirectories.addAll(getDirectories(processDir + File.separatorChar + formats[i]));
-    }
-    if (_allDirectories.size() > 0) {
-      allDirectories.put(Recording.STATE_PROCESSED,_allDirectories);
-    }
-  }
+  Map<String,List<File>> allDirectories=getAllDirectories(states);
   if (recordIDs.isEmpty()) {
-    if (allDirectories.containsKey(Recording.STATE_PUBLISHED))     recordIDs.addAll(getAllRecordingIds(allDirectories.get(Recording.STATE_PUBLISHED)));
-    if (allDirectories.containsKey(Recording.STATE_UNPUBLISHED))     recordIDs.addAll(getAllRecordingIds(allDirectories.get(Recording.STATE_UNPUBLISHED)));
-    if (allDirectories.containsKey(Recording.STATE_DELETED))     recordIDs.addAll(getAllRecordingIds(allDirectories.get(Recording.STATE_DELETED)));
-    if (allDirectories.containsKey(Recording.STATE_PROCESSING))     recordIDs.addAll(getAllRecordingIds(allDirectories.get(Recording.STATE_PROCESSING)));
-    if (allDirectories.containsKey(Recording.STATE_PROCESSED))     recordIDs.addAll(getAllRecordingIds(allDirectories.get(Recording.STATE_PROCESSED)));
+    for (    Map.Entry<String,List<File>> entry : allDirectories.entrySet()) {
+      recordIDs.addAll(getAllRecordingIds(entry.getValue()));
+    }
   }
   for (  String recordID : recordIDs) {
-    if (allDirectories.containsKey(Recording.STATE_PUBLISHED)) {
-      List<Recording> published=getRecordingsForPath(recordID,allDirectories.get(Recording.STATE_PUBLISHED));
-      if (!published.isEmpty()) {
-        recs.addAll(published);
-      }
-    }
-    if (allDirectories.containsKey(Recording.STATE_UNPUBLISHED)) {
-      List<Recording> unpublished=getRecordingsForPath(recordID,allDirectories.get(Recording.STATE_UNPUBLISHED));
-      if (!unpublished.isEmpty()) {
-        recs.addAll(unpublished);
-      }
-    }
-    if (allDirectories.containsKey(Recording.STATE_DELETED)) {
-      List<Recording> deleted=getRecordingsForPath(recordID,allDirectories.get(Recording.STATE_DELETED));
-      if (!deleted.isEmpty()) {
-        recs.addAll(deleted);
-      }
-    }
-    if (allDirectories.containsKey(Recording.STATE_PROCESSING)) {
-      List<Recording> processing=getRecordingsForPath(recordID,allDirectories.get(Recording.STATE_PROCESSING));
-      if (!processing.isEmpty()) {
-        recs.addAll(processing);
-      }
-    }
-    if (allDirectories.containsKey(Recording.STATE_PROCESSED)) {
-      List<Recording> processed=getRecordingsForPath(recordID,allDirectories.get(Recording.STATE_PROCESSED));
-      if (!processed.isEmpty()) {
-        recs.addAll(processed);
-      }
+    for (    Map.Entry<String,List<File>> entry : allDirectories.entrySet()) {
+      List<Recording> _recs=getRecordingsForPath(recordID,entry.getValue());
+      recs.addAll(_recs);
     }
   }
   return recs;

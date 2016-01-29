@@ -3,7 +3,7 @@
   Iterator<File> iterator=recordings.iterator();
   while (iterator.hasNext()) {
     File recording=iterator.next();
-    if (recording.getName().startsWith(meetingId)) {
+    if (recording.getName().startsWith(id)) {
       Recording r=getRecordingInfo(recording);
       if (r != null)       recs.add(r);
     }

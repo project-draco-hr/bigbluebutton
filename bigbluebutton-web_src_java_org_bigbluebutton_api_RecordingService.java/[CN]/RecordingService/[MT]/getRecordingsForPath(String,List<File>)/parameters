@@ -1,2 +1,2 @@
-String meetingId
+String id
 List<File> recordings

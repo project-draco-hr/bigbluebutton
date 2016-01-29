@@ -4,7 +4,7 @@
   for (int i=0; i < format.length; i++) {
     List<File> recordings=getDirectories(path + File.separatorChar + format[i]);
     for (int f=0; f < recordings.size(); f++) {
-      if (recordings.get(f).getName().startsWith(recordingId)) {
+      if (recordings.get(f).getName().startsWith(id)) {
         Recording r=getRecordingInfo(path,recordings.get(f).getName(),format[i]);
         recs.add(r);
       }
