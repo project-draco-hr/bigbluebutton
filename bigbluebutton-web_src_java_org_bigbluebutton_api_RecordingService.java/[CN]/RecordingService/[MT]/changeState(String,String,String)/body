@@ -4,7 +4,7 @@
     List<File> recordings=getDirectories(path + File.separatorChar + format[i]);
     for (int f=0; f < recordings.size(); f++) {
       if (recordings.get(f).getName().equalsIgnoreCase(recordingId)) {
-        Recording r=getRecordingInfo(path,recordingId,format[i]);
+        Recording r=getRecordingInfo(recordings.get(f));
         if (r != null) {
           File dest;
           if (state.equals(Recording.STATE_PUBLISHED)) {

@@ -1,5 +1,0 @@
-{
-  List<Recording> recsList=recordingService.getRecordings(recordingIDs,states);
-  Map<String,Recording> recs=reorderRecordings(recsList);
-  return recs;
-}
