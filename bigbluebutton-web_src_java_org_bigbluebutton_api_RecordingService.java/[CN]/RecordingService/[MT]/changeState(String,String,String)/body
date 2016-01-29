@@ -30,7 +30,7 @@
               r.setPlaybackFormat(null);
               deleteRecording(recordingId,deletedDir);
             }
-            recordingServiceHelper.writeRecordingInfo(dest.getAbsolutePath() + File.separatorChar + recordings[f].getName(),r);
+            recordingServiceHelper.writeRecordingInfo(dest.getAbsolutePath() + File.separatorChar + recordings.get(f).getName(),r);
             log.debug(String.format("Recording successfully %s!",state));
           }
  else {

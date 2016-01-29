@@ -1,5 +1,5 @@
 {
-  HashMap<String,Recording> map=new HashMap<String,Recording>();
+  Map<String,Recording> map=new HashMap<String,Recording>();
   for (  Recording r : olds) {
     if (!map.containsKey(r.getId())) {
       Map<String,String> meta=r.getMetadata();

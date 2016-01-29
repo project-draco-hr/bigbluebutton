@@ -1,5 +1,0 @@
-{
-  ArrayList<Recording> recsList=recordingService.getRecordings(recordingIDs,states);
-  HashMap<String,Recording> recs=reorderRecordings(recsList);
-  return recs;
-}
