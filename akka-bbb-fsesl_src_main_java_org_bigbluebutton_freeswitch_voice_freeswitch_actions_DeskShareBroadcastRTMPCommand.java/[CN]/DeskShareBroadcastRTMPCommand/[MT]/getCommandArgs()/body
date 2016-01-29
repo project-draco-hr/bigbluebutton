@@ -1,5 +1,11 @@
 {
   String action="norecord";
-  if (broadcast)   action="record";
-  return SPACE + getRoom() + SPACE+ action+ SPACE+ broadcastPath;
+  if (broadcast) {
+    action="record";
+  }
+  String room=getRoom();
+  if (!room.endsWith(DESKSHARE_SUFFIX)) {
+    room=room + DESKSHARE_SUFFIX;
+  }
+  return SPACE + room + SPACE+ action+ SPACE+ broadcastPath;
 }
