@@ -1,0 +1,15 @@
+{
+  if (stdoutContains(TEXT_TAG_OUTPUT)) {
+    try {
+      String out=stdoutBuilder.toString();
+      Pattern r=Pattern.compile(TEXT_TAG_PATTERN);
+      Matcher m=r.matcher(out);
+      m.find();
+      return Integer.parseInt(m.group(0).replace(TEXT_TAG_OUTPUT,"").trim());
+    }
+ catch (    Exception e) {
+      return 0;
+    }
+  }
+  return 0;
+}

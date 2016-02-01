@@ -1,0 +1,8 @@
+{
+  String action="";
+  if (forward)   action=room + SPACE + "transfer"+ SPACE+ targetRoom;
+ else {
+    action=targetRoom + SPACE + "transfer"+ SPACE+ room;
+  }
+  return action + SPACE + participant;
+}
