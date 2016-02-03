@@ -1,5 +1,4 @@
 String room
 String targetRoom
 String participant
-Boolean forward
 String requesterId

@@ -1,4 +1,4 @@
 {
   TransferUserToVoiceConfRequestMessage msg=TransferUserToVoiceConfRequestMessage.fromJson(json);
-  fsApp.transferUserToMeeting(msg.voiceConfId,msg.targetVoiceConfId,msg.voiceUserId,msg.forward);
+  fsApp.transferUserToMeeting(msg.voiceConfId,msg.targetVoiceConfId,msg.voiceUserId);
 }
