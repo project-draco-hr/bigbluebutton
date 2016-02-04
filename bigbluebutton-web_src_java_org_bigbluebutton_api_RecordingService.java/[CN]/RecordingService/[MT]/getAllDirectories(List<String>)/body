@@ -1,0 +1,24 @@
+{
+  Map<String,List<File>> allDirectories=new HashMap<String,List<File>>();
+  if (shouldIncludeState(states,Recording.STATE_PUBLISHED)) {
+    List<File> _allDirectories=getAllDirectories(Recording.STATE_PUBLISHED);
+    allDirectories.put(Recording.STATE_PUBLISHED,_allDirectories);
+  }
+  if (shouldIncludeState(states,Recording.STATE_UNPUBLISHED)) {
+    List<File> _allDirectories=getAllDirectories(Recording.STATE_UNPUBLISHED);
+    allDirectories.put(Recording.STATE_UNPUBLISHED,_allDirectories);
+  }
+  if (shouldIncludeState(states,Recording.STATE_DELETED)) {
+    List<File> _allDirectories=getAllDirectories(Recording.STATE_DELETED);
+    allDirectories.put(Recording.STATE_DELETED,_allDirectories);
+  }
+  if (shouldIncludeState(states,Recording.STATE_PROCESSING)) {
+    List<File> _allDirectories=getAllDirectories(Recording.STATE_PROCESSING);
+    allDirectories.put(Recording.STATE_PROCESSING,_allDirectories);
+  }
+  if (shouldIncludeState(states,Recording.STATE_PROCESSED)) {
+    List<File> _allDirectories=getAllDirectories(Recording.STATE_PROCESSED);
+    allDirectories.put(Recording.STATE_PROCESSED,_allDirectories);
+  }
+  return allDirectories;
+}
