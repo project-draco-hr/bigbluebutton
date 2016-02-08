@@ -1,5 +1,5 @@
 {
   this.meetingId=meetingId;
   this.breakoutId=breakoutId;
-  this.users=users;
+  this.numberOfUsers=numberOfUsers;
 }
