@@ -20,7 +20,7 @@
             log.debug(String.format("State: %s, is not supported",state));
             return;
           }
-          if (!dest.exists())           dest.mkdir();
+          if (!dest.exists())           dest.mkdirs();
           boolean moved=recordings.get(f).renameTo(new File(dest,recordings.get(f).getName()));
           if (moved) {
             log.debug("Recording successfully moved!");
