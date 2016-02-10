@@ -1,0 +1,4 @@
+List versionList
+List platformList
+String dir
+JnlpResource versionRes

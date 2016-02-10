@@ -1,0 +1,4 @@
+{
+  encoder=new NullProtocolEncoder();
+  decoder=new BlockStreamProtocolDecoder();
+}

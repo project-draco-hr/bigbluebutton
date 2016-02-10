@@ -1,0 +1,4 @@
+Point mouseLoc
+String meetingId
+ByteArrayOutputStream data
+int seqNum

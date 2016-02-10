@@ -1,0 +1,4 @@
+{
+  if (value == null)   return "";
+  return msg + java.util.Arrays.asList(value).toString();
+}

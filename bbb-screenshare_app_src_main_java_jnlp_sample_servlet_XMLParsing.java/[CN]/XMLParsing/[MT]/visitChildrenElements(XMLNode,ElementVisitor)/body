@@ -1,0 +1,7 @@
+{
+  XMLNode n=elem.getNested();
+  while (n != null) {
+    if (n.isElement())     ev.visitElement(n);
+    n=n.getNext();
+  }
+}

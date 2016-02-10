@@ -1,0 +1,12 @@
+{
+  startBroadcast=false;
+  if (recorder != null) {
+    try {
+      recorder.stop();
+      recorder.release();
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+    }
+  }
+}

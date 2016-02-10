@@ -1,0 +1,11 @@
+{
+  String meetingId=request.getParameterValues("meetingId")[0];
+  String streamId=request.getParameterValues("streamId")[0];
+  String screenInfo=request.getParameterValues("screenInfo")[0];
+  String[] screen=screenInfo.split("x");
+  if (!hasSessionManager) {
+    screenShareApplication=getScreenShareApplication();
+    hasSessionManager=true;
+  }
+  screenShareApplication.sharingStarted(meetingId,streamId,Integer.parseInt(screen[0]),Integer.parseInt(screen[1]));
+}

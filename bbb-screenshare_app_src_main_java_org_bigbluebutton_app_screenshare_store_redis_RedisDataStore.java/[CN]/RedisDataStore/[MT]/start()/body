@@ -1,0 +1,23 @@
+{
+  try {
+    sendMessage=true;
+    Runnable messageSender=new Runnable(){
+      public void run(){
+        while (sendMessage) {
+          try {
+            IScreenShareData data=dataToStore.take();
+            storeData(data);
+          }
+ catch (          InterruptedException e) {
+            log.warn("Failed to get data from queue.");
+          }
+        }
+      }
+    }
+;
+    msgSenderExec.execute(messageSender);
+  }
+ catch (  Exception e) {
+    log.error("Error storing data into redis: " + e.getMessage());
+  }
+}

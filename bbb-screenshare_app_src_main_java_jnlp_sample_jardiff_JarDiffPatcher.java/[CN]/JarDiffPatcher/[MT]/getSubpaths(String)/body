@@ -1,0 +1,41 @@
+{
+  int index=0;
+  int length=path.length();
+  ArrayList sub=new ArrayList();
+  while (index < length) {
+    while (index < length && Character.isWhitespace(path.charAt(index))) {
+      index++;
+    }
+    if (index < length) {
+      int start=index;
+      int last=start;
+      String subString=null;
+      while (index < length) {
+        char aChar=path.charAt(index);
+        if (aChar == '\\' && (index + 1) < length && path.charAt(index + 1) == ' ') {
+          if (subString == null) {
+            subString=path.substring(last,index);
+          }
+ else {
+            subString+=path.substring(last,index);
+          }
+          last=++index;
+        }
+ else         if (Character.isWhitespace(aChar)) {
+          break;
+        }
+        index++;
+      }
+      if (last != index) {
+        if (subString == null) {
+          subString=path.substring(last,index);
+        }
+ else {
+          subString+=path.substring(last,index);
+        }
+      }
+      sub.add(subString);
+    }
+  }
+  return sub;
+}

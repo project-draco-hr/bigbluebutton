@@ -1,0 +1,3 @@
+{
+  logEvent(FATAL,getString(key),throwable);
+}

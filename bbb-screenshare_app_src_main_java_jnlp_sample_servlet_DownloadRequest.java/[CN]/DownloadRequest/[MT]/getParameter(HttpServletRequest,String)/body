@@ -1,0 +1,4 @@
+{
+  String res=req.getParameter(key);
+  return (res == null) ? null : res.trim();
+}

@@ -1,0 +1,4 @@
+File file
+String mimeType
+String versionId
+long lastModified

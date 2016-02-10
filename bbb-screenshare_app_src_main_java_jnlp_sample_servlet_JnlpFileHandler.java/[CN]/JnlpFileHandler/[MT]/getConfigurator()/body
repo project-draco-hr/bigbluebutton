@@ -1,0 +1,17 @@
+{
+  JnlpConfigurator jnlpConfigurator=null;
+  if (_servletContext != null) {
+    ApplicationContext appCtx=(ApplicationContext)_servletContext.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+    jnlpConfigurator=(JnlpConfigurator)appCtx.getBean("jnlpConfigurator");
+    if (jnlpConfigurator != null) {
+      log.debug("JnlpConfigurator initialized.");
+    }
+ else {
+      log.error("Failed to initialize JnlpConfigurator.");
+    }
+  }
+ else {
+    log.error("Failed to initialize JnlpConfigurator. Context is undefined.");
+  }
+  return jnlpConfigurator;
+}

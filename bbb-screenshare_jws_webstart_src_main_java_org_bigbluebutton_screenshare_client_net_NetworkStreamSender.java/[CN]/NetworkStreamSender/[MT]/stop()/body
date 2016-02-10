@@ -1,0 +1,7 @@
+{
+  timer.cancel();
+  if (httpSenders != null) {
+    httpSenders.disconnect();
+    httpSenders.stop();
+  }
+}

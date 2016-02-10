@@ -1,0 +1,4 @@
+{
+  setSize(getWidth(),getHeight());
+  setLocation(getLocation());
+}

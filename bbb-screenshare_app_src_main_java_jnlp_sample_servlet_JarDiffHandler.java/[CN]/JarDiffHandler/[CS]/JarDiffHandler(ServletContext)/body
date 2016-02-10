@@ -1,0 +1,6 @@
+{
+  _jarDiffEntries=new HashMap();
+  _servletContext=servletContext;
+  _jarDiffMimeType=_servletContext.getMimeType("xyz.jardiff");
+  if (_jarDiffMimeType == null)   _jarDiffMimeType=JARDIFF_MIMETYPE;
+}

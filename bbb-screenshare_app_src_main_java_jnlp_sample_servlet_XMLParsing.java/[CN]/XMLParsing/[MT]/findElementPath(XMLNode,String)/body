@@ -1,0 +1,8 @@
+{
+  if (elem == null)   return null;
+  if (path == null || path.length() == 0)   return elem;
+  int idx=path.indexOf('>');
+  String head=path.substring(1,idx);
+  String tail=path.substring(idx + 1);
+  return findElementPath(findChildElement(elem,head),tail);
+}

@@ -1,0 +1,6 @@
+{
+  this.trayIcon=trayIcon;
+  this.title=title;
+  this.message=message;
+  this.messageType=messageType;
+}

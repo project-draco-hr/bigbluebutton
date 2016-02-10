@@ -1,0 +1,4 @@
+{
+  this.ssi=ssi;
+  jcs=new JavaCVScreenshare(ssi);
+}

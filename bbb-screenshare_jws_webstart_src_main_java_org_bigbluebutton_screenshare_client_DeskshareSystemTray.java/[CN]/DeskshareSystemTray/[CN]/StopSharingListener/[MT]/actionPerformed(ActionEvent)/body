@@ -1,0 +1,6 @@
+{
+  trayIcon.displayMessage(title,message,messageType);
+  if (listener != null) {
+    listener.onStopSharingSysTrayMenuClicked();
+  }
+}

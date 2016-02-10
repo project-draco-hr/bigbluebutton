@@ -1,0 +1,4 @@
+{
+  log.debug("Session Created");
+  super.sessionCreated(session);
+}

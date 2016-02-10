@@ -1,0 +1,21 @@
+{
+  if (list == null)   return DownloadResponse.ERR_10_NO_RESOURCE;
+  VersionID bestVersionId=null;
+  int error=DownloadResponse.ERR_10_NO_RESOURCE;
+  VersionString vs=new VersionString(dreq.getVersion());
+  for (int i=0; i < list.size(); i++) {
+    JnlpResource respath=(JnlpResource)list.get(i);
+    VersionID vid=new VersionID(respath.getVersionId());
+    int sts=matchEntry(name,vs,dreq,respath,vid);
+    if (sts == DownloadResponse.STS_00_OK) {
+      if (result[0] == null || vid.isGreaterThan(bestVersionId)) {
+        result[0]=respath;
+        bestVersionId=vid;
+      }
+    }
+ else {
+      error=Math.max(error,sts);
+    }
+  }
+  return (result[0] != null) ? DownloadResponse.STS_00_OK : error;
+}

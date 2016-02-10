@@ -1,0 +1,24 @@
+{
+  String event=request.getParameterValues("event")[0];
+  int captureRequest=Integer.parseInt(event);
+  if (0 == captureRequest) {
+    handleCaptureStartRequest(request,response);
+    response.setStatus(HttpServletResponse.SC_OK);
+  }
+ else   if (1 == captureRequest) {
+    handleCaptureUpdateRequest(request,response);
+    response.setStatus(HttpServletResponse.SC_OK);
+    if (isSharingStopped(request,response)) {
+      response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+    }
+  }
+ else   if (2 == captureRequest) {
+    handleCaptureEndRequest(request,response);
+    response.setStatus(HttpServletResponse.SC_OK);
+  }
+ else {
+    log.warn("Cannot handle screen capture event " + captureRequest);
+    response.setStatus(HttpServletResponse.SC_OK);
+  }
+  return null;
+}

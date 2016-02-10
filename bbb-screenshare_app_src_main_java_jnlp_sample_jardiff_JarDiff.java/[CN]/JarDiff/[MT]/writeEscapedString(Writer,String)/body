@@ -1,0 +1,22 @@
+{
+  int index=0;
+  int last=0;
+  char[] chars=null;
+  while ((index=string.indexOf(' ',index)) != -1) {
+    if (last != index) {
+      if (chars == null) {
+        chars=string.toCharArray();
+      }
+      writer.write(chars,last,index - last);
+    }
+    last=index;
+    index++;
+    writer.write('\\');
+  }
+  if (last != 0) {
+    writer.write(chars,last,chars.length - last);
+  }
+ else {
+    writer.write(string);
+  }
+}

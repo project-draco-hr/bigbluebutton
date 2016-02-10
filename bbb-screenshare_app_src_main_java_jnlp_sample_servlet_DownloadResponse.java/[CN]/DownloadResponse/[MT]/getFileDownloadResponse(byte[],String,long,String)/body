@@ -1,0 +1,3 @@
+{
+  return new ByteArrayFileDownloadResponse(content,mimeType,versionId,timestamp);
+}

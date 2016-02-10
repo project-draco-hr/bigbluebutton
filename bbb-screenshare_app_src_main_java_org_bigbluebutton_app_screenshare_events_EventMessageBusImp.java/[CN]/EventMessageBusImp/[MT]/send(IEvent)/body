@@ -1,0 +1,6 @@
+{
+  if (receivedMessages.size() > maxThreshold) {
+    log.warn("Queued number of events [{}] is greater than threshold [{}]",receivedMessages.size(),maxThreshold);
+  }
+  receivedMessages.add(msg);
+}

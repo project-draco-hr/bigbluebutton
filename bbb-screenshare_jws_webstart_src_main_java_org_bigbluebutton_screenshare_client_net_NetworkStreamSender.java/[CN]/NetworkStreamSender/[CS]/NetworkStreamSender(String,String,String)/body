@@ -1,0 +1,6 @@
+{
+  this.meetingId=meetingId;
+  this.streamId=streamId;
+  this.host=host;
+  connect();
+}

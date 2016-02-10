@@ -1,0 +1,4 @@
+ResourceCatalog catalog
+DownloadRequest dreq
+JnlpResource res
+boolean doJarDiffWorkAround

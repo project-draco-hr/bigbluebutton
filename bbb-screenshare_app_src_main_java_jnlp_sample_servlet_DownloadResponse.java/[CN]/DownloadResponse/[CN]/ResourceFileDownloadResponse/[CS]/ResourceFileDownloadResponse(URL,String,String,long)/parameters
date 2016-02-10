@@ -1,0 +1,4 @@
+URL url
+String mimeType
+String versionId
+long lastModified
