@@ -1,0 +1,9 @@
+{
+  recorder.setFormat("flv");
+  recorder.setVideoCodec(AV_CODEC_ID_FLASHSV2);
+  recorder.setPixelFormat(AV_PIX_FMT_BGR24);
+  recorder.setVideoOption("crf","38");
+  recorder.setVideoOption("preset","veryfast");
+  recorder.setVideoOption("tune","zerolatency");
+  recorder.setVideoOption("intra-refresh","1");
+}

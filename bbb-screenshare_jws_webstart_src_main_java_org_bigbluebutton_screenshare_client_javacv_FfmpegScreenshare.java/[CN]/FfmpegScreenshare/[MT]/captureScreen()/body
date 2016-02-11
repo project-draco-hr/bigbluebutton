@@ -1,0 +1,26 @@
+{
+  long now=System.currentTimeMillis();
+  Frame frame;
+  try {
+    frame=grabber.grabImage();
+    if (frame != null) {
+      try {
+        recorder.record(frame);
+      }
+ catch (      Exception e) {
+        e.printStackTrace();
+      }
+    }
+  }
+ catch (  Exception e1) {
+    e1.printStackTrace();
+  }
+  long sleepFramerate=(long)(1000 / frameRate);
+  long timestamp=now - startTime;
+  recorder.setTimestamp(timestamp * 1000);
+  recorder.setFrameNumber(frameNumber);
+  frameNumber++;
+  long execDuration=(System.currentTimeMillis() - now);
+  long sleepDuration=Math.max(sleepFramerate - execDuration,0);
+  pause(sleepDuration);
+}

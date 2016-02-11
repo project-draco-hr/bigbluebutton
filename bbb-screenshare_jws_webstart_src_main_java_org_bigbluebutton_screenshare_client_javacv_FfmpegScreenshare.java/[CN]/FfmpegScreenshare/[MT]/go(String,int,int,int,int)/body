@@ -1,0 +1,33 @@
+{
+  System.out.println("Java temp dir : " + System.getProperty("java.io.tmpdir"));
+  System.out.println("Java name : " + System.getProperty("java.vm.name"));
+  System.out.println("OS name : " + System.getProperty("os.name"));
+  System.out.println("OS arch : " + System.getProperty("os.arch"));
+  System.out.println("JNA Path : " + System.getProperty("jna.library.path"));
+  System.out.println("Platform : " + Loader.getPlatform());
+  System.out.println("Capturing w=[" + width + "] h=["+ height+ "] at x=["+ x+ "] y=["+ y+ "]");
+  Map<String,String> codecOptions=splitToMap(ssi.codecOptions,"&","=");
+  Double frameRate=parseFrameRate(codecOptions.get(FRAMERATE_KEY));
+  grabber=new FFmpegFrameGrabber("desktop");
+  grabber.setImageWidth(width);
+  grabber.setImageHeight(height);
+  grabber.setOption("offset_x",new Integer(x).toString());
+  grabber.setOption("offset_y",new Integer(y).toString());
+  grabber.setFormat("gdigrab");
+  grabber.setFrameRate(frameRate);
+  try {
+    grabber.start();
+  }
+ catch (  org.bytedeco.javacv.FrameGrabber.Exception e) {
+    e.printStackTrace();
+  }
+  recorder=new FFmpegFrameRecorder(URL,grabber.getImageWidth(),grabber.getImageHeight());
+  useH264(recorder,codecOptions);
+  startTime=System.currentTimeMillis();
+  try {
+    recorder.start();
+  }
+ catch (  Exception e1) {
+    e1.printStackTrace();
+  }
+}
