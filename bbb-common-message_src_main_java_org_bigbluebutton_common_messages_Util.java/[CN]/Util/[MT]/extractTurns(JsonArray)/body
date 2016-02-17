@@ -1,0 +1,12 @@
+{
+  ArrayList<Map<String,Object>> collection=new ArrayList<Map<String,Object>>();
+  Iterator<JsonElement> turnIter=turnsArray.iterator();
+  while (turnIter.hasNext()) {
+    JsonElement aTurn=turnIter.next();
+    Map<String,Object> turnMap=extractATurn((JsonObject)aTurn);
+    if (turnMap != null) {
+      collection.add(turnMap);
+    }
+  }
+  return collection;
+}
