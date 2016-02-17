@@ -8,12 +8,17 @@
   System.out.println("Capturing w=[" + width + "] h=["+ height+ "] at x=["+ x+ "] y=["+ y+ "]");
   Map<String,String> codecOptions=splitToMap(ssi.codecOptions,"&","=");
   Double frameRate=parseFrameRate(codecOptions.get(FRAMERATE_KEY));
-  grabber=new FFmpegFrameGrabber("desktop");
-  grabber.setImageWidth(width);
-  grabber.setImageHeight(height);
-  grabber.setOption("offset_x",new Integer(x).toString());
-  grabber.setOption("offset_y",new Integer(y).toString());
-  grabber.setFormat("gdigrab");
+  String platform=Loader.getPlatform();
+  String osName=System.getProperty("os.name").toLowerCase();
+  if (platform.startsWith("windows")) {
+    grabber=setupWindowsGrabber(width,height,x,y);
+  }
+ else   if (osName.startsWith("linux")) {
+    grabber=setupLinuxGrabber(width,height,x,y);
+  }
+ else   if (platform.startsWith("macosx")) {
+    grabber=setupMacOsXGrabber(width,height,x,y);
+  }
   grabber.setFrameRate(frameRate);
   try {
     grabber.start();

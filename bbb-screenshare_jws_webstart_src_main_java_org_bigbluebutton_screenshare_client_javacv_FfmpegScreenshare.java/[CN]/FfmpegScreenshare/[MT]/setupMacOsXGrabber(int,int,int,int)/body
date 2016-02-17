@@ -1,0 +1,10 @@
+{
+  String inputDevice="Capture screen 0";
+  String videoSize=new Integer(width).toString().concat("x").concat(new Integer(height).toString());
+  System.out.println("Setting up grabber for linux.");
+  System.out.println("input:" + inputDevice + " videoSize:"+ videoSize);
+  FFmpegFrameGrabber macGrabber=new FFmpegFrameGrabber(inputDevice);
+  macGrabber.setOption("video_size",videoSize);
+  macGrabber.setFormat("avfoundation");
+  return macGrabber;
+}
