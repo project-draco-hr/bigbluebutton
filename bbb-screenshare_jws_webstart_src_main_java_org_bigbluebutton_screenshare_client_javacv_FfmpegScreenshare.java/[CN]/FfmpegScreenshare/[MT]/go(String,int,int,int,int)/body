@@ -12,12 +12,15 @@
   String osName=System.getProperty("os.name").toLowerCase();
   if (platform.startsWith("windows")) {
     grabber=setupWindowsGrabber(width,height,x,y);
+    mainRecorder=setupWindowsRecorder(URL,width,height,codecOptions);
   }
- else   if (osName.startsWith("linux")) {
+ else   if (platform.startsWith("linux")) {
     grabber=setupLinuxGrabber(width,height,x,y);
+    mainRecorder=setupLinuxRecorder(URL,width,height,codecOptions);
   }
- else   if (platform.startsWith("macosx")) {
+ else   if (platform.startsWith("macosx-x86_64")) {
     grabber=setupMacOsXGrabber(width,height,x,y);
+    mainRecorder=setupMacOsXRecorder(URL,width,height,codecOptions);
   }
   grabber.setFrameRate(frameRate);
   try {
@@ -26,11 +29,9 @@
  catch (  org.bytedeco.javacv.FrameGrabber.Exception e) {
     e.printStackTrace();
   }
-  recorder=new FFmpegFrameRecorder(URL,grabber.getImageWidth(),grabber.getImageHeight());
-  useH264(recorder,codecOptions);
   startTime=System.currentTimeMillis();
   try {
-    recorder.start();
+    mainRecorder.start();
   }
  catch (  Exception e1) {
     e1.printStackTrace();

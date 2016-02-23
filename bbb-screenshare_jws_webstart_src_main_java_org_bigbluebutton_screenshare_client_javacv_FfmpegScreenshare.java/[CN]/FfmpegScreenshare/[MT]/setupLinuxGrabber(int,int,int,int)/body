@@ -1,12 +1,12 @@
 {
   String inputDevice=":";
   if (ssi.fullScreen) {
-    inputDevice.concat(new Integer(0).toString()).concat(".").concat(new Integer(0).toString());
-    inputDevice.concat("+").concat(new Integer(0).toString()).concat(",").concat(new Integer(0).toString());
+    inputDevice=inputDevice.concat(new Integer(0).toString()).concat(".").concat(new Integer(0).toString());
+    inputDevice=inputDevice.concat("+").concat(new Integer(0).toString()).concat(",").concat(new Integer(0).toString());
   }
  else {
-    inputDevice.concat(new Integer(0).toString()).concat(".").concat(new Integer(0).toString());
-    inputDevice.concat("+").concat(new Integer(x).toString()).concat(",").concat(new Integer(y).toString());
+    inputDevice=inputDevice.concat(new Integer(0).toString()).concat(".").concat(new Integer(0).toString());
+    inputDevice=inputDevice.concat("+").concat(new Integer(x).toString()).concat(",").concat(new Integer(y).toString());
   }
   String videoSize=new Integer(width).toString().concat("x").concat(new Integer(height).toString());
   System.out.println("Setting up grabber for linux.");

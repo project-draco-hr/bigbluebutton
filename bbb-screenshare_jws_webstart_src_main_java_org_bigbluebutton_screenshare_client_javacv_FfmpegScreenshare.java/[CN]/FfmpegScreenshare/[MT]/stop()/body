@@ -1,9 +1,9 @@
 {
   startBroadcast=false;
-  if (recorder != null) {
+  if (mainRecorder != null) {
     try {
-      recorder.stop();
-      recorder.release();
+      mainRecorder.stop();
+      mainRecorder.release();
       grabber.stop();
     }
  catch (    Exception e) {

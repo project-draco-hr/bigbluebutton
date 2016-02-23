@@ -5,7 +5,7 @@
     frame=grabber.grabImage();
     if (frame != null) {
       try {
-        recorder.record(frame);
+        mainRecorder.record(frame);
       }
  catch (      Exception e) {
         e.printStackTrace();
@@ -17,8 +17,8 @@
   }
   long sleepFramerate=(long)(1000 / frameRate);
   long timestamp=now - startTime;
-  recorder.setTimestamp(timestamp * 1000);
-  recorder.setFrameNumber(frameNumber);
+  mainRecorder.setTimestamp(timestamp * 1000);
+  mainRecorder.setFrameNumber(frameNumber);
   frameNumber++;
   long execDuration=(System.currentTimeMillis() - now);
   long sleepDuration=Math.max(sleepFramerate - execDuration,0);
