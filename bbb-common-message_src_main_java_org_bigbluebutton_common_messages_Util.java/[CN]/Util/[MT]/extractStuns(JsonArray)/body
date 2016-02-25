@@ -1,0 +1,11 @@
+{
+  ArrayList<String> collection=new ArrayList<String>();
+  Iterator<JsonElement> stunIter=stunsArray.iterator();
+  while (stunIter.hasNext()) {
+    JsonElement aStun=stunIter.next();
+    if (aStun != null) {
+      collection.add(aStun.getAsString());
+    }
+  }
+  return collection;
+}

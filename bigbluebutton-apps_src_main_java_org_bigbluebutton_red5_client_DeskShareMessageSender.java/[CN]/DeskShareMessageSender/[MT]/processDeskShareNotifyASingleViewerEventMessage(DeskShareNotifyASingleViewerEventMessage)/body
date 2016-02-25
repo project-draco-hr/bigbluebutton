@@ -1,6 +1,5 @@
 {
   Map<String,Object> messageInfo=new HashMap<String,Object>();
-  System.out.println("RedisPubSubMessageHandler-processDeskShareNotifyASingleViewerEventMessage \n" + msg.streamPath + "\n"+ msg.userId);
   messageInfo.put("rtmpUrl",msg.streamPath);
   messageInfo.put("broadcasting",msg.broadcasting);
   messageInfo.put("width",msg.vw);

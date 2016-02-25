@@ -1,5 +1,4 @@
 {
   DeskShareBroadcastRTMPCommand rtmp=new DeskShareBroadcastRTMPCommand(voiceConfId,USER,streamUrl,timestamp,broadcast);
-  System.out.println("\n______FreeswitchApplication::deskShareBroadcastRTMP___" + rtmp.getCommand() + "____\n");
   queueMessage(rtmp);
 }

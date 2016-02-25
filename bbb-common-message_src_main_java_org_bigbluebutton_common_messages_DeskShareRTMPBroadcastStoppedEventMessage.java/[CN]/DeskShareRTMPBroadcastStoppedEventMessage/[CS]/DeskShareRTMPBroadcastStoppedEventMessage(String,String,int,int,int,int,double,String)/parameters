@@ -1,8 +1,0 @@
-String conferenceName
-String streamname
-int channels
-int samplerate
-int vw
-int vh
-double fps
-String timestamp

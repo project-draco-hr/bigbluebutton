@@ -1,0 +1,8 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(CONFERENCE_NAME,conferenceName);
+  payload.put(FS_CONFERENCE_NAME,fsConferenceName);
+  payload.put(TIMESTAMP,timestamp);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(DESKSHARE_HANG_UP_MESSAGE,VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}

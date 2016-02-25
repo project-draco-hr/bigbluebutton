@@ -1,4 +1,4 @@
 {
   super(room);
-  this.record=record;
+  this.broadcast=broadcast;
 }
