@@ -1,5 +1,0 @@
-{
-  for (  String id : idList) {
-    recordingService.publish(id,publish);
-  }
-}

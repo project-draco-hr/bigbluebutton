@@ -1,5 +1,5 @@
 {
   for (  String id : idList) {
-    recordingService.delete(id);
+    recordingService.changeState(id,Recording.STATE_DELETED);
   }
 }

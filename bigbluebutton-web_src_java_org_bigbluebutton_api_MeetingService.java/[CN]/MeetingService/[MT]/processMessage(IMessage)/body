@@ -6,6 +6,9 @@
  else       if (message instanceof MeetingStarted) {
         meetingStarted((MeetingStarted)message);
       }
+ else       if (message instanceof MeetingDestroyed) {
+        meetingDestroyed((MeetingDestroyed)message);
+      }
  else       if (message instanceof MeetingEnded) {
         meetingEnded((MeetingEnded)message);
       }
