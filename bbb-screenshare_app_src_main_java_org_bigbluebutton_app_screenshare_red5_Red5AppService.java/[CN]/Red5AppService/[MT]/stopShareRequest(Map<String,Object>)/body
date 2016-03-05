@@ -1,6 +1,0 @@
-{
-  String meetingId=Red5.getConnectionLocal().getScope().getName();
-  String streamId=(String)msg.get("streamId");
-  log.debug("Received stopShareRequest for meeting=[{}]",meetingId);
-  handler.stopShareRequest(meetingId,streamId);
-}

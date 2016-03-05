@@ -1,6 +1,5 @@
 {
   super.appStart(app);
-  log.info("BBB Screenshare appStart");
-  sender.setAppScope(app);
+  log.info("BBB Screenshare appStart\n\n\n\n\n\n");
   return true;
 }
