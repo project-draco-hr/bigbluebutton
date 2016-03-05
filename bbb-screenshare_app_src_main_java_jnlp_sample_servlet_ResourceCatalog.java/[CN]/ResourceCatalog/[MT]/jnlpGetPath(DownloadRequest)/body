@@ -1,0 +1,37 @@
+{
+  String path=dreq.getPath();
+  String filename=path.substring(path.lastIndexOf("/") + 1);
+  path=path.substring(0,path.lastIndexOf("/") + 1);
+  String name=filename;
+  String ext=null;
+  if (filename.lastIndexOf(".") != -1) {
+    ext=filename.substring(filename.lastIndexOf(".") + 1);
+    filename=filename.substring(0,filename.lastIndexOf("."));
+  }
+  if (dreq.getVersion() != null) {
+    filename+="__V" + dreq.getVersion();
+  }
+  String[] temp=dreq.getOS();
+  if (temp != null) {
+    for (int i=0; i < temp.length; i++) {
+      filename+="__O" + temp[i];
+    }
+  }
+  temp=dreq.getArch();
+  if (temp != null) {
+    for (int i=0; i < temp.length; i++) {
+      filename+="__A" + temp[i];
+    }
+  }
+  temp=dreq.getLocale();
+  if (temp != null) {
+    for (int i=0; i < temp.length; i++) {
+      filename+="__L" + temp[i];
+    }
+  }
+  if (ext != null) {
+    filename+="." + ext;
+  }
+  path+=filename;
+  return path;
+}

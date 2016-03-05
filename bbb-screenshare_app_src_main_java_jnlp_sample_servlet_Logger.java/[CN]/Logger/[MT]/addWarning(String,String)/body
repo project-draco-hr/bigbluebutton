@@ -1,0 +1,3 @@
+{
+  logL10N(WARNING,key,arg,(Throwable)null);
+}

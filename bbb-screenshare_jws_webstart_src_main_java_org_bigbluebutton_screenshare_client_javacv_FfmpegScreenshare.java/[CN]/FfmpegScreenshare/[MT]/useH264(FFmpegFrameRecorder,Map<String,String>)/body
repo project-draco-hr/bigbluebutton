@@ -1,0 +1,24 @@
+{
+  Double frameRate=parseFrameRate(codecOptions.get(FRAMERATE_KEY));
+  recorder.setFrameRate(frameRate);
+  int keyFrameInterval=parseKeyFrameInterval(codecOptions.get(KEYFRAMEINTERVAL_KEY));
+  int gopSize=frameRate.intValue() * keyFrameInterval;
+  recorder.setGopSize(gopSize);
+  System.out.println("==== CODEC OPTIONS =====");
+  for (  Map.Entry<String,String> entry : codecOptions.entrySet()) {
+    System.out.println("Key = " + entry.getKey() + ", Value = "+ entry.getValue());
+    if (entry.getKey().equals(FRAMERATE_KEY) || entry.getKey().equals(KEYFRAMEINTERVAL_KEY)) {
+    }
+ else {
+      recorder.setVideoOption(entry.getKey(),entry.getValue());
+    }
+  }
+  System.out.println("==== END CODEC OPTIONS =====");
+  recorder.setFormat("flv");
+  recorder.setVideoCodec(AV_CODEC_ID_H264);
+  recorder.setPixelFormat(AV_PIX_FMT_YUV420P);
+  recorder.setVideoOption("crf","38");
+  recorder.setVideoOption("preset","veryfast");
+  recorder.setVideoOption("tune","zerolatency");
+  recorder.setVideoOption("intra-refresh","1");
+}

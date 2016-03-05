@@ -1,0 +1,12 @@
+{
+  URL fileURL=_servletContext.getResource(path);
+  File tempDir=(File)_servletContext.getAttribute("javax.servlet.context.tempdir");
+  if (fileURL != null) {
+    File newFile=File.createTempFile("temp",".jar",tempDir);
+    if (download(fileURL,newFile)) {
+      String filePath=newFile.getPath();
+      return filePath;
+    }
+  }
+  return null;
+}

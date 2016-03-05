@@ -1,0 +1,6 @@
+{
+  String meetingId=Red5.getConnectionLocal().getScope().getName();
+  log.debug("Received check if publishing for meeting=[{}]",meetingId);
+  String userId=(String)Red5.getConnectionLocal().getAttribute("USERID");
+  handler.isScreenSharing(meetingId,userId);
+}

@@ -1,0 +1,3 @@
+{
+  return new Rectangle(mTopLeft.x + mBorderWidth,mTopLeft.y + mBorderWidth,mOverallSize.width - mBorderWidth,mOverallSize.height - mBorderWidth);
+}

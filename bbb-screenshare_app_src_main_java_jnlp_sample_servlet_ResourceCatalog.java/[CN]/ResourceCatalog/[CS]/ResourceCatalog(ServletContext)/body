@@ -1,0 +1,4 @@
+{
+  _entries=new HashMap();
+  _servletContext=servletContext;
+}

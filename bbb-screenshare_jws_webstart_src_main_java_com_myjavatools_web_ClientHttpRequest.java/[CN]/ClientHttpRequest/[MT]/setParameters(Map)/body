@@ -1,0 +1,7 @@
+{
+  if (parameters == null)   return;
+  for (Iterator i=parameters.entrySet().iterator(); i.hasNext(); ) {
+    Map.Entry entry=(Map.Entry)i.next();
+    setParameter(entry.getKey().toString(),entry.getValue());
+  }
+}

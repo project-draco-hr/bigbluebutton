@@ -1,0 +1,4 @@
+{
+  _servletContext=servletContext;
+  _jnlpFiles=new HashMap<String,JnlpFileEntry>();
+}

@@ -1,0 +1,58 @@
+{
+  log.debug("Query string = [" + request.getQueryString().trim() + "]");
+  String errorMessage="NO_ERRORS";
+  String authParam=request.getParameter("authToken");
+  String authToken="unknown";
+  if (authParam != null && authParam != "") {
+    authToken=authParam.trim();
+  }
+ else {
+    errorMessage="MISSING_AUTHTOKEN";
+  }
+  String fullScreen=request.getParameter("fullScreen");
+  if (fullScreen != null && fullScreen != "") {
+    fullScreen=fullScreen.trim();
+  }
+ else {
+    errorMessage="MISSING_FULLSCREEN";
+  }
+  String meetingId=request.getParameter("meetingId");
+  if (meetingId != null && meetingId != "") {
+    meetingId=meetingId.trim();
+  }
+ else {
+    errorMessage="MISSING_MEETINGID";
+  }
+  ScreenShareInfo sInfo=configurator.getScreenShareInfo(meetingId,authToken);
+  String publishUrl="unknown";
+  String streamId="unknown";
+  if (sInfo == null) {
+    errorMessage="ERROR_GETTING_INFO_USING_TOKEN";
+  }
+ else {
+    publishUrl=sInfo.publishUrl;
+    streamId=sInfo.streamId;
+  }
+  String jnlpUrl=configurator.getJnlpUrl();
+  String codecOptions=configurator.getCodecOptions();
+  log.debug("Codec Options = [" + codecOptions + "]");
+  String urlprefix=getUrlPrefix(request);
+  int idx=respath.lastIndexOf('/');
+  String name=respath.substring(idx + 1);
+  String codebase=respath.substring(0,idx + 1);
+  jnlpTemplate=substitute(jnlpTemplate,"$$name",name);
+  jnlpTemplate=substitute(jnlpTemplate,"$$jnlpUrl",jnlpUrl);
+  jnlpTemplate=substitute(jnlpTemplate,"$$serverUrl",jnlpUrl);
+  jnlpTemplate=substitute(jnlpTemplate,"$$publishUrl",publishUrl);
+  jnlpTemplate=substitute(jnlpTemplate,"$$fullScreen",fullScreen);
+  jnlpTemplate=substitute(jnlpTemplate,"$$meetingId",meetingId);
+  jnlpTemplate=substitute(jnlpTemplate,"$$streamId",streamId);
+  jnlpTemplate=substitute(jnlpTemplate,"$$codecOptions",codecOptions);
+  jnlpTemplate=substitute(jnlpTemplate,"$$errorMessage",errorMessage);
+  jnlpTemplate=substitute(jnlpTemplate,"$$hostname",request.getServerName());
+  jnlpTemplate=substitute(jnlpTemplate,"$$codebase",urlprefix + request.getContextPath() + codebase);
+  jnlpTemplate=substitute(jnlpTemplate,"$$context",urlprefix + request.getContextPath());
+  jnlpTemplate=substitute(jnlpTemplate,"$$site",urlprefix);
+  log.debug(jnlpTemplate);
+  return jnlpTemplate;
+}

@@ -1,0 +1,4 @@
+{
+  super(option,"Illegal option: '" + suboption + "' in '"+ option+ "'");
+  this.suboption=suboption;
+}

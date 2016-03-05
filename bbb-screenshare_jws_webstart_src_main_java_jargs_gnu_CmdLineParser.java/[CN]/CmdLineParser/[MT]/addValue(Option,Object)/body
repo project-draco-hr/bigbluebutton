@@ -1,0 +1,9 @@
+{
+  String lf=opt.longForm();
+  Vector v=(Vector)values.get(lf);
+  if (v == null) {
+    v=new Vector();
+    values.put(lf,v);
+  }
+  v.addElement(value);
+}

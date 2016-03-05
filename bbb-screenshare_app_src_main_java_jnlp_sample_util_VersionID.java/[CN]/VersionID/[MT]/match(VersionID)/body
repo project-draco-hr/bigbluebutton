@@ -1,0 +1,8 @@
+{
+  if (_isCompound) {
+    if (!_rest.match(vid)) {
+      return false;
+    }
+  }
+  return (_usePrefixMatch) ? this.isPrefixMatch(vid) : (_useGreaterThan) ? vid.isGreaterThanOrEqual(this) : matchTuple(vid);
+}
