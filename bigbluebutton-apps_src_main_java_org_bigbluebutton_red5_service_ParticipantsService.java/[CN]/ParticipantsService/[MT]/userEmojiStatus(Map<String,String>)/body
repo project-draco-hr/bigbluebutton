@@ -3,5 +3,8 @@
   String meetingId=scope.getName();
   String userId=(String)msg.get("userId");
   String emojiStatus=(String)msg.get("emojiStatus");
+  if (StringUtils.isEmpty(emojiStatus)) {
+    emojiStatus="none";
+  }
   red5InGW.userEmojiStatus(meetingId,userId,emojiStatus);
 }
