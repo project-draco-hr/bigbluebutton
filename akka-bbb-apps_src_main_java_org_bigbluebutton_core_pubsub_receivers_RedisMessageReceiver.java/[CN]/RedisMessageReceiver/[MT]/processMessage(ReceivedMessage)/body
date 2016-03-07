@@ -1,0 +1,11 @@
+{
+  Runnable task=new Runnable(){
+    public void run(){
+      for (      MessageHandler l : receivers) {
+        l.handleMessage(msg.getPattern(),msg.getChannel(),msg.getMessage());
+      }
+    }
+  }
+;
+  runExec.execute(task);
+}
