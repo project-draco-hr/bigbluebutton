@@ -2,4 +2,5 @@
   this.bbbGW=bbbGW;
   receivers=new ArrayList<MessageHandler>();
   setupReceivers();
+  start();
 }

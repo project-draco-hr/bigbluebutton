@@ -1,5 +1,4 @@
 {
-  for (  MessageHandler l : receivers) {
-    l.handleMessage(pattern,channel,message);
-  }
+  ReceivedMessage rm=new ReceivedMessage(pattern,channel,message);
+  receivedMessages.add(rm);
 }
