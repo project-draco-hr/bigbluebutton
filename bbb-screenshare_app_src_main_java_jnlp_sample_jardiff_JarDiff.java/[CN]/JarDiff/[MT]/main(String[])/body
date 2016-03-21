@@ -1,0 +1,63 @@
+{
+  boolean diff=true;
+  boolean minimal=true;
+  String outputFile="out.jardiff";
+  for (int counter=0; counter < args.length; counter++) {
+    if (args[counter].equals("-nonminimal") || args[counter].equals("-n")) {
+      minimal=false;
+    }
+ else     if (args[counter].equals("-creatediff") || args[counter].equals("-c")) {
+      diff=true;
+    }
+ else     if (args[counter].equals("-applydiff") || args[counter].equals("-a")) {
+      diff=false;
+    }
+ else     if (args[counter].equals("-debug") || args[counter].equals("-d")) {
+      _debug=true;
+    }
+ else     if (args[counter].equals("-output") || args[counter].equals("-o")) {
+      if (++counter < args.length) {
+        outputFile=args[counter];
+      }
+    }
+ else     if (args[counter].equals("-applydiff") || args[counter].equals("-a")) {
+      diff=false;
+    }
+ else {
+      if ((counter + 2) != args.length) {
+        showHelp();
+        System.exit(0);
+      }
+      if (diff) {
+        try {
+          OutputStream os=new FileOutputStream(outputFile);
+          JarDiff.createPatch(args[counter],args[counter + 1],os,minimal);
+          os.close();
+        }
+ catch (        IOException ioe) {
+          try {
+            System.out.println(getResources().getString("jardiff.error.create") + " " + ioe);
+          }
+ catch (          MissingResourceException mre) {
+          }
+        }
+      }
+ else {
+        try {
+          OutputStream os=new FileOutputStream(outputFile);
+          new JarDiffPatcher().applyPatch(null,args[counter],args[counter + 1],os);
+          os.close();
+        }
+ catch (        IOException ioe) {
+          try {
+            System.out.println(getResources().getString("jardiff.error.apply") + " " + ioe);
+          }
+ catch (          MissingResourceException mre) {
+          }
+        }
+      }
+      System.exit(0);
+    }
+  }
+  showHelp();
+}

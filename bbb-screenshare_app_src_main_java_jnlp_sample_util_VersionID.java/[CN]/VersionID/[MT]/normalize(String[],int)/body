@@ -1,0 +1,11 @@
+{
+  if (list.length < minlength) {
+    String[] newlist=new String[minlength];
+    System.arraycopy(list,0,newlist,0,list.length);
+    Arrays.fill(newlist,list.length,newlist.length,"0");
+    return newlist;
+  }
+ else {
+    return list;
+  }
+}

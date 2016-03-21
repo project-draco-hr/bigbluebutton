@@ -1,0 +1,39 @@
+{
+  System.out.println("Java temp dir : " + System.getProperty("java.io.tmpdir"));
+  System.out.println("Java name : " + System.getProperty("java.vm.name"));
+  System.out.println("OS name : " + System.getProperty("os.name"));
+  System.out.println("OS arch : " + System.getProperty("os.arch"));
+  System.out.println("JNA Path : " + System.getProperty("jna.library.path"));
+  System.out.println("Platform : " + Loader.getPlatform());
+  System.out.println("Capturing w=[" + width + "] h=["+ height+ "] at x=["+ x+ "] y=["+ y+ "]");
+  Map<String,String> codecOptions=splitToMap(ssi.codecOptions,"&","=");
+  Double frameRate=parseFrameRate(codecOptions.get(FRAMERATE_KEY));
+  String platform=Loader.getPlatform();
+  String osName=System.getProperty("os.name").toLowerCase();
+  if (platform.startsWith("windows")) {
+    grabber=setupWindowsGrabber(width,height,x,y);
+    mainRecorder=setupWindowsRecorder(URL,width,height,codecOptions);
+  }
+ else   if (platform.startsWith("linux")) {
+    grabber=setupLinuxGrabber(width,height,x,y);
+    mainRecorder=setupLinuxRecorder(URL,width,height,codecOptions);
+  }
+ else   if (platform.startsWith("macosx-x86_64")) {
+    grabber=setupMacOsXGrabber(width,height,x,y);
+    mainRecorder=setupMacOsXRecorder(URL,width,height,codecOptions);
+  }
+  grabber.setFrameRate(frameRate);
+  try {
+    grabber.start();
+  }
+ catch (  org.bytedeco.javacv.FrameGrabber.Exception e) {
+    e.printStackTrace();
+  }
+  startTime=System.currentTimeMillis();
+  try {
+    mainRecorder.start();
+  }
+ catch (  Exception e1) {
+    e1.printStackTrace();
+  }
+}

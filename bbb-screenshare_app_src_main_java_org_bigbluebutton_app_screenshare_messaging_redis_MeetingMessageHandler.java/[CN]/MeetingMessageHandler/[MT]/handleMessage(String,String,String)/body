@@ -1,0 +1,6 @@
+{
+  if (channel.equalsIgnoreCase(MessagingConstants.TO_MEETING_CHANNEL)) {
+  }
+ else   if (channel.equalsIgnoreCase(MessagingConstants.TO_SYSTEM_CHANNEL)) {
+  }
+}

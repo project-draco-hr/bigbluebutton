@@ -1,0 +1,6 @@
+{
+  if (contains(file,entry)) {
+    return (entry.getName());
+  }
+  return (hasSameContent(file,entry));
+}

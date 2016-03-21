@@ -1,0 +1,120 @@
+{
+  JarFile2 oldJar=new JarFile2(oldPath);
+  JarFile2 newJar=new JarFile2(newPath);
+  try {
+    Iterator entries;
+    HashMap moved=new HashMap();
+    HashSet visited=new HashSet();
+    HashSet implicit=new HashSet();
+    HashSet moveSrc=new HashSet();
+    HashSet newEntries=new HashSet();
+    entries=newJar.getJarEntries();
+    if (entries != null) {
+      while (entries.hasNext()) {
+        JarEntry newEntry=(JarEntry)entries.next();
+        String newname=newEntry.getName();
+        String oldname=oldJar.getBestMatch(newJar,newEntry);
+        if (oldname == null) {
+          if (_debug) {
+            System.out.println("NEW: " + newname);
+          }
+          newEntries.add(newname);
+        }
+ else {
+          if (oldname.equals(newname) && !moveSrc.contains(oldname)) {
+            if (_debug) {
+              System.out.println(newname + " added to implicit set!");
+            }
+            implicit.add(newname);
+          }
+ else {
+            if (!minimal && (implicit.contains(oldname) || moveSrc.contains(oldname))) {
+              if (_debug) {
+                System.out.println("NEW: " + newname);
+              }
+              newEntries.add(newname);
+            }
+ else {
+              if (_debug) {
+                System.err.println("moved.put " + newname + " "+ oldname);
+              }
+              moved.put(newname,oldname);
+              moveSrc.add(oldname);
+            }
+            if (implicit.contains(oldname) && minimal) {
+              if (_debug) {
+                System.err.println("implicit.remove " + oldname);
+                System.err.println("moved.put " + oldname + " "+ oldname);
+              }
+              implicit.remove(oldname);
+              moved.put(oldname,oldname);
+              moveSrc.add(oldname);
+            }
+          }
+        }
+      }
+    }
+    ArrayList deleted=new ArrayList();
+    entries=oldJar.getJarEntries();
+    if (entries != null) {
+      while (entries.hasNext()) {
+        JarEntry oldEntry=(JarEntry)entries.next();
+        String oldName=oldEntry.getName();
+        if (!implicit.contains(oldName) && !moveSrc.contains(oldName) && !newEntries.contains(oldName)) {
+          if (_debug) {
+            System.err.println("deleted.add " + oldName);
+          }
+          deleted.add(oldName);
+        }
+      }
+    }
+    if (_debug) {
+      entries=moved.keySet().iterator();
+      if (entries != null) {
+        System.out.println("MOVED MAP!!!");
+        while (entries.hasNext()) {
+          String newName=(String)entries.next();
+          String oldName=(String)moved.get(newName);
+          System.out.println("key is " + newName + " value is "+ oldName);
+        }
+      }
+      entries=implicit.iterator();
+      if (entries != null) {
+        System.out.println("IMOVE MAP!!!");
+        while (entries.hasNext()) {
+          String newName=(String)entries.next();
+          System.out.println("key is " + newName);
+        }
+      }
+    }
+    JarOutputStream jos=new JarOutputStream(os);
+    createIndex(jos,deleted,moved);
+    entries=newEntries.iterator();
+    if (entries != null) {
+      while (entries.hasNext()) {
+        String newName=(String)entries.next();
+        if (_debug) {
+          System.out.println("New File: " + newName);
+        }
+        writeEntry(jos,newJar.getEntryByName(newName),newJar);
+      }
+    }
+    jos.finish();
+    jos.close();
+  }
+ catch (  IOException ioE) {
+    throw ioE;
+  }
+ finally {
+    try {
+      oldJar.getJarFile().close();
+    }
+ catch (    IOException e1) {
+    }
+    try {
+      newJar.getJarFile().close();
+    }
+ catch (    IOException e1) {
+    }
+  }
+}

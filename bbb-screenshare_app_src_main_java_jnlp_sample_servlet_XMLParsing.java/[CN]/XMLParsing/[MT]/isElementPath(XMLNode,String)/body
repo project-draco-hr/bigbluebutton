@@ -1,0 +1,3 @@
+{
+  return findElementPath(root,path) != null;
+}

@@ -1,0 +1,10 @@
+{
+  if (jnlpExtension != null && jnlpExtension.length() > 0) {
+    if (!jnlpExtension.startsWith("."))     jnlpExtension="." + jnlpExtension;
+    _jnlpExtension=jnlpExtension;
+  }
+  if (jarExtension != null && jarExtension.length() > 0) {
+    if (!jarExtension.startsWith("."))     jarExtension="." + jarExtension;
+    _jarExtension=jarExtension;
+  }
+}

@@ -1,0 +1,7 @@
+{
+  int newWidth=width;
+  if (width % 2 != 0) {
+    newWidth=makeLengthEven(width);
+  }
+  mOverallSize.width=newWidth + BORDER_THICKNESS;
+}

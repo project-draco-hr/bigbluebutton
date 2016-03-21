@@ -1,0 +1,4 @@
+{
+  Object[] messageArguments={arg1,arg2};
+  logEvent(level,applyPattern(key,messageArguments),null);
+}

@@ -1,0 +1,6 @@
+{
+  ByteArrayOutputStream header=new ByteArrayOutputStream();
+  header.write(HEADER);
+  header.write(intToBytes(data.size()));
+  return header.toByteArray();
+}

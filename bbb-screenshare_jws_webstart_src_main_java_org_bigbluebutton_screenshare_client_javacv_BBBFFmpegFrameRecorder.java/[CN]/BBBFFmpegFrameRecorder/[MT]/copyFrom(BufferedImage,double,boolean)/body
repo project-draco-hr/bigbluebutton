@@ -1,0 +1,4 @@
+{
+  Rectangle r=new Rectangle(0,0,image.getWidth(),image.getHeight());
+  copyFrom(image,gamma,flipChannels,r);
+}

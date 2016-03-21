@@ -1,0 +1,5 @@
+{
+  int width=in.getInt();
+  int height=in.getInt();
+  return new Dimension(width,height);
+}

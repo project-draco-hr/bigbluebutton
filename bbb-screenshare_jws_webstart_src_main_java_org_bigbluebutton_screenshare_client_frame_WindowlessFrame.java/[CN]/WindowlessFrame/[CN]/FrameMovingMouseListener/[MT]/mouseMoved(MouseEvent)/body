@@ -1,0 +1,5 @@
+{
+  if (!isBorder) {
+    e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+  }
+}

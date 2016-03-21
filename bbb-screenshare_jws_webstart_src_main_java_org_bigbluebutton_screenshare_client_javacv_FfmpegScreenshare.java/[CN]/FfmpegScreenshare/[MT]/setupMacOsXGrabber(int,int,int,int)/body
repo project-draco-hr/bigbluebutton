@@ -1,0 +1,15 @@
+{
+  String inputDevice="Capture screen 0:none";
+  String videoSize=new Integer(width).toString().concat("x").concat(new Integer(height).toString());
+  System.out.println("Setting up grabber for macosx.");
+  System.out.println("input:" + inputDevice + " videoSize:"+ videoSize);
+  FFmpegFrameGrabber macGrabber=new FFmpegFrameGrabber(inputDevice);
+  macGrabber.setImageWidth(width);
+  macGrabber.setImageHeight(height);
+  macGrabber.setFrameRate(frameRate);
+  macGrabber.setPixelFormat(AV_PIX_FMT_BGR0);
+  macGrabber.setFormat("avfoundation");
+  macGrabber.setOption("capture_cursor","1");
+  macGrabber.setOption("capture_mouse_clicks","1");
+  return macGrabber;
+}

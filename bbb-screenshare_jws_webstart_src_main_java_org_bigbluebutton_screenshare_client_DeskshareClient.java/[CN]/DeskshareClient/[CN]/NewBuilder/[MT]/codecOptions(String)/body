@@ -1,0 +1,4 @@
+{
+  this.codecOptions=options;
+  return this;
+}

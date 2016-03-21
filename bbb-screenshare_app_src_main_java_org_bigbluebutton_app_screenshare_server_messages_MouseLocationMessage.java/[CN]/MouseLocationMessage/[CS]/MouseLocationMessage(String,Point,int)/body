@@ -1,0 +1,5 @@
+{
+  this.room=room;
+  this.loc=loc;
+  this.sequenceNum=sequenceNum;
+}

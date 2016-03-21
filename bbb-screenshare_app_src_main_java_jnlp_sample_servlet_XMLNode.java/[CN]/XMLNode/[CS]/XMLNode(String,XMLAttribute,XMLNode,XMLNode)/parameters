@@ -1,0 +1,4 @@
+String name
+XMLAttribute attr
+XMLNode nested
+XMLNode next

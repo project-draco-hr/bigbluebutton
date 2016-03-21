@@ -1,0 +1,25 @@
+{
+  if (!isElement()) {
+    out.print(_name);
+  }
+ else {
+    if (_nested == null) {
+      String attrString=(_attr == null) ? "" : (" " + _attr.toString());
+      lineln(out,n,"<" + _name + attrString+ "/>");
+    }
+ else {
+      String attrString=(_attr == null) ? "" : (" " + _attr.toString());
+      lineln(out,n,"<" + _name + attrString+ ">");
+      _nested.printToStream(out,n + 1);
+      if (_nested.isElement()) {
+        lineln(out,n,"</" + _name + ">");
+      }
+ else {
+        out.print("</" + _name + ">");
+      }
+    }
+  }
+  if (_next != null) {
+    _next.printToStream(out,n);
+  }
+}

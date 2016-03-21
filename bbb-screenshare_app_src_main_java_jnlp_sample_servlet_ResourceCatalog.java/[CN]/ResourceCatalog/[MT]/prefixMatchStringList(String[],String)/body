@@ -1,0 +1,8 @@
+{
+  if (prefixList == null)   return true;
+  if (target == null)   return false;
+  for (int i=0; i < prefixList.length; i++) {
+    if (target.startsWith(prefixList[i]))     return true;
+  }
+  return false;
+}

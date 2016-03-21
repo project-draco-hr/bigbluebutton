@@ -1,0 +1,4 @@
+{
+  trayIcon.setToolTip("Disconnected");
+  trayIcon.displayMessage("Deskshare Disconnected","You're disconnected from desktop sharing",TrayIcon.MessageType.ERROR);
+}

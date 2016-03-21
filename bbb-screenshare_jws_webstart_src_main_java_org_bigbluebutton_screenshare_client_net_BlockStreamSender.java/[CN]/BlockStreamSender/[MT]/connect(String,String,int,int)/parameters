@@ -1,0 +1,4 @@
+String host
+String meetingId
+int width
+int height

@@ -1,0 +1,16 @@
+{
+  System.out.println("Setting up grabber for windows.");
+  FFmpegFrameGrabber winGrabber=new FFmpegFrameGrabber("desktop");
+  winGrabber.setImageWidth(width);
+  winGrabber.setImageHeight(height);
+  if (ssi.fullScreen) {
+    winGrabber.setOption("offset_x",new Integer(0).toString());
+    winGrabber.setOption("offset_y",new Integer(0).toString());
+  }
+ else {
+    winGrabber.setOption("offset_x",new Integer(x).toString());
+    winGrabber.setOption("offset_y",new Integer(y).toString());
+  }
+  winGrabber.setFormat("gdigrab");
+  return winGrabber;
+}

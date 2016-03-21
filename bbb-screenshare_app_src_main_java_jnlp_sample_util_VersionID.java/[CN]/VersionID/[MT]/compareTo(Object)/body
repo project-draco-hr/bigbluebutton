@@ -1,0 +1,5 @@
+{
+  if (o == null || !(o instanceof VersionID))   return -1;
+  VersionID vid=(VersionID)o;
+  return equals(vid) ? 0 : (isGreaterThanOrEqual(vid) ? 1 : -1);
+}
