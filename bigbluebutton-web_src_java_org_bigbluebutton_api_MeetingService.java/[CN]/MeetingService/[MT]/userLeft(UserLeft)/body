@@ -16,9 +16,6 @@
       Gson gson=new Gson();
       String logStr=gson.toJson(logData);
       log.info("User left meeting: data={}",logStr);
-      if (m.getNumUsers() == 0) {
-        m.setEndTime(System.currentTimeMillis());
-      }
       return;
     }
     return;

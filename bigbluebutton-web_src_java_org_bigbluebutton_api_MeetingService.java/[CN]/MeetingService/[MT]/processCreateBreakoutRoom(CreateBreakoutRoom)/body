@@ -1,0 +1,14 @@
+{
+  Map<String,String> params=new HashMap<String,String>();
+  params.put("name",message.name);
+  params.put("breakoutId",message.breakoutId);
+  params.put("meetingID",message.parentId);
+  params.put("isBreakout","true");
+  params.put("attendeePW",message.viewerPassword);
+  params.put("moderatorPW",message.moderatorPassword);
+  params.put("voiceBridge",message.voiceConfId);
+  params.put("duration",message.durationInMinutes.toString());
+  Meeting breakout=paramsProcessorUtil.processCreateParams(params);
+  presDownloadService.downloadAndProcessDocument(message.defaultPresentationURL,breakout.getInternalId());
+  handleCreateMeeting(breakout);
+}
