@@ -1,6 +1,0 @@
-{
-  this.meetingId=meetingId;
-  this.breakoutId=breakoutId;
-  this.userId=userId;
-  this.listen=listen;
-}

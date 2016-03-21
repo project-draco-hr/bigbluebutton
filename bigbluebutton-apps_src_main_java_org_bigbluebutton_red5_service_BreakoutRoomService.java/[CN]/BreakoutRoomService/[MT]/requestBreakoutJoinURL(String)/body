@@ -1,3 +1,0 @@
-{
-  red5GW.requestBreakoutJoinURL(addHeaderToMessage(jsonMessage,"RequestBreakoutJoinURL"));
-}

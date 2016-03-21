@@ -1,10 +1,16 @@
 {
-  File dir=new File(path);
-  FileFilter fileFilter=new FileFilter(){
-    public boolean accept(    File file){
-      return file.isDirectory();
+  List<File> files=new ArrayList<File>();
+  try {
+    DirectoryStream<Path> stream=Files.newDirectoryStream(FileSystems.getDefault().getPath(path));
+    Iterator<Path> iter=stream.iterator();
+    while (iter.hasNext()) {
+      Path next=iter.next();
+      files.add(next.toFile());
     }
+    stream.close();
   }
-;
-  return dir.listFiles(fileFilter);
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+  return files;
 }

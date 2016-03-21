@@ -1,3 +1,0 @@
-{
-  return getRecordingInfo(publishedDir,recordingId,format);
-}
