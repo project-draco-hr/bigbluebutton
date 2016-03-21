@@ -118,6 +118,15 @@ break;
 case LockLayoutMessage.LOCK_LAYOUT:
 processLockLayoutMessage(message);
 break;
+case UserEjectedFromMeetingMessage.USER_EJECTED_FROM_MEETING:
+processUserEjectedFromMeetingMessage(message);
+break;
+case BreakoutRoomsList.NAME:
+BreakoutRoomsList brl=gson.fromJson(message,BreakoutRoomsList.class);
+if (brl != null) {
+processBreakoutRoomsList(brl);
+}
+break;
 case BreakoutRoomJoinURL.NAME:
 BreakoutRoomJoinURL brjum=gson.fromJson(message,BreakoutRoomJoinURL.class);
 if (brjum != null) {
@@ -140,6 +149,12 @@ case BreakoutRoomStarted.NAME:
 BreakoutRoomStarted brsm=gson.fromJson(message,BreakoutRoomStarted.class);
 if (brsm != null) {
 processBreakoutRoomStarted(brsm);
+}
+break;
+case BreakoutRoomClosed.NAME:
+BreakoutRoomClosed brcm=gson.fromJson(message,BreakoutRoomClosed.class);
+if (brcm != null) {
+processBreakoutRoomClosed(brcm);
 }
 break;
 }

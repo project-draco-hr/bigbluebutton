@@ -1,0 +1,10 @@
+{
+  List<String> publishList=getAllRecordingIds(publishedDir);
+  List<String> unpublishList=getAllRecordingIds(unpublishedDir);
+  for (  String id : idList) {
+    if (publishList.contains(id) || unpublishList.contains(id)) {
+      return true;
+    }
+  }
+  return false;
+}

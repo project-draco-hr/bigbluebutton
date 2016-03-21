@@ -1,11 +1,24 @@
 {
+  boolean matchesMetadata=true;
   for (  Map.Entry<String,String> filter : metadataFilters.entrySet()) {
     String metadataValue=recording.getMetadata().get(filter.getKey());
-    if (metadataValue != null && metadataValue.equals(filter.getValue())) {
+    if (metadataValue == null) {
+      matchesMetadata=false;
     }
  else {
-      return false;
+      String filterValue=filter.getValue();
+      if (filterValue.charAt(0) == '%' && filterValue.charAt(filterValue.length() - 1) == '%' && metadataValue.contains(filterValue.substring(1,filterValue.length() - 1))) {
+      }
+ else       if (filterValue.charAt(0) == '%' && metadataValue.endsWith(filterValue.substring(1,filterValue.length()))) {
+      }
+ else       if (filterValue.charAt(filterValue.length() - 1) == '%' && metadataValue.startsWith(filterValue.substring(0,filterValue.length() - 1))) {
+      }
+ else       if (metadataValue.equals(filterValue)) {
+      }
+ else {
+        matchesMetadata=false;
+      }
     }
   }
-  return true;
+  return matchesMetadata;
 }

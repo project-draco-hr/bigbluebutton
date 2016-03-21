@@ -9,7 +9,6 @@
  else       if (command instanceof MuteUserCommand) {
         MuteUserCommand cmd=(MuteUserCommand)command;
         System.out.println("Sending MuteParticipantCommand for conference = [" + cmd.getRoom() + "]");
-        System.out.println("Sending MuteParticipantCommand for conference = [" + cmd.getRoom() + "]");
         manager.mute(cmd);
       }
  else       if (command instanceof EjectUserCommand) {
@@ -21,6 +20,11 @@
         EjectAllUsersCommand cmd=(EjectAllUsersCommand)command;
         System.out.println("Sending EjectAllUsersCommand for conference = [" + cmd.getRoom() + "]");
         manager.ejectAll(cmd);
+      }
+ else       if (command instanceof TransferUsetToMeetingCommand) {
+        TransferUsetToMeetingCommand cmd=(TransferUsetToMeetingCommand)command;
+        System.out.println("Sending TransferUsetToMeetingCommand for conference = [" + cmd.getRoom() + "]");
+        manager.tranfer(cmd);
       }
  else       if (command instanceof RecordConferenceCommand) {
         manager.record((RecordConferenceCommand)command);

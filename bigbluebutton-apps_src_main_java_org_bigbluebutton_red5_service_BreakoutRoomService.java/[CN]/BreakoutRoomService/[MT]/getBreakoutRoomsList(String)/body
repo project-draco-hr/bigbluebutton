@@ -1,0 +1,3 @@
+{
+  red5GW.getBreakoutRoomsList(addHeaderToMessage(jsonMessage,GetBreakoutRoomsList.NAME));
+}

@@ -1,4 +1,0 @@
-{
-  deleteRecording(recordingId,publishedDir);
-  deleteRecording(recordingId,unpublishedDir);
-}
