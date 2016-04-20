@@ -1,0 +1,9 @@
+{
+  this.meetingID=meetingID;
+  this.internalUserId=internalUserId;
+  this.fullname=fullname;
+  this.role=role;
+  this.externUserID=externUserID;
+  this.authToken=authToken;
+  this.avatarURL=avatarURL;
+}
