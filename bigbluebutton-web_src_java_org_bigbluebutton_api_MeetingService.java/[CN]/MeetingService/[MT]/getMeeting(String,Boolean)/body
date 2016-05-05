@@ -1,0 +1,7 @@
+{
+  if (meetingId == null)   return null;
+  for (  String key : meetings.keySet()) {
+    if ((!exactMatch && key.startsWith(meetingId)) || (exactMatch && key.equals(meetingId)))     return (Meeting)meetings.get(key);
+  }
+  return null;
+}
