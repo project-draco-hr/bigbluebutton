@@ -1,0 +1,3 @@
+{
+  this.registeredUsers.put(user.getInternalUserId(),user);
+}

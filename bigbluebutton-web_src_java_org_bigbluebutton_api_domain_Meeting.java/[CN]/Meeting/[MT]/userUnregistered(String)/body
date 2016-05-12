@@ -1,0 +1,5 @@
+{
+  String internalUserIDSeed=userid.split("_")[0];
+  User u=(User)this.registeredUsers.remove(internalUserIDSeed);
+  return u;
+}
