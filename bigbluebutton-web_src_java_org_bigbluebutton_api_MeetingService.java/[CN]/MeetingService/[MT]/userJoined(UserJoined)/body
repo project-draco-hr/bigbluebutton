@@ -1,7 +1,7 @@
 {
   Meeting m=getMeeting(message.meetingId);
   if (m != null) {
-    User user=new User(message.userId,message.externalUserId,message.name,message.role);
+    User user=new User(message.userId,message.externalUserId,message.name,message.role,message.avatarURL);
     m.userJoined(user);
     Map<String,Object> logData=new HashMap<String,Object>();
     logData.put("meetingId",m.getInternalId());

@@ -1,0 +1,5 @@
+{
+  super(room,requesterId);
+  this.timestamp=timestamp;
+  this.fsConferenceName=fsConferenceName;
+}

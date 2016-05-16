@@ -1,0 +1,4 @@
+String voiceConfId
+String streamUrl
+String timestamp
+Boolean broadcast

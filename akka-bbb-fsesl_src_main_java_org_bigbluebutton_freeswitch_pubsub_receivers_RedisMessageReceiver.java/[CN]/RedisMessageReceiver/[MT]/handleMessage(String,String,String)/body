@@ -28,6 +28,18 @@ break;
 case StopRecordingVoiceConfRequestMessage.STOP_RECORD_VOICE_CONF_REQUEST:
 processStopRecordingVoiceConfRequestMessage(message);
 break;
+case DeskShareStartRTMPBroadcastEventMessage.DESKSHARE_START_RTMP_BROADCAST_MESSAGE:
+System.out.println("RedisMessageReceiver got DESKSHARE_START_RTMP_BROADCAST_MESSAGE");
+processDeskShareStartRTMPBroadcastEventMessage(message);
+break;
+case DeskShareStopRTMPBroadcastEventMessage.DESKSHARE_STOP_RTMP_BROADCAST_MESSAGE:
+System.out.println("RedisMessageReceiver got DESKSHARE_STOP_RTMP_BROADCAST_MESSAGE");
+processDeskShareStopRTMPBroadcastEventMessage(message);
+break;
+case DeskShareHangUpEventMessage.DESKSHARE_HANG_UP_MESSAGE:
+System.out.println("RedisMessageReceiver got DESKSHARE_HANG_UP_MESSAGE");
+processDeskShareHangUpEventMessage(message);
+break;
 }
 }
 }

@@ -1,3 +1,4 @@
 {
+  log.info("\nStunTurnService::getStunServers \n");
   return stunServers;
 }
