@@ -1,0 +1,4 @@
+{
+  Date now=new java.util.Date();
+  this.registeredUsers.put(internalUserID,now);
+}

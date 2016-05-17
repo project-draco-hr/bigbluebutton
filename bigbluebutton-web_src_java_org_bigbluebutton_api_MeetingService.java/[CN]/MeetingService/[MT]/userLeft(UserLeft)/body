@@ -19,8 +19,8 @@
       if (m.getNumUsers() == 0) {
         m.setEndTime(System.currentTimeMillis());
       }
-      User userRegistered=m.userUnregistered(message.userId);
-      if (user != null) {
+      Date userRegistered=m.userUnregistered(message.userId);
+      if (userRegistered != null) {
         log.info("User unregistered from meeting");
       }
  else {

@@ -19,6 +19,6 @@
   createdTime=builder.createdTime;
   userCustomData=new HashMap<String,Object>();
   users=new ConcurrentHashMap<String,User>();
-  registeredUsers=new ConcurrentHashMap<String,User>();
+  registeredUsers=new ConcurrentHashMap<String,Date>();
   configs=new ConcurrentHashMap<String,Config>();
 }
