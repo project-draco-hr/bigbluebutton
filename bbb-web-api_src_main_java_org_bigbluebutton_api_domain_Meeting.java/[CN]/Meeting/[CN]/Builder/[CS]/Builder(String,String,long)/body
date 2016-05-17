@@ -1,0 +1,5 @@
+{
+  this.externalId=externalId;
+  this.internalId=internalId;
+  this.createdTime=createTime;
+}

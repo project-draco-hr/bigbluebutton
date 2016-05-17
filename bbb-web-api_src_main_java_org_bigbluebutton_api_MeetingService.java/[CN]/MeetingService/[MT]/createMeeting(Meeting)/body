@@ -1,0 +1,3 @@
+{
+  handle(new CreateMeeting(m));
+}

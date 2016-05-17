@@ -1,0 +1,5 @@
+{
+  this.returnCode=returnCode;
+  this.messageKey=messageKey;
+  this.message=message;
+}

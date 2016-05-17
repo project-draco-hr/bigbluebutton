@@ -1,0 +1,6 @@
+{
+  Meeting m=getMeeting(meetingId);
+  if (m != null) {
+    m.addUserCustomData(userID,userCustomData);
+  }
+}

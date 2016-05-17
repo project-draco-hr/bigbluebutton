@@ -1,0 +1,3 @@
+{
+  processEndMeeting(new EndMeeting(message.breakoutId));
+}

@@ -1,0 +1,8 @@
+{
+  this.pollID=generatePollID(meetingID);
+  this.meetingID=meetingID;
+  this.title=title;
+  this.question=question;
+  this.datetime=Long.toString(System.currentTimeMillis());
+  this.answers=new HashMap<String,String>();
+}

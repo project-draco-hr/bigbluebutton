@@ -1,0 +1,42 @@
+{
+  boolean success=true;
+  String source=pres.getUploadedFile().getAbsolutePath();
+  String dest;
+  String COMMAND="";
+  if (SupportedFileTypes.isImageFile(pres.getFileType())) {
+    dest=textfilesDir.getAbsolutePath() + File.separator + "slide-1.txt";
+    String text="No text could be retrieved for the slide";
+    File file=new File(dest);
+    Writer writer=null;
+    try {
+      writer=new BufferedWriter(new FileWriter(file));
+      writer.write(text);
+    }
+ catch (    IOException e) {
+      log.error("Error: " + e.getMessage());
+      success=false;
+    }
+ finally {
+      try {
+        writer.close();
+      }
+ catch (      IOException e) {
+        log.error("Error: " + e.getMessage());
+        success=false;
+      }
+    }
+  }
+ else {
+    dest=textfilesDir.getAbsolutePath() + File.separator + "slide-";
+    for (int i=1; i <= pres.getNumberOfPages(); i++) {
+      COMMAND=IMAGEMAGICK_DIR + "/pdftotext -raw -nopgbrk -f " + i+ " -l "+ i+ " "+ source+ " "+ dest+ i+ ".txt";
+      boolean done=new ExternalProcessExecutor().exec(COMMAND,60000);
+      if (!done) {
+        success=false;
+        log.warn("Failed to create textfiles: " + COMMAND);
+        break;
+      }
+    }
+  }
+  return success;
+}

@@ -1,0 +1,33 @@
+{
+  Meeting m=getMeeting(message.meetingId);
+  if (m != null) {
+    User user=m.userLeft(message.userId);
+    if (user != null) {
+      Map<String,Object> logData=new HashMap<String,Object>();
+      logData.put("meetingId",m.getInternalId());
+      logData.put("externalMeetingId",m.getExternalId());
+      logData.put("name",m.getName());
+      logData.put("userId",message.userId);
+      logData.put("externalUserId",user.getExternalUserId());
+      logData.put("username",user.getFullname());
+      logData.put("role",user.getRole());
+      logData.put("event","user_left_message");
+      logData.put("description","User had left the meeting.");
+      Gson gson=new Gson();
+      String logStr=gson.toJson(logData);
+      log.info("User left meeting: data={}",logStr);
+      if (m.getNumUsers() == 0) {
+        m.setEndTime(System.currentTimeMillis());
+      }
+      Long userRegistered=m.userUnregistered(message.userId);
+      if (userRegistered != null) {
+        log.info("User unregistered from meeting");
+      }
+ else {
+        log.info("User was not unregistered from meeting because it was not found");
+      }
+      return;
+    }
+    return;
+  }
+}

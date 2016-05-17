@@ -1,0 +1,4 @@
+{
+  notifier.sendCreatingSvgImagesUpdateMessage(pres);
+  svgImageCreator.createSvgImages(pres);
+}

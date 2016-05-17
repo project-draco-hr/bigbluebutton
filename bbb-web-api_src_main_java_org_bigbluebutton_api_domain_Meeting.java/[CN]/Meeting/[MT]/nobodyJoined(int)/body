@@ -1,0 +1,5 @@
+{
+  if (expiry == 0)   return false;
+  long now=System.currentTimeMillis();
+  return (!userHasJoined && (now - createdTime) > (expiry * MILLIS_IN_A_MINUTE));
+}

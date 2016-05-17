@@ -1,0 +1,4 @@
+{
+  Jedis jedis=jedisPool.getResource();
+  String pattern=getPollRedisPattern(meetingID);
+}

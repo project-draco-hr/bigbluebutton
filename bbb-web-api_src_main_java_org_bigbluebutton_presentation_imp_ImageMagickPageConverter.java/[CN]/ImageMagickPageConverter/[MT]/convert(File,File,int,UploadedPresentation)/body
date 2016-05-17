@@ -1,0 +1,11 @@
+{
+  String COMMAND=IMAGEMAGICK_DIR + "/convert -depth 8 " + presentationFile.getAbsolutePath()+ " "+ output.getAbsolutePath();
+  boolean done=new ExternalProcessExecutor().exec(COMMAND,60000);
+  if (done && output.exists()) {
+    return true;
+  }
+ else {
+    log.warn("Failed to convert: " + output.getAbsolutePath() + " does not exist.");
+    return false;
+  }
+}

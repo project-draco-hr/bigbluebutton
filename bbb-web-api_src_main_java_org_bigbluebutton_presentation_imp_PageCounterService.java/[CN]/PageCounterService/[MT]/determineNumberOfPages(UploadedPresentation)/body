@@ -1,0 +1,12 @@
+{
+  int numberOfPages=0;
+  if (SupportedFileTypes.isPdfFile(pres.getFileType())) {
+    numberOfPages=countPages(pres);
+  }
+ else   if (SupportedFileTypes.isImageFile(pres.getFileType())) {
+    numberOfPages=1;
+  }
+  if (isNumberOfPagesValid(numberOfPages)) {
+    pres.setNumberOfPages(numberOfPages);
+  }
+}

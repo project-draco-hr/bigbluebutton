@@ -1,0 +1,4 @@
+{
+  Recording rec=recordingServiceHelper.getRecordingInfo(dir);
+  return rec;
+}
