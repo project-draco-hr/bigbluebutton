@@ -1,0 +1,3 @@
+UploadedPresentation pres
+List<PdfToSwfSlide> slides
+CompletionService<PdfToSwfSlide> completionService

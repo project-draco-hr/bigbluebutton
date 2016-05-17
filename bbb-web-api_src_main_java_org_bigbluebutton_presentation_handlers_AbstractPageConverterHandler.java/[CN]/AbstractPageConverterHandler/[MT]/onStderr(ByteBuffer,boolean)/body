@@ -1,0 +1,6 @@
+{
+  if (buffer != null) {
+    CharBuffer charBuffer=StandardCharsets.UTF_8.decode(buffer);
+    stderrBuilder.append(charBuffer);
+  }
+}

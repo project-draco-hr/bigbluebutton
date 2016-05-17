@@ -1,0 +1,62 @@
+{
+  String meetingName=params.get("name");
+  if (meetingName == null) {
+    meetingName="";
+  }
+  String externalMeetingId=params.get("meetingID");
+  String viewerPass=processPassword(params.get("attendeePW"));
+  String modPass=processPassword(params.get("moderatorPW"));
+  String telVoice=processTelVoice(params.get("voiceBridge"));
+  String webVoice=params.get("webVoice");
+  if (StringUtils.isEmpty(webVoice)) {
+    webVoice=telVoice;
+  }
+  String dialNumber=processDialNumber(params.get("dialNumber"));
+  String logoutUrl=processLogoutUrl(params.get("logoutURL"));
+  boolean record=processRecordMeeting(params.get("record"));
+  int maxUsers=processMaxUser(params.get("maxParticipants"));
+  int meetingDuration=processMeetingDuration(params.get("duration"));
+  String welcomeMessage=processWelcomeMessage(params.get("welcome"));
+  welcomeMessage=substituteKeywords(welcomeMessage,dialNumber,telVoice,meetingName);
+  boolean isBreakout=false;
+  if (!StringUtils.isEmpty(params.get("isBreakout"))) {
+    isBreakout=new Boolean(params.get("isBreakout"));
+  }
+  String internalMeetingId=convertToInternalMeetingId(externalMeetingId);
+  if (isTestMeeting(telVoice)) {
+    internalMeetingId=getIntMeetingIdForTestMeeting(telVoice);
+  }
+  boolean autoStartRec=autoStartRecording;
+  if (!StringUtils.isEmpty(params.get("autoStartRecording"))) {
+    try {
+      autoStartRec=Boolean.parseBoolean(params.get("autoStartRecording"));
+    }
+ catch (    Exception ex) {
+      log.warn("Invalid param [autoStartRecording] for meeting=[" + internalMeetingId + "]");
+    }
+  }
+  boolean allowStartStoptRec=allowStartStopRecording;
+  if (!StringUtils.isEmpty(params.get("allowStartStopRecording"))) {
+    try {
+      allowStartStoptRec=Boolean.parseBoolean(params.get("allowStartStopRecording"));
+    }
+ catch (    Exception ex) {
+      log.warn("Invalid param [allowStartStopRecording] for meeting=[" + internalMeetingId + "]");
+    }
+  }
+  Map<String,String> meetingInfo=new HashMap<String,String>();
+  meetingInfo=processMetaParam(params);
+  long createTime=System.currentTimeMillis();
+  internalMeetingId=internalMeetingId + '-' + new Long(createTime).toString();
+  if (isBreakout) {
+    internalMeetingId=params.get("breakoutId");
+  }
+  Meeting meeting=new Meeting.Builder(externalMeetingId,internalMeetingId,createTime).withName(meetingName).withMaxUsers(maxUsers).withModeratorPass(modPass).withViewerPass(viewerPass).withRecording(record).withDuration(meetingDuration).withLogoutUrl(logoutUrl).withTelVoice(telVoice).withWebVoice(webVoice).withDialNumber(dialNumber).withDefaultAvatarURL(defaultAvatarURL).withAutoStartRecording(autoStartRec).withAllowStartStopRecording(allowStartStoptRec).withMetadata(meetingInfo).withWelcomeMessage(welcomeMessage).isBreakout(isBreakout).build();
+  String configXML=getDefaultConfigXML();
+  meeting.storeConfig(true,configXML);
+  if (!StringUtils.isEmpty(params.get("moderatorOnlyMessage"))) {
+    String moderatorOnlyMessage=params.get("moderatorOnlyMessage");
+    meeting.setModeratorOnlyMessage(moderatorOnlyMessage);
+  }
+  return meeting;
+}

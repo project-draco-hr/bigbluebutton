@@ -1,0 +1,8 @@
+{
+  String welcomeMessage=message;
+  if (StringUtils.isEmpty(message)) {
+    welcomeMessage=defaultWelcomeMessage;
+  }
+  if (!StringUtils.isEmpty(defaultWelcomeMessageFooter))   welcomeMessage+="<br><br>" + defaultWelcomeMessageFooter;
+  return welcomeMessage;
+}

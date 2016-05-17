@@ -1,0 +1,10 @@
+{
+  if (meetingId == null)   return null;
+  for (  String key : meetings.keySet()) {
+    if (key.startsWith(meetingId)) {
+      Meeting m=(Meeting)meetings.get(key);
+      if (!m.isForciblyEnded())       return m;
+    }
+  }
+  return null;
+}

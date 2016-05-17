@@ -1,0 +1,6 @@
+{
+  this.meetingId=meetingId;
+  this.id=id;
+  this.name=name;
+  this.baseUrl=baseUrl;
+}

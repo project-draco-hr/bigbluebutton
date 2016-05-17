@@ -1,0 +1,6 @@
+{
+  if (numberOfPages > maxNumPages) {
+    return true;
+  }
+  return false;
+}

@@ -1,0 +1,4 @@
+{
+  String json=encoder.encodePubSubPingMessage("BbbWeb",System.currentTimeMillis());
+  sender.send(MessagingConstants.TO_SYSTEM_CHANNEL,json);
+}

@@ -1,0 +1,4 @@
+{
+  String sid=messagingService.storeSubscription(meetingId,event,callbackURL);
+  return sid;
+}

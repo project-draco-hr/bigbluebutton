@@ -1,0 +1,10 @@
+{
+  for (  String id : idList) {
+    if (publish) {
+      recordingService.changeState(id,Recording.STATE_PUBLISHED);
+    }
+ else {
+      recordingService.changeState(id,Recording.STATE_UNPUBLISHED);
+    }
+  }
+}

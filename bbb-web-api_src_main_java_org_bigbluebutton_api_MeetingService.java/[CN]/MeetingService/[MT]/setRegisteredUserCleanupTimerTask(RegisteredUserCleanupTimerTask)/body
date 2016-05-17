@@ -1,0 +1,5 @@
+{
+  registeredUserCleaner=c;
+  registeredUserCleaner.setMeetingService(this);
+  registeredUserCleaner.start();
+}

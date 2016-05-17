@@ -1,0 +1,4 @@
+{
+  this.allowStartStopRecording=allow;
+  return this;
+}

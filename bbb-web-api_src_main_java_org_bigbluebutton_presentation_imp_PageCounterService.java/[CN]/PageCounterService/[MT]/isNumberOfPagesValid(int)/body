@@ -1,0 +1,9 @@
+{
+  if (numberOfPages <= 0) {
+    throw new CountingPageException(CountingPageException.ExceptionType.PAGE_COUNT_EXCEPTION,0,maxNumPages);
+  }
+  if (checkIfNumberOfPagesExceedsLimit(numberOfPages)) {
+    throw new CountingPageException(CountingPageException.ExceptionType.PAGE_EXCEEDED_EXCEPTION,numberOfPages,maxNumPages);
+  }
+  return true;
+}

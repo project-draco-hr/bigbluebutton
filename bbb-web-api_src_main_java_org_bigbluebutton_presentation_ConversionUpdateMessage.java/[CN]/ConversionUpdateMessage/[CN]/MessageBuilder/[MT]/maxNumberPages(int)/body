@@ -1,0 +1,4 @@
+{
+  message.put("maxNumberPages",maxNumberPages);
+  return this;
+}

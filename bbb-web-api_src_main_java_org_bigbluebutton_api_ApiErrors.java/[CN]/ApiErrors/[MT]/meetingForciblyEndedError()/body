@@ -1,0 +1,3 @@
+{
+  errors.add(new String[]{"meetingForciblyEnded","You can not re-join a meeting that has already been forcibly ended."});
+}

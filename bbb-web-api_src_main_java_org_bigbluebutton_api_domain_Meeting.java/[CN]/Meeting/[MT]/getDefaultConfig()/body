@@ -1,0 +1,6 @@
+{
+  if (defaultConfigToken != null) {
+    return getConfig(defaultConfigToken);
+  }
+  return null;
+}
