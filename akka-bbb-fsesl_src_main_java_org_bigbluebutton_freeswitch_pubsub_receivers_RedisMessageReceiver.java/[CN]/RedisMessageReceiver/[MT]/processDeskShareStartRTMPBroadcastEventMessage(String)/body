@@ -1,0 +1,4 @@
+{
+  DeskShareStartRTMPBroadcastEventMessage msg=DeskShareStartRTMPBroadcastEventMessage.fromJson(json);
+  fsApp.deskShareBroadcastRTMP(msg.conferenceName,msg.streamUrl,msg.timestamp,true);
+}

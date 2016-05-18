@@ -1,0 +1,11 @@
+{
+  if (aTurn.has(Constants.USERNAME) && aTurn.has(Constants.TTL) && aTurn.has(Constants.URL)&& aTurn.has(Constants.PASSWORD)) {
+    Map<String,Object> turnMap=new HashMap<String,Object>();
+    turnMap.put(Constants.USERNAME,aTurn.get(Constants.USERNAME).getAsString());
+    turnMap.put(Constants.URL,aTurn.get(Constants.URL).getAsString());
+    turnMap.put(Constants.PASSWORD,aTurn.get(Constants.PASSWORD).getAsString());
+    turnMap.put(Constants.TTL,aTurn.get(Constants.TTL).getAsInt());
+    return turnMap;
+  }
+  return null;
+}

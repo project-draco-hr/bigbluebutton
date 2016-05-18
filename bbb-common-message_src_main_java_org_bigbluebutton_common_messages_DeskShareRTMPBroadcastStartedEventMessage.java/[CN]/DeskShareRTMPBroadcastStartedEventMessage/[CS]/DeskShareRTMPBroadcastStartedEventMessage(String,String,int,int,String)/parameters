@@ -1,0 +1,5 @@
+String conferenceName
+String streamname
+int vw
+int vh
+String timestamp

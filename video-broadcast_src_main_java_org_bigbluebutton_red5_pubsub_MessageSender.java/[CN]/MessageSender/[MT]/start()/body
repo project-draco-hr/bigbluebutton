@@ -1,0 +1,24 @@
+{
+  log.info("Redis message publisher starting!");
+  try {
+    sendMessage=true;
+    Runnable messageSender=new Runnable(){
+      public void run(){
+        while (sendMessage) {
+          try {
+            MessageToSend msg=messages.take();
+            publish(msg.getChannel(),msg.getMessage());
+          }
+ catch (          InterruptedException e) {
+            log.warn("Failed to get message from queue.");
+          }
+        }
+      }
+    }
+;
+    msgSenderExec.execute(messageSender);
+  }
+ catch (  Exception e) {
+    log.error("Error subscribing to channels: " + e.getMessage());
+  }
+}
