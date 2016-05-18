@@ -1,0 +1,10 @@
+{
+  UserEjectedFromMeetingMessage msg=UserEjectedFromMeetingMessage.fromJson(message);
+  if (msg != null) {
+    Map<String,Object> args=new HashMap<String,Object>();
+    args.put("ejectedBy",msg.ejectedBy);
+    System.out.println("**** User [" + msg.userId + "] was ejected by ["+ msg.ejectedBy+ "]");
+    DirectClientMessage m=new DirectClientMessage(msg.meetingId,msg.userId,"userEjectedFromMeeting",args);
+    service.sendMessage(m);
+  }
+}

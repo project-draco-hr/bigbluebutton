@@ -1,11 +1,16 @@
 {
-  Set<IConnection> conns=scope.getClientConnections();
-  for (  IConnection conn : conns) {
+  Set<IConnection> conns=new HashSet<IConnection>();
+  for (  IConnection conn : scope.getClientConnections()) {
     String connID=(String)conn.getAttribute("USER_SESSION_ID");
     if (connID != null && connID.equals(userID)) {
-      return conn;
+      conns.add(conn);
     }
   }
-  log.warn("Failed to get connection for userId = " + userID);
-  return null;
+  if (!conns.isEmpty()) {
+    return getLastConnection(conns);
+  }
+ else {
+    log.warn("Failed to get connection for userId = " + userID);
+    return null;
+  }
 }

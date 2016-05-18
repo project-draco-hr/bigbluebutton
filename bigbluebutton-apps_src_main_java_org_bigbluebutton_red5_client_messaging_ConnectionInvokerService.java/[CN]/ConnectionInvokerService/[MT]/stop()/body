@@ -1,3 +1,4 @@
 {
   sendMessages=false;
+  runExec.shutdown();
 }
