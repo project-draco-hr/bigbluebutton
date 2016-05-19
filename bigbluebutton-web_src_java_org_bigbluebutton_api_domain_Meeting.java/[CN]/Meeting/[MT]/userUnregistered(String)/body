@@ -1,5 +1,5 @@
 {
   String internalUserIDSeed=userid.split("_")[0];
-  Date r=(Date)this.registeredUsers.remove(internalUserIDSeed);
+  Long r=(Long)this.registeredUsers.remove(internalUserIDSeed);
   return r;
 }

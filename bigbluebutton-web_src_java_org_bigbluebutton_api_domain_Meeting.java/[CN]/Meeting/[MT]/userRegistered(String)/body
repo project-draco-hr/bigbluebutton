@@ -1,4 +1,3 @@
 {
-  Date now=new java.util.Date();
-  this.registeredUsers.put(internalUserID,now);
+  this.registeredUsers.put(internalUserID,new Long(System.nanoTime()));
 }
