@@ -21,7 +21,7 @@
         voiceUserId=matcher.group(1).trim();
         callerIdName=matcher.group(2).trim();
       }
-      pj=new VoiceUserJoinedEvent(voiceUserId,member.getId().toString(),confXML.getConferenceRoom(),callerId,callerIdName,member.getMuted(),member.getSpeaking());
+      pj=new VoiceUserJoinedEvent(voiceUserId,member.getId().toString(),confXML.getConferenceRoom(),callerId,callerIdName,member.getMuted(),member.getSpeaking(),null);
       eventListener.handleConferenceEvent(pj);
     }
   }
