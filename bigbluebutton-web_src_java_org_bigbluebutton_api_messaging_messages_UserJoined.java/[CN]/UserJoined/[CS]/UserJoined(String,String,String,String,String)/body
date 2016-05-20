@@ -1,7 +1,0 @@
-{
-  this.meetingId=meetingId;
-  this.userId=userId;
-  this.externalUserId=externalUserId;
-  this.name=name;
-  this.role=role;
-}
