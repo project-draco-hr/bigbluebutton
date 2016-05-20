@@ -1,0 +1,3 @@
+{
+  scheduledThreadPool.scheduleWithFixedDelay(new CleanupTask(),60000,runEvery,TimeUnit.MILLISECONDS);
+}
