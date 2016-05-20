@@ -1,0 +1,9 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(Constants.MEETING_ID,meetingId);
+  payload.put(Constants.REQUESTER_ID,requesterId);
+  payload.put(Constants.STUNS,stuns);
+  payload.put(Constants.TURNS,turns);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(SEND_STUN_TURN_INFO_REPLY_MESSAGE,VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}

@@ -1,0 +1,20 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(message);
+  if (obj.has("header") && obj.has("payload")) {
+    JsonObject header=(JsonObject)obj.get("header");
+    JsonObject payload=(JsonObject)obj.get("payload");
+    if (header.has("name")) {
+      String messageName=header.get("name").getAsString();
+      if (DESKSHARE_START_RTMP_BROADCAST_MESSAGE.equals(messageName)) {
+        if (payload.has(CONFERENCE_NAME) && payload.has(TIMESTAMP) && payload.has(STREAMURL)) {
+          String conferenceName=payload.get(CONFERENCE_NAME).getAsString();
+          String streamUrl=payload.get(STREAMURL).getAsString();
+          String timestamp=payload.get(TIMESTAMP).getAsString();
+          return new DeskShareStartRTMPBroadcastEventMessage(conferenceName,streamUrl,timestamp);
+        }
+      }
+    }
+  }
+  return null;
+}

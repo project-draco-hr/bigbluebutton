@@ -1,0 +1,4 @@
+{
+  DeskShareBroadcastRTMPCommand rtmp=new DeskShareBroadcastRTMPCommand(voiceConfId,USER,streamUrl,timestamp,broadcast);
+  queueMessage(rtmp);
+}

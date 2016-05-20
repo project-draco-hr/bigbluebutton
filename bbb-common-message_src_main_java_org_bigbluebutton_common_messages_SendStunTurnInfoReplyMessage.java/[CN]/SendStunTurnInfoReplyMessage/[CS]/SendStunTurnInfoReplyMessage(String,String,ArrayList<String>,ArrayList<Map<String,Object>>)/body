@@ -1,0 +1,6 @@
+{
+  this.meetingId=meetingId;
+  this.requesterId=requesterId;
+  this.stuns=stuns;
+  this.turns=turns;
+}

@@ -1,0 +1,5 @@
+{
+  this.conferenceName=conferenceName;
+  this.fsConferenceName=fsConferenceName;
+  this.timestamp=timestamp;
+}

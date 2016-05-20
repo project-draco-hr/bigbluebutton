@@ -1,0 +1,5 @@
+{
+  String meetingId=(String)Red5.getConnectionLocal().getAttribute("MEETING_ID");
+  if ((meetingId == null) || ("".equals(meetingId)))   meetingId="unknown-meetingid";
+  return meetingId;
+}
