@@ -6,6 +6,7 @@
   payload.put(Constants.ROLE,role);
   payload.put(Constants.EXT_USER_ID,externUserID);
   payload.put(Constants.AUTH_TOKEN,authToken);
+  payload.put(Constants.AVATAR_URL,avatarURL);
   java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(REGISTER_USER,VERSION,null);
   return MessageBuilder.buildJson(header,payload);
 }
