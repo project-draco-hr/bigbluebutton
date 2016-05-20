@@ -1,0 +1,6 @@
+{
+  if (streamUrl.endsWith(DESKSHARE_SUFFIX)) {
+    streamUrl=streamUrl.replace(DESKSHARE_SUFFIX,"");
+  }
+  return streamUrl;
+}

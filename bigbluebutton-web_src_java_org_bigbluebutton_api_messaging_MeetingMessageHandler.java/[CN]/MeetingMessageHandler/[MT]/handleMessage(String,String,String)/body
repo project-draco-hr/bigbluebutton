@@ -126,6 +126,13 @@
             listener.handle(new UserUnsharedWebcam(meetingId,userid,stream));
           }
         }
+ else         if (SendStunTurnInfoRequestMessage.SEND_STUN_TURN_INFO_REQUEST_MESSAGE.equalsIgnoreCase(messageName)) {
+          String meetingId=payload.get(Constants.MEETING_ID).getAsString();
+          String requesterId=payload.get(Constants.REQUESTER_ID).getAsString();
+          for (          MessageListener listener : listeners) {
+            listener.handle(new StunTurnInfoRequested(meetingId,requesterId));
+          }
+        }
       }
     }
   }

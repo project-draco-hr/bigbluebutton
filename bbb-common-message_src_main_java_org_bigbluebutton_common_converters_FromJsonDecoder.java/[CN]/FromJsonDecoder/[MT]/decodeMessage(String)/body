@@ -21,7 +21,6 @@
         return msg;
       }
  else {
-        System.out.println("Unknown message name=[" + messageName + "]");
         return null;
       }
     }

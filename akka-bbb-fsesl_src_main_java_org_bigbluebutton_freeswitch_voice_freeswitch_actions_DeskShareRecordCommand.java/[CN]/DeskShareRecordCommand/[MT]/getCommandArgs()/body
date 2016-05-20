@@ -1,0 +1,6 @@
+{
+  String action="norecord";
+  if (record)   action="record";
+  System.out.println("\n\n\n\n\n DESKSHARE RECORD " + record + "\n\n\n\n");
+  return SPACE + getRoom() + SPACE+ action+ SPACE+ recordPath;
+}

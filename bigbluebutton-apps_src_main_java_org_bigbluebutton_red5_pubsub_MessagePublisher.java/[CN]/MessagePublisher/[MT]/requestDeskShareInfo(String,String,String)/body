@@ -1,0 +1,4 @@
+{
+  DeskShareGetInfoRequestMessage msg=new DeskShareGetInfoRequestMessage(meetingID,requesterID,replyTo);
+  sender.send(MessagingConstants.FROM_VOICE_CONF_SYSTEM_CHAN,msg.toJson());
+}

@@ -1,0 +1,5 @@
+{
+  this.conferenceName=conferenceName;
+  this.callerId=callerId;
+  this.callerIdName=callerIdName;
+}
