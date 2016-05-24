@@ -15,7 +15,8 @@
           String callerIdNum=payload.get(CALLER_ID_NUM).getAsString();
           Boolean muted=payload.get(MUTED).getAsBoolean();
           Boolean talking=payload.get(TALKING).getAsBoolean();
-          return new UserJoinedVoiceConfMessage(voiceConfId,voiceUserId,userId,callerIdName,callerIdNum,muted,talking);
+          String avatarURL=payload.get(AVATAR_URL).getAsString();
+          return new UserJoinedVoiceConfMessage(voiceConfId,voiceUserId,userId,callerIdName,callerIdNum,muted,talking,avatarURL);
         }
       }
     }

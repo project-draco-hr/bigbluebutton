@@ -1,0 +1,4 @@
+String meetingId
+String internalUserId
+Set<StunServer> stuns
+Set<TurnEntry> turns
