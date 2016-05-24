@@ -9,6 +9,6 @@
   params.put("voiceBridge",message.voiceConfId);
   params.put("duration",message.durationInMinutes.toString());
   Meeting breakout=paramsProcessorUtil.processCreateParams(params);
-  presDownloadService.downloadAndProcessDocument(message.defaultPresentationURL,breakout.getInternalId());
   handleCreateMeeting(breakout);
+  presDownloadService.downloadAndProcessDocument(message.defaultPresentationURL,breakout.getInternalId());
 }

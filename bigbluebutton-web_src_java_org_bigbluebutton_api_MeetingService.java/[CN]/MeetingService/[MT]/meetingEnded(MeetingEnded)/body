@@ -9,11 +9,11 @@
     logData.put("name",m.getName());
     logData.put("duration",m.getDuration());
     logData.put("record",m.isRecord());
-    logData.put("event","meeting_ended");
-    logData.put("description","Meeting has ended.");
+    logData.put("event","meeting_destroyed");
+    logData.put("description","Meeting has been destroyed.");
     Gson gson=new Gson();
     String logStr=gson.toJson(logData);
-    log.info("Meeting ended: data={}",logStr);
+    log.info("Meeting destroyed: data={}",logStr);
     return;
   }
 }

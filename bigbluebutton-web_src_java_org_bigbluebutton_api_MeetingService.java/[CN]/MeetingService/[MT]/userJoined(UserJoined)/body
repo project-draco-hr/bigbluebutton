@@ -1,6 +1,9 @@
 {
   Meeting m=getMeeting(message.meetingId);
   if (m != null) {
+    if (m.getNumUsers() == 0) {
+      m.setEndTime(0);
+    }
     User user=new User(message.userId,message.externalUserId,message.name,message.role,message.avatarURL);
     m.userJoined(user);
     Map<String,Object> logData=new HashMap<String,Object>();
@@ -15,7 +18,8 @@
     logData.put("description","User had joined the meeting.");
     Gson gson=new Gson();
     String logStr=gson.toJson(logData);
-    log.info("User joined meeting: data={}",logStr);
+    log.info("User left meeting: data={}",logStr);
     return;
   }
+  return;
 }

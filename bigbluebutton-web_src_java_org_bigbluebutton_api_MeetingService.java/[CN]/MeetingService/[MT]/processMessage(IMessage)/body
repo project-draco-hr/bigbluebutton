@@ -55,6 +55,12 @@
  else       if (message instanceof StunTurnInfoRequested) {
         processStunTurnInfoRequested((StunTurnInfoRequested)message);
       }
+ else       if (message instanceof CreateBreakoutRoom) {
+        processCreateBreakoutRoom((CreateBreakoutRoom)message);
+      }
+ else       if (message instanceof EndBreakoutRoom) {
+        processEndBreakoutRoom((EndBreakoutRoom)message);
+      }
     }
   }
 ;
