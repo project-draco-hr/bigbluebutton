@@ -1,0 +1,4 @@
+{
+  DeskShareStopRTMPBroadcastEventMessage msg=DeskShareStopRTMPBroadcastEventMessage.fromJson(json);
+  fsApp.deskShareBroadcastRTMP(msg.conferenceName,msg.streamUrl,msg.timestamp,false);
+}

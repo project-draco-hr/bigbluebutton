@@ -11,6 +11,7 @@
     Boolean locked=user.get(Constants.LOCKED).getAsBoolean();
     String extUserId=user.get(Constants.EXTERN_USERID).getAsString();
     String role=user.get(Constants.ROLE).getAsString();
+    String avatarURL=user.get(Constants.AVATAR_URL).getAsString();
     JsonArray webcamStreamJArray=user.get(Constants.WEBCAM_STREAM).getAsJsonArray();
     ArrayList<String> webcamStreams=extractWebcamStreams(webcamStreamJArray);
     userMap.put("userId",userid);
@@ -24,6 +25,7 @@
     userMap.put("locked",locked);
     userMap.put("role",role);
     userMap.put("presenter",presenter);
+    userMap.put("avatarURL",avatarURL);
     JsonObject vu=(JsonObject)user.get(Constants.VOICEUSER);
     Map<String,Object> vuMap=extractVoiceUser(vu);
     if (vuMap != null) {

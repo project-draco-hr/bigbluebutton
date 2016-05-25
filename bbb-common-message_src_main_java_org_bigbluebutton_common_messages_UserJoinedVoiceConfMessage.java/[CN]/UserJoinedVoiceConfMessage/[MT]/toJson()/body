@@ -7,6 +7,7 @@
   payload.put(CALLER_ID_NUM,callerIdNum);
   payload.put(MUTED,muted);
   payload.put(TALKING,talking);
+  payload.put(AVATAR_URL,avatarURL);
   java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(USER_JOINED_VOICE_CONF,VERSION,null);
   return MessageBuilder.buildJson(header,payload);
 }

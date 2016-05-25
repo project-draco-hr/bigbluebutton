@@ -5,7 +5,7 @@
   String userId=getUserId();
   String meetingId=conn.getScope().getName();
   String streamId=stream.getPublishedName();
-  publisher.userSharedWebcamMessage(meetingId,userId,streamId);
+  log.info("^^^^^^^^^^^publisher.userSharedWebcamMessage(meetingId, userId, streamId);");
   VideoStreamListener listener=new VideoStreamListener(conn.getScope(),stream,recordVideoStream,userId,packetTimeout);
   listener.setEventRecordingService(recordingService);
   stream.addStreamListener(listener);

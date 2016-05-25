@@ -1,0 +1,4 @@
+{
+  DeskShareHangUpEventMessage msg=DeskShareHangUpEventMessage.fromJson(json);
+  fsApp.deskShareHangUp(msg.conferenceName,msg.fsConferenceName,msg.timestamp);
+}

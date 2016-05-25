@@ -1,0 +1,11 @@
+{
+  if ("persistent".equals(connType.toLowerCase())) {
+    return "RTMP";
+  }
+ else   if ("polling".equals(connType.toLowerCase())) {
+    return "RTMPT";
+  }
+ else {
+    return connType.toUpperCase();
+  }
+}
