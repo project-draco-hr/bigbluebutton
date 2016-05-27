@@ -1,0 +1,8 @@
+{
+  List<File> dirs=getDirectories(path);
+  String[] formats=new String[dirs.size()];
+  for (int i=0; i < dirs.size(); i++) {
+    formats[i]=dirs.get(i).getName();
+  }
+  return formats;
+}

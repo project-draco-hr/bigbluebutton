@@ -1,0 +1,9 @@
+{
+  int numPages=0;
+  if (pageCounter == null) {
+    log.warn("No page counter!");
+    return 0;
+  }
+  numPages=pageCounter.countNumberOfPages(pres.getUploadedFile());
+  return numPages;
+}

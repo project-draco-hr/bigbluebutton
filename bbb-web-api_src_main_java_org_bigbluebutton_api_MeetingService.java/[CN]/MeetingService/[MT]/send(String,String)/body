@@ -1,0 +1,3 @@
+{
+  messagingService.send(channel,message);
+}

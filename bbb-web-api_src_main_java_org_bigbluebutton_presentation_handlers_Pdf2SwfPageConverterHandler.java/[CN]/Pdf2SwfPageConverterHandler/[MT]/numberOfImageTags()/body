@@ -1,0 +1,15 @@
+{
+  if (stdoutContains(IMAGE_TAG_OUTPUT)) {
+    try {
+      String out=stdoutBuilder.toString();
+      Pattern r=Pattern.compile(IMAGE_TAG_PATTERN);
+      Matcher m=r.matcher(out);
+      m.find();
+      return Integer.parseInt(m.group(0).replace(IMAGE_TAG_OUTPUT,"").trim());
+    }
+ catch (    Exception e) {
+      return 0;
+    }
+  }
+  return 0;
+}

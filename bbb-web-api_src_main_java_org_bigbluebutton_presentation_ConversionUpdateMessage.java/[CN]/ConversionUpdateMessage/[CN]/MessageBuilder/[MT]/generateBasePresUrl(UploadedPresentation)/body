@@ -1,0 +1,3 @@
+{
+  return pres.getBaseUrl() + "/" + pres.getMeetingId()+ "/"+ pres.getMeetingId()+ "/"+ pres.getId();
+}
