@@ -1,0 +1,6 @@
+{
+  SimpleDateFormat sdfDate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSS");
+  Date now=new Date();
+  String strDate=sdfDate.format(now);
+  return strDate;
+}

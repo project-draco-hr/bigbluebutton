@@ -1,3 +1,0 @@
-{
-  if (ctr_listener != null)   ctr_listener.controllerUpdate(event);
-}

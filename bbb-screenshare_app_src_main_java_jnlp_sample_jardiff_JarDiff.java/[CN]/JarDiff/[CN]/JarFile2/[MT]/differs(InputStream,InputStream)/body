@@ -1,0 +1,51 @@
+{
+  int newSize=0;
+  int oldSize;
+  int total=0;
+  boolean retVal=false;
+  try {
+    while (newSize != -1) {
+      newSize=newIS.read(newBytes);
+      oldSize=oldIS.read(oldBytes);
+      if (newSize != oldSize) {
+        if (_debug) {
+          System.out.println("\tread sizes differ: " + newSize + " "+ oldSize+ " total "+ total);
+        }
+        retVal=true;
+        break;
+      }
+      if (newSize > 0) {
+        while (--newSize >= 0) {
+          total++;
+          if (newBytes[newSize] != oldBytes[newSize]) {
+            if (_debug) {
+              System.out.println("\tbytes differ at " + total);
+            }
+            retVal=true;
+            break;
+          }
+          if (retVal) {
+            break;
+          }
+          newSize=0;
+        }
+      }
+    }
+  }
+ catch (  IOException ioE) {
+    throw ioE;
+  }
+ finally {
+    try {
+      oldIS.close();
+    }
+ catch (    IOException e) {
+    }
+    try {
+      newIS.close();
+    }
+ catch (    IOException e) {
+    }
+  }
+  return retVal;
+}

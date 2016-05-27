@@ -1,0 +1,11 @@
+{
+  BufferedImage capturedImage=robot.createScreenCapture(this.screenBounds);
+  BufferedImage currentScreenshot=new BufferedImage(capturedImage.getWidth(),capturedImage.getHeight(),BufferedImage.TYPE_3BYTE_BGR);
+  currentScreenshot.getGraphics().drawImage(capturedImage,0,0,null);
+  Point mouseLoc=takeMouseLocation();
+  int x=mouseLoc.x;
+  int y=mouseLoc.y;
+  Graphics2D graphics2D=currentScreenshot.createGraphics();
+  graphics2D.drawImage(cursor,x,y,16,16,null);
+  return currentScreenshot;
+}

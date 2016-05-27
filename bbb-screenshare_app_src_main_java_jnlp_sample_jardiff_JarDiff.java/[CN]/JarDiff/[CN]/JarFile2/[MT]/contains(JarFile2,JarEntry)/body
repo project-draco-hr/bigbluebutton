@@ -1,0 +1,9 @@
+{
+  JarEntry thisEntry=getEntryByName(e.getName());
+  if (thisEntry == null)   return false;
+  if (thisEntry.getCrc() != e.getCrc())   return false;
+  InputStream oldIS=getJarFile().getInputStream(thisEntry);
+  InputStream newIS=f.getJarFile().getInputStream(e);
+  boolean retValue=differs(oldIS,newIS);
+  return !retValue;
+}

@@ -1,0 +1,4 @@
+BufferedImage image
+double gamma
+boolean flipChannels
+Rectangle roi

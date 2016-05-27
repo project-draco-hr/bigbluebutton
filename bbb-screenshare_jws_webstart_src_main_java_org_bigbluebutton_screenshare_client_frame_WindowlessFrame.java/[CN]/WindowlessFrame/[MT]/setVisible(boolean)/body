@@ -1,0 +1,8 @@
+{
+  changeAll(new PropertyChanger(){
+    @Override public void changeOn(    Component component){
+      component.setVisible(b);
+    }
+  }
+,true);
+}

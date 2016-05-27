@@ -1,0 +1,10 @@
+{
+  if (!(o instanceof JarDiffKey))   return -1;
+  JarDiffKey other=(JarDiffKey)o;
+  int n=_name.compareTo(other.getName());
+  if (n != 0)   return n;
+  n=_fromVersionId.compareTo(other.getFromVersionId());
+  if (n != 0)   return n;
+  if (_minimal != other.isMinimal())   return -1;
+  return _toVersionId.compareTo(other.getToVersionId());
+}

@@ -1,0 +1,6 @@
+{
+  _mimeType=mimeType;
+  _versionId=versionId;
+  _lastModified=lastModified;
+  _contentLength=contentLength;
+}

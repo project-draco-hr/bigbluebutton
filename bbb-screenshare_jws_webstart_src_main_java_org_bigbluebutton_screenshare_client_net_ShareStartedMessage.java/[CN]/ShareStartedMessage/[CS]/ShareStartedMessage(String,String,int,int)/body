@@ -1,0 +1,6 @@
+{
+  this.meetingId=meetingId;
+  this.streamId=streamId;
+  this.width=width;
+  this.height=height;
+}

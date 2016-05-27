@@ -1,0 +1,10 @@
+{
+  String msg=Integer.toString(jnlpErrorCode);
+  String dsc="No description";
+  try {
+    dsc=JnlpDownloadServlet.getResourceBundle().getString("servlet.jnlp.err." + msg);
+  }
+ catch (  MissingResourceException mre) {
+  }
+  _message=msg + " " + dsc;
+}

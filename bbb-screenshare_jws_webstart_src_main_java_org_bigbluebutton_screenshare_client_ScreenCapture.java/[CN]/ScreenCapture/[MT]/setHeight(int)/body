@@ -1,0 +1,4 @@
+{
+  this.captureHeight=height;
+  updateBounds();
+}

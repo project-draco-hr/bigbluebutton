@@ -1,0 +1,6 @@
+{
+  if (longForm == null)   throw new IllegalArgumentException("Null longForm not allowed");
+  this.shortForm=shortForm;
+  this.longForm=longForm;
+  this.wantsValue=wantsValue;
+}

@@ -1,0 +1,7 @@
+{
+  signalChannel=new NetworkStreamSender(ssi.host,ssi.meetingId,ssi.streamId);
+  signalChannel.addNetworkConnectionListener(this);
+  signalChannel.start();
+  this.ssi=ssi;
+  sharer=new ScreenSharerRunner(ssi);
+}

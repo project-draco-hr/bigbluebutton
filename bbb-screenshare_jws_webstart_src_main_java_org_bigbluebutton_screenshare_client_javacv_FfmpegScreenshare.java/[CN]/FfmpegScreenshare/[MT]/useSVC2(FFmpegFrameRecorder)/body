@@ -1,0 +1,5 @@
+{
+  recorder.setFormat("flv");
+  recorder.setVideoCodec(AV_CODEC_ID_FLASHSV2);
+  recorder.setPixelFormat(AV_PIX_FMT_BGR24);
+}

@@ -1,0 +1,12 @@
+{
+  Map<String,Object> args=new HashMap<String,Object>();
+  args.put("meetingId",msg.payload.meetingId);
+  args.put("breakoutId",msg.payload.breakoutId);
+  args.put("userId",msg.payload.userId);
+  args.put("joinURL",msg.payload.joinURL);
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(args));
+  DirectClientMessage m=new DirectClientMessage(msg.payload.meetingId,msg.payload.userId,"breakoutRoomJoinURL",message);
+  service.sendMessage(m);
+}

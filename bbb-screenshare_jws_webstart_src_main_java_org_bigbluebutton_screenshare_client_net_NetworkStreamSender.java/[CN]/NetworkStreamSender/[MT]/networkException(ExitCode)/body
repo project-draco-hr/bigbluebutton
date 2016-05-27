@@ -1,0 +1,10 @@
+{
+  try {
+    System.out.println(NAME + "Failed to use http tunneling. Stopping.");
+    stop();
+    notifyNetworkConnectionListener(reason);
+  }
+ catch (  ConnectionException e) {
+    e.printStackTrace();
+  }
+}

@@ -1,0 +1,5 @@
+{
+  this.voiceConfId=voiceConfId;
+  this.targetVoiceConfId=breakoutVoiceConfId;
+  this.voiceUserId=voiceUserId;
+}

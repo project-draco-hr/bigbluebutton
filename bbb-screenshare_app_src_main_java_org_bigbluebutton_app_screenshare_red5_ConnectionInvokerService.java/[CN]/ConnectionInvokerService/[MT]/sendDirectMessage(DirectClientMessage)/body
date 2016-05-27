@@ -1,0 +1,31 @@
+{
+  Runnable sender=new Runnable(){
+    public void run(){
+      IScope meetingScope=getScope(msg.getMeetingID());
+      if (meetingScope != null) {
+        log.debug("Found scope =[{}] for meeting=[{}]",meetingScope.getName(),msg.getMeetingID());
+        IConnection conn=getConnection(meetingScope,msg.getUserID());
+        if (conn != null) {
+          if (conn.isConnected()) {
+            List<Object> params=new ArrayList<Object>();
+            params.add(msg.getMessageName());
+            params.add(msg.getMessage());
+            log.debug("Sending message=[{}] to meeting=[{}]",msg.getMessageName(),msg.getMeetingID());
+            ServiceUtils.invokeOnConnection(conn,"onMessageFromServer",params.toArray());
+          }
+ else {
+            log.warn("Connection not connected for userid=[{}] in meeting=[{}]",msg.getUserID(),msg.getMeetingID());
+          }
+        }
+ else {
+          log.warn("No connection for userid=[{}] in meeting=[{}]",msg.getUserID(),msg.getMeetingID());
+        }
+      }
+ else {
+        log.error("Failed to find scope for meeting=[{}]",msg.getMeetingID());
+      }
+    }
+  }
+;
+  runExec.execute(sender);
+}

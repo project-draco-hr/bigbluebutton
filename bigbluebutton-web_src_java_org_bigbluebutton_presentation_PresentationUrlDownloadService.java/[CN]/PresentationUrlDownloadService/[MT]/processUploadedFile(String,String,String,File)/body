@@ -1,0 +1,5 @@
+{
+  UploadedPresentation uploadedPres=new UploadedPresentation(meetingId,presId,filename,presentationBaseURL);
+  uploadedPres.setUploadedFile(presFile);
+  processUploadedPresentation(uploadedPres);
+}

@@ -1,0 +1,23 @@
+{
+  byte[] message=new byte[POLICY_REQUEST.length];
+  if (in.remaining() >= POLICY_REQUEST.length) {
+    in.get(message,0,message.length);
+    if (Arrays.equals(message,POLICY_REQUEST)) {
+      log.debug("Sending cross domain policy to the user");
+      IoBuffer buffer=IoBuffer.allocate(8);
+      buffer.setAutoExpand(true);
+      try {
+        buffer.putString("<cross-domain-policy><allow-access-from domain=\"*\" to-ports=\"*\" /></cross-domain-policy>",Charset.forName("UTF-8").newEncoder());
+        buffer.put((byte)0);
+      }
+ catch (      CharacterCodingException e) {
+        e.printStackTrace();
+        return false;
+      }
+      buffer.flip();
+      session.write(buffer);
+      return true;
+    }
+  }
+  return false;
+}

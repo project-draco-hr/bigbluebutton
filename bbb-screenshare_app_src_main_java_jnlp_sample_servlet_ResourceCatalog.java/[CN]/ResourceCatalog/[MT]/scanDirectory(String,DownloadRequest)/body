@@ -1,0 +1,26 @@
+{
+  ArrayList list=new ArrayList();
+  if (_servletContext.getRealPath(dirPath) == null) {
+    String path=jnlpGetPath(dreq);
+    String name=dreq.getPath().substring(path.lastIndexOf("/") + 1);
+    JnlpResource jnlpres=new JnlpResource(_servletContext,name,dreq.getVersion(),dreq.getOS(),dreq.getArch(),dreq.getLocale(),path,dreq.getVersion());
+    if (jnlpres.getResource() == null)     return null;
+    list.add(jnlpres);
+    return list;
+  }
+  File dir=new File(_servletContext.getRealPath(dirPath));
+  log.debug("File directory: " + dir);
+  if (dir.exists() && dir.isDirectory()) {
+    File[] entries=dir.listFiles();
+    for (int i=0; i < entries.length; i++) {
+      JnlpResource jnlpres=parseFileEntry(dirPath,entries[i].getName());
+      if (jnlpres != null) {
+        if (log.isDebugEnabled()) {
+          log.debug("Read file resource: " + jnlpres);
+        }
+        list.add(jnlpres);
+      }
+    }
+  }
+  return list;
+}

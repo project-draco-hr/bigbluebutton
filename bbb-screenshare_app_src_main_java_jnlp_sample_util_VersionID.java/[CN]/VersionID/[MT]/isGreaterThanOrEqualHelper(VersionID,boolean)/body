@@ -1,0 +1,26 @@
+{
+  if (_isCompound) {
+    if (!_rest.isGreaterThanOrEqualHelper(vid,allowEqual)) {
+      return false;
+    }
+  }
+  String[] t1=normalize(_tuple,vid._tuple.length);
+  String[] t2=normalize(vid._tuple,_tuple.length);
+  for (int i=0; i < t1.length; i++) {
+    Object e1=getValueAsObject(t1[i]);
+    Object e2=getValueAsObject(t2[i]);
+    if (e1.equals(e2)) {
+    }
+ else {
+      if (e1 instanceof Integer && e2 instanceof Integer) {
+        return ((Integer)e1).intValue() > ((Integer)e2).intValue();
+      }
+ else {
+        String s1=t1[i].toString();
+        String s2=t2[i].toString();
+        return s1.compareTo(s2) > 0;
+      }
+    }
+  }
+  return allowEqual;
+}

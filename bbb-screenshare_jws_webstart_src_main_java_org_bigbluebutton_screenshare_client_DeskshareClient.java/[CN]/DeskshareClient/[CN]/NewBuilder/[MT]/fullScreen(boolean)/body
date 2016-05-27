@@ -1,0 +1,4 @@
+{
+  this.fullScreen=fullScreen;
+  return this;
+}

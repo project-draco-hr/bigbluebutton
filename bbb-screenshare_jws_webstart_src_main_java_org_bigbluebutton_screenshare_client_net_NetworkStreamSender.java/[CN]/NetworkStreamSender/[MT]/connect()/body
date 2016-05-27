@@ -1,0 +1,11 @@
+{
+  httpSenders=new NetworkHttpStreamSender(meetingId,streamId,seqNumGenerator);
+  httpSenders.addListener(this);
+  try {
+    httpSenders.connect(host);
+  }
+ catch (  ConnectionException e) {
+    e.printStackTrace();
+  }
+  return true;
+}

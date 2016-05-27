@@ -1,9 +1,0 @@
-{
-  receiver=new JMediaReceiver(media_type,port,this);
-  try {
-    jbInit();
-  }
- catch (  Exception e) {
-    e.printStackTrace();
-  }
-}
