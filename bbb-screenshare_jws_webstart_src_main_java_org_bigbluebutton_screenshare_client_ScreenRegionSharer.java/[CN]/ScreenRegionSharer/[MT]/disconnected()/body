@@ -1,0 +1,7 @@
+{
+  frame.setVisible(false);
+  sharer.disconnectSharing();
+  System.out.println(NAME + "Change system tray icon message");
+  tray.disconnectIconSystemTrayMessage();
+  System.out.println(NAME + "Desktop sharing disconneted");
+}

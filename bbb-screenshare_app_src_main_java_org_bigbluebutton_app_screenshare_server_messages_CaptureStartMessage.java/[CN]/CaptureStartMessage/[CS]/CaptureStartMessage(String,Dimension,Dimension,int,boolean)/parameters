@@ -1,0 +1,5 @@
+String room
+Dimension screen
+Dimension block
+int sequenceNum
+boolean useSVC2

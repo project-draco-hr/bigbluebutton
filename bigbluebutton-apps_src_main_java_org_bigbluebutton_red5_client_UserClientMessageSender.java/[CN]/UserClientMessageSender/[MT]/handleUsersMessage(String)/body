@@ -4,6 +4,7 @@
   if (obj.has("header") && obj.has("payload")) {
     JsonObject header=(JsonObject)obj.get("header");
     if (header.has("name")) {
+      Gson gson=new Gson();
       String messageName=header.get("name").getAsString();
 switch (messageName) {
 case ValidateAuthTokenReplyMessage.VALIDATE_AUTH_TOKEN_REPLY:
@@ -119,6 +120,48 @@ processLockLayoutMessage(message);
 break;
 case UserEjectedFromMeetingMessage.USER_EJECTED_FROM_MEETING:
 processUserEjectedFromMeetingMessage(message);
+break;
+case BreakoutRoomsList.NAME:
+BreakoutRoomsList brl=gson.fromJson(message,BreakoutRoomsList.class);
+if (brl != null) {
+processBreakoutRoomsList(brl);
+}
+break;
+case BreakoutRoomJoinURL.NAME:
+BreakoutRoomJoinURL brjum=gson.fromJson(message,BreakoutRoomJoinURL.class);
+if (brjum != null) {
+processBreakoutRoomJoinURL(brjum);
+}
+break;
+case TimeRemainingUpdate.NAME:
+TimeRemainingUpdate trum=gson.fromJson(message,TimeRemainingUpdate.class);
+if (trum != null) {
+processTimeRemainingUpdate(trum);
+}
+break;
+case BreakoutRoomsTimeRemainingUpdate.NAME:
+BreakoutRoomsTimeRemainingUpdate brtru=gson.fromJson(message,BreakoutRoomsTimeRemainingUpdate.class);
+if (brtru != null) {
+processBreakoutRoomsTimeRemainingUpdate(brtru);
+}
+break;
+case UpdateBreakoutUsers.NAME:
+UpdateBreakoutUsers ubum=gson.fromJson(message,UpdateBreakoutUsers.class);
+if (ubum != null) {
+processUpdateBreakoutUsers(ubum);
+}
+break;
+case BreakoutRoomStarted.NAME:
+BreakoutRoomStarted brsm=gson.fromJson(message,BreakoutRoomStarted.class);
+if (brsm != null) {
+processBreakoutRoomStarted(brsm);
+}
+break;
+case BreakoutRoomClosed.NAME:
+BreakoutRoomClosed brcm=gson.fromJson(message,BreakoutRoomClosed.class);
+if (brcm != null) {
+processBreakoutRoomClosed(brcm);
+}
 break;
 }
 }

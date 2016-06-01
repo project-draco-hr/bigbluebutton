@@ -1,0 +1,45 @@
+{
+  String path=dreq.getPath();
+  String name=null;
+  String dir=null;
+  int idx=path.lastIndexOf('/');
+  if (idx == -1) {
+    name=path;
+  }
+ else {
+    name=path.substring(idx + 1);
+    dir=path.substring(0,idx + 1);
+  }
+  PathEntries pentries=(PathEntries)_entries.get(dir);
+  JnlpResource xmlVersionResPath=new JnlpResource(_servletContext,dir + VERSION_XML_FILENAME);
+  if (pentries == null || (xmlVersionResPath.exists() && xmlVersionResPath.getLastModified() > pentries.getLastModified())) {
+    log.info("servlet.log.scandir",dir);
+    List dirList=scanDirectory(dir,dreq);
+    List versionList=new ArrayList();
+    List platformList=new ArrayList();
+    parseVersionXML(versionList,platformList,dir,xmlVersionResPath);
+    pentries=new PathEntries(versionList,dirList,platformList,xmlVersionResPath.getLastModified());
+    _entries.put(dir,pentries);
+  }
+  JnlpResource[] result=new JnlpResource[1];
+  if (dreq.isPlatformRequest()) {
+    int sts=findMatch(pentries.getPlatformList(),name,dreq,result);
+    if (sts != DownloadResponse.STS_00_OK) {
+      throw new ErrorResponseException(DownloadResponse.getJnlpErrorResponse(sts));
+    }
+  }
+ else {
+    int sts1=findMatch(pentries.getVersionXmlList(),name,dreq,result);
+    if (sts1 != DownloadResponse.STS_00_OK) {
+      int sts2=findMatch(pentries.getDirectoryList(),name,dreq,result);
+      if (sts2 != DownloadResponse.STS_00_OK) {
+        pentries.setDirectoryList(scanDirectory(dir,dreq));
+        sts2=findMatch(pentries.getDirectoryList(),name,dreq,result);
+        if (sts2 != DownloadResponse.STS_00_OK) {
+          throw new ErrorResponseException(DownloadResponse.getJnlpErrorResponse(Math.max(sts1,sts2)));
+        }
+      }
+    }
+  }
+  return result[0];
+}

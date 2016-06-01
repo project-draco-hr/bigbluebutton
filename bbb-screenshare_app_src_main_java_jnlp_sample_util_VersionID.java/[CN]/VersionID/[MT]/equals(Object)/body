@@ -1,0 +1,11 @@
+{
+  if (matchTuple(o)) {
+    VersionID ov=(VersionID)o;
+    if (_rest == null || _rest.equals(ov._rest)) {
+      if ((_useGreaterThan == ov._useGreaterThan) && (_usePrefixMatch == ov._usePrefixMatch)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}

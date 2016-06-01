@@ -1,0 +1,8 @@
+{
+  Set<String> ids=new HashSet<String>();
+  Iterator<File> iterator=recs.iterator();
+  while (iterator.hasNext()) {
+    ids.add(iterator.next().getName());
+  }
+  return ids;
+}

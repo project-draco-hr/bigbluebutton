@@ -1,0 +1,3 @@
+{
+  return meetings.isEmpty() ? Collections.<Meeting>emptySet() : Collections.unmodifiableCollection(meetings.values());
+}

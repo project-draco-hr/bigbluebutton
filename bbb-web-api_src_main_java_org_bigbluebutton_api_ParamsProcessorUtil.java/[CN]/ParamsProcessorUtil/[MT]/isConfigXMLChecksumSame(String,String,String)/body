@@ -1,0 +1,12 @@
+{
+  if (StringUtils.isEmpty(securitySalt)) {
+    log.warn("Security is disabled in this service. Make sure this is intentional.");
+    return true;
+  }
+  String cs=DigestUtils.shaHex(meetingID + configXML + securitySalt);
+  if (cs == null || cs.equals(checksum) == false) {
+    log.info("checksumError: configXML checksum. our: [{}], client: [{}]",cs,checksum);
+    return false;
+  }
+  return true;
+}

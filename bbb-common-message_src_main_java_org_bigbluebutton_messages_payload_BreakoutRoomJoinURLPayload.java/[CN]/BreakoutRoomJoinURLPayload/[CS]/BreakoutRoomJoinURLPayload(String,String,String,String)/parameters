@@ -1,0 +1,4 @@
+String meetingId
+String breakoutId
+String userId
+String joinURL

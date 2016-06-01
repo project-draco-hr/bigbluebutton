@@ -1,0 +1,4 @@
+String name
+String fromVersionId
+String toVersionId
+boolean minimal

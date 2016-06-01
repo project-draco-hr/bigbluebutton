@@ -1,0 +1,60 @@
+{
+  boolean del_old=false;
+  boolean del_new=false;
+  DownloadRequest fromDreq=dreq.getFromDownloadRequest();
+  try {
+    JnlpResource fromRes=catalog.lookupResource(fromDreq);
+    String newFilePath=_servletContext.getRealPath(res.getPath());
+    String oldFilePath=_servletContext.getRealPath(fromRes.getPath());
+    if (newFilePath == null) {
+      newFilePath=getRealPath(res.getPath());
+      if (newFilePath != null)       del_new=true;
+    }
+    if (oldFilePath == null) {
+      oldFilePath=getRealPath(fromRes.getPath());
+      if (oldFilePath != null)       del_old=true;
+    }
+    if (newFilePath == null || oldFilePath == null) {
+      return null;
+    }
+    File tempDir=(File)_servletContext.getAttribute("javax.servlet.context.tempdir");
+    File outputFile=File.createTempFile("jnlp",".jardiff",tempDir);
+    log.debug("Generating Jardiff between " + oldFilePath + " and "+ newFilePath+ " Store in "+ outputFile);
+    OutputStream os=new FileOutputStream(outputFile);
+    JarDiff.createPatch(oldFilePath,newFilePath,os,!doJarDiffWorkAround);
+    os.close();
+    try {
+      if (outputFile.length() >= (new File(newFilePath).length())) {
+        log.debug("JarDiff discarded - since it is bigger");
+        return null;
+      }
+      File newFilePacked=new File(newFilePath + ".pack.gz");
+      if (newFilePacked.exists()) {
+        log.debug("generated jardiff size: " + outputFile.length());
+        log.debug("packed requesting file size: " + newFilePacked.length());
+        if (outputFile.length() >= newFilePacked.length()) {
+          log.debug("JarDiff discarded - packed version of requesting file is smaller");
+          return null;
+        }
+      }
+      log.debug("JarDiff generation succeeded");
+      return outputFile;
+    }
+  finally {
+      if (del_new) {
+        new File(newFilePath).delete();
+      }
+      if (del_old) {
+        new File(oldFilePath).delete();
+      }
+    }
+  }
+ catch (  IOException ioe) {
+    log.debug("Failed to genereate jardiff",ioe);
+    return null;
+  }
+catch (  ErrorResponseException ere) {
+    log.debug("Failed to genereate jardiff",ere);
+    return null;
+  }
+}

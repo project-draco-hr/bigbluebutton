@@ -1,0 +1,63 @@
+{
+  _encoding=encoding;
+  _name=name;
+  _versionId=versionId;
+  _osList=osList;
+  _archList=archList;
+  _localeList=localeList;
+  _returnVersionId=returnVersionId;
+  try {
+    String orig_path=path.trim();
+    String search_path=orig_path;
+    _resource=context.getResource(orig_path);
+    _mimeType=getMimeType(context,orig_path);
+    if (_resource != null) {
+      boolean found=false;
+      if (encoding != null && _mimeType != null && (_mimeType.compareTo(JAR_MIME_TYPE) == 0 || _mimeType.compareTo(JAR_MIME_TYPE_NEW) == 0) && encoding.toLowerCase().indexOf(DownloadResponse.PACK200_GZIP_ENCODING) > -1) {
+        search_path=orig_path + ".pack.gz";
+        _resource=context.getResource(search_path);
+        if (_resource != null) {
+          _lastModified=getLastModified(context,_resource,search_path);
+          if (_lastModified != 0) {
+            _path=search_path;
+            found=true;
+          }
+ else {
+            _resource=null;
+          }
+        }
+      }
+      if (found == false && encoding != null && encoding.toLowerCase().indexOf(DownloadResponse.GZIP_ENCODING) > -1) {
+        search_path=orig_path + ".gz";
+        _resource=context.getResource(search_path);
+        if (_resource != null) {
+          _lastModified=getLastModified(context,_resource,search_path);
+          if (_lastModified != 0) {
+            _path=search_path;
+            found=true;
+          }
+ else {
+            _resource=null;
+          }
+        }
+      }
+      if (found == false) {
+        search_path=orig_path;
+        _resource=context.getResource(search_path);
+        if (_resource != null) {
+          _lastModified=getLastModified(context,_resource,search_path);
+          if (_lastModified != 0) {
+            _path=search_path;
+            found=true;
+          }
+ else {
+            _resource=null;
+          }
+        }
+      }
+    }
+  }
+ catch (  IOException ioe) {
+    _resource=null;
+  }
+}

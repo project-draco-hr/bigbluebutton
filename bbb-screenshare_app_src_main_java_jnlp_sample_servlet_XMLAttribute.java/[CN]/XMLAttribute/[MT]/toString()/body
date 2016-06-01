@@ -1,0 +1,8 @@
+{
+  if (_next != null) {
+    return _name + "=\"" + _value+ "\" "+ _next.toString();
+  }
+ else {
+    return _name + "=\"" + _value+ "\"";
+  }
+}

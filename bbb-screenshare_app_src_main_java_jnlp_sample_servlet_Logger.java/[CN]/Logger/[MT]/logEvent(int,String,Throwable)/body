@@ -1,0 +1,23 @@
+{
+  if (level > _loggingLevel)   return;
+  if (_logFile != null) {
+    PrintWriter pw=null;
+    try {
+      pw=new PrintWriter(new FileWriter(_logFile,true));
+      pw.println(_servletName + "(" + level+ "): "+ string);
+      if (throwable != null) {
+        throwable.printStackTrace(pw);
+      }
+      pw.close();
+      return;
+    }
+ catch (    IOException ioe) {
+    }
+  }
+  if (throwable == null) {
+    _servletContext.log(string);
+  }
+ else {
+    _servletContext.log(string,throwable);
+  }
+}

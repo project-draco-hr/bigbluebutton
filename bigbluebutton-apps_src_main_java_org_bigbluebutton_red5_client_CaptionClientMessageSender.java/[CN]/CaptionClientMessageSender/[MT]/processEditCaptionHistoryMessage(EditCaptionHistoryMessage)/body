@@ -1,0 +1,9 @@
+{
+  Map<String,Object> message=new HashMap<String,Object>();
+  message.put(Constants.START_INDEX,msg.startIndex);
+  message.put(Constants.END_INDEX,msg.endIndex);
+  message.put(Constants.LOCALE,msg.locale);
+  message.put(Constants.TEXT,msg.text);
+  BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingID,"editCaptionHistory",message);
+  service.sendMessage(m);
+}

@@ -1,0 +1,8 @@
+{
+  XMLAttribute cur=_attr;
+  while (cur != null) {
+    if (name.equals(cur.getName()))     return cur.getValue();
+    cur=cur.getNext();
+  }
+  return "";
+}

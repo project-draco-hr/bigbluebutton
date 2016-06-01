@@ -1,0 +1,14 @@
+{
+  int idx=path.lastIndexOf('<');
+  String head=path.substring(0,idx);
+  String tag=path.substring(idx + 1,path.length() - 1);
+  XMLNode elem=findElementPath(root,head);
+  if (elem == null)   return;
+  XMLNode n=elem.getNested();
+  while (n != null) {
+    if (n.isElement() && n.getName().equals(tag)) {
+      ev.visitElement(n);
+    }
+    n=n.getNext();
+  }
+}

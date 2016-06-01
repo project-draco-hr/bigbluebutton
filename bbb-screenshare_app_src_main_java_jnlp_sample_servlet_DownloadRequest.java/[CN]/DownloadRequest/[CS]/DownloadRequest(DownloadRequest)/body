@@ -1,0 +1,15 @@
+{
+  _encoding=dreq._encoding;
+  _context=dreq._context;
+  _httpRequest=dreq._httpRequest;
+  _path=dreq._path;
+  _version=dreq._currentVersionId;
+  _currentVersionId=null;
+  _os=dreq._os;
+  _arch=dreq._arch;
+  _locale=dreq._locale;
+  _knownPlatforms=dreq._knownPlatforms;
+  _isPlatformRequest=dreq._isPlatformRequest;
+  _query=dreq._query;
+  _testJRE=dreq._testJRE;
+}

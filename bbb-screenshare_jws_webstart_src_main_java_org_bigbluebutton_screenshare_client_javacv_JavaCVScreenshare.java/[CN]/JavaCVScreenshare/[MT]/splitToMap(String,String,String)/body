@@ -1,0 +1,13 @@
+{
+  System.out.println("CODEC_OPTS=" + source);
+  Map<String,String> map=new HashMap<String,String>();
+  String[] entries=source.split(entriesSeparator);
+  for (  String entry : entries) {
+    if (entry != "" && entry.contains(keyValueSeparator)) {
+      String[] keyValue=entry.split(keyValueSeparator);
+      System.out.println("OPTION: " + keyValue[0] + "="+ keyValue[1]);
+      map.put(keyValue[0],keyValue[1]);
+    }
+  }
+  return map;
+}

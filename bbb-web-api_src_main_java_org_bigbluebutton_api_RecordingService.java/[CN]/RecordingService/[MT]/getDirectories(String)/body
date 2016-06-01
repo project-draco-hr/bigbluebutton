@@ -1,0 +1,16 @@
+{
+  List<File> files=new ArrayList<File>();
+  try {
+    DirectoryStream<Path> stream=Files.newDirectoryStream(FileSystems.getDefault().getPath(path));
+    Iterator<Path> iter=stream.iterator();
+    while (iter.hasNext()) {
+      Path next=iter.next();
+      files.add(next.toFile());
+    }
+    stream.close();
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+  return files;
+}

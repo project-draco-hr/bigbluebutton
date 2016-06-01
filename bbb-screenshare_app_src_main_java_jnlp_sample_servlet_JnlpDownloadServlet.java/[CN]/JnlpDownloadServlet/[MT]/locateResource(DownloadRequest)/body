@@ -1,0 +1,8 @@
+{
+  if (dreq.getVersion() == null) {
+    return handleBasicDownload(dreq);
+  }
+ else {
+    return handleVersionRequest(dreq);
+  }
+}

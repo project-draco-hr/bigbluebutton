@@ -1,0 +1,6 @@
+{
+  String message=getString(key);
+  MessageFormat formatter=new MessageFormat(message);
+  String output=formatter.format(message,messageArguments);
+  return output;
+}

@@ -1,0 +1,10 @@
+{
+  int start=0;
+  do {
+    int idx=target.indexOf(key,start);
+    if (idx == -1)     return target;
+    target=target.substring(0,idx) + value + target.substring(idx + key.length());
+    start=idx + value.length();
+  }
+ while (true);
+}

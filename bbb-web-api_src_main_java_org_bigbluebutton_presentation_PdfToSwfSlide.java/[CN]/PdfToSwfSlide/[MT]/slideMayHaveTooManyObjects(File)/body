@@ -1,0 +1,3 @@
+{
+  return slide.length() > MAX_SWF_FILE_SIZE;
+}

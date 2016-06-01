@@ -1,0 +1,3 @@
+{
+  return !_useGreaterThan && !_usePrefixMatch && !_isCompound;
+}

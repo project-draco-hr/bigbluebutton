@@ -1,0 +1,11 @@
+{
+  Meeting m=getMeeting(message.meetingId);
+  if (m != null) {
+    User user=m.getUserById(message.userId);
+    if (user != null) {
+      user.removeStream(message.stream);
+      return;
+    }
+    return;
+  }
+}

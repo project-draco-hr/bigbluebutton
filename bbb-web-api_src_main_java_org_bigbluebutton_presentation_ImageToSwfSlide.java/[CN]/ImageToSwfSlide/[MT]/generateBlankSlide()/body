@@ -1,0 +1,8 @@
+{
+  if (BLANK_SLIDE != null) {
+    copyBlankSlide(slide);
+  }
+ else {
+    log.error("Blank slide has not been set");
+  }
+}

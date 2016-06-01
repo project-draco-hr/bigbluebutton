@@ -1,0 +1,4 @@
+{
+  log.debug("Version-based/Extension based lookup");
+  return _resourceCatalog.lookupResource(dreq);
+}

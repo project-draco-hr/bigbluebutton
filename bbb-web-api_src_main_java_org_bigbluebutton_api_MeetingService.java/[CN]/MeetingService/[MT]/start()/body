@@ -1,0 +1,27 @@
+{
+  log.info("Starting Meeting Service.");
+  try {
+    processMessage=true;
+    Runnable messageReceiver=new Runnable(){
+      public void run(){
+        while (processMessage) {
+          try {
+            IMessage msg=receivedMessages.take();
+            processMessage(msg);
+          }
+ catch (          InterruptedException e) {
+            e.printStackTrace();
+          }
+catch (          Exception e) {
+            log.error("Handling unexpected exception [{}]",e.toString());
+          }
+        }
+      }
+    }
+;
+    msgProcessorExec.execute(messageReceiver);
+  }
+ catch (  Exception e) {
+    log.error("Error PRocessing Message");
+  }
+}

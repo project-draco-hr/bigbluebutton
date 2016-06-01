@@ -1,3 +1,0 @@
-{
-  return getMediaDevice(new AudioFormat(AudioFormat.LINEAR,8000,8,1));
-}

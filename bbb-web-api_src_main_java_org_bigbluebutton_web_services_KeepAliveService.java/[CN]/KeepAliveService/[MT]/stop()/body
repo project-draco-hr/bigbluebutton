@@ -1,0 +1,4 @@
+{
+  processMessages=false;
+  scheduledThreadPool.shutdownNow();
+}

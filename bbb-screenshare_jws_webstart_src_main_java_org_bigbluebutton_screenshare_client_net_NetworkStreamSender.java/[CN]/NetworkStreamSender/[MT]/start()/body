@@ -1,0 +1,5 @@
+{
+  System.out.println(NAME + "Starting network sender.");
+  httpSenders.start();
+  timer.scheduleAtFixedRate(timerTask,0,2 * 1000);
+}

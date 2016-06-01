@@ -1,0 +1,4 @@
+String mimeType
+String versionId
+long lastModified
+int contentLength
