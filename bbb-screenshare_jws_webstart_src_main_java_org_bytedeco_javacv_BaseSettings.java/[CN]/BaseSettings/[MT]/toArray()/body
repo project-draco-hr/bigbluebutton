@@ -1,0 +1,5 @@
+{
+  Object[] a=super.toArray();
+  Arrays.sort(a);
+  return a;
+}

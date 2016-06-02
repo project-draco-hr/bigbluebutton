@@ -1,0 +1,3 @@
+{
+  return audio_c == null ? super.getSampleRate() : audio_c.sample_rate();
+}

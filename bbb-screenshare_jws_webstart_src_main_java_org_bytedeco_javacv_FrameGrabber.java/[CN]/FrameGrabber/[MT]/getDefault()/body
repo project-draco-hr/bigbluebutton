@@ -1,0 +1,26 @@
+{
+  for (  String name : list) {
+    try {
+      Class<? extends FrameGrabber> c=get(name);
+      c.getMethod("tryLoad").invoke(null);
+      boolean mayContainCameras=false;
+      try {
+        String[] s=(String[])c.getMethod("getDeviceDescriptions").invoke(null);
+        if (s.length > 0) {
+          mayContainCameras=true;
+        }
+      }
+ catch (      Throwable t) {
+        if (t.getCause() instanceof UnsupportedOperationException) {
+          mayContainCameras=true;
+        }
+      }
+      if (mayContainCameras) {
+        return c;
+      }
+    }
+ catch (    Throwable t) {
+    }
+  }
+  return null;
+}

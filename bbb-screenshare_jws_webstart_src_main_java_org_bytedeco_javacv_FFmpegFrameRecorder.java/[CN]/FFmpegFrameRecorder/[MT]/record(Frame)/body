@@ -1,0 +1,3 @@
+{
+  record(frame,AV_PIX_FMT_NONE);
+}

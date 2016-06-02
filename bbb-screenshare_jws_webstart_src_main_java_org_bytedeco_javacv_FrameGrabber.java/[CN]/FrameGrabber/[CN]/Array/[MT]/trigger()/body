@@ -1,0 +1,7 @@
+{
+  for (  FrameGrabber f : frameGrabbers) {
+    if (f.isTriggerMode()) {
+      f.trigger();
+    }
+  }
+}

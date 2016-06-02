@@ -1,0 +1,4 @@
+{
+  Class c=(Class)getValue();
+  return c == null ? "null" : c.getSimpleName().split("FrameGrabber")[0];
+}

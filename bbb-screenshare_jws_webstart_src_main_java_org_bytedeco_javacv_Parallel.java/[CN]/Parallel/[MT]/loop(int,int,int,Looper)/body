@@ -1,0 +1,16 @@
+{
+  int numLoopers=Math.min(to - from,numThreads > 0 ? numThreads : getNumCores());
+  Runnable[] runnables=new Runnable[numLoopers];
+  for (int i=0; i < numLoopers; i++) {
+    final int subFrom=(to - from) * i / numLoopers + from;
+    final int subTo=(to - from) * (i + 1) / numLoopers + from;
+    final int looperID=i;
+    runnables[i]=new Runnable(){
+      public void run(){
+        looper.loop(subFrom,subTo,looperID);
+      }
+    }
+;
+  }
+  run(runnables);
+}
