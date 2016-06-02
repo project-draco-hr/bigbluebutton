@@ -1,0 +1,17 @@
+{
+  this.filename=filename;
+  this.imageWidth=imageWidth;
+  this.imageHeight=imageHeight;
+  this.audioChannels=audioChannels;
+  this.pixelFormat=AV_PIX_FMT_NONE;
+  this.videoCodec=AV_CODEC_ID_NONE;
+  this.videoBitrate=400000;
+  this.frameRate=30;
+  this.sampleFormat=AV_SAMPLE_FMT_NONE;
+  this.audioCodec=AV_CODEC_ID_NONE;
+  this.audioBitrate=64000;
+  this.sampleRate=44100;
+  this.interleaved=true;
+  this.video_pkt=new AVPacket();
+  this.audio_pkt=new AVPacket();
+}

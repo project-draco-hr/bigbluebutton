@@ -1,0 +1,3 @@
+{
+  return videoMetadata.get(key);
+}

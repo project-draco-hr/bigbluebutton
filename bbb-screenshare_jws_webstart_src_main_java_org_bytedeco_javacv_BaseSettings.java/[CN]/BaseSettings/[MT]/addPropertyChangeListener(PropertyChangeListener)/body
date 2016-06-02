@@ -1,0 +1,11 @@
+{
+  pcSupport.addPropertyChangeListener(listener);
+  for (  Object s : toArray()) {
+    if (s instanceof BaseChildSettings) {
+      ((BaseChildSettings)s).addPropertyChangeListener(listener);
+    }
+ else     if (s instanceof BaseSettings) {
+      ((BaseSettings)s).addPropertyChangeListener(listener);
+    }
+  }
+}

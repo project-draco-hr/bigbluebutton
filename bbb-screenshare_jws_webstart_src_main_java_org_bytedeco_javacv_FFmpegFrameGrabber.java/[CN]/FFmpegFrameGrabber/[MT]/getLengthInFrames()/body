@@ -1,0 +1,3 @@
+{
+  return (int)(getLengthInTime() * getFrameRate() / 1000000L);
+}

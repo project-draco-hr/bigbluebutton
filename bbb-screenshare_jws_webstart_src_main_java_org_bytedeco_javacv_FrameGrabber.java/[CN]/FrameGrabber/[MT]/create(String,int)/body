@@ -1,0 +1,8 @@
+{
+  try {
+    return create(get(className),int.class,deviceNumber);
+  }
+ catch (  Exception ex) {
+    return create(get(className),Integer.class,deviceNumber);
+  }
+}

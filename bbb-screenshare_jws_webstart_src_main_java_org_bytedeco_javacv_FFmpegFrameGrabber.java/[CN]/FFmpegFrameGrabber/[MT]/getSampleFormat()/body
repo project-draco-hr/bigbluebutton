@@ -1,0 +1,3 @@
+{
+  return audio_c == null ? super.getSampleFormat() : audio_c.sample_fmt();
+}

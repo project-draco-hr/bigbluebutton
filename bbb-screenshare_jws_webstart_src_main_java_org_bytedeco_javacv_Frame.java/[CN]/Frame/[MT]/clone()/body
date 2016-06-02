@@ -1,0 +1,16 @@
+{
+  Frame newFrame=new Frame();
+  newFrame.imageWidth=imageWidth;
+  newFrame.imageHeight=imageHeight;
+  newFrame.imageDepth=imageDepth;
+  newFrame.imageChannels=imageChannels;
+  newFrame.imageStride=imageStride;
+  newFrame.keyFrame=keyFrame;
+  newFrame.opaque=opaque;
+  newFrame.image=cloneBufferArray(image);
+  newFrame.audioChannels=audioChannels;
+  newFrame.sampleRate=sampleRate;
+  newFrame.samples=cloneBufferArray(samples);
+  newFrame.timestamp=timestamp;
+  return newFrame;
+}
