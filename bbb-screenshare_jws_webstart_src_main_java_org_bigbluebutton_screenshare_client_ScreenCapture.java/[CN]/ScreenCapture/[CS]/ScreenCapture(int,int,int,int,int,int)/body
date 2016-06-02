@@ -1,0 +1,21 @@
+{
+  this.x=x;
+  this.y=y;
+  this.captureWidth=captureWidth;
+  this.captureHeight=captureHeight;
+  try {
+    robot=new Robot();
+  }
+ catch (  AWTException e) {
+    System.out.println(e.getMessage());
+  }
+  this.screenBounds=new Rectangle(x,y,this.captureWidth,this.captureHeight);
+  this.scaleWidth=scaleWidth;
+  this.scaleHeight=scaleHeight;
+  try {
+    cursor=ImageIO.read(getClass().getResourceAsStream("/images/Cursor.png"));
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+}

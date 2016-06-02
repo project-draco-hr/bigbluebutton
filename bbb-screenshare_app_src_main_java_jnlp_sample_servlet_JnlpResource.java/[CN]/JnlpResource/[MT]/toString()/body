@@ -1,0 +1,3 @@
+{
+  return "JnlpResource[WAR Path: " + _path + showEntry(" versionId=",_versionId)+ showEntry(" name=",_name)+ " lastModified="+ new Date(_lastModified)+ showEntry(" osList=",_osList)+ showEntry(" archList=",_archList)+ showEntry(" localeList=",_localeList)+ "]"+ showEntry(" returnVersionId=",_returnVersionId)+ "]";
+}

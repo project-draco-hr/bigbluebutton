@@ -1,0 +1,4 @@
+{
+  this.moderatorPass=p;
+  return this;
+}

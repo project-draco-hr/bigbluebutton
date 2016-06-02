@@ -1,0 +1,5 @@
+{
+  processMessage=false;
+  cleaner.stop();
+  registeredUserCleaner.stop();
+}

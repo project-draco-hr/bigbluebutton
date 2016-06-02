@@ -1,0 +1,8 @@
+{
+  try {
+    return new Integer(arg);
+  }
+ catch (  NumberFormatException e) {
+    throw new IllegalOptionValueException(this,arg);
+  }
+}

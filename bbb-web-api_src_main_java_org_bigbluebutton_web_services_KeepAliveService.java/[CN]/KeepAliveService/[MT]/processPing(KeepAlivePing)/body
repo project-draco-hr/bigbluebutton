@@ -1,0 +1,7 @@
+{
+  service.sendKeepAlive(SYSTEM,System.currentTimeMillis());
+  if (lastKeepAliveMessage != 0 && (System.currentTimeMillis() - lastKeepAliveMessage > 30000)) {
+    log.error("BBB Web pubsub error!");
+    available=false;
+  }
+}

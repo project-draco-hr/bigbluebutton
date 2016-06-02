@@ -53,8 +53,7 @@
       }
     }
  else {
-      Gson gson=new Gson();
-      HashMap<String,String> map=gson.fromJson(message,new TypeToken<Map<String,String>>(){
+      HashMap<String,String> map=new Gson().fromJson(message,new TypeToken<HashMap<String,String>>(){
       }
 .getType());
       String code=(String)map.get("returnCode");

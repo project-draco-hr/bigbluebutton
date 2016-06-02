@@ -1,0 +1,7 @@
+{
+  if (future == null) {
+    return 0;
+  }
+  future.get();
+  return delayedTime;
+}

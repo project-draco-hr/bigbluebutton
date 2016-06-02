@@ -1,0 +1,21 @@
+{
+  if (StringUtils.isEmpty(securitySalt)) {
+    log.warn("Security is disabled in this service. Make sure this is intentional.");
+    return true;
+  }
+  if (queryString == null) {
+    queryString="";
+  }
+ else {
+    queryString=queryString.replace("&checksum=" + checksum,"");
+    queryString=queryString.replace("checksum=" + checksum + "&","");
+    queryString=queryString.replace("checksum=" + checksum,"");
+  }
+  String cs=DigestUtils.shaHex(apiCall + queryString + securitySalt);
+  if (cs == null || cs.equals(checksum) == false) {
+    log.info("query string after checksum removed: [{}]",queryString);
+    log.info("checksumError: query string checksum failed. our: [{}], client: [{}]",cs,checksum);
+    return false;
+  }
+  return true;
+}

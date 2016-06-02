@@ -1,0 +1,23 @@
+{
+  String path=jnlpres.getPath();
+  if (jnlpres.isJnlpFile()) {
+    boolean supportQuery=JarDiffHandler.isJavawsVersion(dreq,"1.5+");
+    log.debug("SupportQuery in Href: " + supportQuery);
+    if (supportQuery) {
+      return _jnlpFileHandler.getJnlpFileEx(jnlpres,dreq);
+    }
+ else {
+      return _jnlpFileHandler.getJnlpFile(jnlpres,dreq);
+    }
+  }
+  if (dreq.getCurrentVersionId() != null && jnlpres.isJarFile()) {
+    DownloadResponse response=_jarDiffHandler.getJarDiffEntry(_resourceCatalog,dreq,jnlpres);
+    if (response != null) {
+      log.info("servlet.log.info.jardiff.response");
+      return response;
+    }
+  }
+  JnlpResource jr=new JnlpResource(getServletContext(),jnlpres.getName(),jnlpres.getVersionId(),jnlpres.getOSList(),jnlpres.getArchList(),jnlpres.getLocaleList(),jnlpres.getPath(),jnlpres.getReturnVersionId(),dreq.getEncoding());
+  log.debug("Real resource returned: " + jr);
+  return DownloadResponse.getFileDownloadResponse(jr.getResource(),jr.getMimeType(),jr.getLastModified(),jr.getReturnVersionId());
+}

@@ -1,0 +1,24 @@
+{
+  HttpClient client=new HttpClient();
+  GetMethod get=new GetMethod(url);
+  String configXML="";
+  try {
+    int status=client.executeMethod(get);
+    if (status == 200) {
+      configXML=get.getResponseBodyAsString();
+    }
+ else {
+      return null;
+    }
+  }
+ catch (  HttpException e) {
+    return null;
+  }
+catch (  IOException e) {
+    return null;
+  }
+ finally {
+    get.releaseConnection();
+  }
+  return configXML;
+}

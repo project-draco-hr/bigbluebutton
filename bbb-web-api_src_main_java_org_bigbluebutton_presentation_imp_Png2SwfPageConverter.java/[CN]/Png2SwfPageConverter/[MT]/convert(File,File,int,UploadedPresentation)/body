@@ -1,0 +1,11 @@
+{
+  String COMMAND=SWFTOOLS_DIR + "/png2swf -o " + output.getAbsolutePath()+ " "+ presentationFile.getAbsolutePath();
+  boolean done=new ExternalProcessExecutor().exec(COMMAND,60000);
+  if (done && output.exists()) {
+    return true;
+  }
+ else {
+    log.warn("Failed to convert: " + output.getAbsolutePath() + " does not exist.");
+    return false;
+  }
+}

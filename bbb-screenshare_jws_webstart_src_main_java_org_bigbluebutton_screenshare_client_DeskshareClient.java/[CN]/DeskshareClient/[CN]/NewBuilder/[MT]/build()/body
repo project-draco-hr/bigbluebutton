@@ -1,0 +1,31 @@
+{
+  if (fullScreen) {
+    System.out.println("Sharing full screen.");
+    setupFullScreen();
+  }
+ else {
+    System.out.println("Sharing region screen.");
+    setupCaptureRegion();
+  }
+  ScreenShareInfo ssi=new ScreenShareInfo();
+  ssi.host=host;
+  ssi.port=port;
+  ssi.meetingId=meetingId;
+  ssi.streamId=streamId;
+  ssi.captureWidth=captureWidth;
+  ssi.captureHeight=captureHeight;
+  ssi.scaleWidth=scaleWidth;
+  ssi.scaleHeight=scaleHeight;
+  ssi.quality=quality;
+  ssi.scale=scale;
+  ssi.x=x;
+  ssi.y=y;
+  ssi.httpTunnel=httpTunnel;
+  ssi.fullScreen=fullScreen;
+  ssi.URL=URL;
+  ssi.codecOptions=codecOptions;
+  ssi.sysTrayIcon=sysTrayIcon;
+  ssi.enableTrayActions=enableTrayActions;
+  System.out.println("ScreenShareInfo[captureWidth=" + captureWidth + ",captureHeight="+ captureHeight+ "]["+ x+ ","+ y+ "]"+ "[scaleWidth="+ scaleWidth+ ",scaleHeight="+ scaleHeight+ "]");
+  return new DeskshareClient(ssi);
+}

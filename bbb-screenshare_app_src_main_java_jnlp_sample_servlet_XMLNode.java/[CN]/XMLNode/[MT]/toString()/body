@@ -1,0 +1,7 @@
+{
+  StringWriter sw=new StringWriter(1000);
+  PrintWriter pw=new PrintWriter(sw);
+  printToStream(pw);
+  pw.close();
+  return sw.toString();
+}

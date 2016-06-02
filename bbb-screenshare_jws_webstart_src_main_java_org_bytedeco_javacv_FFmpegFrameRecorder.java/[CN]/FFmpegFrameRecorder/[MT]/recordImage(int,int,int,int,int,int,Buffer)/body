@@ -1,0 +1,90 @@
+{
+  if (video_st == null) {
+    throw new Exception("No video output stream (Is imageWidth > 0 && imageHeight > 0 and has start() been called?)");
+  }
+  int ret;
+  if (image == null || image.length == 0) {
+  }
+ else {
+    int step=stride * Math.abs(depth) / 8;
+    BytePointer data=image[0] instanceof ByteBuffer ? new BytePointer((ByteBuffer)image[0].position(0)) : new BytePointer(new Pointer(image[0].position(0)));
+    if (pixelFormat == AV_PIX_FMT_NONE) {
+      if ((depth == Frame.DEPTH_UBYTE || depth == Frame.DEPTH_BYTE) && channels == 3) {
+        pixelFormat=AV_PIX_FMT_BGR24;
+      }
+ else       if ((depth == Frame.DEPTH_UBYTE || depth == Frame.DEPTH_BYTE) && channels == 1) {
+        pixelFormat=AV_PIX_FMT_GRAY8;
+      }
+ else       if ((depth == Frame.DEPTH_USHORT || depth == Frame.DEPTH_SHORT) && channels == 1) {
+        pixelFormat=ByteOrder.nativeOrder().equals(ByteOrder.BIG_ENDIAN) ? AV_PIX_FMT_GRAY16BE : AV_PIX_FMT_GRAY16LE;
+      }
+ else       if ((depth == Frame.DEPTH_UBYTE || depth == Frame.DEPTH_BYTE) && channels == 4) {
+        pixelFormat=AV_PIX_FMT_RGBA;
+      }
+ else       if ((depth == Frame.DEPTH_UBYTE || depth == Frame.DEPTH_BYTE) && channels == 2) {
+        pixelFormat=AV_PIX_FMT_NV21;
+        step=width;
+      }
+ else {
+        throw new Exception("Could not guess pixel format of image: depth=" + depth + ", channels="+ channels);
+      }
+    }
+    if (video_c.pix_fmt() != pixelFormat || video_c.width() != width || video_c.height() != height) {
+      img_convert_ctx=sws_getCachedContext(img_convert_ctx,width,height,pixelFormat,video_c.width(),video_c.height(),video_c.pix_fmt(),SWS_BILINEAR,null,null,(DoublePointer)null);
+      if (img_convert_ctx == null) {
+        throw new Exception("sws_getCachedContext() error: Cannot initialize the conversion context.");
+      }
+      avpicture_fill(new AVPicture(tmp_picture),data,pixelFormat,width,height);
+      avpicture_fill(new AVPicture(picture),picture_buf,video_c.pix_fmt(),video_c.width(),video_c.height());
+      tmp_picture.linesize(0,step);
+      tmp_picture.format(pixelFormat);
+      tmp_picture.width(width);
+      tmp_picture.height(height);
+      picture.format(video_c.pix_fmt());
+      picture.width(video_c.width());
+      picture.height(video_c.height());
+      sws_scale(img_convert_ctx,new PointerPointer(tmp_picture),tmp_picture.linesize(),0,height,new PointerPointer(picture),picture.linesize());
+    }
+ else {
+      avpicture_fill(new AVPicture(picture),data,pixelFormat,width,height);
+      picture.linesize(0,step);
+      picture.format(pixelFormat);
+      picture.width(width);
+      picture.height(height);
+    }
+  }
+  if ((oformat.flags() & AVFMT_RAWPICTURE) != 0) {
+    if (image == null || image.length == 0) {
+      return false;
+    }
+    av_init_packet(video_pkt);
+    video_pkt.flags(video_pkt.flags() | AV_PKT_FLAG_KEY);
+    video_pkt.stream_index(video_st.index());
+    video_pkt.data(new BytePointer(picture));
+    video_pkt.size(Loader.sizeof(AVPicture.class));
+  }
+ else {
+    av_init_packet(video_pkt);
+    video_pkt.data(video_outbuf);
+    video_pkt.size(video_outbuf_size);
+    picture.quality(video_c.global_quality());
+    if ((ret=avcodec_encode_video2(video_c,video_pkt,image == null || image.length == 0 ? null : picture,got_video_packet)) < 0) {
+      throw new Exception("avcodec_encode_video2() error " + ret + ": Could not encode video packet.");
+    }
+    picture.pts(picture.pts() + 1);
+    if (got_video_packet[0] != 0) {
+      if (video_pkt.pts() != AV_NOPTS_VALUE) {
+        video_pkt.pts(av_rescale_q(video_pkt.pts(),video_c.time_base(),video_st.time_base()));
+      }
+      if (video_pkt.dts() != AV_NOPTS_VALUE) {
+        video_pkt.dts(av_rescale_q(video_pkt.dts(),video_c.time_base(),video_st.time_base()));
+      }
+      video_pkt.stream_index(video_st.index());
+    }
+ else {
+      return false;
+    }
+  }
+  writePacket(AVMEDIA_TYPE_VIDEO,video_pkt);
+  return image != null ? (video_pkt.flags() & AV_PKT_FLAG_KEY) != 0 : got_video_packet[0] != 0;
+}

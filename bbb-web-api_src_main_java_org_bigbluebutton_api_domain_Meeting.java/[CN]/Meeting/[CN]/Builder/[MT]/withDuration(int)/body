@@ -1,0 +1,4 @@
+{
+  duration=minutes;
+  return this;
+}

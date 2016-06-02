@@ -1,0 +1,31 @@
+{
+  boolean r=false;
+  if (!states.isEmpty()) {
+    if (states.contains("any")) {
+      r=true;
+    }
+ else {
+      if (type.equals(Recording.STATE_PUBLISHED) && states.contains(Recording.STATE_PUBLISHED)) {
+        r=true;
+      }
+ else       if (type.equals(Recording.STATE_UNPUBLISHED) && states.contains(Recording.STATE_UNPUBLISHED)) {
+        r=true;
+      }
+ else       if (type.equals(Recording.STATE_DELETED) && states.contains(Recording.STATE_DELETED)) {
+        r=true;
+      }
+ else       if (type.equals(Recording.STATE_PROCESSING) && states.contains(Recording.STATE_PROCESSING)) {
+        r=true;
+      }
+ else       if (type.equals(Recording.STATE_PROCESSED) && states.contains(Recording.STATE_PROCESSED)) {
+        r=true;
+      }
+    }
+  }
+ else {
+    if (type.equals(Recording.STATE_PUBLISHED) || type.equals(Recording.STATE_UNPUBLISHED)) {
+      r=true;
+    }
+  }
+  return r;
+}

@@ -1,0 +1,8 @@
+{
+  CreateMeetingRequestPayload payload=new CreateMeetingRequestPayload(meetingID,externalMeetingID,meetingName,recorded,voiceBridge,duration,autoStartRecording,allowStartStopRecording,moderatorPass,viewerPass,createTime,createDate,isBreakout);
+  CreateMeetingRequest msg=new CreateMeetingRequest(payload);
+  Gson gson=new Gson();
+  String json=gson.toJson(msg);
+  log.info("Sending create meeting message to bbb-apps:[{}]",json);
+  sender.send(MessagingConstants.TO_MEETING_CHANNEL,json);
+}

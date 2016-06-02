@@ -1,0 +1,5 @@
+{
+  this.token=token;
+  this.createdOn=timestamp;
+  this.config=config;
+}

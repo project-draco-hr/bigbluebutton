@@ -1,0 +1,12 @@
+{
+  final OffsetLocator resizeBarOffsetLocator=new OffsetLocator(){
+    @Override public int getTopOffset(){
+      return (mOverallSize.height + mBorderWidth - resizeBar.getHeight());
+    }
+    @Override public int getLeftOffset(){
+      return (mOverallSize.width + mBorderWidth - resizeBar.getWidth());
+    }
+  }
+;
+  mResizeBarFrame=new ResizeBarFrame(mWindowFrame,resizeBarOffsetLocator,resizeBar);
+}

@@ -1,0 +1,6 @@
+{
+  for (int i=0; i < buffers.length; i++) {
+    ((B)buffers[i]).release();
+  }
+  buffers=null;
+}

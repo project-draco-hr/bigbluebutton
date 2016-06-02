@@ -1,0 +1,24 @@
+{
+  FFmpegFrameRecorder macRecorder=new FFmpegFrameRecorder(url,grabber.getImageWidth(),grabber.getImageHeight());
+  Double frameRate=parseFrameRate(codecOptions.get(FRAMERATE_KEY));
+  macRecorder.setFrameRate(frameRate);
+  int keyFrameInterval=parseKeyFrameInterval(codecOptions.get(KEYFRAMEINTERVAL_KEY));
+  int gopSize=frameRate.intValue() * keyFrameInterval;
+  macRecorder.setGopSize(gopSize);
+  System.out.println("==== CODEC OPTIONS =====");
+  for (  Map.Entry<String,String> entry : codecOptions.entrySet()) {
+    System.out.println("Key = " + entry.getKey() + ", Value = "+ entry.getValue());
+    if (entry.getKey().equals(FRAMERATE_KEY) || entry.getKey().equals(KEYFRAMEINTERVAL_KEY)) {
+    }
+ else {
+      macRecorder.setVideoOption(entry.getKey(),entry.getValue());
+    }
+  }
+  System.out.println("==== END CODEC OPTIONS =====");
+  macRecorder.setFormat("flv");
+  macRecorder.setVideoCodec(AV_CODEC_ID_H264);
+  macRecorder.setPixelFormat(AV_PIX_FMT_YUV420P);
+  macRecorder.setVideoOption("crf","34");
+  macRecorder.setVideoOption("preset","veryfast");
+  return macRecorder;
+}

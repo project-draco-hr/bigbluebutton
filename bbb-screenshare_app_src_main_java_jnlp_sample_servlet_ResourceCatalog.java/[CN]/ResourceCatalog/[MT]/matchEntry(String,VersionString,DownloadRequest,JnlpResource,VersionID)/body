@@ -1,0 +1,18 @@
+{
+  if (!name.equals(jnlpres.getName())) {
+    return DownloadResponse.ERR_10_NO_RESOURCE;
+  }
+  if (!vs.contains(vid)) {
+    return DownloadResponse.ERR_11_NO_VERSION;
+  }
+  if (!prefixMatchLists(jnlpres.getOSList(),dreq.getOS())) {
+    return DownloadResponse.ERR_20_UNSUP_OS;
+  }
+  if (!prefixMatchLists(jnlpres.getArchList(),dreq.getArch())) {
+    return DownloadResponse.ERR_21_UNSUP_ARCH;
+  }
+  if (!prefixMatchLists(jnlpres.getLocaleList(),dreq.getLocale())) {
+    return DownloadResponse.ERR_22_UNSUP_LOCALE;
+  }
+  return DownloadResponse.STS_00_OK;
+}

@@ -1,0 +1,7 @@
+{
+  if (future == null) {
+    return null;
+  }
+  future.get();
+  return delayedFrame;
+}

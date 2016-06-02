@@ -1,0 +1,4 @@
+{
+  this.autoStartRecording=start;
+  return this;
+}

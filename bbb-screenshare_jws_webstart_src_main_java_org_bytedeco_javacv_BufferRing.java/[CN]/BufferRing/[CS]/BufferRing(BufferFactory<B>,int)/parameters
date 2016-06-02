@@ -1,0 +1,2 @@
+BufferFactory<B> factory
+int size

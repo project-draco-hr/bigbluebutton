@@ -1,0 +1,4 @@
+String meetingId
+String redirectUrl
+int redirectCount
+String origUrl

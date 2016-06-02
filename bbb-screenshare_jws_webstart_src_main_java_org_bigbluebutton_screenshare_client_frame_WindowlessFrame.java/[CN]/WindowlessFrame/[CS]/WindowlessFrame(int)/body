@@ -1,0 +1,35 @@
+{
+  mBorderWidth=borderWidth;
+  mWindowFrame=new JFrame("Windowless Frame");
+  mTopBorder=new HorizontalBarFrame(mWindowFrame,new StaticOffsetLocator(0,0));
+  mBottomBorder=new HorizontalBarFrame(mWindowFrame,new OffsetLocator(){
+    @Override public int getTopOffset(){
+      return mOverallSize.height;
+    }
+    @Override public int getLeftOffset(){
+      return 0;
+    }
+  }
+);
+  mRightBorder=new VerticalBarFrame(mWindowFrame,new OffsetLocator(){
+    @Override public int getTopOffset(){
+      return 0;
+    }
+    @Override public int getLeftOffset(){
+      return mOverallSize.width;
+    }
+  }
+);
+  mLeftBorder=new VerticalBarFrame(mWindowFrame,new StaticOffsetLocator(0,0));
+  movingAdapter=createMovingMouseListener();
+  resizingAdapter=createResizingMouseListener();
+  changeBarFrames(new PropertyChanger(){
+    @Override public void changeOn(    Component component){
+      component.addMouseListener(resizingAdapter);
+      component.addMouseMotionListener(resizingAdapter);
+      component.addMouseListener(movingAdapter);
+      component.addMouseMotionListener(movingAdapter);
+    }
+  }
+,false);
+}

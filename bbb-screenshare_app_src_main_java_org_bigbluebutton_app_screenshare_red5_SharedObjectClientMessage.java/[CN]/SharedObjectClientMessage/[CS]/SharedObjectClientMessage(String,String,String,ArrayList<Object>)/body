@@ -1,0 +1,6 @@
+{
+  this.meetingID=meetingID;
+  this.message=message;
+  this.sharedObjectName=sharedObjectName;
+  this.messageName=messageName;
+}

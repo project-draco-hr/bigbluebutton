@@ -1,0 +1,16 @@
+{
+  List<Recording> recs=new ArrayList<Recording>();
+  Map<String,List<File>> allDirectories=getAllDirectories(states);
+  if (recordIDs.isEmpty()) {
+    for (    Map.Entry<String,List<File>> entry : allDirectories.entrySet()) {
+      recordIDs.addAll(getAllRecordingIds(entry.getValue()));
+    }
+  }
+  for (  String recordID : recordIDs) {
+    for (    Map.Entry<String,List<File>> entry : allDirectories.entrySet()) {
+      List<Recording> _recs=getRecordingsForPath(recordID,entry.getValue());
+      recs.addAll(_recs);
+    }
+  }
+  return recs;
+}

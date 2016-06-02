@@ -1,0 +1,63 @@
+{
+  if (frameGrabbers.length == 1) {
+    grabbedFrames[0]=frameGrabbers[0].grab();
+    return grabbedFrames;
+  }
+  long newestTimestamp=0;
+  boolean unsynchronized=false;
+  for (int i=0; i < frameGrabbers.length; i++) {
+    grabbedFrames[i]=frameGrabbers[i].grab();
+    if (grabbedFrames[i] != null) {
+      newestTimestamp=Math.max(newestTimestamp,frameGrabbers[i].getTimestamp());
+    }
+    if (frameGrabbers[i].getClass() != frameGrabbers[(i + 1) % frameGrabbers.length].getClass()) {
+      unsynchronized=true;
+    }
+  }
+  if (unsynchronized) {
+    return grabbedFrames;
+  }
+  for (int i=0; i < frameGrabbers.length; i++) {
+    if (grabbedFrames[i] != null) {
+      latencies[i]=newestTimestamp - Math.max(0,frameGrabbers[i].getTimestamp());
+    }
+  }
+  if (bestLatencies == null) {
+    bestLatencies=Arrays.copyOf(latencies,latencies.length);
+  }
+ else {
+    int sum1=0, sum2=0;
+    for (int i=0; i < frameGrabbers.length; i++) {
+      sum1+=latencies[i];
+      sum2+=bestLatencies[i];
+    }
+    if (sum1 < sum2) {
+      bestLatencies=Arrays.copyOf(latencies,latencies.length);
+    }
+  }
+  bestInterval=Math.min(bestInterval,newestTimestamp - lastNewestTimestamp);
+  for (int i=0; i < bestLatencies.length; i++) {
+    bestLatencies[i]=Math.min(bestLatencies[i],bestInterval * 9 / 10);
+  }
+  for (int j=0; j < 2; j++) {
+    for (int i=0; i < frameGrabbers.length; i++) {
+      if (frameGrabbers[i].isTriggerMode() || grabbedFrames[i] == null) {
+        continue;
+      }
+      int latency=(int)(newestTimestamp - Math.max(0,frameGrabbers[i].getTimestamp()));
+      while (latency - bestLatencies[i] > 0.1 * bestLatencies[i]) {
+        grabbedFrames[i]=frameGrabbers[i].grab();
+        if (grabbedFrames[i] == null) {
+          break;
+        }
+        latency=(int)(newestTimestamp - Math.max(0,frameGrabbers[i].getTimestamp()));
+        if (latency < 0) {
+          newestTimestamp=Math.max(0,frameGrabbers[i].getTimestamp());
+          break;
+        }
+      }
+    }
+  }
+  lastNewestTimestamp=newestTimestamp;
+  return grabbedFrames;
+}

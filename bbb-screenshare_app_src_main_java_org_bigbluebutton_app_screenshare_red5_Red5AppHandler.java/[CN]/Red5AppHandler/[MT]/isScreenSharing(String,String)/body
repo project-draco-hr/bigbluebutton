@@ -1,0 +1,17 @@
+{
+  IsScreenSharingResponse resp=app.isScreenSharing(meetingId);
+  Map<String,Object> data=new HashMap<String,Object>();
+  data.put("sharing",resp.info.sharing);
+  if (resp.info.sharing) {
+    data.put("streamId",resp.info.streamId);
+    data.put("width",resp.info.width);
+    data.put("height",resp.info.height);
+    data.put("url",resp.info.url);
+  }
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(data));
+  log.info("Sending isSharingScreenRequestResponse to client, meetingId=" + meetingId + " userid="+ userId);
+  DirectClientMessage msg=new DirectClientMessage(meetingId,userId,"isSharingScreenRequestResponse",message);
+  sender.sendMessage(msg);
+}

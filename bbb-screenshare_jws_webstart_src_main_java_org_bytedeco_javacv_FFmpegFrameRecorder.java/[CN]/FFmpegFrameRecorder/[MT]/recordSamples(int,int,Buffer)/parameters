@@ -1,0 +1,3 @@
+int sampleRate
+int audioChannels
+Buffer samples

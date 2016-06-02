@@ -1,0 +1,4 @@
+{
+  this.recordingService=s;
+  this.recordingDir=recordingDir;
+}

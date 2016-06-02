@@ -1,0 +1,11 @@
+{
+  pres.setNumberOfPages(1);
+  if (pres.getNumberOfPages() > 0) {
+    PageConverter pageConverter=determinePageConverter(pres);
+    convertImageToSwf(pres,pageConverter);
+  }
+  createTextFiles(pres);
+  createThumbnails(pres);
+  createSvgImages(pres);
+  notifier.sendConversionCompletedMessage(pres);
+}

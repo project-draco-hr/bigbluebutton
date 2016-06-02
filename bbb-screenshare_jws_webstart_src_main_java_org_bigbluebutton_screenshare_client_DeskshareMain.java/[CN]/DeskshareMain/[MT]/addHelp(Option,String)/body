@@ -1,0 +1,4 @@
+{
+  optionHelpStrings.add(" -" + option.shortForm() + ", --"+ option.longForm()+ ": "+ helpString);
+  return option;
+}

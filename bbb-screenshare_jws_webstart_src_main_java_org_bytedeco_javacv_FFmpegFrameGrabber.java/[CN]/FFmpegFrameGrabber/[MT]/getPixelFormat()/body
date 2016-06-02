@@ -1,0 +1,16 @@
+{
+  if (imageMode == ImageMode.COLOR || imageMode == ImageMode.GRAY) {
+    if (pixelFormat == AV_PIX_FMT_NONE) {
+      return imageMode == ImageMode.COLOR ? AV_PIX_FMT_BGR24 : AV_PIX_FMT_GRAY8;
+    }
+ else {
+      return pixelFormat;
+    }
+  }
+ else   if (video_c != null) {
+    return video_c.pix_fmt();
+  }
+ else {
+    return super.getPixelFormat();
+  }
+}

@@ -1,0 +1,8 @@
+{
+  for (int i=0; i < _versionIds.size(); i++) {
+    VersionID vi=(VersionID)_versionIds.get(i);
+    boolean check=vi.match(m);
+    if (check)     return true;
+  }
+  return false;
+}

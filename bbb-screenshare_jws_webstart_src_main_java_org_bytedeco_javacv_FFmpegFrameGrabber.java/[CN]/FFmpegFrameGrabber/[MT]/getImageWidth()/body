@@ -1,0 +1,3 @@
+{
+  return imageWidth > 0 || video_c == null ? super.getImageWidth() : video_c.width();
+}

@@ -1,0 +1,5 @@
+{
+  log.debug("Creating textfiles for accessibility.");
+  notifier.sendCreatingTextFilesUpdateMessage(pres);
+  textFileCreator.createTextFiles(pres);
+}

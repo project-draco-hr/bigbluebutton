@@ -1,0 +1,6 @@
+{
+  if (isNearBottomRightCorner(mouse)) {
+    return Corner.SOUTHEAST;
+  }
+  return null;
+}

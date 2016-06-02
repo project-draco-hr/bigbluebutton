@@ -1,0 +1,9 @@
+{
+  long length=0;
+  try {
+    length=getContentLength();
+  }
+ catch (  IOException ioe) {
+  }
+  return "Mimetype=" + getMimeType() + " VersionId="+ getVersionId()+ " Timestamp="+ new Date(getLastModified())+ " Length="+ length;
+}

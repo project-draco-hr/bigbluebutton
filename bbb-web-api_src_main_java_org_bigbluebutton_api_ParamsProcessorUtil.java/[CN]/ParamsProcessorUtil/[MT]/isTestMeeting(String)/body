@@ -1,0 +1,3 @@
+{
+  return ((!StringUtils.isEmpty(telVoice)) && (!StringUtils.isEmpty(testVoiceBridge)) && (telVoice == testVoiceBridge));
+}

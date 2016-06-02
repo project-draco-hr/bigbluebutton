@@ -1,0 +1,3 @@
+{
+  return audioMetadata.get(key);
+}

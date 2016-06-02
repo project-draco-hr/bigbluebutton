@@ -1,0 +1,13 @@
+{
+  messagingService.endMeeting(message.meetingId);
+  Meeting m=getMeeting(message.meetingId);
+  if (m != null) {
+    m.setForciblyEnded(true);
+    if (removeMeetingWhenEnded) {
+      processRecording(m.getInternalId());
+      destroyMeeting(m.getInternalId());
+      meetings.remove(m.getInternalId());
+      removeUserSessions(m.getInternalId());
+    }
+  }
+}

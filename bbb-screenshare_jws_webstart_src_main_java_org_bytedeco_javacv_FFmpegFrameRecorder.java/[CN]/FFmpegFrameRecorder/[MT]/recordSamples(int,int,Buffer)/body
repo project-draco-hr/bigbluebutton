@@ -1,0 +1,136 @@
+{
+  if (audio_st == null) {
+    throw new Exception("No audio output stream (Is audioChannels > 0 and has start() been called?)");
+  }
+  int ret;
+  if (sampleRate <= 0) {
+    sampleRate=audio_c.sample_rate();
+  }
+  if (audioChannels <= 0) {
+    audioChannels=audio_c.channels();
+  }
+  int inputSize=samples != null ? samples[0].limit() - samples[0].position() : 0;
+  int inputFormat=AV_SAMPLE_FMT_NONE;
+  int inputChannels=samples != null && samples.length > 1 ? 1 : audioChannels;
+  int inputDepth=0;
+  int outputFormat=audio_c.sample_fmt();
+  int outputChannels=samples_out.length > 1 ? 1 : audio_c.channels();
+  int outputDepth=av_get_bytes_per_sample(outputFormat);
+  if (samples != null && samples[0] instanceof ByteBuffer) {
+    inputFormat=samples.length > 1 ? AV_SAMPLE_FMT_U8P : AV_SAMPLE_FMT_U8;
+    inputDepth=1;
+    for (int i=0; i < samples.length; i++) {
+      ByteBuffer b=(ByteBuffer)samples[i];
+      if (samples_in[i] instanceof BytePointer && samples_in[i].capacity() >= inputSize && b.hasArray()) {
+        ((BytePointer)samples_in[i]).position(0).put(b.array(),b.position(),inputSize);
+      }
+ else {
+        samples_in[i]=new BytePointer(b);
+      }
+    }
+  }
+ else   if (samples != null && samples[0] instanceof ShortBuffer) {
+    inputFormat=samples.length > 1 ? AV_SAMPLE_FMT_S16P : AV_SAMPLE_FMT_S16;
+    inputDepth=2;
+    for (int i=0; i < samples.length; i++) {
+      ShortBuffer b=(ShortBuffer)samples[i];
+      if (samples_in[i] instanceof ShortPointer && samples_in[i].capacity() >= inputSize && b.hasArray()) {
+        ((ShortPointer)samples_in[i]).position(0).put(b.array(),samples[i].position(),inputSize);
+      }
+ else {
+        samples_in[i]=new ShortPointer(b);
+      }
+    }
+  }
+ else   if (samples != null && samples[0] instanceof IntBuffer) {
+    inputFormat=samples.length > 1 ? AV_SAMPLE_FMT_S32P : AV_SAMPLE_FMT_S32;
+    inputDepth=4;
+    for (int i=0; i < samples.length; i++) {
+      IntBuffer b=(IntBuffer)samples[i];
+      if (samples_in[i] instanceof IntPointer && samples_in[i].capacity() >= inputSize && b.hasArray()) {
+        ((IntPointer)samples_in[i]).position(0).put(b.array(),samples[i].position(),inputSize);
+      }
+ else {
+        samples_in[i]=new IntPointer(b);
+      }
+    }
+  }
+ else   if (samples != null && samples[0] instanceof FloatBuffer) {
+    inputFormat=samples.length > 1 ? AV_SAMPLE_FMT_FLTP : AV_SAMPLE_FMT_FLT;
+    inputDepth=4;
+    for (int i=0; i < samples.length; i++) {
+      FloatBuffer b=(FloatBuffer)samples[i];
+      if (samples_in[i] instanceof FloatPointer && samples_in[i].capacity() >= inputSize && b.hasArray()) {
+        ((FloatPointer)samples_in[i]).position(0).put(b.array(),b.position(),inputSize);
+      }
+ else {
+        samples_in[i]=new FloatPointer(b);
+      }
+    }
+  }
+ else   if (samples != null && samples[0] instanceof DoubleBuffer) {
+    inputFormat=samples.length > 1 ? AV_SAMPLE_FMT_DBLP : AV_SAMPLE_FMT_DBL;
+    inputDepth=8;
+    for (int i=0; i < samples.length; i++) {
+      DoubleBuffer b=(DoubleBuffer)samples[i];
+      if (samples_in[i] instanceof DoublePointer && samples_in[i].capacity() >= inputSize && b.hasArray()) {
+        ((DoublePointer)samples_in[i]).position(0).put(b.array(),b.position(),inputSize);
+      }
+ else {
+        samples_in[i]=new DoublePointer(b);
+      }
+    }
+  }
+ else   if (samples != null) {
+    throw new Exception("Audio samples Buffer has unsupported type: " + samples);
+  }
+  if (samples_convert_ctx == null || samples_channels != audioChannels || samples_format != inputFormat || samples_rate != sampleRate) {
+    samples_convert_ctx=swr_alloc_set_opts(samples_convert_ctx,audio_c.channel_layout(),outputFormat,audio_c.sample_rate(),av_get_default_channel_layout(audioChannels),inputFormat,sampleRate,0,null);
+    if (samples_convert_ctx == null) {
+      throw new Exception("swr_alloc_set_opts() error: Cannot allocate the conversion context.");
+    }
+ else     if ((ret=swr_init(samples_convert_ctx)) < 0) {
+      throw new Exception("swr_init() error " + ret + ": Cannot initialize the conversion context.");
+    }
+    samples_channels=audioChannels;
+    samples_format=inputFormat;
+    samples_rate=sampleRate;
+  }
+  for (int i=0; samples != null && i < samples.length; i++) {
+    samples_in[i].position(samples_in[i].position() * inputDepth).limit((samples_in[i].position() + inputSize) * inputDepth);
+  }
+  while (true) {
+    int inputCount=(int)Math.min(samples != null ? (samples_in[0].limit() - samples_in[0].position()) / (inputChannels * inputDepth) : 0,Integer.MAX_VALUE);
+    int outputCount=(int)Math.min((samples_out[0].limit() - samples_out[0].position()) / (outputChannels * outputDepth),Integer.MAX_VALUE);
+    inputCount=Math.min(inputCount,(outputCount * sampleRate + audio_c.sample_rate() - 1) / audio_c.sample_rate());
+    for (int i=0; samples != null && i < samples.length; i++) {
+      samples_in_ptr.put(i,samples_in[i]);
+    }
+    for (int i=0; i < samples_out.length; i++) {
+      samples_out_ptr.put(i,samples_out[i]);
+    }
+    if ((ret=swr_convert(samples_convert_ctx,samples_out_ptr,outputCount,samples_in_ptr,inputCount)) < 0) {
+      throw new Exception("swr_convert() error " + ret + ": Cannot convert audio samples.");
+    }
+ else     if (ret == 0) {
+      break;
+    }
+    for (int i=0; samples != null && i < samples.length; i++) {
+      samples_in[i].position(samples_in[i].position() + inputCount * inputChannels * inputDepth);
+    }
+    for (int i=0; i < samples_out.length; i++) {
+      samples_out[i].position(samples_out[i].position() + ret * outputChannels * outputDepth);
+    }
+    if (samples == null || samples_out[0].position() >= samples_out[0].limit()) {
+      frame.nb_samples(audio_input_frame_size);
+      avcodec_fill_audio_frame(frame,audio_c.channels(),outputFormat,samples_out[0],(int)Math.min(samples_out[0].limit(),Integer.MAX_VALUE),0);
+      for (int i=0; i < samples_out.length; i++) {
+        frame.data(i,samples_out[i].position(0));
+        frame.linesize(i,(int)Math.min(samples_out[i].limit(),Integer.MAX_VALUE));
+      }
+      frame.quality(audio_c.global_quality());
+      record(frame);
+    }
+  }
+  return samples != null ? frame.key_frame() != 0 : record((AVFrame)null);
+}

@@ -1,0 +1,22 @@
+{
+  File presentationFile=pres.getUploadedFile();
+  slide=new File(presentationFile.getParent() + File.separatorChar + "slide-"+ page+ ".swf");
+  if (!pdfToSwfConverter.convert(presentationFile,slide,page,pres)) {
+    Map<String,Object> logData=new HashMap<String,Object>();
+    logData.put("meetingId",pres.getMeetingId());
+    logData.put("presId",pres.getId());
+    logData.put("filename",pres.getName());
+    logData.put("page",page);
+    logData.put("size(KB)",slide.length() / 1024);
+    Gson gson=new Gson();
+    String logStr=gson.toJson(logData);
+    log.warn("Failed to convert slide: data={}",logStr);
+    imageConvertService.convertPageAsAnImage(presentationFile,slide,page,pres);
+  }
+  if (!slide.exists()) {
+    log.warn("Failed to create slide. Creating blank slide for " + slide.getAbsolutePath());
+    generateBlankSlide();
+  }
+  done=true;
+  return this;
+}

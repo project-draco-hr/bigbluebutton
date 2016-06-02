@@ -1,0 +1,32 @@
+{
+  _context=context;
+  _httpRequest=request;
+  _path=request.getRequestURI();
+  _encoding=request.getHeader(ACCEPT_ENCODING);
+  String context_path=request.getContextPath();
+  if (context_path != null)   _path=_path.substring(context_path.length());
+  if (_path == null)   _path=request.getServletPath();
+  if (_path == null)   _path="/";
+  _path=_path.trim();
+  if (_context != null && !_path.endsWith("/")) {
+    String realPath=_context.getRealPath(_path);
+    if (realPath != null) {
+      File f=new File(realPath);
+      if (f != null && f.exists() && f.isDirectory()) {
+        _path+="/";
+      }
+    }
+  }
+  if (_path.endsWith("/"))   _path+="launch.jnlp";
+  _version=getParameter(request,ARG_VERSION_ID);
+  _currentVersionId=getParameter(request,ARG_CURRENT_VERSION_ID);
+  _os=getParameterList(request,ARG_OS);
+  _arch=getParameterList(request,ARG_ARCH);
+  _locale=getParameterList(request,ARG_LOCALE);
+  _knownPlatforms=getParameterList(request,ARG_KNOWN_PLATFORMS);
+  String platformVersion=getParameter(request,ARG_PLATFORM_VERSION_ID);
+  _isPlatformRequest=(platformVersion != null);
+  if (_isPlatformRequest)   _version=platformVersion;
+  _query=request.getQueryString();
+  _testJRE=getParameter(request,TEST_JRE);
+}

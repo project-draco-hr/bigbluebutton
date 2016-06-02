@@ -1,0 +1,10 @@
+{
+  String meetingId=request.getParameterValues("meetingId")[0];
+  String streamId=request.getParameterValues("streamId")[0];
+  if (!hasSessionManager) {
+    screenShareApplication=getScreenShareApplication();
+    hasSessionManager=true;
+  }
+  System.out.println("HttpTunnel: Received Capture Enfd Event.");
+  screenShareApplication.sharingStopped(meetingId,streamId);
+}
