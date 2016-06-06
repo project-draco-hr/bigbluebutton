@@ -1,0 +1,7 @@
+{
+  Map<String,Recording> resultRecordings=new HashMap<String,Recording>();
+  for (  Map.Entry<String,Recording> entry : recordings.entrySet()) {
+    if (recordingMatchesMetadata(entry.getValue(),metadataFilters))     resultRecordings.put(entry.getKey(),entry.getValue());
+  }
+  return resultRecordings;
+}

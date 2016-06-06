@@ -1,0 +1,5 @@
+String meetingId
+int width
+int height
+ByteArrayOutputStream data
+int seqNum

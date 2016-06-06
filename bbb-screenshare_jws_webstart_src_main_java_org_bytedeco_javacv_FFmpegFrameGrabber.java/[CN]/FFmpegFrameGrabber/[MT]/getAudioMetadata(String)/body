@@ -1,0 +1,7 @@
+{
+  if (audio_st == null) {
+    return super.getAudioMetadata(key);
+  }
+  AVDictionaryEntry entry=av_dict_get(audio_st.metadata(),key,null,0);
+  return entry == null || entry.value() == null ? null : entry.value().getString();
+}

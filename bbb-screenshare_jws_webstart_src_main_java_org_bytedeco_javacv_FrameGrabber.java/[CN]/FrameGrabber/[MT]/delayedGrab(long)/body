@@ -1,0 +1,19 @@
+{
+  delayedFrame=null;
+  delayedTime=0;
+  final long start=System.nanoTime() / 1000;
+  if (future != null && !future.isDone()) {
+    return;
+  }
+  future=executor.submit(new Callable<Void>(){
+    public Void call() throws Exception {
+      do {
+        delayedFrame=grab();
+        delayedTime=System.nanoTime() / 1000 - start;
+      }
+ while (delayedTime < delayTime);
+      return null;
+    }
+  }
+);
+}

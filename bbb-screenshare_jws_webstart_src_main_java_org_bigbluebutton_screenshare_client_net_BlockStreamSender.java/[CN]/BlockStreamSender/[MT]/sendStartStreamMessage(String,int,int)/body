@@ -1,0 +1,14 @@
+{
+  dataToSend.reset();
+  try {
+    dataToSend.write(CAPTURE_START_EVENT);
+    dataToSend.write(meetingId.length());
+    dataToSend.write(meetingId.getBytes());
+    dataToSend.write(intToByte(width));
+    dataToSend.write(intToByte(height));
+    sendToStream(dataToSend);
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+}

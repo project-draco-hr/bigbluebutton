@@ -1,0 +1,32 @@
+{
+  int ret;
+  if (oc == null) {
+    super.setTimestamp(timestamp);
+  }
+ else {
+    timestamp=timestamp * AV_TIME_BASE / 1000000L;
+    if (oc.start_time() != AV_NOPTS_VALUE) {
+      timestamp+=oc.start_time();
+    }
+    if ((ret=avformat_seek_file(oc,-1,Long.MIN_VALUE,timestamp,Long.MAX_VALUE,AVSEEK_FLAG_BACKWARD)) < 0) {
+      throw new Exception("avformat_seek_file() error " + ret + ": Could not seek file to timestamp "+ timestamp+ ".");
+    }
+    if (video_c != null) {
+      avcodec_flush_buffers(video_c);
+    }
+    if (audio_c != null) {
+      avcodec_flush_buffers(audio_c);
+    }
+    if (pkt2.size() > 0) {
+      pkt2.size(0);
+      av_free_packet(pkt);
+    }
+    while (this.timestamp > timestamp + 1 && grabFrame(false,true,false,false) != null) {
+    }
+    while (this.timestamp < timestamp - 1 && grabFrame(false,true,false,false) != null) {
+    }
+    if (video_c != null) {
+      frameGrabbed=true;
+    }
+  }
+}

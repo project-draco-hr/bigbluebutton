@@ -1,0 +1,7 @@
+{
+  data.write(CAPTURE_START_EVENT);
+  encodeMeetingId(data,meetingId);
+  encodeSequenceNumber(data,seqNum);
+  data.write(intToBytes(width));
+  data.write(intToBytes(height));
+}

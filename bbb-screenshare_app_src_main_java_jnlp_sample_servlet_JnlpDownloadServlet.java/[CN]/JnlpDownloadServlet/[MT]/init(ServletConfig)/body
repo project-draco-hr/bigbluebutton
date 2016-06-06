@@ -1,0 +1,7 @@
+{
+  super.init(config);
+  JnlpResource.setDefaultExtensions(config.getInitParameter(PARAM_JNLP_EXTENSION),config.getInitParameter(PARAM_JAR_EXTENSION));
+  _jnlpFileHandler=new JnlpFileHandler(config.getServletContext());
+  _jarDiffHandler=new JarDiffHandler(config.getServletContext());
+  _resourceCatalog=new ResourceCatalog(config.getServletContext());
+}

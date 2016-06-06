@@ -1,0 +1,34 @@
+{
+  int pixelSize=Math.abs(depth) / 8;
+  this.imageWidth=width;
+  this.imageHeight=height;
+  this.imageDepth=depth;
+  this.imageChannels=channels;
+  this.imageStride=((imageWidth * imageChannels * pixelSize + 7) & ~7) / pixelSize;
+  this.image=new Buffer[1];
+  ByteBuffer buffer=ByteBuffer.allocateDirect(imageHeight * imageStride * pixelSize).order(ByteOrder.nativeOrder());
+switch (imageDepth) {
+case DEPTH_BYTE:
+case DEPTH_UBYTE:
+    image[0]=buffer;
+  break;
+case DEPTH_SHORT:
+case DEPTH_USHORT:
+image[0]=buffer.asShortBuffer();
+break;
+case DEPTH_INT:
+image[0]=buffer.asIntBuffer();
+break;
+case DEPTH_LONG:
+image[0]=buffer.asLongBuffer();
+break;
+case DEPTH_FLOAT:
+image[0]=buffer.asFloatBuffer();
+break;
+case DEPTH_DOUBLE:
+image[0]=buffer.asDoubleBuffer();
+break;
+default :
+throw new UnsupportedOperationException("Unsupported depth value: " + imageDepth);
+}
+}

@@ -1,0 +1,8 @@
+{
+  System.out.println(CLASS + " - startCapture");
+  frame.changeBorderToBlue();
+  System.out.println(CLASS + " - startCapture:: Change border to blue");
+  frame.removeResizeListeners();
+  Rectangle rect=frame.getFramedRectangle();
+  client.onStartCapture(rect.x,rect.y,frame.getWidth(),frame.getHeight());
+}

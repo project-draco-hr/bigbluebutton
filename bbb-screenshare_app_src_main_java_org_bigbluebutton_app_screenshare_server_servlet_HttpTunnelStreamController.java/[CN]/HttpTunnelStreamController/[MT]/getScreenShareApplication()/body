@@ -1,0 +1,9 @@
+{
+  ServletContext ctx=getServletContext();
+  ApplicationContext appCtx=(ApplicationContext)ctx.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+  IScreenShareApplication manager=(IScreenShareApplication)appCtx.getBean("screenShareApplication");
+  if (manager != null) {
+    log.debug("Got the IScreenShareApplication context: *****");
+  }
+  return manager;
+}

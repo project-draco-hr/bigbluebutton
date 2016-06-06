@@ -1,0 +1,7 @@
+{
+  XMLNode e=findElementPath(root,path);
+  if (e == null)   return defaultvalue;
+  XMLNode n=e.getNested();
+  if (n != null && !n.isElement())   return n.getName();
+  return defaultvalue;
+}

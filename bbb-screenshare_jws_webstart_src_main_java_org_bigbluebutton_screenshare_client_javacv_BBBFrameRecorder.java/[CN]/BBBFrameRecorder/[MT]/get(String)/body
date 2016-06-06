@@ -1,0 +1,15 @@
+{
+  className=BBBFrameRecorder.class.getPackage().getName() + "." + className;
+  try {
+    return Class.forName(className).asSubclass(BBBFrameRecorder.class);
+  }
+ catch (  ClassNotFoundException e) {
+    String className2=className + "FrameRecorder";
+    try {
+      return Class.forName(className2).asSubclass(BBBFrameRecorder.class);
+    }
+ catch (    ClassNotFoundException ex) {
+      throw new Exception("Could not get FrameRecorder class for " + className + " or "+ className2,e);
+    }
+  }
+}

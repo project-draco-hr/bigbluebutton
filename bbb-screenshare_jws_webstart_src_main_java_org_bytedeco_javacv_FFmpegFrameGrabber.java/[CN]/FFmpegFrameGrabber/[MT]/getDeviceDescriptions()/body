@@ -1,0 +1,4 @@
+{
+  tryLoad();
+  throw new UnsupportedOperationException("Device enumeration not support by FFmpeg.");
+}

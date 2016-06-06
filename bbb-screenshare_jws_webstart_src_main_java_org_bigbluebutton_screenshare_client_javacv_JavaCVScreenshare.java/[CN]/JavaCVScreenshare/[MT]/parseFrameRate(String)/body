@@ -1,0 +1,10 @@
+{
+  Double fr=defaultFrameRate;
+  try {
+    fr=Double.parseDouble(value);
+  }
+ catch (  NumberFormatException e) {
+    fr=defaultFrameRate;
+  }
+  return fr;
+}

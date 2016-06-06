@@ -1,0 +1,48 @@
+{
+  int idx=filename.indexOf("__");
+  if (idx == -1)   return null;
+  String name=filename.substring(0,idx);
+  String rest=filename.substring(idx);
+  idx=rest.lastIndexOf('.');
+  String extension="";
+  if (idx != -1) {
+    extension=rest.substring(idx);
+    rest=rest.substring(0,idx);
+  }
+  String versionId=null;
+  ArrayList osList=new ArrayList();
+  ArrayList archList=new ArrayList();
+  ArrayList localeList=new ArrayList();
+  while (rest.length() > 0) {
+    if (!rest.startsWith("__"))     return null;
+    rest=rest.substring(2);
+    char option=rest.charAt(0);
+    idx=rest.indexOf("__");
+    String arg=null;
+    if (idx == -1) {
+      arg=rest.substring(1);
+      rest="";
+    }
+ else {
+      arg=rest.substring(1,idx);
+      rest=rest.substring(idx);
+    }
+switch (option) {
+case 'V':
+      versionId=arg;
+    break;
+case 'O':
+  osList.add(arg);
+break;
+case 'A':
+archList.add(arg);
+break;
+case 'L':
+localeList.add(arg);
+break;
+default :
+return null;
+}
+}
+return new JnlpResource(_servletContext,name + extension,versionId,listToStrings(osList),listToStrings(archList),listToStrings(localeList),dir + filename,versionId);
+}

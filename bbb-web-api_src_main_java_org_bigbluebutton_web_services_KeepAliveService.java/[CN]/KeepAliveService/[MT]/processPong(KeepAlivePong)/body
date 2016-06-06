@@ -1,0 +1,7 @@
+{
+  if (lastKeepAliveMessage != 0 && !available) {
+    log.error("BBB Web pubsub recovered!");
+  }
+  lastKeepAliveMessage=System.currentTimeMillis();
+  available=true;
+}

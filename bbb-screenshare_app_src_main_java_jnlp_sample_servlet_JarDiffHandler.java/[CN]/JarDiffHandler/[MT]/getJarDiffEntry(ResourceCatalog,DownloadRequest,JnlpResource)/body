@@ -1,0 +1,23 @@
+{
+  if (dreq.getCurrentVersionId() == null)   return null;
+  boolean doJarDiffWorkAround=isJavawsVersion(dreq,"1.0*");
+  JarDiffKey key=new JarDiffKey(res.getName(),dreq.getCurrentVersionId(),res.getReturnVersionId(),!doJarDiffWorkAround);
+  JarDiffEntry entry=(JarDiffEntry)_jarDiffEntries.get(key);
+  if (entry == null) {
+    if (log.isInfoEnabled()) {
+      log.info("servlet.log.info.jardiff.gen",res.getName(),dreq.getCurrentVersionId(),res.getReturnVersionId());
+    }
+    File f=generateJarDiff(catalog,dreq,res,doJarDiffWorkAround);
+    if (f == null) {
+      log.warn("servlet.log.warning.jardiff.failed",res.getName(),dreq.getCurrentVersionId(),res.getReturnVersionId());
+    }
+    entry=new JarDiffEntry(f);
+    _jarDiffEntries.put(key,entry);
+  }
+  if (entry.getJarDiffFile() == null) {
+    return null;
+  }
+ else {
+    return DownloadResponse.getFileDownloadResponse(entry.getJarDiffFile(),_jarDiffMimeType,entry.getJarDiffFile().lastModified(),res.getReturnVersionId());
+  }
+}

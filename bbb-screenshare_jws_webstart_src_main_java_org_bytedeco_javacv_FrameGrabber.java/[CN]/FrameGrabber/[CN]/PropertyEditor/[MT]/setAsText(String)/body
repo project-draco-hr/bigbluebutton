@@ -1,0 +1,11 @@
+{
+  if (s == null) {
+    setValue(null);
+  }
+  try {
+    setValue(get(s));
+  }
+ catch (  Exception ex) {
+    throw new IllegalArgumentException(ex);
+  }
+}

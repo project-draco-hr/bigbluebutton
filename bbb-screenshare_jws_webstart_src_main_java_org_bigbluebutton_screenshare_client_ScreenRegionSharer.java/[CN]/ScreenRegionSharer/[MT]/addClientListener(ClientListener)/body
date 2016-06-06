@@ -1,0 +1,6 @@
+{
+  listener=l;
+  SystemTrayListener systrayListener=new SystemTrayListenerImp(listener);
+  tray.addSystemTrayListener(systrayListener);
+  tray.displayIconOnSystemTray(ssi.sysTrayIcon,ssi.enableTrayActions);
+}

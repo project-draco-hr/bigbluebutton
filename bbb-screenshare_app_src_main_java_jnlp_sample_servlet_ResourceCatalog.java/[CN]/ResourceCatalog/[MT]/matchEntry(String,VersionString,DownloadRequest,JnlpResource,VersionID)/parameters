@@ -1,0 +1,5 @@
+String name
+VersionString vs
+DownloadRequest dreq
+JnlpResource jnlpres
+VersionID vid

@@ -1,0 +1,4 @@
+byte[] content
+String mimeType
+String versionId
+long lastModified

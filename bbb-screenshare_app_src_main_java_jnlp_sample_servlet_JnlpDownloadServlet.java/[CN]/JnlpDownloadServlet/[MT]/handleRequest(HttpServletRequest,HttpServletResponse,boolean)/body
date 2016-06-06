@@ -1,0 +1,47 @@
+{
+  String requestStr=request.getRequestURI();
+  if (request.getQueryString() != null)   requestStr+="?" + request.getQueryString().trim();
+  DownloadRequest dreq=new DownloadRequest(getServletContext(),request);
+  if (log.isInfoEnabled()) {
+    log.info("servlet.log.info.request",requestStr);
+    log.info("servlet.log.info.useragent",request.getHeader("User-Agent"));
+  }
+  if (log.isDebugEnabled()) {
+    log.debug(dreq.toString());
+  }
+  long ifModifiedSince=request.getDateHeader("If-Modified-Since");
+  try {
+    validateRequest(dreq);
+    JnlpResource jnlpres=locateResource(dreq);
+    log.debug("JnlpResource: " + jnlpres);
+    if (log.isInfoEnabled()) {
+      log.info("servlet.log.info.goodrequest",jnlpres.getPath());
+    }
+    DownloadResponse dres=null;
+    if (isHead) {
+      int cl=jnlpres.getResource().openConnection().getContentLength();
+      dres=DownloadResponse.getHeadRequestResponse(jnlpres.getMimeType(),jnlpres.getVersionId(),jnlpres.getLastModified(),cl);
+    }
+ else     if (ifModifiedSince != -1 && (ifModifiedSince / 1000) >= (jnlpres.getLastModified() / 1000)) {
+      log.debug("return 304 Not modified");
+      dres=DownloadResponse.getNotModifiedResponse();
+    }
+ else {
+      dres=constructResponse(jnlpres,dreq);
+    }
+    dres.sendRespond(response);
+  }
+ catch (  ErrorResponseException ere) {
+    if (log.isInfoEnabled()) {
+      log.info("servlet.log.info.badrequest",requestStr);
+    }
+    if (log.isDebugEnabled()) {
+      log.debug("Response: " + ere.toString());
+    }
+    ere.getDownloadResponse().sendRespond(response);
+  }
+catch (  Throwable e) {
+    log.error("servlet.log.fatal.internalerror",e);
+    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+  }
+}

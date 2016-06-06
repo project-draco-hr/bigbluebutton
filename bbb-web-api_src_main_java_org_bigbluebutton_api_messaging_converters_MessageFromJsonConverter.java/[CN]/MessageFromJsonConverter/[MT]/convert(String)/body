@@ -1,0 +1,7 @@
+{
+  JsonParser parser=new JsonParser();
+  JsonObject obj=(JsonObject)parser.parse(json);
+  if (obj.has("header") && obj.has("payload")) {
+  }
+  return null;
+}

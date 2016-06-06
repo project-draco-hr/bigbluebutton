@@ -1,0 +1,3 @@
+{
+  sequenceNum=new AtomicInteger(0);
+}

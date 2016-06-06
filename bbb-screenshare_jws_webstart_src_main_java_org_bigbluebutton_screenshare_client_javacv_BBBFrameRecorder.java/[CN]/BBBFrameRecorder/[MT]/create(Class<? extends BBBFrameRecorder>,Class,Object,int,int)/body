@@ -1,0 +1,22 @@
+{
+  Throwable cause=null;
+  try {
+    return c.getConstructor(p,int.class,int.class).newInstance(o,w,h);
+  }
+ catch (  InstantiationException ex) {
+    cause=ex;
+  }
+catch (  IllegalAccessException ex) {
+    cause=ex;
+  }
+catch (  IllegalArgumentException ex) {
+    cause=ex;
+  }
+catch (  NoSuchMethodException ex) {
+    cause=ex;
+  }
+catch (  InvocationTargetException ex) {
+    cause=ex.getCause();
+  }
+  throw new Exception("Could not create new " + c.getSimpleName() + "("+ o+ ", "+ w+ ", "+ h+ ")",cause);
+}

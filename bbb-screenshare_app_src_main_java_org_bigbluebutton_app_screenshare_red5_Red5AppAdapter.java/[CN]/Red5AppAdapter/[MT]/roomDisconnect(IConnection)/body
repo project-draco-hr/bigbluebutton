@@ -1,0 +1,19 @@
+{
+  log.info("BBB Screenshare roomDisconnect");
+  String connType=getConnectionType(Red5.getConnectionLocal().getType());
+  String connId=Red5.getConnectionLocal().getSessionId();
+  String meetingId=conn.getScope().getName();
+  String userId=getUserId();
+  app.userDisconnected(meetingId,userId);
+  Map<String,Object> logData=new HashMap<String,Object>();
+  logData.put("meetingId",getMeetingId());
+  logData.put("userId",userId);
+  logData.put("connType",connType);
+  logData.put("connId",connId);
+  logData.put("event","user_leaving_bbb_screenshare");
+  logData.put("description","User leaving BBB Screenshare.");
+  Gson gson=new Gson();
+  String logStr=gson.toJson(logData);
+  log.info("User leaving bbb-screenshare: data={}",logStr);
+  super.roomDisconnect(conn);
+}

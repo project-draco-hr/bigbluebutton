@@ -1,0 +1,19 @@
+{
+  StringBuffer csbuf=new StringBuffer();
+  SortedSet<String> keys=new TreeSet<String>(params.keySet());
+  boolean first=true;
+  for (  String key : keys) {
+    for (    String value : params.get(key)) {
+      if (first) {
+        first=false;
+      }
+ else {
+        csbuf.append("&");
+      }
+      csbuf.append(key);
+      csbuf.append("=");
+      csbuf.append(value);
+    }
+  }
+  return csbuf.toString();
+}

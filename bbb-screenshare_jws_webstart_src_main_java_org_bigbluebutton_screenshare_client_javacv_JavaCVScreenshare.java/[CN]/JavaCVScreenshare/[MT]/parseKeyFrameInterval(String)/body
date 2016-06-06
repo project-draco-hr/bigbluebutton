@@ -1,0 +1,10 @@
+{
+  int fr=defaultKeyFrameInterval;
+  try {
+    fr=Integer.parseInt(value);
+  }
+ catch (  NumberFormatException e) {
+    fr=defaultKeyFrameInterval;
+  }
+  return fr;
+}

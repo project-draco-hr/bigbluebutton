@@ -1,0 +1,11 @@
+{
+  Gson gson=new Gson();
+  HashMap<String,Object> map=new HashMap<String,Object>();
+  map.put("messageId",MessagingConstants.SEND_POLLS_EVENT);
+  map.put("meetingId",meetingId);
+  map.put("title",title);
+  map.put("question",question);
+  map.put("questionType",questionType);
+  map.put("answers",answers);
+  sender.send(MessagingConstants.TO_POLLING_CHANNEL,gson.toJson(map));
+}

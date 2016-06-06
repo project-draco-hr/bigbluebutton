@@ -1,0 +1,4 @@
+{
+  _jar=new JarFile(new File(path));
+  index();
+}

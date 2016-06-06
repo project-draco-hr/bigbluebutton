@@ -1,0 +1,3 @@
+{
+  return (JarEntry)_nameToEntryMap.get(name);
+}

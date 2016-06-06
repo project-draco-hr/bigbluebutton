@@ -1,0 +1,23 @@
+{
+  List<File> allDirectories=new ArrayList<File>();
+  String dir=null;
+  if (state.equals(Recording.STATE_PUBLISHED)) {
+    dir=publishedDir;
+  }
+ else   if (state.equals(Recording.STATE_UNPUBLISHED)) {
+    dir=unpublishedDir;
+  }
+ else   if (state.equals(Recording.STATE_DELETED)) {
+    dir=deletedDir;
+  }
+ else   if (state.equals(Recording.STATE_PROCESSING) || state.equals(Recording.STATE_PROCESSED)) {
+    dir=processDir;
+  }
+  if (dir != null) {
+    String[] formats=getPlaybackFormats(dir);
+    for (int i=0; i < formats.length; ++i) {
+      allDirectories.addAll(getDirectories(dir + File.separatorChar + formats[i]));
+    }
+  }
+  return allDirectories;
+}

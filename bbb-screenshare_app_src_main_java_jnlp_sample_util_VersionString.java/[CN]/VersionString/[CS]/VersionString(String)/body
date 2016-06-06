@@ -1,0 +1,9 @@
+{
+  _versionIds=new ArrayList();
+  if (vs != null) {
+    StringTokenizer st=new StringTokenizer(vs," ",false);
+    while (st.hasMoreElements()) {
+      _versionIds.add(new VersionID(st.nextToken()));
+    }
+  }
+}

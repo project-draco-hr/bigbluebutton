@@ -1,0 +1,5 @@
+{
+  data.write(CAPTURE_UPDATE_EVENT);
+  encodeMeetingId(data,meetingId);
+  encodeSequenceNumber(data,seqNum);
+}

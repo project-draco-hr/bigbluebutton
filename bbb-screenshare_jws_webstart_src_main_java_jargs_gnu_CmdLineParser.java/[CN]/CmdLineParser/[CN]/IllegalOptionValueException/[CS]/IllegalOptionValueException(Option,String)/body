@@ -1,0 +1,5 @@
+{
+  super("Illegal value '" + value + "' for option "+ (opt.shortForm() != null ? "-" + opt.shortForm() + "/" : "")+ "--"+ opt.longForm());
+  this.option=opt;
+  this.value=value;
+}

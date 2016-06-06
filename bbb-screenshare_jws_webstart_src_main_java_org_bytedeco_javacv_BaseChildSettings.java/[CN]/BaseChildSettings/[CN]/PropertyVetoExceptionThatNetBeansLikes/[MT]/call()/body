@@ -1,0 +1,10 @@
+{
+  LogRecord lg=new LogRecord(Level.ALL,getMessage());
+  lg.setResourceBundle(new ListResourceBundle(){
+    protected Object[][] getContents(){
+      return new Object[][]{{getMessage(),getMessage()}};
+    }
+  }
+);
+  return new LogRecord[]{lg};
+}

@@ -1,0 +1,5 @@
+{
+  this.token=token;
+  this.jnlp=jnlp;
+  this.error=error;
+}

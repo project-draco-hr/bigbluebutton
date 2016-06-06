@@ -1,0 +1,11 @@
+{
+  log.debug("Basic Protocol lookup");
+  if (dreq.getPath() == null || dreq.getPath().endsWith("/")) {
+    throw new ErrorResponseException(DownloadResponse.getNoContentResponse());
+  }
+  JnlpResource jnlpres=new JnlpResource(getServletContext(),dreq.getPath());
+  if (!jnlpres.exists()) {
+    throw new ErrorResponseException(DownloadResponse.getNoContentResponse());
+  }
+  return jnlpres;
+}

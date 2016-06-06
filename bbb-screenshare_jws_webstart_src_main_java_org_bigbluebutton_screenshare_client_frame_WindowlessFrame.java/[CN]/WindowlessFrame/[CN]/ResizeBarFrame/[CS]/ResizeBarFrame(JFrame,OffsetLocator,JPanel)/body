@@ -1,0 +1,17 @@
+{
+  super(frame);
+  super.setAlwaysOnTop(true);
+  frame.setAlwaysOnTop(true);
+  setBackground(new Color(0,255,0,0));
+  mOffsetLocator=ol;
+  add(content);
+  pack();
+  resizeMouseAdapter=createResizeBarResizingMouseListener();
+  changeResizeBarFrame(new PropertyChanger(){
+    @Override public void changeOn(    Component component){
+      component.addMouseListener(resizeMouseAdapter);
+      component.addMouseMotionListener(resizeMouseAdapter);
+    }
+  }
+);
+}

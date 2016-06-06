@@ -1,0 +1,7 @@
+int width
+int height
+int depth
+int channels
+int stride
+int pixelFormat
+Buffer image

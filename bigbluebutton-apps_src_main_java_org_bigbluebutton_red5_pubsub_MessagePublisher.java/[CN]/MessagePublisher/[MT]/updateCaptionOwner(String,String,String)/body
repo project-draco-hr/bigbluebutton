@@ -1,0 +1,4 @@
+{
+  UpdateCaptionOwnerMessage msg=new UpdateCaptionOwnerMessage(meetingID,locale,ownerID);
+  sender.send(MessagingConstants.TO_CAPTION_CHANNEL,msg.toJson());
+}

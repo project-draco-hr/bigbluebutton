@@ -1,0 +1,18 @@
+{
+  if (_isCompound) {
+    if (!_rest.isPrefixMatch(vid)) {
+      return false;
+    }
+  }
+  String[] t2=normalize(vid._tuple,_tuple.length);
+  for (int i=0; i < _tuple.length; i++) {
+    Object e1=_tuple[i];
+    Object e2=t2[i];
+    if (e1.equals(e2)) {
+    }
+ else {
+      return false;
+    }
+  }
+  return true;
+}

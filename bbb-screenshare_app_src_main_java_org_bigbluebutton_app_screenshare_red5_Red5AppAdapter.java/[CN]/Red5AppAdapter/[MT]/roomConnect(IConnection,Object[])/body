@@ -1,0 +1,4 @@
+{
+  log.info("BBB Screenshare roomConnect");
+  return super.roomConnect(conn,params);
+}

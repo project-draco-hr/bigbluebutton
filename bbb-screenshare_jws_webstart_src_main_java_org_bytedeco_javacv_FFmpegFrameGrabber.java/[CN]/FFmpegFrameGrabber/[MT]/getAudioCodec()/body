@@ -1,0 +1,3 @@
+{
+  return audio_c == null ? super.getAudioCodec() : audio_c.codec_id();
+}

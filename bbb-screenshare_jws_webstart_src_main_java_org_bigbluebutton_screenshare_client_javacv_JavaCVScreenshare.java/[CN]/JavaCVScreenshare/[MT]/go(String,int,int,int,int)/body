@@ -1,0 +1,31 @@
+{
+  captureTaker=new ScreenCaptureTaker(x,y,width,height,width,height);
+  System.out.println("Capturing w=[" + width + "] h=["+ height+ "] at x=["+ x+ "] y=["+ y+ "]");
+  recorder=new BBBFFmpegFrameRecorder(URL,width,height);
+  recorder.setFormat("flv");
+  recorder.setVideoCodec(AV_CODEC_ID_H264);
+  recorder.setPixelFormat(AV_PIX_FMT_YUV420P);
+  Map<String,String> codecOptions=splitToMap(ssi.codecOptions,"&","=");
+  frameRate=parseFrameRate(codecOptions.get(FRAMERATE_KEY));
+  recorder.setFrameRate(frameRate);
+  int keyFrameInterval=parseKeyFrameInterval(codecOptions.get(KEYFRAMEINTERVAL_KEY));
+  int gopSize=frameRate.intValue() * keyFrameInterval;
+  recorder.setGopSize(gopSize);
+  System.out.println("==== CODEC OPTIONS =====");
+  for (  Map.Entry<String,String> entry : codecOptions.entrySet()) {
+    System.out.println("Key = " + entry.getKey() + ", Value = "+ entry.getValue());
+    if (entry.getKey().equals(FRAMERATE_KEY) || entry.getKey().equals(KEYFRAMEINTERVAL_KEY)) {
+    }
+ else {
+      recorder.setVideoOption(entry.getKey(),entry.getValue());
+    }
+  }
+  System.out.println("==== END CODEC OPTIONS =====");
+  startTime=System.currentTimeMillis();
+  try {
+    recorder.start();
+  }
+ catch (  Exception e1) {
+    e1.printStackTrace();
+  }
+}

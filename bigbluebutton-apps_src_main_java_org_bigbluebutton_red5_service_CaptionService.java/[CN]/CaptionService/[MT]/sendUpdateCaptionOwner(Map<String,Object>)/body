@@ -1,0 +1,7 @@
+{
+  String locale=msg.get("locale").toString();
+  Boolean claim=(Boolean)msg.get("claim");
+  String meetingID=Red5.getConnectionLocal().getScope().getName();
+  String ownerID=(claim ? getBbbSession().getInternalUserID() : "");
+  red5InGW.updateCaptionOwner(meetingID,locale,ownerID);
+}

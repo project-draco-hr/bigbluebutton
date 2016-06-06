@@ -1,0 +1,6 @@
+{
+  String path=dreq.getPath();
+  if (path.endsWith(ResourceCatalog.VERSION_XML_FILENAME) || path.indexOf("__") != -1) {
+    throw new ErrorResponseException(DownloadResponse.getNoContentResponse());
+  }
+}

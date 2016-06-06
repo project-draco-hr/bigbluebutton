@@ -1,0 +1,15 @@
+{
+  ClientHttpRequest chr;
+  try {
+    System.out.println(getTimeStamp() + " - Sending End Sharing Event.");
+    chr=new ClientHttpRequest(conn);
+    chr.setParameter(MEETING_ID,meetingId);
+    chr.setParameter(STREAM_ID,streamId);
+    chr.setParameter(SEQ_NUM,seqNumGenerator.getNext());
+    chr.setParameter(EVENT,CaptureEvents.CAPTURE_END.getEvent());
+    chr.post();
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+}
