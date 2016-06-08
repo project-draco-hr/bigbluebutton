@@ -13,5 +13,4 @@ catch (  IOException e) {
     throw new ConnectionException("IOException while connecting to " + url.toString());
   }
   long end=System.currentTimeMillis();
-  System.out.println("Http Open connection took [" + (end - start) + " ms]");
 }
