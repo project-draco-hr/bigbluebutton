@@ -1,5 +1,6 @@
 {
   if (channel.equalsIgnoreCase(MessagingConstants.TO_CAPTION_CHANNEL)) {
+    System.out.println("CAPTION MESSAGES IN AKKA APPS   " + channel + "    "+ message);
     JsonParser parser=new JsonParser();
     JsonObject obj=(JsonObject)parser.parse(message);
     if (obj.has("header") && obj.has("payload")) {
