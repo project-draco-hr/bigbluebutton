@@ -1,0 +1,97 @@
+{
+  boolean add=true;
+  if (templateMap != null && !templateMap.full() && (decl.type != null || decl.declarator != null)) {
+    if (infoIterator == null) {
+      Type type=templateMap.type=decl.type;
+      Declarator dcl=templateMap.declarator=decl.declarator;
+      List<Info> infoList=infoMap.get(dcl != null ? dcl.cppName : type.cppName);
+      boolean hasJavaName=false;
+      for (      Info info : infoList) {
+        hasJavaName|=info.javaNames != null && info.javaNames.length > 0;
+      }
+      if (!decl.function || hasJavaName) {
+        infoIterator=infoList.size() > 0 ? infoList.listIterator() : null;
+      }
+    }
+    add=false;
+  }
+ else   if (decl.declarator != null && decl.declarator.type != null) {
+    Info info=infoMap.getFirst(decl.declarator.type.cppName);
+    if (info != null && info.skip && info.valueTypes == null && info.pointerTypes == null) {
+      add=false;
+    }
+ else     if (decl.declarator.parameters != null) {
+      for (      Declarator d : decl.declarator.parameters.declarators) {
+        if (d != null && d.type != null) {
+          info=infoMap.getFirst(d.type.cppName);
+          if (info != null && info.skip && info.valueTypes == null && info.pointerTypes == null) {
+            add=false;
+            break;
+          }
+        }
+      }
+    }
+  }
+  if (!add) {
+    return false;
+  }
+  List<Declaration> stack=new ArrayList<Declaration>();
+  ListIterator<Declaration> it=stack.listIterator();
+  it.add(decl);
+  it.previous();
+  while (it.hasNext()) {
+    decl=it.next();
+    Declarator dcl=decl.declarator;
+    if (dcl != null && dcl.definition != null) {
+      it.add(dcl.definition);
+      it.previous();
+    }
+    if (dcl != null && dcl.parameters != null && dcl.parameters.declarators != null) {
+      for (      Declarator d : dcl.parameters.declarators) {
+        if (d != null && d.definition != null) {
+          it.add(d.definition);
+          it.previous();
+        }
+      }
+    }
+  }
+  add=false;
+  while (!stack.isEmpty()) {
+    decl=stack.remove(stack.size() - 1);
+    if (context != null) {
+      decl.inaccessible=context.inaccessible && !(context.virtualize && decl.declarator != null && decl.declarator.type != null && decl.declarator.type.virtual);
+    }
+    if (decl.text.length() == 0) {
+      decl.inaccessible=true;
+    }
+    it=listIterator();
+    boolean found=false;
+    while (it.hasNext()) {
+      Declaration d=it.next();
+      if (d.signature.length() > 0 && d.signature.equals(decl.signature)) {
+        if ((d.constMember && !decl.constMember) || (d.inaccessible && !decl.inaccessible) || (d.incomplete && !decl.incomplete)) {
+          it.remove();
+        }
+ else {
+          found=true;
+        }
+      }
+    }
+    if (inherited != null) {
+      it=inherited.listIterator();
+      while (it.hasNext()) {
+        Declaration d=it.next();
+        if (d.signature.length() > 0 && d.signature.equals(decl.signature) && !d.incomplete && decl.incomplete) {
+          found=true;
+          break;
+        }
+      }
+    }
+    if (!found) {
+      decl.text=rescan(decl.text);
+      super.add(decl);
+      add=true;
+    }
+  }
+  return add;
+}

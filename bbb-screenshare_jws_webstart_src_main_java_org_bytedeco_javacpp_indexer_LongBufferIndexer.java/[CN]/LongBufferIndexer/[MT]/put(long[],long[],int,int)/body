@@ -1,0 +1,6 @@
+{
+  for (int n=0; n < length; n++) {
+    buffer.put((int)index(indices) + n,l[offset + n]);
+  }
+  return this;
+}

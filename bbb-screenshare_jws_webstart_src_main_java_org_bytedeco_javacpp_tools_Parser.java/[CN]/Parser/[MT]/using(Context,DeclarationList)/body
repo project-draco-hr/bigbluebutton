@@ -1,0 +1,20 @@
+{
+  if (!tokens.get().match(Token.USING)) {
+    return false;
+  }
+  String spacing=tokens.get().spacing;
+  boolean namespace=tokens.get(1).match(Token.NAMESPACE);
+  Declarator dcl=declarator(context,null,0,false,0,true,false);
+  tokens.next();
+  context.usingList.add(dcl.type.cppName + (namespace ? "::" : ""));
+  Declaration decl=new Declaration();
+  if (dcl.definition != null) {
+    decl=dcl.definition;
+  }
+  String comment=commentAfter();
+  decl.text=comment + decl.text;
+  declList.spacing=spacing;
+  declList.add(decl);
+  declList.spacing=null;
+  return true;
+}

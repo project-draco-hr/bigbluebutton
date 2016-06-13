@@ -1,0 +1,150 @@
+{
+  if (!checkPlatform(cls)) {
+    return false;
+  }
+  Set<String> memberList=members.get(cls);
+  if (!cls.isAnnotationPresent(Opaque.class) && !FunctionPointer.class.isAssignableFrom(cls) && cls.getEnclosingClass() != Pointer.class) {
+    if (memberList == null) {
+      members.put(cls,memberList=new LinkedHashSet<String>());
+    }
+    if (!memberList.contains("sizeof")) {
+      memberList.add("sizeof");
+    }
+  }
+  boolean didSomething=false;
+  for (  Class<?> c : cls.getDeclaredClasses()) {
+    if (Pointer.class.isAssignableFrom(c) || Pointer.class.isAssignableFrom(c.getEnclosingClass())) {
+      didSomething|=methods(c);
+    }
+  }
+  Method[] methods=cls.getDeclaredMethods();
+  MethodInformation[] methodInfos=new MethodInformation[methods.length];
+  for (int i=0; i < methods.length; i++) {
+    methodInfos[i]=methodInformation(methods[i]);
+  }
+  Class<?> c=cls.getSuperclass();
+  while (c != null && c != Object.class) {
+    for (    Method m : c.getDeclaredMethods()) {
+      if (m.isAnnotationPresent(Virtual.class)) {
+        boolean found=false;
+        String name=m.getName();
+        Class<?>[] types=m.getParameterTypes();
+        for (        Method m2 : methods) {
+          if (name.equals(m2.getName()) && Arrays.equals(types,m2.getParameterTypes())) {
+            found=true;
+            break;
+          }
+        }
+        if (!found) {
+          methods=Arrays.copyOf(methods,methods.length + 1);
+          methods[methods.length - 1]=m;
+          methodInfos=Arrays.copyOf(methodInfos,methodInfos.length + 1);
+          methodInfos[methods.length - 1]=methodInformation(m);
+          methodInfos[methods.length - 1].cls=cls;
+        }
+      }
+    }
+    c=c.getSuperclass();
+  }
+  boolean[] callbackAllocators=new boolean[methods.length];
+  Method functionMethod=functionMethod(cls,callbackAllocators);
+  boolean firstCallback=true;
+  for (int i=0; i < methods.length; i++) {
+    if (!checkPlatform(methods[i].getAnnotation(Platform.class),null)) {
+      continue;
+    }
+    MethodInformation methodInfo=methodInfos[i];
+    String nativeName=mangle(cls.getName()) + "_" + mangle(methods[i].getName());
+    String callbackName=callbackAllocators[i] && methodInfo.parameterTypes.length > 0 ? null : "JavaCPP_" + nativeName + "_callback";
+    if (callbackAllocators[i] && functionMethod == null) {
+      logger.warn("No callback method call() or apply() has been not declared in \"" + cls.getCanonicalName() + "\". No code will be generated for callback allocator.");
+      continue;
+    }
+ else     if (callbackAllocators[i] || (methods[i].equals(functionMethod) && !Modifier.isNative(methods[i].getModifiers()))) {
+      functions.index(cls);
+      Name name=methods[i].getAnnotation(Name.class);
+      if (name != null && name.value().length > 0 && name.value()[0].length() > 0) {
+        callbackName=name.value()[0];
+      }
+      callback(cls,functionMethod,callbackName,firstCallback,null);
+      firstCallback=false;
+      didSomething=true;
+    }
+    if ((Modifier.isNative(methods[i].getModifiers()) || Modifier.isAbstract(methods[i].getModifiers())) && !methodInfo.valueGetter && !methodInfo.valueSetter&& !methodInfo.memberGetter&& !methodInfo.memberSetter&& !cls.isInterface()&& (methods[i].isAnnotationPresent(Virtual.class) || methodInfo.allocator)) {
+      callback(cls,methods[i],methodInfo.memberName[0],!methodInfo.allocator,methodInfo);
+    }
+    if (!Modifier.isNative(methods[i].getModifiers())) {
+      continue;
+    }
+    if ((methodInfo.memberGetter || methodInfo.memberSetter) && !methodInfo.noOffset && memberList != null && !Modifier.isStatic(methodInfo.modifiers)) {
+      if (!memberList.contains(methodInfo.memberName[0])) {
+        memberList.add(methodInfo.memberName[0]);
+      }
+    }
+    didSomething=true;
+    out.print("JNIEXPORT " + jniTypeName(methodInfo.returnType) + " JNICALL Java_"+ nativeName);
+    if (methodInfo.overloaded) {
+      out.print("__" + mangle(signature(methodInfo.parameterTypes)));
+    }
+    if (Modifier.isStatic(methodInfo.modifiers)) {
+      out.print("(JNIEnv* env, jclass cls");
+    }
+ else {
+      out.print("(JNIEnv* env, jobject obj");
+    }
+    for (int j=0; j < methodInfo.parameterTypes.length; j++) {
+      out.print(", " + jniTypeName(methodInfo.parameterTypes[j]) + " arg"+ j);
+    }
+    out.println(") {");
+    if (callbackAllocators[i]) {
+      callbackAllocator(cls,callbackName);
+      continue;
+    }
+ else     if (!Modifier.isStatic(methodInfo.modifiers) && !methodInfo.allocator && !methodInfo.arrayAllocator&& !methodInfo.deallocator) {
+      String[] typeName=cppTypeName(cls);
+      if ("void*".equals(typeName[0]) && !cls.isAnnotationPresent(Opaque.class)) {
+        typeName[0]="char*";
+      }
+ else       if (FunctionPointer.class.isAssignableFrom(cls)) {
+        functions.index(cls);
+        typeName[0]=functionClassName(cls) + "*";
+        typeName[1]="";
+      }
+      out.println("    " + typeName[0] + " ptr"+ typeName[1]+ " = ("+ typeName[0]+ typeName[1]+ ")jlong_to_ptr(env->GetLongField(obj, JavaCPP_addressFID));");
+      out.println("    if (ptr == NULL) {");
+      out.println("        env->ThrowNew(JavaCPP_getClass(env, " + jclasses.index(NullPointerException.class) + "), \"This pointer address is NULL.\");");
+      out.println("        return" + (methodInfo.returnType == void.class ? ";" : " 0;"));
+      out.println("    }");
+      if (FunctionPointer.class.isAssignableFrom(cls)) {
+        out.println("    if (ptr->ptr == NULL) {");
+        out.println("        env->ThrowNew(JavaCPP_getClass(env, " + jclasses.index(NullPointerException.class) + "), \"This function pointer address is NULL.\");");
+        out.println("        return" + (methodInfo.returnType == void.class ? ";" : " 0;"));
+        out.println("    }");
+      }
+      if (!cls.isAnnotationPresent(Opaque.class)) {
+        out.println("    jlong position = env->GetLongField(obj, JavaCPP_positionFID);");
+        out.println("    ptr += position;");
+        if (methodInfo.bufferGetter) {
+          out.println("    jlong size = env->GetLongField(obj, JavaCPP_limitFID);");
+          out.println("    size -= position;");
+        }
+      }
+    }
+    parametersBefore(methodInfo);
+    String returnPrefix=returnBefore(methodInfo);
+    call(methodInfo,returnPrefix,false);
+    returnAfter(methodInfo);
+    parametersAfter(methodInfo);
+    if (methodInfo.throwsException != null) {
+      out.println("    if (exc != NULL) {");
+      out.println("        env->Throw(exc);");
+      out.println("    }");
+    }
+    if (methodInfo.returnType != void.class) {
+      out.println("    return rarg;");
+    }
+    out.println("}");
+  }
+  out.println();
+  return didSomething;
+}

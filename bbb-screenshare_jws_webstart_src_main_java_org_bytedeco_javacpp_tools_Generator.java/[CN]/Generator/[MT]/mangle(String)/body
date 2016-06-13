@@ -1,0 +1,36 @@
+{
+  StringBuilder mangledName=new StringBuilder(2 * name.length());
+  for (int i=0; i < name.length(); i++) {
+    char c=name.charAt(i);
+    if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
+      mangledName.append(c);
+    }
+ else     if (c == '_') {
+      mangledName.append("_1");
+    }
+ else     if (c == ';') {
+      mangledName.append("_2");
+    }
+ else     if (c == '[') {
+      mangledName.append("_3");
+    }
+ else     if (c == '.' || c == '/') {
+      mangledName.append("_");
+    }
+ else {
+      String code=Integer.toHexString(c);
+      mangledName.append("_0");
+switch (code.length()) {
+case 1:
+        mangledName.append("0");
+case 2:
+      mangledName.append("0");
+case 3:
+    mangledName.append("0");
+default :
+  mangledName.append(code);
+}
+}
+}
+return mangledName.toString();
+}

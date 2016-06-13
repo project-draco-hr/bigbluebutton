@@ -1,0 +1,7 @@
+{
+  String cast=cast(methodInfo.parameterTypes[j],methodInfo.parameterAnnotations[j]);
+  if ((cast == null || cast.length() == 0) && j == methodInfo.parameterTypes.length - 1 && (methodInfo.valueSetter || methodInfo.memberSetter) && methodInfo.pairedMethod != null) {
+    cast=cast(methodInfo.pairedMethod.getReturnType(),methodInfo.pairedMethod.getAnnotations());
+  }
+  return cast;
+}

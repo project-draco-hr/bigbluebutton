@@ -1,0 +1,3 @@
+{
+  return RAW.getChar(base + checkIndex(i,size) * VALUE_BYTES);
+}

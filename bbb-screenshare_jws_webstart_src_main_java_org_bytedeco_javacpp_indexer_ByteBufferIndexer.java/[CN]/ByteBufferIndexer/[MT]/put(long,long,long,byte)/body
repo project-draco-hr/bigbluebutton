@@ -1,0 +1,4 @@
+{
+  buffer.put((int)i * (int)strides[0] + (int)j * (int)strides[1] + (int)k,b);
+  return this;
+}

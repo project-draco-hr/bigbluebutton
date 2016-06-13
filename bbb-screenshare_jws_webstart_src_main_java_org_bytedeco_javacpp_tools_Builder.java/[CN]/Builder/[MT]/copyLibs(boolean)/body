@@ -1,0 +1,4 @@
+{
+  this.copyLibs=copyLibs;
+  return this;
+}

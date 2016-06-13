@@ -1,0 +1,4 @@
+{
+  buffer.put((int)i,b);
+  return this;
+}

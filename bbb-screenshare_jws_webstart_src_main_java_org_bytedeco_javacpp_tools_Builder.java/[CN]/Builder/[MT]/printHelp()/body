@@ -1,0 +1,25 @@
+{
+  String version=Builder.class.getPackage().getImplementationVersion();
+  if (version == null) {
+    version="unknown";
+  }
+  System.out.println("JavaCPP version " + version + "\n"+ "Copyright (C) 2011-2016 Samuel Audet <samuel.audet@gmail.com>\n"+ "Project site: https://github.com/bytedeco/javacpp");
+  System.out.println();
+  System.out.println("Usage: java -jar javacpp.jar [options] [class or package (suffixed with .* or .**)]");
+  System.out.println();
+  System.out.println("where options include:");
+  System.out.println();
+  System.out.println("    -classpath <path>      Load user classes from path");
+  System.out.println("    -d <directory>         Output all generated files to directory");
+  System.out.println("    -o <name>              Output everything in a file named after given name");
+  System.out.println("    -nocompile             Do not compile or delete the generated source files");
+  System.out.println("    -nodelete              Do not delete generated C++ JNI files after compilation");
+  System.out.println("    -header                Generate header file with declarations of callbacks functions");
+  System.out.println("    -copylibs              Copy to output directory dependent libraries (link and preload)");
+  System.out.println("    -jarprefix <prefix>    Also create a JAR file named \"<prefix>-<platform>.jar\"");
+  System.out.println("    -properties <resource> Load all properties from resource");
+  System.out.println("    -propertyfile <file>   Load all properties from file");
+  System.out.println("    -D<property>=<value>   Set property to value");
+  System.out.println("    -Xcompiler <option>    Pass option directly to compiler");
+  System.out.println();
+}

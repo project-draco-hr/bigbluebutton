@@ -1,0 +1,14 @@
+{
+  if (p.limit > 0 && p.limit < p.position) {
+    throw new IllegalArgumentException("limit < position: (" + p.limit + " < "+ p.position+ ")");
+  }
+  int size=sizeof();
+  int psize=p.sizeof();
+  long length=psize * (p.limit <= 0 ? 1 : p.limit - p.position);
+  position*=size;
+  p.position*=psize;
+  memcpy(this,p,length);
+  position/=size;
+  p.position/=psize;
+  return (P)this;
+}

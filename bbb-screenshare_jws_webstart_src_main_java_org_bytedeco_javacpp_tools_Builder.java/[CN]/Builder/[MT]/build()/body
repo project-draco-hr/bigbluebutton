@@ -1,0 +1,85 @@
+{
+  if (classScanner.getClasses().isEmpty()) {
+    return null;
+  }
+  List<File> outputFiles=new ArrayList<File>();
+  Map<String,LinkedHashSet<Class>> map=new LinkedHashMap<String,LinkedHashSet<Class>>();
+  for (  Class c : classScanner.getClasses()) {
+    if (Loader.getEnclosingClass(c) != c) {
+      continue;
+    }
+    ClassProperties p=Loader.loadProperties(c,properties,false);
+    if (!p.isLoaded()) {
+      logger.warn("Could not load platform properties for " + c);
+      continue;
+    }
+    String target=p.getProperty("target");
+    if (target != null && !c.getName().equals(target)) {
+      File f=parse(classScanner.getClassLoader().getPaths(),c);
+      if (f != null) {
+        outputFiles.add(f);
+      }
+      continue;
+    }
+    String libraryName=outputName != null ? outputName : p.getProperty("platform.library","");
+    if (libraryName.length() == 0) {
+      continue;
+    }
+    LinkedHashSet<Class> classList=map.get(libraryName);
+    if (classList == null) {
+      map.put(libraryName,classList=new LinkedHashSet<Class>());
+    }
+    classList.addAll(p.getEffectiveClasses());
+  }
+  for (  String libraryName : map.keySet()) {
+    LinkedHashSet<Class> classSet=map.get(libraryName);
+    Class[] classArray=classSet.toArray(new Class[classSet.size()]);
+    File f=generateAndCompile(classArray,libraryName);
+    if (f != null) {
+      outputFiles.add(f);
+      if (copyLibs) {
+        ClassProperties p=Loader.loadProperties(classArray,properties,false);
+        List<String> preloads=new ArrayList<String>();
+        preloads.addAll(p.get("platform.preload"));
+        preloads.addAll(p.get("platform.link"));
+        p=Loader.loadProperties(classArray,properties,true);
+        File directory=f.getParentFile();
+        for (        String s : preloads) {
+          URL[] urls=Loader.findLibrary(null,p,s,true);
+          File fi;
+          try {
+            fi=new File(urls[0].toURI());
+          }
+ catch (          Exception e) {
+            continue;
+          }
+          File fo=new File(directory,fi.getName());
+          if (fi.exists() && !outputFiles.contains(fo)) {
+            logger.info("Copying " + fi);
+            FileInputStream fis=new FileInputStream(fi);
+            FileOutputStream fos=new FileOutputStream(fo);
+            byte[] buffer=new byte[1024];
+            int length;
+            while ((length=fis.read(buffer)) != -1) {
+              fos.write(buffer,0,length);
+            }
+            fos.close();
+            fis.close();
+            outputFiles.add(fo);
+          }
+        }
+      }
+    }
+  }
+  File[] files=outputFiles.toArray(new File[outputFiles.size()]);
+  if (jarPrefix != null && files.length > 0) {
+    File jarFile=new File(jarPrefix + "-" + properties.get("platform")+ ".jar");
+    File d=jarFile.getParentFile();
+    if (d != null && !d.exists()) {
+      d.mkdir();
+    }
+    createJar(jarFile,outputDirectory == null ? classScanner.getClassLoader().getPaths() : null,files);
+  }
+  System.setProperty("org.bytedeco.javacpp.loadlibraries","true");
+  return files;
+}

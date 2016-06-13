@@ -1,0 +1,18 @@
+{
+  cppNames=i.cppNames != null ? i.cppNames.clone() : null;
+  javaNames=i.javaNames != null ? i.javaNames.clone() : null;
+  annotations=i.annotations != null ? i.annotations.clone() : null;
+  cppTypes=i.cppTypes != null ? i.cppTypes.clone() : null;
+  valueTypes=i.valueTypes != null ? i.valueTypes.clone() : null;
+  pointerTypes=i.pointerTypes != null ? i.pointerTypes.clone() : null;
+  cast=i.cast;
+  define=i.define;
+  flatten=i.flatten;
+  translate=i.translate;
+  skip=i.skip;
+  purify=i.purify;
+  virtualize=i.virtualize;
+  base=i.base;
+  cppText=i.cppText;
+  javaText=i.javaText;
+}

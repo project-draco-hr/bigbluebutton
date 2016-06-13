@@ -1,0 +1,6 @@
+{
+  for (int n=0; n < length; n++) {
+    m[offset + n]=array[(int)index(indices) + n];
+  }
+  return this;
+}

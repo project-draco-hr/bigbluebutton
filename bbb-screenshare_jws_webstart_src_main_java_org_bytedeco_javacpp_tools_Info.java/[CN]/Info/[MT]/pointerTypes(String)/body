@@ -1,0 +1,4 @@
+{
+  this.pointerTypes=pointerTypes;
+  return this;
+}

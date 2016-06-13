@@ -1,0 +1,4 @@
+{
+  this(s.length() + 1);
+  putString(s);
+}

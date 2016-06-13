@@ -1,0 +1,6 @@
+{
+  for (int n=0; n < length; n++) {
+    d[offset + n]=get(i * strides[0] + n);
+  }
+  return this;
+}

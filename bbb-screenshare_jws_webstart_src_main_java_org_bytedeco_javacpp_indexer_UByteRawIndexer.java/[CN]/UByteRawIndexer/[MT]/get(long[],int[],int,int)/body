@@ -1,0 +1,6 @@
+{
+  for (int n=0; n < length; n++) {
+    b[offset + n]=get(index(indices) + n) & 0xFF;
+  }
+  return this;
+}

@@ -1,0 +1,67 @@
+{
+  String prefix="", suffix="";
+  if (type == Buffer.class || type == Pointer.class) {
+    prefix="void*";
+  }
+ else   if (type == byte[].class || type == ByteBuffer.class || type == BytePointer.class) {
+    prefix="signed char*";
+  }
+ else   if (type == short[].class || type == ShortBuffer.class || type == ShortPointer.class) {
+    prefix="short*";
+  }
+ else   if (type == int[].class || type == IntBuffer.class || type == IntPointer.class) {
+    prefix="int*";
+  }
+ else   if (type == long[].class || type == LongBuffer.class || type == LongPointer.class) {
+    prefix="jlong*";
+  }
+ else   if (type == float[].class || type == FloatBuffer.class || type == FloatPointer.class) {
+    prefix="float*";
+  }
+ else   if (type == double[].class || type == DoubleBuffer.class || type == DoublePointer.class) {
+    prefix="double*";
+  }
+ else   if (type == char[].class || type == CharBuffer.class || type == CharPointer.class) {
+    prefix="unsigned short*";
+  }
+ else   if (type == boolean[].class) {
+    prefix="unsigned char*";
+  }
+ else   if (type == PointerPointer.class) {
+    prefix="void**";
+  }
+ else   if (type == String.class) {
+    prefix="const char*";
+  }
+ else   if (type == byte.class) {
+    prefix="signed char";
+  }
+ else   if (type == long.class) {
+    prefix="jlong";
+  }
+ else   if (type == char.class) {
+    prefix="unsigned short";
+  }
+ else   if (type == boolean.class) {
+    prefix="unsigned char";
+  }
+ else   if (type.isPrimitive()) {
+    prefix=type.getName();
+  }
+ else   if (FunctionPointer.class.isAssignableFrom(type)) {
+    Method functionMethod=functionMethod(type,null);
+    if (functionMethod != null) {
+      return cppFunctionTypeName(functionMethod);
+    }
+  }
+ else {
+    String scopedType=cppScopeName(type);
+    if (scopedType.length() > 0) {
+      prefix=scopedType + "*";
+    }
+ else {
+      logger.warn("The class " + type.getCanonicalName() + " does not map to any C++ type. Compilation will most likely fail.");
+    }
+  }
+  return new String[]{prefix,suffix};
+}

@@ -1,0 +1,7 @@
+{
+  int[] codePoints=new int[s.length()];
+  for (int i=0; i < codePoints.length; i++) {
+    codePoints[i]=s.codePointAt(i);
+  }
+  return put(codePoints).put(codePoints.length,(int)0).limit(codePoints.length);
+}

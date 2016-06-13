@@ -1,0 +1,3 @@
+Pointer p
+long ownerAddress
+long deallocatorAddress

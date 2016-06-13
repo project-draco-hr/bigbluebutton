@@ -1,0 +1,22 @@
+{
+  for (  String cppName : info.cppNames != null ? info.cppNames : new String[]{null}) {
+    String[] keys={normalize(cppName,false,false),normalize(cppName,false,true)};
+    for (    String key : keys) {
+      List<Info> infoList=super.get(key);
+      if (infoList == null) {
+        super.put(key,infoList=new ArrayList<Info>());
+      }
+      if (!infoList.contains(info)) {
+switch (index) {
+case -1:
+          infoList.add(info);
+        break;
+default :
+      infoList.add(index,info);
+    break;
+}
+}
+}
+}
+return this;
+}

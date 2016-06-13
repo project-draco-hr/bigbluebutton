@@ -1,0 +1,4 @@
+{
+  int[] codePoints=getStringCodePoints();
+  return new String(codePoints,0,codePoints.length);
+}

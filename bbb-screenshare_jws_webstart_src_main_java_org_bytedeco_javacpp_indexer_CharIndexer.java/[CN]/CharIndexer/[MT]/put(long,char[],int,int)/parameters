@@ -1,0 +1,4 @@
+long i
+char[] c
+int offset
+int length

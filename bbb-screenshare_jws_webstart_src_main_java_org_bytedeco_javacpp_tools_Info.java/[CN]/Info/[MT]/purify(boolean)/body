@@ -1,0 +1,4 @@
+{
+  this.purify=purify;
+  return this;
+}

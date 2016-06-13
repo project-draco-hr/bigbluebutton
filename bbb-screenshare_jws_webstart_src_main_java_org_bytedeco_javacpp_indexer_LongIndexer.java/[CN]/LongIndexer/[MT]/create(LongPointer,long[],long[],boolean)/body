@@ -1,0 +1,17 @@
+{
+  if (direct) {
+    return Raw.getInstance() != null ? new LongRawIndexer(pointer,sizes,strides) : new LongBufferIndexer(pointer.asBuffer(),sizes,strides);
+  }
+ else {
+    final long position=pointer.position();
+    long[] array=new long[(int)Math.min(pointer.limit() - position,Integer.MAX_VALUE)];
+    pointer.get(array);
+    return new LongArrayIndexer(array,sizes,strides){
+      @Override public void release(){
+        pointer.position(position).put(array);
+        super.release();
+      }
+    }
+;
+  }
+}

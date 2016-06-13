@@ -1,0 +1,32 @@
+{
+  if (!tokens.get().match(Token.NAMESPACE)) {
+    return false;
+  }
+  Declaration decl=new Declaration();
+  String spacing=tokens.get().spacing;
+  String name=null;
+  tokens.next();
+  if (tokens.get().match(Token.IDENTIFIER)) {
+    name=tokens.get().value;
+    tokens.next();
+  }
+  if (tokens.get().match('=')) {
+    String realName=tokens.next().expect(Token.IDENTIFIER).value;
+    context.namespaceMap.put(name,realName);
+    tokens.next().expect(';');
+    tokens.next();
+    return true;
+  }
+  tokens.get().expect('{');
+  tokens.next();
+  if (tokens.get().spacing.indexOf('\n') < 0) {
+    tokens.get().spacing=spacing;
+  }
+  context=new Context(context);
+  context.namespace=name == null ? null : context.namespace != null ? context.namespace + "::" + name : name;
+  declarations(context,declList);
+  decl.text+=tokens.get().expect('}').spacing;
+  tokens.next();
+  declList.add(decl);
+  return true;
+}

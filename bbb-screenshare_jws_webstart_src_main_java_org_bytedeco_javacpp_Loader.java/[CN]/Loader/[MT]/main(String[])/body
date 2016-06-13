@@ -1,0 +1,13 @@
+{
+  File tmpdir=new File(System.getProperty("java.io.tmpdir"));
+  File tempDir=new File(args[0]);
+  if (!tmpdir.equals(tempDir.getParentFile()) || !tempDir.getName().startsWith("javacpp")) {
+    return;
+  }
+  for (  File file : tempDir.listFiles()) {
+    while (file.exists() && !file.delete()) {
+      Thread.sleep(100);
+    }
+  }
+  tempDir.delete();
+}

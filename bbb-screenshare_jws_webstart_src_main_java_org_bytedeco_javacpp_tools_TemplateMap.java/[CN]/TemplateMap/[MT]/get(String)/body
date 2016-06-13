@@ -1,0 +1,9 @@
+{
+  Type value=super.get(key);
+  if (value == null && parent != null) {
+    return parent.get(key);
+  }
+ else {
+    return value;
+  }
+}

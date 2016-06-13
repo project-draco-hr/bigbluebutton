@@ -1,0 +1,90 @@
+{
+  String returnPrefix="";
+  if (methodInfo.returnType == void.class) {
+    if (methodInfo.allocator || methodInfo.arrayAllocator) {
+      jclasses.index(methodInfo.cls);
+      String[] typeName=cppTypeName(methodInfo.cls);
+      returnPrefix=typeName[0] + " rptr" + typeName[1]+ " = ";
+    }
+  }
+ else {
+    String cast=cast(methodInfo.returnType,methodInfo.annotations);
+    String[] typeName=methodInfo.returnRaw ? new String[]{""} : cppCastTypeName(methodInfo.returnType,methodInfo.annotations);
+    if (methodInfo.valueSetter || methodInfo.memberSetter || methodInfo.noReturnGetter) {
+      out.println("    jobject rarg = obj;");
+    }
+ else     if (methodInfo.returnType.isPrimitive()) {
+      out.println("    " + jniTypeName(methodInfo.returnType) + " rarg = 0;");
+      returnPrefix=typeName[0] + " rvalue" + typeName[1]+ " = "+ cast;
+    }
+ else {
+      Annotation returnBy=by(methodInfo.annotations);
+      String valueTypeName=valueTypeName(typeName);
+      returnPrefix="rptr = " + cast;
+      if (typeName[0].length() == 0 || methodInfo.returnRaw) {
+        methodInfo.returnRaw=true;
+        typeName[0]=jniTypeName(methodInfo.returnType);
+        out.println("    " + typeName[0] + " rarg = NULL;");
+        out.println("    " + typeName[0] + " rptr;");
+      }
+ else       if (Pointer.class.isAssignableFrom(methodInfo.returnType) || Buffer.class.isAssignableFrom(methodInfo.returnType) || (methodInfo.returnType.isArray() && methodInfo.returnType.getComponentType().isPrimitive())) {
+        if (FunctionPointer.class.isAssignableFrom(methodInfo.returnType)) {
+          functions.index(methodInfo.returnType);
+          returnPrefix="if (rptr != NULL) rptr->ptr = ";
+          if (methodInfo.method.isAnnotationPresent(Virtual.class)) {
+            returnPrefix+="(" + typeName[0] + typeName[1]+ ")&";
+          }
+          typeName[0]=functionClassName(methodInfo.returnType) + "*";
+          typeName[1]="";
+          valueTypeName=valueTypeName(typeName);
+        }
+        if (returnBy instanceof ByVal) {
+          returnPrefix+=(noException(methodInfo.returnType,methodInfo.method) ? "new (std::nothrow) " : "new ") + valueTypeName + typeName[1]+ "(";
+        }
+ else         if (returnBy instanceof ByRef) {
+          returnPrefix+="&";
+        }
+ else         if (returnBy instanceof ByPtrPtr) {
+          if (cast.length() > 0) {
+            typeName[0]=typeName[0].substring(0,typeName[0].length() - 1);
+          }
+          returnPrefix="rptr = NULL; " + typeName[0] + "* rptrptr"+ typeName[1]+ " = "+ cast;
+        }
+        if (methodInfo.bufferGetter) {
+          out.println("    jobject rarg = NULL;");
+          out.println("    char* rptr;");
+        }
+ else {
+          out.println("    " + jniTypeName(methodInfo.returnType) + " rarg = NULL;");
+          out.println("    " + typeName[0] + " rptr"+ typeName[1]+ ";");
+        }
+        if (FunctionPointer.class.isAssignableFrom(methodInfo.returnType)) {
+          out.println("    rptr = new (std::nothrow) " + valueTypeName + ";");
+        }
+      }
+ else       if (methodInfo.returnType == String.class) {
+        out.println("    jstring rarg = NULL;");
+        out.println("    const char* rptr;");
+        if (returnBy instanceof ByRef) {
+          returnPrefix="std::string rstr(";
+        }
+ else {
+          returnPrefix+="(const char*)";
+        }
+      }
+ else {
+        logger.warn("Method \"" + methodInfo.method + "\" has unsupported return type \""+ methodInfo.returnType.getCanonicalName()+ "\". Compilation will most likely fail.");
+      }
+      AdapterInformation adapterInfo=adapterInformation(false,valueTypeName,methodInfo.annotations);
+      if (adapterInfo != null) {
+        usesAdapters=true;
+        returnPrefix=adapterInfo.name + " radapter(";
+      }
+    }
+  }
+  if (methodInfo.throwsException != null) {
+    out.println("    jthrowable exc = NULL;");
+    out.println("    try {");
+  }
+  return returnPrefix;
+}

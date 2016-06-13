@@ -1,0 +1,37 @@
+{
+  out=new PrintWriter(new Writer(){
+    @Override public void write(    char[] cbuf,    int off,    int len){
+    }
+    @Override public void flush(){
+    }
+    @Override public void close(){
+    }
+  }
+);
+  out2=null;
+  callbacks=new IndexedSet<String>();
+  functions=new IndexedSet<Class>();
+  deallocators=new IndexedSet<Class>();
+  arrayDeallocators=new IndexedSet<Class>();
+  jclasses=new IndexedSet<Class>();
+  members=new HashMap<Class,Set<String>>();
+  virtualFunctions=new HashMap<Class,Set<String>>();
+  virtualMembers=new HashMap<Class,Set<String>>();
+  annotationCache=new HashMap<Method,MethodInformation>();
+  mayThrowExceptions=false;
+  usesAdapters=false;
+  passesStrings=false;
+  for (  Class<?> cls : baseClasses) {
+    jclasses.index(cls);
+  }
+  if (classes(true,true,true,classPath,classes)) {
+    out=new PrintWriter(sourceFilename);
+    if (headerFilename != null) {
+      out2=new PrintWriter(headerFilename);
+    }
+    return classes(mayThrowExceptions,usesAdapters,passesStrings,classPath,classes);
+  }
+ else {
+    return false;
+  }
+}

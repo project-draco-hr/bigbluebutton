@@ -1,0 +1,193 @@
+{
+  Token token=new Token();
+  int c=readChar();
+  buffer.setLength(0);
+  if (Character.isWhitespace(c)) {
+    buffer.append((char)c);
+    while ((c=readChar()) != -1 && Character.isWhitespace(c)) {
+      buffer.append((char)c);
+    }
+  }
+  token.file=file;
+  token.lineNumber=lineNumber;
+  token.spacing=buffer.toString();
+  buffer.setLength(0);
+  if (Character.isLetter(c) || c == '_') {
+    token.type=Token.IDENTIFIER;
+    buffer.append((char)c);
+    while ((c=readChar()) != -1 && (Character.isDigit(c) || Character.isLetter(c) || c == '_')) {
+      buffer.append((char)c);
+    }
+    token.value=buffer.toString();
+    lastChar=c;
+  }
+ else   if (Character.isDigit(c) || c == '.' || c == '-' || c == '+') {
+    if (c == '.') {
+      int c2=readChar();
+      if (c2 == '.') {
+        int c3=readChar();
+        if (c3 == '.') {
+          token.type=Token.SYMBOL;
+          token.value="...";
+          return token;
+        }
+ else {
+          lastChar=c3;
+        }
+      }
+ else {
+        lastChar=c2;
+      }
+    }
+    token.type=c == '.' ? Token.FLOAT : Token.INTEGER;
+    buffer.append((char)c);
+    int prevc=0;
+    boolean exp=false, large=false, unsigned=false, hex=false;
+    while ((c=readChar()) != -1 && (Character.isDigit(c) || c == '.' || c == '-' || c == '+' || (c >= 'a' && c <= 'f') || c == 'l' || c == 'u' || c == 'x' || (c >= 'A' && c <= 'F') || c == 'L' || c == 'U' || c == 'X')) {
+switch (c) {
+case '.':
+        token.type=Token.FLOAT;
+      break;
+case 'e':
+case 'E':
+    exp=true;
+  break;
+case 'l':
+case 'L':
+large=true;
+break;
+case 'u':
+case 'U':
+unsigned=true;
+break;
+case 'x':
+case 'X':
+hex=true;
+break;
+}
+if (c != 'l' && c != 'L' && c != 'u' && c != 'U') {
+buffer.append((char)c);
+}
+prevc=c;
+}
+if (!hex && (exp || prevc == 'f' || prevc == 'F')) {
+token.type=Token.FLOAT;
+}
+if (token.type == Token.INTEGER && !large) {
+try {
+long high=Long.decode(buffer.toString()) >> 32;
+large=high != 0 && high != 0xFFFFFFFF;
+}
+ catch (NumberFormatException e) {
+}
+}
+if (token.type == Token.INTEGER && (large || (unsigned && !hex))) {
+buffer.append('L');
+}
+token.value=buffer.toString();
+lastChar=c;
+}
+ else if (c == '\'') {
+token.type=Token.INTEGER;
+buffer.append('\'');
+while ((c=readChar()) != -1 && c != '\'') {
+buffer.append((char)c);
+if (c == '\\') {
+c=readChar();
+buffer.append((char)c);
+}
+}
+buffer.append('\'');
+token.value=buffer.toString();
+}
+ else if (c == '"') {
+token.type=Token.STRING;
+buffer.append('"');
+while ((c=readChar()) != -1 && c != '"') {
+buffer.append((char)c);
+if (c == '\\') {
+c=readChar();
+buffer.append((char)c);
+}
+}
+buffer.append('"');
+token.value=buffer.toString();
+}
+ else if (c == '/') {
+c=readChar();
+if (c == '/') {
+token.type=Token.COMMENT;
+buffer.append('/').append('/');
+int prevc=0;
+while ((c=readChar()) != -1 && (prevc == '\\' || c != '\n')) {
+buffer.append((char)c);
+prevc=c;
+}
+token.value=buffer.toString();
+lastChar=c;
+}
+ else if (c == '*') {
+token.type=Token.COMMENT;
+buffer.append('/').append('*');
+int prevc=0;
+while ((c=readChar()) != -1 && (prevc != '*' || c != '/')) {
+buffer.append((char)c);
+prevc=c;
+}
+buffer.append('/');
+token.value=buffer.toString();
+}
+ else {
+lastChar=c;
+token.type='/';
+}
+}
+ else if (c == ':') {
+int c2=readChar();
+if (c2 == ':') {
+token.type=Token.SYMBOL;
+token.value="::";
+}
+ else {
+token.type=c;
+lastChar=c2;
+}
+}
+ else if (c == '&') {
+int c2=readChar();
+if (c2 == '&') {
+token.type=Token.SYMBOL;
+token.value="&&";
+}
+ else {
+token.type=c;
+lastChar=c2;
+}
+}
+ else if (c == '#') {
+int c2=readChar();
+if (c2 == '#') {
+token.type=Token.SYMBOL;
+token.value="##";
+}
+ else {
+token.type=c;
+lastChar=c2;
+}
+}
+ else {
+if (c == '\\') {
+int c2=readChar();
+if (c2 == '\n') {
+token.type=Token.COMMENT;
+token.value="\n";
+return token;
+}
+ else {
+lastChar=c2;
+}
+}
+token.type=c;
+}
+return token;
+}

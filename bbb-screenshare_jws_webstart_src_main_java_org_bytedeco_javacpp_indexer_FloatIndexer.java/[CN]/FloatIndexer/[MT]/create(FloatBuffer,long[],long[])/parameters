@@ -1,0 +1,3 @@
+FloatBuffer buffer
+long[] sizes
+long[] strides

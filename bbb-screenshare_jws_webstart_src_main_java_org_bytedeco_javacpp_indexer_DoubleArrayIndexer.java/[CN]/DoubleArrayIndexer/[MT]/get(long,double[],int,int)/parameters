@@ -1,0 +1,4 @@
+long i
+double[] d
+int offset
+int length

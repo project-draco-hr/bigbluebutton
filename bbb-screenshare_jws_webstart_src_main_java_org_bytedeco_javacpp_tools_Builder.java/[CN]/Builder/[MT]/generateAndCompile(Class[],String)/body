@@ -1,0 +1,64 @@
+{
+  File outputFile=null, outputPath=outputDirectory;
+  ClassProperties p=Loader.loadProperties(classes,properties,true);
+  String platform=p.getProperty("platform");
+  String sourcePrefix=new File(outputPath,outputName).getPath();
+  String sourceSuffix=p.getProperty("platform.source.suffix",".cpp");
+  String libraryPath=p.getProperty("platform.library.path","");
+  String libraryName=p.getProperty("platform.library.prefix","") + outputName + p.getProperty("platform.library.suffix","");
+  if (outputPath == null) {
+    URI uri=null;
+    try {
+      String resourceName='/' + classes[classes.length - 1].getName().replace('.','/') + ".class";
+      String resourceURL=classes[classes.length - 1].getResource(resourceName).toString();
+      File packageDir=new File(uri=new URI(resourceURL.substring(0,resourceURL.lastIndexOf('/') + 1)));
+      File targetDir=libraryPath.length() > 0 ? new File(uri=new URI(resourceURL.substring(0,resourceURL.length() - resourceName.length() + 1))) : new File(packageDir,platform);
+      outputPath=new File(targetDir,libraryPath);
+      sourcePrefix=new File(packageDir,outputName).getPath();
+    }
+ catch (    URISyntaxException e) {
+      throw new RuntimeException(e);
+    }
+catch (    IllegalArgumentException e) {
+      throw new RuntimeException(e + ": " + uri);
+    }
+  }
+  if (!outputPath.exists()) {
+    outputPath.mkdirs();
+  }
+  Generator generator=new Generator(logger,p);
+  String sourceFilename=sourcePrefix + sourceSuffix;
+  String headerFilename=header ? sourcePrefix + ".h" : null;
+  String classPath=System.getProperty("java.class.path");
+  for (  String s : classScanner.getClassLoader().getPaths()) {
+    classPath+=File.pathSeparator + s;
+  }
+  logger.info("Generating " + sourceFilename);
+  if (generator.generate(sourceFilename,headerFilename,classPath,classes)) {
+    generator.close();
+    if (compile) {
+      logger.info("Compiling " + outputPath.getPath() + File.separator+ libraryName);
+      int exitValue=compile(sourceFilename,libraryName,p,outputPath);
+      if (exitValue == 0) {
+        if (deleteJniFiles) {
+          logger.info("Deleting " + sourceFilename);
+          new File(sourceFilename).delete();
+        }
+ else {
+          logger.info("Keeping " + sourceFilename);
+        }
+        outputFile=new File(outputPath,libraryName);
+      }
+ else {
+        System.exit(exitValue);
+      }
+    }
+ else {
+      outputFile=new File(sourceFilename);
+    }
+  }
+ else {
+    logger.info("Nothing generated for " + sourceFilename);
+  }
+  return outputFile;
+}

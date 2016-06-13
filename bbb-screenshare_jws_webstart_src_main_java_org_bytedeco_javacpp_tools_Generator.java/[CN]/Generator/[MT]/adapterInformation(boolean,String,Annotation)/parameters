@@ -1,0 +1,3 @@
+boolean out
+String valueTypeName
+Annotation annotations

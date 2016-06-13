@@ -1,0 +1,4 @@
+IntPointer pointer
+long[] sizes
+long[] strides
+boolean direct

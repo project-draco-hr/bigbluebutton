@@ -1,0 +1,4 @@
+{
+  this(s.getBytes(charsetName).length + 1);
+  putString(s,charsetName);
+}

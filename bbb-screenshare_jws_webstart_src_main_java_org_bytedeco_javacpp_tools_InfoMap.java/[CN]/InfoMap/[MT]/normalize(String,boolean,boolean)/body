@@ -1,0 +1,58 @@
+{
+  if (name == null || name.length() == 0 || name.startsWith("basic/")) {
+    return name;
+  }
+  boolean foundConst=false, simpleType=true;
+  Token[] tokens=new Tokenizer(name).tokenize();
+  int n=tokens.length;
+  String[] basicTypes=getFirst("basic/types").cppTypes;
+  Arrays.sort(basicTypes);
+  for (int i=0; i < n; i++) {
+    if (tokens[i].match(Token.CONST,Token.CONSTEXPR)) {
+      foundConst=true;
+      for (int j=i + 1; j < n; j++) {
+        tokens[j - 1]=tokens[j];
+      }
+      i--;
+      n--;
+    }
+ else     if (Arrays.binarySearch(basicTypes,tokens[i].value) < 0) {
+      simpleType=false;
+      break;
+    }
+  }
+  if (simpleType) {
+    Arrays.sort(tokens,0,n);
+    name=(foundConst ? "const " : "") + tokens[0].value;
+    for (int i=1; i < n; i++) {
+      name+=" " + tokens[i].value;
+    }
+  }
+ else   if (untemplate) {
+    int count=0, template=-1;
+    for (int i=0; i < n; i++) {
+      if (tokens[i].match('<')) {
+        if (count == 0) {
+          template=i;
+        }
+        count++;
+      }
+ else       if (tokens[i].match('>')) {
+        count--;
+        if (count == 0 && i + 1 != n) {
+          template=-1;
+        }
+      }
+    }
+    if (template >= 0) {
+      name=foundConst ? "const " : "";
+      for (int i=0; i < template; i++) {
+        name+=tokens[i].value;
+      }
+    }
+  }
+  if (unconst && foundConst) {
+    name=name.substring(name.indexOf("const") + 5);
+  }
+  return name.trim();
+}

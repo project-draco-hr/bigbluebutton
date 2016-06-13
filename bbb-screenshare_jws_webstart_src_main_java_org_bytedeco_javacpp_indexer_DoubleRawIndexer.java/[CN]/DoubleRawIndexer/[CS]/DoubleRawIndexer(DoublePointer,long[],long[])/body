@@ -1,0 +1,6 @@
+{
+  super(sizes,strides);
+  this.pointer=pointer;
+  base=pointer.address() + pointer.position() * VALUE_BYTES;
+  size=pointer.limit() - pointer.position();
+}

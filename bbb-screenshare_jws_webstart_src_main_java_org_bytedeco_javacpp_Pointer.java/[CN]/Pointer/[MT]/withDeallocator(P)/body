@@ -1,0 +1,3 @@
+{
+  return (P)p.deallocator(new CustomDeallocator(p));
+}

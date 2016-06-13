@@ -1,0 +1,56 @@
+{
+  String[] s=libnameversion.split("@");
+  String libname=s[0];
+  String version=s.length > 1 ? s[s.length - 1] : "";
+  String filename=loadedLibraries.get(libnameversion);
+  if (filename != null) {
+    try {
+      return new URL[]{new File(filename).toURI().toURL()};
+    }
+ catch (    IOException ex) {
+      if (logger.isDebugEnabled()) {
+        logger.debug("findLibrary: Could not create URL for library " + libnameversion);
+      }
+      return new URL[]{};
+    }
+  }
+  String subdir=properties.getProperty("platform") + '/';
+  String prefix=properties.getProperty("platform.library.prefix","") + libname;
+  String suffix=properties.getProperty("platform.library.suffix","");
+  String[] styles={prefix + suffix + version,prefix + version + suffix,prefix + suffix};
+  String[] suffixes=properties.get("platform.library.suffix").toArray(new String[0]);
+  if (suffixes.length > 1) {
+    styles=new String[3 * suffixes.length];
+    for (int i=0; i < suffixes.length; i++) {
+      styles[3 * i]=prefix + suffixes[i] + version;
+      styles[3 * i + 1]=prefix + version + suffixes[i];
+      styles[3 * i + 2]=prefix + suffixes[i];
+    }
+  }
+  List<String> paths=new ArrayList<String>();
+  paths.addAll(properties.get("platform.preloadpath"));
+  paths.addAll(properties.get("platform.linkpath"));
+  ArrayList<URL> urls=new ArrayList<URL>(styles.length * (1 + paths.size()));
+  for (int i=0; cls != null && i < styles.length; i++) {
+    URL u=cls.getResource(subdir + styles[i]);
+    if (u != null) {
+      urls.add(u);
+    }
+  }
+  int k=pathsFirst ? 0 : urls.size();
+  for (int i=0; paths.size() > 0 && i < styles.length; i++) {
+    for (    String path : paths) {
+      File file=new File(path,styles[i]);
+      if (file.exists()) {
+        try {
+          urls.add(file.toURI().toURL());
+        }
+ catch (        IOException ex) {
+          throw new RuntimeException(ex);
+        }
+      }
+    }
+  }
+  URL[] libUrls=urls.toArray(new URL[urls.size()]);
+  return libUrls;
+}
