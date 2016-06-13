@@ -22,8 +22,4 @@
   mMoveBarFrame.removeMouseListener(movingAdapter);
   mMoveBarFrame.removeMouseMotionListener(movingAdapter);
   repaint();
-  System.out.println("Removing listeners......................");
-  mToolbarFrame.setVisible(false);
-  mResizeBarFrame.setVisible(false);
-  mMoveBarFrame.setVisible(false);
 }
