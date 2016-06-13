@@ -1,0 +1,7 @@
+Context context
+String defaultName
+int infoNumber
+boolean useDefaults
+int varNumber
+boolean arrayAsPointer
+boolean pointerAsArray

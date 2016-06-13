@@ -1,0 +1,16 @@
+{
+  if (p != null) {
+    address=p.address;
+    position=p.position;
+    limit=p.limit;
+    capacity=p.capacity;
+    if (p.deallocator != null) {
+      deallocator=new Deallocator(){
+        public void deallocate(){
+          p.deallocate();
+        }
+      }
+;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  if (!FunctionPointer.class.isAssignableFrom(cls)) {
+    return null;
+  }
+  Method[] methods=cls.getDeclaredMethods();
+  Method functionMethod=null;
+  for (int i=0; i < methods.length; i++) {
+    String methodName=methods[i].getName();
+    int modifiers=methods[i].getModifiers();
+    Class[] parameterTypes=methods[i].getParameterTypes();
+    Class returnType=methods[i].getReturnType();
+    if (Modifier.isStatic(modifiers)) {
+      continue;
+    }
+    if (callbackAllocators != null && methodName.startsWith("allocate") && Modifier.isNative(modifiers) && returnType == void.class && (parameterTypes.length == 0 || (parameterTypes.length == 1 && (parameterTypes[0] == int.class || parameterTypes[0] == long.class)))) {
+      callbackAllocators[i]=true;
+    }
+ else     if (methodName.startsWith("call") || methodName.startsWith("apply")) {
+      functionMethod=methods[i];
+    }
+  }
+  return functionMethod;
+}

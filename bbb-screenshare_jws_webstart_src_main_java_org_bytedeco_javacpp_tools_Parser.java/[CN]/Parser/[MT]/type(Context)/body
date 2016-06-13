@@ -1,0 +1,258 @@
+{
+  Type type=new Type();
+  List<Attribute> attributes=new ArrayList<Attribute>();
+  for (Token token=tokens.get(); !token.match(Token.EOF); token=tokens.next()) {
+    if (token.match("::")) {
+      type.cppName+=token;
+    }
+ else     if (token.match('<')) {
+      type.arguments=templateArguments(context);
+      type.cppName+="<";
+      String separator="";
+      for (      Type t : type.arguments) {
+        if (t == null) {
+          continue;
+        }
+        type.cppName+=separator;
+        Info info=infoMap.getFirst(t.cppName);
+        String s=info != null && info.cppTypes != null ? info.cppTypes[0] : t.cppName;
+        if (t.constValue && !s.startsWith("const ")) {
+          s="const " + s;
+        }
+        if (t.constPointer && !s.endsWith(" const")) {
+          s=s + " const";
+        }
+        for (int i=0; i < t.indirections; i++) {
+          s+="*";
+        }
+        if (t.reference) {
+          s+="&";
+        }
+        type.cppName+=s;
+        separator=",";
+      }
+      type.cppName+=type.cppName.endsWith(">") ? " >" : ">";
+    }
+ else     if (token.match(Token.CONST,Token.CONSTEXPR)) {
+      if (type.cppName.length() == 0) {
+        type.constValue=true;
+      }
+ else {
+        type.constPointer=true;
+      }
+    }
+ else     if (token.match('*')) {
+      type.indirections++;
+      tokens.next();
+      break;
+    }
+ else     if (token.match('&')) {
+      type.reference=true;
+      tokens.next();
+      break;
+    }
+ else     if (token.match("&&")) {
+    }
+ else     if (token.match('~')) {
+      type.cppName+="~";
+      type.destructor=true;
+    }
+ else     if (token.match(Token.STATIC)) {
+      type.staticMember=true;
+    }
+ else     if (token.match(Token.OPERATOR)) {
+      if (type.cppName.length() == 0) {
+        type.operator=true;
+        continue;
+      }
+ else       if (type.cppName.endsWith("::")) {
+        type.operator=true;
+        tokens.next();
+        break;
+      }
+ else {
+        break;
+      }
+    }
+ else     if (token.match(Token.FRIEND)) {
+      type.friend=true;
+    }
+ else     if (token.match(Token.VIRTUAL)) {
+      type.virtual=true;
+    }
+ else     if (token.match(Token.ENUM,Token.EXPLICIT,Token.EXTERN,Token.INLINE,Token.CLASS,Token.INTERFACE,Token.__INTERFACE,Token.NAMESPACE,Token.STRUCT,Token.UNION,Token.TYPEDEF,Token.TYPENAME,Token.USING)) {
+      continue;
+    }
+ else     if (token.match((Object[])infoMap.getFirst("basic/types").cppTypes) && (type.cppName.length() == 0 || type.simple)) {
+      type.cppName+=token.value + " ";
+      type.simple=true;
+    }
+ else     if (token.match(Token.IDENTIFIER)) {
+      int backIndex=tokens.index;
+      Attribute attr=attribute();
+      if (attr != null && attr.annotation) {
+        tokens.index--;
+        type.annotations+=attr.javaName;
+        attributes.add(attr);
+      }
+ else {
+        tokens.index=backIndex;
+        if (type.cppName.length() == 0 || type.cppName.endsWith("::") || type.cppName.endsWith("~")) {
+          type.cppName+=token.value;
+        }
+ else {
+          Info info=infoMap.getFirst(tokens.get(1).value);
+          if ((info != null && info.annotations != null) || !tokens.get(1).match('*','&',Token.IDENTIFIER,Token.CONST,Token.CONSTEXPR)) {
+            break;
+          }
+        }
+      }
+    }
+ else {
+      if (token.match('}')) {
+        type.anonymous=true;
+        tokens.next();
+      }
+      break;
+    }
+  }
+  if (attributes.size() > 0) {
+    type.attributes=attributes.toArray(new Attribute[attributes.size()]);
+  }
+  type.cppName=type.cppName.trim();
+  if (tokens.get().match("...")) {
+    tokens.next();
+    if (tokens.get().match(Token.IDENTIFIER)) {
+      tokens.next();
+    }
+    return null;
+  }
+ else   if (type.operator) {
+    for (Token token=tokens.get(); !token.match(Token.EOF,'('); token=tokens.next()) {
+      type.cppName+=token;
+    }
+  }
+  if (type.cppName.endsWith("*")) {
+    type.indirections++;
+    type.cppName=type.cppName.substring(0,type.cppName.length() - 1);
+  }
+  if (type.cppName.endsWith("&")) {
+    type.reference=true;
+    type.cppName=type.cppName.substring(0,type.cppName.length() - 1);
+  }
+  if (context.templateMap != null) {
+    String[] types=type.cppName.split("::");
+    String separator="";
+    type.cppName="";
+    List<Type> arguments=new ArrayList<Type>();
+    for (    String t : types) {
+      Type t2=context.templateMap.get(t);
+      type.cppName+=separator + (t2 != null ? t2.cppName : t);
+      if (t2 != null && t2.arguments != null) {
+        arguments.addAll(Arrays.asList(t2.arguments));
+      }
+      separator="::";
+    }
+    if (arguments.size() > 0) {
+      type.arguments=arguments.toArray(new Type[arguments.size()]);
+    }
+  }
+  if (type.cppName.startsWith("const ")) {
+    type.constValue=true;
+    type.cppName=type.cppName.substring(6);
+  }
+  if (type.cppName.endsWith("*")) {
+    type.indirections++;
+    if (type.reference) {
+      type.constValue=false;
+    }
+    type.cppName=type.cppName.substring(0,type.cppName.length() - 1);
+  }
+  if (type.cppName.endsWith("&")) {
+    type.reference=true;
+    type.cppName=type.cppName.substring(0,type.cppName.length() - 1);
+  }
+  if (type.cppName.endsWith(" const")) {
+    type.constPointer=true;
+    type.cppName=type.cppName.substring(0,type.cppName.length() - 6);
+  }
+  Info info=null;
+  for (  String name : context.qualify(type.cppName)) {
+    if ((info=infoMap.getFirst(name,false)) != null) {
+      type.cppName=name;
+      break;
+    }
+ else     if (infoMap.getFirst(name) != null) {
+      type.cppName=name;
+    }
+  }
+  if (info != null && info.cppTypes != null && info.cppTypes.length > 0) {
+    type.cppName=info.cppTypes[0];
+  }
+  if (type.cppName.startsWith("const ")) {
+    type.constValue=true;
+    type.cppName=type.cppName.substring(6);
+  }
+  if (type.cppName.endsWith("*")) {
+    type.indirections++;
+    if (type.reference) {
+      type.constValue=false;
+    }
+    type.cppName=type.cppName.substring(0,type.cppName.length() - 1);
+  }
+  if (type.cppName.endsWith("&")) {
+    type.reference=true;
+    type.cppName=type.cppName.substring(0,type.cppName.length() - 1);
+  }
+  if (type.cppName.endsWith(" const")) {
+    type.constPointer=true;
+    type.cppName=type.cppName.substring(0,type.cppName.length() - 6);
+  }
+  int namespace=type.cppName.lastIndexOf("::");
+  int template=type.cppName.lastIndexOf('<');
+  type.javaName=namespace >= 0 && template < 0 ? type.cppName.substring(namespace + 2) : type.cppName;
+  if (info != null) {
+    if (type.indirections == 0 && !type.reference && info.valueTypes != null && info.valueTypes.length > 0) {
+      type.javaName=info.valueTypes[0];
+      type.javaNames=info.valueTypes;
+      type.value=true;
+    }
+ else     if (info.pointerTypes != null && info.pointerTypes.length > 0) {
+      type.javaName=info.pointerTypes[0];
+      type.javaNames=info.pointerTypes;
+    }
+  }
+  if (type.operator) {
+    if (type.constValue) {
+      type.annotations+="@Const ";
+    }
+    if (type.indirections == 0 && !type.reference && !type.value) {
+      type.annotations+="@ByVal ";
+    }
+ else     if (type.indirections == 0 && type.reference && !type.value) {
+      type.annotations+="@ByRef ";
+    }
+    type.annotations+="@Name(\"operator " + (type.constValue ? "const " : "") + type.cppName+ (type.indirections > 0 ? "*" : type.reference ? "&" : "")+ "\") ";
+  }
+  if (info != null && info.annotations != null) {
+    for (    String s : info.annotations) {
+      type.annotations+=s + " ";
+    }
+  }
+  if (context.cppName != null && type.javaName.length() > 0) {
+    String groupName=context.cppName;
+    int template2=groupName != null ? groupName.lastIndexOf('<') : -1;
+    if (template < 0 && template2 >= 0) {
+      groupName=groupName.substring(0,template2);
+    }
+    int namespace2=groupName != null ? groupName.lastIndexOf("::") : -1;
+    if (namespace < 0 && namespace2 >= 0) {
+      groupName=groupName.substring(namespace2 + 2);
+    }
+    if (type.cppName.equals(groupName)) {
+      type.constructor=!type.destructor && !type.operator && type.indirections == 0 && !type.reference && tokens.get().match('(',':');
+    }
+    type.javaName=context.shorten(type.javaName);
+  }
+  return type;
+}

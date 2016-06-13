@@ -1,0 +1,19 @@
+{
+  if (!tokens.get().match(Token.EXTERN) || !tokens.get(1).match(Token.STRING)) {
+    return false;
+  }
+  String spacing=tokens.get().spacing;
+  Declaration decl=new Declaration();
+  tokens.next().expect("\"C\"");
+  if (!tokens.next().match('{')) {
+    tokens.get().spacing=spacing;
+    declList.add(decl);
+    return true;
+  }
+  tokens.next();
+  declarations(context,declList);
+  tokens.get().expect('}');
+  tokens.next();
+  declList.add(decl);
+  return true;
+}

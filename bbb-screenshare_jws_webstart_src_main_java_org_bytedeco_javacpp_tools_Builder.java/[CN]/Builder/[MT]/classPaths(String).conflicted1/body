@@ -1,0 +1,4 @@
+{
+  classScanner.getClassLoader().addPaths(classPaths);
+  return this;
+}

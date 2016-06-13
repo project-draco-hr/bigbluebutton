@@ -1,0 +1,9 @@
+{
+  Class c=getClass();
+  if (c == Pointer.class || c == BytePointer.class) {
+    return 1;
+  }
+ else {
+    return offsetof("sizeof");
+  }
+}

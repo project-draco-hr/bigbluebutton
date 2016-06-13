@@ -1,0 +1,4 @@
+{
+  this.outputName=outputName;
+  return this;
+}

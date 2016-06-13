@@ -1,0 +1,5 @@
+{
+  super(p,referenceQueue);
+  this.deallocator=deallocator;
+  this.bytes=p.capacity * p.sizeof();
+}

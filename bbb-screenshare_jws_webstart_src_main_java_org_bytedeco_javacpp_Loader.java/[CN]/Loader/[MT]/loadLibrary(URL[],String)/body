@@ -1,0 +1,80 @@
+{
+  if (!isLoadLibraries()) {
+    return null;
+  }
+  String filename=loadedLibraries.get(libnameversion);
+  if (filename != null) {
+    return filename;
+  }
+  File tempFile=null;
+  UnsatisfiedLinkError loadError=null;
+  try {
+    for (    URL url : urls) {
+      File file;
+      if (!(file=new File(getCacheDir() != null ? getCacheDir() : getTempDir(),new File(url.getPath()).getName())).exists()) {
+        if (tempFile != null && tempFile.exists()) {
+          tempFile.deleteOnExit();
+        }
+        if (logger.isDebugEnabled()) {
+          logger.debug("Extracting " + url);
+        }
+        if (getCacheDir() != null) {
+          file=extractResource(url,getCacheDir(),null,null);
+        }
+ else {
+          file=tempFile=extractResource(url,getTempDir(),null,null);
+        }
+      }
+ else       while (System.currentTimeMillis() - file.lastModified() < 1000) {
+        try {
+          Thread.sleep(1000);
+        }
+ catch (        InterruptedException ex) {
+          Thread.currentThread().interrupt();
+        }
+      }
+      if (file != null && file.exists()) {
+        filename=file.getAbsolutePath();
+        try {
+          loadedLibraries.put(libnameversion,filename);
+          System.load(filename);
+          return filename;
+        }
+ catch (        UnsatisfiedLinkError e) {
+          loadError=e;
+          loadedLibraries.remove(libnameversion);
+          if (logger.isDebugEnabled()) {
+            logger.debug("Failed to load " + filename + ": "+ e);
+          }
+        }
+      }
+    }
+    String libname=libnameversion.split("@")[0];
+    loadedLibraries.put(libnameversion,libname);
+    System.loadLibrary(libname);
+    return libname;
+  }
+ catch (  UnsatisfiedLinkError e) {
+    if (loadedLibraries.containsKey(libnameversion)) {
+    }
+    loadedLibraries.remove(libnameversion);
+    if (loadError != null && e.getCause() == null) {
+      e.initCause(loadError);
+    }
+    throw e;
+  }
+catch (  IOException ex) {
+    loadedLibraries.remove(libnameversion);
+    if (loadError != null && ex.getCause() == null) {
+      ex.initCause(loadError);
+    }
+    Error e=new UnsatisfiedLinkError(ex.toString());
+    e.initCause(ex);
+    throw e;
+  }
+ finally {
+    if (tempFile != null && tempFile.exists()) {
+      tempFile.deleteOnExit();
+    }
+  }
+}

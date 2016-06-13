@@ -1,0 +1,8 @@
+{
+  try {
+    allocateArray(size);
+  }
+ catch (  UnsatisfiedLinkError e) {
+    throw new RuntimeException("No native JavaCPP library in memory. (Has Loader.load() been called?)",e);
+  }
+}

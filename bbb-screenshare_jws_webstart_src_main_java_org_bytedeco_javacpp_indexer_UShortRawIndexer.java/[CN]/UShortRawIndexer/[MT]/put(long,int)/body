@@ -1,0 +1,4 @@
+{
+  RAW.putShort(base + checkIndex(i,size) * VALUE_BYTES,(short)s);
+  return this;
+}

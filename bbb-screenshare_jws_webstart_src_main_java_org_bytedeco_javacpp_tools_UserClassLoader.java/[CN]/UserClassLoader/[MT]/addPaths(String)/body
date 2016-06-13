@@ -1,0 +1,18 @@
+{
+  if (paths == null) {
+    return;
+  }
+  for (  String path : paths) {
+    File f=new File(path);
+    if (!f.exists()) {
+      continue;
+    }
+    this.paths.add(path);
+    try {
+      addURL(f.toURI().toURL());
+    }
+ catch (    MalformedURLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+}

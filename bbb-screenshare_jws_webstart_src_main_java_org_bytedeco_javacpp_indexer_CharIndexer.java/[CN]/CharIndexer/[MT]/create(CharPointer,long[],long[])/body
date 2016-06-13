@@ -1,0 +1,3 @@
+{
+  return create(pointer,sizes,strides,true);
+}

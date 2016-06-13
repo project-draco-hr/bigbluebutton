@@ -1,0 +1,6 @@
+{
+  for (int n=0; n < length; n++) {
+    l[offset + n]=array[(int)i * (int)strides[0] + (int)j * (int)strides[1] + n];
+  }
+  return this;
+}

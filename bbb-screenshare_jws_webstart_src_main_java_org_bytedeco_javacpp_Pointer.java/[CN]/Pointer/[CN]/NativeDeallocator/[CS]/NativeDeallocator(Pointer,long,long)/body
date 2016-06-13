@@ -1,0 +1,6 @@
+{
+  super(p,null);
+  this.deallocator=this;
+  this.ownerAddress=ownerAddress;
+  this.deallocatorAddress=deallocatorAddress;
+}

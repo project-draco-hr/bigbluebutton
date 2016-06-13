@@ -1,0 +1,30 @@
+{
+  if (!tokens.get().match(Token.IDENTIFIER)) {
+    return null;
+  }
+  Attribute attr=new Attribute();
+  Info info=infoMap.getFirst(attr.cppName=tokens.get().value);
+  if (attr.annotation=info != null && info.annotations != null && info.javaNames == null && info.valueTypes == null && info.pointerTypes == null) {
+    for (    String s : info.annotations) {
+      attr.javaName+=s + " ";
+    }
+  }
+  if (!tokens.next().match('(')) {
+    return attr;
+  }
+  int count=1;
+  tokens.raw=true;
+  for (Token token=tokens.next(); !token.match(Token.EOF) && count > 0; token=tokens.next()) {
+    if (token.match('(')) {
+      count++;
+    }
+ else     if (token.match(')')) {
+      count--;
+    }
+ else     if (info == null || !info.skip) {
+      attr.arguments+=token.value;
+    }
+  }
+  tokens.raw=false;
+  return attr;
+}

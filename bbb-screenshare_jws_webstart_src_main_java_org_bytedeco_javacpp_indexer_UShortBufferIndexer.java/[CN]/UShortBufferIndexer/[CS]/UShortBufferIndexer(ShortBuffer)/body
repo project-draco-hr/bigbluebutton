@@ -1,0 +1,3 @@
+{
+  this(buffer,new long[]{buffer.limit()},new long[]{1});
+}

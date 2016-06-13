@@ -1,0 +1,4 @@
+{
+  array[(int)i]=s;
+  return this;
+}

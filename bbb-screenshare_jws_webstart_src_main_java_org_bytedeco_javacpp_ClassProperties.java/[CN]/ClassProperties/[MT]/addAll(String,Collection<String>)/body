@@ -1,0 +1,20 @@
+{
+  if (values != null) {
+    String root=null;
+    if (key.equals("platform.compiler") || key.equals("platform.sysroot") || key.equals("platform.includepath")|| key.equals("platform.linkpath")) {
+      root=platformRoot;
+    }
+    List<String> values2=get(key);
+    for (    String value : values) {
+      if (value == null) {
+        continue;
+      }
+      if (root != null && !new File(value).isAbsolute() && new File(root + value).exists()) {
+        value=root + value;
+      }
+      if (!values2.contains(value)) {
+        values2.add(value);
+      }
+    }
+  }
+}

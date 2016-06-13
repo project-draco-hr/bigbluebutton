@@ -1,0 +1,4 @@
+{
+  Name name=cls.getAnnotation(Name.class);
+  return name != null ? name.value()[0] : "JavaCPP_" + mangle(cls.getName());
+}

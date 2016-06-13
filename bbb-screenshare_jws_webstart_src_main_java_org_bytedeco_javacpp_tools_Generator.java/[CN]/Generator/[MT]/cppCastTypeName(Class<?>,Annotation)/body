@@ -1,0 +1,46 @@
+{
+  String[] typeName=null;
+  boolean warning=false, adapter=false;
+  for (  Annotation a : annotations) {
+    if (a instanceof Cast) {
+      warning=typeName != null;
+      String prefix=((Cast)a).value()[0], suffix="";
+      int parenthesis=prefix.indexOf(')');
+      if (parenthesis > 0) {
+        suffix=prefix.substring(parenthesis).trim();
+        prefix=prefix.substring(0,parenthesis).trim();
+      }
+      typeName=prefix.length() > 0 ? new String[]{prefix,suffix} : null;
+    }
+ else     if (a instanceof Const) {
+      if (warning=typeName != null) {
+        continue;
+      }
+      typeName=cppTypeName(type);
+      boolean[] b=((Const)a).value();
+      if (b.length > 1 && b[1]) {
+        typeName[0]=valueTypeName(typeName) + " const *";
+      }
+      if (b.length > 0 && b[0]) {
+        typeName[0]="const " + typeName[0];
+      }
+      Annotation by=by(annotations);
+      if (by instanceof ByPtrPtr) {
+        typeName[0]+="*";
+      }
+ else       if (by instanceof ByPtrRef) {
+        typeName[0]+="&";
+      }
+    }
+ else     if (a instanceof Adapter || a.annotationType().isAnnotationPresent(Adapter.class)) {
+      adapter=true;
+    }
+  }
+  if (warning && !adapter) {
+    logger.warn("Without \"Adapter\", \"Cast\" and \"Const\" annotations are mutually exclusive.");
+  }
+  if (typeName == null) {
+    typeName=cppTypeName(type);
+  }
+  return typeName;
+}

@@ -1,0 +1,7 @@
+{
+  pointerArray=(P[])new ShortPointer[array.length];
+  for (int i=0; i < array.length; i++) {
+    pointerArray[i]=array[i] != null ? (P)new ShortPointer(array[i]) : null;
+  }
+  return put(pointerArray);
+}

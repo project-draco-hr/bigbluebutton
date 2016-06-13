@@ -1,0 +1,39 @@
+{
+  StringBuilder signature=new StringBuilder(2 * types.length);
+  for (  Class type : types) {
+    if (type == byte.class) {
+      signature.append("B");
+    }
+ else     if (type == short.class) {
+      signature.append("S");
+    }
+ else     if (type == int.class) {
+      signature.append("I");
+    }
+ else     if (type == long.class) {
+      signature.append("J");
+    }
+ else     if (type == float.class) {
+      signature.append("F");
+    }
+ else     if (type == double.class) {
+      signature.append("D");
+    }
+ else     if (type == boolean.class) {
+      signature.append("Z");
+    }
+ else     if (type == char.class) {
+      signature.append("C");
+    }
+ else     if (type == void.class) {
+      signature.append("V");
+    }
+ else     if (type.isArray()) {
+      signature.append(type.getName().replace('.','/'));
+    }
+ else {
+      signature.append("L").append(type.getName().replace('.','/')).append(";");
+    }
+  }
+  return signature.toString();
+}

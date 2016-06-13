@@ -1,0 +1,3 @@
+Logger logger
+Properties properties
+String lineSeparator
