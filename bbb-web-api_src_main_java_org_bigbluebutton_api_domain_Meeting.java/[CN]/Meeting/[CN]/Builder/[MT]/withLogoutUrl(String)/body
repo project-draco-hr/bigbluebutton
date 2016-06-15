@@ -1,0 +1,4 @@
+{
+  logoutUrl=l;
+  return this;
+}

@@ -1,0 +1,6 @@
+{
+  if (_resources == null) {
+    _resources=ResourceBundle.getBundle("jnlp/sample/jardiff/resources/strings");
+  }
+  return _resources;
+}

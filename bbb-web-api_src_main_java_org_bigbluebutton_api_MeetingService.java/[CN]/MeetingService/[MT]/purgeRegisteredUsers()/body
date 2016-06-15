@@ -1,0 +1,17 @@
+{
+  for (  AbstractMap.Entry<String,Meeting> entry : this.meetings.entrySet()) {
+    Long now=System.nanoTime();
+    Meeting meeting=entry.getValue();
+    ConcurrentMap<String,User> users=meeting.getUsersMap();
+    for (    AbstractMap.Entry<String,Long> registeredUser : meeting.getRegisteredUsers().entrySet()) {
+      String registeredUserID=registeredUser.getKey();
+      Long registeredUserDate=registeredUser.getValue();
+      long registrationTime=registeredUserDate.longValue();
+      long elapsedTime=now - registrationTime;
+      if (elapsedTime >= 60000 && !users.containsKey(registeredUserID)) {
+        meeting.userUnregistered(registeredUserID);
+      }
+    }
+  }
+  handle(new RemoveExpiredMeetings());
+}

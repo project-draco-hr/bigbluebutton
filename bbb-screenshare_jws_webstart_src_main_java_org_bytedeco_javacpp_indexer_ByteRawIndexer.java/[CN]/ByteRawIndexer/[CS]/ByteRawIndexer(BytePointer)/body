@@ -1,0 +1,3 @@
+{
+  this(pointer,new long[]{pointer.limit() - pointer.position()},new long[]{1});
+}

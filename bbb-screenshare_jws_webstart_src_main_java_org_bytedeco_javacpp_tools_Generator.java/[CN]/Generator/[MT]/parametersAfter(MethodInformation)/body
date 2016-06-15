@@ -1,0 +1,84 @@
+{
+  if (methodInfo.throwsException != null) {
+    mayThrowExceptions=true;
+    out.println("    } catch (...) {");
+    out.println("        exc = JavaCPP_handleException(env, " + jclasses.index(methodInfo.throwsException) + ");");
+    out.println("    }");
+    out.println();
+  }
+  int skipParameters=methodInfo.parameterTypes.length > 0 && methodInfo.parameterTypes[0] == Class.class ? 1 : 0;
+  for (int j=skipParameters; j < methodInfo.parameterTypes.length; j++) {
+    if (methodInfo.parameterRaw[j]) {
+      continue;
+    }
+    Annotation passBy=by(methodInfo,j);
+    String cast=cast(methodInfo,j);
+    String[] typeName=cppCastTypeName(methodInfo.parameterTypes[j],methodInfo.parameterAnnotations[j]);
+    AdapterInformation adapterInfo=adapterInformation(true,methodInfo,j);
+    if ("void*".equals(typeName[0]) && !methodInfo.parameterTypes[j].isAnnotationPresent(Opaque.class)) {
+      typeName[0]="char*";
+    }
+    final String releaseArrayFlag;
+    if (cast.contains(" const *") || cast.startsWith("(const ")) {
+      releaseArrayFlag="JNI_ABORT";
+    }
+ else {
+      releaseArrayFlag="0";
+    }
+    if (Pointer.class.isAssignableFrom(methodInfo.parameterTypes[j])) {
+      if (adapterInfo != null) {
+        for (int k=0; k < adapterInfo.argc; k++) {
+          out.println("    " + typeName[0] + " rptr"+ (j + k)+ typeName[1]+ " = "+ cast+ "adapter"+ j+ ";");
+          out.println("    jlong rsize" + (j + k) + " = (jlong)adapter"+ j+ ".size"+ (k > 0 ? (k + 1) + ";" : ";"));
+          out.println("    void* rowner" + (j + k) + " = adapter"+ j+ ".owner"+ (k > 0 ? (k + 1) + ";" : ";"));
+          out.println("    if (rptr" + (j + k) + " != "+ cast+ "ptr"+ (j + k)+ ") {");
+          out.println("        JavaCPP_initPointer(env, arg" + j + ", rptr"+ (j + k)+ ", rsize"+ (j + k)+ ", rowner"+ (j + k)+ ", &"+ adapterInfo.name+ "::deallocate);");
+          out.println("    } else {");
+          out.println("        env->SetLongField(arg" + j + ", JavaCPP_limitFID, rsize"+ (j + k)+ " + position"+ (j + k)+ ");");
+          out.println("    }");
+        }
+      }
+ else       if ((passBy instanceof ByPtrPtr || passBy instanceof ByPtrRef) && !methodInfo.valueSetter && !methodInfo.memberSetter) {
+        if (!methodInfo.parameterTypes[j].isAnnotationPresent(Opaque.class)) {
+          out.println("    ptr" + j + " -= position"+ j+ ";");
+        }
+        out.println("    if (arg" + j + " != NULL) env->SetLongField(arg"+ j+ ", JavaCPP_addressFID, ptr_to_jlong(ptr"+ j+ "));");
+      }
+    }
+ else     if (methodInfo.parameterTypes[j] == String.class) {
+      out.println("    JavaCPP_releaseStringBytes(env, arg" + j + ", ptr"+ j+ ");");
+    }
+ else     if (methodInfo.parameterTypes[j].isArray() && methodInfo.parameterTypes[j].getComponentType().isPrimitive()) {
+      for (int k=0; adapterInfo != null && k < adapterInfo.argc; k++) {
+        out.println("    " + typeName[0] + " rptr"+ (j + k)+ typeName[1]+ " = "+ cast+ "adapter"+ j+ ";");
+        out.println("    void* rowner" + (j + k) + " = adapter"+ j+ ".owner"+ (k > 0 ? (k + 1) + ";" : ";"));
+        out.println("    if (rptr" + (j + k) + " != "+ cast+ "ptr"+ (j + k)+ ") {");
+        out.println("        " + adapterInfo.name + "::deallocate(rowner"+ (j + k)+ ");");
+        out.println("    }");
+      }
+      out.print("    if (arg" + j + " != NULL) ");
+      if (methodInfo.valueGetter || methodInfo.valueSetter || methodInfo.memberGetter|| methodInfo.memberSetter) {
+        out.println("env->ReleasePrimitiveArrayCritical(arg" + j + ", ptr"+ j+ ", "+ releaseArrayFlag+ ");");
+      }
+ else {
+        String componentType=methodInfo.parameterTypes[j].getComponentType().getName();
+        String componentTypeUpperCase=Character.toUpperCase(componentType.charAt(0)) + componentType.substring(1);
+        out.println("env->Release" + componentTypeUpperCase + "ArrayElements(arg"+ j+ ", (j"+ componentType+ "*)ptr"+ j+ ", "+ releaseArrayFlag+ ");");
+      }
+    }
+ else     if (Buffer.class.isAssignableFrom(methodInfo.parameterTypes[j]) && methodInfo.parameterTypes[j] != Buffer.class) {
+      for (int k=0; adapterInfo != null && k < adapterInfo.argc; k++) {
+        out.println("    " + typeName[0] + " rptr"+ (j + k)+ typeName[1]+ " = "+ cast+ "adapter"+ j+ ";");
+        out.println("    void* rowner" + (j + k) + " = adapter"+ j+ ".owner"+ (k > 0 ? (k + 1) + ";" : ";"));
+        out.println("    if (rptr" + (j + k) + " != "+ cast+ "ptr"+ (j + k)+ ") {");
+        out.println("        " + adapterInfo.name + "::deallocate(rowner"+ (j + k)+ ");");
+        out.println("    }");
+      }
+      out.print("    if (arr" + j + " != NULL) ");
+      String parameterSimpleName=methodInfo.parameterTypes[j].getSimpleName();
+      parameterSimpleName=parameterSimpleName.substring(0,parameterSimpleName.length() - 6);
+      String parameterSimpleNameLowerCase=Character.toLowerCase(parameterSimpleName.charAt(0)) + parameterSimpleName.substring(1);
+      out.println("env->Release" + parameterSimpleName + "ArrayElements(arr"+ j+ ", "+ "(j"+ parameterSimpleNameLowerCase+ "*)ptr"+ j+ ", "+ releaseArrayFlag+ ");");
+    }
+  }
+}

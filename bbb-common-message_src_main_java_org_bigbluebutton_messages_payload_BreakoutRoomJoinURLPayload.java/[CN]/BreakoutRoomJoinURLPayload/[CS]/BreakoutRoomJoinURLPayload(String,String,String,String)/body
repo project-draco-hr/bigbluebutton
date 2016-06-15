@@ -1,0 +1,6 @@
+{
+  this.meetingId=meetingId;
+  this.breakoutId=breakoutId;
+  this.userId=userId;
+  this.joinURL=joinURL;
+}

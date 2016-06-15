@@ -1,0 +1,37 @@
+{
+  if (!tokens.get().match('<')) {
+    return null;
+  }
+  List<Type> arguments=new ArrayList<Type>();
+  for (Token token=tokens.next(); !token.match(Token.EOF); token=tokens.next()) {
+    Type type=type(context);
+    arguments.add(type);
+    token=tokens.get();
+    if (!token.match(',','>')) {
+      int count=0;
+      for (token=tokens.get(); !token.match(Token.EOF); token=tokens.next()) {
+        if (count == 0 && token.match(',','>')) {
+          break;
+        }
+ else         if (token.match('<','(')) {
+          count++;
+        }
+ else         if (token.match('>',')')) {
+          count--;
+        }
+        type.cppName+=token;
+        if (token.match(Token.CONST)) {
+          type.cppName+=" ";
+        }
+      }
+      if (type.cppName.endsWith("*")) {
+        type.javaName="PointerPointer";
+        type.annotations+="@Cast(\"" + type.cppName + "*\") ";
+      }
+    }
+    if (token.expect(',','>').match('>')) {
+      break;
+    }
+  }
+  return arguments.toArray(new Type[arguments.size()]);
+}

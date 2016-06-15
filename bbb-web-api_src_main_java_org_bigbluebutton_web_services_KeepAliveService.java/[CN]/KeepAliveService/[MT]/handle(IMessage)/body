@@ -1,0 +1,6 @@
+{
+  if (message instanceof KeepAliveReply) {
+    KeepAliveReply msg=(KeepAliveReply)message;
+    handleKeepAliveReply(msg.system,msg.timestamp);
+  }
+}

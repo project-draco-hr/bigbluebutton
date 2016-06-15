@@ -1,0 +1,5 @@
+{
+  for (  RecordStatusListener listener : listeners) {
+    listener.notify(event);
+  }
+}

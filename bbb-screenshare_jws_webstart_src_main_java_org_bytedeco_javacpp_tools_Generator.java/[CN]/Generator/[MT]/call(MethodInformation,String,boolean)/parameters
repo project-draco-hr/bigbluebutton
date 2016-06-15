@@ -1,0 +1,3 @@
+MethodInformation methodInfo
+String returnPrefix
+boolean secondCall

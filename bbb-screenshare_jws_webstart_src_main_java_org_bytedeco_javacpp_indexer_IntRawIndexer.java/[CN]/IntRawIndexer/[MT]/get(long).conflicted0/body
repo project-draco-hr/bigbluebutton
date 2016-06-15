@@ -1,0 +1,3 @@
+{
+  return RAW.getInt(base + checkIndex(i,size) * VALUE_BYTES);
+}

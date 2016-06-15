@@ -1,0 +1,9 @@
+{
+  frame.setToolbar(createToolbar());
+  frame.setResizeBar(createResizeBar());
+  frame.setMoveBar(createMoveBar());
+  setVisible(true);
+  if (autoStart) {
+    startCapture();
+  }
+}

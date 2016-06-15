@@ -1,0 +1,158 @@
+{
+  int ret;
+  picture=null;
+  tmp_picture=null;
+  picture_buf=null;
+  frame=null;
+  videoOutBuf=null;
+  outFormatContext=null;
+  avCodecContext=null;
+  videoStream=null;
+  got_video_packet=new int[1];
+  String format_name=format == null || format.length() == 0 ? null : format;
+  if ((outFormat=av_guess_format(format_name,filename,null)) == null) {
+    int proto=filename.indexOf("://");
+    if (proto > 0) {
+      format_name=filename.substring(0,proto);
+    }
+    if ((outFormat=av_guess_format(format_name,filename,null)) == null) {
+      throw new Exception("av_guess_format() error: Could not guess output format for \"" + filename + "\" and "+ format+ " format.");
+    }
+  }
+  format_name=outFormat.name().getString();
+  if ((outFormatContext=avformat_alloc_context()) == null) {
+    throw new Exception("avformat_alloc_context() error: Could not allocate format context");
+  }
+  outFormatContext.oformat(outFormat);
+  outFormatContext.filename().putString(filename);
+  if (imageWidth > 0 && imageHeight > 0) {
+    if (videoCodec != AV_CODEC_ID_NONE) {
+      outFormat.video_codec(videoCodec);
+    }
+ else     if ("flv".equals(format_name)) {
+      outFormat.video_codec(AV_CODEC_ID_FLV1);
+    }
+ else     if ("mp4".equals(format_name)) {
+      outFormat.video_codec(AV_CODEC_ID_MPEG4);
+    }
+ else     if ("3gp".equals(format_name)) {
+      outFormat.video_codec(AV_CODEC_ID_H263);
+    }
+ else     if ("avi".equals(format_name)) {
+      outFormat.video_codec(AV_CODEC_ID_HUFFYUV);
+    }
+    if ((video_codec=avcodec_find_encoder_by_name(videoCodecName)) == null && (video_codec=avcodec_find_encoder(outFormat.video_codec())) == null) {
+      release();
+      throw new Exception("avcodec_find_encoder() error: Video codec not found.");
+    }
+    AVRational frame_rate=av_d2q(frameRate,1001000);
+    AVRational supported_framerates=video_codec.supported_framerates();
+    if (supported_framerates != null) {
+      int idx=av_find_nearest_q_idx(frame_rate,supported_framerates);
+      frame_rate=supported_framerates.position(idx);
+    }
+    if ((videoStream=avformat_new_stream(outFormatContext,video_codec)) == null) {
+      release();
+      throw new Exception("avformat_new_stream() error: Could not allocate video stream.");
+    }
+    avCodecContext=videoStream.codec();
+    avCodecContext.codec_id(outFormat.video_codec());
+    avCodecContext.codec_type(AVMEDIA_TYPE_VIDEO);
+    avCodecContext.bit_rate(videoBitrate);
+    avCodecContext.width((imageWidth + 15) / 16 * 16);
+    avCodecContext.height(imageHeight);
+    avCodecContext.time_base(av_inv_q(frame_rate));
+    videoStream.time_base(av_inv_q(frame_rate));
+    if (gopSize >= 0) {
+      avCodecContext.gop_size(gopSize);
+    }
+    if (videoQuality >= 0) {
+      avCodecContext.flags(avCodecContext.flags() | CODEC_FLAG_QSCALE);
+      avCodecContext.global_quality((int)Math.round(FF_QP2LAMBDA * videoQuality));
+    }
+    if (pixelFormat != AV_PIX_FMT_NONE) {
+      avCodecContext.pix_fmt(pixelFormat);
+    }
+ else     if (avCodecContext.codec_id() == AV_CODEC_ID_RAWVIDEO || avCodecContext.codec_id() == AV_CODEC_ID_PNG || avCodecContext.codec_id() == AV_CODEC_ID_HUFFYUV || avCodecContext.codec_id() == AV_CODEC_ID_FFV1) {
+      avCodecContext.pix_fmt(AV_PIX_FMT_RGB32);
+    }
+ else {
+      avCodecContext.pix_fmt(AV_PIX_FMT_YUV420P);
+    }
+    if (avCodecContext.codec_id() == AV_CODEC_ID_MPEG2VIDEO) {
+      avCodecContext.max_b_frames(2);
+    }
+ else     if (avCodecContext.codec_id() == AV_CODEC_ID_MPEG1VIDEO) {
+      avCodecContext.mb_decision(2);
+    }
+ else     if (avCodecContext.codec_id() == AV_CODEC_ID_H263) {
+      if (imageWidth <= 128 && imageHeight <= 96) {
+        avCodecContext.width(128).height(96);
+      }
+ else       if (imageWidth <= 176 && imageHeight <= 144) {
+        avCodecContext.width(176).height(144);
+      }
+ else       if (imageWidth <= 352 && imageHeight <= 288) {
+        avCodecContext.width(352).height(288);
+      }
+ else       if (imageWidth <= 704 && imageHeight <= 576) {
+        avCodecContext.width(704).height(576);
+      }
+ else {
+        avCodecContext.width(1408).height(1152);
+      }
+    }
+ else     if (avCodecContext.codec_id() == AV_CODEC_ID_H264) {
+      avCodecContext.profile(AVCodecContext.FF_PROFILE_H264_CONSTRAINED_BASELINE);
+    }
+    if ((outFormat.flags() & AVFMT_GLOBALHEADER) != 0) {
+      avCodecContext.flags(avCodecContext.flags() | CODEC_FLAG_GLOBAL_HEADER);
+    }
+    if ((video_codec.capabilities() & CODEC_CAP_EXPERIMENTAL) != 0) {
+      avCodecContext.strict_std_compliance(AVCodecContext.FF_COMPLIANCE_EXPERIMENTAL);
+    }
+  }
+  av_dump_format(outFormatContext,0,filename,1);
+  if (videoStream != null) {
+    AVDictionary options=new AVDictionary(null);
+    if (videoQuality >= 0) {
+      av_dict_set(options,"crf","" + videoQuality,0);
+    }
+    for (    Entry<String,String> e : videoOptions.entrySet()) {
+      av_dict_set(options,e.getKey(),e.getValue(),0);
+    }
+    if ((ret=avcodec_open2(avCodecContext,video_codec,options)) < 0) {
+      release();
+      throw new Exception("avcodec_open2() error " + ret + ": Could not open video codec.");
+    }
+    av_dict_free(options);
+    videoOutBuf=null;
+    if ((outFormat.flags() & AVFMT_RAWPICTURE) == 0) {
+      video_outbuf_size=Math.max(256 * 1024,8 * avCodecContext.width() * avCodecContext.height());
+      videoOutBuf=new BytePointer(av_malloc(video_outbuf_size));
+    }
+    if ((picture=av_frame_alloc()) == null) {
+      release();
+      throw new Exception("av_frame_alloc() error: Could not allocate picture.");
+    }
+    picture.pts(0);
+    int size=avpicture_get_size(avCodecContext.pix_fmt(),avCodecContext.width(),avCodecContext.height());
+    if ((picture_buf=new BytePointer(av_malloc(size))).isNull()) {
+      release();
+      throw new Exception("av_malloc() error: Could not allocate picture buffer.");
+    }
+    if ((tmp_picture=av_frame_alloc()) == null) {
+      release();
+      throw new Exception("av_frame_alloc() error: Could not allocate temporary picture.");
+    }
+  }
+  if ((outFormat.flags() & AVFMT_NOFILE) == 0) {
+    AVIOContext pb=new AVIOContext(null);
+    if ((ret=avio_open(pb,filename,AVIO_FLAG_WRITE)) < 0) {
+      release();
+      throw new Exception("avio_open error() error " + ret + ": Could not open '"+ filename+ "'");
+    }
+    outFormatContext.pb(pb);
+  }
+  avformat_write_header(outFormatContext,(PointerPointer)null);
+}

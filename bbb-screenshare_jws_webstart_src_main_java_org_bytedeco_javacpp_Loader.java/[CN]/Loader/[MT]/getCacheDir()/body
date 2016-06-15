@@ -1,0 +1,12 @@
+{
+  if (cacheDir == null) {
+    String dirName=System.getProperty("org.bytedeco.javacpp.cachedir",null);
+    if (dirName != null) {
+      File f=new File(dirName);
+      if (f.exists() || f.mkdirs()) {
+        cacheDir=f;
+      }
+    }
+  }
+  return cacheDir;
+}

@@ -1,0 +1,5 @@
+{
+  this.limit=capacity;
+  this.capacity=capacity;
+  return (P)this;
+}

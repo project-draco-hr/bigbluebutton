@@ -1,0 +1,4 @@
+{
+  put(index(indices),c);
+  return this;
+}

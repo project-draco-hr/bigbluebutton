@@ -1,0 +1,3 @@
+{
+  return audio_c == null ? super.getAudioBitrate() : (int)audio_c.bit_rate();
+}

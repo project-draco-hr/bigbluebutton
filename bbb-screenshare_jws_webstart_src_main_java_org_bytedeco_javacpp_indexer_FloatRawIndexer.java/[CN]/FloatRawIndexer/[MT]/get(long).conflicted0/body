@@ -1,0 +1,3 @@
+{
+  return RAW.getFloat(base + checkIndex(i,size) * VALUE_BYTES);
+}

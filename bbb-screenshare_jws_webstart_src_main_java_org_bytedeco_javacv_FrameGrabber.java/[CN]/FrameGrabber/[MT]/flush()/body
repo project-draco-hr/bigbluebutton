@@ -1,0 +1,5 @@
+{
+  for (int i=0; i < numBuffers + 1; i++) {
+    grab();
+  }
+}

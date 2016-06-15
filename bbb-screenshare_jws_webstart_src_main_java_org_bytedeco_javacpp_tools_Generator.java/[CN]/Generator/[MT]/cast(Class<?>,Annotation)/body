@@ -1,0 +1,10 @@
+{
+  String[] typeName=null;
+  for (  Annotation a : annotations) {
+    if ((a instanceof Cast && ((Cast)a).value()[0].length() > 0) || a instanceof Const) {
+      typeName=cppCastTypeName(type,annotations);
+      break;
+    }
+  }
+  return typeName != null && typeName.length > 0 ? "(" + typeName[0] + typeName[1]+ ")" : "";
+}

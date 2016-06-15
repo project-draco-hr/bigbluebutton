@@ -1,0 +1,10 @@
+{
+  try {
+    throw new IOException(getResources().getString(errorMsg) + " " + line);
+  }
+ catch (  MissingResourceException mre) {
+    System.err.println("Fatal error: " + errorMsg);
+    new Throwable().printStackTrace(System.err);
+    System.exit(-1);
+  }
+}

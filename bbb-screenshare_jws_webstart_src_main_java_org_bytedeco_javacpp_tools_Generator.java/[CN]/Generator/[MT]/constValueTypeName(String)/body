@@ -1,0 +1,7 @@
+{
+  String type=typeName[0];
+  if (type.endsWith("*") || type.endsWith("&")) {
+    type=type.substring(0,type.length() - 1);
+  }
+  return type;
+}

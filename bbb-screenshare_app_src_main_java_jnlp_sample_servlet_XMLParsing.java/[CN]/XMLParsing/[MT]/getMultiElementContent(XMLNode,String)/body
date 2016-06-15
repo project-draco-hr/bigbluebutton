@@ -1,0 +1,12 @@
+{
+  final List list=new ArrayList();
+  visitElements(root,path,new ElementVisitor(){
+    public void visitElement(    XMLNode n){
+      String value=getElementContent(n,"");
+      if (value != null)       list.add(value);
+    }
+  }
+);
+  if (list.size() == 0)   return null;
+  return (String[])list.toArray(new String[list.size()]);
+}

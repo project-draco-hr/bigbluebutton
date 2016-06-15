@@ -1,0 +1,24 @@
+{
+  super(p,null);
+  this.deallocator=this;
+  Class<? extends Pointer> cls=p.getClass();
+  for (  Method m : cls.getDeclaredMethods()) {
+    Class[] parameters=m.getParameterTypes();
+    if (Modifier.isStatic(m.getModifiers()) && m.getReturnType().equals(void.class) && m.getName().equals("deallocate")&& parameters.length == 1 && Pointer.class.isAssignableFrom(parameters[0])) {
+      m.setAccessible(true);
+      method=m;
+      break;
+    }
+  }
+  if (method == null) {
+    throw new RuntimeException(new NoSuchMethodException("static void " + cls.getCanonicalName() + ".deallocate("+ Pointer.class.getCanonicalName()+ ")"));
+  }
+  try {
+    Constructor<? extends Pointer> c=cls.getConstructor(Pointer.class);
+    c.setAccessible(true);
+    pointer=c.newInstance(p);
+  }
+ catch (  Exception ex) {
+    throw new RuntimeException(ex);
+  }
+}

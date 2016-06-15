@@ -1,0 +1,9 @@
+{
+  try {
+    method.invoke(null,pointer);
+    pointer.setNull();
+  }
+ catch (  Exception ex) {
+    throw new RuntimeException(ex);
+  }
+}

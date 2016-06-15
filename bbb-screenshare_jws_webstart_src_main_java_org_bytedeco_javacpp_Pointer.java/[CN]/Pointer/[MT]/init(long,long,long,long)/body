@@ -1,0 +1,9 @@
+{
+  address=allocatedAddress;
+  position=0;
+  limit=allocatedCapacity;
+  capacity=allocatedCapacity;
+  if (ownerAddress != 0 && deallocatorAddress != 0) {
+    deallocator(new NativeDeallocator(this,ownerAddress,deallocatorAddress));
+  }
+}

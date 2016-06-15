@@ -1,0 +1,4 @@
+{
+  array[(int)index(indices)]=n;
+  return this;
+}

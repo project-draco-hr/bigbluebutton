@@ -1,0 +1,11 @@
+{
+  if (message.getMessageType() == Message.MessageType.UPDATE) {
+    sendUpdateMessage((ShareUpdateMessage)message);
+  }
+ else   if (message.getMessageType() == Message.MessageType.STARTED) {
+    sendStartStreamMessage((ShareStartedMessage)message);
+  }
+ else   if (message.getMessageType() == Message.MessageType.STOPPED) {
+    sendCaptureEndEvent();
+  }
+}

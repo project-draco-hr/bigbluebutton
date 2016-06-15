@@ -1,0 +1,15 @@
+{
+  if (propertyFile == null) {
+    return this;
+  }
+  FileInputStream fis=new FileInputStream(propertyFile);
+  properties=new Properties();
+  try {
+    properties.load(new InputStreamReader(fis));
+  }
+ catch (  NoSuchMethodError e) {
+    properties.load(fis);
+  }
+  fis.close();
+  return this;
+}

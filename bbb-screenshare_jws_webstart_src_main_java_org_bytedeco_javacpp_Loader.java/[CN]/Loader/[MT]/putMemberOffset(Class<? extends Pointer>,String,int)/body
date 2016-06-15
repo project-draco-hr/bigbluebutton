@@ -1,0 +1,7 @@
+{
+  HashMap<String,Integer> offsets=memberOffsets.get(type);
+  if (offsets == null) {
+    memberOffsets.put(type,offsets=new HashMap<String,Integer>());
+  }
+  offsets.put(member,offset);
+}

@@ -1,0 +1,6 @@
+{
+  if (i < 0 || i >= size) {
+    throw new IndexOutOfBoundsException(Long.toString(i));
+  }
+  return i;
+}

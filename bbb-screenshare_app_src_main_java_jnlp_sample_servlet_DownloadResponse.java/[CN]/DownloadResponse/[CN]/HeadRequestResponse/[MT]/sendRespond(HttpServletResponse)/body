@@ -1,0 +1,11 @@
+{
+  response.setContentType(_mimeType);
+  response.setContentLength(_contentLength);
+  if (_versionId != null) {
+    response.setHeader(HEADER_JNLP_VERSION,_versionId);
+  }
+  if (_lastModified != 0) {
+    response.setDateHeader(HEADER_LASTMOD,_lastModified);
+  }
+  response.sendError(HttpServletResponse.SC_OK);
+}

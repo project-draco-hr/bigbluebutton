@@ -1,0 +1,18 @@
+{
+  if (out && (methodInfo.parameterTypes[j] == String.class || methodInfo.valueSetter || methodInfo.memberSetter)) {
+    return null;
+  }
+  String typeName=cast(methodInfo,j);
+  if (typeName != null && typeName.startsWith("(") && typeName.endsWith(")")) {
+    typeName=typeName.substring(1,typeName.length() - 1);
+  }
+  if (typeName == null || typeName.length() == 0) {
+    typeName=cppCastTypeName(methodInfo.parameterTypes[j],methodInfo.parameterAnnotations[j])[0];
+  }
+  String valueTypeName=valueTypeName(typeName);
+  AdapterInformation adapter=adapterInformation(out,valueTypeName,methodInfo.parameterAnnotations[j]);
+  if (adapter == null && methodInfo.pairedMethod != null && j == methodInfo.parameterTypes.length - 1 && (methodInfo.valueSetter || methodInfo.memberSetter)) {
+    adapter=adapterInformation(out,valueTypeName,methodInfo.pairedMethod.getAnnotations());
+  }
+  return adapter;
+}

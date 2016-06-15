@@ -1,0 +1,3 @@
+{
+  return load(getCallerClass(2),loadProperties(),false);
+}

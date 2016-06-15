@@ -1,0 +1,4 @@
+{
+  notifier.sendCreatingTextFilesUpdateMessage(pres);
+  textFileCreator.createTextFiles(pres);
+}

@@ -1,0 +1,10 @@
+{
+  for (  String name : list) {
+    try {
+      Class<? extends FrameRecorder> c=get(name);
+      c.getMethod("tryLoad").invoke(null);
+    }
+ catch (    Throwable t) {
+    }
+  }
+}

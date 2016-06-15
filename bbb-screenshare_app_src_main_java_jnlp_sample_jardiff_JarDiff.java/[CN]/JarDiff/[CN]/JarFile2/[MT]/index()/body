@@ -1,0 +1,31 @@
+{
+  Enumeration entries=_jar.entries();
+  _nameToEntryMap=new HashMap();
+  _crcToEntryMap=new HashMap();
+  _entries=new ArrayList();
+  if (_debug) {
+    System.out.println("indexing: " + _jar.getName());
+  }
+  if (entries != null) {
+    while (entries.hasMoreElements()) {
+      JarEntry entry=(JarEntry)entries.nextElement();
+      long crc=entry.getCrc();
+      Long crcL=new Long(crc);
+      if (_debug) {
+        System.out.println("\t" + entry.getName() + " CRC "+ crc);
+      }
+      _nameToEntryMap.put(entry.getName(),entry);
+      _entries.add(entry);
+      if (_crcToEntryMap.containsKey(crcL)) {
+        LinkedList ll=(LinkedList)_crcToEntryMap.get(crcL);
+        ll.add(entry);
+        _crcToEntryMap.put(crcL,ll);
+      }
+ else {
+        LinkedList ll=new LinkedList();
+        ll.add(entry);
+        _crcToEntryMap.put(crcL,ll);
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  SendCaptionHistoryRequestMessage msg=new SendCaptionHistoryRequestMessage(meetingID,requesterID);
+  sender.send(MessagingConstants.TO_CAPTION_CHANNEL,msg.toJson());
+}

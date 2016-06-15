@@ -1,0 +1,7 @@
+{
+  this.logger=p.logger;
+  this.properties=p.properties;
+  this.infoMap=p.infoMap;
+  this.tokens=new TokenIndexer(infoMap,new Tokenizer(text).tokenize(),false);
+  this.lineSeparator=p.lineSeparator;
+}

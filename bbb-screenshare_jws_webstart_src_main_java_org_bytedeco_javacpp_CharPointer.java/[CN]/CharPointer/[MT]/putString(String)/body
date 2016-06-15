@@ -1,0 +1,4 @@
+{
+  char[] chars=s.toCharArray();
+  return put(chars).put(chars.length,(char)0).limit(chars.length);
+}

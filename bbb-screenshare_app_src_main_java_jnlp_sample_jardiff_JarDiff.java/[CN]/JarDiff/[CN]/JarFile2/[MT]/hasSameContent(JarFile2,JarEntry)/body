@@ -1,0 +1,20 @@
+{
+  String thisName=null;
+  Long crcL=new Long(entry.getCrc());
+  if (_crcToEntryMap.containsKey(crcL)) {
+    LinkedList ll=(LinkedList)_crcToEntryMap.get(crcL);
+    ListIterator li=ll.listIterator(0);
+    if (li != null) {
+      while (li.hasNext()) {
+        JarEntry thisEntry=(JarEntry)li.next();
+        InputStream oldIS=getJarFile().getInputStream(thisEntry);
+        InputStream newIS=file.getJarFile().getInputStream(entry);
+        if (!differs(oldIS,newIS)) {
+          thisName=thisEntry.getName();
+          return thisName;
+        }
+      }
+    }
+  }
+  return thisName;
+}

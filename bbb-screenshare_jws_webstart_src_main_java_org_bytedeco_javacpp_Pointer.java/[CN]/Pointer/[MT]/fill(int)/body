@@ -1,0 +1,11 @@
+{
+  if (limit > 0 && limit < position) {
+    throw new IllegalArgumentException("limit < position: (" + limit + " < "+ position+ ")");
+  }
+  int size=sizeof();
+  long length=size * (limit <= 0 ? 1 : limit - position);
+  position*=size;
+  memset(this,b,length);
+  position/=size;
+  return (P)this;
+}

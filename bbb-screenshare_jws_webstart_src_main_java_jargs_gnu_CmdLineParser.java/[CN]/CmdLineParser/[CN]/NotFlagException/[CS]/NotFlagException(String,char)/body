@@ -1,0 +1,4 @@
+{
+  super(option,"Illegal option: '" + option + "', '"+ unflaggish+ "' requires a value");
+  notflag=unflaggish;
+}

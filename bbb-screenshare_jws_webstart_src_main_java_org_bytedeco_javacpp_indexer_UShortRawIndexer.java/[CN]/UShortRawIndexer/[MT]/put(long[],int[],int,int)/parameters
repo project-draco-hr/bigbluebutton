@@ -1,0 +1,4 @@
+long[] indices
+int[] s
+int offset
+int length

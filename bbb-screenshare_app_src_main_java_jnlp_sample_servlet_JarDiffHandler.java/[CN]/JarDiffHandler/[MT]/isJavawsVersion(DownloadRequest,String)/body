@@ -1,0 +1,26 @@
+{
+  String javawsAgent="javaws";
+  String jwsVer=dreq.getHttpRequest().getHeader("User-Agent");
+  if (!jwsVer.startsWith("javaws-")) {
+    StringTokenizer st=new StringTokenizer(jwsVer);
+    while (st.hasMoreTokens()) {
+      String verString=st.nextToken();
+      int index=verString.indexOf(javawsAgent);
+      if (index != -1) {
+        verString=verString.substring(index + javawsAgent.length() + 1);
+        return VersionString.contains(version,verString);
+      }
+    }
+    return false;
+  }
+  int startIndex=jwsVer.indexOf("-");
+  if (startIndex == -1) {
+    return false;
+  }
+  int endIndex=jwsVer.indexOf("/");
+  if (endIndex == -1 || endIndex < startIndex) {
+    return false;
+  }
+  String verId=jwsVer.substring(startIndex + 1,endIndex);
+  return VersionString.contains(version,verId);
+}

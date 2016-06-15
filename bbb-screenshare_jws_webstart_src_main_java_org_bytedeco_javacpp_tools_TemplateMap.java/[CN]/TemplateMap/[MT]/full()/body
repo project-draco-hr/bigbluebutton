@@ -1,0 +1,8 @@
+{
+  for (  Type t : values()) {
+    if (t == null) {
+      return false;
+    }
+  }
+  return true;
+}

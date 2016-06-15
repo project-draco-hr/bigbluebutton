@@ -1,0 +1,8 @@
+{
+  if (oc == null) {
+    return super.getFormat();
+  }
+ else {
+    return oc.iformat().name().getString();
+  }
+}

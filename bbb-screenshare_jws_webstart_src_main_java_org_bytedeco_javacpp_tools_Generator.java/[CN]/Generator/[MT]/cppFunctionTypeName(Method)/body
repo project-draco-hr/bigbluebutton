@@ -1,0 +1,46 @@
+{
+  String prefix, suffix;
+  Class<?> type=functionMethod.getDeclaringClass();
+  Convention convention=type.getAnnotation(Convention.class);
+  String callingConvention=convention == null ? "" : convention.value() + " ";
+  Namespace namespace=FunctionPointer.class.isAssignableFrom(type) ? type.getAnnotation(Namespace.class) : null;
+  String spaceName=namespace == null ? "" : namespace.value();
+  if (spaceName.length() > 0 && !spaceName.endsWith("::")) {
+    spaceName+="::";
+  }
+  Class returnType=functionMethod.getReturnType();
+  Class[] parameterTypes=functionMethod.getParameterTypes();
+  Annotation[] annotations=functionMethod.getAnnotations();
+  Annotation[][] parameterAnnotations=functionMethod.getParameterAnnotations();
+  String[] returnTypeName=cppAnnotationTypeName(returnType,annotations);
+  AdapterInformation returnAdapterInfo=adapterInformation(false,valueTypeName(returnTypeName),annotations);
+  if (returnAdapterInfo != null && returnAdapterInfo.cast.length() > 0) {
+    prefix=returnAdapterInfo.cast;
+  }
+ else {
+    prefix=returnTypeName[0] + returnTypeName[1];
+  }
+  prefix+=" (" + callingConvention + spaceName+ "*";
+  suffix=")(";
+  if (FunctionPointer.class.isAssignableFrom(type) && namespace != null && (parameterTypes.length == 0 || !Pointer.class.isAssignableFrom(parameterTypes[0]))) {
+    logger.warn("First parameter of caller method call() or apply() for member function pointer " + type.getCanonicalName() + " is not a Pointer. Compilation will most likely fail.");
+  }
+  for (int j=namespace == null ? 0 : 1; j < parameterTypes.length; j++) {
+    String[] paramTypeName=cppAnnotationTypeName(parameterTypes[j],parameterAnnotations[j]);
+    AdapterInformation paramAdapterInfo=adapterInformation(false,valueTypeName(paramTypeName),parameterAnnotations[j]);
+    if (paramAdapterInfo != null && paramAdapterInfo.cast.length() > 0) {
+      suffix+=paramAdapterInfo.cast + " arg" + j;
+    }
+ else {
+      suffix+=paramTypeName[0] + " arg" + j+ paramTypeName[1];
+    }
+    if (j < parameterTypes.length - 1) {
+      suffix+=", ";
+    }
+  }
+  suffix+=")";
+  if (type.isAnnotationPresent(Const.class)) {
+    suffix+=" const";
+  }
+  return new String[]{prefix,suffix};
+}

@@ -1,0 +1,4 @@
+{
+  RAW.putLong(base + checkIndex(i,size) * VALUE_BYTES,l);
+  return this;
+}

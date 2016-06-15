@@ -1,0 +1,5 @@
+boolean handleExceptions
+boolean defineAdapters
+boolean convertStrings
+String classPath
+Class<?> classes

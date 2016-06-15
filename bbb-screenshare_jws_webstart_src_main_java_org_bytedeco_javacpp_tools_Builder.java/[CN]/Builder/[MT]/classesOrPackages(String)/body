@@ -1,0 +1,9 @@
+{
+  if (classesOrPackages == null) {
+    classScanner.addPackage(null,true);
+  }
+ else   for (  String s : classesOrPackages) {
+    classScanner.addClassOrPackage(s);
+  }
+  return this;
+}

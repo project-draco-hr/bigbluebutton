@@ -1,0 +1,12 @@
+{
+  List<Recording> recs=new ArrayList<Recording>();
+  Iterator<File> iterator=recordings.iterator();
+  while (iterator.hasNext()) {
+    File recording=iterator.next();
+    if (recording.getName().startsWith(id)) {
+      Recording r=getRecordingInfo(recording);
+      if (r != null)       recs.add(r);
+    }
+  }
+  return recs;
+}

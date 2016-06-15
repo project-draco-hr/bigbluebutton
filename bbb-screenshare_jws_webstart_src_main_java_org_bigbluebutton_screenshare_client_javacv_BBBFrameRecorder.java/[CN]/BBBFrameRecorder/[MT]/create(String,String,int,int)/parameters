@@ -1,0 +1,4 @@
+String className
+String filename
+int width
+int height

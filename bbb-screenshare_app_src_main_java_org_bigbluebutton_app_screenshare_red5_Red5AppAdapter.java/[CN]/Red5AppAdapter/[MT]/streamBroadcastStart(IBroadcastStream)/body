@@ -1,0 +1,22 @@
+{
+  IConnection conn=Red5.getConnectionLocal();
+  super.streamBroadcastStart(stream);
+  log.info("streamBroadcastStart " + stream.getPublishedName() + "]");
+  String streamId=stream.getPublishedName();
+  Matcher matcher=STREAM_ID_PATTERN.matcher(stream.getPublishedName());
+  if (matcher.matches()) {
+    String meetingId=matcher.group(1).trim();
+    String url=streamBaseUrl + "/" + meetingId+ "/"+ streamId;
+    app.streamStarted(meetingId,streamId,url);
+    boolean recordVideoStream=app.recordStream(meetingId,streamId);
+    if (recordVideoStream) {
+      recordStream(stream);
+      ScreenshareStreamListener listener=new ScreenshareStreamListener(recordingService,recordingDirectory);
+      stream.addStreamListener(listener);
+      streamListeners.put(conn.getScope().getName() + "-" + stream.getPublishedName(),listener);
+    }
+  }
+ else {
+    log.error("Invalid streamid format [{}]",streamId);
+  }
+}

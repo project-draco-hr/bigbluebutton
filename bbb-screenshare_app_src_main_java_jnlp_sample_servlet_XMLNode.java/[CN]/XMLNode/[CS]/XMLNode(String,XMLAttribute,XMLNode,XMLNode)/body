@@ -1,0 +1,8 @@
+{
+  _isElement=true;
+  _name=name;
+  _attr=attr;
+  _nested=nested;
+  _next=next;
+  _parent=null;
+}

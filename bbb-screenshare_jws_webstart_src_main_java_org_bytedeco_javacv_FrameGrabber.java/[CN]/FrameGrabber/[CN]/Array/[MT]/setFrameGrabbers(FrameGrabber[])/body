@@ -1,0 +1,7 @@
+{
+  this.frameGrabbers=frameGrabbers;
+  grabbedFrames=new Frame[frameGrabbers.length];
+  latencies=new long[frameGrabbers.length];
+  bestLatencies=null;
+  lastNewestTimestamp=0;
+}

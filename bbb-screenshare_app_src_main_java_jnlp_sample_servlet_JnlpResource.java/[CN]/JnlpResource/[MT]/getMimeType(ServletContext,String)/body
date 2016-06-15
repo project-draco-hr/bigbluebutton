@@ -1,0 +1,7 @@
+{
+  String mimeType=context.getMimeType(path);
+  if (mimeType != null)   return mimeType;
+  if (path.endsWith(_jnlpExtension))   return JNLP_MIME_TYPE;
+  if (path.endsWith(_jarExtension))   return JAR_MIME_TYPE;
+  return "application/unknown";
+}

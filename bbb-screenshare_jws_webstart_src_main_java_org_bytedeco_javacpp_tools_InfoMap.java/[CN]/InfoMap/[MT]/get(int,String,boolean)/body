@@ -1,0 +1,4 @@
+{
+  List<Info> infoList=get(cppName,partial);
+  return infoList.size() > 0 ? infoList.get(index) : null;
+}

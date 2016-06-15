@@ -1,0 +1,178 @@
+{
+  int backIndex=tokens.index;
+  if (!tokens.get().match('#')) {
+    return false;
+  }
+  tokens.raw=true;
+  String spacing=tokens.get().spacing;
+  Token keyword=tokens.next();
+  tokens.next();
+  int beginIndex=tokens.index;
+  for (Token token=tokens.get(); !token.match(Token.EOF); token=tokens.next()) {
+    if (token.spacing.indexOf('\n') >= 0) {
+      break;
+    }
+  }
+  int endIndex=tokens.index;
+  while (tokens.get(-1).match(Token.COMMENT)) {
+    tokens.index--;
+  }
+  int lastIndex=tokens.index;
+  Declaration decl=new Declaration();
+  if (keyword.match(Token.DEFINE) && beginIndex < endIndex) {
+    tokens.index=beginIndex;
+    String macroName=tokens.get().value;
+    Token first=tokens.next();
+    boolean hasArgs=first.spacing.length() == 0 && first.match('(');
+    List<Info> infoList=infoMap.get(macroName);
+    for (    Info info : infoList.size() > 0 ? infoList : Arrays.asList(new Info[]{null})) {
+      if (info != null && info.skip) {
+        break;
+      }
+ else       if ((info == null && (hasArgs || beginIndex + 1 == endIndex)) || (info != null && info.cppText == null && info.cppTypes != null && info.cppTypes.length == 0)) {
+        info=new Info(macroName).cppText("");
+        tokens.index=backIndex;
+        for (Token token=tokens.get(); tokens.index < endIndex; token=tokens.next()) {
+          info.cppText+=token.match("\n") ? token : token.spacing + token;
+        }
+        infoMap.putFirst(info);
+        break;
+      }
+ else       if (info != null && info.cppText == null && info.cppTypes != null && info.cppTypes.length > (hasArgs ? 0 : 1)) {
+        List<Declarator> prevDcl=new ArrayList<Declarator>();
+        for (int n=-1; n < Integer.MAX_VALUE; n++) {
+          int count=1;
+          tokens.index=beginIndex + 2;
+          String params="(";
+          for (Token token=tokens.get(); hasArgs && tokens.index < lastIndex && count < info.cppTypes.length; token=tokens.next()) {
+            if (token.match(Token.IDENTIFIER)) {
+              String type=info.cppTypes[count];
+              String name=token.value;
+              if (name.equals("...")) {
+                name="arg" + count;
+              }
+              params+=type + " " + name;
+              if (++count < info.cppTypes.length) {
+                params+=", ";
+              }
+            }
+ else             if (token.match(')')) {
+              break;
+            }
+          }
+          while (count < info.cppTypes.length) {
+            String type=info.cppTypes[count];
+            String name="arg" + count;
+            params+=type + " " + name;
+            if (++count < info.cppTypes.length) {
+              params+=", ";
+            }
+          }
+          params+=")";
+          Declarator dcl=new Parser(this,info.cppTypes[0] + " " + macroName+ params).declarator(context,null,n,false,0,false,false);
+          for (int i=0; i < info.cppNames.length; i++) {
+            if (macroName.equals(info.cppNames[i]) && info.javaNames != null) {
+              macroName="@Name(\"" + info.cppNames[0] + "\") "+ info.javaNames[i];
+              break;
+            }
+          }
+          boolean found=false;
+          for (          Declarator d : prevDcl) {
+            found|=dcl.signature.equals(d.signature);
+          }
+          if (!found) {
+            decl.text+="public static native " + dcl.type.annotations + dcl.type.javaName+ " "+ macroName+ dcl.parameters.list+ ";\n";
+          }
+ else           if (found && n > 0) {
+            break;
+          }
+          prevDcl.add(dcl);
+        }
+      }
+ else       if (info == null || (info.cppText == null && (info.cppTypes == null || info.cppTypes.length == 1))) {
+        String value="";
+        String type="int";
+        String cat="";
+        tokens.index=beginIndex + 1;
+        Token prevToken=new Token();
+        boolean translate=true;
+        for (Token token=tokens.get(); tokens.index < lastIndex; token=tokens.next()) {
+          if (token.match(Token.STRING)) {
+            type="String";
+            cat=" + ";
+            break;
+          }
+ else           if (token.match(Token.FLOAT)) {
+            type="double";
+            cat="";
+            break;
+          }
+ else           if (token.match(Token.INTEGER) && token.value.endsWith("L")) {
+            type="long";
+            cat="";
+            break;
+          }
+ else           if ((prevToken.match(Token.IDENTIFIER,'>') && token.match('(')) || token.match('{','}')) {
+            translate=false;
+          }
+          prevToken=token;
+        }
+        if (info != null) {
+          if (info.cppTypes != null) {
+            Declarator dcl=new Parser(this,info.cppTypes[0]).declarator(context,null,-1,false,0,false,true);
+            type=dcl.type.annotations + dcl.type.javaName;
+          }
+          for (int i=0; i < info.cppNames.length; i++) {
+            if (macroName.equals(info.cppNames[i]) && info.javaNames != null) {
+              macroName="@Name(\"" + info.cppNames[0] + "\") "+ info.javaNames[i];
+              break;
+            }
+          }
+          translate=info.translate;
+        }
+        tokens.index=beginIndex + 1;
+        if (translate) {
+          for (Token token=tokens.get(); tokens.index < lastIndex; token=tokens.next()) {
+            value+=token.spacing + token + (tokens.index + 1 < lastIndex ? cat : "");
+          }
+          value=translate(value);
+        }
+ else {
+          decl.text+="public static native @MemberGetter " + type + " "+ macroName+ "();\n";
+          value=" " + macroName + "()";
+        }
+        int i=type.lastIndexOf(' ');
+        if (i >= 0) {
+          type=type.substring(i + 1);
+        }
+        if (value.length() > 0) {
+          decl.text+="public static final " + type + " "+ macroName+ " ="+ value+ ";\n";
+        }
+        decl.signature=macroName;
+      }
+      if (info != null && info.javaText != null) {
+        decl.text=info.javaText;
+        break;
+      }
+    }
+  }
+  if (decl.text.length() == 0) {
+    tokens.index=beginIndex;
+    int n=spacing.lastIndexOf('\n') + 1;
+    decl.text+="// " + spacing.substring(n) + "#"+ keyword.spacing+ keyword;
+    for (Token token=tokens.get(); tokens.index < lastIndex; token=tokens.next()) {
+      decl.text+=token.match("\n") ? "\n// " : token.spacing + token.toString().replace("\n","\n//");
+    }
+    spacing=spacing.substring(0,n);
+  }
+  if (decl.text.length() > 0) {
+    tokens.index=lastIndex;
+    String comment=commentAfter();
+    decl.text=comment + decl.text;
+  }
+  tokens.raw=false;
+  declList.spacing=spacing;
+  declList.add(decl);
+  declList.spacing=null;
+  return true;
+}

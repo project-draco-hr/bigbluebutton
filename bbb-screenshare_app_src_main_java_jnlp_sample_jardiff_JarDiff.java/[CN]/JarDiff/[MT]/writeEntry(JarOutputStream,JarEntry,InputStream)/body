@@ -1,0 +1,20 @@
+{
+  jos.putNextEntry(entry);
+  try {
+    int size=data.read(newBytes);
+    while (size != -1) {
+      jos.write(newBytes,0,size);
+      size=data.read(newBytes);
+    }
+  }
+ catch (  IOException ioE) {
+    throw ioE;
+  }
+ finally {
+    try {
+      data.close();
+    }
+ catch (    IOException e) {
+    }
+  }
+}

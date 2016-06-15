@@ -1,0 +1,4 @@
+{
+  outputDirectory(outputDirectory == null ? null : new File(outputDirectory));
+  return this;
+}

@@ -1,0 +1,17 @@
+{
+  long start=System.currentTimeMillis();
+  dataToSend.reset();
+  try {
+    dataToSend.write(CAPTURE_UPDATE_EVENT);
+    dataToSend.write(meetingId.length());
+    dataToSend.write(meetingId.getBytes());
+    sendToStream(dataToSend);
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+  long end=System.currentTimeMillis();
+  if ((end - start) > 200) {
+    System.out.println("Sending " + dataToSend.size() + " bytes took "+ (end - start)+ " ms.");
+  }
+}

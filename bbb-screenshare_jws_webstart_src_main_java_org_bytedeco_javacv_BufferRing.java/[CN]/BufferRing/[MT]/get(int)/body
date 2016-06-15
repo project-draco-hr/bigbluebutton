@@ -1,0 +1,3 @@
+{
+  return (B)buffers[((position + offset) % buffers.length + buffers.length) % buffers.length];
+}

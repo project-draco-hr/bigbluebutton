@@ -1,0 +1,6 @@
+{
+  if (key.length() > 0 && value.length() > 0) {
+    properties.put(key,value);
+  }
+  return this;
+}

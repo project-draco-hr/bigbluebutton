@@ -1,0 +1,9 @@
+{
+  if (oc == null || oc.isNull()) {
+    throw new Exception("Could not trigger: No AVFormatContext. (Has start() been called?)");
+  }
+  if (av_read_frame(oc,pkt) < 0) {
+    return null;
+  }
+  return pkt;
+}

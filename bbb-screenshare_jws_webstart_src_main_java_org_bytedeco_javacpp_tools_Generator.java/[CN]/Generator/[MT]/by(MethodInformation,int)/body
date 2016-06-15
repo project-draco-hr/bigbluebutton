@@ -1,0 +1,7 @@
+{
+  Annotation passBy=by(methodInfo.parameterAnnotations[j]);
+  if (passBy == null && methodInfo.pairedMethod != null && (methodInfo.valueSetter || methodInfo.memberSetter)) {
+    passBy=by(methodInfo.pairedMethod.getAnnotations());
+  }
+  return passBy;
+}

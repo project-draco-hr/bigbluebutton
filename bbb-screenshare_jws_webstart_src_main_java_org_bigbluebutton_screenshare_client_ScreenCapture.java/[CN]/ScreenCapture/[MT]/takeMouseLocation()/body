@@ -1,0 +1,7 @@
+{
+  Point mouseLocation=getMouseLocation();
+  if (isMouseInsideCapturedRegion(mouseLocation)) {
+    curMouseLocation=calculatePointerLocation(mouseLocation);
+  }
+  return curMouseLocation;
+}

@@ -1,0 +1,146 @@
+{
+  String indent=methodInfo.throwsException != null ? "        " : "    ";
+  String[] typeName=methodInfo.returnRaw ? new String[]{""} : cppCastTypeName(methodInfo.returnType,methodInfo.annotations);
+  Annotation returnBy=by(methodInfo.annotations);
+  String valueTypeName=valueTypeName(typeName);
+  AdapterInformation adapterInfo=adapterInformation(false,valueTypeName,methodInfo.annotations);
+  String suffix=methodInfo.deallocator ? "" : ";";
+  if (!methodInfo.returnType.isPrimitive() && adapterInfo != null) {
+    suffix=")" + suffix;
+  }
+  if ((Pointer.class.isAssignableFrom(methodInfo.returnType) || (methodInfo.returnType.isArray() && methodInfo.returnType.getComponentType().isPrimitive()) || Buffer.class.isAssignableFrom(methodInfo.returnType))) {
+    if (returnBy instanceof ByVal && adapterInfo == null) {
+      suffix=")" + suffix;
+    }
+ else     if (returnBy instanceof ByPtrPtr) {
+      out.println(suffix);
+      suffix="";
+      out.println(indent + "if (rptrptr == NULL) {");
+      out.println(indent + "    env->ThrowNew(JavaCPP_getClass(env, " + jclasses.index(NullPointerException.class)+ "), \"Return pointer address is NULL.\");");
+      out.println(indent + "} else {");
+      out.println(indent + "    rptr = *rptrptr;");
+      out.println(indent + "}");
+    }
+  }
+  out.println(suffix);
+  if (methodInfo.returnType == void.class) {
+    if (methodInfo.allocator || methodInfo.arrayAllocator) {
+      out.println(indent + "jlong rcapacity = " + (methodInfo.arrayAllocator ? "arg0;" : "1;"));
+      boolean noDeallocator=methodInfo.cls == Pointer.class || methodInfo.cls.isAnnotationPresent(NoDeallocator.class) || methodInfo.method.isAnnotationPresent(NoDeallocator.class);
+      out.print(indent + "JavaCPP_initPointer(env, obj, rptr, rcapacity, rptr, ");
+      if (noDeallocator) {
+        out.println("NULL);");
+      }
+ else       if (methodInfo.arrayAllocator) {
+        out.println("&JavaCPP_" + mangle(methodInfo.cls.getName()) + "_deallocateArray);");
+        arrayDeallocators.index(methodInfo.cls);
+      }
+ else {
+        out.println("&JavaCPP_" + mangle(methodInfo.cls.getName()) + "_deallocate);");
+        deallocators.index(methodInfo.cls);
+      }
+      if (virtualFunctions.containsKey(methodInfo.cls)) {
+        typeName=cppTypeName(methodInfo.cls);
+        valueTypeName=valueTypeName(typeName);
+        String subType="JavaCPP_" + mangle(valueTypeName);
+        out.println(indent + "((" + subType+ "*)rptr)->obj = env->NewWeakGlobalRef(obj);");
+      }
+    }
+  }
+ else {
+    if (methodInfo.valueSetter || methodInfo.memberSetter || methodInfo.noReturnGetter) {
+    }
+ else     if (methodInfo.returnType.isPrimitive()) {
+      out.println(indent + "rarg = (" + jniTypeName(methodInfo.returnType)+ ")rvalue;");
+    }
+ else     if (methodInfo.returnRaw) {
+      out.println(indent + "rarg = rptr;");
+    }
+ else {
+      boolean needInit=false;
+      if (adapterInfo != null) {
+        out.println(indent + "rptr = radapter;");
+        if (methodInfo.returnType != String.class) {
+          out.println(indent + "jlong rcapacity = (jlong)radapter.size;");
+          if (Pointer.class.isAssignableFrom(methodInfo.returnType)) {
+            out.println(indent + "void* rowner = radapter.owner;");
+          }
+          out.println(indent + "void (*deallocator)(void*) = " + (adapterInfo.constant ? "NULL;" : "&" + adapterInfo.name + "::deallocate;"));
+        }
+        needInit=true;
+      }
+ else       if (returnBy instanceof ByVal || FunctionPointer.class.isAssignableFrom(methodInfo.returnType)) {
+        out.println(indent + "jlong rcapacity = 1;");
+        out.println(indent + "void* rowner = (void*)rptr;");
+        out.println(indent + "void (*deallocator)(void*) = &JavaCPP_" + mangle(methodInfo.returnType.getName())+ "_deallocate;");
+        deallocators.index(methodInfo.returnType);
+        needInit=true;
+      }
+      if (Pointer.class.isAssignableFrom(methodInfo.returnType)) {
+        out.print(indent);
+        if (!(returnBy instanceof ByVal)) {
+          if (Modifier.isStatic(methodInfo.modifiers) && methodInfo.parameterTypes.length > 0) {
+            for (int i=0; i < methodInfo.parameterTypes.length; i++) {
+              String cast=cast(methodInfo,i);
+              if (Arrays.equals(methodInfo.parameterAnnotations[i],methodInfo.annotations) && methodInfo.parameterTypes[i] == methodInfo.returnType) {
+                out.println("if (rptr == " + cast + "ptr"+ i+ ") {");
+                out.println(indent + "    rarg = arg" + i+ ";");
+                out.print(indent + "} else ");
+              }
+            }
+          }
+ else           if (!Modifier.isStatic(methodInfo.modifiers) && methodInfo.cls == methodInfo.returnType) {
+            out.println("if (rptr == ptr) {");
+            out.println(indent + "    rarg = obj;");
+            out.print(indent + "} else ");
+          }
+        }
+        out.println("if (rptr != NULL) {");
+        out.println(indent + "    rarg = JavaCPP_createPointer(env, " + jclasses.index(methodInfo.returnType)+ (methodInfo.parameterTypes.length > 0 && methodInfo.parameterTypes[0] == Class.class ? ", arg0);" : ");"));
+        out.println(indent + "    if (rarg != NULL) {");
+        if (needInit) {
+          out.println(indent + "        JavaCPP_initPointer(env, rarg, rptr, rcapacity, rowner, deallocator);");
+        }
+ else {
+          out.println(indent + "        env->SetLongField(rarg, JavaCPP_addressFID, ptr_to_jlong(rptr));");
+        }
+        out.println(indent + "    }");
+        out.println(indent + "}");
+      }
+ else       if (methodInfo.returnType == String.class) {
+        passesStrings=true;
+        out.println(indent + "if (rptr != NULL) {");
+        out.println(indent + "    rarg = JavaCPP_createString(env, rptr);");
+        out.println(indent + "}");
+      }
+ else       if (methodInfo.returnType.isArray() && methodInfo.returnType.getComponentType().isPrimitive()) {
+        if (adapterInfo == null && !(returnBy instanceof ByVal)) {
+          out.println(indent + "jlong rcapacity = rptr != NULL ? 1 : 0;");
+        }
+        String componentName=methodInfo.returnType.getComponentType().getName();
+        String componentNameUpperCase=Character.toUpperCase(componentName.charAt(0)) + componentName.substring(1);
+        out.println(indent + "if (rptr != NULL) {");
+        out.println(indent + "    rarg = env->New" + componentNameUpperCase+ "Array(rcapacity < INT_MAX ? rcapacity : INT_MAX);");
+        out.println(indent + "    env->Set" + componentNameUpperCase+ "ArrayRegion(rarg, 0, rcapacity < INT_MAX ? rcapacity : INT_MAX, (j"+ componentName+ "*)rptr);");
+        out.println(indent + "}");
+        if (adapterInfo != null) {
+          out.println(indent + "if (deallocator != 0 && rptr != NULL) {");
+          out.println(indent + "    (*(void(*)(void*))jlong_to_ptr(deallocator))((void*)rptr);");
+          out.println(indent + "}");
+        }
+      }
+ else       if (Buffer.class.isAssignableFrom(methodInfo.returnType)) {
+        if (methodInfo.bufferGetter) {
+          out.println(indent + "jlong rcapacity = size;");
+        }
+ else         if (adapterInfo == null && !(returnBy instanceof ByVal)) {
+          out.println(indent + "jlong rcapacity = rptr != NULL ? 1 : 0;");
+        }
+        out.println(indent + "if (rptr != NULL) {");
+        out.println(indent + "    jlong rcapacityptr = rcapacity * sizeof(rptr[0]);");
+        out.println(indent + "    rarg = env->NewDirectByteBuffer((void*)rptr, rcapacityptr < INT_MAX ? rcapacityptr : INT_MAX);");
+        out.println(indent + "}");
+      }
+    }
+  }
+}

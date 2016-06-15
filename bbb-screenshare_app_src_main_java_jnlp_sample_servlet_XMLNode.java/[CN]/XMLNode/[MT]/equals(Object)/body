@@ -1,0 +1,6 @@
+{
+  if (o == null || !(o instanceof XMLNode))   return false;
+  XMLNode other=(XMLNode)o;
+  boolean result=match(_name,other._name) && match(_attr,other._attr) && match(_nested,other._nested)&& match(_next,other._next);
+  return result;
+}

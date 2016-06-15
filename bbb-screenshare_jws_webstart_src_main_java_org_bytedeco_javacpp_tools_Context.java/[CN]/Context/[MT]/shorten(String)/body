@@ -1,0 +1,18 @@
+{
+  if (this.javaName != null) {
+    int lastDot=0;
+    String s1=javaName, s2=this.javaName + '.';
+    for (int i=0; i < s1.length() && i < s2.length(); i++) {
+      if (s1.charAt(i) != s2.charAt(i)) {
+        break;
+      }
+ else       if (s1.charAt(i) == '.') {
+        lastDot=i;
+      }
+    }
+    if (lastDot > 0) {
+      javaName=javaName.substring(lastDot + 1);
+    }
+  }
+  return javaName;
+}

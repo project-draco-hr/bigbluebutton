@@ -1,0 +1,18 @@
+{
+  try {
+    jcs.go(ssi.URL,x,y,width,height);
+    jcs.start();
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+catch (  AWTException e) {
+    e.printStackTrace();
+  }
+catch (  InterruptedException e) {
+    e.printStackTrace();
+  }
+catch (  org.bigbluebutton.screenshare.client.javacv.BBBFrameRecorder.Exception e) {
+    e.printStackTrace();
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return imageHeight > 0 || video_c == null ? super.getImageHeight() : video_c.height();
+}

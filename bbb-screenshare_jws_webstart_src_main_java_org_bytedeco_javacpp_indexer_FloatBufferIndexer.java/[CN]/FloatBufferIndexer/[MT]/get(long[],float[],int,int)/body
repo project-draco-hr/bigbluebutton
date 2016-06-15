@@ -1,0 +1,6 @@
+{
+  for (int n=0; n < length; n++) {
+    f[offset + n]=buffer.get((int)index(indices) + n);
+  }
+  return this;
+}

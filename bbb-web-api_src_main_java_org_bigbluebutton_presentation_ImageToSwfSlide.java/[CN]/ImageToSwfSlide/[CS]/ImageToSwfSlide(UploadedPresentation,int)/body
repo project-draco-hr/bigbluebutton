@@ -1,0 +1,4 @@
+{
+  this.pres=pres;
+  this.page=page;
+}

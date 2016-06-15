@@ -1,0 +1,47 @@
+{
+  if (avCodecContext != null) {
+    avcodec_close(avCodecContext);
+    avCodecContext=null;
+  }
+  if (picture_buf != null) {
+    av_free(picture_buf);
+    picture_buf=null;
+  }
+  if (picture != null) {
+    av_frame_free(picture);
+    picture=null;
+  }
+  if (tmp_picture != null) {
+    av_frame_free(tmp_picture);
+    tmp_picture=null;
+  }
+  if (videoOutBuf != null) {
+    av_free(videoOutBuf);
+    videoOutBuf=null;
+  }
+  if (frame != null) {
+    av_frame_free(frame);
+    frame=null;
+  }
+  videoStream=null;
+  if (outFormatContext != null && !outFormatContext.isNull()) {
+    if ((outFormat.flags() & AVFMT_NOFILE) == 0) {
+      avio_close(outFormatContext.pb());
+    }
+    int nb_streams=outFormatContext.nb_streams();
+    for (int i=0; i < nb_streams; i++) {
+      av_free(outFormatContext.streams(i).codec());
+      av_free(outFormatContext.streams(i));
+    }
+    av_free(outFormatContext);
+    outFormatContext=null;
+  }
+  if (img_convert_ctx != null) {
+    sws_freeContext(img_convert_ctx);
+    img_convert_ctx=null;
+  }
+  if (samples_convert_ctx != null) {
+    swr_free(samples_convert_ctx);
+    samples_convert_ctx=null;
+  }
+}

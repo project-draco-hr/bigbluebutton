@@ -1,0 +1,4 @@
+{
+  RAW.putDouble(base + checkIndex(i,size) * VALUE_BYTES,d);
+  return this;
+}

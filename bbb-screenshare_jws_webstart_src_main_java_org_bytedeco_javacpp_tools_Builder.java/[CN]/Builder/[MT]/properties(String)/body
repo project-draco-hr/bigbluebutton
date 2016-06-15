@@ -1,0 +1,6 @@
+{
+  if (platform != null) {
+    properties=Loader.loadProperties(platform,null);
+  }
+  return this;
+}

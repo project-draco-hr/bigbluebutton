@@ -1,0 +1,4 @@
+{
+  index=raw ? index + 1 : preprocess(index,1);
+  return index < array.length ? array[index] : Token.EOF;
+}

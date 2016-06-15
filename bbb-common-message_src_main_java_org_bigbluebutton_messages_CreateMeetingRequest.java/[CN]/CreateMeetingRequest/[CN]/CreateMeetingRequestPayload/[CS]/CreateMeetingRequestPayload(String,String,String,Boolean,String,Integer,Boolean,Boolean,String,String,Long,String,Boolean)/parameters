@@ -1,0 +1,13 @@
+String id
+String externalId
+String name
+Boolean record
+String voiceConfId
+Integer duration
+Boolean autoStartRecording
+Boolean allowStartStopRecording
+String moderatorPass
+String viewerPass
+Long createTime
+String createDate
+Boolean isBreakout

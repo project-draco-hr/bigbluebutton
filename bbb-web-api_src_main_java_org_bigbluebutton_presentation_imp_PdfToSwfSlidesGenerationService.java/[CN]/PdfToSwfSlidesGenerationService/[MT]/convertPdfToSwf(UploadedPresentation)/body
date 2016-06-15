@@ -1,0 +1,6 @@
+{
+  int numPages=pres.getNumberOfPages();
+  List<PdfToSwfSlide> slides=setupSlides(pres,numPages);
+  CompletionService<PdfToSwfSlide> completionService=new ExecutorCompletionService<PdfToSwfSlide>(executor);
+  generateSlides(pres,slides,completionService);
+}

@@ -1,0 +1,20 @@
+{
+  if (lastChar != -1) {
+    int c=lastChar;
+    lastChar=-1;
+    return c;
+  }
+  int c=reader.read();
+  if (c == '\r' || c == '\n') {
+    lineNumber++;
+    int c2=c == '\r' ? reader.read() : -1;
+    if (lineSeparator == null) {
+      lineSeparator=c == '\r' && c2 == '\n' ? "\r\n" : c == '\r' ? "\r" : "\n";
+    }
+    if (c2 != '\n') {
+      lastChar=c2;
+    }
+    c='\n';
+  }
+  return c;
+}

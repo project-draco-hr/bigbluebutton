@@ -1,0 +1,7 @@
+{
+  long index=0;
+  for (int i=0; i < indices.length && i < strides.length; i++) {
+    index+=indices[i] * strides[i];
+  }
+  return index;
+}

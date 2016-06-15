@@ -1,0 +1,3 @@
+{
+  return this.getStreams().size() > 0;
+}

@@ -1,0 +1,5 @@
+{
+  int numThreads=Runtime.getRuntime().availableProcessors();
+  executor=Executors.newFixedThreadPool(numThreads);
+  completionService=new ExecutorCompletionService<ImageToSwfSlide>(executor);
+}

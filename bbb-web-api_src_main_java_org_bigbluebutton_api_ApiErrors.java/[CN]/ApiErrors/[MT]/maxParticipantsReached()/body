@@ -1,0 +1,3 @@
+{
+  errors.add(new String[]{"maxParticipantsReached","The number of participants allowed for this meeting has been reached."});
+}

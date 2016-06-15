@@ -1,0 +1,7 @@
+{
+  List<String> values=get(key);
+  String oldValue=values.isEmpty() ? null : values.get(0);
+  values.clear();
+  addAll(key,value);
+  return oldValue;
+}

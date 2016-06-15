@@ -1,0 +1,3 @@
+{
+  super.putFloat(address,Integer.reverseBytes(Float.floatToRawIntBits(f)));
+}

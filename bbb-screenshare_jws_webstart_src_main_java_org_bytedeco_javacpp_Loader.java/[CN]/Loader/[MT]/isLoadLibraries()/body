@@ -1,0 +1,4 @@
+{
+  String s=System.getProperty("org.bytedeco.javacpp.loadlibraries","true").toLowerCase();
+  return s.equals("true") || s.equals("t") || s.equals("");
+}

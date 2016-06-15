@@ -1,0 +1,17 @@
+{
+  if (direct) {
+    return Raw.getInstance() != null ? new CharRawIndexer(pointer,sizes,strides) : new CharBufferIndexer(pointer.asBuffer(),sizes,strides);
+  }
+ else {
+    final long position=pointer.position();
+    char[] array=new char[(int)Math.min(pointer.limit() - position,Integer.MAX_VALUE)];
+    pointer.get(array);
+    return new CharArrayIndexer(array,sizes,strides){
+      @Override public void release(){
+        pointer.position(position).put(array);
+        super.release();
+      }
+    }
+;
+  }
+}

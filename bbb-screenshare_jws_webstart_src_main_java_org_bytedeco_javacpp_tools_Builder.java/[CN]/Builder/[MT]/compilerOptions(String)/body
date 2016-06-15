@@ -1,0 +1,6 @@
+{
+  if (options != null) {
+    compilerOptions.addAll(Arrays.asList(options));
+  }
+  return this;
+}

@@ -1,0 +1,19 @@
+{
+  ClientHttpRequest chr;
+  try {
+    openConnection();
+    chr=new ClientHttpRequest(conn);
+    chr.setParameter(MEETING_ID,meetingId);
+    chr.setParameter(STREAM_ID,streamId);
+    chr.setParameter(EVENT,CaptureEvents.CAPTURE_UPDATE.getEvent());
+    chr.post();
+    HttpURLConnection httpConnection=(HttpURLConnection)chr.connection;
+    int status=httpConnection.getResponseCode();
+  }
+ catch (  IOException e) {
+    notifyNetworkStreamListener(ExitCode.NORMAL);
+  }
+catch (  ConnectionException e) {
+    System.out.println("ERROR: Failed to send block data.");
+  }
+}

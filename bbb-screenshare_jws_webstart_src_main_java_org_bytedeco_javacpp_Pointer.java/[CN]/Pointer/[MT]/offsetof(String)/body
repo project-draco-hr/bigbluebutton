@@ -1,0 +1,13 @@
+{
+  int offset=-1;
+  try {
+    Class<? extends Pointer> c=getClass();
+    if (c != Pointer.class) {
+      offset=Loader.offsetof(c,member);
+    }
+  }
+ catch (  NullPointerException e) {
+    return offset;
+  }
+  return offset;
+}

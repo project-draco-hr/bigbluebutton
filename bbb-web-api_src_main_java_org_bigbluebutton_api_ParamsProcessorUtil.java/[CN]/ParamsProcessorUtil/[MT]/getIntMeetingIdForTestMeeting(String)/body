@@ -1,0 +1,6 @@
+{
+  if ((testVoiceBridge != null) && (telVoice == testVoiceBridge)) {
+    if (StringUtils.isEmpty(testConferenceMock))     return testConferenceMock;
+  }
+  return "";
+}

@@ -7,4 +7,5 @@
   whiteboardMessageSender=new WhiteboardClientMessageSender(service);
   deskShareMessageSender=new DeskShareMessageSender(service);
   pollingMessageSender=new PollingClientMessageSender(service);
+  captionMessageSender=new CaptionClientMessageSender(service);
 }

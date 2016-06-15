@@ -1,0 +1,8 @@
+ServletContext context
+String name
+String versionId
+String[] osList
+String[] archList
+String[] localeList
+String path
+String returnVersionId

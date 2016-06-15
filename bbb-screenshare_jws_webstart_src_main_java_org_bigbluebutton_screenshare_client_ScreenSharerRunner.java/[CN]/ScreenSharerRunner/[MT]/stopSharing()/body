@@ -1,0 +1,5 @@
+{
+  System.out.println(NAME + "Stopping");
+  System.out.println(NAME + "Removing icon from system tray.");
+  jcs.stop();
+}
