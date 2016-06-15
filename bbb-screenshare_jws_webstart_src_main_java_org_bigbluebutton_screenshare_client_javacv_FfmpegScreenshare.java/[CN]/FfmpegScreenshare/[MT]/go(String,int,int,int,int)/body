@@ -27,14 +27,14 @@
   try {
     grabber.start();
   }
- catch (  org.bytedeco.javacv.FrameGrabber.Exception e) {
+ catch (  Exception e) {
     e.printStackTrace();
   }
   startTime=System.currentTimeMillis();
   try {
     mainRecorder.start();
   }
- catch (  Exception e1) {
-    e1.printStackTrace();
+ catch (  Exception e) {
+    e.printStackTrace();
   }
 }

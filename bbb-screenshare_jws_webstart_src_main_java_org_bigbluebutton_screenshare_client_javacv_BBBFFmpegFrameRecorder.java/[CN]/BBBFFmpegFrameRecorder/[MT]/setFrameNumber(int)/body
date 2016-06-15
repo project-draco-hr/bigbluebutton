@@ -1,8 +1,0 @@
-{
-  if (picture == null) {
-    super.setFrameNumber(frameNumber);
-  }
- else {
-    picture.pts(frameNumber);
-  }
-}

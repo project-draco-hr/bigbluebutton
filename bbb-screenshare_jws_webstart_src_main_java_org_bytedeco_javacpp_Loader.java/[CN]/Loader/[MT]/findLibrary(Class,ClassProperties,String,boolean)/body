@@ -5,6 +5,9 @@
   String filename=loadedLibraries.get(libnameversion);
   if (filename != null) {
     try {
+      if (logger.isDebugEnabled()) {
+        logger.debug("findLibrary: Found class " + cls + " in library "+ libnameversion+ " in "+ filename);
+      }
       return new URL[]{new File(filename).toURI().toURL()};
     }
  catch (    IOException ex) {
@@ -13,6 +16,9 @@
       }
       return new URL[]{};
     }
+  }
+  if (logger.isDebugEnabled()) {
+    logger.debug("findLibrary: Library " + libnameversion + " not found. Setting up search paths");
   }
   String subdir=properties.getProperty("platform") + '/';
   String prefix=properties.getProperty("platform.library.prefix","") + libname;
@@ -27,30 +33,40 @@
       styles[3 * i + 2]=prefix + suffixes[i];
     }
   }
-  List<String> paths=new ArrayList<String>();
-  paths.addAll(properties.get("platform.preloadpath"));
-  paths.addAll(properties.get("platform.linkpath"));
-  ArrayList<URL> urls=new ArrayList<URL>(styles.length * (1 + paths.size()));
-  for (int i=0; cls != null && i < styles.length; i++) {
-    URL u=cls.getResource(subdir + styles[i]);
-    if (u != null) {
-      urls.add(u);
+  Set<String> stylesStr=new HashSet<String>();
+  for (int js=0; js < styles.length; js++) {
+    if (logger.isDebugEnabled()) {
+      logger.debug("findLibrary: Style " + styles[js]);
     }
+    stylesStr.add(styles[js]);
   }
-  int k=pathsFirst ? 0 : urls.size();
-  for (int i=0; paths.size() > 0 && i < styles.length; i++) {
-    for (    String path : paths) {
-      File file=new File(path,styles[i]);
-      if (file.exists()) {
-        try {
-          urls.add(file.toURI().toURL());
+  if (logger.isDebugEnabled()) {
+    logger.debug("findLibrary: Before get resource");
+  }
+  String platform=Loader.getPlatform();
+  Set<URL> urls=new HashSet<URL>();
+  for (  String st : stylesStr) {
+    if (logger.isDebugEnabled()) {
+      logger.debug("findLibrary: resource path " + subdir + st);
+    }
+    if (platform.startsWith("ghghghmacosx-x86_64")) {
+      URL u=cls.getResource(subdir + st);
+      if (u != null) {
+        if (logger.isDebugEnabled()) {
+          logger.debug("findLibrary: cls.getResource " + u.toString());
         }
- catch (        IOException ex) {
-          throw new RuntimeException(ex);
-        }
+        urls.add(u);
       }
     }
   }
+  if (logger.isDebugEnabled()) {
+    logger.debug("findLibrary: After get resource");
+  }
   URL[] libUrls=urls.toArray(new URL[urls.size()]);
+  for (  URL url : libUrls) {
+    if (logger.isDebugEnabled()) {
+      logger.debug("findLibrary: Lib URL for " + libnameversion + " "+ url);
+    }
+  }
   return libUrls;
 }

@@ -1,7 +1,0 @@
-{
-  System.out.println("Desktop Sharing Applet Starting");
-  super.start();
-  String javaRuntimeVersion=getJavaVersionRuntime();
-  System.out.println("**** JAVA VERSION = [" + javaRuntimeVersion + "]");
-  allowDesktopSharing();
-}
