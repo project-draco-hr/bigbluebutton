@@ -1,12 +1,4 @@
 {
-  if (logger.isDebugEnabled()) {
-    logger.debug("Attempt to load " + libnameversion + " url[] length="+ urls.length);
-  }
-  for (  URL url : urls) {
-    if (logger.isDebugEnabled()) {
-      logger.debug("URL for " + libnameversion + " "+ url);
-    }
-  }
   if (!isLoadLibraries()) {
     if (logger.isDebugEnabled()) {
       logger.debug("Not loading " + libnameversion);
@@ -15,9 +7,6 @@
   }
   String filename=loadedLibraries.get(libnameversion);
   if (filename != null) {
-    if (logger.isDebugEnabled()) {
-      logger.debug("Not loading. " + libnameversion + " is already loaded in "+ filename);
-    }
     return filename;
   }
   File tempFile=null;
@@ -25,15 +14,9 @@
   try {
     for (    URL url : urls) {
       File file;
-      if (logger.isDebugEnabled()) {
-        logger.debug("Loading " + libnameversion + " from url "+ url);
-      }
       if (!(file=new File(getCacheDir() != null ? getCacheDir() : getTempDir(),new File(url.getPath()).getName())).exists()) {
         if (tempFile != null && tempFile.exists()) {
           tempFile.deleteOnExit();
-        }
-        if (logger.isDebugEnabled()) {
-          logger.debug("Extracting " + url);
         }
         if (getCacheDir() != null) {
           file=extractResource(url,getCacheDir(),null,null);
@@ -53,10 +36,6 @@
       if (file != null && file.exists()) {
         filename=file.getAbsolutePath();
         try {
-          if (logger.isDebugEnabled()) {
-            logger.debug("Loading " + libnameversion + " from library "+ filename);
-            logger.debug("Storing " + libnameversion + " with library "+ filename);
-          }
           loadedLibraries.put(libnameversion,filename);
           System.load(filename);
           return filename;
@@ -71,30 +50,14 @@
       }
     }
     String libname=libnameversion.split("@")[0];
-    if (logger.isDebugEnabled()) {
-      logger.debug("Loading library " + libname);
-      logger.debug("Last resort: Storing " + libnameversion + " with library "+ filename);
-    }
     loadedLibraries.put(libnameversion,libname);
     System.loadLibrary(libname);
-    if (logger.isDebugEnabled()) {
-      logger.debug("Loaded library " + libname);
-      logger.debug("Last resort: Stored " + libnameversion + " with library "+ filename);
-    }
     return libname;
   }
  catch (  UnsatisfiedLinkError e) {
-    if (loadedLibraries.containsKey(libnameversion)) {
-      if (logger.isDebugEnabled()) {
-        logger.debug("Removing entry for library " + libnameversion);
-      }
-    }
     loadedLibraries.remove(libnameversion);
     if (loadError != null && e.getCause() == null) {
       e.initCause(loadError);
-    }
-    if (logger.isDebugEnabled()) {
-      logger.debug("Failed to load for " + libnameversion + ": "+ e);
     }
     throw e;
   }
@@ -105,9 +68,6 @@ catch (  IOException ex) {
     }
     Error e=new UnsatisfiedLinkError(ex.toString());
     e.initCause(ex);
-    if (logger.isDebugEnabled()) {
-      logger.debug("Failed to extract for " + libnameversion + ": "+ e);
-    }
     throw e;
   }
  finally {

@@ -19,9 +19,6 @@
   }
   for (  String s : targetClasses) {
     try {
-      if (logger.isDebugEnabled()) {
-        logger.debug("load: Target class [" + s + "]");
-      }
       Class.forName(s,true,cls.getClassLoader());
     }
  catch (    ClassNotFoundException ex) {
@@ -36,14 +33,8 @@
   List<String> preloads=new ArrayList<String>();
   preloads.addAll(p.get("platform.preload"));
   UnsatisfiedLinkError preloadError=null;
-  if (logger.isDebugEnabled()) {
-    logger.debug("*****aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*****");
-  }
   for (  String preload : preloads) {
     try {
-      if (logger.isDebugEnabled()) {
-        logger.debug("Loading class " + cls + " from preload lib "+ preload);
-      }
       URL[] urls=new URL[0];
       loadLibrary(urls,preload);
     }
@@ -51,25 +42,10 @@
       preloadError=e;
     }
   }
-  if (logger.isDebugEnabled()) {
-    logger.debug("*****bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb*****");
-  }
-  if (logger.isDebugEnabled()) {
-    logger.debug("*****xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*****");
-  }
   try {
     String library=p.getProperty("platform.library");
-    if (logger.isDebugEnabled()) {
-      logger.debug("Loading class " + cls + " from platform.library "+ library);
-    }
     URL[] urls=new URL[0];
     String loadedLibPath=loadLibrary(urls,library);
-    if (logger.isDebugEnabled()) {
-      logger.debug("Lib path for class " + cls + " "+ loadedLibPath);
-    }
-    if (logger.isDebugEnabled()) {
-      logger.debug("*****yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy*****");
-    }
     return loadedLibPath;
   }
  catch (  UnsatisfiedLinkError e) {

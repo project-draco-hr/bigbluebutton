@@ -5,9 +5,6 @@
   String filename=loadedLibraries.get(libnameversion);
   if (filename != null) {
     try {
-      if (logger.isDebugEnabled()) {
-        logger.debug("findLibrary: Found class " + cls + " in library "+ libnameversion+ " in "+ filename);
-      }
       return new URL[]{new File(filename).toURI().toURL()};
     }
  catch (    IOException ex) {
@@ -16,9 +13,6 @@
       }
       return new URL[]{};
     }
-  }
-  if (logger.isDebugEnabled()) {
-    logger.debug("findLibrary: Library " + libnameversion + " not found. Setting up search paths");
   }
   String subdir=properties.getProperty("platform") + '/';
   String prefix=properties.getProperty("platform.library.prefix","") + libname;
