@@ -1,5 +1,8 @@
 {
   if (!isLoadLibraries()) {
+    if (logger.isDebugEnabled()) {
+      logger.debug("Not loading " + libnameversion);
+    }
     return null;
   }
   String filename=loadedLibraries.get(libnameversion);
@@ -14,9 +17,6 @@
       if (!(file=new File(getCacheDir() != null ? getCacheDir() : getTempDir(),new File(url.getPath()).getName())).exists()) {
         if (tempFile != null && tempFile.exists()) {
           tempFile.deleteOnExit();
-        }
-        if (logger.isDebugEnabled()) {
-          logger.debug("Extracting " + url);
         }
         if (getCacheDir() != null) {
           file=extractResource(url,getCacheDir(),null,null);
@@ -55,8 +55,6 @@
     return libname;
   }
  catch (  UnsatisfiedLinkError e) {
-    if (loadedLibraries.containsKey(libnameversion)) {
-    }
     loadedLibraries.remove(libnameversion);
     if (loadError != null && e.getCause() == null) {
       e.initCause(loadError);

@@ -13,7 +13,11 @@
     }
     targets.add(cls.getName());
   }
+  Set<String> targetClasses=new HashSet<String>();
   for (  String s : targets) {
+    targetClasses.add(s);
+  }
+  for (  String s : targetClasses) {
     try {
       Class.forName(s,true,cls.getClassLoader());
     }
@@ -31,7 +35,7 @@
   UnsatisfiedLinkError preloadError=null;
   for (  String preload : preloads) {
     try {
-      URL[] urls=findLibrary(cls,p,preload,pathsFirst);
+      URL[] urls=new URL[0];
       loadLibrary(urls,preload);
     }
  catch (    UnsatisfiedLinkError e) {
@@ -40,8 +44,9 @@
   }
   try {
     String library=p.getProperty("platform.library");
-    URL[] urls=findLibrary(cls,p,library,pathsFirst);
-    return loadLibrary(urls,library);
+    URL[] urls=new URL[0];
+    String loadedLibPath=loadLibrary(urls,library);
+    return loadedLibPath;
   }
  catch (  UnsatisfiedLinkError e) {
     if (preloadError != null && e.getCause() == null) {

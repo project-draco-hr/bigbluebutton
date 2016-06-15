@@ -1,6 +1,0 @@
-{
-  client=new DeskshareClient.NewBuilder().host(hostValue).port(portValue).meetingId(roomValue).captureWidth(cWidthValue).captureHeight(cHeightValue).scaleWidth(sWidthValue).scaleHeight(sHeightValue).quality(qualityValue).autoScale(scale).x(xValue).y(yValue).fullScreen(fullScreenValue).withURL(url).httpTunnel(tunnelValue).trayIcon(icon).enableTrayIconActions(false).build();
-  client.addClientListener(this);
-  clientStarted=true;
-  client.start();
-}
