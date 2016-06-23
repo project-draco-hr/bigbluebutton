@@ -1,7 +1,6 @@
 {
   ClientHttpRequest chr;
   try {
-    System.out.println(getTimeStamp() + " - Sending Update Sharing Event.");
     openConnection();
     chr=new ClientHttpRequest(conn);
     chr.setParameter(MEETING_ID,meetingId);
@@ -10,7 +9,6 @@
     chr.post();
     HttpURLConnection httpConnection=(HttpURLConnection)chr.connection;
     int status=httpConnection.getResponseCode();
-    System.out.println("******* POST status = [" + status + "] ***************");
   }
  catch (  IOException e) {
     notifyNetworkStreamListener(ExitCode.NORMAL);

@@ -1,0 +1,184 @@
+{
+  MethodInformation info=new MethodInformation();
+  info.cls=method.getDeclaringClass();
+  info.method=method;
+  info.annotations=method.getAnnotations();
+  info.modifiers=method.getModifiers();
+  info.returnType=method.getReturnType();
+  info.name=method.getName();
+  Name name=method.getAnnotation(Name.class);
+  info.memberName=name != null ? name.value() : new String[]{info.name};
+  Index index=method.getAnnotation(Index.class);
+  info.dim=index != null ? index.value() : 0;
+  info.parameterTypes=method.getParameterTypes();
+  info.parameterAnnotations=method.getParameterAnnotations();
+  info.returnRaw=method.isAnnotationPresent(Raw.class);
+  info.withEnv=info.returnRaw ? method.getAnnotation(Raw.class).withEnv() : false;
+  info.parameterRaw=new boolean[info.parameterAnnotations.length];
+  for (int i=0; i < info.parameterAnnotations.length; i++) {
+    for (int j=0; j < info.parameterAnnotations[i].length; j++) {
+      if (info.parameterAnnotations[i][j] instanceof Raw) {
+        info.parameterRaw[i]=true;
+        info.withEnv|=((Raw)info.parameterAnnotations[i][j]).withEnv();
+      }
+    }
+  }
+  boolean canBeGetter=info.returnType != void.class || (info.parameterTypes.length > 0 && info.parameterTypes[0].isArray() && info.parameterTypes[0].getComponentType().isPrimitive());
+  boolean canBeSetter=(info.returnType == void.class || info.returnType == info.cls) && info.parameterTypes.length > 0;
+  boolean canBeAllocator=!Modifier.isStatic(info.modifiers) && info.returnType == void.class;
+  boolean canBeArrayAllocator=canBeAllocator && info.parameterTypes.length == 1 && (info.parameterTypes[0] == int.class || info.parameterTypes[0] == long.class);
+  boolean valueGetter=false;
+  boolean valueSetter=false;
+  boolean memberGetter=false;
+  boolean memberSetter=false;
+  boolean noReturnGetter=false;
+  Method pairedMethod=null;
+  for (  Method method2 : info.cls.getDeclaredMethods()) {
+    MethodInformation info2=annotationCache.get(method2);
+    if (info2 == null) {
+      annotationCache.put(method2,info2=new MethodInformation());
+      info2.modifiers=method2.getModifiers();
+      info2.returnType=method2.getReturnType();
+      info2.name=method2.getName();
+      info2.parameterTypes=method2.getParameterTypes();
+      info2.annotations=method2.getAnnotations();
+      info2.parameterAnnotations=method2.getParameterAnnotations();
+    }
+    int skipParameters=info.parameterTypes.length > 0 && info.parameterTypes[0] == Class.class ? 1 : 0;
+    int skipParameters2=info2.parameterTypes.length > 0 && info2.parameterTypes[0] == Class.class ? 1 : 0;
+    if (method.equals(method2) || !Modifier.isNative(info2.modifiers)) {
+      continue;
+    }
+    boolean canBeValueGetter=false;
+    boolean canBeValueSetter=false;
+    boolean canBeMemberGetter=false;
+    boolean canBeMemberSetter=false;
+    if (canBeGetter && "get".equals(info.name) && "put".equals(info2.name)) {
+      canBeValueGetter=true;
+    }
+ else     if (canBeSetter && "put".equals(info.name) && "get".equals(info2.name)) {
+      canBeValueSetter=true;
+    }
+ else     if (info2.name.equals(info.name)) {
+      info.overloaded=true;
+      canBeMemberGetter=canBeGetter;
+      canBeMemberSetter=canBeSetter;
+      for (int j=skipParameters; j < info.parameterTypes.length; j++) {
+        if (info.parameterTypes[j] != int.class && info.parameterTypes[j] != long.class) {
+          canBeMemberGetter=false;
+          if (j < info.parameterTypes.length - 1) {
+            canBeMemberSetter=false;
+          }
+        }
+      }
+    }
+ else {
+      continue;
+    }
+    boolean sameIndexParameters=true;
+    for (int j=0; j < info.parameterTypes.length - skipParameters && j < info2.parameterTypes.length - skipParameters2; j++) {
+      if (info.parameterTypes[j + skipParameters] != info2.parameterTypes[j + skipParameters2]) {
+        sameIndexParameters=false;
+      }
+    }
+    if (!sameIndexParameters) {
+      continue;
+    }
+    boolean parameterAsReturn=canBeValueGetter && info.parameterTypes.length > 0 && info.parameterTypes[0].isArray() && info.parameterTypes[0].getComponentType().isPrimitive();
+    boolean parameterAsReturn2=canBeValueSetter && info2.parameterTypes.length > 0 && info2.parameterTypes[0].isArray() && info2.parameterTypes[0].getComponentType().isPrimitive();
+    if (canBeGetter && info2.parameterTypes.length - (parameterAsReturn ? 0 : 1) == info.parameterTypes.length - skipParameters && (parameterAsReturn ? info.parameterTypes[info.parameterTypes.length - 1] : info.returnType) == info2.parameterTypes[info2.parameterTypes.length - 1] && (info2.returnType == void.class || info2.returnType == info.cls) && (info2.parameterAnnotations[info2.parameterAnnotations.length - 1].length == 0 || (Arrays.equals(info2.parameterAnnotations[info2.parameterAnnotations.length - 1],info.annotations)))) {
+      pairedMethod=method2;
+      valueGetter=canBeValueGetter;
+      memberGetter=canBeMemberGetter;
+      noReturnGetter=parameterAsReturn;
+    }
+ else     if (canBeSetter && info.parameterTypes.length - (parameterAsReturn2 ? 0 : 1) == info2.parameterTypes.length - skipParameters2 && (parameterAsReturn2 ? info2.parameterTypes[info2.parameterTypes.length - 1] : info2.returnType) == info.parameterTypes[info.parameterTypes.length - 1] && (info.returnType == void.class || info.returnType == info.cls) && (info.parameterAnnotations[info.parameterAnnotations.length - 1].length == 0 || (Arrays.equals(info.parameterAnnotations[info.parameterAnnotations.length - 1],info2.annotations)))) {
+      pairedMethod=method2;
+      valueSetter=canBeValueSetter;
+      memberSetter=canBeMemberSetter;
+    }
+  }
+  Annotation behavior=behavior(info.annotations);
+  if (canBeGetter && behavior instanceof ValueGetter) {
+    info.valueGetter=true;
+    info.noReturnGetter=noReturnGetter;
+  }
+ else   if (canBeSetter && behavior instanceof ValueSetter) {
+    info.valueSetter=true;
+  }
+ else   if (canBeGetter && behavior instanceof MemberGetter) {
+    info.memberGetter=true;
+    info.noReturnGetter=noReturnGetter;
+  }
+ else   if (canBeSetter && behavior instanceof MemberSetter) {
+    info.memberSetter=true;
+  }
+ else   if (canBeAllocator && behavior instanceof Allocator) {
+    info.allocator=true;
+  }
+ else   if (canBeArrayAllocator && behavior instanceof ArrayAllocator) {
+    info.allocator=info.arrayAllocator=true;
+  }
+ else   if (behavior == null) {
+    if (info.returnType == void.class && "deallocate".equals(info.name) && !Modifier.isStatic(info.modifiers) && info.parameterTypes.length == 2 && info.parameterTypes[0] == long.class && info.parameterTypes[1] == long.class) {
+      info.deallocator=true;
+    }
+ else     if (canBeAllocator && "allocate".equals(info.name)) {
+      info.allocator=true;
+    }
+ else     if (canBeArrayAllocator && "allocateArray".equals(info.name)) {
+      info.allocator=info.arrayAllocator=true;
+    }
+ else     if (info.returnType.isAssignableFrom(ByteBuffer.class) && "asDirectBuffer".equals(info.name) && !Modifier.isStatic(info.modifiers)&& info.parameterTypes.length == 0) {
+      info.bufferGetter=true;
+    }
+ else     if (valueGetter) {
+      info.valueGetter=true;
+      info.noReturnGetter=noReturnGetter;
+      info.pairedMethod=pairedMethod;
+    }
+ else     if (valueSetter) {
+      info.valueSetter=true;
+      info.pairedMethod=pairedMethod;
+    }
+ else     if (memberGetter) {
+      info.memberGetter=true;
+      info.noReturnGetter=noReturnGetter;
+      info.pairedMethod=pairedMethod;
+    }
+ else     if (memberSetter) {
+      info.memberSetter=true;
+      info.pairedMethod=pairedMethod;
+    }
+  }
+ else   if (!(behavior instanceof Function)) {
+    logger.warn("Method \"" + method + "\" cannot behave like a \""+ behavior.annotationType().getSimpleName()+ "\". No code will be generated.");
+    return null;
+  }
+  if (name == null && info.pairedMethod != null) {
+    name=info.pairedMethod.getAnnotation(Name.class);
+    if (name != null) {
+      info.memberName=name.value();
+    }
+  }
+  info.noOffset=info.cls.isAnnotationPresent(NoOffset.class) || method.isAnnotationPresent(NoOffset.class) || method.isAnnotationPresent(Index.class);
+  if (!info.noOffset && info.pairedMethod != null) {
+    info.noOffset=info.pairedMethod.isAnnotationPresent(NoOffset.class) || info.pairedMethod.isAnnotationPresent(Index.class);
+  }
+  if (info.parameterTypes.length == 0 || !info.parameterTypes[0].isArray()) {
+    if (info.valueGetter || info.memberGetter) {
+      info.dim=info.parameterTypes.length;
+    }
+ else     if (info.memberSetter || info.valueSetter) {
+      info.dim=info.parameterTypes.length - 1;
+    }
+  }
+  info.throwsException=null;
+  if (!noException(info.cls,method)) {
+    if ((by(info.annotations) instanceof ByVal && !noException(info.returnType,method)) || !info.deallocator && !info.valueGetter && !info.valueSetter&& !info.memberGetter&& !info.memberSetter&& !info.bufferGetter) {
+      Class<?>[] exceptions=method.getExceptionTypes();
+      info.throwsException=exceptions.length > 0 ? exceptions[0] : RuntimeException.class;
+    }
+  }
+  return info;
+}

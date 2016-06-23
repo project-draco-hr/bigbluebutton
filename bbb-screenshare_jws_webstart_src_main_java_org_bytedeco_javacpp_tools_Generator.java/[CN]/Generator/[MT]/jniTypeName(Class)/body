@@ -1,0 +1,65 @@
+{
+  if (type == byte.class) {
+    return "jbyte";
+  }
+ else   if (type == short.class) {
+    return "jshort";
+  }
+ else   if (type == int.class) {
+    return "jint";
+  }
+ else   if (type == long.class) {
+    return "jlong";
+  }
+ else   if (type == float.class) {
+    return "jfloat";
+  }
+ else   if (type == double.class) {
+    return "jdouble";
+  }
+ else   if (type == char.class) {
+    return "jchar";
+  }
+ else   if (type == boolean.class) {
+    return "jboolean";
+  }
+ else   if (type == byte[].class) {
+    return "jbyteArray";
+  }
+ else   if (type == short[].class) {
+    return "jshortArray";
+  }
+ else   if (type == int[].class) {
+    return "jintArray";
+  }
+ else   if (type == long[].class) {
+    return "jlongArray";
+  }
+ else   if (type == float[].class) {
+    return "jfloatArray";
+  }
+ else   if (type == double[].class) {
+    return "jdoubleArray";
+  }
+ else   if (type == char[].class) {
+    return "jcharArray";
+  }
+ else   if (type == boolean[].class) {
+    return "jbooleanArray";
+  }
+ else   if (type.isArray()) {
+    return "jobjectArray";
+  }
+ else   if (type == String.class) {
+    return "jstring";
+  }
+ else   if (type == Class.class) {
+    return "jclass";
+  }
+ else   if (type == void.class) {
+    return "void";
+  }
+ else {
+    return "jobject";
+  }
+}

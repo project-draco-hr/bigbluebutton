@@ -1,0 +1,3 @@
+{
+  return get((Class<P>)Pointer.class,i);
+}

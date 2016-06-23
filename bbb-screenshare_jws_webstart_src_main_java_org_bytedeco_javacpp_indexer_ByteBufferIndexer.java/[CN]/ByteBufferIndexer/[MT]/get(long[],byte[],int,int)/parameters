@@ -1,0 +1,4 @@
+long[] indices
+byte[] b
+int offset
+int length

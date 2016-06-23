@@ -1,0 +1,6 @@
+{
+  for (int n=0; n < length; n++) {
+    put(index(indices) + n,c[offset + n]);
+  }
+  return this;
+}

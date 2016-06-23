@@ -1,0 +1,6 @@
+{
+  if (!match(tokens)) {
+    throw new ParserException(file + ":" + lineNumber+ ": Unexpected token '"+ toString()+ "'");
+  }
+  return this;
+}

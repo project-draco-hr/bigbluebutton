@@ -1,0 +1,5 @@
+Class<?> cls
+Method callbackMethod
+String callbackName
+boolean needDefinition
+MethodInformation methodInfo

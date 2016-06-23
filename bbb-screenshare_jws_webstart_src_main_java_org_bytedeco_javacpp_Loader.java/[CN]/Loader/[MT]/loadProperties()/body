@@ -1,0 +1,7 @@
+{
+  String name=getPlatform();
+  if (platformProperties != null && name.equals(platformProperties.getProperty("platform"))) {
+    return platformProperties;
+  }
+  return platformProperties=loadProperties(name,null);
+}

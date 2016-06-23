@@ -1,0 +1,7 @@
+{
+  Class<?> c=Class.forName(typeName.replace('/','.'),false,Loader.class.getClassLoader());
+  if (member != null) {
+    putMemberOffset(c.asSubclass(Pointer.class),member,offset);
+  }
+  return c;
+}

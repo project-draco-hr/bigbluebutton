@@ -1,0 +1,10 @@
+{
+  String type=typeName[0];
+  if (type.startsWith("const ")) {
+    type=type.substring(6,type.length() - 1);
+  }
+ else   if (type.endsWith("*") || type.endsWith("&")) {
+    type=type.substring(0,type.length() - 1);
+  }
+  return type;
+}

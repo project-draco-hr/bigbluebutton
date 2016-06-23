@@ -1,0 +1,17 @@
+{
+  if (b != null) {
+    allocate(b);
+  }
+  if (!isNull()) {
+    position=b.position();
+    limit=b.limit();
+    capacity=b.capacity();
+    deallocator=new Deallocator(){
+      Buffer bb=b;
+      public void deallocate(){
+        bb=null;
+      }
+    }
+;
+  }
+}

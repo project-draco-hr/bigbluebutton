@@ -1,0 +1,10 @@
+{
+  super.clear();
+  if (deallocator != null) {
+    if (logger.isDebugEnabled()) {
+      logger.debug("Collecting " + this);
+    }
+    deallocator.deallocate();
+    deallocator=null;
+  }
+}

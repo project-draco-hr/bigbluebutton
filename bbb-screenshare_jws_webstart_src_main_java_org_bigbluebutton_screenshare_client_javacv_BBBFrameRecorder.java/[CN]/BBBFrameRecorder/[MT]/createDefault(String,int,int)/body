@@ -1,3 +1,0 @@
-{
-  return create(getDefault(),String.class,filename,width,height);
-}

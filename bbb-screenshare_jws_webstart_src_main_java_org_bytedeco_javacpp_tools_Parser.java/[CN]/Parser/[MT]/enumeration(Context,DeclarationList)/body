@@ -1,0 +1,190 @@
+{
+  int backIndex=tokens.index;
+  String enumSpacing=tokens.get().spacing;
+  boolean typedef=tokens.get().match(Token.TYPEDEF);
+  boolean foundEnum=false;
+  for (Token token=tokens.get(); !token.match(Token.EOF); token=tokens.next()) {
+    if (token.match(Token.ENUM)) {
+      foundEnum=true;
+      break;
+    }
+ else     if (!token.match(Token.IDENTIFIER)) {
+      break;
+    }
+  }
+  if (!foundEnum) {
+    tokens.index=backIndex;
+    return false;
+  }
+  String enumType="enum";
+  if (tokens.get(1).match(Token.CLASS,Token.STRUCT)) {
+    enumType+=" " + tokens.next();
+  }
+  if (typedef && !tokens.get(1).match('{') && tokens.get(2).match(Token.IDENTIFIER)) {
+    tokens.next();
+  }
+  int count=0;
+  boolean longenum=false;
+  String cppType="int";
+  String javaType="int";
+  String separator="";
+  String enumPrefix="public static final " + javaType;
+  String countPrefix=" ";
+  String enumerators="";
+  String extraText="";
+  String name="";
+  Token token=tokens.next().expect(Token.IDENTIFIER,'{',':',';');
+  if (token.match(Token.IDENTIFIER)) {
+    name=token.value;
+    token=tokens.next();
+  }
+  if (token.match(':')) {
+    cppType=tokens.next().value;
+    Info info=infoMap.getFirst(cppType);
+    if (info != null && info.valueTypes != null && info.valueTypes.length > 0) {
+      javaType=info.valueTypes[0];
+    }
+    token=tokens.next();
+  }
+  if (!typedef && token.match(';')) {
+  }
+ else   if (!token.match('{')) {
+    tokens.index=backIndex;
+    return false;
+  }
+ else   for (token=tokens.next(); !token.match(Token.EOF,'}'); token=tokens.get()) {
+    String comment=commentBefore();
+    if (macro(context,declList)) {
+      Declaration macroDecl=declList.remove(declList.size() - 1);
+      extraText+=comment + macroDecl.text;
+      if (separator.equals(",") && !macroDecl.text.trim().startsWith("//")) {
+        separator=";";
+        enumPrefix="\npublic static final " + javaType;
+      }
+      continue;
+    }
+    Token enumerator=tokens.get();
+    String cppName=enumerator.value;
+    String javaName=cppName;
+    if (context.namespace != null) {
+      cppName=context.namespace + "::" + cppName;
+    }
+    Info info=infoMap.getFirst(cppName);
+    if (info != null && info.javaNames != null && info.javaNames.length > 0) {
+      javaName=info.javaNames[0];
+    }
+ else     if (info == null) {
+      infoMap.put(info=new Info(cppName));
+    }
+    String spacing2=" ";
+    if (tokens.next().match('=')) {
+      spacing2=tokens.get().spacing;
+      countPrefix=" ";
+      int count2=0;
+      Token prevToken=new Token();
+      boolean translate=true;
+      for (token=tokens.next(); !token.match(Token.EOF,',','}') || count2 > 0; token=tokens.next()) {
+        if (token.match(Token.INTEGER) && token.value.endsWith("L")) {
+          longenum=true;
+        }
+        countPrefix+=token.spacing + token;
+        if (token.match('(')) {
+          count2++;
+        }
+ else         if (token.match(')')) {
+          count2--;
+        }
+        if ((prevToken.match(Token.IDENTIFIER) && token.match('(')) || token.match('{','}')) {
+          translate=false;
+        }
+        prevToken=token;
+      }
+      try {
+        count=Integer.parseInt(countPrefix.trim());
+        countPrefix=" ";
+      }
+ catch (      NumberFormatException e) {
+        count=0;
+        if (translate) {
+          countPrefix=translate(countPrefix);
+        }
+ else {
+          if (separator.equals(",")) {
+            separator=";";
+          }
+          extraText="\npublic static native @MemberGetter " + javaType + " "+ javaName+ "();\n";
+          enumPrefix="public static final " + javaType;
+          countPrefix=" " + javaName + "()";
+        }
+      }
+    }
+    enumerators+=separator + extraText + enumPrefix+ comment;
+    separator=",";
+    enumPrefix="";
+    extraText="";
+    comment=commentAfter();
+    if (comment.length() == 0 && tokens.get().match(',')) {
+      tokens.next();
+      comment=commentAfter();
+    }
+    String spacing=enumerator.spacing;
+    if (comment.length() > 0) {
+      enumerators+=spacing + comment;
+      int newline=spacing.lastIndexOf('\n');
+      if (newline >= 0) {
+        spacing=spacing.substring(newline + 1);
+      }
+    }
+    if (spacing.length() == 0 && !enumerators.endsWith(",")) {
+      spacing=" ";
+    }
+    enumerators+=spacing + javaName + spacing2+ "="+ countPrefix;
+    if (countPrefix.trim().length() > 0) {
+      if (count > 0) {
+        enumerators+=" + " + count;
+      }
+    }
+ else {
+      enumerators+=count;
+    }
+    count++;
+  }
+  String comment=commentBefore();
+  Declaration decl=new Declaration();
+  token=tokens.get();
+  if (!token.match(';')) {
+    token=tokens.next();
+  }
+  if (token.match(Token.IDENTIFIER)) {
+    name=token.value;
+    token=tokens.next();
+  }
+  if (context.namespace != null) {
+    name=context.namespace + "::" + name;
+  }
+  Info info=infoMap.getFirst(name);
+  if (info != null && info.skip) {
+    decl.text=enumSpacing;
+  }
+ else {
+    decl.text+=enumSpacing + "/** " + enumType+ " "+ name+ " */\n";
+    int newline=enumSpacing.lastIndexOf('\n');
+    if (newline >= 0) {
+      enumSpacing=enumSpacing.substring(newline + 1);
+    }
+    decl.text+=enumSpacing + enumerators + token.expect(';').spacing+ ";";
+    if (name.length() > 0) {
+      if (longenum) {
+        decl.text=decl.text.replace(" " + javaType," long");
+        cppType="long long";
+        javaType="long";
+      }
+      Info info2=infoMap.getFirst(cppType);
+      infoMap.put(new Info(info2).cast().cppNames(name));
+    }
+    decl.text+=extraText + comment;
+  }
+  declList.add(decl);
+  tokens.next();
+  return true;
+}

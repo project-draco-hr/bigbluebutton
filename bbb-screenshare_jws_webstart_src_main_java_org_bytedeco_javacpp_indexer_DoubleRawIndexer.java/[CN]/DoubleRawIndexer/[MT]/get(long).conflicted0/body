@@ -1,0 +1,3 @@
+{
+  return RAW.getDouble(base + checkIndex(i,size) * VALUE_BYTES);
+}

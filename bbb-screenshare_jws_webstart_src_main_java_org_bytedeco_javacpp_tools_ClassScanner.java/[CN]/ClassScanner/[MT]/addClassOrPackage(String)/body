@@ -1,0 +1,15 @@
+{
+  if (name == null) {
+    return;
+  }
+  name=name.replace('/','.');
+  if (name.endsWith(".**")) {
+    addPackage(name.substring(0,name.length() - 3),true);
+  }
+ else   if (name.endsWith(".*")) {
+    addPackage(name.substring(0,name.length() - 2),false);
+  }
+ else {
+    addClass(name);
+  }
+}

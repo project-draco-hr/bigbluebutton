@@ -1,0 +1,4 @@
+{
+  this.deleteJniFiles=deleteJniFiles;
+  return this;
+}

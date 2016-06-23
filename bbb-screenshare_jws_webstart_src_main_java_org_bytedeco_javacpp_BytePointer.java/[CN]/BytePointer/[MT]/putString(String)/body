@@ -1,0 +1,4 @@
+{
+  byte[] bytes=s.getBytes();
+  return put(bytes).put(bytes.length,(byte)0).limit(bytes.length);
+}

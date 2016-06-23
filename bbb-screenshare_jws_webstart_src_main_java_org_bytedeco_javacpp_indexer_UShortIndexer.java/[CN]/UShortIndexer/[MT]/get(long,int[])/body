@@ -1,0 +1,3 @@
+{
+  return get(i,s,0,s.length);
+}

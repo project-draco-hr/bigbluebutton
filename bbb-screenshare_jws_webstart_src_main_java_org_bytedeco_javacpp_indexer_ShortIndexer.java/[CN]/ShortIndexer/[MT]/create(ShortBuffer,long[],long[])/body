@@ -1,0 +1,3 @@
+{
+  return new ShortBufferIndexer(buffer,sizes,strides);
+}

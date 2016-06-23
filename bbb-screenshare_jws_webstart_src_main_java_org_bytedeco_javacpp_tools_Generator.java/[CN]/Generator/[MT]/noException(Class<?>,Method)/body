@@ -1,0 +1,10 @@
+{
+  boolean noException=baseClasses.contains(cls) || method.isAnnotationPresent(NoException.class);
+  while (!noException && cls != null) {
+    if (noException=cls.isAnnotationPresent(NoException.class)) {
+      break;
+    }
+    cls=cls.getDeclaringClass();
+  }
+  return noException;
+}

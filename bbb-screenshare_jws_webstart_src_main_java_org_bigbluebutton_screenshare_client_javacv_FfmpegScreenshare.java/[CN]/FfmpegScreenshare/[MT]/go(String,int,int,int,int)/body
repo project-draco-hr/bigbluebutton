@@ -5,6 +5,7 @@
   System.out.println("OS arch : " + System.getProperty("os.arch"));
   System.out.println("JNA Path : " + System.getProperty("jna.library.path"));
   System.out.println("Platform : " + Loader.getPlatform());
+  System.out.println("Platform lib path: " + System.getProperty("java.library.path"));
   System.out.println("Capturing w=[" + width + "] h=["+ height+ "] at x=["+ x+ "] y=["+ y+ "]");
   Map<String,String> codecOptions=splitToMap(ssi.codecOptions,"&","=");
   Double frameRate=parseFrameRate(codecOptions.get(FRAMERATE_KEY));
@@ -26,14 +27,14 @@
   try {
     grabber.start();
   }
- catch (  org.bytedeco.javacv.FrameGrabber.Exception e) {
+ catch (  Exception e) {
     e.printStackTrace();
   }
   startTime=System.currentTimeMillis();
   try {
     mainRecorder.start();
   }
- catch (  Exception e1) {
-    e1.printStackTrace();
+ catch (  Exception e) {
+    e.printStackTrace();
   }
 }

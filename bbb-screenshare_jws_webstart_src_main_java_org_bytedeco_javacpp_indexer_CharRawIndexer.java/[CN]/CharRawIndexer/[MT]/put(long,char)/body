@@ -1,0 +1,4 @@
+{
+  RAW.putChar(base + checkIndex(i,size) * VALUE_BYTES,c);
+  return this;
+}

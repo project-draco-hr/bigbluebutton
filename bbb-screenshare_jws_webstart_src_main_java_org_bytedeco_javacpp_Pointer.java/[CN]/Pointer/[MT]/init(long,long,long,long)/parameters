@@ -1,0 +1,4 @@
+long allocatedAddress
+long allocatedCapacity
+long ownerAddress
+long deallocatorAddress

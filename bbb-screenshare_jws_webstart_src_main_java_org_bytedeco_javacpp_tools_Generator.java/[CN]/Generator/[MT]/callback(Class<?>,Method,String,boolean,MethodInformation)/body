@@ -1,0 +1,398 @@
+{
+  Class<?> callbackReturnType=callbackMethod.getReturnType();
+  Class<?>[] callbackParameterTypes=callbackMethod.getParameterTypes();
+  Annotation[] callbackAnnotations=callbackMethod.getAnnotations();
+  Annotation[][] callbackParameterAnnotations=callbackMethod.getParameterAnnotations();
+  String instanceTypeName=functionClassName(cls);
+  String[] callbackTypeName=cppFunctionTypeName(callbackMethod);
+  String[] returnConvention=callbackTypeName[0].split("\\(");
+  returnConvention[1]=constValueTypeName(returnConvention[1]);
+  String parameterDeclaration=callbackTypeName[1].substring(1);
+  String fieldName=mangle(callbackMethod.getName()) + "__" + mangle(signature(callbackMethod.getParameterTypes()));
+  String firstLine="";
+  if (methodInfo != null) {
+    String nonconstParamDeclaration=parameterDeclaration.endsWith(" const") ? parameterDeclaration.substring(0,parameterDeclaration.length() - 6) : parameterDeclaration;
+    String[] typeName=methodInfo.returnRaw ? new String[]{""} : cppTypeName(methodInfo.cls);
+    String valueTypeName=valueTypeName(typeName);
+    String subType="JavaCPP_" + mangle(valueTypeName);
+    Set<String> memberList=virtualMembers.get(cls);
+    if (memberList == null) {
+      virtualMembers.put(cls,memberList=new LinkedHashSet<String>());
+    }
+    String member="    ";
+    if (methodInfo.arrayAllocator) {
+      return;
+    }
+ else     if (methodInfo.allocator) {
+      member+=subType + nonconstParamDeclaration + " : "+ valueTypeName+ "(";
+      for (int j=0; j < callbackParameterTypes.length; j++) {
+        member+="arg" + j;
+        if (j < callbackParameterTypes.length - 1) {
+          member+=", ";
+        }
+      }
+      member+="), obj(NULL) { }";
+    }
+ else {
+      Set<String> functionList=virtualFunctions.get(cls);
+      if (functionList == null) {
+        virtualFunctions.put(cls,functionList=new LinkedHashSet<String>());
+      }
+      member+="using " + valueTypeName + "::"+ methodInfo.memberName[0]+ ";\n    "+ "virtual "+ returnConvention[0]+ (returnConvention.length > 1 ? returnConvention[1] : "")+ methodInfo.memberName[0]+ parameterDeclaration+ ";\n    "+ returnConvention[0]+ "super_"+ methodInfo.memberName[0]+ nonconstParamDeclaration+ " { ";
+      if (methodInfo.method.getAnnotation(Virtual.class).value()) {
+        member+="throw JavaCPP_exception(\"Cannot call a pure virtual function.\"); }";
+      }
+ else {
+        member+=(callbackReturnType != void.class ? "return " : "") + valueTypeName + "::"+ methodInfo.memberName[0]+ "(";
+        for (int j=0; j < callbackParameterTypes.length; j++) {
+          member+="arg" + j;
+          if (j < callbackParameterTypes.length - 1) {
+            member+=", ";
+          }
+        }
+        member+="); }";
+      }
+      firstLine=returnConvention[0] + (returnConvention.length > 1 ? returnConvention[1] : "") + subType+ "::"+ methodInfo.memberName[0]+ parameterDeclaration+ " {";
+      functionList.add(fieldName);
+    }
+    memberList.add(member);
+  }
+ else   if (callbackName != null) {
+    callbacks.index("static " + instanceTypeName + " "+ callbackName+ "_instance;");
+    Convention convention=cls.getAnnotation(Convention.class);
+    if (convention != null && !convention.extern().equals("C")) {
+      out.println("extern \"" + convention.extern() + "\" {");
+      if (out2 != null) {
+        out2.println("extern \"" + convention.extern() + "\" {");
+      }
+    }
+    if (out2 != null) {
+      out2.println("JNIIMPORT " + returnConvention[0] + (returnConvention.length > 1 ? returnConvention[1] : "")+ callbackName+ parameterDeclaration+ ";");
+    }
+    out.println("JNIEXPORT " + returnConvention[0] + (returnConvention.length > 1 ? returnConvention[1] : "")+ callbackName+ parameterDeclaration+ " {");
+    out.print((callbackReturnType != void.class ? "    return " : "    ") + callbackName + "_instance(");
+    for (int j=0; j < callbackParameterTypes.length; j++) {
+      out.print("arg" + j);
+      if (j < callbackParameterTypes.length - 1) {
+        out.print(", ");
+      }
+    }
+    out.println(");");
+    out.println("}");
+    if (convention != null && !convention.extern().equals("C")) {
+      out.println("}");
+      if (out2 != null) {
+        out2.println("}");
+      }
+    }
+    firstLine=returnConvention[0] + instanceTypeName + "::operator()"+ parameterDeclaration+ " {";
+  }
+  if (!needDefinition) {
+    return;
+  }
+  out.println(firstLine);
+  String returnPrefix="";
+  if (callbackReturnType != void.class) {
+    out.println("    " + jniTypeName(callbackReturnType) + " rarg = 0;");
+    returnPrefix="rarg = ";
+    if (callbackReturnType == String.class) {
+      returnPrefix+="(jstring)";
+    }
+  }
+  String callbackReturnCast=cast(callbackReturnType,callbackAnnotations);
+  Annotation returnBy=by(callbackAnnotations);
+  String[] returnTypeName=cppTypeName(callbackReturnType);
+  String returnValueTypeName=valueTypeName(returnTypeName);
+  AdapterInformation returnAdapterInfo=adapterInformation(false,returnValueTypeName,callbackAnnotations);
+  out.println("    jthrowable exc = NULL;");
+  out.println("    JNIEnv* env;");
+  out.println("    bool attached = JavaCPP_getEnv(&env);");
+  out.println("    if (env == NULL) {");
+  out.println("        goto end;");
+  out.println("    }");
+  out.println("{");
+  if (callbackParameterTypes.length > 0) {
+    out.println("    jvalue args[" + callbackParameterTypes.length + "];");
+    for (int j=0; j < callbackParameterTypes.length; j++) {
+      if (callbackParameterTypes[j].isPrimitive()) {
+        out.println("    args[" + j + "]."+ signature(callbackParameterTypes[j]).toLowerCase()+ " = ("+ jniTypeName(callbackParameterTypes[j])+ ")arg"+ j+ ";");
+      }
+ else {
+        Annotation passBy=by(callbackParameterAnnotations[j]);
+        String[] typeName=cppTypeName(callbackParameterTypes[j]);
+        String valueTypeName=valueTypeName(typeName);
+        AdapterInformation adapterInfo=adapterInformation(false,valueTypeName,callbackParameterAnnotations[j]);
+        if (adapterInfo != null) {
+          usesAdapters=true;
+          out.println("    " + adapterInfo.name + " adapter"+ j+ "(arg"+ j+ ");");
+        }
+        if (Pointer.class.isAssignableFrom(callbackParameterTypes[j]) || Buffer.class.isAssignableFrom(callbackParameterTypes[j]) || (callbackParameterTypes[j].isArray() && callbackParameterTypes[j].getComponentType().isPrimitive())) {
+          String cast="(" + typeName[0] + typeName[1]+ ")";
+          if (FunctionPointer.class.isAssignableFrom(callbackParameterTypes[j])) {
+            functions.index(callbackParameterTypes[j]);
+            typeName[0]=functionClassName(callbackParameterTypes[j]) + "*";
+            typeName[1]="";
+            valueTypeName=valueTypeName(typeName);
+          }
+ else           if (virtualFunctions.containsKey(callbackParameterTypes[j])) {
+            String subType="JavaCPP_" + mangle(valueTypeName);
+            valueTypeName=subType;
+          }
+          out.println("    " + jniTypeName(callbackParameterTypes[j]) + " obj"+ j+ " = NULL;");
+          out.println("    " + typeName[0] + " ptr"+ j+ typeName[1]+ " = NULL;");
+          if (FunctionPointer.class.isAssignableFrom(callbackParameterTypes[j])) {
+            out.println("    ptr" + j + " = new (std::nothrow) "+ valueTypeName+ ";");
+            out.println("    if (ptr" + j + " != NULL) {");
+            out.println("        ptr" + j + "->ptr = "+ cast+ "&arg"+ j+ ";");
+            out.println("    }");
+          }
+ else           if (adapterInfo != null) {
+            out.println("    ptr" + j + " = adapter"+ j+ ";");
+          }
+ else           if (passBy instanceof ByVal && callbackParameterTypes[j] != Pointer.class) {
+            out.println("    ptr" + j + (noException(callbackParameterTypes[j],callbackMethod) ? " = new (std::nothrow) " : " = new ")+ valueTypeName+ typeName[1]+ "(*"+ cast+ "&arg"+ j+ ");");
+          }
+ else           if (passBy instanceof ByVal || passBy instanceof ByRef) {
+            out.println("    ptr" + j + " = "+ cast+ "&arg"+ j+ ";");
+          }
+ else           if (passBy instanceof ByPtrPtr) {
+            out.println("    if (arg" + j + " == NULL) {");
+            out.println("        JavaCPP_log(\"Pointer address of argument " + j + " is NULL in callback for "+ cls.getCanonicalName()+ ".\");");
+            out.println("    } else {");
+            out.println("        ptr" + j + " = "+ cast+ "*arg"+ j+ ";");
+            out.println("    }");
+          }
+ else {
+            out.println("    ptr" + j + " = "+ cast+ "arg"+ j+ ";");
+          }
+        }
+        boolean needInit=false;
+        if (adapterInfo != null) {
+          if (callbackParameterTypes[j] != String.class) {
+            out.println("    jlong size" + j + " = (jlong)adapter"+ j+ ".size;");
+            out.println("    void* owner" + j + " = adapter"+ j+ ".owner;");
+            out.println("    void (*deallocator" + j + ")(void*) = &"+ adapterInfo.name+ "::deallocate;");
+          }
+          needInit=true;
+        }
+ else         if ((passBy instanceof ByVal && callbackParameterTypes[j] != Pointer.class) || FunctionPointer.class.isAssignableFrom(callbackParameterTypes[j])) {
+          out.println("    jlong size" + j + " = 1;");
+          out.println("    void* owner" + j + " = ptr"+ j+ ";");
+          out.println("    void (*deallocator" + j + ")(void*) = &JavaCPP_"+ mangle(callbackParameterTypes[j].getName())+ "_deallocate;");
+          deallocators.index(callbackParameterTypes[j]);
+          needInit=true;
+        }
+        if (Pointer.class.isAssignableFrom(callbackParameterTypes[j])) {
+          String s="    obj" + j + " = JavaCPP_createPointer(env, "+ jclasses.index(callbackParameterTypes[j])+ ");";
+          adapterInfo=adapterInformation(true,valueTypeName,callbackParameterAnnotations[j]);
+          if (adapterInfo != null || passBy instanceof ByPtrPtr || passBy instanceof ByPtrRef) {
+            out.println(s);
+          }
+ else {
+            out.println("    if (ptr" + j + " != NULL) { ");
+            out.println("    " + s);
+            out.println("    }");
+          }
+          out.println("    if (obj" + j + " != NULL) { ");
+          if (needInit) {
+            out.println("        JavaCPP_initPointer(env, obj" + j + ", ptr"+ j+ ", size"+ j+ ", owner"+ j+ ", deallocator"+ j+ ");");
+          }
+ else {
+            out.println("        env->SetLongField(obj" + j + ", JavaCPP_addressFID, ptr_to_jlong(ptr"+ j+ "));");
+          }
+          out.println("    }");
+          out.println("    args[" + j + "].l = obj"+ j+ ";");
+        }
+ else         if (callbackParameterTypes[j] == String.class) {
+          passesStrings=true;
+          out.println("    jstring obj" + j + " = JavaCPP_createString(env, (const char*)"+ (adapterInfo != null ? "adapter" : "arg")+ j+ ");");
+          out.println("    args[" + j + "].l = obj"+ j+ ";");
+        }
+ else         if (callbackParameterTypes[j].isArray() && callbackParameterTypes[j].getComponentType().isPrimitive()) {
+          if (adapterInfo == null) {
+            out.println("    jlong size" + j + " = ptr"+ j+ " != NULL ? 1 : 0;");
+          }
+          String componentType=callbackParameterTypes[j].getComponentType().getName();
+          String S=Character.toUpperCase(componentType.charAt(0)) + componentType.substring(1);
+          out.println("    if (ptr" + j + " != NULL) {");
+          out.println("        obj" + j + " = env->New"+ S+ "Array(size"+ j+ " < INT_MAX ? size"+ j+ " : INT_MAX);");
+          out.println("        env->Set" + S + "ArrayRegion(obj"+ j+ ", 0, size"+ j+ " < INT_MAX ? size"+ j+ " : INT_MAX, (j"+ componentType+ "*)ptr"+ j+ ");");
+          out.println("    }");
+          if (adapterInfo != null) {
+            out.println("    if (deallocator" + j + " != 0 && ptr"+ j+ " != NULL) {");
+            out.println("        (*(void(*)(void*))jlong_to_ptr(deallocator" + j + "))((void*)ptr"+ j+ ");");
+            out.println("    }");
+          }
+        }
+ else         if (Buffer.class.isAssignableFrom(callbackParameterTypes[j])) {
+          if (adapterInfo == null) {
+            out.println("    jlong size" + j + " = ptr"+ j+ " != NULL ? 1 : 0;");
+          }
+          out.println("    if (ptr" + j + " != NULL) {");
+          out.println("        jlong sizeptr = size" + j + " * sizeof(ptr"+ j+ "[0]);");
+          out.println("        obj" + j + " = env->NewDirectByteBuffer((void*)ptr"+ j+ ", sizeptr < INT_MAX ? sizeptr : INT_MAX);");
+          out.println("    }");
+        }
+ else {
+          logger.warn("Callback \"" + callbackMethod + "\" has unsupported parameter type \""+ callbackParameterTypes[j].getCanonicalName()+ "\". Compilation will most likely fail.");
+        }
+      }
+    }
+  }
+  if (methodInfo != null) {
+    out.println("    if (" + fieldName + " == NULL) {");
+    out.println("        " + fieldName + " = JavaCPP_getMethodID(env, "+ jclasses.index(cls)+ ", \""+ methodInfo.method.getName()+ "\", \"("+ signature(methodInfo.method.getParameterTypes())+ ")"+ signature(methodInfo.method.getReturnType())+ "\");");
+    out.println("    }");
+    out.println("    jmethodID mid = " + fieldName + ";");
+  }
+ else   if (callbackName != null) {
+    out.println("    if (obj == NULL) {");
+    out.println("        obj = JavaCPP_createPointer(env, " + jclasses.index(cls) + ");");
+    out.println("        obj = obj == NULL ? NULL : env->NewGlobalRef(obj);");
+    out.println("        if (obj == NULL) {");
+    out.println("            JavaCPP_log(\"Error creating global reference of " + cls.getCanonicalName() + " instance for callback.\");");
+    out.println("        } else {");
+    out.println("            env->SetLongField(obj, JavaCPP_addressFID, ptr_to_jlong(this));");
+    out.println("        }");
+    out.println("        ptr = &" + callbackName + ";");
+    out.println("    }");
+    out.println("    if (mid == NULL) {");
+    out.println("        mid = JavaCPP_getMethodID(env, " + jclasses.index(cls) + ", \""+ callbackMethod.getName()+ "\", \"("+ signature(callbackMethod.getParameterTypes())+ ")"+ signature(callbackMethod.getReturnType())+ "\");");
+    out.println("    }");
+  }
+  out.println("    if (env->IsSameObject(obj, NULL)) {");
+  out.println("        JavaCPP_log(\"Function pointer object is NULL in callback for " + cls.getCanonicalName() + ".\");");
+  out.println("    } else if (mid == NULL) {");
+  out.println("        JavaCPP_log(\"Error getting method ID of function caller \\\"" + callbackMethod + "\\\" for callback.\");");
+  out.println("    } else {");
+  String s="Object";
+  if (callbackReturnType.isPrimitive()) {
+    s=callbackReturnType.getName();
+    s=Character.toUpperCase(s.charAt(0)) + s.substring(1);
+  }
+  out.println("        " + returnPrefix + "env->Call"+ s+ "MethodA(obj, mid, "+ (callbackParameterTypes.length == 0 ? "NULL);" : "args);"));
+  out.println("        if ((exc = env->ExceptionOccurred()) != NULL) {");
+  out.println("            env->ExceptionClear();");
+  out.println("        }");
+  out.println("    }");
+  for (int j=0; j < callbackParameterTypes.length; j++) {
+    if (Pointer.class.isAssignableFrom(callbackParameterTypes[j])) {
+      String[] typeName=cppTypeName(callbackParameterTypes[j]);
+      Annotation passBy=by(callbackParameterAnnotations[j]);
+      String cast=cast(callbackParameterTypes[j],callbackParameterAnnotations[j]);
+      String valueTypeName=valueTypeName(typeName);
+      AdapterInformation adapterInfo=adapterInformation(true,valueTypeName,callbackParameterAnnotations[j]);
+      if ("void*".equals(typeName[0]) && !callbackParameterTypes[j].isAnnotationPresent(Opaque.class)) {
+        typeName[0]="char*";
+      }
+      if (adapterInfo != null || passBy instanceof ByPtrPtr || passBy instanceof ByPtrRef) {
+        out.println("    " + typeName[0] + " rptr"+ j+ typeName[1]+ " = ("+ typeName[0]+ typeName[1]+ ")jlong_to_ptr(env->GetLongField(obj"+ j+ ", JavaCPP_addressFID));");
+        if (adapterInfo != null) {
+          out.println("    jlong rsize" + j + " = env->GetLongField(obj"+ j+ ", JavaCPP_limitFID);");
+          out.println("    void* rowner" + j + " = JavaCPP_getPointerOwner(env, obj"+ j+ ");");
+        }
+        if (!callbackParameterTypes[j].isAnnotationPresent(Opaque.class)) {
+          out.println("    jlong rposition" + j + " = env->GetLongField(obj"+ j+ ", JavaCPP_positionFID);");
+          out.println("    rptr" + j + " += rposition"+ j+ ";");
+          if (adapterInfo != null) {
+            out.println("    rsize" + j + " -= rposition"+ j+ ";");
+          }
+        }
+        if (adapterInfo != null) {
+          out.println("    adapter" + j + ".assign(rptr"+ j+ ", rsize"+ j+ ", rowner"+ j+ ");");
+        }
+ else         if (passBy instanceof ByPtrPtr) {
+          out.println("    if (arg" + j + " != NULL) {");
+          out.println("        *arg" + j + " = *"+ cast+ "&rptr"+ j+ ";");
+          out.println("    }");
+        }
+ else         if (passBy instanceof ByPtrRef) {
+          out.println("    arg" + j + " = "+ cast+ "rptr"+ j+ ";");
+        }
+      }
+    }
+    if (!callbackParameterTypes[j].isPrimitive()) {
+      out.println("    env->DeleteLocalRef(obj" + j + ");");
+    }
+  }
+  out.println("}");
+  out.println("end:");
+  if (callbackReturnType != void.class) {
+    if ("void*".equals(returnTypeName[0]) && !callbackReturnType.isAnnotationPresent(Opaque.class)) {
+      returnTypeName[0]="char*";
+    }
+    if (Pointer.class.isAssignableFrom(callbackReturnType)) {
+      out.println("    " + returnTypeName[0] + " rptr"+ returnTypeName[1]+ " = rarg == NULL ? NULL : ("+ returnTypeName[0]+ returnTypeName[1]+ ")jlong_to_ptr(env->GetLongField(rarg, JavaCPP_addressFID));");
+      if (returnAdapterInfo != null) {
+        out.println("    jlong rsize = rarg == NULL ? 0 : env->GetLongField(rarg, JavaCPP_limitFID);");
+        out.println("    void* rowner = JavaCPP_getPointerOwner(env, rarg);");
+      }
+      if (!callbackReturnType.isAnnotationPresent(Opaque.class)) {
+        out.println("    jlong rposition = rarg == NULL ? 0 : env->GetLongField(rarg, JavaCPP_positionFID);");
+        out.println("    rptr += rposition;");
+        if (returnAdapterInfo != null) {
+          out.println("    rsize -= rposition;");
+        }
+      }
+    }
+ else     if (callbackReturnType == String.class) {
+      passesStrings=true;
+      out.println("    " + returnTypeName[0] + " rptr"+ returnTypeName[1]+ " = JavaCPP_getStringBytes(env, rarg);");
+      if (returnAdapterInfo != null) {
+        out.println("    jlong rsize = 0;");
+        out.println("    void* rowner = (void*)rptr");
+      }
+    }
+ else     if (Buffer.class.isAssignableFrom(callbackReturnType)) {
+      out.println("    " + returnTypeName[0] + " rptr"+ returnTypeName[1]+ " = rarg == NULL ? NULL : env->GetDirectBufferAddress(rarg);");
+      if (returnAdapterInfo != null) {
+        out.println("    jlong rsize = rarg == NULL ? 0 : env->GetDirectBufferCapacity(rarg);");
+        out.println("    void* rowner = (void*)rptr;");
+      }
+    }
+ else     if (!callbackReturnType.isPrimitive()) {
+      logger.warn("Callback \"" + callbackMethod + "\" has unsupported return type \""+ callbackReturnType.getCanonicalName()+ "\". Compilation will most likely fail.");
+    }
+  }
+  out.println("    if (exc != NULL) {");
+  out.println("        jstring str = (jstring)env->CallObjectMethod(exc, JavaCPP_toStringMID);");
+  out.println("        env->DeleteLocalRef(exc);");
+  out.println("        const char *msg = JavaCPP_getStringBytes(env, str);");
+  out.println("        JavaCPP_exception e(msg);");
+  out.println("        JavaCPP_releaseStringBytes(env, str, msg);");
+  out.println("        env->DeleteLocalRef(str);");
+  out.println("        JavaCPP_detach(attached);");
+  out.println("        throw e;");
+  out.println("    } else {");
+  out.println("        JavaCPP_detach(attached);");
+  out.println("    }");
+  if (callbackReturnType != void.class) {
+    if (callbackReturnType.isPrimitive()) {
+      out.println("    return " + callbackReturnCast + "rarg;");
+    }
+ else     if (returnAdapterInfo != null) {
+      usesAdapters=true;
+      out.println("    return " + returnAdapterInfo.name + "("+ callbackReturnCast+ "rptr, rsize, rowner);");
+    }
+ else     if (FunctionPointer.class.isAssignableFrom(callbackReturnType)) {
+      functions.index(callbackReturnType);
+      out.println("    return " + callbackReturnCast + "(rptr == NULL ? NULL : rptr->ptr);");
+    }
+ else     if (returnBy instanceof ByVal || returnBy instanceof ByRef) {
+      out.println("    if (rptr == NULL) {");
+      out.println("        JavaCPP_log(\"Return pointer address is NULL in callback for " + cls.getCanonicalName() + ".\");");
+      out.println("        static " + returnConvention[0] + " empty"+ returnTypeName[1]+ ";");
+      out.println("        return empty;");
+      out.println("    } else {");
+      out.println("        return *" + callbackReturnCast + "rptr;");
+      out.println("    }");
+    }
+ else     if (returnBy instanceof ByPtrPtr) {
+      out.println("    return " + callbackReturnCast + "&rptr;");
+    }
+ else {
+      out.println("    return " + callbackReturnCast + "rptr;");
+    }
+  }
+  out.println("}");
+}

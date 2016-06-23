@@ -1,0 +1,9 @@
+{
+  long size=limit - position;
+  if (size <= 0) {
+    size=strlen(this);
+  }
+  byte[] array=new byte[(int)Math.min(size,Integer.MAX_VALUE)];
+  get(array);
+  return array;
+}

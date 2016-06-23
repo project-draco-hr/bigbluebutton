@@ -1,0 +1,43 @@
+{
+  String comment="";
+  tokens.raw=true;
+  while (tokens.index > 0 && tokens.get(-1).match(Token.COMMENT)) {
+    tokens.index--;
+  }
+  boolean closeComment=false;
+  int startDoc=-1;
+  for (Token token=tokens.get(); token.match(Token.COMMENT); token=tokens.next()) {
+    String s=token.value;
+    if (s.startsWith("/**") || s.startsWith("/*!") || s.startsWith("///")|| s.startsWith("//!")) {
+      if (s.length() > 3 && s.charAt(3) == '<') {
+        continue;
+      }
+ else       if (s.length() >= 3 && (s.startsWith("///") || s.startsWith("//!")) && !s.startsWith("////") && !s.startsWith("///*")) {
+        String lastComment=comment.trim();
+        int n2=lastComment.indexOf('\n');
+        while (!lastComment.startsWith("/*") && n2 > 0) {
+          lastComment=n2 + 1 < lastComment.length() ? lastComment.substring(n2 + 1).trim() : "";
+          n2=lastComment.indexOf('\n');
+        }
+        s=(comment.length() == 0 || comment.contains("*/") || !lastComment.startsWith("/*") ? "/**" : " * ") + s.substring(3);
+        closeComment=true;
+      }
+ else       if (s.length() > 3 && !s.startsWith("///")) {
+        s="/**" + s.substring(3);
+      }
+    }
+ else     if (closeComment && !comment.endsWith("*/")) {
+      closeComment=false;
+      comment+=" */";
+    }
+    if (startDoc < 0 && s.startsWith("/**")) {
+      startDoc=comment.length();
+    }
+    comment+=token.spacing + s;
+  }
+  if (closeComment && !comment.endsWith("*/")) {
+    comment+=" */";
+  }
+  tokens.raw=false;
+  return commentDoc(comment,startDoc);
+}

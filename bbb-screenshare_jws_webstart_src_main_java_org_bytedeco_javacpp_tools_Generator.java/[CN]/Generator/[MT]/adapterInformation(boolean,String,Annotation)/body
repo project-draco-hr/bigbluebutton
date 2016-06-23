@@ -1,0 +1,60 @@
+{
+  AdapterInformation adapterInfo=null;
+  boolean constant=false;
+  String cast="";
+  for (  Annotation a : annotations) {
+    Adapter adapter=a instanceof Adapter ? (Adapter)a : a.annotationType().getAnnotation(Adapter.class);
+    if (adapter != null) {
+      adapterInfo=new AdapterInformation();
+      adapterInfo.name=adapter.value();
+      adapterInfo.argc=adapter.argc();
+      if (a != adapter) {
+        try {
+          Class cls=a.annotationType();
+          if (cls.isAnnotationPresent(Const.class)) {
+            constant=true;
+          }
+          try {
+            String value=cls.getDeclaredMethod("value").invoke(a).toString();
+            if (value != null && value.length() > 0) {
+              valueTypeName=value;
+            }
+          }
+ catch (          NoSuchMethodException e) {
+            valueTypeName=null;
+          }
+          Cast c=(Cast)cls.getAnnotation(Cast.class);
+          if (c != null && cast.length() == 0) {
+            cast=c.value()[0];
+            if (valueTypeName != null) {
+              cast+="< " + valueTypeName + " >";
+            }
+            if (c.value().length > 1) {
+              cast+=c.value()[1];
+            }
+          }
+        }
+ catch (        Exception ex) {
+          logger.warn("Could not invoke the value() method on annotation \"" + a + "\": "+ ex);
+        }
+        if (valueTypeName != null && valueTypeName.length() > 0) {
+          adapterInfo.name+="< " + valueTypeName + " >";
+        }
+      }
+    }
+ else     if (a instanceof Const) {
+      constant=true;
+    }
+ else     if (a instanceof Cast) {
+      Cast c=((Cast)a);
+      if (c.value().length > 1) {
+        cast=c.value()[1];
+      }
+    }
+  }
+  if (adapterInfo != null) {
+    adapterInfo.cast=cast;
+    adapterInfo.constant=constant;
+  }
+  return out && constant ? null : adapterInfo;
+}

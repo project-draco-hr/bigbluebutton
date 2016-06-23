@@ -1,0 +1,21 @@
+{
+  if (deallocate && deallocator != null) {
+    if (logger.isDebugEnabled()) {
+      logger.debug("Deallocating " + this);
+    }
+    deallocator.deallocate();
+    address=0;
+  }
+ else synchronized (DeallocatorReference.class) {
+    DeallocatorReference r=DeallocatorReference.head;
+    while (r != null) {
+      if (r.deallocator == deallocator) {
+        r.deallocator=null;
+        r.clear();
+        r.remove();
+        break;
+      }
+      r=r.next;
+    }
+  }
+}

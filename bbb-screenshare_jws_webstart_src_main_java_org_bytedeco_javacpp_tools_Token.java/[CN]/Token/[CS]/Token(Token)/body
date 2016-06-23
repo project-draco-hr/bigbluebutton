@@ -1,0 +1,7 @@
+{
+  file=t.file;
+  lineNumber=t.lineNumber;
+  type=t.type;
+  spacing=t.spacing;
+  value=t.value;
+}

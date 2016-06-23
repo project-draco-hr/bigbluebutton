@@ -1,0 +1,17 @@
+{
+  if (!tokens.get().match('{')) {
+    return null;
+  }
+  int count=1;
+  tokens.raw=true;
+  for (Token token=tokens.next(); !token.match(Token.EOF) && count > 0; token=tokens.next()) {
+    if (token.match('{')) {
+      count++;
+    }
+ else     if (token.match('}')) {
+      count--;
+    }
+  }
+  tokens.raw=false;
+  return "";
+}

@@ -1,0 +1,7 @@
+{
+  boolean found=false;
+  for (  Object t : tokens) {
+    found=found || equals(t);
+  }
+  return found;
+}

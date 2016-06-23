@@ -1,0 +1,8 @@
+{
+  if (properties != null) {
+    for (    Map.Entry e : properties.entrySet()) {
+      property((String)e.getKey(),(String)e.getValue());
+    }
+  }
+  return this;
+}

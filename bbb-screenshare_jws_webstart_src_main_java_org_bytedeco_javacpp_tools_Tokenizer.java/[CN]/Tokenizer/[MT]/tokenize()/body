@@ -1,0 +1,13 @@
+{
+  ArrayList<Token> tokens=new ArrayList<Token>();
+  try {
+    Token token;
+    while (!(token=nextToken()).isEmpty()) {
+      tokens.add(token);
+    }
+  }
+ catch (  IOException ex) {
+    throw new RuntimeException(ex);
+  }
+  return tokens.toArray(new Token[tokens.size()]);
+}

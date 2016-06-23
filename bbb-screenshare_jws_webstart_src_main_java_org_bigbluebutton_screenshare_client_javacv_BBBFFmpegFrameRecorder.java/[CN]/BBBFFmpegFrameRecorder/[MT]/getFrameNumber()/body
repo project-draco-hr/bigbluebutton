@@ -1,3 +1,0 @@
-{
-  return picture == null ? super.getFrameNumber() : (int)picture.pts();
-}

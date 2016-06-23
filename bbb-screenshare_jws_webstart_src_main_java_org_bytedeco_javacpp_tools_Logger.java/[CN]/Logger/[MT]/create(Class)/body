@@ -1,0 +1,4 @@
+{
+  String s=System.getProperty("org.bytedeco.javacpp.logger","").toLowerCase();
+  return new Logger();
+}

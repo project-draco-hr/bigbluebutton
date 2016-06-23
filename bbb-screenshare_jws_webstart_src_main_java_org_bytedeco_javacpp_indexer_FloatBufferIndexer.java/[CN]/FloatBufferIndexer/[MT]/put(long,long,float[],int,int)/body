@@ -1,0 +1,6 @@
+{
+  for (int n=0; n < length; n++) {
+    buffer.put((int)i * (int)strides[0] + (int)j * (int)strides[1] + n,f[offset + n]);
+  }
+  return this;
+}

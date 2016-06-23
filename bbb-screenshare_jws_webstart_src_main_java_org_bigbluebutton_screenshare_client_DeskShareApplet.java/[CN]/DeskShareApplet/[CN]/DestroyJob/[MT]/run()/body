@@ -1,7 +1,0 @@
-{
-  System.out.println("Desktop Sharing Applet Destroy");
-  if (clientStarted) {
-    client.stop();
-  }
-  return null;
-}

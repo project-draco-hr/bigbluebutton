@@ -1,0 +1,7 @@
+{
+  Integer i=get(e);
+  if (i == null) {
+    put(e,i=size());
+  }
+  return i;
+}

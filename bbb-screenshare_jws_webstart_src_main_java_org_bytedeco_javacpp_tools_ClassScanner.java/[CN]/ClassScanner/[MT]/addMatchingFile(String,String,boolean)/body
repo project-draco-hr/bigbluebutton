@@ -1,0 +1,5 @@
+{
+  if (filename != null && filename.endsWith(".class") && (packagePath == null || (recursive && filename.startsWith(packagePath)) || filename.regionMatches(0,packagePath,0,Math.max(filename.lastIndexOf('/'),packagePath.lastIndexOf('/'))))) {
+    addClass(filename.replace('/','.'));
+  }
+}
