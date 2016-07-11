@@ -1,0 +1,35 @@
+{
+  String scopeName="";
+  while (type != null) {
+    Namespace namespace=type.getAnnotation(Namespace.class);
+    String spaceName=namespace == null ? "" : namespace.value();
+    if (Pointer.class.isAssignableFrom(type) && (!baseClasses.contains(type) || type.isAnnotationPresent(Name.class))) {
+      Name name=type.getAnnotation(Name.class);
+      String s;
+      if (name == null) {
+        s=type.getName();
+        int i=s.lastIndexOf("$");
+        if (i < 0) {
+          i=s.lastIndexOf(".");
+        }
+        s=s.substring(i + 1);
+      }
+ else {
+        s=name.value()[0];
+      }
+      if (spaceName.length() > 0 && !spaceName.endsWith("::")) {
+        spaceName+="::";
+      }
+      spaceName+=s;
+    }
+    if (scopeName.length() > 0 && !spaceName.endsWith("::")) {
+      spaceName+="::";
+    }
+    scopeName=spaceName + scopeName;
+    if ((namespace != null && namespace.value().length() == 0) || spaceName.startsWith("::")) {
+      break;
+    }
+    type=type.getDeclaringClass();
+  }
+  return scopeName;
+}

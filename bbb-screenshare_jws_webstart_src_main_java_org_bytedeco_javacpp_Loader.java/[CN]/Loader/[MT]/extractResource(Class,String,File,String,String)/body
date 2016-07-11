@@ -1,0 +1,3 @@
+{
+  return extractResource(cls.getResource(name),directory,prefix,suffix);
+}

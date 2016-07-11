@@ -1,0 +1,77 @@
+{
+  if (index + 1 < array.length && array[index].match('#') && array[index + 1].match(Token.IF,Token.IFDEF,Token.IFNDEF)) {
+    List<Token> tokens=new ArrayList<Token>();
+    for (int i=0; i < index; i++) {
+      tokens.add(array[i]);
+    }
+    int count=0;
+    Info info=null;
+    boolean define=true, defined=false;
+    while (index < array.length) {
+      String spacing=array[index].spacing;
+      int n=spacing.lastIndexOf('\n') + 1;
+      Token keyword=null;
+      if (array[index].match('#')) {
+        if (array[index + 1].match(Token.IF,Token.IFDEF,Token.IFNDEF)) {
+          count++;
+        }
+        if (count == 1 && array[index + 1].match(Token.IF,Token.IFDEF,Token.IFNDEF,Token.ELIF,Token.ELSE,Token.ENDIF)) {
+          keyword=array[index + 1];
+        }
+        if (array[index + 1].match(Token.ENDIF)) {
+          count--;
+        }
+      }
+      if (keyword != null) {
+        index+=2;
+        Token comment=new Token();
+        comment.type=Token.COMMENT;
+        comment.spacing=spacing.substring(0,n);
+        comment.value="// " + spacing.substring(n) + "#"+ keyword.spacing+ keyword;
+        tokens.add(comment);
+        String value="";
+        for (; index < array.length; index++) {
+          if (array[index].spacing.indexOf('\n') >= 0) {
+            break;
+          }
+          if (!array[index].match(Token.COMMENT)) {
+            value+=array[index].spacing + array[index];
+          }
+          comment.value+=array[index].match("\n") ? "\n// " : array[index].spacing + array[index].toString().replaceAll("\n","\n// ");
+        }
+        if (keyword.match(Token.IF,Token.IFDEF,Token.IFNDEF,Token.ELIF)) {
+          define=info == null || !defined;
+          info=infoMap.getFirst(value);
+          if (info != null) {
+            define=keyword.match(Token.IFNDEF) ? !info.define : info.define;
+          }
+ else           try {
+            define=Integer.parseInt(value.trim()) != 0;
+          }
+ catch (          NumberFormatException e) {
+          }
+        }
+ else         if (keyword.match(Token.ELSE)) {
+          define=info == null || !define;
+        }
+ else         if (keyword.match(Token.ENDIF)) {
+          if (count == 0) {
+            break;
+          }
+        }
+      }
+ else       if (define) {
+        tokens.add(array[index++]);
+      }
+ else {
+        index++;
+      }
+      defined=define || defined;
+    }
+    for (; index < array.length; index++) {
+      tokens.add(array[index]);
+    }
+    array=tokens.toArray(new Token[tokens.size()]);
+  }
+  return array;
+}

@@ -1,0 +1,28 @@
+{
+  String[] paths=loader.getPaths();
+  final String packagePath=packageName == null ? null : (packageName.replace('.','/') + "/");
+  int prevSize=classes.size();
+  for (  String p : paths) {
+    File file=new File(p);
+    if (file.isDirectory()) {
+      addMatchingDir(null,file,packagePath,recursive);
+    }
+ else {
+      JarInputStream jis=new JarInputStream(new FileInputStream(file));
+      ZipEntry e=jis.getNextEntry();
+      while (e != null) {
+        addMatchingFile(e.getName(),packagePath,recursive);
+        jis.closeEntry();
+        e=jis.getNextEntry();
+      }
+      jis.close();
+    }
+  }
+  if (classes.size() == 0 && packageName == null) {
+    logger.warn("No classes found in the unnamed package");
+    Builder.printHelp();
+  }
+ else   if (prevSize == classes.size() && packageName != null) {
+    logger.warn("No classes found in package " + packageName);
+  }
+}

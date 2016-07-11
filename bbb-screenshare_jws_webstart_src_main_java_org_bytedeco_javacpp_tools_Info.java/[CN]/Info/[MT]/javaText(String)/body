@@ -1,0 +1,4 @@
+{
+  this.javaText=javaText;
+  return this;
+}

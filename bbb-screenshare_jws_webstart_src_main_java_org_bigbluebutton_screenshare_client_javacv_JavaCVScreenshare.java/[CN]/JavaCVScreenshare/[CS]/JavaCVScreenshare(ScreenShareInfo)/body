@@ -1,4 +1,0 @@
-{
-  this.ssi=ssi;
-  captureTaker=new ScreenCaptureTaker(ssi.x,ssi.y,ssi.captureWidth,ssi.captureHeight,ssi.scaleWidth,ssi.scaleHeight);
-}

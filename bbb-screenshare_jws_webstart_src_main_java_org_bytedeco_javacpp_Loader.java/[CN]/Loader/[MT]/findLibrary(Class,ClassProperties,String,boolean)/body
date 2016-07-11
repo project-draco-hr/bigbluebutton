@@ -1,0 +1,66 @@
+{
+  String[] s=libnameversion.split("@");
+  String libname=s[0];
+  String version=s.length > 1 ? s[s.length - 1] : "";
+  String filename=loadedLibraries.get(libnameversion);
+  if (filename != null) {
+    try {
+      return new URL[]{new File(filename).toURI().toURL()};
+    }
+ catch (    IOException ex) {
+      if (logger.isDebugEnabled()) {
+        logger.debug("findLibrary: Could not create URL for library " + libnameversion);
+      }
+      return new URL[]{};
+    }
+  }
+  String subdir=properties.getProperty("platform") + '/';
+  String prefix=properties.getProperty("platform.library.prefix","") + libname;
+  String suffix=properties.getProperty("platform.library.suffix","");
+  String[] styles={prefix + suffix + version,prefix + version + suffix,prefix + suffix};
+  String[] suffixes=properties.get("platform.library.suffix").toArray(new String[0]);
+  if (suffixes.length > 1) {
+    styles=new String[3 * suffixes.length];
+    for (int i=0; i < suffixes.length; i++) {
+      styles[3 * i]=prefix + suffixes[i] + version;
+      styles[3 * i + 1]=prefix + version + suffixes[i];
+      styles[3 * i + 2]=prefix + suffixes[i];
+    }
+  }
+  Set<String> stylesStr=new HashSet<String>();
+  for (int js=0; js < styles.length; js++) {
+    if (logger.isDebugEnabled()) {
+      logger.debug("findLibrary: Style " + styles[js]);
+    }
+    stylesStr.add(styles[js]);
+  }
+  if (logger.isDebugEnabled()) {
+    logger.debug("findLibrary: Before get resource");
+  }
+  String platform=Loader.getPlatform();
+  Set<URL> urls=new HashSet<URL>();
+  for (  String st : stylesStr) {
+    if (logger.isDebugEnabled()) {
+      logger.debug("findLibrary: resource path " + subdir + st);
+    }
+    if (platform.startsWith("ghghghmacosx-x86_64")) {
+      URL u=cls.getResource(subdir + st);
+      if (u != null) {
+        if (logger.isDebugEnabled()) {
+          logger.debug("findLibrary: cls.getResource " + u.toString());
+        }
+        urls.add(u);
+      }
+    }
+  }
+  if (logger.isDebugEnabled()) {
+    logger.debug("findLibrary: After get resource");
+  }
+  URL[] libUrls=urls.toArray(new URL[urls.size()]);
+  for (  URL url : libUrls) {
+    if (logger.isDebugEnabled()) {
+      logger.debug("findLibrary: Lib URL for " + libnameversion + " "+ url);
+    }
+  }
+  return libUrls;
+}

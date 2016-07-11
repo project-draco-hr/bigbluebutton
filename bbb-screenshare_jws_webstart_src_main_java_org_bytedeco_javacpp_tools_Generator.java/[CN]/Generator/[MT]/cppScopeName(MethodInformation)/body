@@ -1,0 +1,20 @@
+{
+  String scopeName=cppScopeName(methodInfo.cls);
+  if (methodInfo.method.isAnnotationPresent(Virtual.class)) {
+    String subType="JavaCPP_" + mangle(scopeName);
+    scopeName=subType;
+  }
+  Namespace namespace=methodInfo.method.getAnnotation(Namespace.class);
+  String spaceName=namespace == null ? "" : namespace.value();
+  if ((namespace != null && namespace.value().length() == 0) || spaceName.startsWith("::")) {
+    scopeName="";
+  }
+  if (scopeName.length() > 0 && !scopeName.endsWith("::")) {
+    scopeName+="::";
+  }
+  scopeName+=spaceName;
+  if (spaceName.length() > 0 && !spaceName.endsWith("::")) {
+    scopeName+="::";
+  }
+  return scopeName + methodInfo.memberName[0];
+}

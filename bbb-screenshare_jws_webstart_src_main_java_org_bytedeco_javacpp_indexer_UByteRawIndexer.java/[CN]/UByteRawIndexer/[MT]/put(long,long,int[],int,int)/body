@@ -1,0 +1,6 @@
+{
+  for (int n=0; n < length; n++) {
+    put(i * strides[0] + j * strides[1] + n,(byte)b[offset + n]);
+  }
+  return this;
+}

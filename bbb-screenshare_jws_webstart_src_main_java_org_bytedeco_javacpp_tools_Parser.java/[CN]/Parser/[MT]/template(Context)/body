@@ -1,0 +1,44 @@
+{
+  if (!tokens.get().match(Token.TEMPLATE)) {
+    return null;
+  }
+  TemplateMap map=new TemplateMap(context.templateMap);
+  tokens.next().expect('<');
+  for (Token token=tokens.next(); !token.match(Token.EOF); token=tokens.next()) {
+    if (token.match(Token.IDENTIFIER)) {
+      Token t=tokens.next();
+      if (t.match("...")) {
+        map.variadic=true;
+        t=tokens.next();
+      }
+      if (t.match(Token.IDENTIFIER)) {
+        String key=t.value;
+        map.put(key,map.get(key));
+        token=tokens.next();
+      }
+    }
+    if (!token.match(',','>')) {
+      int count=0;
+      for (token=tokens.get(); !token.match(Token.EOF); token=tokens.next()) {
+        if (count == 0 && token.match(',','>')) {
+          break;
+        }
+ else         if (token.match('<','(')) {
+          count++;
+        }
+ else         if (token.match('>',')')) {
+          count--;
+        }
+      }
+    }
+    if (token.expect(',','>').match('>')) {
+      if (tokens.next().match(Token.TEMPLATE)) {
+        tokens.next().expect('<');
+      }
+ else {
+        break;
+      }
+    }
+  }
+  return map;
+}

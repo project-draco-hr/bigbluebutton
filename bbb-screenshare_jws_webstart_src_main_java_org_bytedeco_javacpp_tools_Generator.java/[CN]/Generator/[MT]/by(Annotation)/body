@@ -1,0 +1,14 @@
+{
+  Annotation byAnnotation=null;
+  for (  Annotation a : annotations) {
+    if (a instanceof ByPtr || a instanceof ByPtrPtr || a instanceof ByPtrRef|| a instanceof ByRef|| a instanceof ByVal) {
+      if (byAnnotation != null) {
+        logger.warn("\"By\" annotation \"" + byAnnotation + "\" already found. Ignoring superfluous annotation \""+ a+ "\".");
+      }
+ else {
+        byAnnotation=a;
+      }
+    }
+  }
+  return byAnnotation;
+}

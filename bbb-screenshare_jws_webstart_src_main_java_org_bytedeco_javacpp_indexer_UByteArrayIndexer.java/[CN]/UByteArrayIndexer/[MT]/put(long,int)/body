@@ -1,0 +1,4 @@
+{
+  array[(int)i]=(byte)b;
+  return this;
+}

@@ -1,0 +1,4 @@
+{
+  this.define=true;
+  return this;
+}

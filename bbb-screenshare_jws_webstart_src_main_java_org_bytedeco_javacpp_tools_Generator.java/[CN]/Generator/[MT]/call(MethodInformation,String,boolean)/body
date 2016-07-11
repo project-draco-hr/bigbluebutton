@@ -1,0 +1,195 @@
+{
+  boolean needSecondCall=false;
+  String indent=secondCall ? "" : methodInfo.throwsException != null ? "        " : "    ";
+  String prefix="(";
+  String suffix=")";
+  int skipParameters=methodInfo.parameterTypes.length > 0 && methodInfo.parameterTypes[0] == Class.class ? 1 : 0;
+  boolean index=methodInfo.method.isAnnotationPresent(Index.class) || (methodInfo.pairedMethod != null && methodInfo.pairedMethod.isAnnotationPresent(Index.class));
+  if (methodInfo.deallocator) {
+    out.println(indent + "void* allocatedAddress = jlong_to_ptr(arg0);");
+    out.println(indent + "void (*deallocatorAddress)(void*) = (void(*)(void*))jlong_to_ptr(arg1);");
+    out.println(indent + "if (deallocatorAddress != NULL && allocatedAddress != NULL) {");
+    out.println(indent + "    (*deallocatorAddress)(allocatedAddress);");
+    out.println(indent + "}");
+    return;
+  }
+ else   if (methodInfo.valueGetter || methodInfo.valueSetter || methodInfo.memberGetter|| methodInfo.memberSetter) {
+    boolean wantsPointer=false;
+    int k=methodInfo.parameterTypes.length - 1;
+    if ((methodInfo.valueSetter || methodInfo.memberSetter) && !(by(methodInfo,k) instanceof ByRef) && adapterInformation(false,methodInfo,k) == null && methodInfo.parameterTypes[k] == String.class) {
+      out.print(indent + "strcpy((char*)");
+      wantsPointer=true;
+      prefix=", ";
+    }
+ else     if (k >= 1 && methodInfo.parameterTypes[0].isArray() && methodInfo.parameterTypes[0].getComponentType().isPrimitive() && (methodInfo.parameterTypes[1] == int.class || methodInfo.parameterTypes[1] == long.class)) {
+      out.print(indent + "memcpy(");
+      wantsPointer=true;
+      prefix=", ";
+      if (methodInfo.memberGetter || methodInfo.valueGetter) {
+        out.print("ptr0 + arg1, ");
+      }
+ else {
+        prefix+="ptr0 + arg1, ";
+      }
+      skipParameters=2;
+      suffix=" * sizeof(*ptr0)" + suffix;
+    }
+ else {
+      out.print(indent + returnPrefix);
+      prefix=methodInfo.valueGetter || methodInfo.memberGetter ? "" : " = ";
+      suffix="";
+    }
+    if (Modifier.isStatic(methodInfo.modifiers)) {
+      out.print(cppScopeName(methodInfo));
+    }
+ else     if (methodInfo.memberGetter || methodInfo.memberSetter) {
+      if (index) {
+        out.print("(*ptr)");
+        prefix="." + methodInfo.memberName[0] + prefix;
+      }
+ else {
+        out.print("ptr->" + methodInfo.memberName[0]);
+      }
+    }
+ else {
+      out.print(index ? "(*ptr)" : methodInfo.dim > 0 || wantsPointer ? "ptr" : "*ptr");
+    }
+  }
+ else   if (methodInfo.bufferGetter) {
+    out.print(indent + returnPrefix + "ptr");
+    prefix="";
+    suffix="";
+  }
+ else {
+    out.print(indent + returnPrefix);
+    if (FunctionPointer.class.isAssignableFrom(methodInfo.cls)) {
+      if (methodInfo.cls.isAnnotationPresent(Namespace.class)) {
+        out.print("(ptr0->*(ptr->ptr))");
+        skipParameters=1;
+      }
+ else {
+        out.print("(*ptr->ptr)");
+      }
+    }
+ else     if (methodInfo.allocator) {
+      String[] typeName=cppTypeName(methodInfo.cls);
+      String valueTypeName=valueTypeName(typeName);
+      if (virtualFunctions.containsKey(methodInfo.cls)) {
+        String subType="JavaCPP_" + mangle(valueTypeName);
+        valueTypeName=subType;
+      }
+      if (methodInfo.cls == Pointer.class) {
+        prefix="";
+        suffix="";
+      }
+ else {
+        out.print((noException(methodInfo.cls,methodInfo.method) ? "new (std::nothrow) " : "new ") + valueTypeName + typeName[1]);
+        if (methodInfo.arrayAllocator) {
+          prefix="[";
+          suffix="]";
+        }
+      }
+    }
+ else     if (Modifier.isStatic(methodInfo.modifiers)) {
+      out.print(cppScopeName(methodInfo));
+    }
+ else {
+      String name=methodInfo.memberName[0];
+      String[] typeName=cppTypeName(methodInfo.cls);
+      String valueTypeName=valueTypeName(typeName);
+      if (virtualFunctions.containsKey(methodInfo.cls) && !secondCall) {
+        String subType="JavaCPP_" + mangle(valueTypeName);
+        if (Modifier.isPublic(methodInfo.method.getModifiers())) {
+          out.print("(dynamic_cast<" + subType + "*>(ptr) != NULL ? ");
+          needSecondCall=true;
+        }
+        if (methodInfo.method.isAnnotationPresent(Virtual.class)) {
+          name="super_" + name;
+        }
+        out.print("((" + subType + "*)ptr)->"+ name);
+      }
+ else       if (index) {
+        out.print("(*ptr)");
+        prefix="." + name + prefix;
+      }
+ else {
+        String op=name.startsWith("operator") ? name.substring(8).trim() : "";
+        if (methodInfo.parameterTypes.length > 0 && (op.equals("=") || op.equals("+") || op.equals("-")|| op.equals("*")|| op.equals("/")|| op.equals("%")|| op.equals("==")|| op.equals("!=")|| op.equals("<")|| op.equals(">")|| op.equals("<=")|| op.equals(">="))) {
+          out.print("((*ptr)");
+          prefix=op + prefix;
+          suffix+=")";
+        }
+ else {
+          out.print("ptr->" + name);
+        }
+      }
+    }
+  }
+  for (int j=skipParameters; j <= methodInfo.parameterTypes.length; j++) {
+    if (j == skipParameters + methodInfo.dim) {
+      if (methodInfo.memberName.length > 1) {
+        out.print(methodInfo.memberName[1]);
+      }
+      out.print(prefix);
+      if (methodInfo.withEnv) {
+        out.print(Modifier.isStatic(methodInfo.modifiers) ? "env, cls" : "env, obj");
+        if (methodInfo.parameterTypes.length - skipParameters - methodInfo.dim > 0) {
+          out.print(", ");
+        }
+      }
+    }
+    if (j == methodInfo.parameterTypes.length) {
+      break;
+    }
+    if (j < skipParameters + methodInfo.dim) {
+      out.print("[");
+    }
+    Annotation passBy=by(methodInfo,j);
+    String cast=cast(methodInfo,j);
+    AdapterInformation adapterInfo=methodInfo.parameterRaw[j] ? null : adapterInformation(false,methodInfo,j);
+    if (("(void*)".equals(cast) || "(void *)".equals(cast)) && methodInfo.parameterTypes[j] == long.class) {
+      out.print("jlong_to_ptr(arg" + j + ")");
+    }
+ else     if (methodInfo.parameterTypes[j].isPrimitive()) {
+      out.print(cast + "arg" + j);
+    }
+ else     if (adapterInfo != null) {
+      cast=adapterInfo.cast.trim();
+      if (cast.length() > 0 && !cast.startsWith("(") && !cast.endsWith(")")) {
+        cast="(" + cast + ")";
+      }
+      out.print(cast + "adapter" + j);
+      j+=adapterInfo.argc - 1;
+    }
+ else     if (FunctionPointer.class.isAssignableFrom(methodInfo.parameterTypes[j]) && !(passBy instanceof ByVal || passBy instanceof ByRef)) {
+      out.print(cast + "(ptr" + j+ " == NULL ? NULL : "+ (passBy instanceof ByPtrPtr ? "&ptr" : "ptr")+ j+ "->ptr)");
+    }
+ else     if (passBy instanceof ByVal || (passBy instanceof ByRef && methodInfo.parameterTypes[j] != String.class)) {
+      String nullValue=passBy instanceof ByVal ? ((ByVal)passBy).nullValue() : passBy instanceof ByRef ? ((ByRef)passBy).nullValue() : "";
+      out.print((nullValue.length() > 0 ? "ptr" + j + " == NULL ? "+ nullValue+ " : " : "") + "*" + cast+ "ptr"+ j);
+    }
+ else     if (passBy instanceof ByPtrPtr) {
+      out.print(cast + "(arg" + j+ " == NULL ? NULL : &ptr"+ j+ ")");
+    }
+ else {
+      out.print(cast + "ptr" + j);
+    }
+    if (j < skipParameters + methodInfo.dim) {
+      out.print("]");
+    }
+ else     if (j < methodInfo.parameterTypes.length - 1) {
+      out.print(", ");
+    }
+  }
+  out.print(suffix);
+  if (methodInfo.memberName.length > 2) {
+    out.print(methodInfo.memberName[2]);
+  }
+  if (by(methodInfo.annotations) instanceof ByRef && methodInfo.returnType == String.class) {
+    out.print(");\n" + indent + "rptr = rstr.c_str()");
+  }
+  if (needSecondCall) {
+    call(methodInfo," : ",true);
+    out.print(")");
+  }
+}

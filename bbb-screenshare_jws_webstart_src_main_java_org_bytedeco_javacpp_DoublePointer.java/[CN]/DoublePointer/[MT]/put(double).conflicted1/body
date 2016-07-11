@@ -1,0 +1,3 @@
+{
+  return put(array,0,array.length);
+}

@@ -1,0 +1,4 @@
+{
+  propertyFile(filename == null ? null : new File(filename));
+  return this;
+}

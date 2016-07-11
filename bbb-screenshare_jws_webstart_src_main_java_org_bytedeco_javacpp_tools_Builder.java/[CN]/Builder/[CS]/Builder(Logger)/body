@@ -1,0 +1,7 @@
+{
+  this.logger=logger;
+  System.setProperty("org.bytedeco.javacpp.loadlibraries","false");
+  properties=Loader.loadProperties();
+  classScanner=new ClassScanner(logger,new ArrayList<Class>(),new UserClassLoader(Thread.currentThread().getContextClassLoader()));
+  compilerOptions=new ArrayList<String>();
+}

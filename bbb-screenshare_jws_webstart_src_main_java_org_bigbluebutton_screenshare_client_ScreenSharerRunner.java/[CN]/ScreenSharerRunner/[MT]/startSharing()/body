@@ -12,7 +12,7 @@ catch (  AWTException e) {
 catch (  InterruptedException e) {
     e.printStackTrace();
   }
-catch (  org.bigbluebutton.screenshare.client.javacv.BBBFrameRecorder.Exception e) {
+catch (  Exception e) {
     e.printStackTrace();
   }
 }

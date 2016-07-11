@@ -1,5 +1,0 @@
-{
-synchronized (org.bytedeco.javacpp.avcodec.class) {
-    releaseUnsafe();
-  }
-}

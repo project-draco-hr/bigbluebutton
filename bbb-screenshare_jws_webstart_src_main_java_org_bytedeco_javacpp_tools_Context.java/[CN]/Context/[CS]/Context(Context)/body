@@ -1,0 +1,11 @@
+{
+  namespace=c.namespace;
+  cppName=c.cppName;
+  javaName=c.javaName;
+  inaccessible=c.inaccessible;
+  variable=c.variable;
+  infoMap=c.infoMap;
+  templateMap=c.templateMap;
+  usingList=c.usingList;
+  namespaceMap=c.namespaceMap;
+}

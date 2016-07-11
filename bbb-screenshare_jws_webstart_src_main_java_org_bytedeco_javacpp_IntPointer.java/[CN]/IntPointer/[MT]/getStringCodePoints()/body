@@ -1,0 +1,20 @@
+{
+  if (limit > position) {
+    int[] array=new int[(int)Math.min(limit - position,Integer.MAX_VALUE)];
+    get(array);
+    return array;
+  }
+  int[] buffer=new int[16];
+  int i=0;
+  while ((buffer[i]=get(i)) != 0) {
+    i++;
+    if (i >= buffer.length) {
+      int[] newbuffer=new int[2 * buffer.length];
+      System.arraycopy(buffer,0,newbuffer,0,buffer.length);
+      buffer=newbuffer;
+    }
+  }
+  int[] newbuffer=new int[i];
+  System.arraycopy(buffer,0,newbuffer,0,i);
+  return newbuffer;
+}

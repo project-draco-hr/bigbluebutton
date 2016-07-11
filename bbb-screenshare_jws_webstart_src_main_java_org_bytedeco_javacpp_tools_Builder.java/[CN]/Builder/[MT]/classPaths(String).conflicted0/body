@@ -1,0 +1,4 @@
+{
+  classPaths(classPaths == null ? null : classPaths.split(File.pathSeparator));
+  return this;
+}

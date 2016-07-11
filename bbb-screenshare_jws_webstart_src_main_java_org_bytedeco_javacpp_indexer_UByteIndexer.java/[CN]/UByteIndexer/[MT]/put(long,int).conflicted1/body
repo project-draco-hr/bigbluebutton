@@ -1,0 +1,3 @@
+{
+  return put(i,b,0,b.length);
+}

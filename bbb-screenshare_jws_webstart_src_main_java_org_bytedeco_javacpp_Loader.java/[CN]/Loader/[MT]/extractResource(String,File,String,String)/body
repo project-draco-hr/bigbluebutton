@@ -1,0 +1,4 @@
+{
+  Class cls=getCallerClass(2);
+  return extractResource(cls,name,directory,prefix,suffix);
+}

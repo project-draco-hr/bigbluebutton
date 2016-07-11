@@ -1,0 +1,440 @@
+{
+  boolean typedef=tokens.get().match(Token.TYPEDEF);
+  boolean using=tokens.get().match(Token.USING);
+  Declarator dcl=new Declarator();
+  Type type=type(context);
+  if (type == null) {
+    return null;
+  }
+  int count=0, number=0;
+  for (Token token=tokens.get(); number < varNumber && !token.match(Token.EOF); token=tokens.next()) {
+    if (token.match('(','[','{')) {
+      count++;
+    }
+ else     if (token.match(')',']','}')) {
+      count--;
+    }
+ else     if (count > 0) {
+      continue;
+    }
+ else     if (token.match(',')) {
+      number++;
+    }
+ else     if (token.match(';')) {
+      tokens.next();
+      return null;
+    }
+  }
+  String precast=null, cast=type.cppName;
+  if (type.constPointer) {
+    dcl.constPointer=true;
+    cast+=" const";
+  }
+  if (varNumber == 0 && type.indirections > 0) {
+    dcl.indirections+=type.indirections;
+    for (int i=0; i < type.indirections; i++) {
+      cast+="*";
+    }
+  }
+  if (varNumber == 0 && type.reference) {
+    dcl.reference=true;
+    cast+="&";
+  }
+  for (Token token=tokens.get(); !token.match(Token.EOF); token=tokens.next()) {
+    if (token.match('*')) {
+      dcl.indirections++;
+    }
+ else     if (token.match('&')) {
+      dcl.reference=true;
+    }
+ else     if (token.match("&&")) {
+    }
+ else     if (token.match(Token.CONST,Token.CONSTEXPR)) {
+      dcl.constPointer=true;
+    }
+ else {
+      break;
+    }
+    cast+=token;
+  }
+  List<Attribute> attributes=new ArrayList<Attribute>();
+  if (type.attributes != null) {
+    attributes.addAll(Arrays.asList(type.attributes));
+  }
+  int backIndex=tokens.index;
+  Attribute attr=attribute();
+  while (attr != null && attr.annotation) {
+    type.annotations+=attr.javaName;
+    attributes.add(attr);
+    backIndex=tokens.index;
+    attr=attribute();
+  }
+  attr=null;
+  tokens.index=backIndex;
+  for (  Attribute a : attributes) {
+    if (a.arguments.length() > 0 && Character.isJavaIdentifierStart(a.arguments.charAt(0))) {
+      attr=a;
+      for (      char c : a.arguments.toCharArray()) {
+        if (!Character.isJavaIdentifierPart(c)) {
+          attr=null;
+          break;
+        }
+      }
+    }
+    if (attr != null) {
+      break;
+    }
+  }
+  count=0;
+  while (tokens.get().match('(') && tokens.get(1).match('(')) {
+    tokens.next();
+    count++;
+  }
+  int[] dims=new int[256];
+  int indirections2=0;
+  dcl.cppName="";
+  Info groupInfo=null;
+  Declaration definition=new Declaration();
+  if (tokens.get().match('(') || (typedef && tokens.get(1).match('('))) {
+    if (tokens.get().match('(')) {
+      tokens.next();
+    }
+    for (Token token=tokens.get(); !token.match(Token.EOF); token=tokens.next()) {
+      if (token.match(Token.IDENTIFIER,"::")) {
+        dcl.cppName+=token;
+      }
+ else       if (token.match('*')) {
+        indirections2++;
+        if (dcl.cppName.endsWith("::")) {
+          dcl.cppName=dcl.cppName.substring(0,dcl.cppName.length() - 2);
+          for (          String name : context.qualify(dcl.cppName)) {
+            if ((groupInfo=infoMap.getFirst(name,false)) != null) {
+              dcl.cppName=name;
+              break;
+            }
+ else             if (infoMap.getFirst(name) != null) {
+              dcl.cppName=name;
+            }
+          }
+          definition.text+="@Namespace(\"" + dcl.cppName + "\") ";
+        }
+ else         if (dcl.cppName.length() > 0) {
+          definition.text+="@Convention(\"" + dcl.cppName + "\") ";
+        }
+        dcl.cppName="";
+      }
+ else       if (token.match('[')) {
+        Token n=tokens.get(1);
+        dims[dcl.indices++]=n.match(Token.INTEGER) ? Integer.parseInt(n.value) : -1;
+      }
+ else       if (token.match('(',')')) {
+        break;
+      }
+    }
+    if (tokens.get().match(')')) {
+      tokens.next();
+    }
+  }
+ else   if (tokens.get().match(Token.IDENTIFIER)) {
+    for (Token token=tokens.get(); !token.match(Token.EOF); token=tokens.next()) {
+      if (token.match("::")) {
+        dcl.cppName+=token;
+      }
+ else       if (token.match(Token.OPERATOR)) {
+        dcl.operator=true;
+        if (!tokens.get(1).match(Token.IDENTIFIER) || tokens.get(1).match(Token.NEW,Token.DELETE)) {
+          dcl.cppName+="operator " + tokens.next();
+          for (token=tokens.next(); !token.match(Token.EOF,'('); token=tokens.next()) {
+            dcl.cppName+=token;
+          }
+          break;
+        }
+      }
+ else       if (token.match('<')) {
+        dcl.cppName+=token;
+        int count2=0;
+        for (token=tokens.next(); !token.match(Token.EOF); token=tokens.next()) {
+          dcl.cppName+=token;
+          if (count2 == 0 && token.match('>')) {
+            break;
+          }
+ else           if (token.match('<')) {
+            count2++;
+          }
+ else           if (token.match('>')) {
+            count2--;
+          }
+        }
+      }
+ else       if (token.match(Token.IDENTIFIER) && (dcl.cppName.length() == 0 || dcl.cppName.endsWith("::"))) {
+        dcl.cppName+=token;
+      }
+ else {
+        break;
+      }
+    }
+  }
+  if (dcl.cppName.length() == 0) {
+    dcl.cppName=defaultName;
+  }
+  boolean bracket=false;
+  for (Token token=tokens.get(); !token.match(Token.EOF); token=tokens.next()) {
+    if (!bracket && token.match('[')) {
+      bracket=true;
+      Token n=tokens.get(1);
+      dims[dcl.indices++]=n.match(Token.INTEGER) ? Integer.parseInt(n.value) : -1;
+    }
+ else     if (!bracket) {
+      break;
+    }
+ else     if (bracket && token.match(']')) {
+      bracket=false;
+    }
+  }
+  while (dcl.indices > 0 && indirections2 > 0) {
+    dims[dcl.indices++]=-1;
+    indirections2--;
+  }
+  if (arrayAsPointer && dcl.indices > 0) {
+    dcl.indirections++;
+    String dimCast="";
+    for (int i=1; i < dcl.indices; i++) {
+      if (dims[i] > 0) {
+        dimCast+="[" + dims[i] + "]";
+      }
+    }
+    if (!dimCast.isEmpty()) {
+      if (dims[0] != -1) {
+        cast+="(* /*[" + dims[0] + "]*/ )";
+      }
+ else {
+        cast+="(*)";
+      }
+      cast+=dimCast;
+    }
+ else {
+      cast+="*";
+    }
+  }
+  if (pointerAsArray && dcl.indirections > (type.anonymous ? 0 : 1)) {
+    dims[dcl.indices++]=-1;
+    dcl.indirections--;
+    cast=cast.substring(0,cast.length() - 1);
+  }
+  if (tokens.get().match(':')) {
+    type.annotations+="@NoOffset ";
+    tokens.next().expect(Token.INTEGER);
+    tokens.next().expect(',',';');
+  }
+  dcl.parameters=parameters(context,infoNumber,useDefaults);
+  int infoLength=1;
+  boolean valueType=false, needCast=arrayAsPointer && dcl.indices > 1, implicitConst=false;
+  String prefix=type.constValue && dcl.indirections < 2 && !dcl.reference ? "const " : "";
+  Info info=infoMap.getFirst(prefix + type.cppName,false);
+  if ((!typedef || dcl.parameters != null) && (info == null || (info.cppTypes != null && info.cppTypes.length > 0))) {
+    Type type2=type;
+    if (info != null) {
+      type2=new Parser(this,info.cppTypes[0]).type(context);
+    }
+    List<Info> infoList=infoMap.get(type2.cppName);
+    for (    Info info2 : infoList) {
+      if (type2.arguments != null && info2.annotations != null) {
+        type.constPointer=type2.arguments[0].constPointer;
+        type.constValue=type2.arguments[0].constValue;
+        type.simple=type2.arguments[0].simple;
+        type.indirections=type2.arguments[0].indirections;
+        type.reference=type2.arguments[0].reference;
+        type.annotations=type2.arguments[0].annotations;
+        type.cppName=type2.arguments[0].cppName;
+        type.javaName=type2.arguments[0].javaName;
+        dcl.indirections=1;
+        dcl.reference=false;
+        if (context.virtualize) {
+          needCast=true;
+          precast=cast;
+        }
+        cast=type.cppName + "*";
+        if (type.constValue && !cast.startsWith("const ")) {
+          cast="const " + cast;
+        }
+        if (type.constPointer && !cast.endsWith(" const")) {
+          cast=cast + " const";
+        }
+        if (type.indirections > 0) {
+          dcl.indirections+=type.indirections;
+          for (int i=0; i < type.indirections; i++) {
+            cast+="*";
+          }
+        }
+        if (type.reference) {
+          dcl.reference=true;
+          cast+="&";
+        }
+        for (        String s : info2.annotations) {
+          type.annotations+=s + " ";
+        }
+        info=infoMap.getFirst(type.cppName,false);
+        break;
+      }
+    }
+  }
+  if (!using && info != null) {
+    valueType=info.valueTypes != null && ((type.constValue && dcl.reference) || (dcl.indirections == 0 && !dcl.reference) || info.pointerTypes == null);
+    implicitConst=info.cppNames[0].startsWith("const ");
+    infoLength=valueType ? info.valueTypes.length : info.pointerTypes != null ? info.pointerTypes.length : 1;
+    dcl.infoNumber=infoNumber < 0 ? 0 : infoNumber % infoLength;
+    type.javaName=valueType ? info.valueTypes[dcl.infoNumber] : info.pointerTypes != null ? info.pointerTypes[dcl.infoNumber] : type.javaName;
+    type.javaName=context.shorten(type.javaName);
+    needCast|=info.cast && !type.cppName.equals(type.javaName);
+  }
+  if (!valueType) {
+    if (dcl.indirections == 0 && !dcl.reference) {
+      type.annotations+="@ByVal ";
+    }
+ else     if (dcl.indirections == 0 && dcl.reference) {
+      type.annotations+="@ByRef ";
+    }
+ else     if (dcl.indirections == 1 && dcl.reference) {
+      type.annotations+="@ByPtrRef ";
+    }
+ else     if (dcl.indirections == 2 && !dcl.reference && infoNumber >= 0) {
+      type.annotations+="@ByPtrPtr ";
+      needCast|=type.cppName.equals("void");
+    }
+ else     if (dcl.indirections >= 2) {
+      dcl.infoNumber+=infoLength;
+      needCast=true;
+      type.javaName="PointerPointer";
+      if (dcl.reference) {
+        type.annotations+="@ByRef ";
+      }
+    }
+    if (!needCast && !type.javaName.contains("@Cast")) {
+      if (type.constValue && !implicitConst && !type.constPointer) {
+        type.annotations="@Const " + type.annotations;
+      }
+ else       if (type.constPointer) {
+        type.annotations="@Const({" + type.constValue + ", "+ type.constPointer+ "}) "+ type.annotations;
+      }
+    }
+  }
+  if (needCast) {
+    if (dcl.indirections == 0 && dcl.reference) {
+      cast=cast.replace('&','*');
+    }
+    if (valueType && type.constValue && dcl.reference) {
+      cast=cast.substring(0,cast.length() - 1);
+    }
+    if (type.constValue && !cast.startsWith("const ")) {
+      cast="const " + cast;
+    }
+    if (precast != null) {
+      type.annotations="@Cast({\"" + cast + "\", \""+ precast+ "\"}) "+ type.annotations;
+    }
+ else     if (!valueType && dcl.indirections == 0 && !dcl.reference) {
+      type.annotations+="@Cast(\"" + cast + "*\") ";
+    }
+ else {
+      type.annotations="@Cast(\"" + cast + "\") "+ type.annotations;
+    }
+  }
+  dcl.javaName=attr != null ? attr.arguments : dcl.cppName;
+  for (  String name : context.qualify(dcl.cppName)) {
+    if ((info=infoMap.getFirst(name,false)) != null) {
+      dcl.cppName=name;
+      break;
+    }
+ else     if (infoMap.getFirst(name) != null) {
+      dcl.cppName=name;
+    }
+  }
+  String originalName=dcl.javaName;
+  if (attr == null && defaultName == null && info != null && info.javaNames != null && info.javaNames.length > 0 && (dcl.operator || !info.cppNames[0].contains("<") || (context.templateMap != null && context.templateMap.type == null))) {
+    dcl.javaName=info.javaNames[0];
+  }
+  if (info != null && info.annotations != null) {
+    for (    String s : info.annotations) {
+      type.annotations+=s + " ";
+    }
+  }
+  dcl.type=type;
+  dcl.signature=dcl.javaName;
+  if (dcl.parameters != null) {
+    dcl.infoNumber=Math.max(dcl.infoNumber,dcl.parameters.infoNumber);
+    if (indirections2 == 0 && !typedef) {
+      dcl.signature+=dcl.parameters.signature;
+    }
+ else {
+      String cppType="";
+      if (dcl.type != null) {
+        cppType+=dcl.type.cppName;
+        for (int i=0; i < dcl.indirections; i++) {
+          cppType+="*";
+        }
+        if (dcl.reference) {
+          cppType+="&";
+        }
+      }
+      cppType+=" (*)(";
+      String separator="";
+      for (      Declarator d : dcl.parameters.declarators) {
+        if (d != null) {
+          cppType+=separator + d.type.cppName;
+          for (int i=0; i < d.indirections; i++) {
+            cppType+="*";
+          }
+          if (d.reference) {
+            cppType+="&";
+          }
+          separator=", ";
+        }
+      }
+      info=infoMap.getFirst(cppType+=")");
+      String functionType=null;
+      if (originalName != null) {
+        functionType=Character.toUpperCase(originalName.charAt(0)) + originalName.substring(1);
+      }
+      if (info != null && info.pointerTypes != null && info.pointerTypes.length > 0) {
+        functionType=info.pointerTypes[0];
+      }
+ else       if (typedef) {
+        functionType=originalName;
+      }
+ else       if (dcl.parameters.signature.length() > 0) {
+        functionType+=dcl.parameters.signature;
+      }
+ else       if (!type.javaName.equals("void")) {
+        functionType=type.javaName + "_" + functionType;
+      }
+      if (info != null && info.annotations != null) {
+        for (        String s : info.annotations) {
+          definition.text+=s + " ";
+        }
+      }
+      definition.text+=(tokens.get().match(Token.CONST,Token.CONSTEXPR) ? "@Const " : "") + "public static class " + functionType+ " extends FunctionPointer {\n"+ "    static { Loader.load(); }\n"+ "    /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */\n"+ "    public    "+ functionType+ "(Pointer p) { super(p); }\n"+ (groupInfo != null ? "" : "    protected " + functionType + "() { allocate(); }\n"+ "    private native void allocate();\n")+ "    public native "+ type.annotations+ type.javaName+ " call"+ (groupInfo != null ? "(" + groupInfo.pointerTypes[0] + " o"+ (dcl.parameters.list.charAt(1) == ')' ? ")" : ", " + dcl.parameters.list.substring(1)) : dcl.parameters.list)+ ";\n"+ "}\n";
+      definition.signature=functionType;
+      definition.declarator=new Declarator();
+      definition.declarator.parameters=dcl.parameters;
+      dcl.definition=definition;
+      dcl.parameters=null;
+      type.annotations="";
+      type.javaName=functionType;
+    }
+  }
+  if (dcl.cppName != null) {
+    String localName=dcl.cppName;
+    if (context.namespace != null && localName.startsWith(context.namespace + "::")) {
+      localName=dcl.cppName.substring(context.namespace.length() + 2);
+    }
+    int template=localName.lastIndexOf('<');
+    String simpleName=template >= 0 ? localName.substring(0,template) : localName;
+    if (!simpleName.equals(dcl.javaName) && (!localName.contains("::") || context.javaName == null)) {
+      type.annotations+="@Name(\"" + localName + "\") ";
+    }
+  }
+  while (tokens.get().match(')') && count > 0) {
+    tokens.next();
+    count--;
+  }
+  return dcl;
+}

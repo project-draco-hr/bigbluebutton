@@ -1,0 +1,6 @@
+{
+  if (paths.isEmpty()) {
+    addPaths(System.getProperty("user.dir"));
+  }
+  return paths.toArray(new String[paths.size()]);
+}

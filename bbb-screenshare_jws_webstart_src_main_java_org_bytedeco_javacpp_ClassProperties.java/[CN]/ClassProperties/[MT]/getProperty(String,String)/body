@@ -1,0 +1,4 @@
+{
+  List<String> values=get(key);
+  return values.isEmpty() ? defaultValue : values.get(0);
+}

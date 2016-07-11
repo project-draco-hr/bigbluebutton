@@ -1,0 +1,3 @@
+{
+  return memberOffsets.get(type).get(member);
+}

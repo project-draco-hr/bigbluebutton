@@ -1,0 +1,6 @@
+{
+  for (int n=0; n < length; n++) {
+    m[offset + n]=get(i * strides[0] + j * strides[1] + n);
+  }
+  return this;
+}

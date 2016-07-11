@@ -1,0 +1,4 @@
+{
+  this.cppText=cppText;
+  return this;
+}

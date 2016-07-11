@@ -1,0 +1,3 @@
+BytePointer pointer
+long[] sizes
+long[] strides

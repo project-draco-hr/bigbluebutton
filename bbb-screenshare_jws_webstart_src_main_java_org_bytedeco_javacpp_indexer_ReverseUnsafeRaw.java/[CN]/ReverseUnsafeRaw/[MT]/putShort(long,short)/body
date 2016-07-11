@@ -1,0 +1,3 @@
+{
+  super.putShort(address,Short.reverseBytes(s));
+}

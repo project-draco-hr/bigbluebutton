@@ -1,0 +1,3 @@
+{
+  return buffer.get((int)i) & 0xFFFF;
+}

@@ -1,0 +1,3 @@
+{
+  super.putDouble(address,Long.reverseBytes(Double.doubleToRawLongBits(d)));
+}

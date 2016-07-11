@@ -1,0 +1,7 @@
+{
+  ClassProperties cp=new ClassProperties(properties);
+  for (  Class c : cls) {
+    cp.load(c,inherit);
+  }
+  return cp;
+}

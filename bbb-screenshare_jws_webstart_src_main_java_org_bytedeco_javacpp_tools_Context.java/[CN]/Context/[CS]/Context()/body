@@ -1,0 +1,4 @@
+{
+  usingList=new ArrayList<String>();
+  namespaceMap=new HashMap<String,String>();
+}

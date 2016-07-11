@@ -1,0 +1,177 @@
+{
+  List<String> basicContainers=new ArrayList<String>();
+  for (  Info info : infoMap.get("basic/containers")) {
+    basicContainers.addAll(Arrays.asList(info.cppTypes));
+  }
+  for (  String containerName : basicContainers) {
+    List<Info> infoList=leafInfoMap.get(containerName);
+    for (    Info info : infoList) {
+      Declaration decl=new Declaration();
+      if (info == null || info.skip || !info.define) {
+        continue;
+      }
+      int dim=containerName.startsWith("std::pair") ? 0 : 1;
+      boolean resizable;
+      Type containerType=new Parser(this,info.cppNames[0]).type(context), indexType, valueType, firstType=null, secondType=null;
+      if (containerType.arguments == null || containerType.arguments.length == 0 || containerType.arguments[0] == null || containerType.arguments[containerType.arguments.length - 1] == null) {
+        continue;
+      }
+ else       if (containerType.arguments.length > 1 && containerType.arguments[1].javaName.length() > 0) {
+        resizable=false;
+        indexType=containerType.arguments[0];
+        valueType=containerType.arguments[1];
+      }
+ else {
+        resizable=containerType.arguments.length == 1;
+        indexType=new Type();
+        indexType.annotations="@Cast(\"size_t\") ";
+        indexType.cppName="size_t";
+        indexType.javaName="long";
+        valueType=containerType.arguments[0];
+      }
+      if (valueType.javaName == null || valueType.javaName.length() == 0 || containerName.startsWith("std::bitset")) {
+        valueType.javaName="boolean";
+        resizable=false;
+      }
+      while (valueType.cppName.startsWith(containerName) && leafInfoMap.get(valueType.cppName,false).size() == 0) {
+        dim++;
+        valueType=valueType.arguments[0];
+      }
+      if (containerName.startsWith("std::pair")) {
+        firstType=containerType.arguments[0];
+        secondType=containerType.arguments[1];
+      }
+      if (valueType.cppName.startsWith("std::pair")) {
+        firstType=valueType.arguments[0];
+        secondType=valueType.arguments[1];
+      }
+      if (firstType != null && (firstType.annotations == null || firstType.annotations.length() == 0)) {
+        firstType.annotations=(firstType.constValue ? "@Const " : "") + (firstType.indirections == 0 && !firstType.value ? "@ByRef " : "");
+      }
+      if (secondType != null && (secondType.annotations == null || secondType.annotations.length() == 0)) {
+        secondType.annotations=(secondType.constValue ? "@Const " : "") + (secondType.indirections == 0 && !secondType.value ? "@ByRef " : "");
+      }
+      if (valueType != null && (valueType.annotations == null || valueType.annotations.length() == 0)) {
+        valueType.annotations=(valueType.constValue ? "@Const " : "") + (valueType.indirections == 0 && !valueType.value ? "@ByRef " : "");
+      }
+      Info valueInfo=infoMap.getFirst(valueType.cppName);
+      if (valueInfo != null && valueInfo.cast) {
+        String cast=valueType.cppName;
+        if (valueType.constValue && !cast.startsWith("const ")) {
+          cast="const " + cast;
+        }
+        if (valueType.constPointer && !cast.endsWith(" const")) {
+          cast=cast + " const";
+        }
+        if (valueType.indirections > 0) {
+          for (int i=0; i < valueType.indirections; i++) {
+            cast+="*";
+          }
+        }
+        if (valueType.reference) {
+          cast+="&";
+        }
+        valueType.annotations="@Cast(\"" + cast + "\") "+ valueType.annotations;
+      }
+      String arrayBrackets="";
+      for (int i=0; i < dim - 1; i++) {
+        arrayBrackets+="[]";
+      }
+      decl.text+=(dim == 0 ? "\n@NoOffset " : "\n") + "@Name(\"" + containerType.cppName+ "\") public static class "+ containerType.javaName+ " extends Pointer {\n"+ "    static { Loader.load(); }\n"+ "    /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */\n"+ "    public "+ containerType.javaName+ "(Pointer p) { super(p); }\n";
+      if (firstType != null && secondType != null) {
+        String[] firstNames=firstType.javaNames != null ? firstType.javaNames : new String[]{firstType.javaName};
+        String[] secondNames=secondType.javaNames != null ? secondType.javaNames : new String[]{secondType.javaName};
+        String brackets=arrayBrackets + (dim > 0 ? "[]" : "");
+        for (int n=0; n < firstNames.length || n < secondNames.length; n++) {
+          decl.text+="    public " + containerType.javaName + "("+ firstNames[Math.min(n,firstNames.length - 1)]+ brackets+ " firstValue, "+ secondNames[Math.min(n,secondNames.length - 1)]+ brackets+ " secondValue) "+ "{ this("+ (dim > 0 ? "Math.min(firstValue.length, secondValue.length)" : "")+ "); put(firstValue, secondValue); }\n";
+        }
+      }
+ else       if (resizable && firstType == null && secondType == null) {
+        for (        String javaName : valueType.javaNames != null ? valueType.javaNames : new String[]{valueType.javaName}) {
+          decl.text+="    public " + containerType.javaName + "("+ javaName+ arrayBrackets+ " ... array) { this(array.length); put(array); }\n";
+        }
+      }
+      decl.text+="    public " + containerType.javaName + "()       { allocate();  }\n"+ (!resizable ? "" : "    public " + containerType.javaName + "(long n) { allocate(n); }\n")+ "    private native void allocate();\n"+ (!resizable ? "" : "    private native void allocate(@Cast(\"size_t\") long n);\n")+ "    public native @Name(\"operator=\") @ByRef "+ containerType.javaName+ " put(@ByRef "+ containerType.javaName+ " x);\n\n";
+      for (int i=0; i < dim; i++) {
+        String indexAnnotation=i > 0 ? ("@Index" + (i > 1 ? "(" + i + ") " : " ")) : "";
+        String indices="", separator="";
+        for (int j=0; j < i; j++) {
+          indices+=separator + indexType.annotations + indexType.javaName+ " "+ (char)('i' + j);
+          separator=", ";
+        }
+        decl.text+="    public native " + indexAnnotation + "long size("+ indices+ ");\n"+ (!resizable ? "" : "    public native " + indexAnnotation + "void resize("+ indices+ separator+ "@Cast(\"size_t\") long n);\n");
+      }
+      String params="", separator="";
+      for (int i=0; i < dim; i++) {
+        params+=separator + indexType.annotations + indexType.javaName+ " "+ (char)('i' + i);
+        separator=", ";
+      }
+      if (firstType != null && secondType != null) {
+        String indexAnnotation=dim == 0 ? "@MemberGetter " : "@Index" + (dim > 1 ? "(" + dim + ") " : " ");
+        decl.text+="\n" + "    " + indexAnnotation + "public native "+ firstType.annotations+ firstType.javaName+ " first("+ params+ ");"+ " public native "+ containerType.javaName+ " first("+ params+ separator+ firstType.javaName+ " first);\n"+ "    "+ indexAnnotation+ "public native "+ secondType.annotations+ secondType.javaName+ " second("+ params+ "); "+ " public native "+ containerType.javaName+ " second("+ params+ separator+ secondType.javaName+ " second);\n";
+        for (int i=1; firstType.javaNames != null && i < firstType.javaNames.length; i++) {
+          decl.text+="    @MemberSetter @Index public native " + containerType.javaName + " first("+ params+ separator+ firstType.annotations+ firstType.javaNames[i]+ " first);\n";
+        }
+        for (int i=1; secondType.javaNames != null && i < secondType.javaNames.length; i++) {
+          decl.text+="    @MemberSetter @Index public native " + containerType.javaName + " second("+ params+ separator+ secondType.annotations+ secondType.javaNames[i]+ " second);\n";
+        }
+      }
+ else {
+        decl.text+="\n" + "    @Index public native " + valueType.annotations + valueType.javaName+ " get("+ params+ ");\n"+ "    public native "+ containerType.javaName+ " put("+ params+ separator+ valueType.javaName+ " value);\n";
+        for (int i=1; valueType.javaNames != null && i < valueType.javaNames.length; i++) {
+          decl.text+="    @ValueSetter @Index public native " + containerType.javaName + " put("+ params+ separator+ valueType.annotations+ valueType.javaNames[i]+ " value);\n";
+        }
+        if (containerType.arguments.length > 1 && containerType.arguments[1].javaName.length() > 0) {
+          decl.text+="\n" + "    public native @ByVal Iterator begin();\n" + "    public native @ByVal Iterator end();\n"+ "    @NoOffset @Name(\"iterator\") public static class Iterator extends Pointer {\n"+ "        public Iterator(Pointer p) { super(p); }\n"+ "        public Iterator() { }\n\n"+ "        public native @Name(\"operator++\") @ByRef Iterator increment();\n"+ "        public native @Name(\"operator==\") boolean equals(@ByRef Iterator it);\n"+ "        public native @Name(\"operator*().first\") @MemberGetter " + indexType.annotations + indexType.javaName+ " first();\n"+ "        public native @Name(\"operator*().second\") @MemberGetter "+ valueType.annotations+ valueType.javaName+ " second();\n"+ "    }\n";
+        }
+      }
+      if (firstType != null && secondType != null) {
+        String[] firstNames=firstType.javaNames != null ? firstType.javaNames : new String[]{firstType.javaName};
+        String[] secondNames=secondType.javaNames != null ? secondType.javaNames : new String[]{secondType.javaName};
+        String brackets=arrayBrackets + (dim > 0 ? "[]" : "");
+        for (int n=0; n < firstNames.length || n < secondNames.length; n++) {
+          decl.text+="\n" + "    public " + containerType.javaName + " put("+ firstNames[Math.min(n,firstNames.length - 1)]+ brackets+ " firstValue, "+ secondNames[Math.min(n,secondNames.length - 1)]+ brackets+ " secondValue) {\n";
+          String indent="        ", indices="", args="";
+          separator="";
+          for (int i=0; i < dim; i++) {
+            char c=(char)('i' + i);
+            decl.text+=indent + "for (int " + c+ " = 0; "+ c+ " < firstValue"+ indices+ ".length && "+ c+ " < secondValue"+ indices+ ".length; "+ c+ "++) {\n";
+            indent+="    ";
+            indices+="[" + c + "]";
+            args+=separator + c;
+            separator=", ";
+          }
+          decl.text+=indent + "first(" + args+ separator+ "firstValue"+ indices+ ");\n"+ indent+ "second("+ args+ separator+ "secondValue"+ indices+ ");\n";
+          for (int i=0; i < dim; i++) {
+            indent=indent.substring(4);
+            decl.text+=indent + "}\n";
+          }
+          decl.text+="        return this;\n" + "    }\n";
+        }
+      }
+ else       if (resizable && firstType == null && secondType == null) {
+        for (        String javaName : valueType.javaNames != null ? valueType.javaNames : new String[]{valueType.javaName}) {
+          decl.text+="\n" + "    public " + containerType.javaName + " put("+ javaName+ arrayBrackets+ " ... array) {\n";
+          String indent="        ", indices="", args="";
+          separator="";
+          for (int i=0; i < dim; i++) {
+            char c=(char)('i' + i);
+            decl.text+=indent + "if (size(" + args+ ") != array"+ indices+ ".length) { resize("+ args+ separator+ "array"+ indices+ ".length); }\n"+ indent+ "for (int "+ c+ " = 0; "+ c+ " < array"+ indices+ ".length; "+ c+ "++) {\n";
+            indent+="    ";
+            indices+="[" + c + "]";
+            args+=separator + c;
+            separator=", ";
+          }
+          decl.text+=indent + "put(" + args+ separator+ "array"+ indices+ ");\n";
+          for (int i=0; i < dim; i++) {
+            indent=indent.substring(4);
+            decl.text+=indent + "}\n";
+          }
+          decl.text+="        return this;\n" + "    }\n";
+        }
+      }
+      decl.text+="}\n";
+      declList.add(decl);
+    }
+  }
+}

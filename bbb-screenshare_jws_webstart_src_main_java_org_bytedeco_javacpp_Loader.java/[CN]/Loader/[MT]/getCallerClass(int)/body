@@ -1,0 +1,35 @@
+{
+  Class[] classContext=null;
+  try {
+    new SecurityManager(){
+      @Override public Class[] getClassContext(){
+        return super.getClassContext();
+      }
+    }
+.getClassContext();
+  }
+ catch (  NoSuchMethodError e) {
+    logger.error("No definition of this method : " + e.getMessage());
+  }
+  if (classContext != null) {
+    for (int j=0; j < classContext.length; j++) {
+      if (classContext[j] == Loader.class) {
+        return classContext[i + j];
+      }
+    }
+  }
+ else {
+    try {
+      StackTraceElement[] classNames=Thread.currentThread().getStackTrace();
+      for (int j=0; j < classNames.length; j++) {
+        if (Class.forName(classNames[j].getClassName()) == Loader.class) {
+          return Class.forName(classNames[i + j].getClassName());
+        }
+      }
+    }
+ catch (    ClassNotFoundException e) {
+      logger.error("No definition for the class found : " + e.getMessage());
+    }
+  }
+  return null;
+}

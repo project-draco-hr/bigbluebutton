@@ -1,3 +1,0 @@
-{
-  setFrameNumber((int)Math.round(timestamp * getFrameRate() / 1000000L));
-}

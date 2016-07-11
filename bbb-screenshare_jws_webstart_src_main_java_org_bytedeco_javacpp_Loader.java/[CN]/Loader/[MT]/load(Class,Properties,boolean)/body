@@ -1,0 +1,57 @@
+{
+  if (!isLoadLibraries() || cls == null) {
+    return null;
+  }
+  cls=getEnclosingClass(cls);
+  ClassProperties p=loadProperties(cls,properties,true);
+  List<String> targets=p.get("target");
+  if (targets.isEmpty()) {
+    if (p.getInheritedClasses() != null) {
+      for (      Class c : p.getInheritedClasses()) {
+        targets.add(c.getName());
+      }
+    }
+    targets.add(cls.getName());
+  }
+  Set<String> targetClasses=new HashSet<String>();
+  for (  String s : targets) {
+    targetClasses.add(s);
+  }
+  for (  String s : targetClasses) {
+    try {
+      Class.forName(s,true,cls.getClassLoader());
+    }
+ catch (    ClassNotFoundException ex) {
+      if (logger.isDebugEnabled()) {
+        logger.debug("load: Failed to load class " + s + ": "+ ex);
+      }
+      Error e=new NoClassDefFoundError(ex.toString());
+      e.initCause(ex);
+      throw e;
+    }
+  }
+  List<String> preloads=new ArrayList<String>();
+  preloads.addAll(p.get("platform.preload"));
+  UnsatisfiedLinkError preloadError=null;
+  for (  String preload : preloads) {
+    try {
+      URL[] urls=new URL[0];
+      loadLibrary(urls,preload);
+    }
+ catch (    UnsatisfiedLinkError e) {
+      preloadError=e;
+    }
+  }
+  try {
+    String library=p.getProperty("platform.library");
+    URL[] urls=new URL[0];
+    String loadedLibPath=loadLibrary(urls,library);
+    return loadedLibPath;
+  }
+ catch (  UnsatisfiedLinkError e) {
+    if (preloadError != null && e.getCause() == null) {
+      e.initCause(preloadError);
+    }
+    throw e;
+  }
+}

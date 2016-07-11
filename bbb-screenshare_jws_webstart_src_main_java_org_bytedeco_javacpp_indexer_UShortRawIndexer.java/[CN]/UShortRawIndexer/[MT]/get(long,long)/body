@@ -1,0 +1,3 @@
+{
+  return get(i * strides[0] + j) & 0xFFFF;
+}
