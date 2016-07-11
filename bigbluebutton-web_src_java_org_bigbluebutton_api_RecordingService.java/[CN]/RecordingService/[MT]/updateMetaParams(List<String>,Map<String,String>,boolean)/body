@@ -13,8 +13,18 @@
         Recording rec=getRecordingInfo(recFile);
         if (rec != null) {
           for (          Map.Entry<String,String> meta : metaParams.entrySet()) {
-            if (rec.containsMetadata(meta.getKey()) || forced) {
-              rec.updateMetadata(meta.getKey(),meta.getValue());
+            if (rec.containsMetadata(meta.getKey())) {
+              if (!"".equals(meta.getValue()) || !force) {
+                rec.updateMetadata(meta.getKey(),meta.getValue());
+              }
+ else {
+                rec.deleteMetadata(meta.getKey());
+              }
+            }
+ else {
+              if (force) {
+                rec.updateMetadata(meta.getKey(),meta.getValue());
+              }
             }
           }
           recordingServiceHelper.writeRecordingInfo(recFile.getAbsolutePath(),rec);
