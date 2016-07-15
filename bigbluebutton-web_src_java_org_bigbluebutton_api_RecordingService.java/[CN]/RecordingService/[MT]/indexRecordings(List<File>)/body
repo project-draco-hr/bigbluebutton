@@ -1,0 +1,9 @@
+{
+  Map<String,File> indexedRecs=new HashMap<String,File>();
+  Iterator<File> iterator=recs.iterator();
+  while (iterator.hasNext()) {
+    File rec=iterator.next();
+    indexedRecs.put(rec.getName(),rec);
+  }
+  return indexedRecs;
+}
