@@ -10,8 +10,10 @@
     chr.post();
     HttpURLConnection httpConnection=(HttpURLConnection)chr.connection;
     int status=httpConnection.getResponseCode();
+    System.out.println("******* sendUpdateMessage response code = [" + status + "] ***************");
   }
  catch (  IOException e) {
+    System.out.println("Exception in sendUpdateMessage");
     notifyNetworkStreamListener(ExitCode.NORMAL);
   }
 catch (  ConnectionException e) {
