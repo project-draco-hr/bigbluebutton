@@ -1,5 +1,3 @@
 {
   this.host=host;
-  System.out.println("Starting NetworkHttpStreamSender to " + host);
-  openConnection();
 }

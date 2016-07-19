@@ -1,11 +1,15 @@
 {
   if (message.getMessageType() == Message.MessageType.UPDATE) {
-    sendUpdateMessage((ShareUpdateMessage)message);
+    if (startSendingMessage) {
+      sendUpdateMessage((ShareUpdateMessage)message);
+    }
   }
  else   if (message.getMessageType() == Message.MessageType.STARTED) {
+    startSendingMessage=true;
     sendStartStreamMessage((ShareStartedMessage)message);
   }
  else   if (message.getMessageType() == Message.MessageType.STOPPED) {
     sendCaptureEndEvent();
+    startSendingMessage=false;
   }
 }
