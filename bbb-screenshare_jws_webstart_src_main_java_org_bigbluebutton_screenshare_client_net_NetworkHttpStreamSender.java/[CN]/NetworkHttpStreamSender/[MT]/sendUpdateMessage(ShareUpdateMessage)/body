@@ -1,6 +1,7 @@
 {
   ClientHttpRequest chr;
   try {
+    System.out.println(getTimeStamp() + " - Sending Update Sharing Event.");
     openConnection();
     chr=new ClientHttpRequest(conn);
     chr.setParameter(MEETING_ID,meetingId);
