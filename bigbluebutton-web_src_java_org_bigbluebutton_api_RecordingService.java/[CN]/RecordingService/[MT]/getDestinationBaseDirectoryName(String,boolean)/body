@@ -1,0 +1,9 @@
+{
+  String baseDir=null;
+  if (state.equals(Recording.STATE_PROCESSING) || state.equals(Recording.STATE_PROCESSED))   baseDir=processDir;
+ else   if (state.equals(Recording.STATE_PUBLISHED))   baseDir=publishedDir;
+ else   if (state.equals(Recording.STATE_UNPUBLISHED))   baseDir=unpublishedDir;
+ else   if (state.equals(Recording.STATE_DELETED))   baseDir=deletedDir;
+ else   if (forceDefault)   baseDir=publishedDir;
+  return baseDir;
+}

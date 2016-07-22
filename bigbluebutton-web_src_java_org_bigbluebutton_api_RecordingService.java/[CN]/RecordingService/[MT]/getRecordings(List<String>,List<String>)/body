@@ -8,8 +8,14 @@
   }
   for (  String recordID : recordIDs) {
     for (    Map.Entry<String,List<File>> entry : allDirectories.entrySet()) {
-      List<Recording> _recs=getRecordingsForPath(recordID,entry.getValue());
-      recs.addAll(_recs);
+      List<File> _recs=getRecordingsForPath(recordID,entry.getValue());
+      Iterator<File> iterator=_recs.iterator();
+      while (iterator.hasNext()) {
+        Recording r=getRecordingInfo(iterator.next());
+        if (r != null) {
+          recs.add(r);
+        }
+      }
     }
   }
   return recs;

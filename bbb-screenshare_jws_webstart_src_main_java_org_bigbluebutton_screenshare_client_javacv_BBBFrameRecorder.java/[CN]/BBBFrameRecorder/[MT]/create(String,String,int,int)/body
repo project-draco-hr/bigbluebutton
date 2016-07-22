@@ -1,3 +1,0 @@
-{
-  return create(get(className),String.class,filename,width,height);
-}
