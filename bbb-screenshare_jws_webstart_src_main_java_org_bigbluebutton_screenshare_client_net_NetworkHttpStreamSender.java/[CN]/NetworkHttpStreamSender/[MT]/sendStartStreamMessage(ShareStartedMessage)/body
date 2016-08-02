@@ -5,7 +5,8 @@
     sendCaptureStartEvent(message.width,message.height);
   }
  catch (  ConnectionException e) {
-    e.printStackTrace();
+    System.out.println("Exception in sendStartStreamMessage");
+    System.out.print(e.toString());
     notifyNetworkStreamListener(ExitCode.DESKSHARE_SERVICE_UNAVAILABLE);
   }
 }

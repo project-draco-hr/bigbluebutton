@@ -6,3 +6,4 @@ String viewerPassword
 String moderatorPassword
 Integer duration
 String defaultPresentationURL
+String recordType

@@ -11,6 +11,7 @@
     int status=httpConnection.getResponseCode();
   }
  catch (  IOException e) {
+    System.out.println("Exception in sendUpdateMessage");
     notifyNetworkStreamListener(ExitCode.NORMAL);
   }
 catch (  ConnectionException e) {
