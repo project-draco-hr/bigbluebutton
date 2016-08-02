@@ -1,0 +1,4 @@
+{
+  buffer.put((int)index(indices),(short)s);
+  return this;
+}

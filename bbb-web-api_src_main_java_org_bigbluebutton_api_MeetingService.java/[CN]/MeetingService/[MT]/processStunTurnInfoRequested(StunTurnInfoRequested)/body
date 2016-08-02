@@ -1,0 +1,13 @@
+{
+  Set<StunServer> stuns=stunTurnService.getStunServers();
+  log.info("\nhere are the stuns:");
+  for (  StunServer s : stuns) {
+    log.info("a stun: " + s.url);
+  }
+  Set<TurnEntry> turns=stunTurnService.getStunAndTurnServersFor(message.internalUserId);
+  log.info("\nhere are the (" + turns.size() + ") turns for internalUserId:"+ message.internalUserId);
+  for (  TurnEntry t : turns) {
+    log.info("a turn: " + t.url + "username/pass="+ t.username+ '/'+ t.password);
+  }
+  messagingService.sendStunTurnInfo(message.meetingId,message.internalUserId,stuns,turns);
+}

@@ -1,0 +1,3 @@
+char shortForm
+String longForm
+boolean wantsValue

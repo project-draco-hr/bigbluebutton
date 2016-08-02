@@ -1,0 +1,4 @@
+{
+  DeskShareHangUpCommand huCmd=new DeskShareHangUpCommand(voiceConfId,fsConferenceName,USER,timestamp);
+  queueMessage(huCmd);
+}

@@ -1,0 +1,3 @@
+{
+  send(new ShareUpdateMessage(meetingId,streamId));
+}

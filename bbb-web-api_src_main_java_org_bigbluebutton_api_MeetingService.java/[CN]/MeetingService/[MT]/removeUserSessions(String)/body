@@ -1,0 +1,10 @@
+{
+  Iterator<Map.Entry<String,UserSession>> iterator=sessions.entrySet().iterator();
+  while (iterator.hasNext()) {
+    Map.Entry<String,UserSession> entry=iterator.next();
+    UserSession userSession=entry.getValue();
+    if (userSession.meetingID.equals(meetingId)) {
+      iterator.remove();
+    }
+  }
+}

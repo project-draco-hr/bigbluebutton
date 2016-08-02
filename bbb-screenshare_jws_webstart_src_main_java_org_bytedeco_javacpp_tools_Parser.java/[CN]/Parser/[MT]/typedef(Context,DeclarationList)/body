@@ -1,0 +1,75 @@
+{
+  String spacing=tokens.get().spacing;
+  if (!tokens.get().match(Token.TYPEDEF)) {
+    return false;
+  }
+  Declaration decl=new Declaration();
+  Declarator dcl=declarator(context,null,0,false,0,true,false);
+  tokens.next();
+  String typeName=dcl.type.cppName, defName=dcl.cppName;
+  if (context.namespace != null) {
+    defName=context.namespace + "::" + defName;
+  }
+  if (dcl.definition != null) {
+    decl=dcl.definition;
+    if (dcl.javaName.length() > 0 && context.javaName != null) {
+      dcl.javaName=context.javaName + "." + dcl.javaName;
+    }
+    infoMap.put(new Info(defName).valueTypes(dcl.javaName).pointerTypes((dcl.indirections > 0 ? "@ByPtrPtr " : "") + dcl.javaName));
+  }
+ else   if (typeName.equals("void")) {
+    Info info=infoMap.getFirst(defName);
+    if (info == null || !info.skip) {
+      if (dcl.indirections > 0) {
+        decl.text+="@Namespace @Name(\"void\") ";
+        info=info != null ? new Info(info) : new Info(defName);
+        infoMap.put(info.valueTypes(dcl.javaName).pointerTypes("@ByPtrPtr " + dcl.javaName));
+      }
+ else       if (context.namespace != null && context.javaName == null) {
+        decl.text+="@Namespace(\"" + context.namespace + "\") ";
+      }
+      decl.text+="@Opaque public static class " + dcl.javaName + " extends Pointer {\n"+ "    /** Empty constructor. Calls {@code super((Pointer)null)}. */\n"+ "    public "+ dcl.javaName+ "() { super((Pointer)null); }\n"+ "    /** Pointer cast constructor. Invokes {@link Pointer#Pointer(Pointer)}. */\n"+ "    public "+ dcl.javaName+ "(Pointer p) { super(p); }\n"+ "}";
+    }
+  }
+ else {
+    Info info=infoMap.getFirst(typeName);
+    if (info == null || !info.skip) {
+      info=info != null ? new Info(info).cppNames(defName) : new Info(defName);
+      if (info.cppTypes == null && info.annotations != null) {
+        String s=typeName;
+        if (dcl.type.constValue && !s.startsWith("const ")) {
+          s="const " + s;
+        }
+        if (dcl.type.constPointer && !s.endsWith(" const")) {
+          s=s + " const";
+        }
+        if (dcl.type.indirections > 0) {
+          for (int i=0; i < dcl.type.indirections; i++) {
+            s+="*";
+          }
+        }
+        if (dcl.type.reference) {
+          s+="&";
+        }
+        info.cppNames(defName,s).cppTypes(s);
+      }
+      if (info.valueTypes == null && dcl.indirections > 0) {
+        info.valueTypes(info.pointerTypes != null ? info.pointerTypes : new String[]{typeName});
+        info.pointerTypes("PointerPointer");
+      }
+ else       if (info.pointerTypes == null) {
+        info.pointerTypes(typeName);
+      }
+      if (info.annotations == null) {
+        info.cast(!dcl.cppName.equals(info.pointerTypes[0]));
+      }
+      infoMap.put(info);
+    }
+  }
+  String comment=commentAfter();
+  decl.text=comment + decl.text;
+  declList.spacing=spacing;
+  declList.add(decl);
+  declList.spacing=null;
+  return true;
+}

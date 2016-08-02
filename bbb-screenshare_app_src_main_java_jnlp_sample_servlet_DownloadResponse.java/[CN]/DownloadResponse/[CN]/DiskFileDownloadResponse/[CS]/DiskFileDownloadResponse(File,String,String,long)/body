@@ -1,0 +1,4 @@
+{
+  super(mimeType,versionId,lastModified,file.getName());
+  _file=file;
+}

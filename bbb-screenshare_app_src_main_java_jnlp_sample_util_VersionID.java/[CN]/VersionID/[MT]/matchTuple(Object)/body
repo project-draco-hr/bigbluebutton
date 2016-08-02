@@ -1,0 +1,12 @@
+{
+  if (o == null || !(o instanceof VersionID))   return false;
+  VersionID vid=(VersionID)o;
+  String[] t1=normalize(_tuple,vid._tuple.length);
+  String[] t2=normalize(vid._tuple,_tuple.length);
+  for (int i=0; i < t1.length; i++) {
+    Object o1=getValueAsObject(t1[i]);
+    Object o2=getValueAsObject(t2[i]);
+    if (!o1.equals(o2))     return false;
+  }
+  return true;
+}

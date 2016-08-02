@@ -1,0 +1,7 @@
+{
+  pointerArray=(P[])new BytePointer[array.length];
+  for (int i=0; i < array.length; i++) {
+    pointerArray[i]=array[i] != null ? (P)new BytePointer(array[i]) : null;
+  }
+  return put(pointerArray);
+}

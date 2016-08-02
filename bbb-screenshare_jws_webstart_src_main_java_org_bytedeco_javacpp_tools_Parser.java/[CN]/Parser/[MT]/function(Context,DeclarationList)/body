@@ -1,0 +1,219 @@
+{
+  int backIndex=tokens.index;
+  String spacing=tokens.get().spacing;
+  String modifiers="public native ";
+  int startIndex=tokens.index;
+  Type type=type(context);
+  Parameters params=parameters(context,0,false);
+  Declarator dcl=new Declarator();
+  Declaration decl=new Declaration();
+  if (type.javaName.length() == 0) {
+    tokens.index=backIndex;
+    return false;
+  }
+ else   if (context.javaName == null && !type.operator && params != null) {
+    if (tokens.get().match(':')) {
+      for (Token token=tokens.next(); !token.match(Token.EOF); token=tokens.next()) {
+        if (token.match('{',';')) {
+          break;
+        }
+      }
+    }
+    if (tokens.get().match('{')) {
+      body();
+    }
+ else {
+      tokens.next();
+    }
+    decl.text=spacing;
+    decl.function=true;
+    declList.add(decl);
+    return true;
+  }
+ else   if ((type.constructor || type.destructor || type.operator) && params != null) {
+    dcl.type=type;
+    dcl.parameters=params;
+    dcl.cppName=type.cppName;
+    dcl.javaName=type.javaName.substring(type.javaName.lastIndexOf(' ') + 1);
+    if (type.operator) {
+      dcl.cppName="operator " + dcl.cppName;
+      dcl.javaName="as" + Character.toUpperCase(dcl.javaName.charAt(0)) + dcl.javaName.substring(1);
+    }
+    dcl.signature=dcl.javaName + params.signature;
+  }
+ else {
+    tokens.index=startIndex;
+    dcl=declarator(context,null,0,false,0,false,false);
+    type=dcl.type;
+  }
+  if (dcl.cppName == null || type.javaName.length() == 0 || dcl.parameters == null) {
+    tokens.index=backIndex;
+    return false;
+  }
+  int namespace=dcl.cppName.lastIndexOf("::");
+  if (context.namespace != null && namespace < 0) {
+    dcl.cppName=context.namespace + "::" + dcl.cppName;
+  }
+  Info info=null;
+  if (dcl.parameters != null) {
+    String name=dcl.cppName + "(", separator="";
+    for (    Declarator d : dcl.parameters.declarators) {
+      if (d != null) {
+        name+=separator + d.type.cppName;
+        for (int i=0; i < d.indirections; i++) {
+          name+="*";
+        }
+        if (d.reference) {
+          name+="&";
+        }
+        separator=", ";
+      }
+    }
+    info=infoMap.getFirst(name+=")");
+    if (info == null && !type.constructor && !type.destructor && !type.operator) {
+      infoMap.put(new Info(name));
+    }
+  }
+  if (info == null) {
+    info=infoMap.getFirst(dcl.cppName);
+  }
+  String localName=dcl.cppName;
+  if (localName.startsWith(context.namespace + "::")) {
+    localName=dcl.cppName.substring(context.namespace.length() + 2);
+  }
+  if (type.friend || (context.javaName == null && localName.contains("::")) || (info != null && info.skip)) {
+    for (Token token=tokens.get(); !token.match(Token.EOF); token=tokens.get()) {
+      if (attribute() == null) {
+        break;
+      }
+    }
+    if (tokens.get().match(':')) {
+      for (Token token=tokens.next(); !token.match(Token.EOF); token=tokens.next()) {
+        if (token.match('{',';')) {
+          break;
+        }
+      }
+    }
+    if (tokens.get().match('{')) {
+      body();
+    }
+ else {
+      tokens.next();
+    }
+    decl.text=spacing;
+    decl.function=true;
+    declList.add(decl);
+    return true;
+  }
+ else   if (type.staticMember || context.javaName == null) {
+    modifiers="public static native ";
+    if (tokens.isCFile) {
+      modifiers="@NoException " + modifiers;
+    }
+  }
+  List<Declarator> prevDcl=new ArrayList<Declarator>();
+  boolean first=true;
+  for (int n=-2; n < Integer.MAX_VALUE; n++) {
+    decl=new Declaration();
+    tokens.index=startIndex;
+    if ((type.constructor || type.destructor || type.operator) && params != null) {
+      type=type(context);
+      params=parameters(context,n / 2,n % 2 != 0);
+      dcl=new Declarator();
+      dcl.type=type;
+      dcl.parameters=params;
+      dcl.cppName=type.cppName;
+      dcl.javaName=type.javaName.substring(type.javaName.lastIndexOf(' ') + 1);
+      if (type.operator) {
+        dcl.cppName="operator " + dcl.cppName;
+        dcl.javaName="as" + Character.toUpperCase(dcl.javaName.charAt(0)) + dcl.javaName.substring(1);
+      }
+      dcl.signature=dcl.javaName + params.signature;
+      if (tokens.get().match(':')) {
+        for (Token token=tokens.next(); !token.match(Token.EOF); token=tokens.next()) {
+          if (token.match('{',';')) {
+            break;
+          }
+        }
+      }
+    }
+ else {
+      dcl=declarator(context,null,n / 2,n % 2 != 0,0,false,false);
+      type=dcl.type;
+      namespace=dcl.cppName.lastIndexOf("::");
+      if (context.namespace != null && namespace < 0) {
+        dcl.cppName=context.namespace + "::" + dcl.cppName;
+      }
+    }
+    for (Token token=tokens.get(); !token.match(Token.EOF); token=tokens.get()) {
+      decl.constMember|=token.match(Token.CONST,Token.CONSTEXPR);
+      if (attribute() == null) {
+        break;
+      }
+    }
+    if (tokens.get().match('{')) {
+      body();
+    }
+ else {
+      if (tokens.get().match('=')) {
+        Token token=tokens.next().expect("0",Token.DELETE,Token.DEFAULT);
+        if (token.match("0")) {
+          decl.abstractMember=true;
+        }
+ else         if (token.match(Token.DELETE)) {
+          decl.text=spacing;
+          declList.add(decl);
+          return true;
+        }
+        tokens.next().expect(';');
+      }
+      tokens.next();
+    }
+    if (type.virtual && context.virtualize) {
+      modifiers="@Virtual" + (decl.abstractMember ? "(true) " : " ") + (context.inaccessible ? "protected native " : "public native ");
+    }
+    decl.declarator=dcl;
+    if (context.namespace != null && context.javaName == null) {
+      decl.text+="@Namespace(\"" + context.namespace + "\") ";
+    }
+    if (type.constructor && params != null) {
+      decl.text+="public " + context.shorten(context.javaName) + dcl.parameters.list+ " { super((Pointer)null); allocate"+ params.names+ "; }\n"+ "private native void allocate"+ dcl.parameters.list+ ";\n";
+    }
+ else {
+      decl.text+=modifiers + type.annotations + context.shorten(type.javaName)+ " "+ dcl.javaName+ dcl.parameters.list+ ";\n";
+    }
+    decl.signature=dcl.signature;
+    if (info != null && info.javaText != null) {
+      if (first) {
+        decl.text=info.javaText;
+      }
+ else {
+        break;
+      }
+    }
+    String comment=commentAfter();
+    if (first) {
+      declList.spacing=spacing;
+      decl.text=comment + decl.text;
+    }
+    decl.function=true;
+    boolean found=false;
+    for (    Declarator d : prevDcl) {
+      found|=dcl.signature.equals(d.signature);
+    }
+    if (dcl.javaName.length() > 0 && !found && (!type.destructor || (info != null && info.javaText != null))) {
+      if (declList.add(decl)) {
+        first=false;
+      }
+      if (type.virtual && context.virtualize) {
+        break;
+      }
+    }
+ else     if (found && n / 2 > 0 && n % 2 == 0) {
+      break;
+    }
+    prevDcl.add(dcl);
+  }
+  declList.spacing=null;
+  return true;
+}

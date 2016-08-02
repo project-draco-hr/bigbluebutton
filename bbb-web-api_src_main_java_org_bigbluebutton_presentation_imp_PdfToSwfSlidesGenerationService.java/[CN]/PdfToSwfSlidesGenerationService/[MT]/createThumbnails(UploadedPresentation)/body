@@ -1,0 +1,4 @@
+{
+  notifier.sendCreatingThumbnailsUpdateMessage(pres);
+  thumbnailCreator.createThumbnails(pres);
+}

@@ -1,0 +1,4 @@
+{
+  this.flatten=flatten;
+  return this;
+}

@@ -1,0 +1,8 @@
+{
+  try {
+    return _resources.getString(key);
+  }
+ catch (  MissingResourceException mre) {
+    return "Missing resource for: " + key;
+  }
+}

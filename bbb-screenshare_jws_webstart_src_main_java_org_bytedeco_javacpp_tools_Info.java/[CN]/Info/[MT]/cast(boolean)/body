@@ -1,0 +1,4 @@
+{
+  this.cast=cast;
+  return this;
+}

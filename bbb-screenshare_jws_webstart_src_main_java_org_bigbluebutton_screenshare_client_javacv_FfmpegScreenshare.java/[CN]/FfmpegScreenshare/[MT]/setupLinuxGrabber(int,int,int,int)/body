@@ -1,0 +1,20 @@
+{
+  String inputDevice=":";
+  if (ssi.fullScreen) {
+    inputDevice=inputDevice.concat(new Integer(0).toString()).concat(".").concat(new Integer(0).toString());
+    inputDevice=inputDevice.concat("+").concat(new Integer(0).toString()).concat(",").concat(new Integer(0).toString());
+  }
+ else {
+    inputDevice=inputDevice.concat(new Integer(0).toString()).concat(".").concat(new Integer(0).toString());
+    inputDevice=inputDevice.concat("+").concat(new Integer(x).toString()).concat(",").concat(new Integer(y).toString());
+  }
+  String videoSize=new Integer(width).toString().concat("x").concat(new Integer(height).toString());
+  System.out.println("Setting up grabber for linux.");
+  System.out.println("input:" + inputDevice + " videoSize:"+ videoSize);
+  FFmpegFrameGrabber linuxGrabber=new FFmpegFrameGrabber(inputDevice);
+  linuxGrabber.setImageWidth(width);
+  linuxGrabber.setImageHeight(height);
+  linuxGrabber.setOption("video_size",videoSize);
+  linuxGrabber.setFormat("x11grab");
+  return linuxGrabber;
+}

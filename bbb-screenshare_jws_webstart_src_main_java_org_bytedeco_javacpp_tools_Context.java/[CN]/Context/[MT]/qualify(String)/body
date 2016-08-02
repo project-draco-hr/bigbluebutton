@@ -1,0 +1,43 @@
+{
+  if (cppName == null || cppName.length() == 0) {
+    return new String[0];
+  }
+  for (  Map.Entry<String,String> e : namespaceMap.entrySet()) {
+    cppName=cppName.replaceAll(e.getKey() + "::",e.getValue() + "::");
+  }
+  if (cppName.startsWith("::")) {
+    return new String[]{cppName.substring(2)};
+  }
+  List<String> names=new ArrayList<String>();
+  String ns=namespace != null ? namespace : "";
+  while (ns != null) {
+    String name=ns.length() > 0 ? ns + "::" + cppName : cppName;
+    TemplateMap map=templateMap;
+    while (map != null) {
+      if (name.equals(map.getName())) {
+        String args="<", separator="";
+        for (        Type t : map.values()) {
+          args+=separator + (t != null ? t.cppName : t);
+          separator=",";
+        }
+        names.add(name + args + (args.endsWith(">") ? " >" : ">"));
+        break;
+      }
+      map=map.parent;
+    }
+    names.add(name);
+    ns=infoMap.normalize(ns,false,true);
+    int i=ns.lastIndexOf("::");
+    ns=i >= 0 ? ns.substring(0,i) : ns.length() > 0 ? "" : null;
+  }
+  for (  String s : usingList) {
+    String prefix=infoMap.normalize(cppName,false,true);
+    int i=s.lastIndexOf("::") + 2;
+    ns=s.substring(0,i);
+    String suffix=s.substring(i);
+    if (suffix.length() == 0 || prefix.equals(suffix)) {
+      names.add(ns + cppName);
+    }
+  }
+  return names.toArray(new String[names.size()]);
+}

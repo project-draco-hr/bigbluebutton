@@ -1,0 +1,4 @@
+boolean doAudio
+boolean doVideo
+boolean processImage
+boolean keyFrames

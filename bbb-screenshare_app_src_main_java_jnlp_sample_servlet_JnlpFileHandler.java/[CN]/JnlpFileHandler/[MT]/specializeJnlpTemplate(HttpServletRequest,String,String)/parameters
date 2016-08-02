@@ -1,0 +1,3 @@
+HttpServletRequest request
+String respath
+String jnlpTemplate

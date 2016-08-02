@@ -1,0 +1,21 @@
+{
+  long start=System.currentTimeMillis();
+  try {
+    url=new URL(host + SCREEN_CAPTURE__URL);
+    if (host.toLowerCase().startsWith("https://")) {
+      conn=(HttpsURLConnection)url.openConnection();
+    }
+ else {
+      conn=url.openConnection();
+    }
+  }
+ catch (  MalformedURLException e) {
+    e.printStackTrace();
+    throw new ConnectionException("MalformedURLException " + url.toString());
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+    throw new ConnectionException("IOException while connecting to " + url.toString());
+  }
+  long end=System.currentTimeMillis();
+}

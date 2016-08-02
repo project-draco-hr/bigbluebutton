@@ -1,0 +1,4 @@
+{
+  this.position=((position % buffers.length) + buffers.length) % buffers.length;
+  return this;
+}

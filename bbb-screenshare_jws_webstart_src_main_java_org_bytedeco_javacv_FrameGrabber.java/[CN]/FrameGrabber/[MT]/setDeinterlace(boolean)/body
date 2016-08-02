@@ -1,0 +1,3 @@
+{
+  this.deinterlace=deinterlace;
+}

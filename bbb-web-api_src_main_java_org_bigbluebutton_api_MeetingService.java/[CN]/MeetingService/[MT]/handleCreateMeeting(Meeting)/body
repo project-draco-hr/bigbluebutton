@@ -1,0 +1,22 @@
+{
+  meetings.put(m.getInternalId(),m);
+  if (m.isRecord()) {
+    Map<String,String> metadata=new LinkedHashMap<String,String>();
+    metadata.putAll(m.getMetadata());
+    metadata.put("meetingId",m.getExternalId());
+    metadata.put("meetingName",m.getName());
+    messagingService.recordMeetingInfo(m.getInternalId(),metadata);
+  }
+  Map<String,Object> logData=new HashMap<String,Object>();
+  logData.put("meetingId",m.getInternalId());
+  logData.put("externalMeetingId",m.getExternalId());
+  logData.put("name",m.getName());
+  logData.put("duration",m.getDuration());
+  logData.put("record",m.isRecord());
+  logData.put("event","create_meeting");
+  logData.put("description","Create meeting.");
+  Gson gson=new Gson();
+  String logStr=gson.toJson(logData);
+  log.info("Create meeting: data={}",logStr);
+  messagingService.createMeeting(m.getInternalId(),m.getExternalId(),m.getName(),m.isRecord(),m.getTelVoice(),m.getDuration(),m.getAutoStartRecording(),m.getAllowStartStopRecording(),m.getModeratorPassword(),m.getViewerPassword(),m.getCreateTime(),formatPrettyDate(m.getCreateTime()),m.isBreakout());
+}

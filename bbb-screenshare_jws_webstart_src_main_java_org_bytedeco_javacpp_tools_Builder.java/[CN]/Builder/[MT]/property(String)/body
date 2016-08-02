@@ -1,0 +1,8 @@
+{
+  int equalIndex=keyValue.indexOf('=');
+  if (equalIndex < 0) {
+    equalIndex=keyValue.indexOf(':');
+  }
+  property(keyValue.substring(2,equalIndex),keyValue.substring(equalIndex + 1));
+  return this;
+}

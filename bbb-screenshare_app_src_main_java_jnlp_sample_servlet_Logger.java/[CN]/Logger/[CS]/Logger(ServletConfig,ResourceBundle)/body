@@ -1,0 +1,19 @@
+{
+  _resources=resources;
+  _servletContext=config.getServletContext();
+  _servletName=config.getServletName();
+  _logFile=config.getInitParameter(LOG_PATH);
+  if (_logFile != null) {
+    _logFile=_logFile.trim();
+    if (_logFile.length() == 0)     _logFile=null;
+  }
+  String level=config.getInitParameter(LOG_LEVEL);
+  if (level != null) {
+    level=level.trim().toUpperCase();
+    if (level.equals(NONE_KEY))     _loggingLevel=NONE;
+    if (level.equals(FATAL_KEY))     _loggingLevel=FATAL;
+    if (level.equals(WARNING_KEY))     _loggingLevel=WARNING;
+    if (level.equals(INFORMATIONAL_KEY))     _loggingLevel=INFORMATIONAL;
+    if (level.equals(DEBUG_KEY))     _loggingLevel=DEBUG;
+  }
+}

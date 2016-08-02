@@ -1,0 +1,23 @@
+{
+  String key=normalize(cppName,false,false);
+  List<Info> infoList=super.get(key);
+  if (infoList == null) {
+    key=normalize(cppName,true,false);
+    infoList=super.get(key);
+  }
+  if (infoList == null && partial) {
+    key=normalize(cppName,true,true);
+    infoList=super.get(key);
+  }
+  if (infoList == null) {
+    infoList=new ArrayList<Info>();
+  }
+  if (parent != null) {
+    List<Info> l=parent.get(cppName,partial);
+    if (l != null && l.size() > 0) {
+      infoList=new ArrayList<Info>(infoList);
+      infoList.addAll(l);
+    }
+  }
+  return infoList;
+}

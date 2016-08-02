@@ -1,0 +1,47 @@
+{
+  if (pkt != null && pkt2 != null) {
+    if (pkt2.size() > 0) {
+      av_free_packet(pkt);
+    }
+    pkt=pkt2=null;
+  }
+  if (image_ptr != null) {
+    for (int i=0; i < image_ptr.length; i++) {
+      av_free(image_ptr[i]);
+    }
+    image_ptr=null;
+  }
+  if (picture_rgb != null) {
+    av_frame_free(picture_rgb);
+    picture_rgb=null;
+  }
+  if (picture != null) {
+    av_frame_free(picture);
+    picture=null;
+  }
+  if (video_c != null) {
+    avcodec_close(video_c);
+    video_c=null;
+  }
+  if (samples_frame != null) {
+    av_frame_free(samples_frame);
+    samples_frame=null;
+  }
+  if (audio_c != null) {
+    avcodec_close(audio_c);
+    audio_c=null;
+  }
+  if (oc != null && !oc.isNull()) {
+    avformat_close_input(oc);
+    oc=null;
+  }
+  if (img_convert_ctx != null) {
+    sws_freeContext(img_convert_ctx);
+    img_convert_ctx=null;
+  }
+  got_frame=null;
+  frameGrabbed=false;
+  frame=null;
+  timestamp=0;
+  frameNumber=0;
+}

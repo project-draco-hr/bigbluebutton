@@ -1,0 +1,57 @@
+{
+  for (  Meeting m : meetings.values()) {
+    if (m.hasExpired(defaultMeetingExpireDuration)) {
+      Map<String,Object> logData=new HashMap<String,Object>();
+      logData.put("meetingId",m.getInternalId());
+      logData.put("externalMeetingId",m.getExternalId());
+      logData.put("name",m.getName());
+      logData.put("event","removing_meeting");
+      logData.put("description","Meeting has expired.");
+      Gson gson=new Gson();
+      String logStr=gson.toJson(logData);
+      log.info("Removing expired meeting: data={}",logStr);
+      processMeetingForRemoval(m);
+      continue;
+    }
+    if (m.isForciblyEnded()) {
+      Map<String,Object> logData=new HashMap<String,Object>();
+      logData.put("meetingId",m.getInternalId());
+      logData.put("externalMeetingId",m.getExternalId());
+      logData.put("name",m.getName());
+      logData.put("event","removing_meeting");
+      logData.put("description","Meeting forcefully ended.");
+      Gson gson=new Gson();
+      String logStr=gson.toJson(logData);
+      log.info("Removing ended meeting: data={}",logStr);
+      processMeetingForRemoval(m);
+      continue;
+    }
+    if (m.wasNeverJoined(defaultMeetingCreateJoinDuration)) {
+      Map<String,Object> logData=new HashMap<String,Object>();
+      logData.put("meetingId",m.getInternalId());
+      logData.put("externalMeetingId",m.getExternalId());
+      logData.put("name",m.getName());
+      logData.put("event","removing_meeting");
+      logData.put("description","Meeting has not been joined.");
+      Gson gson=new Gson();
+      String logStr=gson.toJson(logData);
+      log.info("Removing un-joined meeting: data={}",logStr);
+      destroyMeeting(m.getInternalId());
+      meetings.remove(m.getInternalId());
+      removeUserSessions(m.getInternalId());
+      continue;
+    }
+    if (m.hasExceededDuration()) {
+      Map<String,Object> logData=new HashMap<String,Object>();
+      logData.put("meetingId",m.getInternalId());
+      logData.put("externalMeetingId",m.getExternalId());
+      logData.put("name",m.getName());
+      logData.put("event","removing_meeting");
+      logData.put("description","Meeting exceeded duration.");
+      Gson gson=new Gson();
+      String logStr=gson.toJson(logData);
+      log.info("Removing past duration meeting: data={}",logStr);
+      endMeeting(m.getInternalId());
+    }
+  }
+}

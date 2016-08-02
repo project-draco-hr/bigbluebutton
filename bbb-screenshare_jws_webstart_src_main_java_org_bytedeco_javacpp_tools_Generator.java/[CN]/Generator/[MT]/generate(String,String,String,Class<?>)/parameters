@@ -1,0 +1,4 @@
+String sourceFilename
+String headerFilename
+String classPath
+Class<?> classes

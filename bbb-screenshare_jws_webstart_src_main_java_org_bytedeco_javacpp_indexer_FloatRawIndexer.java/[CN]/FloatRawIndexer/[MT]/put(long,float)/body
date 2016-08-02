@@ -1,0 +1,4 @@
+{
+  RAW.putFloat(base + checkIndex(i,size) * VALUE_BYTES,f);
+  return this;
+}

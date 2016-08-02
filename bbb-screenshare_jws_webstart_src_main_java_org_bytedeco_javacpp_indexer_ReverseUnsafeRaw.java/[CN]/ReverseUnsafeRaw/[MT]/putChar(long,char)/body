@@ -1,0 +1,3 @@
+{
+  super.putChar(address,Character.reverseBytes(c));
+}

@@ -1,0 +1,54 @@
+{
+  Properties p=new Properties();
+  p.put("platform",name);
+  p.put("platform.path.separator",File.pathSeparator);
+  String s=System.mapLibraryName("/");
+  int i=s.indexOf('/');
+  p.put("platform.library.prefix",s.substring(0,i));
+  p.put("platform.library.suffix",s.substring(i + 1));
+  name="properties/" + name + ".properties";
+  InputStream is=Loader.class.getResourceAsStream(name);
+  try {
+    try {
+      p.load(new InputStreamReader(is));
+    }
+ catch (    NoSuchMethodError e) {
+      p.load(is);
+    }
+  }
+ catch (  Exception e) {
+    name="properties/" + defaults + ".properties";
+    InputStream is2=Loader.class.getResourceAsStream(name);
+    try {
+      try {
+        p.load(new InputStreamReader(is2));
+      }
+ catch (      NoSuchMethodError e2) {
+        p.load(is2);
+      }
+    }
+ catch (    Exception e2) {
+    }
+ finally {
+      try {
+        if (is2 != null) {
+          is2.close();
+        }
+      }
+ catch (      IOException ex) {
+        logger.error("Unable to close resource : " + ex.getMessage());
+      }
+    }
+  }
+ finally {
+    try {
+      if (is != null) {
+        is.close();
+      }
+    }
+ catch (    IOException ex) {
+      logger.error("Unable to close resource : " + ex.getMessage());
+    }
+  }
+  return p;
+}

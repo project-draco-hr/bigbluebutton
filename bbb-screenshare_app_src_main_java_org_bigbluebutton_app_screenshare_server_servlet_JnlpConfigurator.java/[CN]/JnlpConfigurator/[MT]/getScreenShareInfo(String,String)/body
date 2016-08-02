@@ -1,0 +1,5 @@
+{
+  ScreenShareInfoResponse resp=screenShareApplication.getScreenShareInfo(meetingId,token);
+  if (resp.error != null)   return null;
+ else   return resp.info;
+}

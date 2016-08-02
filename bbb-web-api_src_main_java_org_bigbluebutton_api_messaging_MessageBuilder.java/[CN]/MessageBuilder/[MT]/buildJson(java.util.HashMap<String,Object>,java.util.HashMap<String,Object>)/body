@@ -1,0 +1,7 @@
+{
+  java.util.HashMap<String,java.util.HashMap<String,Object>> message=new java.util.HashMap<String,java.util.HashMap<String,Object>>();
+  message.put(Constants.HEADER,header);
+  message.put(Constants.PAYLOAD,payload);
+  Gson gson=new Gson();
+  return gson.toJson(message);
+}

@@ -1,0 +1,14 @@
+{
+  if (event instanceof ShareStartedEvent) {
+    sendShareStartedEvent((ShareStartedEvent)event);
+  }
+ else   if (event instanceof ShareStoppedEvent) {
+    sendShareStoppedEvent((ShareStoppedEvent)event);
+  }
+ else   if (event instanceof StreamStartedEvent) {
+    sendStreamStartedEvent((StreamStartedEvent)event);
+  }
+ else   if (event instanceof StreamStoppedEvent) {
+    sendStreamStoppedEvent((StreamStoppedEvent)event);
+  }
+}

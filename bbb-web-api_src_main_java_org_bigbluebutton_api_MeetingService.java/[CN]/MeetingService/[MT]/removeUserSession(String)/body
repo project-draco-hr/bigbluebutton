@@ -1,0 +1,7 @@
+{
+  UserSession user=sessions.remove(token);
+  if (user != null) {
+    log.debug("Found user [" + user.fullname + "] token=["+ token+ "] to meeting ["+ user.meetingID+ "]");
+  }
+  return user;
+}

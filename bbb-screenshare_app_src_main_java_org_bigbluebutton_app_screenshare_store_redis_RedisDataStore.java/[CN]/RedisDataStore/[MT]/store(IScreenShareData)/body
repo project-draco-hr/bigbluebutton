@@ -1,0 +1,6 @@
+{
+  if (dataToStore.size() > maxThreshold) {
+    log.warn("Queued number of data [{}] is greater than threshold [{}]",dataToStore.size(),maxThreshold);
+  }
+  dataToStore.add(data);
+}

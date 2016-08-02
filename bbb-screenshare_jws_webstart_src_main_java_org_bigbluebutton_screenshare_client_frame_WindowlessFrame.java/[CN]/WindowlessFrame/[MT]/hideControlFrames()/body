@@ -1,0 +1,6 @@
+{
+  System.out.println("Hiding controls ......................");
+  mToolbarFrame.setVisible(false);
+  mResizeBarFrame.setVisible(false);
+  mMoveBarFrame.setVisible(false);
+}

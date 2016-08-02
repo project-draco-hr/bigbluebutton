@@ -1,0 +1,6 @@
+{
+  if (_resourceBundle == null) {
+    _resourceBundle=ResourceBundle.getBundle("jnlp/sample/servlet/resources/strings");
+  }
+  return _resourceBundle;
+}

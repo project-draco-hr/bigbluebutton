@@ -1,0 +1,12 @@
+{
+synchronized (DeallocatorReference.class) {
+    if (head == null) {
+      head=this;
+    }
+ else {
+      next=head;
+      next.prev=head=this;
+    }
+    totalBytes+=bytes;
+  }
+}

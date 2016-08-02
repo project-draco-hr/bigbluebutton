@@ -1,0 +1,6 @@
+{
+  this.meetingId=meetingId;
+  this.userId=userId;
+  this.status=status;
+  this.value=value;
+}

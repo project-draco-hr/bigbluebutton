@@ -1,0 +1,3 @@
+{
+  logEvent(INFORMATIONAL,getString(key),(Throwable)null);
+}

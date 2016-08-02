@@ -1,0 +1,59 @@
+{
+  boolean addedClasses=false;
+  Builder builder=new Builder();
+  for (int i=0; i < args.length; i++) {
+    if ("-help".equals(args[i]) || "--help".equals(args[i])) {
+      printHelp();
+      System.exit(0);
+    }
+ else     if ("-classpath".equals(args[i]) || "-cp".equals(args[i]) || "-lib".equals(args[i])) {
+      builder.classPaths(args[++i]);
+    }
+ else     if ("-d".equals(args[i])) {
+      builder.outputDirectory(args[++i]);
+    }
+ else     if ("-o".equals(args[i])) {
+      builder.outputName(args[++i]);
+    }
+ else     if ("-cpp".equals(args[i]) || "-nocompile".equals(args[i])) {
+      builder.compile(false);
+    }
+ else     if ("-nodelete".equals(args[i])) {
+      builder.deleteJniFiles(false);
+    }
+ else     if ("-header".equals(args[i])) {
+      builder.header(true);
+    }
+ else     if ("-copylibs".equals(args[i])) {
+      builder.copyLibs(true);
+    }
+ else     if ("-jarprefix".equals(args[i])) {
+      builder.jarPrefix(args[++i]);
+    }
+ else     if ("-properties".equals(args[i])) {
+      builder.properties(args[++i]);
+    }
+ else     if ("-propertyfile".equals(args[i])) {
+      builder.propertyFile(args[++i]);
+    }
+ else     if (args[i].startsWith("-D")) {
+      builder.property(args[i]);
+    }
+ else     if ("-Xcompiler".equals(args[i])) {
+      builder.compilerOptions(args[++i]);
+    }
+ else     if (args[i].startsWith("-")) {
+      builder.logger.error("Invalid option \"" + args[i] + "\"");
+      printHelp();
+      System.exit(1);
+    }
+ else {
+      builder.classesOrPackages(args[i]);
+      addedClasses=true;
+    }
+  }
+  if (!addedClasses) {
+    builder.classesOrPackages((String[])null);
+  }
+  builder.build();
+}

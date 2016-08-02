@@ -1,0 +1,13 @@
+{
+  File[] files=dir.listFiles();
+  Arrays.sort(files);
+  for (  File f : files) {
+    String pathName=parentName == null ? f.getName() : parentName + f.getName();
+    if (f.isDirectory()) {
+      addMatchingDir(pathName + "/",f,packagePath,recursive);
+    }
+ else {
+      addMatchingFile(pathName,packagePath,recursive);
+    }
+  }
+}

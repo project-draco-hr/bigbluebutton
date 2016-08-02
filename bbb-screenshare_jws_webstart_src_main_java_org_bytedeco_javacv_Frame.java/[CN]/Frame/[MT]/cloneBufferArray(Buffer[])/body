@@ -1,0 +1,32 @@
+{
+  Buffer[] clonedBuffers=null;
+  int i;
+  short dataSize;
+  if (srcBuffers != null) {
+    clonedBuffers=new Buffer[srcBuffers.length];
+    for (i=0; i < srcBuffers.length; i++)     srcBuffers[i].rewind();
+    if (srcBuffers[0] instanceof ByteBuffer)     for (i=0; i < srcBuffers.length; i++)     clonedBuffers[i]=ByteBuffer.allocateDirect(srcBuffers[i].capacity()).put((ByteBuffer)srcBuffers[i]).rewind();
+ else     if (srcBuffers[0] instanceof ShortBuffer) {
+      dataSize=Short.SIZE >> 3;
+      for (i=0; i < srcBuffers.length; i++)       clonedBuffers[i]=ByteBuffer.allocateDirect(srcBuffers[i].capacity() * dataSize).order(ByteOrder.nativeOrder()).asShortBuffer().put((ShortBuffer)srcBuffers[i]).rewind();
+    }
+ else     if (srcBuffers[0] instanceof IntBuffer) {
+      dataSize=Integer.SIZE >> 3;
+      for (i=0; i < srcBuffers.length; i++)       clonedBuffers[i]=ByteBuffer.allocateDirect(srcBuffers[i].capacity() * dataSize).order(ByteOrder.nativeOrder()).asIntBuffer().put((IntBuffer)srcBuffers[i]).rewind();
+    }
+ else     if (srcBuffers[0] instanceof LongBuffer) {
+      dataSize=Long.SIZE >> 3;
+      for (i=0; i < srcBuffers.length; i++)       clonedBuffers[i]=ByteBuffer.allocateDirect(srcBuffers[i].capacity() * dataSize).order(ByteOrder.nativeOrder()).asLongBuffer().put((LongBuffer)srcBuffers[i]).rewind();
+    }
+ else     if (srcBuffers[0] instanceof FloatBuffer) {
+      dataSize=Float.SIZE >> 3;
+      for (i=0; i < srcBuffers.length; i++)       clonedBuffers[i]=ByteBuffer.allocateDirect(srcBuffers[i].capacity() * dataSize).order(ByteOrder.nativeOrder()).asFloatBuffer().put((FloatBuffer)srcBuffers[i]).rewind();
+    }
+ else     if (srcBuffers[0] instanceof DoubleBuffer) {
+      dataSize=Double.SIZE >> 3;
+      for (i=0; i < srcBuffers.length; i++)       clonedBuffers[i]=ByteBuffer.allocateDirect(srcBuffers[i].capacity() * dataSize).order(ByteOrder.nativeOrder()).asDoubleBuffer().put((DoubleBuffer)srcBuffers[i]).rewind();
+    }
+    for (i=0; i < srcBuffers.length; i++)     srcBuffers[i].rewind();
+  }
+  return clonedBuffers;
+}

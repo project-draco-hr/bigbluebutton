@@ -1,0 +1,88 @@
+{
+  for (Token token=tokens.get(); !token.match(Token.EOF,'}'); token=tokens.get()) {
+    if (token.match(Token.PRIVATE,Token.PROTECTED,Token.PUBLIC) && tokens.get(1).match(':')) {
+      context.inaccessible=!token.match(Token.PUBLIC);
+      tokens.next();
+      tokens.next();
+      continue;
+    }
+    Context ctx=context;
+    String comment=commentBefore();
+    token=tokens.get();
+    String spacing=token.spacing;
+    TemplateMap map=template(ctx);
+    if (map != null) {
+      token=tokens.get();
+      token.spacing=spacing;
+      ctx=new Context(ctx);
+      ctx.templateMap=map;
+    }
+    Declaration decl=new Declaration();
+    if (comment != null && comment.length() > 0) {
+      decl.inaccessible=ctx.inaccessible;
+      decl.text=comment;
+      declList.add(decl);
+    }
+    int startIndex=tokens.index;
+    declList.infoMap=infoMap;
+    declList.context=ctx;
+    declList.templateMap=map;
+    declList.infoIterator=null;
+    declList.spacing=null;
+    do {
+      if (map != null && declList.infoIterator != null && declList.infoIterator.hasNext()) {
+        Info info=declList.infoIterator.next();
+        if (info == null) {
+          continue;
+        }
+        Type type=new Parser(this,info.cppNames[0]).type(context);
+        if (type.arguments == null) {
+          continue;
+        }
+        int count=0;
+        for (        Map.Entry<String,Type> e : map.entrySet()) {
+          if (count < type.arguments.length) {
+            Type t=type.arguments[count++];
+            String s=t.cppName;
+            if (t.constValue && !s.startsWith("const ")) {
+              s="const " + s;
+            }
+            if (t.constPointer && !s.endsWith(" const")) {
+              s=s + " const";
+            }
+            if (t.indirections > 0) {
+              for (int i=0; i < t.indirections; i++) {
+                s+="*";
+              }
+            }
+            if (t.reference) {
+              s+="&";
+            }
+            t.cppName=s;
+            e.setValue(t);
+          }
+        }
+        tokens.index=startIndex;
+      }
+      if (!macro(ctx,declList) && !extern(ctx,declList) && !namespace(ctx,declList)&& !enumeration(ctx,declList)&& !group(ctx,declList)&& !typedef(ctx,declList)&& !using(ctx,declList)&& !function(ctx,declList)&& !variable(ctx,declList)) {
+        spacing=tokens.get().spacing;
+        if (attribute() != null) {
+          tokens.get().spacing=spacing;
+        }
+ else {
+          throw new ParserException(token.file + ":" + token.lineNumber+ ": Could not parse declaration at '"+ token+ "'");
+        }
+      }
+      while (tokens.get().match(';') && !tokens.get().match(Token.EOF)) {
+        tokens.next();
+      }
+    }
+ while (declList.infoIterator != null && declList.infoIterator.hasNext());
+  }
+  String comment=commentBefore();
+  Declaration decl=new Declaration();
+  if (comment != null && comment.length() > 0) {
+    decl.text=comment;
+    declList.add(decl);
+  }
+}

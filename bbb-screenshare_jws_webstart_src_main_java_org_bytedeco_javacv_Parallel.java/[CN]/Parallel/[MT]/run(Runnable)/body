@@ -1,0 +1,27 @@
+{
+  if (runnables.length == 1) {
+    runnables[0].run();
+    return;
+  }
+  Future[] futures=new Future[runnables.length];
+  for (int i=0; i < runnables.length; i++) {
+    futures[i]=threadPool.submit(runnables[i]);
+  }
+  Throwable error=null;
+  try {
+    for (    Future f : futures) {
+      if (!f.isDone()) {
+        f.get();
+      }
+    }
+  }
+ catch (  Throwable t) {
+    error=t;
+  }
+  if (error != null) {
+    for (    Future f : futures) {
+      f.cancel(true);
+    }
+    throw new RuntimeException(error);
+  }
+}

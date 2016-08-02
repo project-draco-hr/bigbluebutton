@@ -1,0 +1,5 @@
+{
+  for (  FrameGrabber f : frameGrabbers) {
+    f.release();
+  }
+}

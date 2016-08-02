@@ -1,0 +1,10 @@
+{
+  try {
+    System.out.println(NAME + "NetworkException - " + reason.getExitCode());
+    stop();
+    notifyNetworkConnectionListener(reason);
+  }
+ catch (  ConnectionException e) {
+    e.printStackTrace();
+  }
+}

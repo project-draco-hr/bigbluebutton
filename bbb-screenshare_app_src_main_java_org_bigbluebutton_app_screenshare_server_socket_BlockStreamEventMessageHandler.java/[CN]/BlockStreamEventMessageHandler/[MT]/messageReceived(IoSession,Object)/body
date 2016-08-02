@@ -1,0 +1,19 @@
+{
+  if (message instanceof CaptureStartMessage) {
+    System.out.println("Got CaptureStartBlockEvent");
+    CaptureStartMessage event=(CaptureStartMessage)message;
+  }
+ else   if (message instanceof CaptureUpdateMessage) {
+    CaptureUpdateMessage event=(CaptureUpdateMessage)message;
+    if (app.isSharingStopped(event.getRoom(),event.getRoom())) {
+      log.info("Sharing has stopped for meeting [" + event.getRoom() + "]. Closing connection.");
+      session.close(true);
+    }
+  }
+ else   if (message instanceof CaptureEndMessage) {
+    CaptureEndMessage event=(CaptureEndMessage)message;
+  }
+ else   if (message instanceof MouseLocationMessage) {
+    MouseLocationMessage event=(MouseLocationMessage)message;
+  }
+}

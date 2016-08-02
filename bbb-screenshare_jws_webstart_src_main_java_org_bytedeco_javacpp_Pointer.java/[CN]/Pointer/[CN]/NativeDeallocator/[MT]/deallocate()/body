@@ -1,0 +1,6 @@
+{
+  if (ownerAddress != 0 && deallocatorAddress != 0) {
+    deallocate(ownerAddress,deallocatorAddress);
+    ownerAddress=deallocatorAddress=0;
+  }
+}

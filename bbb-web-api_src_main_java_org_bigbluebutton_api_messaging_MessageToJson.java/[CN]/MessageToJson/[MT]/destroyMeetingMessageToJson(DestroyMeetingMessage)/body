@@ -1,0 +1,6 @@
+{
+  HashMap<String,Object> payload=new HashMap<String,Object>();
+  payload.put(Constants.MEETING_ID,msg.meetingId);
+  java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(DestroyMeetingMessage.DESTROY_MEETING_REQUEST_EVENT,DestroyMeetingMessage.VERSION,null);
+  return MessageBuilder.buildJson(header,payload);
+}

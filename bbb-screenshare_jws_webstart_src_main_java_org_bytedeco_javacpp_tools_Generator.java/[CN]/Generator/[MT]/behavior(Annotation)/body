@@ -1,0 +1,14 @@
+{
+  Annotation behaviorAnnotation=null;
+  for (  Annotation a : annotations) {
+    if (a instanceof Function || a instanceof Allocator || a instanceof ArrayAllocator|| a instanceof ValueSetter|| a instanceof ValueGetter|| a instanceof MemberGetter|| a instanceof MemberSetter) {
+      if (behaviorAnnotation != null) {
+        logger.warn("Behavior annotation \"" + behaviorAnnotation + "\" already found. Ignoring superfluous annotation \""+ a+ "\".");
+      }
+ else {
+        behaviorAnnotation=a;
+      }
+    }
+  }
+  return behaviorAnnotation;
+}

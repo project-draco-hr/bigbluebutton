@@ -1,0 +1,32 @@
+{
+  InputStream is=jarDiff.getInputStream(jarDiff.getEntry(INDEX_NAME));
+  if (is == null) {
+    handleException("jardiff.error.noindex",null);
+  }
+  LineNumberReader indexReader=new LineNumberReader(new InputStreamReader(is,"UTF-8"));
+  String line=indexReader.readLine();
+  if (line == null || !line.equals(VERSION_HEADER)) {
+    handleException("jardiff.error.badheader",line);
+  }
+  while ((line=indexReader.readLine()) != null) {
+    if (line.startsWith(REMOVE_COMMAND)) {
+      List sub=getSubpaths(line.substring(REMOVE_COMMAND.length()));
+      if (sub.size() != 1) {
+        handleException("jardiff.error.badremove",line);
+      }
+      ignoreSet.add(sub.get(0));
+    }
+ else     if (line.startsWith(MOVE_COMMAND)) {
+      List sub=getSubpaths(line.substring(MOVE_COMMAND.length()));
+      if (sub.size() != 2) {
+        handleException("jardiff.error.badmove",line);
+      }
+      if (renameMap.put(sub.get(1),sub.get(0)) != null) {
+        handleException("jardiff.error.badmove",line);
+      }
+    }
+ else     if (line.length() > 0) {
+      handleException("jardiff.error.badcommand",line);
+    }
+  }
+}

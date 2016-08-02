@@ -29,7 +29,7 @@
  else         if (CreateBreakoutRoomRequest.NAME.equals(messageName)) {
           CreateBreakoutRoomRequest msg=new Gson().fromJson(message,CreateBreakoutRoomRequest.class);
           for (          MessageListener listener : listeners) {
-            listener.handle(new CreateBreakoutRoom(msg.payload.breakoutId,msg.payload.parentId,msg.payload.name,msg.payload.voiceConfId,msg.payload.viewerPassword,msg.payload.moderatorPassword,msg.payload.durationInMinutes,msg.payload.defaultPresentationURL));
+            listener.handle(new CreateBreakoutRoom(msg.payload.breakoutId,msg.payload.parentId,msg.payload.name,msg.payload.voiceConfId,msg.payload.viewerPassword,msg.payload.moderatorPassword,msg.payload.durationInMinutes,msg.payload.defaultPresentationURL,msg.payload.recordType));
           }
         }
  else         if (EndBreakoutRoomRequest.NAME.equals(messageName)) {
@@ -77,8 +77,9 @@
           String externuserid=user.get("extern_userid").getAsString();
           String username=user.get("name").getAsString();
           String role=user.get("role").getAsString();
+          String avatarURL=user.get("avatarURL").getAsString();
           for (          MessageListener listener : listeners) {
-            listener.handle(new UserJoined(meetingId,userid,externuserid,username,role));
+            listener.handle(new UserJoined(meetingId,userid,externuserid,username,role,avatarURL));
           }
         }
  else         if (MessagingConstants.USER_STATUS_CHANGE_EVENT.equalsIgnoreCase(messageName)) {
@@ -136,6 +137,13 @@
           String stream=payload.get("stream").getAsString();
           for (          MessageListener listener : listeners) {
             listener.handle(new UserUnsharedWebcam(meetingId,userid,stream));
+          }
+        }
+ else         if (SendStunTurnInfoRequestMessage.SEND_STUN_TURN_INFO_REQUEST_MESSAGE.equalsIgnoreCase(messageName)) {
+          String meetingId=payload.get(Constants.MEETING_ID).getAsString();
+          String requesterId=payload.get(Constants.REQUESTER_ID).getAsString();
+          for (          MessageListener listener : listeners) {
+            listener.handle(new StunTurnInfoRequested(meetingId,requesterId));
           }
         }
       }

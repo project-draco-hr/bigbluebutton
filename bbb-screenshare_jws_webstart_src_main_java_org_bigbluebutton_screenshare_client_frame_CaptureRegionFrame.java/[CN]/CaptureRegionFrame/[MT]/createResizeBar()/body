@@ -1,0 +1,16 @@
+{
+  final JPanel resizePanel=new JPanel();
+  resizePanel.setPreferredSize(new Dimension(RESIZE_BAR_SIZE,RESIZE_BAR_SIZE));
+  resizePanel.setBorder(BorderFactory.createLineBorder(Color.RED));
+  resizePanel.setLayout(new GridBagLayout());
+  BufferedImage resizeCursorImage=null;
+  try {
+    resizeCursorImage=ImageIO.read(getClass().getResourceAsStream("/images/resize-cursor.png"));
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+  JLabel resizePicLabel=new JLabel(new ImageIcon(resizeCursorImage));
+  resizePanel.add(resizePicLabel);
+  return resizePanel;
+}

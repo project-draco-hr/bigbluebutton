@@ -1,4 +1,0 @@
-{
-  if (receiver != null)   receiver.stop();
-  System.exit(0);
-}

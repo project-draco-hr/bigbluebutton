@@ -1,0 +1,3 @@
+IntBuffer buffer
+long[] sizes
+long[] strides

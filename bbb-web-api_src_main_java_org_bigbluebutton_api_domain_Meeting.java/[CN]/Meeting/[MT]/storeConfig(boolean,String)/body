@@ -1,0 +1,11 @@
+{
+  String token=RandomStringUtils.randomAlphanumeric(8);
+  while (configs.containsKey(token)) {
+    token=RandomStringUtils.randomAlphanumeric(8);
+  }
+  configs.put(token,new Config(token,System.currentTimeMillis(),config));
+  if (defaultConfig) {
+    defaultConfigToken=token;
+  }
+  return token;
+}

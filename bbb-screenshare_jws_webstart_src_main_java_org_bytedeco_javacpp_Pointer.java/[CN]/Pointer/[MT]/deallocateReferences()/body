@@ -1,0 +1,7 @@
+{
+  DeallocatorReference r;
+  while (referenceQueue != null && (r=(DeallocatorReference)referenceQueue.poll()) != null) {
+    r.clear();
+    r.remove();
+  }
+}

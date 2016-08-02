@@ -1,0 +1,28 @@
+{
+  String[] typeName=cppCastTypeName(type,annotations);
+  String prefix=typeName[0];
+  String suffix=typeName[1];
+  boolean casted=false;
+  for (  Annotation a : annotations) {
+    if ((a instanceof Cast && ((Cast)a).value()[0].length() > 0) || a instanceof Const) {
+      casted=true;
+      break;
+    }
+  }
+  Annotation by=by(annotations);
+  if (by instanceof ByVal) {
+    prefix=constValueTypeName(typeName);
+  }
+ else   if (by instanceof ByRef) {
+    prefix=constValueTypeName(typeName) + "&";
+  }
+ else   if (by instanceof ByPtrPtr && !casted) {
+    prefix=prefix + "*";
+  }
+ else   if (by instanceof ByPtrRef) {
+    prefix=prefix + "&";
+  }
+  typeName[0]=prefix;
+  typeName[1]=suffix;
+  return typeName;
+}

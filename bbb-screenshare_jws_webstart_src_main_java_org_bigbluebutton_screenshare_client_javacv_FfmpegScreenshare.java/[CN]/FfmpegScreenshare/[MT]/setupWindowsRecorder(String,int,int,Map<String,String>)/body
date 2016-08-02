@@ -1,0 +1,26 @@
+{
+  FFmpegFrameRecorder winRecorder=new FFmpegFrameRecorder(url,grabber.getImageWidth(),grabber.getImageHeight());
+  Double frameRate=parseFrameRate(codecOptions.get(FRAMERATE_KEY));
+  winRecorder.setFrameRate(frameRate);
+  int keyFrameInterval=parseKeyFrameInterval(codecOptions.get(KEYFRAMEINTERVAL_KEY));
+  int gopSize=frameRate.intValue() * keyFrameInterval;
+  winRecorder.setGopSize(gopSize);
+  System.out.println("==== CODEC OPTIONS =====");
+  for (  Map.Entry<String,String> entry : codecOptions.entrySet()) {
+    System.out.println("Key = " + entry.getKey() + ", Value = "+ entry.getValue());
+    if (entry.getKey().equals(FRAMERATE_KEY) || entry.getKey().equals(KEYFRAMEINTERVAL_KEY)) {
+    }
+ else {
+      winRecorder.setVideoOption(entry.getKey(),entry.getValue());
+    }
+  }
+  System.out.println("==== END CODEC OPTIONS =====");
+  winRecorder.setFormat("flv");
+  winRecorder.setVideoCodec(AV_CODEC_ID_H264);
+  winRecorder.setPixelFormat(AV_PIX_FMT_YUV420P);
+  winRecorder.setVideoOption("crf","38");
+  winRecorder.setVideoOption("preset","veryfast");
+  winRecorder.setVideoOption("tune","zerolatency");
+  winRecorder.setVideoOption("intra-refresh","1");
+  return winRecorder;
+}

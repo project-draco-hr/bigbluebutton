@@ -1,0 +1,12 @@
+{
+  try {
+    String s=System.getProperty(NUM_THREADS);
+    if (s != null) {
+      return Integer.valueOf(s);
+    }
+  }
+ catch (  NumberFormatException e) {
+    throw new RuntimeException(e);
+  }
+  return getNumCores();
+}

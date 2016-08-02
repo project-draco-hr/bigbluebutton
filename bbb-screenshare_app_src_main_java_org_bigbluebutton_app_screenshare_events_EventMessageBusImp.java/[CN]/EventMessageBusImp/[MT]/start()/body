@@ -1,0 +1,23 @@
+{
+  try {
+    processMessage=true;
+    Runnable messageProcessor=new Runnable(){
+      public void run(){
+        while (processMessage) {
+          try {
+            IEvent msg=receivedMessages.take();
+            processMessage(msg);
+          }
+ catch (          InterruptedException e) {
+            log.warn("Error while taking received message from queue.");
+          }
+        }
+      }
+    }
+;
+    msgProcessorExec.execute(messageProcessor);
+  }
+ catch (  Exception e) {
+    log.error("Error processing event: " + e.getMessage());
+  }
+}

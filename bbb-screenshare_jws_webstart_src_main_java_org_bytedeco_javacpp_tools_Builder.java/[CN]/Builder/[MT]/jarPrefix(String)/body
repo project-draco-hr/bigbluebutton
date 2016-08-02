@@ -1,0 +1,4 @@
+{
+  this.jarPrefix=jarPrefix;
+  return this;
+}

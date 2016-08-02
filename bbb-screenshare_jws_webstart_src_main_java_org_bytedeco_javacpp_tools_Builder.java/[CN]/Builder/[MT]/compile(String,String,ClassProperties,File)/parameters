@@ -1,0 +1,4 @@
+String sourceFilename
+String outputFilename
+ClassProperties properties
+File workingDirectory

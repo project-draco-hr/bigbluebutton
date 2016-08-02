@@ -1,0 +1,8 @@
+{
+  try {
+    return create(getDefault(),int.class,deviceNumber);
+  }
+ catch (  Exception ex) {
+    return create(getDefault(),Integer.class,deviceNumber);
+  }
+}

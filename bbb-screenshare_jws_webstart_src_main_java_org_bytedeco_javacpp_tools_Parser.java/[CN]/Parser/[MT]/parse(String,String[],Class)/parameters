@@ -1,0 +1,3 @@
+String outputDirectory
+String[] classPath
+Class cls

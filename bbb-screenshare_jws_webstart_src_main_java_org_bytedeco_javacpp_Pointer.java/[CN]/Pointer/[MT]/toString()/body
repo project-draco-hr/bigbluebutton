@@ -1,0 +1,3 @@
+{
+  return getClass().getName() + "[address=0x" + Long.toHexString(address)+ ",position="+ position+ ",limit="+ limit+ ",capacity="+ capacity+ ",deallocator="+ deallocator+ "]";
+}

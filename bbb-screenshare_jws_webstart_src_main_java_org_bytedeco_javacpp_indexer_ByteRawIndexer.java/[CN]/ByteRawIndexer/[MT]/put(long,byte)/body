@@ -1,0 +1,4 @@
+{
+  RAW.putByte(base + checkIndex(i,size),b);
+  return this;
+}

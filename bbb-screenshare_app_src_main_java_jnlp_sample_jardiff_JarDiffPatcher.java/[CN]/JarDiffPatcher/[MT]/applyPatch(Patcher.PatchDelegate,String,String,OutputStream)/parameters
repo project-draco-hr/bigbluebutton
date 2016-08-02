@@ -1,0 +1,4 @@
+Patcher.PatchDelegate delegate
+String oldJarPath
+String jarDiffPath
+OutputStream result

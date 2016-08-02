@@ -1,0 +1,3 @@
+{
+  return StringUtils.isEmpty(telNum) ? RandomStringUtils.randomNumeric(defaultNumDigitsForTelVoice) : telNum;
+}

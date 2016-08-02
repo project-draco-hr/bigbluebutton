@@ -1,0 +1,4 @@
+String oldPath
+String newPath
+OutputStream os
+boolean minimal

@@ -1,0 +1,4 @@
+{
+  put(i * strides[0] + j * strides[1] + k,f);
+  return this;
+}

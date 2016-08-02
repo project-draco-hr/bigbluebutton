@@ -1,0 +1,88 @@
+{
+  if (!versionRes.exists())   return;
+  XMLNode root=null;
+  try {
+    DocumentBuilderFactory docBuilderFactory=DocumentBuilderFactory.newInstance();
+    DocumentBuilder docBuilder=docBuilderFactory.newDocumentBuilder();
+    Document doc=docBuilder.parse(new BufferedInputStream(versionRes.getResource().openStream()));
+    doc.getDocumentElement().normalize();
+    root=XMLParsing.convert(doc.getDocumentElement());
+  }
+ catch (  SAXParseException err) {
+    log.warn("servlet.log.warning.xml.parsing",versionRes.getPath(),Integer.toString(err.getLineNumber()),err.getMessage());
+    return;
+  }
+catch (  Throwable t) {
+    log.warn("servlet.log.warning.xml.reading",versionRes.getPath(),t);
+    return;
+  }
+  if (!root.getName().equals("jnlp-versions")) {
+    log.warn("servlet.log.warning.xml.missing-jnlp",versionRes.getPath());
+    return;
+  }
+  XMLParsing.visitElements(root,"<resource>",new XMLParsing.ElementVisitor(){
+    public void visitElement(    XMLNode node){
+      XMLNode pattern=XMLParsing.findElementPath(node,"<pattern>");
+      if (pattern == null) {
+        log.warn("servlet.log.warning.xml.missing-pattern",versionRes.getPath());
+      }
+ else {
+        String name=XMLParsing.getElementContent(pattern,"<name>","");
+        String versionId=XMLParsing.getElementContent(pattern,"<version-id>");
+        String[] os=XMLParsing.getMultiElementContent(pattern,"<os>");
+        String[] arch=XMLParsing.getMultiElementContent(pattern,"<arch>");
+        String[] locale=XMLParsing.getMultiElementContent(pattern,"<locale>");
+        String file=XMLParsing.getElementContent(node,"<file>");
+        if (versionId == null || file == null) {
+          log.warn("servlet.log.warning.xml.missing-elems",versionRes.getPath());
+        }
+ else {
+          JnlpResource res=new JnlpResource(_servletContext,name,versionId,os,arch,locale,dir + file,versionId);
+          if (res.exists()) {
+            versionList.add(res);
+            if (log.isDebugEnabled()) {
+              log.debug("Read resource: " + res);
+            }
+          }
+ else {
+            log.warn("servlet.log.warning.missing-file",file,versionRes.getPath());
+          }
+        }
+      }
+    }
+  }
+);
+  XMLParsing.visitElements(root,"<platform>",new XMLParsing.ElementVisitor(){
+    public void visitElement(    XMLNode node){
+      XMLNode pattern=XMLParsing.findElementPath(node,"<pattern>");
+      if (pattern == null) {
+        log.warn("servlet.log.warning.xml.missing-pattern",versionRes.getPath());
+      }
+ else {
+        String name=XMLParsing.getElementContent(pattern,"<name>","");
+        String versionId=XMLParsing.getElementContent(pattern,"<version-id>");
+        String[] os=XMLParsing.getMultiElementContent(pattern,"<os>");
+        String[] arch=XMLParsing.getMultiElementContent(pattern,"<arch>");
+        String[] locale=XMLParsing.getMultiElementContent(pattern,"<locale>");
+        String file=XMLParsing.getElementContent(node,"<file>");
+        String productId=XMLParsing.getElementContent(node,"<product-version-id>");
+        if (versionId == null || file == null || productId == null) {
+          log.warn("servlet.log.warning.xml.missing-elems2",versionRes.getPath());
+        }
+ else {
+          JnlpResource res=new JnlpResource(_servletContext,name,versionId,os,arch,locale,dir + file,productId);
+          if (res.exists()) {
+            platformList.add(res);
+            if (log.isDebugEnabled()) {
+              log.debug("Read platform resource: " + res);
+            }
+          }
+ else {
+            log.warn("servlet.log.warning.missing-file",file,versionRes.getPath());
+          }
+        }
+      }
+    }
+  }
+);
+}

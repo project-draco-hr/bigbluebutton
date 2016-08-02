@@ -1,0 +1,45 @@
+{
+  if (StringUtils.isEmpty(securitySalt)) {
+    log.warn("Security is disabled in this service. Make sure this is intentional.");
+    return true;
+  }
+  StringBuffer csbuf=new StringBuffer();
+  csbuf.append(apiCall);
+  SortedSet<String> keys=new TreeSet<String>(params.keySet());
+  boolean first=true;
+  String checksum=null;
+  for (  String key : keys) {
+    if (key.equals("checksum")) {
+      checksum=params.get(key)[0];
+      continue;
+    }
+    for (    String value : params.get(key)) {
+      if (first) {
+        first=false;
+      }
+ else {
+        csbuf.append("&");
+      }
+      csbuf.append(key);
+      csbuf.append("=");
+      String encResult;
+      encResult=value;
+      try {
+        encResult=URLEncoder.encode(value,"UTF-8");
+      }
+ catch (      UnsupportedEncodingException e) {
+        encResult=value;
+      }
+      csbuf.append(encResult);
+    }
+  }
+  csbuf.append(securitySalt);
+  String baseString=csbuf.toString();
+  String cs=DigestUtils.shaHex(baseString);
+  if (cs == null || cs.equals(checksum) == false) {
+    log.info("POST basestring = [" + baseString + "]");
+    log.info("checksumError: failed checksum. our checksum: [{}], client: [{}]",cs,checksum);
+    return false;
+  }
+  return true;
+}

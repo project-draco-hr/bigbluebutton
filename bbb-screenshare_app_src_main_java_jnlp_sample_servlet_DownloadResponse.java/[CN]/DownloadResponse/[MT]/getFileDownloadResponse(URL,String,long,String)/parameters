@@ -1,0 +1,4 @@
+URL resource
+String mimeType
+long timestamp
+String versionId

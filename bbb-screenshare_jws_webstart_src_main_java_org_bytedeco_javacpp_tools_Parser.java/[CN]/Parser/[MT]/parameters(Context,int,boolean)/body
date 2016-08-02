@@ -1,0 +1,107 @@
+{
+  if (!tokens.get().match('(')) {
+    return null;
+  }
+  int count=0;
+  Parameters params=new Parameters();
+  List<Declarator> dcls=new ArrayList<Declarator>();
+  params.list="(";
+  params.names="(";
+  int lastVarargs=-1;
+  for (Token token=tokens.next(); !token.match(Token.EOF); token=tokens.get()) {
+    String spacing=token.spacing;
+    if (token.match(')')) {
+      params.list+=spacing + ")";
+      params.names+=")";
+      tokens.next();
+      break;
+    }
+    Declarator dcl=declarator(context,"arg" + count++,infoNumber,useDefaults,0,true,false);
+    boolean hasDefault=!tokens.get().match(',',')');
+    Token defaultToken=null;
+    String defaultValue="";
+    if (dcl != null && hasDefault) {
+      defaultToken=tokens.get();
+      int count2=0;
+      for (token=tokens.next(), token.spacing=""; !token.match(Token.EOF); token=tokens.next()) {
+        if (count2 == 0 && token.match(',',')')) {
+          break;
+        }
+ else         if (token.match('(')) {
+          count2++;
+        }
+ else         if (token.match(')')) {
+          count2--;
+        }
+        String cppName=token.value;
+        for (        String name : context.qualify(cppName)) {
+          if (infoMap.getFirst(name,false) != null) {
+            cppName=name;
+            break;
+          }
+ else           if (infoMap.getFirst(name) != null) {
+            cppName=name;
+          }
+        }
+        if (token.match(Token.IDENTIFIER)) {
+          while (tokens.get(1).equals("::")) {
+            tokens.next();
+            Token t=tokens.next();
+            cppName+="::" + t.spacing + t;
+          }
+        }
+        defaultValue+=token.spacing + (cppName != null && cppName.length() > 0 ? cppName : token);
+      }
+      for (      String name : context.qualify(defaultValue)) {
+        if (infoMap.getFirst(name,false) != null) {
+          defaultValue=name;
+          break;
+        }
+ else         if (infoMap.getFirst(name) != null) {
+          defaultValue=name;
+        }
+      }
+      String s=dcl.type.annotations;
+      int n=s.indexOf("@ByVal ");
+      if (n < 0) {
+        n=s.indexOf("@ByRef ");
+      }
+      if (n >= 0) {
+        s=s.substring(0,n + 6) + "(nullValue = \"" + defaultValue.replaceAll("\n(\\s*)","\"\n$1 + \"")+ "\")"+ s.substring(n + 6);
+      }
+      dcl.type.annotations=s;
+    }
+    if (dcl != null && !dcl.type.javaName.equals("void") && (!hasDefault || !useDefaults)) {
+      if (lastVarargs >= 0) {
+        params.list=params.list.substring(0,lastVarargs) + "[]" + params.list.substring(lastVarargs + 3);
+      }
+      int n=params.list.length();
+      params.infoNumber=Math.max(params.infoNumber,dcl.infoNumber);
+      params.list+=(count > 1 ? "," : "") + spacing + dcl.type.annotations+ dcl.type.javaName+ " "+ dcl.javaName;
+      lastVarargs=params.list.indexOf("...",n);
+      if (hasDefault) {
+        params.list+="/*" + defaultToken + defaultValue+ "*/";
+      }
+      params.signature+='_';
+      for (      char c : dcl.type.javaName.substring(dcl.type.javaName.lastIndexOf(' ') + 1).toCharArray()) {
+        params.signature+=Character.isJavaIdentifierPart(c) ? c : '_';
+      }
+      params.names+=(count > 1 ? ", " : "") + dcl.javaName;
+      if (dcl.javaName.startsWith("arg")) {
+        try {
+          count=Integer.parseInt(dcl.javaName.substring(3)) + 1;
+        }
+ catch (        NumberFormatException e) {
+        }
+      }
+    }
+    if (!hasDefault || !useDefaults) {
+      dcls.add(dcl);
+    }
+    if (tokens.get().expect(',',')').match(',')) {
+      tokens.next();
+    }
+  }
+  params.declarators=dcls.toArray(new Declarator[dcls.size()]);
+  return params;
+}

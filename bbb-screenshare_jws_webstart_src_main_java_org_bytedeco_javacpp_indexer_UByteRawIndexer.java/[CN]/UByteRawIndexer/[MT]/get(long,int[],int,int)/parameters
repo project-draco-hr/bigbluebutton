@@ -1,0 +1,4 @@
+long i
+int[] b
+int offset
+int length

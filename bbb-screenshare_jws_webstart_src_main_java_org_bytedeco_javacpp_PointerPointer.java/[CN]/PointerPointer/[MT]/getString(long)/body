@@ -1,0 +1,4 @@
+{
+  BytePointer p=(BytePointer)get((Class<P>)BytePointer.class,i);
+  return p != null ? p.getString() : null;
+}
