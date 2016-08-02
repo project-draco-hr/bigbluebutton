@@ -1,3 +1,0 @@
-{
-  recordingService.updateMetaParams(idList,metaParams,force);
-}
