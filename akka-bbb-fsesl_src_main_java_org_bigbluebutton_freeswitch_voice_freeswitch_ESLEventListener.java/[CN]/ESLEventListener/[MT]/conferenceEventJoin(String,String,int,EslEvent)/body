@@ -6,13 +6,13 @@
   boolean muted=headers.get("Speak").equals("true") ? false : true;
   boolean speaking=headers.get("Talking").equals("true") ? true : false;
   String voiceUserId=callerIdName;
-  System.out.println("User joined voice conference, user=[" + callerIdName + "], conf=["+ confName+ "] callerId=["+ callerId+ "]");
   Matcher gapMatcher=GLOBAL_AUDION_PATTERN.matcher(callerIdName);
   if (gapMatcher.matches()) {
     System.out.println("Ignoring GLOBAL AUDIO USER [" + callerIdName + "]");
     return;
   }
   if (confName.endsWith(DESKSHARE_CONFERENCE_NAME_SUFFIX)) {
+    System.out.println("User joined deskshare conference, user=[" + callerIdName + "], "+ "conf=["+ confName+ "] callerId=["+ callerId+ "]");
     DeskShareStartedEvent dsStart=new DeskShareStartedEvent(confName,callerId,callerIdName);
     conferenceEventListener.handleConferenceEvent(dsStart);
   }
@@ -22,6 +22,7 @@
       voiceUserId=matcher.group(1).trim();
       callerIdName=matcher.group(2).trim();
     }
+    System.out.println("User joined voice conference, user=[" + callerIdName + "], conf=["+ confName+ "] callerId=["+ callerId+ "]");
     VoiceUserJoinedEvent pj=new VoiceUserJoinedEvent(voiceUserId,memberId.toString(),confName,callerId,callerIdName,muted,speaking,"");
     conferenceEventListener.handleConferenceEvent(pj);
   }
