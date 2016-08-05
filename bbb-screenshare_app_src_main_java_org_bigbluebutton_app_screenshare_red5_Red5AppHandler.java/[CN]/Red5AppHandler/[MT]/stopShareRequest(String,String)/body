@@ -9,7 +9,12 @@
   Map<String,Object> message=new HashMap<String,Object>();
   Gson gson=new Gson();
   message.put("msg",gson.toJson(data));
-  log.info("Sending stopShareRequest to client, meetingId=" + meetingId + " streamId="+ streamId);
   BroadcastClientMessage msg=new BroadcastClientMessage(meetingId,"stopViewingStream",message);
   sender.sendMessage(msg);
+  Map<String,Object> logData=new HashMap<String,Object>();
+  logData.put("meetingId",meetingId);
+  logData.put("streamId",streamId);
+  Gson gson2=new Gson();
+  String logStr=gson2.toJson(logData);
+  log.info("Stop viewing ScreenShare broadcast message: data={}",logStr);
 }
