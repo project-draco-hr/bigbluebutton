@@ -7,4 +7,10 @@
   message.put("msg",gson.toJson(data));
   BroadcastClientMessage msg=new BroadcastClientMessage(event.meetingId,"screenShareStoppedMessage",message);
   sender.sendMessage(msg);
+  Map<String,Object> logData=new HashMap<String,Object>();
+  logData.put("meetingId",event.meetingId);
+  logData.put("streamId",event.streamId);
+  gson=new Gson();
+  String logStr=gson.toJson(logData);
+  log.info("Screenshare stopped message: data={}",logStr);
 }
