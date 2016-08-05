@@ -53,6 +53,6 @@
   jnlpTemplate=substitute(jnlpTemplate,"$$codebase",urlprefix + request.getContextPath() + codebase);
   jnlpTemplate=substitute(jnlpTemplate,"$$context",urlprefix + request.getContextPath());
   jnlpTemplate=substitute(jnlpTemplate,"$$site",urlprefix);
-  log.debug(jnlpTemplate);
+  log.info("JNLP Response: " + jnlpTemplate);
   return jnlpTemplate;
 }
