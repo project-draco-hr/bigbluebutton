@@ -15,6 +15,14 @@
       stream.addStreamListener(listener);
       streamListeners.put(conn.getScope().getName() + "-" + stream.getPublishedName(),listener);
     }
+    Map<String,Object> logData=new HashMap<String,Object>();
+    logData.put("meetingId",meetingId);
+    logData.put("streamId",streamId);
+    logData.put("url",url);
+    logData.put("recorded",recordVideoStream);
+    Gson gson=new Gson();
+    String logStr=gson.toJson(logData);
+    log.info("ScreenShare broadcast started: data={}",logStr);
   }
  else {
     log.error("Invalid streamid format [{}]",streamId);
