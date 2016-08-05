@@ -1,3 +1,4 @@
 {
+  System.out.println("Queueing ShareStoppedMessage");
   send(new ShareStoppedMessage(meetingId,streamId));
 }

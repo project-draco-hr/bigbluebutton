@@ -2,7 +2,12 @@
   long start=System.currentTimeMillis();
   try {
     url=new URL(host + SCREEN_CAPTURE__URL);
-    conn=url.openConnection();
+    if (host.toLowerCase().startsWith("https://")) {
+      conn=(HttpsURLConnection)url.openConnection();
+    }
+ else {
+      conn=url.openConnection();
+    }
   }
  catch (  MalformedURLException e) {
     e.printStackTrace();

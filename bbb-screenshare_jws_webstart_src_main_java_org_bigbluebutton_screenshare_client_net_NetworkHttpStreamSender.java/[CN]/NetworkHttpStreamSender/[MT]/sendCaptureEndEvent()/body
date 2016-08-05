@@ -8,6 +8,9 @@
     chr.setParameter(SEQ_NUM,seqNumGenerator.getNext());
     chr.setParameter(EVENT,CaptureEvents.CAPTURE_END.getEvent());
     chr.post();
+    HttpURLConnection httpConnection=(HttpURLConnection)chr.connection;
+    int status=httpConnection.getResponseCode();
+    System.out.println("******* sendCaptureEndEvent response code = [" + status + "] ***************");
   }
  catch (  IOException e) {
     e.printStackTrace();

@@ -1,7 +1,7 @@
 {
   meetings.put(m.getInternalId(),m);
   if (m.isRecord()) {
-    Map<String,String> metadata=new LinkedHashMap<String,String>();
+    Map<String,String> metadata=new TreeMap<String,String>();
     metadata.putAll(m.getMetadata());
     metadata.put("meetingId",m.getExternalId());
     metadata.put("meetingName",m.getName());
