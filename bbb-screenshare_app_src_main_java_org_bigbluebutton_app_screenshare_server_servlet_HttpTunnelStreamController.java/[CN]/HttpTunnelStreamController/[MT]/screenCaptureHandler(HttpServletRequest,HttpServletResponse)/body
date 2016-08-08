@@ -8,7 +8,8 @@
  else   if (1 == captureRequest) {
     handleCaptureUpdateRequest(request,response);
     response.setStatus(HttpServletResponse.SC_OK);
-    if (isSharingStopped(request,response)) {
+    SharingStatus sharingStatus=getSharingStatus(request,response);
+    if (sharingStatus.sharingStopped) {
       response.setStatus(HttpServletResponse.SC_NOT_FOUND);
     }
   }

@@ -1,0 +1,4 @@
+{
+  this.sharingPaused=sharingPaused;
+  this.sharingStopped=sharingStopped;
+}

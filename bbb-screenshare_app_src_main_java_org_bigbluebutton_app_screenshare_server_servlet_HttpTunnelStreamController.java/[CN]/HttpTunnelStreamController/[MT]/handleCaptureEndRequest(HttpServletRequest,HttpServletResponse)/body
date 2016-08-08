@@ -5,6 +5,6 @@
     screenShareApplication=getScreenShareApplication();
     hasSessionManager=true;
   }
-  System.out.println("HttpTunnel: Received Capture Enfd Event.");
+  System.out.println("HttpTunnel: Received Capture End Event.");
   screenShareApplication.sharingStopped(meetingId,streamId);
 }
