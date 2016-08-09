@@ -1,12 +1,15 @@
 {
   Integer memberId=this.getMemberIdFromEvent(event);
-  System.out.println("User left voice conference, user=[" + memberId.toString() + "], conf=["+ confName+ "]");
   String callerId=this.getCallerIdFromEvent(event);
   String callerIdName=this.getCallerIdNameFromEvent(event);
-  if (confName.endsWith(DESKSHARE_CONFERENCE_NAME_SUFFIX) && callerId.endsWith(DESKSHARE_CALLER_ID_SUFFIX) && callerIdName.endsWith(DESKSHARE_CALLER_NAME_SUFFIX)) {
+  if (confName.endsWith(DESKSHARE_CONFERENCE_NAME_SUFFIX)) {
+    System.out.println("User left deskshare conference, user=[" + memberId.toString() + "], "+ "conf=["+ confName+ "]");
     DeskShareEndedEvent dsEnd=new DeskShareEndedEvent(confName,callerId,callerIdName);
     conferenceEventListener.handleConferenceEvent(dsEnd);
   }
-  VoiceUserLeftEvent pl=new VoiceUserLeftEvent(memberId.toString(),confName);
-  conferenceEventListener.handleConferenceEvent(pl);
+ else {
+    System.out.println("User left voice conference, user=[" + memberId.toString() + "], "+ "conf=["+ confName+ "]");
+    VoiceUserLeftEvent pl=new VoiceUserLeftEvent(memberId.toString(),confName);
+    conferenceEventListener.handleConferenceEvent(pl);
+  }
 }
