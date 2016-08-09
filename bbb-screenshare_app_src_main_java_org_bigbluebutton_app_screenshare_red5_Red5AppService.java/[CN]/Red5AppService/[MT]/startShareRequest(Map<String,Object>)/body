@@ -3,5 +3,11 @@
   String meetingId=Red5.getConnectionLocal().getScope().getName();
   log.debug("Received startShareRequest for meeting=[{}]",meetingId);
   String userId=(String)Red5.getConnectionLocal().getAttribute("USERID");
-  handler.startShareRequest(meetingId,userId,record);
+  Map<String,String> event=new HashMap<String,String>();
+  event.put("module","Deskshare");
+  event.put("timestamp",genTimestamp().toString());
+  event.put("meetingId",meetingId);
+  event.put("userID",userId);
+  event.put("eventName","AllowUserToShareDesktopRequest");
+  log.info("_______Red5AppService::startShareRequest");
 }
