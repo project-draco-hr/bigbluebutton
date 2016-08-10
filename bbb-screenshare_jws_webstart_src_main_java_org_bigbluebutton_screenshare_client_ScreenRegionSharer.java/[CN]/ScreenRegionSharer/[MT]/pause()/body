@@ -1,8 +1,8 @@
 {
-  if (!paused) {
+  if (status.toUpperCase().equals(PAUSE)) {
     frame.setVisible(false);
     sharer.stopSharing();
-    paused=true;
+    status=PAUSE;
     System.out.println(NAME + "Paused. *************");
   }
 }

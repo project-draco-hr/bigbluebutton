@@ -1,4 +1,5 @@
 {
+  status=STOP;
   frame.setVisible(false);
   sharer.stopSharing();
   signalChannel.stopSharing();
