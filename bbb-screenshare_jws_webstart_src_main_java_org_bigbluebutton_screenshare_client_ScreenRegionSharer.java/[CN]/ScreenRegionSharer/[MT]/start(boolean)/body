@@ -1,5 +1,5 @@
 {
-  if (status.toUpperCase().equals(STOP)) {
+  if (!status.toUpperCase().equals(START)) {
     CaptureRegionListener crl=new CaptureRegionListenerImp(this);
     frame=new CaptureRegionFrame(crl,5);
     frame.setHeight(ssi.captureHeight);

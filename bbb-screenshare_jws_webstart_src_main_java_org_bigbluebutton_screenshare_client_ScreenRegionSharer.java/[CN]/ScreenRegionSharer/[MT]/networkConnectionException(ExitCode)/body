@@ -5,7 +5,7 @@
       pause();
     }
  else     if (reason.getExitCode() == ExitCode.START.getExitCode()) {
-      System.out.println(NAME + "Pausing. Reason=" + reason.getExitCode());
+      System.out.println(NAME + "starting. Reason=" + reason.getExitCode());
       start(false);
     }
  else {

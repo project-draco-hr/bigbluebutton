@@ -1,5 +1,5 @@
 {
-  if (status.toUpperCase().equals(PAUSE)) {
+  if (!status.toUpperCase().equals(PAUSE)) {
     frame.setVisible(false);
     sharer.stopSharing();
     status=PAUSE;
