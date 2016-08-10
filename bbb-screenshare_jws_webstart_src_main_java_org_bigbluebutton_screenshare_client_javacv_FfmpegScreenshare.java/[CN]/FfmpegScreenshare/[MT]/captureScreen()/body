@@ -8,11 +8,13 @@
         mainRecorder.record(frame);
       }
  catch (      Exception e) {
+        System.out.println("CaptureScreen Exception 1");
         e.printStackTrace();
       }
     }
   }
  catch (  Exception e1) {
+    System.out.println("CaptureScreen Exception 2");
     e1.printStackTrace();
   }
   long sleepFramerate=(long)(1000 / frameRate);

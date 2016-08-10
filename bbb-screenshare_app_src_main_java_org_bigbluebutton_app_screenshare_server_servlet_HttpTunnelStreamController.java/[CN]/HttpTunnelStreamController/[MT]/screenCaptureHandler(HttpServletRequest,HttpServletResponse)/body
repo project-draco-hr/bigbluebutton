@@ -10,7 +10,12 @@
     response.setStatus(HttpServletResponse.SC_OK);
     SharingStatus sharingStatus=getSharingStatus(request,response);
     if (sharingStatus.sharingStopped) {
-      response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+      log.warn("SHARING_STOPPED " + sharingStatus.sharingStopped);
+      response.addHeader("SHARING_STOPPED","true");
+    }
+ else     if (sharingStatus.sharingPaused) {
+      log.warn("SHARING_PAUSED " + sharingStatus.sharingPaused);
+      response.addHeader("SHARING_PAUSED","true");
     }
   }
  else   if (2 == captureRequest) {

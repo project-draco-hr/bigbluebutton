@@ -1,0 +1,8 @@
+{
+  if (!paused) {
+    frame.setVisible(false);
+    sharer.stopSharing();
+    paused=true;
+    System.out.println(NAME + "Paused. *************");
+  }
+}

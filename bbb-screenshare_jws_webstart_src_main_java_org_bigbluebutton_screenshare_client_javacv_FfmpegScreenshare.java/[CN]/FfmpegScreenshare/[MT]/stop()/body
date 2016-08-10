@@ -1,12 +1,17 @@
 {
+  System.out.println("Stopping screen capture.");
   startBroadcast=false;
   if (mainRecorder != null) {
     try {
+      System.out.println("mainRecorder.stop.");
       mainRecorder.stop();
+      System.out.println("mainRecorder.release.");
       mainRecorder.release();
-      grabber.stop();
+      System.out.println("grabber.stop.");
+      System.out.println("End stop sequence.");
     }
  catch (    Exception e) {
+      System.out.println("Exception in Stopping screen capture.");
       e.printStackTrace();
     }
   }

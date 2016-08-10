@@ -9,6 +9,22 @@
     chr.post();
     HttpURLConnection httpConnection=(HttpURLConnection)chr.connection;
     int status=httpConnection.getResponseCode();
+    System.out.println("******* sendUpdateMessage response code = [" + status + "] ***************");
+    String sharingStopped=httpConnection.getHeaderField("SHARING_STOPPED");
+    String sharingPaused=httpConnection.getHeaderField("SHARING_PAUSED");
+    if (sharingStopped != null) {
+      System.out.println("******* sendUpdateMessage sharingStopped = [" + sharingStopped + "] ***************");
+      if (sharingStopped.toUpperCase().equals("TRUE")) {
+        notifyNetworkStreamListener(ExitCode.NORMAL);
+      }
+    }
+ else     if (sharingPaused != null) {
+      System.out.println("******* sendUpdateMessage sharingPaused = [" + sharingPaused + "] ***************");
+      if (sharingPaused.toUpperCase().equals("TRUE")) {
+        notifyNetworkStreamListener(ExitCode.PAUSED);
+        System.out.println("******* GOT HERE sendUpdateMessage sharingPaused = [" + sharingPaused + "] ***************");
+      }
+    }
   }
  catch (  IOException e) {
     System.out.println("Exception in sendUpdateMessage");
