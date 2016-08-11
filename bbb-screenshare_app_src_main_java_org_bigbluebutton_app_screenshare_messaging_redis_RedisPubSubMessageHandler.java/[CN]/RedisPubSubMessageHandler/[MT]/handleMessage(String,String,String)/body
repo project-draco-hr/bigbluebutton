@@ -1,4 +1,20 @@
 {
-  System.out.println("___RedisPubSubMessageHandler:::in red5 getting message: " + channel + " "+ message);
-  log.info("___RedisPubSubMessageHandler:::in red5 getting message: " + channel + " "+ message);
+  if (channel.equalsIgnoreCase(MessagingConstants.FROM_MEETING_CHANNEL)) {
+    JsonParser parser=new JsonParser();
+    JsonObject obj=(JsonObject)parser.parse(message);
+    if (obj.has("header") && obj.has("payload")) {
+      JsonObject header=(JsonObject)obj.get("header");
+      if (header.has("name")) {
+        String messageName=header.get("name").getAsString();
+        if (AllowUserToShareDesktopReply.NAME.equals(messageName)) {
+          AllowUserToShareDesktopReply msg=AllowUserToShareDesktopReply.fromJson(message);
+          log.info("^^^^^^^AllowUserToShareDesktopReply in " + "RedisPubSubMessageHandler::handleMessage^^^^^^allowed=" + msg.allowed);
+          handler.startShareRequest(msg.meetingId,msg.userId,msg.allowed);
+        }
+ else {
+          log.info("some other meeting message");
+        }
+      }
+    }
+  }
 }

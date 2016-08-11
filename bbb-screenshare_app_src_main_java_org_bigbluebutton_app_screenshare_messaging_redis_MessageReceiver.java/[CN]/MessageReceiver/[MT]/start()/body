@@ -3,7 +3,7 @@
   try {
     receiveMessage=true;
     jedis=new Jedis(host,port);
-    jedis.clientSetname("BbbRed5AppsSub");
+    jedis.clientSetname("bbb-screenshare");
     Runnable messageReceiver=new Runnable(){
       public void run(){
         if (receiveMessage) {
