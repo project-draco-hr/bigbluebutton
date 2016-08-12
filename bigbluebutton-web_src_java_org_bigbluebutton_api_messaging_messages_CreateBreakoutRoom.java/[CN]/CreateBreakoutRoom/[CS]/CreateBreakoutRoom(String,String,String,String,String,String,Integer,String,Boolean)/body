@@ -7,5 +7,5 @@
   this.moderatorPassword=moderatorPassword;
   this.durationInMinutes=duration;
   this.defaultPresentationURL=defaultPresentationURL;
-  this.recordType=recordType;
+  this.record=record;
 }
