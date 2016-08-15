@@ -2,5 +2,5 @@
   this.meetingId=meetingId;
   this.rooms=breakoutRooms;
   this.durationInMinutes=duration;
-  this.recordType=recordType;
+  this.record=record;
 }
