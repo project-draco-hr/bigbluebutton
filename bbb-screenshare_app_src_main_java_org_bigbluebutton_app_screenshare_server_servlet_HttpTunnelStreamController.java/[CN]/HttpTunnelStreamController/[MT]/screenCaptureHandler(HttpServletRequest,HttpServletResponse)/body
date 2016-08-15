@@ -11,6 +11,9 @@
     SharingStatus sharingStatus=getSharingStatus(request,response);
     log.warn("SHARING_STATUS " + sharingStatus.status);
     response.addHeader("SHARING_STATUS",sharingStatus.status);
+    if (sharingStatus.status.toUpperCase().equals("START") && sharingStatus.status != null) {
+      response.addHeader("SHARING_STATUS_STREAMID",sharingStatus.streamId);
+    }
   }
  else   if (2 == captureRequest) {
     handleCaptureEndRequest(request,response);

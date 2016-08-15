@@ -1,4 +1,5 @@
 {
   System.out.println("Queueing ShareStartedMessage");
+  this.streamId=streamId;
   send(new ShareStartedMessage(meetingId,streamId,width,height));
 }

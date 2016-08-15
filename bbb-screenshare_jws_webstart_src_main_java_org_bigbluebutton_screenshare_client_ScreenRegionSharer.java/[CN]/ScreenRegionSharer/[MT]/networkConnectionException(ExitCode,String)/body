@@ -6,6 +6,7 @@
     }
  else     if (reason.getExitCode() == ExitCode.START.getExitCode()) {
       System.out.println(NAME + "starting. Reason=" + reason.getExitCode());
+      this.streamId=streamId;
       start(false);
     }
  else {

@@ -3,5 +3,6 @@
   signalChannel.addNetworkConnectionListener(this);
   signalChannel.start();
   this.ssi=ssi;
+  streamId=ssi.streamId;
   sharer=new ScreenSharerRunner(ssi);
 }

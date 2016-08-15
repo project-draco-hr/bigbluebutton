@@ -1,6 +1,8 @@
 {
   try {
-    jcs.go(ssi.URL,x,y,width,height);
+    String publishUrl=ssi.URL + "/" + streamId;
+    System.out.println("Publishing stream [" + streamId + "] to "+ publishUrl);
+    jcs.go(publishUrl,x,y,width,height);
     jcs.start();
   }
  catch (  IOException e) {
