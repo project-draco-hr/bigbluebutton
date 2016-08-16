@@ -3,6 +3,6 @@
     frame.setVisible(false);
     sharer.stopSharing();
     status=PAUSE;
-    System.out.println(NAME + "Paused. *************");
+    System.out.println(NAME + "Paused.");
   }
 }
