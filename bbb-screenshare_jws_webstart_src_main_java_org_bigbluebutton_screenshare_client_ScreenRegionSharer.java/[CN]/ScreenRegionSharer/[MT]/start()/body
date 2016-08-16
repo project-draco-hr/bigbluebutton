@@ -7,8 +7,7 @@
     frame.setLocation(ssi.x,ssi.y);
     System.out.println(NAME + "Launching Screen Capture Frame");
     status="START";
-    this.fullScreen=autoStart;
-    System.out.println(NAME + "Starting Screen Capture Frame. StreamId=" + this.streamId+ " autoStart="+ autoStart);
-    frame.start(autoStart);
+    System.out.println(NAME + "Starting Screen Capture Frame. StreamId=" + this.streamId+ " fullScreen="+ fullScreen);
+    frame.start(fullScreen);
   }
 }

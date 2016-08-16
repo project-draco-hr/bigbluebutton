@@ -7,7 +7,7 @@
  else     if (reason.getExitCode() == ExitCode.START.getExitCode()) {
       this.streamId=streamId;
       System.out.println(NAME + "starting. StreamId=" + this.streamId+ " fullScreen="+ fullScreen);
-      start(fullScreen);
+      start();
     }
  else {
       System.out.println(NAME + "Closing. Reason=" + reason.getExitCode());
