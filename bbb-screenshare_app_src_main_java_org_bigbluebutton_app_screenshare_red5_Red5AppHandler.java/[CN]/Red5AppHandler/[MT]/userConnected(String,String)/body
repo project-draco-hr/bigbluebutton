@@ -1,0 +1,3 @@
+{
+  app.userConnected(meetingId,userId);
+}
