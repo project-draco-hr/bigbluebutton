@@ -3,6 +3,7 @@
   startBroadcast=false;
   if (mainRecorder != null) {
     try {
+      ignoreDisconnect=true;
       System.out.println("mainRecorder.stop.");
       mainRecorder.stop();
       System.out.println("mainRecorder.release.");

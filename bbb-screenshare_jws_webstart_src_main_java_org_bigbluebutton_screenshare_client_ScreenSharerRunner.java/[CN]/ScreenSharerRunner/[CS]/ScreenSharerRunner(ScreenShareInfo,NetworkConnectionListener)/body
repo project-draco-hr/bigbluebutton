@@ -1,0 +1,5 @@
+{
+  this.ssi=ssi;
+  this.listener=listener;
+  jcs=new FfmpegScreenshare(ssi,listener);
+}
