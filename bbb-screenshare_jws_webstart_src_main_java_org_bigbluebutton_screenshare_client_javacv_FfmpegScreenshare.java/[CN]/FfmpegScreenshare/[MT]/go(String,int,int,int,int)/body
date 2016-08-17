@@ -25,6 +25,7 @@
   }
   grabber.setFrameRate(frameRate);
   try {
+    ignoreDisconnect=false;
     grabber.start();
   }
  catch (  Exception e) {

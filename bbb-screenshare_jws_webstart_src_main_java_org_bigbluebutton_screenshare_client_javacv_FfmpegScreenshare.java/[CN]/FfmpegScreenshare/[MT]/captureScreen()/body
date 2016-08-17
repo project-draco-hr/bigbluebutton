@@ -8,11 +8,15 @@
         mainRecorder.record(frame);
       }
  catch (      Exception e) {
-        e.printStackTrace();
+        System.out.println("CaptureScreen Exception 1");
+        if (!ignoreDisconnect) {
+          listener.networkConnectionException(ExitCode.CONNECTION_TO_DESKSHARE_SERVER_DROPPED,null);
+        }
       }
     }
   }
  catch (  Exception e1) {
+    System.out.println("CaptureScreen Exception 2");
     e1.printStackTrace();
   }
   long sleepFramerate=(long)(1000 / frameRate);

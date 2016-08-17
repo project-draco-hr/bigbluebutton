@@ -1,29 +1,3 @@
 {
-  StartShareRequestResponse resp=app.startShareRequest(meetingId,userId,record);
-  Map<String,Object> data=new HashMap<String,Object>();
-  if (resp.error != null) {
-    data.put("error",resp.error.reason);
-  }
- else {
-    data.put("authToken",resp.token);
-    data.put("jnlp",resp.jnlp);
-  }
-  Map<String,Object> message=new HashMap<String,Object>();
-  Gson gson=new Gson();
-  message.put("msg",gson.toJson(data));
-  DirectClientMessage msg=new DirectClientMessage(meetingId,userId,"startShareRequestResponse",message);
-  sender.sendMessage(msg);
-  Map<String,Object> logData=new HashMap<String,Object>();
-  logData.put("meetingId",meetingId);
-  logData.put("userId",userId);
-  if (resp.error != null) {
-    logData.put("error",resp.error.reason);
-  }
- else {
-    logData.put("authToken",resp.token);
-    logData.put("jnlp",resp.jnlp);
-  }
-  Gson gson2=new Gson();
-  String logStr=gson2.toJson(logData);
-  log.info("Start ScreenShare request response: data={}",logStr);
+  app.startShareRequest(meetingId,userId,allowed);
 }

@@ -1,0 +1,4 @@
+String meetingId
+String userId
+Boolean allowed
+Long timestamp

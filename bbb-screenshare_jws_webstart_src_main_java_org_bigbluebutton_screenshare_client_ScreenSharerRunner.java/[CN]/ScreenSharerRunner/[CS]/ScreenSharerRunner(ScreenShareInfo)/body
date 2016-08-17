@@ -1,4 +1,0 @@
-{
-  this.ssi=ssi;
-  jcs=new FfmpegScreenshare(ssi);
-}
