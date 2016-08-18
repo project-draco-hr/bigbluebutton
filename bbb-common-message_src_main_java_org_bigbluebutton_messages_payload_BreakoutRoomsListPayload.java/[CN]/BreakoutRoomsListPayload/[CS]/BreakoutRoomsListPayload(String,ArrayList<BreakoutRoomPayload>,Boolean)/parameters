@@ -1,2 +1,3 @@
 String meetingId
 ArrayList<BreakoutRoomPayload> rooms
+Boolean roomsReady
