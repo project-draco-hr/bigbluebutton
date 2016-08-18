@@ -29,13 +29,13 @@
     grabber.start();
   }
  catch (  Exception e) {
-    e.printStackTrace();
+    listener.networkConnectionException(ExitCode.CONNECTION_TO_DESKSHARE_SERVER_DROPPED,null);
   }
   startTime=System.currentTimeMillis();
   try {
     mainRecorder.start();
   }
  catch (  Exception e) {
-    e.printStackTrace();
+    listener.networkConnectionException(ExitCode.CONNECTION_TO_DESKSHARE_SERVER_DROPPED,null);
   }
 }
