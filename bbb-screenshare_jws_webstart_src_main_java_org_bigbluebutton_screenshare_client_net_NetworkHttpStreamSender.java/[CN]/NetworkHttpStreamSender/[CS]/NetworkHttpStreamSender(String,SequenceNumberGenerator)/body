@@ -1,0 +1,5 @@
+{
+  this.meetingId=meetingId;
+  this.seqNumGenerator=seqNumGenerator;
+  executor=Executors.newFixedThreadPool(1);
+}

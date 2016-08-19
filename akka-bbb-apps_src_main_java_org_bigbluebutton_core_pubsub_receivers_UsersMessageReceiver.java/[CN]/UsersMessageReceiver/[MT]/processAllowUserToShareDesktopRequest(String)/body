@@ -1,0 +1,6 @@
+{
+  AllowUserToShareDesktopRequest msg=AllowUserToShareDesktopRequest.fromJson(message);
+  if (msg != null) {
+    bbbInGW.checkIfAllowedToShareDesktop(msg.meetingId,msg.userId);
+  }
+}

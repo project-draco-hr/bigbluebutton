@@ -70,8 +70,6 @@
         image=Toolkit.getDefaultToolkit().getImage("bbb.gif");
       }
       dsMain.displaySystemProperties();
-      lifeline=new LifeLine(listenPortValue.intValue(),dsMain);
-      lifeline.listen();
       System.setProperty("org.bytedeco.javacpp.logger.debug","true");
       System.out.println("org.bytedeco.javacpp.logger.debug : " + System.getProperty("org.bytedeco.javacpp.logger.debug"));
       client=new DeskshareClient.NewBuilder().host(serverUrl).port(portValue).meetingId(meetingId).streamId(streamId).captureWidth(cWidthValue).captureHeight(cHeightValue).scaleWidth(sWidthValue).scaleHeight(sHeightValue).quality(true).autoScale(0).codecOptions(codecOptions).x(xValue).y(yValue).fullScreen(captureFullScreen).withURL(url).httpTunnel(tunnelValue).trayIcon(image).enableTrayIconActions(true).build();
@@ -82,7 +80,6 @@
         ExitCode reason=dsMain.exitReasonQ.take();
         System.out.println("Stopping Java Web Start.");
         client.stop();
-        lifeline.disconnect();
         System.exit(reason.getExitCode());
       }
  catch (      InterruptedException e) {

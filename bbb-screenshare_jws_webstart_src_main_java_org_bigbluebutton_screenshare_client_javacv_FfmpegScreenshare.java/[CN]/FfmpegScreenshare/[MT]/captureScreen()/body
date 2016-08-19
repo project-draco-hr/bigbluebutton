@@ -8,12 +8,15 @@
         mainRecorder.record(frame);
       }
  catch (      Exception e) {
-        e.printStackTrace();
+        System.out.println("CaptureScreen Exception 1");
+        if (!ignoreDisconnect) {
+          listener.networkConnectionException(ExitCode.INTERNAL_ERROR,null);
+        }
       }
     }
   }
  catch (  Exception e1) {
-    e1.printStackTrace();
+    listener.networkConnectionException(ExitCode.INTERNAL_ERROR,null);
   }
   long sleepFramerate=(long)(1000 / frameRate);
   long timestamp=now - startTime;

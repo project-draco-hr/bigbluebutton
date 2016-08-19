@@ -5,7 +5,8 @@
   }
  else   if (message instanceof CaptureUpdateMessage) {
     CaptureUpdateMessage event=(CaptureUpdateMessage)message;
-    if (app.isSharingStopped(event.getRoom(),event.getRoom())) {
+    SharingStatus sharingStatus=app.getSharingStatus(event.getRoom(),event.getRoom());
+    if (sharingStatus.equals("STOP")) {
       log.info("Sharing has stopped for meeting [" + event.getRoom() + "]. Closing connection.");
       session.close(true);
     }

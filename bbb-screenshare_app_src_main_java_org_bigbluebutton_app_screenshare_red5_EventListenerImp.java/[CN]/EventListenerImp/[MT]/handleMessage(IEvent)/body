@@ -11,4 +11,16 @@
  else   if (event instanceof StreamStoppedEvent) {
     sendStreamStoppedEvent((StreamStoppedEvent)event);
   }
+ else   if (event instanceof StartShareRequestResponse) {
+    sendStartShareRequestResponse((StartShareRequestResponse)event);
+  }
+ else   if (event instanceof StartShareRequestFailedResponse) {
+    sendStartShareRequestFailedResponse((StartShareRequestFailedResponse)event);
+  }
+ else   if (event instanceof IsScreenSharingResponse) {
+    sendIsScreenSharingResponse((IsScreenSharingResponse)event);
+  }
+ else   if (event instanceof ScreenShareClientPing) {
+    sendScreenShareClientPing((ScreenShareClientPing)event);
+  }
 }
