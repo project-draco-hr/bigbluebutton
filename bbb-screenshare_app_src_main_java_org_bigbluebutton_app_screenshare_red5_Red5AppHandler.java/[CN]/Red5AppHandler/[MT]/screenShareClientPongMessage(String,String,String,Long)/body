@@ -1,0 +1,3 @@
+{
+  app.screenShareClientPongMessage(meetingId,userId,streamId,timestamp);
+}

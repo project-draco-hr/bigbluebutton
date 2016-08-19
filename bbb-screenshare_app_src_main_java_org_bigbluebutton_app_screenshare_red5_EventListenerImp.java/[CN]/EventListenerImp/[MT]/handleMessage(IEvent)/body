@@ -20,4 +20,7 @@
  else   if (event instanceof IsScreenSharingResponse) {
     sendIsScreenSharingResponse((IsScreenSharingResponse)event);
   }
+ else   if (event instanceof ScreenShareClientPing) {
+    sendScreenShareClientPing((ScreenShareClientPing)event);
+  }
 }
