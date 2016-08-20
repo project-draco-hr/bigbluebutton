@@ -3,6 +3,7 @@
   data.put("authToken",event.token);
   data.put("jnlp",event.jnlp);
   data.put("streamId",event.streamId);
+  data.put("session",event.session);
   Map<String,Object> message=new HashMap<String,Object>();
   Gson gson=new Gson();
   message.put("msg",gson.toJson(data));

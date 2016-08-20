@@ -1,5 +1,6 @@
 {
   this.meetingId=meetingId;
   this.userId=userId;
+  this.session=session;
   this.info=info;
 }

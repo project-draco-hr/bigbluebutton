@@ -3,3 +3,4 @@ String userId
 String token
 String jnlp
 String streamId
+String session

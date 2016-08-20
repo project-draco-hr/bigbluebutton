@@ -4,4 +4,5 @@
   this.token=token;
   this.jnlp=jnlp;
   this.streamId=streamId;
+  this.session=session;
 }

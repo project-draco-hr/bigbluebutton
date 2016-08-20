@@ -1,4 +1,5 @@
 {
   this.meetingId=meetingId;
   this.streamId=streamId;
+  this.session=session;
 }
