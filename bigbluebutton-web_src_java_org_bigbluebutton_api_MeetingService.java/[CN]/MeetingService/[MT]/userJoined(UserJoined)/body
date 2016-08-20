@@ -18,7 +18,7 @@
     logData.put("description","User had joined the meeting.");
     Gson gson=new Gson();
     String logStr=gson.toJson(logData);
-    log.info("User left meeting: data={}",logStr);
+    log.info("User joined meeting: data={}",logStr);
     return;
   }
   return;

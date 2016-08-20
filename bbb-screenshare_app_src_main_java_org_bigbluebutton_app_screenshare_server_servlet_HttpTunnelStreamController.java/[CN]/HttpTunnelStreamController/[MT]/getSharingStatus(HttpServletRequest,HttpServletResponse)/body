@@ -1,0 +1,6 @@
+{
+  String meetingId=request.getParameterValues("meetingId")[0];
+  String streamId=request.getParameterValues("streamId")[0];
+  SharingStatus sharingStatus=screenShareApplication.getSharingStatus(meetingId,streamId);
+  return sharingStatus;
+}

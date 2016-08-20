@@ -4,14 +4,38 @@
     openConnection();
     chr=new ClientHttpRequest(conn);
     chr.setParameter(MEETING_ID,meetingId);
-    chr.setParameter(STREAM_ID,streamId);
+    chr.setParameter(STREAM_ID,message.streamId);
     chr.setParameter(EVENT,CaptureEvents.CAPTURE_UPDATE.getEvent());
     chr.post();
     HttpURLConnection httpConnection=(HttpURLConnection)chr.connection;
     int status=httpConnection.getResponseCode();
+    System.out.println("sendUpdateMessage response code = [" + status + "]");
+    String sharingStatus=httpConnection.getHeaderField("SHARING_STATUS");
+    if (sharingStatus != null) {
+      if (sharingStatus.toUpperCase().equals("STOP")) {
+        System.out.println("sendUpdateMessage sharingStopped = [" + sharingStatus + "]");
+        notifyNetworkStreamListener(ExitCode.NORMAL,null);
+      }
+ else       if (sharingStatus.toUpperCase().equals("PAUSE")) {
+        System.out.println("sendUpdateMessage sharingPaused = [" + sharingStatus + "]");
+        notifyNetworkStreamListener(ExitCode.PAUSED,null);
+      }
+ else       if (sharingStatus.toUpperCase().equals("START")) {
+        String streamId=httpConnection.getHeaderField("SHARING_STATUS_STREAMID");
+        if (streamId != null) {
+          System.out.println("sendUpdateMessage sharingStart = [" + sharingStatus + "]");
+          notifyNetworkStreamListener(ExitCode.START,streamId);
+        }
+ else {
+          System.out.println("sendUpdateMessage sharingStart = [" + sharingStatus + "]. Terminating as no streamId passed.");
+          notifyNetworkStreamListener(ExitCode.NORMAL,null);
+        }
+      }
+    }
   }
  catch (  IOException e) {
-    notifyNetworkStreamListener(ExitCode.NORMAL);
+    System.out.println("Exception in sendUpdateMessage");
+    notifyNetworkStreamListener(ExitCode.NORMAL,null);
   }
 catch (  ConnectionException e) {
     System.out.println("ERROR: Failed to send block data.");

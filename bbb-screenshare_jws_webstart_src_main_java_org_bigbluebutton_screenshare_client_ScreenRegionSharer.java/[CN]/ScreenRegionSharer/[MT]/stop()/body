@@ -1,7 +1,10 @@
 {
-  frame.setVisible(false);
-  sharer.stopSharing();
-  signalChannel.stopSharing();
-  tray.removeIconFromSystemTray();
-  System.out.println(NAME + "Closing Screen Capture Frame");
+  if (!status.toUpperCase().equals(STOP)) {
+    status=STOP;
+    frame.setVisible(false);
+    sharer.stopSharing();
+    signalChannel.stopSharing();
+    tray.removeIconFromSystemTray();
+    System.out.println(NAME + "Closing Screen Capture Frame");
+  }
 }

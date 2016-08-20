@@ -1,0 +1,9 @@
+{
+  this.fullScreen=autoStart;
+  this.ssi=ssi;
+  streamId=ssi.streamId;
+  signalChannel=new NetworkStreamSender(ssi.host,ssi.meetingId,ssi.streamId);
+  signalChannel.addNetworkConnectionListener(this);
+  signalChannel.start();
+  sharer=new ScreenSharerRunner(ssi,this);
+}

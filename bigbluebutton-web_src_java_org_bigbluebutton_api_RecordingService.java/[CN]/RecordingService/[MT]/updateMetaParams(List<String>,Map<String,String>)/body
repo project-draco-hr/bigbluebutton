@@ -1,0 +1,31 @@
+{
+  List<String> states=new ArrayList<String>();
+  states.add(Recording.STATE_PUBLISHED);
+  states.add(Recording.STATE_UNPUBLISHED);
+  states.add(Recording.STATE_DELETED);
+  Map<String,List<File>> allDirectories=getAllDirectories(states);
+  for (  String recordID : recordIDs) {
+    for (    Map.Entry<String,List<File>> entry : allDirectories.entrySet()) {
+      List<File> recs=getRecordingsForPath(recordID,entry.getValue());
+      Map<String,File> recsIndexed=indexRecordings(recs);
+      if (recsIndexed.containsKey(recordID)) {
+        File recFile=recsIndexed.get(recordID);
+        Recording rec=getRecordingInfo(recFile);
+        if (rec != null) {
+          for (          Map.Entry<String,String> meta : metaParams.entrySet()) {
+            if (!"".equals(meta.getValue())) {
+              rec.updateMetadata(meta.getKey(),meta.getValue());
+            }
+ else {
+              if (rec.containsMetadata(meta.getKey())) {
+                rec.deleteMetadata(meta.getKey());
+              }
+            }
+          }
+          recordingServiceHelper.writeRecordingInfo(recFile.getAbsolutePath(),rec);
+        }
+      }
+    }
+  }
+  return;
+}

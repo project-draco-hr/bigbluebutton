@@ -6,6 +6,6 @@
     sendStartStreamMessage((ShareStartedMessage)message);
   }
  else   if (message.getMessageType() == Message.MessageType.STOPPED) {
-    sendCaptureEndEvent();
+    sendCaptureEndEvent(((ShareStoppedMessage)message).streamId);
   }
 }

@@ -3,13 +3,4 @@
   if (matcher.matches()) {
     app.stopShareRequest(meetingId,streamId);
   }
-  Map<String,Object> data=new HashMap<String,Object>();
-  data.put("meetingId",meetingId);
-  data.put("streamId",streamId);
-  Map<String,Object> message=new HashMap<String,Object>();
-  Gson gson=new Gson();
-  message.put("msg",gson.toJson(data));
-  log.info("Sending stopShareRequest to client, meetingId=" + meetingId + " streamId="+ streamId);
-  BroadcastClientMessage msg=new BroadcastClientMessage(meetingId,"stopViewingStream",message);
-  sender.sendMessage(msg);
 }

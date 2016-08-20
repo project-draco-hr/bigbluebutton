@@ -1,17 +1,3 @@
 {
-  StartShareRequestResponse resp=app.startShareRequest(meetingId,userId,record);
-  Map<String,Object> data=new HashMap<String,Object>();
-  if (resp.error != null) {
-    data.put("error",resp.error.reason);
-  }
- else {
-    data.put("authToken",resp.token);
-    data.put("jnlp",resp.jnlp);
-  }
-  Map<String,Object> message=new HashMap<String,Object>();
-  Gson gson=new Gson();
-  message.put("msg",gson.toJson(data));
-  log.info("Sending startShareRequestResponse to client, meetingId=" + meetingId + " userid="+ userId);
-  DirectClientMessage msg=new DirectClientMessage(meetingId,userId,"startShareRequestResponse",message);
-  sender.sendMessage(msg);
+  app.startShareRequest(meetingId,userId,allowed);
 }

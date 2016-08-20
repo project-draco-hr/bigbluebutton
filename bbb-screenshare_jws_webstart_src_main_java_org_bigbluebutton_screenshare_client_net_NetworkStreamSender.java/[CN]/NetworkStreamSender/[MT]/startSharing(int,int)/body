@@ -1,3 +1,0 @@
-{
-  send(new ShareStartedMessage(meetingId,streamId,width,height));
-}

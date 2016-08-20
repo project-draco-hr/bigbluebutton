@@ -1,0 +1,6 @@
+{
+  Matcher matcher=STREAM_ID_PATTERN.matcher(streamId);
+  if (matcher.matches()) {
+    app.pauseShareRequest(meetingId,userId,streamId);
+  }
+}

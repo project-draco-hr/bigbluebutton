@@ -2,10 +2,11 @@
   try {
     System.out.println("Http Open connection. In sendStartStreamMessage");
     openConnection();
-    sendCaptureStartEvent(message.width,message.height);
+    sendCaptureStartEvent(message.width,message.height,message.streamId);
   }
  catch (  ConnectionException e) {
-    e.printStackTrace();
-    notifyNetworkStreamListener(ExitCode.DESKSHARE_SERVICE_UNAVAILABLE);
+    System.out.println("Exception in sendStartStreamMessage");
+    System.out.print(e.toString());
+    notifyNetworkStreamListener(ExitCode.DESKSHARE_SERVICE_UNAVAILABLE,null);
   }
 }

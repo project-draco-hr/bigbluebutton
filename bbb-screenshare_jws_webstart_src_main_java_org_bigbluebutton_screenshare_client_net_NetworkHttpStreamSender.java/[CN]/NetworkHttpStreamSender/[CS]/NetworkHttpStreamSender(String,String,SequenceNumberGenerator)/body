@@ -1,6 +1,0 @@
-{
-  this.meetingId=meetingId;
-  this.streamId=streamId;
-  this.seqNumGenerator=seqNumGenerator;
-  executor=Executors.newFixedThreadPool(1);
-}
