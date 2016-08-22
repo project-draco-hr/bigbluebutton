@@ -1,4 +1,2 @@
 String meetingId
-String userId
 String session
-Long timestamp
