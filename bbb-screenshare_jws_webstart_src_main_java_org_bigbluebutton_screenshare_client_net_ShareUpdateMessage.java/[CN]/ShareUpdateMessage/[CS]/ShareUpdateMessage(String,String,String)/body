@@ -1,6 +1,5 @@
 {
   this.meetingId=meetingId;
-  this.userId=userId;
+  this.streamId=streamId;
   this.session=session;
-  this.timestamp=timestamp;
 }

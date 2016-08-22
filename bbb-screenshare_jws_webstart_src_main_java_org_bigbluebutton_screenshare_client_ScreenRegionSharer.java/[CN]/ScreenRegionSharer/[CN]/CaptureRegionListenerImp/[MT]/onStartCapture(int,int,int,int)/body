@@ -7,6 +7,6 @@
   ssi.scaleHeight=height;
   sharer.updateScreenShareInfo(x,y,width,height);
   sharer.addClientListener(listener);
-  signalChannel.startSharing(width,height,streamId);
+  signalChannel.startSharing(width,height,streamId,ssi.session);
   sharer.startSharing(streamId);
 }

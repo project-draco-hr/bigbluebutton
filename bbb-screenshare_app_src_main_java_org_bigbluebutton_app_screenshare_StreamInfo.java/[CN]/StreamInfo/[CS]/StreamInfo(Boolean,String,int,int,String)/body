@@ -1,7 +1,0 @@
-{
-  this.sharing=sharing;
-  this.streamId=streamId;
-  this.width=width;
-  this.height=height;
-  this.url=url;
-}

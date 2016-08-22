@@ -1,7 +1,0 @@
-{
-  this.meetingId=meetingId;
-  this.userId=userId;
-  this.token=token;
-  this.jnlp=jnlp;
-  this.streamId=streamId;
-}
