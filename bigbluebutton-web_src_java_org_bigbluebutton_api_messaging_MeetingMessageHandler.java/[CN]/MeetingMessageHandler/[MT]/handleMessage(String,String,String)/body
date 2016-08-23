@@ -29,7 +29,7 @@
  else         if (CreateBreakoutRoomRequest.NAME.equals(messageName)) {
           CreateBreakoutRoomRequest msg=new Gson().fromJson(message,CreateBreakoutRoomRequest.class);
           for (          MessageListener listener : listeners) {
-            listener.handle(new CreateBreakoutRoom(msg.payload.breakoutId,msg.payload.parentId,msg.payload.name,msg.payload.voiceConfId,msg.payload.viewerPassword,msg.payload.moderatorPassword,msg.payload.durationInMinutes,msg.payload.defaultPresentationURL,msg.payload.recordType));
+            listener.handle(new CreateBreakoutRoom(msg.payload.breakoutId,msg.payload.parentId,msg.payload.name,msg.payload.voiceConfId,msg.payload.viewerPassword,msg.payload.moderatorPassword,msg.payload.durationInMinutes,msg.payload.defaultPresentationURL,msg.payload.record));
           }
         }
  else         if (EndBreakoutRoomRequest.NAME.equals(messageName)) {

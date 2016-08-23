@@ -1,7 +1,7 @@
 {
   timer.cancel();
   if (httpSenders != null) {
-    httpSenders.disconnect();
+    httpSenders.disconnect(streamId,session);
     httpSenders.stop();
   }
 }

@@ -1,0 +1,5 @@
+{
+  this.meetingId=meetingId;
+  this.rooms=rooms;
+  this.roomsReady=roomsReady;
+}

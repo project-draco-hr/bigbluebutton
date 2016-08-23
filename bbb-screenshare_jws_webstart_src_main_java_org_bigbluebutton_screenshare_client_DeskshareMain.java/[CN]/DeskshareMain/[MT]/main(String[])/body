@@ -42,8 +42,9 @@
   String streamId=null;
   String serverUrl=null;
   Boolean captureFullScreen=false;
+  String session=null;
   String codecOptions=null;
-  if (args != null && args.length == 7) {
+  if (args != null && args.length == 8) {
     System.out.println("Using passed args: length=[" + args.length + "]");
     url=args[0];
     serverUrl=args[1];
@@ -52,7 +53,8 @@
     captureFullScreen=Boolean.parseBoolean(args[4]);
     System.out.println("Using passed args: [" + url + "] meetingId=["+ meetingId+ "] streamId=["+ streamId+ "] captureFullScreen="+ captureFullScreen);
     codecOptions=args[5];
-    String errorMessage=args[6];
+    session=args[6];
+    String errorMessage=args[7];
     if (!errorMessage.equalsIgnoreCase("NO_ERRORS")) {
       dsMain.displayJavaWarning(errorMessage);
     }
@@ -70,8 +72,6 @@
         image=Toolkit.getDefaultToolkit().getImage("bbb.gif");
       }
       dsMain.displaySystemProperties();
-      lifeline=new LifeLine(listenPortValue.intValue(),dsMain);
-      lifeline.listen();
       System.setProperty("org.bytedeco.javacpp.logger.debug","true");
       System.out.println("org.bytedeco.javacpp.logger.debug : " + System.getProperty("org.bytedeco.javacpp.logger.debug"));
       client=new DeskshareClient.NewBuilder().host(serverUrl).port(portValue).meetingId(meetingId).streamId(streamId).captureWidth(cWidthValue).captureHeight(cHeightValue).scaleWidth(sWidthValue).scaleHeight(sHeightValue).quality(true).autoScale(0).codecOptions(codecOptions).x(xValue).y(yValue).fullScreen(captureFullScreen).withURL(url).httpTunnel(tunnelValue).trayIcon(image).enableTrayIconActions(true).build();
@@ -82,7 +82,6 @@
         ExitCode reason=dsMain.exitReasonQ.take();
         System.out.println("Stopping Java Web Start.");
         client.stop();
-        lifeline.disconnect();
         System.exit(reason.getExitCode());
       }
  catch (      InterruptedException e) {

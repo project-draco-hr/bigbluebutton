@@ -1,0 +1,3 @@
+{
+  app.restartShareRequest(meetingId,userId);
+}

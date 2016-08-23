@@ -1,9 +1,0 @@
-{
-  String meetingId=request.getParameterValues("meetingId")[0];
-  String streamId=request.getParameterValues("streamId")[0];
-  boolean stopped=screenShareApplication.isSharingStopped(meetingId,streamId);
-  if (stopped) {
-    log.info("Screensharing for stream={} has stopped.",streamId);
-  }
-  return stopped;
-}

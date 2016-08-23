@@ -10,11 +10,14 @@ switch (messageName) {
 case UserLeavingMessage.USER_LEAVING:
           processUserLeavingMessage(message);
         break;
-case AssignPresenterRequestMessage.ASSIGN_PRESENTER_REQUEST:
-      processAssignPresenterRequestMessage(message);
+case AllowUserToShareDesktopRequest.NAME:
+      processAllowUserToShareDesktopRequest(message);
     break;
+case AssignPresenterRequestMessage.ASSIGN_PRESENTER_REQUEST:
+  processAssignPresenterRequestMessage(message);
+break;
 case UserEmojiStatusMessage.USER_EMOJI_STATUS:
-  processUserEmojiStatusMessage(message);
+processUserEmojiStatusMessage(message);
 break;
 case EjectUserFromMeetingRequestMessage.EJECT_USER_FROM_MEETING_REQUEST:
 processEjectUserFromMeetingRequestMessage(message);

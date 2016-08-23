@@ -1,0 +1,7 @@
+{
+  String meetingId=Red5.getConnectionLocal().getScope().getName();
+  log.debug("Received pauseShareRequest for meeting=[{}]",meetingId);
+  String userId=(String)Red5.getConnectionLocal().getAttribute("USERID");
+  String streamId=(String)msg.get("streamId");
+  handler.pauseShareRequest(meetingId,userId,streamId);
+}
