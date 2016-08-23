@@ -29,13 +29,13 @@
     grabber.start();
   }
  catch (  Exception e) {
-    e.printStackTrace();
+    listener.networkConnectionException(ExitCode.INTERNAL_ERROR,null);
   }
   startTime=System.currentTimeMillis();
   try {
     mainRecorder.start();
   }
  catch (  Exception e) {
-    e.printStackTrace();
+    listener.networkConnectionException(ExitCode.INTERNAL_ERROR,null);
   }
 }

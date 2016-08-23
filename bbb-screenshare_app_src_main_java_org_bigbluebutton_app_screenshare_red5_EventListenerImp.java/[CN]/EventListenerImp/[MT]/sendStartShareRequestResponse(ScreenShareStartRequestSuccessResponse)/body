@@ -1,0 +1,20 @@
+{
+  Map<String,Object> data=new HashMap<String,Object>();
+  data.put("authToken",event.token);
+  data.put("jnlp",event.jnlp);
+  data.put("streamId",event.streamId);
+  data.put("session",event.session);
+  Map<String,Object> message=new HashMap<String,Object>();
+  Gson gson=new Gson();
+  message.put("msg",gson.toJson(data));
+  DirectClientMessage msg=new DirectClientMessage(event.meetingId,event.userId,"startShareRequestResponse",message);
+  sender.sendMessage(msg);
+  Map<String,Object> logData=new HashMap<String,Object>();
+  logData.put("meetingId",event.meetingId);
+  logData.put("userId",event.userId);
+  logData.put("authToken",event.token);
+  logData.put("jnlp",event.jnlp);
+  Gson gson2=new Gson();
+  String logStr=gson2.toJson(logData);
+  log.info("Start ScreenShare request response: data={}",logStr);
+}

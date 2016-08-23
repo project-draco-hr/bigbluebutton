@@ -12,8 +12,7 @@
       System.out.println("End stop sequence.");
     }
  catch (    Exception e) {
-      System.out.println("Exception in Stopping screen capture.");
-      e.printStackTrace();
+      listener.networkConnectionException(ExitCode.INTERNAL_ERROR,null);
     }
   }
 }

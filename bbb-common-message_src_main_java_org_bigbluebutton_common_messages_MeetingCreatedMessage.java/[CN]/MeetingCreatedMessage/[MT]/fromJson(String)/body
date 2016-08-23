@@ -7,9 +7,10 @@
     if (header.has("name")) {
       String messageName=header.get("name").getAsString();
       if (MEETING_CREATED.equals(messageName)) {
-        if (payload.has(Constants.MEETING_ID)) {
+        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.RECORDED)) {
           String meetingId=payload.get(Constants.MEETING_ID).getAsString();
-          return new MeetingCreatedMessage(meetingId);
+          Boolean record=payload.get(Constants.RECORDED).getAsBoolean();
+          return new MeetingCreatedMessage(meetingId,record);
         }
       }
     }
