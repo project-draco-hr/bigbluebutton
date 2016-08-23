@@ -16,12 +16,12 @@
   boolean record=processRecordMeeting(params.get("record"));
   int maxUsers=processMaxUser(params.get("maxParticipants"));
   int meetingDuration=processMeetingDuration(params.get("duration"));
-  String welcomeMessage=processWelcomeMessage(params.get("welcome"));
-  welcomeMessage=substituteKeywords(welcomeMessage,dialNumber,telVoice,meetingName);
   boolean isBreakout=false;
   if (!StringUtils.isEmpty(params.get("isBreakout"))) {
     isBreakout=new Boolean(params.get("isBreakout"));
   }
+  String welcomeMessageTemplate=processWelcomeMessage(params.get("welcome"),isBreakout);
+  String welcomeMessage=substituteKeywords(welcomeMessageTemplate,dialNumber,telVoice,meetingName);
   String internalMeetingId=convertToInternalMeetingId(externalMeetingId);
   if (isTestMeeting(telVoice)) {
     internalMeetingId=getIntMeetingIdForTestMeeting(telVoice);
@@ -51,7 +51,7 @@
   if (isBreakout) {
     internalMeetingId=params.get("breakoutId");
   }
-  Meeting meeting=new Meeting.Builder(externalMeetingId,internalMeetingId,createTime).withName(meetingName).withMaxUsers(maxUsers).withModeratorPass(modPass).withViewerPass(viewerPass).withRecording(record).withDuration(meetingDuration).withLogoutUrl(logoutUrl).withTelVoice(telVoice).withWebVoice(webVoice).withDialNumber(dialNumber).withDefaultAvatarURL(defaultAvatarURL).withAutoStartRecording(autoStartRec).withAllowStartStopRecording(allowStartStoptRec).withMetadata(meetingInfo).withWelcomeMessage(welcomeMessage).isBreakout(isBreakout).build();
+  Meeting meeting=new Meeting.Builder(externalMeetingId,internalMeetingId,createTime).withName(meetingName).withMaxUsers(maxUsers).withModeratorPass(modPass).withViewerPass(viewerPass).withRecording(record).withDuration(meetingDuration).withLogoutUrl(logoutUrl).withTelVoice(telVoice).withWebVoice(webVoice).withDialNumber(dialNumber).withDefaultAvatarURL(defaultAvatarURL).withAutoStartRecording(autoStartRec).withAllowStartStopRecording(allowStartStoptRec).withMetadata(meetingInfo).withWelcomeMessageTemplate(welcomeMessageTemplate).withWelcomeMessage(welcomeMessage).isBreakout(isBreakout).build();
   String configXML=getDefaultConfigXML();
   meeting.storeConfig(true,configXML);
   if (!StringUtils.isEmpty(params.get("moderatorOnlyMessage"))) {
