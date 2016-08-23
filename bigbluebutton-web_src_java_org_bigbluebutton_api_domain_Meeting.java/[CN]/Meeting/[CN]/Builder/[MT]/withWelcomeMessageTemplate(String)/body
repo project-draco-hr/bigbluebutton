@@ -1,0 +1,4 @@
+{
+  welcomeMsgTemplate=w;
+  return this;
+}
