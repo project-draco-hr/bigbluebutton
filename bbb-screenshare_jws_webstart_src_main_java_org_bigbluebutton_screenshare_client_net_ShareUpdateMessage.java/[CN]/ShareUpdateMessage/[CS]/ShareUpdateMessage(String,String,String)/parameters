@@ -1,4 +1,3 @@
 String meetingId
-String userId
+String streamId
 String session
-Long timestamp

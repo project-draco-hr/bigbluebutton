@@ -6,6 +6,7 @@
     data.put("width",event.info.width);
     data.put("height",event.info.height);
     data.put("url",event.info.url);
+    data.put("session",event.info.session);
   }
   Map<String,Object> message=new HashMap<String,Object>();
   Gson gson=new Gson();

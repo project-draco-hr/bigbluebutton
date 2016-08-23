@@ -1,0 +1,4 @@
+{
+  this.session=s;
+  return this;
+}

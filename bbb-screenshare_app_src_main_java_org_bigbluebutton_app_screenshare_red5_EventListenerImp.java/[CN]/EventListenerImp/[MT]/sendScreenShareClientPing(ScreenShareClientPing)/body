@@ -1,7 +1,7 @@
 {
   Map<String,Object> data=new HashMap<String,Object>();
   data.put("meetingId",event.meetingId);
-  data.put("streamId",event.streamId);
+  data.put("session",event.session);
   data.put("timestamp",event.timestamp);
   Map<String,Object> message=new HashMap<String,Object>();
   Gson gson=new Gson();
