@@ -13,6 +13,7 @@
   duration=builder.duration;
   webVoice=builder.webVoice;
   telVoice=builder.telVoice;
+  welcomeMsgTemplate=builder.welcomeMsgTemplate;
   welcomeMsg=builder.welcomeMsg;
   dialNumber=builder.dialNumber;
   metadata=builder.metadata;
