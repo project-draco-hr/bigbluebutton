@@ -1,5 +1,3 @@
 {
-  ssi.x=x;
-  ssi.y=y;
   if (sharer != null)   sharer.setCaptureCoordinates(x,y);
 }
