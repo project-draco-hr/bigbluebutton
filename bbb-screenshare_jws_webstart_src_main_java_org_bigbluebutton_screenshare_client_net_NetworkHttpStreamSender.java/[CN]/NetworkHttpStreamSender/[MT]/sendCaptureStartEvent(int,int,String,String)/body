@@ -13,7 +13,6 @@
     chr.post();
     HttpURLConnection httpConnection=(HttpURLConnection)chr.connection;
     int status=httpConnection.getResponseCode();
-    System.out.println("******* sendCaptureStartEvent response code = [" + status + "] ***************");
   }
  catch (  IOException e) {
     e.printStackTrace();

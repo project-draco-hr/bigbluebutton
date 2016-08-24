@@ -1,4 +1,5 @@
 {
   this.meetingId=meetingId;
   this.session=session;
+  this.reason=reason;
 }

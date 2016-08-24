@@ -1,7 +1,6 @@
 {
   ClientHttpRequest chr;
   try {
-    System.out.println(getTimeStamp() + " - Sending End Sharing Event.");
     chr=new ClientHttpRequest(conn);
     chr.setParameter(MEETING_ID,meetingId);
     chr.setParameter(STREAM_ID,message.streamId);
@@ -11,7 +10,6 @@
     chr.post();
     HttpURLConnection httpConnection=(HttpURLConnection)chr.connection;
     int status=httpConnection.getResponseCode();
-    System.out.println("******* sendCaptureEndEvent response code = [" + status + "] ***************");
   }
  catch (  IOException e) {
     e.printStackTrace();

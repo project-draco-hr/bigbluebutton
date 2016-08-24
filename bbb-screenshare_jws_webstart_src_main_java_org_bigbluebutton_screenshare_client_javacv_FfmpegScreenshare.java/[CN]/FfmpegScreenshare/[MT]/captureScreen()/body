@@ -8,7 +8,6 @@
         mainRecorder.record(frame);
       }
  catch (      Exception e) {
-        System.out.println("CaptureScreen Exception 1");
         if (!ignoreDisconnect) {
           listener.networkConnectionException(ExitCode.INTERNAL_ERROR,null);
         }
