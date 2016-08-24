@@ -6,6 +6,7 @@
     frame.setWidth(ssi.captureWidth);
     frame.setLocation(ssi.x,ssi.y);
     System.out.println(NAME + "Launching Screen Capture Frame");
+    System.out.println(NAME + " - Launching Screen Capture Frame:: x=" + ssi.x+ ",y="+ ssi.y+ ",w="+ ssi.captureWidth+ ",h="+ ssi.captureHeight);
     status="START";
     System.out.println(NAME + "Starting Screen Capture Frame. StreamId=" + this.streamId+ " fullScreen="+ fullScreen);
     frame.start(fullScreen);
