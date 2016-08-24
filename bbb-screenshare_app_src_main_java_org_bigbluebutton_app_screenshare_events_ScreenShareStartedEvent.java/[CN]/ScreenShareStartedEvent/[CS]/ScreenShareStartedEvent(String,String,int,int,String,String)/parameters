@@ -3,3 +3,4 @@ String streamId
 int width
 int height
 String url
+String session

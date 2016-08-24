@@ -12,9 +12,10 @@
   Map<String,Object> logData=new HashMap<String,Object>();
   logData.put("meetingId",event.meetingId);
   logData.put("userId",event.userId);
+  logData.put("session",event.session);
   logData.put("authToken",event.token);
   logData.put("jnlp",event.jnlp);
   Gson gson2=new Gson();
   String logStr=gson2.toJson(logData);
-  log.info("Start ScreenShare request response: data={}",logStr);
+  log.info("Send to client start screen share request response: data={}",logStr);
 }

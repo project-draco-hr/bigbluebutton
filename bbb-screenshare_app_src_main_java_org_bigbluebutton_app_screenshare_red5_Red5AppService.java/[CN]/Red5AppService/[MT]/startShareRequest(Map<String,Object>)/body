@@ -1,7 +1,9 @@
 {
   Boolean record=(Boolean)msg.get("record");
   String meetingId=Red5.getConnectionLocal().getScope().getName();
-  log.debug("Received startShareRequest for meeting=[{}]",meetingId);
   String userId=(String)Red5.getConnectionLocal().getAttribute("USERID");
+  if (log.isDebugEnabled()) {
+    log.debug("Received startShareRequest for meetingId=" + meetingId + " from user="+ userId);
+  }
   handler.startShareRequest(meetingId,userId,record);
 }

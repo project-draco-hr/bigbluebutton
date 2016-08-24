@@ -1,6 +1,8 @@
 {
   String meetingId=Red5.getConnectionLocal().getScope().getName();
-  log.debug("Received restartShareRequest for meeting=[{}]",meetingId);
   String userId=(String)Red5.getConnectionLocal().getAttribute("USERID");
+  if (log.isDebugEnabled()) {
+    log.debug("Received restartShareRequest for meetingId=" + meetingId + " from user="+ userId);
+  }
   handler.restartShareRequest(meetingId,userId);
 }

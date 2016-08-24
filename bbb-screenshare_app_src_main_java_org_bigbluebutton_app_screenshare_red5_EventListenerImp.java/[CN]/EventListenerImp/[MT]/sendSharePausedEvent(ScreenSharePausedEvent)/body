@@ -1,7 +1,7 @@
 {
   Map<String,Object> data=new HashMap<String,Object>();
   data.put("meetingId",event.meetingId);
-  data.put("streamId",event.streamId);
+  data.put("session",event.session);
   Map<String,Object> message=new HashMap<String,Object>();
   Gson gson=new Gson();
   message.put("msg",gson.toJson(data));
@@ -9,8 +9,8 @@
   sender.sendMessage(msg);
   Map<String,Object> logData=new HashMap<String,Object>();
   logData.put("meetingId",event.meetingId);
-  logData.put("streamId",event.streamId);
+  logData.put("session",event.session);
   gson=new Gson();
   String logStr=gson.toJson(logData);
-  log.info("Screenshare paused message: data={}",logStr);
+  log.info("Send to client screen share paused message: data={}",logStr);
 }
