@@ -3,6 +3,5 @@
   String streamId=(String)msg.get("streamId");
   Double timestamp=(Double)msg.get("timestamp");
   String userId=(String)Red5.getConnectionLocal().getAttribute("USERID");
-  log.debug("Received screenShareClientPongMessage for meeting=[{}]",meetingId);
   handler.screenShareClientPongMessage(meetingId,userId,streamId,timestamp.longValue());
 }

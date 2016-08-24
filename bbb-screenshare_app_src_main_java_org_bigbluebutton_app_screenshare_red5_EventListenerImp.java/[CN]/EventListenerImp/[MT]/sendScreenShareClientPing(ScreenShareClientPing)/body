@@ -6,7 +6,9 @@
   Map<String,Object> message=new HashMap<String,Object>();
   Gson gson=new Gson();
   message.put("msg",gson.toJson(data));
-  log.info("Sending ScreenShareClientPing to client, meetingId=" + event.meetingId + " userid="+ event.userId);
+  if (log.isDebugEnabled()) {
+    log.debug("Sending ScreenShareClientPing to client, meetingId=" + event.meetingId + " userid="+ event.userId);
+  }
   DirectClientMessage msg=new DirectClientMessage(event.meetingId,event.userId,"screenShareClientPingMessage",message);
   sender.sendMessage(msg);
 }
