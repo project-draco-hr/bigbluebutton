@@ -1,0 +1,20 @@
+{
+  if (channel.equalsIgnoreCase(MessagingConstants.FROM_MEETING_CHANNEL)) {
+    JsonParser parser=new JsonParser();
+    JsonObject obj=(JsonObject)parser.parse(message);
+    if (obj.has("header") && obj.has("payload")) {
+      JsonObject header=(JsonObject)obj.get("header");
+      if (header.has("name")) {
+        String messageName=header.get("name").getAsString();
+        if (MeetingDestroyedMessage.NAME.equals(messageName)) {
+          MeetingDestroyedMessage msg=MeetingDestroyedMessage.fromJson(message);
+          handler.meetingHasEnded(msg.meetingId);
+        }
+ else         if (MeetingCreatedMessage.MEETING_CREATED.equals(messageName)) {
+          MeetingCreatedMessage msg=MeetingCreatedMessage.fromJson(message);
+          handler.meetingCreated(msg.meetingId,msg.record);
+        }
+      }
+    }
+  }
+}

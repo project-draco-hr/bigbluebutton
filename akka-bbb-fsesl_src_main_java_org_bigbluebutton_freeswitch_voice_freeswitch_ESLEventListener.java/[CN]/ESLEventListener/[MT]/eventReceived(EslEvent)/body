@@ -1,3 +1,3 @@
 {
-  System.out.println("ESL Event Listener received event=[" + event.getEventName() + "]");
+  System.out.println("ESL Event Listener received event=[" + event.getEventName() + "]"+ event.getEventHeaders().toString());
 }

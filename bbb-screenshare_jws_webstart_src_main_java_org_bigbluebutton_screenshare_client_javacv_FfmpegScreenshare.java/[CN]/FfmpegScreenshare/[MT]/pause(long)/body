@@ -3,6 +3,6 @@
     Thread.sleep(dur);
   }
  catch (  Exception e) {
-    System.out.println("Exception sleeping.");
+    listener.networkConnectionException(ExitCode.INTERNAL_ERROR,null);
   }
 }

@@ -1,5 +1,5 @@
 {
-  httpSenders=new NetworkHttpStreamSender(meetingId,streamId,seqNumGenerator);
+  httpSenders=new NetworkHttpStreamSender(meetingId,seqNumGenerator);
   httpSenders.addListener(this);
   try {
     httpSenders.connect(host);

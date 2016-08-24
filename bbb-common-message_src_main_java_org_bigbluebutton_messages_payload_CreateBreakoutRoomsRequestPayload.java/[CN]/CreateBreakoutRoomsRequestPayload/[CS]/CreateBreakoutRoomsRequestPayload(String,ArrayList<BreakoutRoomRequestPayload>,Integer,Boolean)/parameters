@@ -1,0 +1,4 @@
+String meetingId
+ArrayList<BreakoutRoomRequestPayload> breakoutRooms
+Integer duration
+Boolean record

@@ -1,3 +1,4 @@
 {
+  System.out.println("ON STOP CAPTURE");
   srs.stop();
 }

@@ -3,5 +3,5 @@
   if (height % 2 != 0) {
     newHeight=makeLengthEven(height);
   }
-  mOverallSize.height=newHeight + BORDER_THICKNESS;
+  mOverallSize.height=newHeight - BORDER_THICKNESS;
 }

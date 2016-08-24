@@ -1,4 +1,0 @@
-String meetingId
-ArrayList<BreakoutRoomRequestPayload> breakoutRooms
-Integer duration
-String recordType

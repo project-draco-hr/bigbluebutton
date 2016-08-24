@@ -1,14 +1,23 @@
 {
-  if (event instanceof ShareStartedEvent) {
-    sendShareStartedEvent((ShareStartedEvent)event);
+  if (event instanceof ScreenShareStartedEvent) {
+    sendShareStartedEvent((ScreenShareStartedEvent)event);
   }
- else   if (event instanceof ShareStoppedEvent) {
-    sendShareStoppedEvent((ShareStoppedEvent)event);
+ else   if (event instanceof ScreenShareStoppedEvent) {
+    sendShareStoppedEvent((ScreenShareStoppedEvent)event);
   }
- else   if (event instanceof StreamStartedEvent) {
-    sendStreamStartedEvent((StreamStartedEvent)event);
+ else   if (event instanceof ScreenSharePausedEvent) {
+    sendSharePausedEvent((ScreenSharePausedEvent)event);
   }
- else   if (event instanceof StreamStoppedEvent) {
-    sendStreamStoppedEvent((StreamStoppedEvent)event);
+ else   if (event instanceof ScreenShareStartRequestSuccessResponse) {
+    sendStartShareRequestResponse((ScreenShareStartRequestSuccessResponse)event);
+  }
+ else   if (event instanceof ScreenShareStartRequestFailedResponse) {
+    sendStartShareRequestFailedResponse((ScreenShareStartRequestFailedResponse)event);
+  }
+ else   if (event instanceof IsScreenSharingResponse) {
+    sendIsScreenSharingResponse((IsScreenSharingResponse)event);
+  }
+ else   if (event instanceof ScreenShareClientPing) {
+    sendScreenShareClientPing((ScreenShareClientPing)event);
   }
 }
