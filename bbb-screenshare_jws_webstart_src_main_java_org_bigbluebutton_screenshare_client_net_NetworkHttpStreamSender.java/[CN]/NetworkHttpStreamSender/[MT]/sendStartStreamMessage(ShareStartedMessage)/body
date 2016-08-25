@@ -1,6 +1,5 @@
 {
   try {
-    System.out.println("Http Open connection. In sendStartStreamMessage");
     openConnection();
     sendCaptureStartEvent(message.width,message.height,message.streamId,message.session);
   }
