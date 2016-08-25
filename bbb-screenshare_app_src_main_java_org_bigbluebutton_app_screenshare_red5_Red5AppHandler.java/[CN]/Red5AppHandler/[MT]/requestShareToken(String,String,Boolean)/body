@@ -1,0 +1,3 @@
+{
+  app.requestShareToken(meetingId,userId,record);
+}
