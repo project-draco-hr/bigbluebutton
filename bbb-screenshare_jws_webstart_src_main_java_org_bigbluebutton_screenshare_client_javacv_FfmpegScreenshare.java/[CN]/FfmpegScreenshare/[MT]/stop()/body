@@ -1,15 +1,10 @@
 {
-  System.out.println("Stopping screen capture.");
   startBroadcast=false;
   if (mainRecorder != null) {
     try {
       ignoreDisconnect=true;
-      System.out.println("mainRecorder.stop.");
       mainRecorder.stop();
-      System.out.println("mainRecorder.release.");
       mainRecorder.release();
-      System.out.println("grabber.stop.");
-      System.out.println("End stop sequence.");
     }
  catch (    Exception e) {
       listener.networkConnectionException(ExitCode.INTERNAL_ERROR,null);

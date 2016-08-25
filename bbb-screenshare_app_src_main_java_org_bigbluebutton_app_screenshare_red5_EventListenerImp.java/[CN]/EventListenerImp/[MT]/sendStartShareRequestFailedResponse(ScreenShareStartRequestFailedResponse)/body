@@ -12,5 +12,5 @@
   logData.put("reason",event.reason);
   Gson gson2=new Gson();
   String logStr=gson2.toJson(logData);
-  log.info("Start ScreenShare request rejected response: data={}",logStr);
+  log.info("Send to client start screen share request rejected response: data={}",logStr);
 }

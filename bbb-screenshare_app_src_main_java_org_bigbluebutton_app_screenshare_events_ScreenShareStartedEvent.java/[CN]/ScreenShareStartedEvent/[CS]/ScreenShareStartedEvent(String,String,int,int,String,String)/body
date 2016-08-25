@@ -4,4 +4,5 @@
   this.width=width;
   this.height=height;
   this.url=url;
+  this.session=session;
 }
