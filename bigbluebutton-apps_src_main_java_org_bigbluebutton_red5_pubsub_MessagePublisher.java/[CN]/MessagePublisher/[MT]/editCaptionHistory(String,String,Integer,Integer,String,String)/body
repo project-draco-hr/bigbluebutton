@@ -1,4 +1,0 @@
-{
-  EditCaptionHistoryMessage msg=new EditCaptionHistoryMessage(meetingID,userID,startIndex,endIndex,locale,text);
-  sender.send(MessagingConstants.TO_CAPTION_CHANNEL,msg.toJson());
-}
