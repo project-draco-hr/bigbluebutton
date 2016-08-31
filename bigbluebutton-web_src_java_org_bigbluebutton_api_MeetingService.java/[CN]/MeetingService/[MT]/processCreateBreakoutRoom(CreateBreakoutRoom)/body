@@ -1,16 +1,28 @@
 {
-  Map<String,String> params=new HashMap<String,String>();
-  params.put("name",message.name);
-  params.put("breakoutId",message.breakoutId);
-  params.put("meetingID",message.parentId);
-  params.put("isBreakout","true");
-  params.put("attendeePW",message.viewerPassword);
-  params.put("moderatorPW",message.moderatorPassword);
-  params.put("voiceBridge",message.voiceConfId);
-  params.put("duration",message.durationInMinutes.toString());
-  params.put("record",message.record.toString());
-  params.put("welcome",getMeeting(message.parentId).getWelcomeMessageTemplate());
-  Meeting breakout=paramsProcessorUtil.processCreateParams(params);
-  handleCreateMeeting(breakout);
-  presDownloadService.downloadAndProcessDocument(message.defaultPresentationURL,breakout.getInternalId());
+  Meeting parentMeeting=getMeeting(message.parentId);
+  if (parentMeeting != null) {
+    Map<String,String> params=new HashMap<String,String>();
+    params.put("name",message.name);
+    params.put("breakoutId",message.breakoutId);
+    params.put("meetingID",message.parentId);
+    params.put("isBreakout","true");
+    params.put("attendeePW",message.viewerPassword);
+    params.put("moderatorPW",message.moderatorPassword);
+    params.put("voiceBridge",message.voiceConfId);
+    params.put("duration",message.durationInMinutes.toString());
+    params.put("record",message.record.toString());
+    params.put("welcome",getMeeting(message.parentId).getWelcomeMessageTemplate());
+    Map<String,String> parentMeetingMetadata=parentMeeting.getMetadata();
+    String metaPrefix="meta_";
+    for (    String key : parentMeetingMetadata.keySet()) {
+      String metaName=metaPrefix + key;
+      params.put(metaName,parentMeetingMetadata.get(key));
+    }
+    Meeting breakout=paramsProcessorUtil.processCreateParams(params);
+    handleCreateMeeting(breakout);
+    presDownloadService.downloadAndProcessDocument(message.defaultPresentationURL,breakout.getInternalId());
+  }
+ else {
+    log.error("Failed to create breakout room " + message.breakoutId + ". Parent meeting not found.");
+  }
 }
