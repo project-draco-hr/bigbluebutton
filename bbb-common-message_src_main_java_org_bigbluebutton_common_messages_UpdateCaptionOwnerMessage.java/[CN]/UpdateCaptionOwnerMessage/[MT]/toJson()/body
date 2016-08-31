@@ -2,6 +2,7 @@
   HashMap<String,Object> payload=new HashMap<String,Object>();
   payload.put(Constants.MEETING_ID,meetingID);
   payload.put(Constants.LOCALE,locale);
+  payload.put(Constants.LOCALE_CODE,localeCode);
   payload.put(Constants.OWNER_ID,ownerID);
   java.util.HashMap<String,Object> header=MessageBuilder.buildHeader(UPDATE_CAPTION_OWNER,VERSION,null);
   return MessageBuilder.buildJson(header,payload);

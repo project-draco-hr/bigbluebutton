@@ -7,14 +7,15 @@
     if (header.has("name")) {
       String messageName=header.get("name").getAsString();
       if (EDIT_CAPTION_HISTORY.equals(messageName)) {
-        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.USER_ID) && payload.has(Constants.START_INDEX)&& payload.has(Constants.END_INDEX)&& payload.has(Constants.LOCALE)&& payload.has(Constants.TEXT)) {
+        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.USER_ID) && payload.has(Constants.START_INDEX)&& payload.has(Constants.END_INDEX)&& payload.has(Constants.LOCALE)&& payload.has(Constants.LOCALE_CODE)&& payload.has(Constants.TEXT)) {
           String meetingID=payload.get(Constants.MEETING_ID).getAsString();
           String userID=payload.get(Constants.USER_ID).getAsString();
           Integer startIndex=payload.get(Constants.START_INDEX).getAsInt();
           Integer endIndex=payload.get(Constants.END_INDEX).getAsInt();
           String locale=payload.get(Constants.LOCALE).getAsString();
+          String localeCode=payload.get(Constants.LOCALE_CODE).getAsString();
           String text=payload.get(Constants.TEXT).getAsString();
-          return new EditCaptionHistoryMessage(meetingID,userID,startIndex,endIndex,locale,text);
+          return new EditCaptionHistoryMessage(meetingID,userID,startIndex,endIndex,locale,localeCode,text);
         }
       }
     }

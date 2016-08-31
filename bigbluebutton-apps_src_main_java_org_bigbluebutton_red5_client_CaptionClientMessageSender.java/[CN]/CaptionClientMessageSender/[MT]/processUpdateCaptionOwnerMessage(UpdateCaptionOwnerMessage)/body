@@ -1,6 +1,7 @@
 {
   Map<String,Object> message=new HashMap<String,Object>();
   message.put(Constants.LOCALE,msg.locale);
+  message.put(Constants.LOCALE_CODE,msg.localeCode);
   message.put(Constants.OWNER_ID,msg.ownerID);
   BroadcastClientMessage m=new BroadcastClientMessage(msg.meetingID,"updateCaptionOwner",message);
   service.sendMessage(m);
