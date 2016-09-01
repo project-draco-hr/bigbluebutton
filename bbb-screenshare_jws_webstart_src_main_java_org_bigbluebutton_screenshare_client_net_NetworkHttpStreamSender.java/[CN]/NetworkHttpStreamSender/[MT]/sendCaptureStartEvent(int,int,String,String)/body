@@ -2,6 +2,7 @@
   ClientHttpRequest chr;
   try {
     System.out.println(getTimeStamp() + " - Sending Start Sharing Event.");
+    URLConnection conn=openConnection();
     chr=new ClientHttpRequest(conn);
     chr.setParameter(MEETING_ID,meetingId);
     chr.setParameter(STREAM_ID,streamId);
@@ -16,6 +17,10 @@
   }
  catch (  IOException e) {
     e.printStackTrace();
-    throw new ConnectionException("IOException while sending capture start event.");
+    notifyNetworkStreamListener(ExitCode.DESKSHARE_SERVICE_UNAVAILABLE,null);
+  }
+catch (  ConnectionException e) {
+    e.printStackTrace();
+    notifyNetworkStreamListener(ExitCode.DESKSHARE_SERVICE_UNAVAILABLE,null);
   }
 }

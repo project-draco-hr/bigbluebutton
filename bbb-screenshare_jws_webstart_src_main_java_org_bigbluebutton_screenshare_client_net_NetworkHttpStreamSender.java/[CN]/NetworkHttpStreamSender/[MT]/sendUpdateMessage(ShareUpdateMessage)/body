@@ -1,7 +1,7 @@
 {
   ClientHttpRequest chr;
   try {
-    openConnection();
+    URLConnection conn=openConnection();
     chr=new ClientHttpRequest(conn);
     chr.setParameter(MEETING_ID,meetingId);
     chr.setParameter(STREAM_ID,message.streamId);
