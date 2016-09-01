@@ -1,14 +1,4 @@
 {
-  try {
-    System.out.println("Http Open connection. In disconnect");
-    openConnection();
-    sendCaptureEndEvent(new ShareStoppedMessage(meetingId,streamId,session));
-  }
- catch (  ConnectionException e) {
-    e.printStackTrace();
-    notifyNetworkStreamListener(ExitCode.DESKSHARE_SERVICE_UNAVAILABLE,null);
-    throw e;
-  }
- finally {
-  }
+  System.out.println("Http Open connection. In disconnect");
+  sendCaptureEndEvent(new ShareStoppedMessage(meetingId,streamId,session));
 }
