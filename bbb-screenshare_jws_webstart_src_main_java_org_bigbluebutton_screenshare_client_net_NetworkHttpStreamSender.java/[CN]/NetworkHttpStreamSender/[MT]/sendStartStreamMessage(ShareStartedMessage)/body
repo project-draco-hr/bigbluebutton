@@ -1,11 +1,3 @@
 {
-  try {
-    openConnection();
-    sendCaptureStartEvent(message.width,message.height,message.streamId,message.session);
-  }
- catch (  ConnectionException e) {
-    System.out.println("Exception in sendStartStreamMessage");
-    System.out.print(e.toString());
-    notifyNetworkStreamListener(ExitCode.DESKSHARE_SERVICE_UNAVAILABLE,null);
-  }
+  sendCaptureStartEvent(message.width,message.height,message.streamId,message.session);
 }

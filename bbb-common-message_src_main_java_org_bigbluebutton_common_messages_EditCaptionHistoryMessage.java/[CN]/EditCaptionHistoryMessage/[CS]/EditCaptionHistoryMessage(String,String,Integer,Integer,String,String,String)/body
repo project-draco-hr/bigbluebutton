@@ -4,5 +4,6 @@
   this.startIndex=startIndex;
   this.endIndex=endIndex;
   this.locale=locale;
+  this.localeCode=localeCode;
   this.text=text;
 }

@@ -1,6 +1,7 @@
 {
   ClientHttpRequest chr;
   try {
+    URLConnection conn=openConnection();
     chr=new ClientHttpRequest(conn);
     chr.setParameter(MEETING_ID,meetingId);
     chr.setParameter(STREAM_ID,message.streamId);
@@ -13,5 +14,10 @@
   }
  catch (  IOException e) {
     e.printStackTrace();
+    notifyNetworkStreamListener(ExitCode.DESKSHARE_SERVICE_UNAVAILABLE,null);
+  }
+catch (  ConnectionException e) {
+    e.printStackTrace();
+    notifyNetworkStreamListener(ExitCode.DESKSHARE_SERVICE_UNAVAILABLE,null);
   }
 }

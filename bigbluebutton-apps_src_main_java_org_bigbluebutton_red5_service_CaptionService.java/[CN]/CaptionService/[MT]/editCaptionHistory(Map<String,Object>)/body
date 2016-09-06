@@ -2,8 +2,9 @@
   int startIndex=(Integer)msg.get("startIndex");
   int endIndex=(Integer)msg.get("endIndex");
   String locale=msg.get("locale").toString();
+  String localeCode=msg.get("localeCode").toString();
   String text=msg.get("text").toString();
   String meetingID=Red5.getConnectionLocal().getScope().getName();
   String userID=getBbbSession().getInternalUserID();
-  red5InGW.editCaptionHistory(meetingID,userID,startIndex,endIndex,locale,text);
+  red5InGW.editCaptionHistory(meetingID,userID,startIndex,endIndex,locale,localeCode,text);
 }
