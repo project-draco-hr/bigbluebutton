@@ -1,3 +1,0 @@
-{
-  app.startShareRequest(meetingId,userId,allowed);
-}

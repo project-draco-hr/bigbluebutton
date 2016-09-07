@@ -1,5 +1,0 @@
-{
-  this.meetingID=meetingID;
-  this.locale=locale;
-  this.ownerID=ownerID;
-}

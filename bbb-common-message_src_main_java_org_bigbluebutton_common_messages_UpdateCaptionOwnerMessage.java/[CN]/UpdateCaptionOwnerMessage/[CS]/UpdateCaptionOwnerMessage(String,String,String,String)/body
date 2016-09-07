@@ -1,0 +1,6 @@
+{
+  this.meetingID=meetingID;
+  this.locale=locale;
+  this.localeCode=localeCode;
+  this.ownerID=ownerID;
+}

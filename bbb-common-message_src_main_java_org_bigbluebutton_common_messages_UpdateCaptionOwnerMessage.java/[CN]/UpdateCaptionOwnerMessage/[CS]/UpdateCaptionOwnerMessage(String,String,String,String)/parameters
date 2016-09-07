@@ -1,0 +1,4 @@
+String meetingID
+String locale
+String localeCode
+String ownerID

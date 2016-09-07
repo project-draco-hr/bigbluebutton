@@ -7,11 +7,12 @@
     if (header.has("name")) {
       String messageName=header.get("name").getAsString();
       if (UPDATE_CAPTION_OWNER.equals(messageName)) {
-        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.LOCALE) && payload.has(Constants.OWNER_ID)) {
+        if (payload.has(Constants.MEETING_ID) && payload.has(Constants.LOCALE) && payload.has(Constants.LOCALE_CODE)&& payload.has(Constants.OWNER_ID)) {
           String meetingID=payload.get(Constants.MEETING_ID).getAsString();
           String locale=payload.get(Constants.LOCALE).getAsString();
+          String localeCode=payload.get(Constants.LOCALE_CODE).getAsString();
           String ownerID=payload.get(Constants.OWNER_ID).getAsString();
-          return new UpdateCaptionOwnerMessage(meetingID,locale,ownerID);
+          return new UpdateCaptionOwnerMessage(meetingID,locale,localeCode,ownerID);
         }
       }
     }

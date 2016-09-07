@@ -8,11 +8,11 @@
  else   if (event instanceof ScreenSharePausedEvent) {
     sendSharePausedEvent((ScreenSharePausedEvent)event);
   }
- else   if (event instanceof ScreenShareStartRequestSuccessResponse) {
-    sendStartShareRequestResponse((ScreenShareStartRequestSuccessResponse)event);
+ else   if (event instanceof ScreenShareRequestTokenSuccessResponse) {
+    sendStartShareRequestResponse((ScreenShareRequestTokenSuccessResponse)event);
   }
- else   if (event instanceof ScreenShareStartRequestFailedResponse) {
-    sendStartShareRequestFailedResponse((ScreenShareStartRequestFailedResponse)event);
+ else   if (event instanceof ScreenShareRequestTokenFailedResponse) {
+    sendStartShareRequestFailedResponse((ScreenShareRequestTokenFailedResponse)event);
   }
  else   if (event instanceof IsScreenSharingResponse) {
     sendIsScreenSharingResponse((IsScreenSharingResponse)event);
