@@ -19,7 +19,6 @@
   }
   long sleepFramerate=(long)(1000 / frameRate);
   long timestamp=now - startTime;
-  mainRecorder.setTimestamp(timestamp * 1000);
   mainRecorder.setFrameNumber(frameNumber);
   frameNumber++;
   long execDuration=(System.currentTimeMillis() - now);
