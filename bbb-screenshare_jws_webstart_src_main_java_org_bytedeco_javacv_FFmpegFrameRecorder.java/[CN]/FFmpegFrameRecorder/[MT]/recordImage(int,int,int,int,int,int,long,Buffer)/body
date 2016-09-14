@@ -74,10 +74,10 @@
     picture.pts(picture.pts() + 1);
     if (got_video_packet[0] != 0) {
       if (video_pkt.pts() != AV_NOPTS_VALUE) {
-        video_pkt.pts(av_rescale_q(video_pkt.pts(),video_c.time_base(),video_st.time_base()));
+        video_pkt.pts(frameTimestamp);
       }
       if (video_pkt.dts() != AV_NOPTS_VALUE) {
-        video_pkt.dts(av_rescale_q(video_pkt.dts(),video_c.time_base(),video_st.time_base()));
+        video_pkt.dts(frameTimestamp);
       }
       video_pkt.stream_index(video_st.index());
     }
