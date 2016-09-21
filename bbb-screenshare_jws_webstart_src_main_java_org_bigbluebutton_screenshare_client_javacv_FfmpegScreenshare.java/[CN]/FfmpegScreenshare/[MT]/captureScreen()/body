@@ -5,6 +5,8 @@
     frame=grabber.grabImage();
     if (frame != null) {
       try {
+        long timestamp=now - startTime;
+        frame.timestamp=timestamp;
         mainRecorder.record(frame);
       }
  catch (      Exception e) {
@@ -18,8 +20,6 @@
     listener.networkConnectionException(ExitCode.INTERNAL_ERROR,null);
   }
   long sleepFramerate=(long)(1000 / frameRate);
-  long timestamp=now - startTime;
-  mainRecorder.setTimestamp(timestamp * 1000);
   mainRecorder.setFrameNumber(frameNumber);
   frameNumber++;
   long execDuration=(System.currentTimeMillis() - now);
