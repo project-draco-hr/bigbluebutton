@@ -1,4 +1,4 @@
 {
-  TransferUsetToMeetingCommand tutmc=new TransferUsetToMeetingCommand(voiceConfId,targetVoiceConfId,voiceUserId,USER);
+  TransferUserToMeetingCommand tutmc=new TransferUserToMeetingCommand(voiceConfId,targetVoiceConfId,voiceUserId,this.audioProfile,USER);
   queueMessage(tutmc);
 }

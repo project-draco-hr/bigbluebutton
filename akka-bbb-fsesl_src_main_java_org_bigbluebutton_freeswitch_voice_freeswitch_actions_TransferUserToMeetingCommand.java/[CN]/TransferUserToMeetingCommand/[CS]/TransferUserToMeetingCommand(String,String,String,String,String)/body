@@ -2,4 +2,5 @@
   super(room,requesterId);
   this.targetRoom=targetRoom;
   this.participant=participant;
+  this.audioProfile=profile;
 }
