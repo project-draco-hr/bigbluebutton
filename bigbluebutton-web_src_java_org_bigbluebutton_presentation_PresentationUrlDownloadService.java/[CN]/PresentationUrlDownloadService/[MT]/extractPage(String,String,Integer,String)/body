@@ -1,0 +1,26 @@
+{
+  File sourceMeetingPath=new File(presentationDir + File.separator + sourceMeetingId+ File.separator+ sourceMeetingId+ File.separator+ presentationId);
+  final String presentationFilter=presentationId;
+  FilenameFilter filter=new FilenameFilter(){
+    public boolean accept(    File dir,    String name){
+      return name.startsWith(presentationFilter);
+    }
+  }
+;
+  File[] children=sourceMeetingPath.listFiles(filter);
+  if (children.length != 1) {
+    log.error("Not matching file with prefix {} found at {}",sourceMeetingId,sourceMeetingPath);
+    return;
+  }
+ else {
+    File sourcePresentationFile=children[0];
+    String filenameExt=FilenameUtils.getExtension(sourcePresentationFile.getName());
+    String presId=generatePresentationId(presentationId);
+    String newFilename=createNewFilename(presId,filenameExt);
+    File uploadDir=createPresentationDirectory(destinationMeetingId,presentationDir,presId);
+    String newFilePath=uploadDir.getAbsolutePath() + File.separatorChar + newFilename;
+    pageExtractor.extractPage(sourcePresentationFile,new File(newFilePath),presentationSlide);
+    File pres=new File(newFilePath);
+    processUploadedFile(destinationMeetingId,presId,"default-" + presentationSlide.toString() + "."+ filenameExt,pres);
+  }
+}

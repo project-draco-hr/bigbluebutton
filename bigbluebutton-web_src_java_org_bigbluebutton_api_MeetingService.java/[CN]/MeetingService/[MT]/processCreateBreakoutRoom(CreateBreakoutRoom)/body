@@ -20,9 +20,9 @@
     }
     Meeting breakout=paramsProcessorUtil.processCreateParams(params);
     handleCreateMeeting(breakout);
-    presDownloadService.downloadAndProcessDocument(message.defaultPresentationURL,breakout.getInternalId());
+    presDownloadService.extractPage(message.parentId,message.sourcePresentationId,message.sourcePresentationSlide,breakout.getInternalId());
   }
  else {
-    log.error("Failed to create breakout room " + message.breakoutId + ". Parent meeting not found.");
+    log.error("Failed to create breakout room " + message.breakoutId + ".Reason: Parent meeting not found.");
   }
 }

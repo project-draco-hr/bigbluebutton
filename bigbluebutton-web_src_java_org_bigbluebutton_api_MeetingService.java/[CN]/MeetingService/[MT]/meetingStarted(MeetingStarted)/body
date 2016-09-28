@@ -15,6 +15,7 @@
       logData.put("description","Meeting has started.");
       Gson gson=new Gson();
       String logStr=gson.toJson(logData);
+      log.info("Meeting restarted: data={}",logStr);
     }
  else {
       Map<String,Object> logData=new HashMap<String,Object>();
