@@ -1,10 +1,10 @@
 {
-  File tmpDir=new File(pres.getUploadedFile().getParent() + File.separatorChar + "svgs"+ File.separatorChar+ "tmp");
-  if (!tmpDir.exists())   tmpDir.mkdir();
+  File pdfDir=new File(pres.getUploadedFile().getParent() + File.separatorChar + "pdfs");
+  if (!pdfDir.exists())   pdfDir.mkdir();
   if (SupportedFileTypes.isPdfFile(pres.getFileType())) {
     for (int i=1; i <= pres.getNumberOfPages(); i++) {
-      File tmp=new File(tmpDir.getAbsolutePath() + File.separatorChar + "slide"+ i+ ".pdf");
-      String COMMAND=IMAGEMAGICK_DIR + "/gs -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH -dFirstPage=" + i+ " -dLastPage="+ i+ " -sOutputFile="+ tmp.getAbsolutePath()+ " /etc/bigbluebutton/nopdfmark.ps "+ pres.getUploadedFile().getAbsolutePath();
+      File pdfFile=new File(pdfDir.getAbsolutePath() + File.separatorChar + "slide"+ i+ ".pdf");
+      String COMMAND=IMAGEMAGICK_DIR + "/gs -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH -dFirstPage=" + i+ " -dLastPage="+ i+ " -sOutputFile="+ pdfFile.getAbsolutePath()+ " /etc/bigbluebutton/nopdfmark.ps "+ pres.getUploadedFile().getAbsolutePath();
       new ExternalProcessExecutor().exec(COMMAND,60000);
     }
   }

@@ -1,0 +1,4 @@
+String sourceMeetingId
+String presentationId
+Integer presentationSlide
+String destinationMeetingId

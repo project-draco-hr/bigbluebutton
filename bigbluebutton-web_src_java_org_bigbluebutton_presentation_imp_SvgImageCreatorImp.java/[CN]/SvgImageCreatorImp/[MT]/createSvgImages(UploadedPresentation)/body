@@ -1,11 +1,11 @@
 {
   boolean success=false;
-  File imagePresentationDir=determineSvgImagesDirectory(pres.getUploadedFile());
-  if (!imagePresentationDir.exists())   imagePresentationDir.mkdir();
-  cleanDirectory(imagePresentationDir);
+  File svgImagesPresentationDir=determineSvgImagesDirectory(pres.getUploadedFile());
+  if (!svgImagesPresentationDir.exists())   svgImagesPresentationDir.mkdir();
+  cleanDirectory(svgImagesPresentationDir);
   try {
     extractPdfPages(pres);
-    success=generateSvgImages(imagePresentationDir,pres);
+    success=generateSvgImages(svgImagesPresentationDir,pres);
   }
  catch (  InterruptedException e) {
     log.warn("Interrupted Exception while generating images.");

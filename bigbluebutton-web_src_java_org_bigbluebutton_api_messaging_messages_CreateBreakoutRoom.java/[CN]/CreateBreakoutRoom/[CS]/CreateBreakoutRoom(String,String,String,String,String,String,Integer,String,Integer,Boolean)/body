@@ -6,6 +6,7 @@
   this.viewerPassword=viewerPassword;
   this.moderatorPassword=moderatorPassword;
   this.durationInMinutes=duration;
-  this.defaultPresentationURL=defaultPresentationURL;
+  this.sourcePresentationId=sourcePresentationId;
+  this.sourcePresentationSlide=sourcePresentationSlide;
   this.record=record;
 }
