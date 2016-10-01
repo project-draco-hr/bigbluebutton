@@ -16,7 +16,7 @@
     File sourcePresentationFile=children[0];
     String filenameExt=FilenameUtils.getExtension(sourcePresentationFile.getName());
     String presId=generatePresentationId(presentationId);
-    String newFilename=createNewFilename(presId,filenameExt);
+    String newFilename=Util.createNewFilename(presId,filenameExt);
     File uploadDir=createPresentationDirectory(destinationMeetingId,presentationDir,presId);
     String newFilePath=uploadDir.getAbsolutePath() + File.separatorChar + newFilename;
     pageExtractor.extractPage(sourcePresentationFile,new File(newFilePath),presentationSlide);

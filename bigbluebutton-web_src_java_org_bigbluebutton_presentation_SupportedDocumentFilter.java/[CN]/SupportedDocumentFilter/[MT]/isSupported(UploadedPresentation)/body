@@ -1,12 +1,14 @@
 {
   File presentationFile=pres.getUploadedFile();
-  int fileExtIndex=presentationFile.getName().lastIndexOf('.') + 1;
-  String ext=presentationFile.getName().toLowerCase().substring(fileExtIndex);
-  boolean supported=SupportedFileTypes.isFileSupported(ext);
+  String extension=FilenameUtils.getExtension(presentationFile.getName());
+  boolean supported=SupportedFileTypes.isFileSupported(extension);
   notifyProgressListener(supported,pres);
   if (supported) {
-    log.info("Received supported file " + pres.getUploadedFile().getAbsolutePath());
-    pres.setFileType(ext);
+    log.info("Received supported file {}",pres.getUploadedFile().getAbsolutePath());
+    pres.setFileType(extension);
+  }
+ else {
+    log.warn("Received not supported file {}",pres.getUploadedFile().getAbsolutePath());
   }
   return supported;
 }
